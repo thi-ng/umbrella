@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyMat } from "./api.js";
 
 export const IDENT22: ReadonlyMat = Object.freeze([1, 0, 0, 1]);

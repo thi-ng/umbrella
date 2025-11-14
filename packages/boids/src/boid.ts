@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api";
 import type { IDistance } from "@thi.ng/distance";
 import { DIST_SQ2, DIST_SQ3 } from "@thi.ng/distance/squared";
@@ -21,6 +22,12 @@ export class Boid implements ITimeStep {
 	region: Radial<Boid>;
 	opts: BoidOpts;
 
+	/**
+	 * Pre-allocated vector for force accumulation, used by/for behavior
+	 * updates.
+	 */
+	force: Vec;
+
 	constructor(
 		opts: BoidOpts,
 		api: VecAPI,
@@ -42,6 +49,7 @@ export class Boid implements ITimeStep {
 			constrain(maddN(pos, this.vel.curr, dt, pos), this)
 		);
 		this.region = new Radial<Boid>(distance, pos, 1);
+		this.force = api.zeroes();
 	}
 
 	/**
@@ -87,30 +95,43 @@ export class Boid implements ITimeStep {
 	}
 
 	steerTowards(target: ReadonlyVec, out: Vec = target) {
-		return this.limitSteer(this.api.sub(out, target, this.pos.curr));
+		return this.limitForce(this.api.sub(out, target, this.pos.curr));
 	}
 
-	computeSteer(steer: Vec, num: number) {
-		return this.limitSteer(
-			num > 0 ? this.api.mulN(steer, steer, 1 / num) : steer
+	/**
+	 * Mutably divides given `force` by `num` (if > 0) and limits result via
+	 * {@link Boid.limitForce}.
+	 *
+	 * @param force
+	 * @param num
+	 */
+	averageForce(force: Vec, num: number) {
+		return this.limitForce(
+			num > 0 ? this.api.mulN(force, force, 1 / num) : force
 		);
 	}
 
-	limitSteer(steer: Vec) {
+	/**
+	 * If force > 0, computes: `limit(normalize(force, maxSpeed) - vel, maxForce)`.
+	 * Otherwise, returns input as is.
+	 *
+	 * @param force
+	 */
+	limitForce(force: Vec) {
 		const { limit, magSq, msubN } = this.api;
-		const m = magSq(steer);
+		const m = magSq(force);
 		return m > 0
 			? limit(
-					steer,
+					force,
 					msubN(
-						steer,
-						steer,
+						force,
+						force,
 						this.opts.maxSpeed / Math.sqrt(m),
 						this.vel.curr
 					),
 					this.opts.maxForce!
 			  )
-			: steer;
+			: force;
 	}
 }
 

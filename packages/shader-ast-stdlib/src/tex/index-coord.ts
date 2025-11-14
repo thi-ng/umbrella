@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { UintTerm, UVec2Term } from "@thi.ng/shader-ast";
 import { uvec2 } from "@thi.ng/shader-ast/ast/lit";
 import { div, madd, modi } from "@thi.ng/shader-ast/ast/ops";

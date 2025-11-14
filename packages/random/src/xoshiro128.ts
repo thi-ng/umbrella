@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api.js";
 import { ARandom } from "./arandom.js";
@@ -6,6 +7,7 @@ import { DEFAULT_SEED_128 } from "./constants.js";
 /**
  * @remarks
  * References:
+ *
  * - http://prng.di.unimi.it/
  * - http://prng.di.unimi.it/xoshiro128plusplus.c
  */

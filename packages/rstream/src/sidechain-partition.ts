@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { map } from "@thi.ng/transducers/map";

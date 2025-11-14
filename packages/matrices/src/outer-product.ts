@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MultiVecOpVV, ReadonlyVec } from "@thi.ng/vectors";
 import { setC, setC4 } from "@thi.ng/vectors/setc";
 import { vop } from "@thi.ng/vectors/vop";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Term } from "./nodes.js";
 
 export type BoolTerm = Term<"bool">;

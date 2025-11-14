@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { NumericArray } from "@thi.ng/api";
 import type { IVector } from "@thi.ng/vectors";

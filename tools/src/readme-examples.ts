@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { idgen } from "@thi.ng/idgen";

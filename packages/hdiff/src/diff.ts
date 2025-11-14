@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { escapeEntities } from "@thi.ng/strings/entities";

@@ -1,11 +1,12 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { map, push, transduce } from "@thi.ng/transducers";
-import { PRESETS, type Preset, type PresetID } from "../api";
-import { DB } from "./atom";
-import { setCanvasBackground } from "./canvas";
-import { setImageDither } from "./image";
-import { addLayer, removeAllLayers } from "./layers";
+import { PRESETS, type Preset, type PresetID } from "../api.js";
+import { DB } from "./atom.js";
+import { setCanvasBackground } from "./canvas.js";
+import { setImageDither } from "./image.js";
+import { addLayer, removeAllLayers } from "./layers.js";
 
 export const applyPresetForID = (id: PresetID) => {
 	DB.resetIn(["preset"], id);

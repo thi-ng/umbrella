@@ -1,6 +1,36 @@
-import type { MultiVecOpV, VecOpV } from "./api.js";
-import { defFnOp } from "./compile/emit.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpV } from "./defopv.js";
 
-export const [asin, asin2, asin3, asin4] = defFnOp<MultiVecOpV, VecOpV>(
-	"Math.asin"
-);
+const [a, b, c, d] = defOpV(Math.asin);
+
+/**
+ * Componentwise computes `Math.asin` of given nD vector. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const asin = a;
+
+/**
+ * Componentwise computes `Math.asin` of given 2D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const asin2 = b;
+
+/**
+ * Componentwise computes `Math.asin` of given 3D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const asin3 = c;
+
+/**
+ * Componentwise computes `Math.asin` of given 4D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const asin4 = d;

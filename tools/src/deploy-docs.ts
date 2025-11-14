@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	cliApp,
 	flag,
@@ -9,12 +10,8 @@ import {
 import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
-import {
-	AWS_PROFILE,
-	CF_DISTRO_DOCS,
-	S3_BUCKET_DOCS,
-	S3_OPTS,
-} from "./aws-config.js";
+import { S3_BUCKET_DOCS, S3_OPTS } from "./aws-config.js";
+import { execAWS } from "./utils.js";
 
 interface CLIOpts {
 	alias?: KVDict;
@@ -121,24 +118,19 @@ const syncPackage = (ctx: DocCtx, id: string, root: string) => {
 	const dest = `${S3_BUCKET_DOCS}${ctx.s3Prefix}/${destID}`;
 	LOGGER.info("syncing", root, "->", dest);
 	if (!ctx.dryRun) {
-		LOGGER.info(
-			execFileSync(
-				"aws",
-				`s3 sync ${root} ${dest} ${SYNC_OPTS}`.split(" ")
-			).toString()
-		);
+		LOGGER.info(execAWS(`s3 sync ${root} ${dest} ${SYNC_OPTS}`));
 	}
 };
 
-const invalidatePaths = (paths: string) => {
-	LOGGER.info("invalidating CDN paths:", paths);
-	execFileSync(
-		"aws",
-		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${paths} ${AWS_PROFILE}`.split(
-			" "
-		)
-	);
-};
+// const invalidatePaths = (paths: string) => {
+// 	LOGGER.info("invalidating CDN paths:", paths);
+// 	execFileSync(
+// 		"aws",
+// 		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${paths} ${AWS_PROFILE}`.split(
+// 			" "
+// 		)
+// 	);
+// };
 
 const processPackage = (ctx: DocCtx, id: string) => {
 	LOGGER.info("processing package", ctx.base, id);
@@ -205,26 +197,23 @@ cliApp<CLIOpts, CLICtx>({
 				for (let id of packages) {
 					id = id.replace(docCtx.base + "/", "");
 					processPackage(docCtx, id);
-					if (!doAll) {
-						const destID = docCtx.aliases[id] || id;
-						LOGGER.debug("adding invalidation", destID);
-						invalidations.push(`${docCtx.s3Prefix}/${destID}/*`);
-					}
+					// if (!doAll) {
+					// 	const destID = docCtx.aliases[id] || id;
+					// 	LOGGER.debug("adding invalidation", destID);
+					// 	invalidations.push(`${docCtx.s3Prefix}/${destID}/*`);
+					// }
 				}
 				if (!docCtx.noToc) {
 					execFileSync("bun", ["tools/src/doc-table.ts"]);
 					if (!docCtx.dryRun) {
-						execFileSync(
-							"aws",
-							`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`.split(
-								" "
-							)
+						execAWS(
+							`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`
 						);
 					}
 				}
-				if (!docCtx.dryRun) {
-					invalidatePaths(`/index.html ${invalidations.join(" ")}`);
-				}
+				// if (!docCtx.dryRun) {
+				// 	invalidatePaths(`/index.html ${invalidations.join(" ")}`);
+				// }
 			},
 			opts: {},
 		},

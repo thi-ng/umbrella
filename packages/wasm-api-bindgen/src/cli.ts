@@ -1,23 +1,25 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { Keys } from "@thi.ng/api";
 import {
-	ParseError,
+	ARG_DRY_RUN,
+	THING_HEADER,
+	cliApp,
+	configureLogLevel,
 	flag,
 	oneOf,
 	oneOfMulti,
-	parse,
 	string,
 	strings,
-	usage,
-	type Args,
-	type UsageOpts,
+	type Command,
+	type CommandCtx,
 } from "@thi.ng/args";
 import { isArray, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
-import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
+import type { ILogger } from "@thi.ng/logger";
 import { mutIn } from "@thi.ng/paths";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -66,70 +68,15 @@ interface GenConfig {
 	zig: Partial<ZigOpts>;
 }
 
-const argOpts: Args<CLIOpts> = {
-	analytics: string({
-		alias: "a",
-		hint: "FILE",
-		desc: "output file path for raw codegen analytics",
-	}),
-	config: string({
-		alias: "c",
-		hint: "FILE",
-		desc: "JSON config file with codegen options",
-	}),
-	debug: flag({
-		alias: "d",
-		default: false,
-		desc: "enable debug output & functions",
-	}),
-	dryRun: flag({
-		default: false,
-		desc: "enable dry run (don't overwrite files)",
-	}),
-	lang: oneOfMulti(<Language[]>Object.keys(GENERATORS), {
-		alias: "l",
-		desc: "target language",
-		default: ["ts", "zig"],
-		delim: ",",
-	}),
-	out: strings({ alias: "o", hint: "FILE", desc: "output file path" }),
-	string: oneOf(["slice", "ptr"], {
-		alias: "s",
-		hint: "TYPE",
-		desc: "Force string type implementation",
-	}),
-};
-
-export const INSTALL_DIR = resolve(`${process.argv[2]}/..`);
-
-export const PKG = readJSON(`${INSTALL_DIR}/package.json`);
+export const PKG = readJSON(join(process.argv[2], "package.json"));
 
 export const APP_NAME = PKG.name.split("/")[1];
 
-export const HEADER = `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} ${PKG.version}
- █ █ █ █ █ █ █ █ █ │ Multi-language data bindings code generator
-                 █ │
-               █ █ │
-`;
-
-const usageOpts: Partial<UsageOpts> = {
-	lineWidth: process.stdout.columns,
-	prefix: `${HEADER}
-usage: ${APP_NAME} [OPTS] JSON-INPUT-FILE(S) ...
-       ${APP_NAME} --help
-
-`,
-	showGroupNames: true,
-	paramWidth: 32,
-};
-
-const showUsage = () => {
-	process.stderr.write(usage(argOpts, usageOpts));
-	process.exit(1);
-};
+export const HEADER = THING_HEADER(
+	PKG.name,
+	PKG.version,
+	"Multi-language data bindings code generator"
+);
 
 const invalidSpec = (path: string, msg?: string) => {
 	throw new Error(`invalid typedef: ${path}${msg ? ` (${msg})` : ""}`);
@@ -241,51 +188,100 @@ const resolveUserCode = (
 	}
 };
 
-try {
-	const result = parse(argOpts, process.argv, { start: 3, usageOpts });
-	if (!result) process.exit(1);
-
-	const { result: opts, rest } = result!;
-	if (!rest.length) showUsage();
-
-	if (opts.out && opts.lang.length != opts.out.length) {
-		illegalArgs(
-			`expected ${opts.lang.length} outputs, but got ${opts.out.length}`
-		);
-	}
-
-	const ctx: Ctx = {
-		logger: new ConsoleLogger("wasm-api", opts.debug ? "DEBUG" : "INFO"),
-		config: { global: {} },
-		opts,
-	};
-
-	if (opts.config) {
-		opts.config = resolve(opts.config);
-		ctx.config = readJSON(opts.config, ctx.logger);
-		for (let id in ctx.config) {
-			const conf = ctx.config[<keyof GenConfig>id]!;
-			resolveUserCode(ctx, conf, "pre");
-			resolveUserCode(ctx, conf, "post");
+const CMD: Command<CLIOpts, CLIOpts> = {
+	desc: "",
+	opts: {},
+	inputs: [1, Infinity],
+	fn: async ({ opts, inputs, logger }) => {
+		if (opts.out && opts.lang.length !== opts.out.length) {
+			illegalArgs(
+				`expected ${opts.lang.length} outputs, but got ${opts.out.length}`
+			);
 		}
-	}
-	opts.debug && mutIn(ctx, ["config", "global", "debug"], true);
-	opts.string && mutIn(ctx, ["config", "global", "stringType"], opts.string);
 
-	const types = parseTypeSpecs(ctx, rest);
-	generateOutputs(ctx, types);
+		const ctx: Ctx = {
+			logger,
+			config: { global: {} },
+			opts,
+		};
 
-	if (ctx.opts.analytics) {
-		// always write analytics, even if dry run
-		writeJSON(
-			resolve(ctx.opts.analytics),
-			types,
-			undefined,
-			"\t",
-			ctx.logger
-		);
-	}
-} catch (e) {
-	if (!(e instanceof ParseError)) process.stderr.write((<Error>e).message);
-	process.exit(1);
-}
+		if (opts.config) {
+			opts.config = resolve(opts.config);
+			ctx.config = readJSON(opts.config, ctx.logger);
+			for (let id in ctx.config) {
+				const conf = ctx.config[<keyof GenConfig>id]!;
+				resolveUserCode(ctx, conf, "pre");
+				resolveUserCode(ctx, conf, "post");
+			}
+		}
+		opts.debug && mutIn(ctx, ["config", "global", "debug"], true);
+		opts.string &&
+			mutIn(ctx, ["config", "global", "stringType"], opts.string);
+
+		const types = parseTypeSpecs(ctx, inputs);
+		generateOutputs(ctx, types);
+
+		if (ctx.opts.analytics) {
+			// always write analytics, even if dry run
+			writeJSON(
+				resolve(ctx.opts.analytics),
+				types,
+				undefined,
+				"\t",
+				ctx.logger
+			);
+		}
+	},
+};
+
+cliApp<CLIOpts, CommandCtx<CLIOpts, CLIOpts>>({
+	name: APP_NAME,
+	start: 3,
+	opts: {
+		...ARG_DRY_RUN,
+		analytics: string({
+			alias: "a",
+			hint: "FILE",
+			desc: "output file path for raw codegen analytics",
+		}),
+		config: string({
+			alias: "c",
+			hint: "FILE",
+			desc: "JSON config file with codegen options",
+		}),
+		debug: flag({
+			alias: "d",
+			default: false,
+			desc: "enable debug output & functions",
+		}),
+		lang: oneOfMulti({
+			alias: "l",
+			desc: "target language",
+			opts: <Language[]>Object.keys(GENERATORS),
+			default: ["ts", "zig"],
+			delim: ",",
+		}),
+		out: strings({ alias: "o", hint: "FILE", desc: "output file path" }),
+		string: oneOf({
+			alias: "s",
+			hint: "TYPE",
+			desc: "Force string type implementation",
+			opts: ["slice", "ptr"],
+		}),
+	},
+	commands: { CMD },
+	single: true,
+	usage: {
+		lineWidth: process.stdout.columns,
+		prefix: `${HEADER}
+
+usage: ${APP_NAME} [OPTS] JSON-INPUT-FILE(S) ...
+       ${APP_NAME} --help\n`,
+		showGroupNames: true,
+		paramWidth: 32,
+	},
+	ctx: async (ctx) => {
+		configureLogLevel(ctx.logger, ctx.opts.debug);
+		return ctx;
+	},
+});

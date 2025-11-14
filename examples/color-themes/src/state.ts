@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { isMobile, isString } from "@thi.ng/checks";
 import {
@@ -15,9 +16,9 @@ import { SYSTEM, XsAdd } from "@thi.ng/random";
 import { Stream, debounce, reactive, stream, sync } from "@thi.ng/rstream";
 import { serialize } from "@thi.ng/rstream-dot";
 import { map } from "@thi.ng/transducers";
-import { RANGE_IDs, type MainInputs, type MainOutputs } from "./api";
-import { downloadACT } from "./palette";
-import { attachSerializer, initFromHash } from "./serialize";
+import { RANGE_IDs, type MainInputs, type MainOutputs } from "./api.js";
+import { downloadACT } from "./palette.js";
+import { attachSerializer, initFromHash } from "./serialize.js";
 
 const themePart = (
 	range: ColorRangePreset,

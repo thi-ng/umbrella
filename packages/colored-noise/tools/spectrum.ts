@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, NumericArray } from "@thi.ng/api";
 import { fft, spectrumPow } from "@thi.ng/dsp";
 import { barChartVStr } from "@thi.ng/text-canvas";

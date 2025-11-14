@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { setIn } from "@thi.ng/paths";
 import { FLOAT_GRAY, floatBufferFromImage } from "@thi.ng/pixel";
@@ -11,9 +12,9 @@ import {
 	type Event,
 	type EventType,
 	type EventTypeMap,
-} from "./api";
-import { state } from "./state";
-import { adaptiveThreshold } from "./threshold";
+} from "./api.js";
+import { state } from "./state.js";
+import { adaptiveThreshold } from "./threshold.js";
 
 /**
  * Event input stream (not exported)

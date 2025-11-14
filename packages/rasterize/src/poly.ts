@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, TypedArray } from "@thi.ng/api";
 import type { Shader2D } from "./api.js";
 import { ensureShader2D } from "./checks.js";

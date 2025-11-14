@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { TextureType, type ITexture } from "./api/texture.js";
 
 export const isGL2Context = (

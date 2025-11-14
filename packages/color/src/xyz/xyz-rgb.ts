@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Color, ColorOp, ReadonlyColor } from "../api.js";
 import { XYZ_RGB_D50, XYZ_RGB_D65 } from "../api/constants.js";
 import { __mulV33 } from "../internal/matrix-ops.js";

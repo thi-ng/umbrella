@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { compareNumDesc } from "@thi.ng/compare";
 import { XsAdd } from "@thi.ng/random";
 import { range } from "@thi.ng/transducers";

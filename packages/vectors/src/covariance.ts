@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "./api.js";
 import { center } from "./center.js";
 import { mul } from "./mul.js";
@@ -8,6 +9,7 @@ import { sum } from "./sum.js";
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Covariance
  * - https://www.youtube.com/watch?v=2bcmklvrXTQ
  *

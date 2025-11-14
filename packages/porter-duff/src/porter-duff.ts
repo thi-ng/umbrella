@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2 } from "@thi.ng/api";
 import type { BlendFnF, BlendFnI, Color, ReadonlyColor } from "./api.js";
 import {
@@ -33,7 +34,7 @@ export const ONE_MINUS_B: FnN2 = (_, b) => 1 - b;
  * - `dest` color (foreground)
  *
  * Unlike the packed int version, here only the alpha channel of the result
- * color will be clamped. RGB components can potentially go out of [0..1] range
+ * color will be clamped. RGB components can potentially go out of `[0,1]` range
  * (depending on coefficient functions used).
  *
  * Reference: https://keithp.com/~keithp/porterduff/p253-porter.pdf
@@ -155,7 +156,7 @@ export const porterDuffPInt =
 
 /**
  * Porter-Duff operator. None of the terms are used. Always results in
- * [0, 0, 0, 0].
+ * `[0,0,0,0]`.
  *
  * {@link porterDuff}
  *
@@ -366,9 +367,9 @@ export const darken = (out: Color | null, src: ReadonlyColor, t: number) =>
 	setC4(out || src, src[0] * t, src[1] * t, src[2] * t, src[3]);
 
 /**
- * Porter-Duff dissolve modifier. Multiplies all components of `src`
- * with `t`. Clamps alpha to [0..1] range, RGB unclamped. Writes results
- * to `out`, or if `null` modifies `src` in-place.
+ * Porter-Duff dissolve modifier. Multiplies all components of `src` with `t`.
+ * Clamps alpha to `[0,1]` range, RGB unclamped. Writes results to `out`, or if
+ * `null` modifies `src` in-place.
  *
  * @param out -
  * @param src -
@@ -378,9 +379,9 @@ export const dissolve = (out: Color | null, src: ReadonlyColor, t: number) =>
 	setC4(out || src, src[0] * t, src[1] * t, src[2] * t, min(1, src[3] * t));
 
 /**
- * Porter-Duff opacity modifier. Multiplies alpha component of `src`
- * with `t`, clamped to [0..1] range. Writes results to `out`, or if
- * `null` modifies `src` in-place.
+ * Porter-Duff opacity modifier. Multiplies alpha component of `src` with `t`,
+ * clamped to `[0,1]` range. Writes results to `out`, or if `null` modifies
+ * `src` in-place.
  *
  * @param out -
  * @param src -
@@ -390,8 +391,8 @@ export const opacity = (out: Color | null, src: ReadonlyColor, t: number) =>
 	setC4(out || src, src[0], src[1], src[2], min(1, src[3] * t));
 
 /**
- * Porter-Duff darken modifier for packed ints. Multiplies RGB
- * components of `src` with `t` ([0..1] range).
+ * Porter-Duff darken modifier for packed ints. Multiplies RGB components of
+ * `src` with `t` (`[0,1]` range).
  *
  * @param src -
  * @param t -
@@ -404,7 +405,7 @@ export const darkenInt: FnN2 = (src, t) =>
 
 /**
  * Porter-Duff dissolve modifier for packed ints. Multiplies all
- * components of `src` with `t` ([0..1] range).
+ * components of `src` with `t` (`[0,1]` range).
  *
  * @param src -
  * @param t -
@@ -416,8 +417,8 @@ export const dissolveInt: FnN2 = (src, t) =>
 	min(0xff, (src & 0xff) * t);
 
 /**
- * Porter-Duff opacity modifier for packed ints. Multiplies alpha
- * component of `src` with `t` ([0..1] range).
+ * Porter-Duff opacity modifier for packed ints. Multiplies alpha component of
+ * `src` with `t` (`[0,1]` range).
  *
  * @param src -
  * @param t -

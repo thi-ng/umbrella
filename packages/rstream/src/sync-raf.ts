@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNode } from "@thi.ng/checks/is-node";
 import { State, type CommonOpts, type ISubscribable } from "./api.js";
 import { __optsWithID } from "./idgen.js";

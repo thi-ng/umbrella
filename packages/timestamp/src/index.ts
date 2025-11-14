@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Timestamp = number | bigint;
 
 /**
@@ -19,16 +20,17 @@ export const now: () => Timestamp =
 		: () => Date.now() * 1e6;
 
 /**
- * Returns the difference in milliseconds between 2 given {@link Timestamp}s
- * obtained via {@link now}. `b` defaults to result of {@link now}.
+ * Returns the difference in milliseconds between 2 given {@link Timestamp}s,
+ * e.g. obtained via {@link now}. `a` is assumed to be older than `b`, the
+ * latter defaults to result of {@link now}.
  *
  * @param a
  * @param b
  */
 export const timeDiff = (a: Timestamp, b = now()) =>
 	(typeof BigInt !== "undefined"
-		? Number(<bigint>b - <bigint>a)
-		: <number>b - <number>a) * 1e-6;
+		? Number(BigInt(b) - BigInt(a))
+		: Number(b) - Number(a)) * 1e-6;
 
 /**
  * Takes a duration (either a number or bigint) in nanosec-scale (see

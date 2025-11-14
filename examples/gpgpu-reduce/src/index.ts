@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2, IObjectOf } from "@thi.ng/api";
 import { benchmark, benchResult } from "@thi.ng/bench";
 import { isPow2 } from "@thi.ng/binary";

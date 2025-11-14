@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MaybeAsyncIterable } from "@thi.ng/api";
 import { now, timeDiff, type Timestamp } from "@thi.ng/timestamp";
 import type { AsyncTransducer } from "./api.js";

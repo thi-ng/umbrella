@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { clamp01 } from "@thi.ng/math/interval";
 import { set4 } from "@thi.ng/vectors/set";

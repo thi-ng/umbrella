@@ -1,4 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import type {
@@ -33,7 +35,7 @@ export type CSSConversions = Partial<Record<ColorMode, Fn<any, string>>>;
  * {@link setDefaultCSSConversions} to change default.
  *
  * Reference:
- * - https://www.w3.org/TR/css-color-3/
+ * https://www.w3.org/TR/css-color-3/
  */
 export const CSS_LEVEL3: CSSConversions = {
 	abgr32: (x) => intArgb32Css(intAbgr32Argb32(x[0])),
@@ -55,7 +57,7 @@ export const CSS_LEVEL3: CSSConversions = {
  * Use {@link setDefaultCSSConversions} to use as default.
  *
  * Reference:
- * - https://www.w3.org/TR/css-color-4/
+ * https://www.w3.org/TR/css-color-4/
  */
 export const CSS_LEVEL4: CSSConversions = {
 	...CSS_LEVEL3,
@@ -119,3 +121,15 @@ export const css = (
 			  )
 		: srgbCss(src);
 };
+
+/**
+ * Convenience helper to convert an iterable of colors into an array of CSS
+ * strings (using {@link css}).
+ *
+ * @param colors
+ * @param cssTarget
+ */
+export const cssColors = (
+	colors: Iterable<Exclude<MaybeColor, IParsedColor>>,
+	cssTarget: CSSConversions = CSS_DEFAULT
+) => ensureArray(colors).map((x) => css(x, cssTarget));

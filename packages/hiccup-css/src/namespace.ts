@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { RuleFn } from "./api.js";
 
 export function at_namespace(url: string): RuleFn;

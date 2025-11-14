@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asSvg, group, line, points, svgDoc } from "@thi.ng/geom";
 import { stratifiedGrid2 } from "@thi.ng/poisson";
 import { map, range } from "@thi.ng/transducers";

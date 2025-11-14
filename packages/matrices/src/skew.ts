@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MatOpN } from "./api.js";
 import {
 	shearX22,

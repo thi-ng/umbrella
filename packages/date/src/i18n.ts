@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { Locale, LocaleSpec, LocaleUnit, Precision } from "./api.js";

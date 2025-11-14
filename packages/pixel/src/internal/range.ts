@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:export
 /**
- * Yields monotonically increasing iterator of [0..n)
+ * Yields monotonically increasing iterator of `[0,n)`
  *
  * @param n -
  *

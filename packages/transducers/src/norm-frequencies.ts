@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { identity } from "@thi.ng/compose/identity";
 import type { Reducer } from "./api.js";

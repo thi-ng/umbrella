@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Stringer } from "./api.js";
 
 /**
@@ -5,6 +6,7 @@ import type { Stringer } from "./api.js";
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Hollerith_constant
  * - https://en.wikipedia.org/wiki/IGES#File_format
  *

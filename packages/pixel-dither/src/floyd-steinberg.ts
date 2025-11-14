@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DitherKernel } from "./api.js";
 
 /**
@@ -5,6 +6,7 @@ import type { DitherKernel } from "./api.js";
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Floyd%E2%80%93Steinberg_dithering
  * - https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
  */

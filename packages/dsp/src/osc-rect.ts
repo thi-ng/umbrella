@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fract } from "@thi.ng/math/prec";
 import type { StatelessOscillator } from "./api.js";
 
@@ -10,8 +11,8 @@ export const rect: StatelessOscillator = (
 ) => dc + amp * (fract(phase * freq) < duty ? 1 : -1);
 
 /**
- * Higher order version of {@link rect} with pre-configured `duty` width
- * (in the (0..1) range).
+ * Higher order version of {@link rect} with pre-configured `duty` width (in the
+ * `(0,1)` range).
  *
  * @param duty -
  */

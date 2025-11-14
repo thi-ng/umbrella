@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners-20230807/thing-shader-ast.svg?81f46577)
+# ![@thi.ng/shader-ast](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-shader-ast.svg?81f46577)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -212,7 +212,7 @@ status. The TL;DR list...
 
 - [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl) - Customizable GLSL codegen for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 - [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-js) - Customizable JS codegen, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
-- [@thi.ng/shader-ast-optimize](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-optimize) - Shader AST code optimization passes/strategies
+- [@thi.ng/shader-ast-optimize](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-optimize) - Shader AST code/tree optimization passes/strategies
 - [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 
 ## Related packages
@@ -246,7 +246,7 @@ For Node.js REPL:
 const ast = await import("@thi.ng/shader-ast");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.93 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.98 KB
 
 ## Dependencies
 

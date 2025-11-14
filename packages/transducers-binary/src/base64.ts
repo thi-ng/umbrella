@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { __iter, iterator, iterator1 } from "@thi.ng/transducers/iterator";
@@ -12,7 +13,7 @@ const B64_SAFE = B64_CHARS.substring(0, 62) + "-_";
  * Supports URL safe & unsafe flavors.
  */
 export function base64Decode(): Transducer<string, number>;
-export function base64Decode(src: string): Uint8Array;
+export function base64Decode(src: string): Uint8Array<ArrayBuffer>;
 export function base64Decode(src?: string): any {
 	return src
 		? new Uint8Array(iterator1(base64Decode(), src))

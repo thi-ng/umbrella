@@ -1,11 +1,12 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN } from "@thi.ng/api";
 import type { IRandom } from "./api.js";
 import { SYSTEM } from "./system.js";
 
 /**
  * Takes a `weight` function and optional {@link IRandom} instance (default:
- * {@link SYSTEM}). The weight function accepts a number in [0,1) interval and
- * returns a number in [0,1]. Draws two random numbers `a` and `b` via
+ * {@link SYSTEM}). The weight function accepts a number in `[0,1)` interval and
+ * returns a number in `[0,1]`. Draws two random numbers `a` and `b` via
  * {@link IRandom.float} and returns a tuple of `[a, b < weight(a)]`.
  *
  * @example

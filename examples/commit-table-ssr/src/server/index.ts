@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { TLRUCache } from "@thi.ng/cache";
 import { readText, writeJSON } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";

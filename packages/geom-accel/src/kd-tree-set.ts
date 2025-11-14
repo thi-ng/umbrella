@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import type { DistanceFn, ReadonlyVec } from "@thi.ng/vectors";
 import type { IRegionQuery, ISpatialSet } from "./api.js";

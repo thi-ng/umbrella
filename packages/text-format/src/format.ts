@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	PRESETS_TPL,
 	type FormatPresets,

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { rad } from "./angle.js";
 import { ft, m } from "./length.js";
 import { s } from "./time.js";

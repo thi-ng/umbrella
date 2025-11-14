@@ -1,8 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Typed array based Disjoint Set implementation with quick union and path
  * compression, after Sedgewick & Wayne.
  *
  * @remarks
+ * References:
+ *
  * - https://en.wikipedia.org/wiki/Disjoint-set_data_structure
  * - https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf
  */
@@ -14,7 +17,7 @@ export class DisjointSet {
 	/**
 	 * Creates new instance with `n` initial singular subsets.
 	 *
-	 * @param n - initial capacity, ID range [0..n)
+	 * @param n - initial capacity, ID range `[0,n)`
 	 */
 	constructor(n: number) {
 		const roots = (this.roots = new Uint32Array(n));

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns true if `x` is a string, number or boolean.
  *

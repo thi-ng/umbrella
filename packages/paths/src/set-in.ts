@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	DeepPath,
 	Path,
@@ -15,11 +16,11 @@ import type {
 import { defSetter } from "./setter.js";
 
 /**
- * Unchecked version of {@link setIn}.
+ * Non-typechecked version of {@link setIn}.
  *
  * @remarks
- * The type parameter `T` can be used to indicate the type of the nested
- * value to be set (default: `any`).
+ * The type parameter `T` can be used to indicate the type of the nested value
+ * to be set (default: `any`).
  *
  * @example
  * ```ts tangle:../export/set-in-unsafe.ts
@@ -54,7 +55,7 @@ export const setInUnsafe = <T>(state: any, path: Path, val: T): any =>
  * );
  * // { a: { b: { c: 24 } } }
  *
- * // error (wrong value type)
+ * // type error (wrong value type for given path)
  * console.log(
  *   setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], "24")
  * );

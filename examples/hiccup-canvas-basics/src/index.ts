@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas2d } from "@thi.ng/canvas";
 import { analogRgb } from "@thi.ng/color";
 import { asRGB, NUM_THEMES } from "@thi.ng/color-palettes";

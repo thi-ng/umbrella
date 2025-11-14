@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Pair } from "@thi.ng/api";
 
 export type DegreeType = "in" | "out" | "inout";

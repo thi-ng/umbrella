@@ -25,6 +25,8 @@ following convolution kernel presets are provided for convenience:
 |------------------|-------------|
 | `BOX_BLUR3`      | 3x3         |
 | `BOX_BLUR5`      | 5x5         |
+| `EDGE3`          | 3x3         |
+| `EDGE5`          | 5x5         |
 | `GAUSSIAN_BLUR3` | 3x3         |
 | `GAUSSIAN_BLUR5` | 5x5         |
 | `GAUSSIAN(n)`    | 2n+1 x 2n+1 |

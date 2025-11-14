@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/scenegraph](https://media.thi.ng/umbrella/banners-20230807/thing-scenegraph.svg?2c02f09b)
+# ![@thi.ng/scenegraph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-scenegraph.svg?2c02f09b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/scenegraph.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -68,7 +68,7 @@ For Node.js REPL:
 const sg = await import("@thi.ng/scenegraph");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 975 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
 
 ## Dependencies
 
@@ -82,15 +82,16 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Three projects in this repo's
+Four projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                              | Description                                           | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>       | 2D scenegraph & shape picking                         | [Demo](https://demo.thi.ng/umbrella/scenegraph/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/> | 2D scenegraph & image map based geometry manipulation | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>     | Minimal shader graph developed during livestream #2   | [Demo](https://demo.thi.ng/umbrella/shader-graph/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)     |
+| Screenshot                                                                                                                  | Description                                             | Live demo                                                 | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>           | 2D scenegraph & shape picking                           | [Demo](https://demo.thi.ng/umbrella/scenegraph/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>     | 2D scenegraph & image map based geometry manipulation   | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/> | Basic 2D scenegraph example with pan/zoom functionality | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>         | Minimal shader graph developed during livestream #2     | [Demo](https://demo.thi.ng/umbrella/shader-graph/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)        |
 
 ## API
 

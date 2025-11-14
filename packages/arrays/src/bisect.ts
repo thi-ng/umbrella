@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate, TypedArray } from "@thi.ng/api";
 
 /**
  * Splits array at given index (default: floor(src.length/2)) and returns tuple
- * of [lhs, rhs].
+ * of `[lhs, rhs]`.
  *
  * @param src -
  * @param index -

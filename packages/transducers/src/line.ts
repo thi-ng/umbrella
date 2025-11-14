@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map } from "./map.js";
 import { normRange } from "./norm-range.js";
 
@@ -11,7 +12,7 @@ import { normRange } from "./norm-range.js";
  * iteration).
  *
  * Similar functionality (w/ more options) is availble here:
- * [`line()`](https://docs.thi.ng/umbrella/dsp/functions/line.html).
+ * [`line`](https://docs.thi.ng/umbrella/dsp/functions/line.html).
  *
  * @example
  * ```ts tangle:../export/line.ts

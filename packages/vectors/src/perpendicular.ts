@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { VecOpV } from "./api.js";
 import { setC2 } from "./setc.js";
 

@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rdom-canvas](https://media.thi.ng/umbrella/banners-20230807/thing-rdom-canvas.svg?e8fa232f)
+# ![@thi.ng/rdom-canvas](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rdom-canvas.svg?e8fa232f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rdom-canvas.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -139,7 +139,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Nine projects in this repo's
+10 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -154,6 +154,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>     | rdom & hiccup-canvas interop test                                              | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>          | Fitting, transforming & plotting 10k data points per frame using SIMD          | [Demo](https://demo.thi.ng/umbrella/simd-plot/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>       | Multi-layer vectorization & dithering of bitmap images                         | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/tsne-colors.avif" width="240"/>       | Animated t-SNE visualization of 4D data                                        | [Demo](https://demo.thi.ng/umbrella/tsne-colors/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/tsne-colors)        |
 
 ## API
 

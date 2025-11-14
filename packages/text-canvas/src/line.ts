@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { liangBarsky2Raw } from "@thi.ng/geom-clip-line/liang-barsky";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp as $clamp, wrap as $wrap } from "@thi.ng/math/interval";
 import type { RampDomain } from "./api.js";
 

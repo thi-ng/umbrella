@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid1D, IGrid2D, IGrid3D, IGrid4D } from "../grid.js";
 import { mixin } from "../mixin.js";
 import type { NumericArray } from "../typedarray.js";

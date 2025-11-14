@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface Unit {
 	/**
 	 * SI base dimension vector ({@link Dimensions})
@@ -52,7 +53,7 @@ export type MaybeUnit = Unit | string;
  * Note: For dimensionless units, all dimensions are zero.
  *
  * Reference:
- * - https://en.wikipedia.org/wiki/SI_base_unit
+ * https://en.wikipedia.org/wiki/SI_base_unit
  */
 export type Dimensions = [
 	number,
@@ -72,7 +73,7 @@ export type Prefix = keyof typeof PREFIXES;
 /**
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Metric_prefix
+ * https://en.wikipedia.org/wiki/Metric_prefix
  */
 export const PREFIXES = {
 	Q: 1e30,

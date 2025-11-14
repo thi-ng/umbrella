@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, Predicate2, TypedArray } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isPrimitive } from "@thi.ng/checks/is-primitive";

@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { EditorOpts } from "@thi.ng/rdom-components";
-import type { CodeTemplate, Status } from "./api";
+import type { CodeTemplate, Status } from "./api.js";
 
 const REPO_URL = "https://github.com/thi-ng/umbrella/tree/develop/";
 export const DOC_URL = REPO_URL + "packages/parse#readme";

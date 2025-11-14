@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dotsH, lch } from "@thi.ng/color";
 import { compareByKey, compareNumDesc } from "@thi.ng/compare";
 import { serialize } from "@thi.ng/hiccup";
@@ -24,7 +25,7 @@ import { THEMES } from "./themes.js";
 
 setPrecision(2);
 
-const RECENT_ID = 209;
+const RECENT_ID = 220;
 
 const BASE_URL =
 	process.argv[2] !== "--local"

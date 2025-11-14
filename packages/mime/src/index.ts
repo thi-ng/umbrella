@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DB } from "./generated.js";
 
 /**
@@ -52,6 +53,16 @@ export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
 	const type = MIME_TYPES[ext[0] === "." ? ext.substring(1) : ext];
 	return type ? type[0] : fallback;
 };
+
+/**
+ * Similar to {@link preferredType}, but accepts a file path and first
+ * auto-extracts file extension.
+ *
+ * @param path
+ * @param fallback
+ */
+export const preferredTypeForPath = (path: string, fallback?: string) =>
+	preferredType(path.substring(path.lastIndexOf(".")), fallback);
 
 /**
  * Reverse lookup to {@link preferredType}. Takes MIME type string and returns

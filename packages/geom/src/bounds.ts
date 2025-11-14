@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -20,8 +21,8 @@ import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { Vec } from "@thi.ng/vectors";
 import { addN2 } from "@thi.ng/vectors/addn";
-import { max } from "@thi.ng/vectors/max";
-import { min } from "@thi.ng/vectors/min";
+import { max2 } from "@thi.ng/vectors/max";
+import { min2 } from "@thi.ng/vectors/min";
 import { mul2 } from "@thi.ng/vectors/mul";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { sub2 } from "@thi.ng/vectors/sub";
@@ -144,7 +145,7 @@ export const bounds = <BoundsFn>defmulti<any, Maybe<number>, Maybe<AABBLike>>(
 		},
 
 		line: ({ points: [a, b] }: Line, margin = 0) =>
-			rectFromMinMaxWithMargin(min([], a, b), max([], a, b), margin),
+			rectFromMinMaxWithMargin(min2([], a, b), max2([], a, b), margin),
 
 		path: (path: Path, margin = 0) => {
 			const $segmentGeo = (segments: PathSegment[]) =>

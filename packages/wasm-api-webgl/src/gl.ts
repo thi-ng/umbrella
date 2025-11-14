@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { GLType } from "@thi.ng/api/typedarray";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";
@@ -58,7 +59,7 @@ import {
 	type ShaderSpec,
 	type TextureSpec,
 	type UniformValue,
-} from "./generated/api.js";
+} from "./generated/types.js";
 
 /**
  * WASM module descriptor for use as dependency object in other module
@@ -67,6 +68,7 @@ import {
  *
  * @remarks
  * Module defines the following dependencies:
+ *
  * - [WasmDomModule](https://docs.thi.ng/umbrella/wasm-api-dom/variables/WasmDomModule.html)
  *
  * See

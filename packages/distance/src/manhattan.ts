@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
 	distManhattan,
@@ -13,12 +14,12 @@ import type { IDistance, Metric } from "./api.js";
  * The conversion are always based on n-D squares, i.e. the assumption that the
  * distance is equally shared in each dimension.
  *
- * E.g. a Manhattan distance of 30 could be obtained from [0,0] -> [10,20], but
- * would be interpreted here as distance from [0,0] -> [15,15], which produces
- * the same Manhattan value, but yields a different Eucledian result. For lack
- * of any other information about the distance values, this is however the only
- * way to approach conversion and is sufficient for the purposes of this
- * package...
+ * E.g. a Manhattan distance of 30 could be obtained from `[0,0]` -> `[10,20]`,
+ * but would be interpreted here as distance from `[0,0]` -> `[15,15]`, which
+ * produces the same Manhattan value, but yields a different Eucledian result.
+ * For lack of any other information about the distance values, this is however
+ * the only way to approach conversion and is sufficient for the purposes of
+ * this package...
  *
  * @example
  * ```ts tangle:../export/manhattan.ts

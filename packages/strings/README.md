@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners-20230807/thing-strings.svg?cf947128)
+# ![@thi.ng/strings](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-strings.svg?cf947128)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/strings.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -151,7 +151,7 @@ For Node.js REPL:
 const str = await import("@thi.ng/strings");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.51 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.54 KB
 
 ## Dependencies
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { GLType, IObjectOf, Type } from "@thi.ng/api";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./buffers.js";

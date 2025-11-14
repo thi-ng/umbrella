@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { readJSON, writeJSON } from "@thi.ng/file-io";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";

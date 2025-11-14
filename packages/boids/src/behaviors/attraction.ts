@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { closestPointPolyline } from "@thi.ng/geom-closest-point";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { ScalarOrField, IBoidBehavior } from "../api.js";

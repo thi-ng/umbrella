@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Nullable, Predicate } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
@@ -464,10 +465,10 @@ const DEFAULT_OPTS: QueryOpts = {
  * given behavior options.
  *
  * @remarks
- * @see {@link QueryOpts}
- * @see {@link ObjQueryFn}
- * @see {@link ArrayQueryFn}
- * @see {@link defKeyQuery}
+ * - {@link QueryOpts}
+ * - {@link ObjQueryFn}
+ * - {@link ArrayQueryFn}
+ * - {@link defKeyQuery}
  *
  * @param opts -
  */
@@ -492,9 +493,9 @@ export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
  * return sets of keys (or indices) of matching objects.
  *
  * @remarks
- * @see {@link KeyQueryOpts}
- * @see {@link ObjKeyQueryFn}
- * @see {@link ArrayKeyQueryFn}
+ * - {@link KeyQueryOpts}
+ * - {@link ObjKeyQueryFn}
+ * - {@link ArrayKeyQueryFn}
  *
  * @param opts -
  */

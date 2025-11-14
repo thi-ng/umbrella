@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { concat } from "./concat.js";
 import { repeat } from "./repeat.js";
 

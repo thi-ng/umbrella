@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { f32u16, f32u8, u16f32, u8f32 } from "../src/index.js";
 

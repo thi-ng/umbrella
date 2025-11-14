@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Iterator producing an exponential curve (with adjustable curvature) between
  * `start` and `end` values over `num` steps. This is the exponential equivalent
@@ -8,10 +9,10 @@
  * the `num+1`th step.
  *
  * The curvature can be controlled via the logarithmic `rate` param. Recommended
- * range [0.0001 - 10000] (curved -> linear). Default: 0.1
+ * range `[0.0001,10000]` (curved -> linear). Default: 0.1
  *
  * Similar functionality (w/ more options) is availble here:
- * [`curve()`](https://docs.thi.ng/umbrella/dsp/functions/curve.html).
+ * [`curve`](https://docs.thi.ng/umbrella/dsp/functions/curve.html).
  *
  * @example
  * ```ts tangle:../export/curve.ts

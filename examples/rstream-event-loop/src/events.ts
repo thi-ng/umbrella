@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { setInManyUnsafe } from "@thi.ng/paths";
 import { pubsub, stream, trace, type ISubscriber } from "@thi.ng/rstream";
@@ -9,8 +10,8 @@ import {
 	type Event,
 	type EventType,
 	type EventTypeMap,
-} from "./api";
-import { state } from "./state";
+} from "./api.js";
+import { state } from "./state.js";
 
 /**
  * Event input stream (not exported)

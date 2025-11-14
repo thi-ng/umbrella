@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const format = (fmt: any[], ...args: any[]) => {
 	const acc: any[] = [];
 	for (let i = 0, j = 0, n = fmt.length; i < n; i++) {

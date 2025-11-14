@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { div } from "@thi.ng/hiccup-html";
 import { Component, type ComponentLike, type NumOrElement } from "@thi.ng/rdom";

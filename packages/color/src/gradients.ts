@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import { tween } from "@thi.ng/transducers/tween";
 import { setS4 } from "@thi.ng/vectors/sets";
@@ -15,8 +16,7 @@ import { mix as $mix } from "./mix.js";
  * array of numbers will be returned.
  *
  * @remarks
- * See
- * [`tween()`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
+ * See [`tween`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
  *
  * @example
  * ```ts tangle:../export/multi-color-gradient.ts
@@ -77,7 +77,7 @@ export function multiColorGradient<T extends TypedColor<any>>(
  *
  * @remarks
  * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
- * for dataviz etc. Also @see {@link cosineGradientBuffer}.
+ * for dataviz etc. Also see {@link cosineGradientBuffer}.
  *
  * @param opts -
  * @param buffer - target buffer/array

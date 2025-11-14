@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
 import { F, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
@@ -15,7 +16,7 @@ import { maxComp2 } from "../math/maxcomp.js";
  *
  * @remarks
  * Ported from original GLSL impl by Inigo Quilez:
- * - https://iquilezles.org/articles/distfunctions2d/
+ * https://iquilezles.org/articles/distfunctions2d/
  *
  * @param p - vec2
  * @param size - vec2

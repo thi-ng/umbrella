@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { isPlainObject, isString } from "@thi.ng/checks";
 import { compareByKey } from "@thi.ng/compare";

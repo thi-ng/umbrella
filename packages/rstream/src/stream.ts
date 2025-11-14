@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type {
@@ -96,7 +97,7 @@ export const reactive = <T>(val: T, opts?: Partial<CommonOpts>) => {
 };
 
 /**
- * @see {@link stream} & {@link reactive} for reference & examples.
+ * See {@link stream} & {@link reactive} for reference & examples.
  */
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
 	src?: StreamSource<T>;

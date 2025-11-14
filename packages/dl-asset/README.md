@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/dl-asset](https://media.thi.ng/umbrella/banners-20230807/thing-dl-asset.svg?ded4384a)
+# ![@thi.ng/dl-asset](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-dl-asset.svg?ded4384a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dl-asset.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -64,11 +64,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 576 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime)
-
-Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 

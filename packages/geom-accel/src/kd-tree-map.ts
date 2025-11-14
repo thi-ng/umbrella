@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { Heap } from "@thi.ng/heaps/heap";

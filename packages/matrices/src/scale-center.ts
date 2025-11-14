@@ -1,5 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { neg } from "@thi.ng/vectors/neg";
+import { neg2, neg3 } from "@thi.ng/vectors/neg";
 import type { Mat } from "./api.js";
 import { concat } from "./concat.js";
 import { scale23, scale44 } from "./scale.js";
@@ -21,7 +22,7 @@ export const scaleWithCenter23 = (
 		m,
 		translation23([], p),
 		scale23([], s),
-		translation23([], neg([], p))
+		translation23([], neg2([], p))
 	);
 
 /**
@@ -40,5 +41,5 @@ export const scaleWithCenter44 = (
 		m,
 		translation44([], p),
 		scale44([], s),
-		translation44([], neg([], p))
+		translation44([], neg3([], p))
 	);

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnO } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { binarySearch, bsEQ, bsGE, bsGT, bsLE, bsLT } from "../src/index.js";

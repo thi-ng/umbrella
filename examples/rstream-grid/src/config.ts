@@ -1,15 +1,16 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { serialize } from "@thi.ng/hiccup";
 import { snapshot, valueSetter } from "@thi.ng/interceptors";
 import { getInUnsafe } from "@thi.ng/paths";
 import { fromIterable } from "@thi.ng/rstream";
 import { range } from "@thi.ng/transducers";
-import type { AppConfig } from "./api";
-import { main } from "./components/main";
-import * as fx from "./effects";
-import * as ev from "./events";
-import * as paths from "./paths";
-import { SLIDERS } from "./sliders";
+import type { AppConfig } from "./api.js";
+import { main } from "./components/main.js";
+import * as fx from "./effects.js";
+import * as ev from "./events.js";
+import * as paths from "./paths.js";
+import { SLIDERS } from "./sliders.js";
 
 const FG_COL = "light-silver";
 const LINK_COL = "white";

@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cornerBisector } from "@thi.ng/vectors/bisect";
 import { corner2 } from "@thi.ng/vectors/clockwise";
 import { direction2 } from "@thi.ng/vectors/direction";
-import { dist } from "@thi.ng/vectors/dist";
+import { dist2 } from "@thi.ng/vectors/dist";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { mulN, mulN2 } from "@thi.ng/vectors/muln";
 import { perpendicularCW } from "@thi.ng/vectors/perpendicular";
@@ -14,12 +15,21 @@ const __buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
 	for (let i = 0, num = tangents.length - 1; i < num; i++) {
 		const [a, na] = tangents[i];
 		const [b, nb] = tangents[i + 1];
-		const d = uniform ? t : t * dist(a, b);
+		const d = uniform ? t : t * dist2(a, b);
 		res.push([a, maddN2([], na, d, a), maddN2([], nb, -d, b), b]);
 	}
 	return res;
 };
 
+/**
+ * 2D only. Reconstructs given polygon as sequence of cubic curve segments. The
+ * end points of each segment are the original polygon vertices. See
+ * {@link openCubicFromBreakPoints} for open polyline version.
+ *
+ * @param points
+ * @param t
+ * @param uniform
+ */
 export const closedCubicFromBreakPoints = (
 	points: ReadonlyVec[],
 	t = 1 / 3,
@@ -41,6 +51,15 @@ export const closedCubicFromBreakPoints = (
 	return __buildSegments(tangents, t, uniform);
 };
 
+/**
+ * 2D only. Reconstructs given polygon as sequence of cubic curve segments. The
+ * end points of each segment are the original polygon vertices. See
+ * {@link closedCubicFromBreakPoints} for closed polygon version.
+ *
+ * @param points
+ * @param t
+ * @param uniform
+ */
 export const openCubicFromBreakPoints = (
 	points: ReadonlyVec[],
 	t = 1 / 3,

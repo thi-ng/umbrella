@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { norm } from "@thi.ng/math/fit";
 import { mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
 import type { Vec } from "@thi.ng/vectors";
@@ -13,10 +14,11 @@ import { Ramp } from "./ramp.js";
  * @remarks
  * For vector-valued hermite ramps, use {@link ramp} with {@link HERMITE_V}.
  *
- * References:
- * - https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+ * Reference:
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline
  *
  * Also see:
+ *
  * - https://docs.thi.ng/umbrella/math/functions/mixCubicHermite.html
  * - https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html
  *

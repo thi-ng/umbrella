@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { commonKeysObj } from "@thi.ng/object-utils/common-keys";
 import { empty } from "@thi.ng/object-utils/empty";
 import { invertObj } from "@thi.ng/object-utils/invert";

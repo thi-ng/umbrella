@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/object-utils](https://media.thi.ng/umbrella/banners-20230807/thing-object-utils.svg?ede54c24)
+# ![@thi.ng/object-utils](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-object-utils.svg?ede54c24)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/object-utils.svg)](https://www.npmjs.com/package/@thi.ng/object-utils)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/object-utils.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -75,7 +75,7 @@ For Node.js REPL:
 const ou = await import("@thi.ng/object-utils");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 

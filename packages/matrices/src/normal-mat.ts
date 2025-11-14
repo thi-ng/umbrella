@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MatOpMU } from "./api.js";
 import { invert33, invert44 } from "./invert.js";
 import { mat44to33 } from "./m44-m33.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { timedResult } from "@thi.ng/bench";
 import { hueRgb } from "@thi.ng/color";
 import {
@@ -43,7 +44,7 @@ import {
 } from "@thi.ng/shader-ast-stdlib";
 import { comp, map, normRange, slidingWindow, step } from "@thi.ng/transducers";
 import { sma } from "@thi.ng/transducers-stats";
-import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
+import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api.js";
 
 // color table to tint each worker's region
 const COLORS = [...map((i) => hueRgb([], i), normRange(NUM_WORKERS))];

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vectors",
-	"version": "7.12.15",
+	"version": "8.6.12",
 	"description": "Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts",
 	"type": "module",
 	"module": "./index.js",
@@ -31,31 +31,27 @@
 		"build": "yarn build:esbuild && yarn build:decl",
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
-		"clean": "bun ../../tools/src/clean-package.ts compile internal",
+		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/binary": "^3.4.39",
-		"@thi.ng/checks": "^3.6.19",
-		"@thi.ng/equiv": "^2.1.72",
-		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/math": "^5.11.16",
-		"@thi.ng/memoize": "^4.0.6",
-		"@thi.ng/random": "^4.1.7",
-		"@thi.ng/strings": "^3.9.0",
-		"@thi.ng/transducers": "^9.2.14"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/binary": "^3.4.65",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/memoize": "^4.0.31",
+		"@thi.ng/random": "^4.1.32",
+		"@thi.ng/strings": "^3.9.28"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"esbuild": "^0.24.2",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"2d",
@@ -65,6 +61,7 @@
 		"algebra",
 		"aos",
 		"array",
+		"average",
 		"bezier",
 		"binary",
 		"cartesian",
@@ -86,6 +83,8 @@
 		"interval",
 		"manhattan",
 		"math",
+		"mean",
+		"median",
 		"memory-mapped",
 		"nd",
 		"polar",
@@ -98,8 +97,10 @@
 		"rotation",
 		"smoothstep",
 		"soa",
+		"statistics",
 		"step",
 		"typescript",
+		"variance",
 		"vector",
 		"wasm",
 		"webgl"
@@ -116,9 +117,7 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts",
-		"compile",
-		"internal"
+		"./*.d.ts"
 	],
 	"exports": {
 		".": {
@@ -127,8 +126,14 @@
 		"./abs": {
 			"default": "./abs.js"
 		},
+		"./accessors": {
+			"default": "./accessors.js"
+		},
 		"./acos": {
 			"default": "./acos.js"
+		},
+		"./acosh": {
+			"default": "./acosh.js"
 		},
 		"./add": {
 			"default": "./add.js"
@@ -151,11 +156,20 @@
 		"./addn": {
 			"default": "./addn.js"
 		},
+		"./addni": {
+			"default": "./addni.js"
+		},
 		"./addns": {
 			"default": "./addns.js"
 		},
+		"./addnu": {
+			"default": "./addnu.js"
+		},
 		"./adds": {
 			"default": "./adds.js"
+		},
+		"./addu": {
+			"default": "./addu.js"
 		},
 		"./addw": {
 			"default": "./addw.js"
@@ -166,11 +180,29 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./as-bvec": {
+			"default": "./as-bvec.js"
+		},
+		"./as-ivec": {
+			"default": "./as-ivec.js"
+		},
+		"./as-uvec": {
+			"default": "./as-uvec.js"
+		},
 		"./asin": {
 			"default": "./asin.js"
 		},
+		"./asinh": {
+			"default": "./asinh.js"
+		},
 		"./atan": {
 			"default": "./atan.js"
+		},
+		"./atan2": {
+			"default": "./atan2.js"
+		},
+		"./atanh": {
+			"default": "./atanh.js"
 		},
 		"./avec": {
 			"default": "./avec.js"
@@ -178,17 +210,47 @@
 		"./bisect": {
 			"default": "./bisect.js"
 		},
-		"./bit-and": {
-			"default": "./bit-and.js"
+		"./bit-andi": {
+			"default": "./bit-andi.js"
 		},
-		"./bit-not": {
-			"default": "./bit-not.js"
+		"./bit-andni": {
+			"default": "./bit-andni.js"
 		},
-		"./bit-or": {
-			"default": "./bit-or.js"
+		"./bit-andnu": {
+			"default": "./bit-andnu.js"
 		},
-		"./bit-xor": {
-			"default": "./bit-xor.js"
+		"./bit-andu": {
+			"default": "./bit-andu.js"
+		},
+		"./bit-noti": {
+			"default": "./bit-noti.js"
+		},
+		"./bit-notu": {
+			"default": "./bit-notu.js"
+		},
+		"./bit-ori": {
+			"default": "./bit-ori.js"
+		},
+		"./bit-orni": {
+			"default": "./bit-orni.js"
+		},
+		"./bit-ornu": {
+			"default": "./bit-ornu.js"
+		},
+		"./bit-oru": {
+			"default": "./bit-oru.js"
+		},
+		"./bit-xori": {
+			"default": "./bit-xori.js"
+		},
+		"./bit-xorni": {
+			"default": "./bit-xorni.js"
+		},
+		"./bit-xornu": {
+			"default": "./bit-xornu.js"
+		},
+		"./bit-xoru": {
+			"default": "./bit-xoru.js"
 		},
 		"./buffer": {
 			"default": "./buffer.js"
@@ -202,8 +264,17 @@
 		"./center": {
 			"default": "./center.js"
 		},
+		"./circular": {
+			"default": "./circular.js"
+		},
 		"./clamp": {
 			"default": "./clamp.js"
+		},
+		"./clamp01": {
+			"default": "./clamp01.js"
+		},
+		"./clamp11": {
+			"default": "./clamp11.js"
 		},
 		"./clampn": {
 			"default": "./clampn.js"
@@ -213,18 +284,6 @@
 		},
 		"./compare": {
 			"default": "./compare.js"
-		},
-		"./compile/accessors": {
-			"default": "./compile/accessors.js"
-		},
-		"./compile/emit": {
-			"default": "./compile/emit.js"
-		},
-		"./compile/templates": {
-			"default": "./compile/templates.js"
-		},
-		"./convert": {
-			"default": "./convert.js"
 		},
 		"./copy": {
 			"default": "./copy.js"
@@ -246,6 +305,42 @@
 		},
 		"./crosss": {
 			"default": "./crosss.js"
+		},
+		"./defopsvn": {
+			"default": "./defopsvn.js"
+		},
+		"./defopsvv": {
+			"default": "./defopsvv.js"
+		},
+		"./defopsvvn": {
+			"default": "./defopsvvn.js"
+		},
+		"./defopsvvv": {
+			"default": "./defopsvvv.js"
+		},
+		"./defopv-new": {
+			"default": "./defopv-new.js"
+		},
+		"./defopv": {
+			"default": "./defopv.js"
+		},
+		"./defopvn": {
+			"default": "./defopvn.js"
+		},
+		"./defopvnv": {
+			"default": "./defopvnv.js"
+		},
+		"./defopvv-new": {
+			"default": "./defopvv-new.js"
+		},
+		"./defopvv": {
+			"default": "./defopvv.js"
+		},
+		"./defopvvn": {
+			"default": "./defopvvn.js"
+		},
+		"./defopvvv": {
+			"default": "./defopvvv.js"
 		},
 		"./degrees": {
 			"default": "./degrees.js"
@@ -301,11 +396,20 @@
 		"./divn": {
 			"default": "./divn.js"
 		},
+		"./divni": {
+			"default": "./divni.js"
+		},
 		"./divns": {
 			"default": "./divns.js"
 		},
+		"./divnu": {
+			"default": "./divnu.js"
+		},
 		"./divs": {
 			"default": "./divs.js"
+		},
+		"./divu": {
+			"default": "./divu.js"
 		},
 		"./dot": {
 			"default": "./dot.js"
@@ -318,6 +422,9 @@
 		},
 		"./empty": {
 			"default": "./empty.js"
+		},
+		"./ensure": {
+			"default": "./ensure.js"
 		},
 		"./eq": {
 			"default": "./eq.js"
@@ -337,8 +444,8 @@
 		"./exp": {
 			"default": "./exp.js"
 		},
-		"./exp_2": {
-			"default": "./exp_2.js"
+		"./exp2": {
+			"default": "./exp2.js"
 		},
 		"./face-forward": {
 			"default": "./face-forward.js"
@@ -348,6 +455,12 @@
 		},
 		"./fit": {
 			"default": "./fit.js"
+		},
+		"./fit01": {
+			"default": "./fit01.js"
+		},
+		"./fit11": {
+			"default": "./fit11.js"
 		},
 		"./floor": {
 			"default": "./floor.js"
@@ -360,6 +473,9 @@
 		},
 		"./fract": {
 			"default": "./fract.js"
+		},
+		"./from-bvec": {
+			"default": "./from-bvec.js"
 		},
 		"./gt": {
 			"default": "./gt.js"
@@ -409,8 +525,8 @@
 		"./log": {
 			"default": "./log.js"
 		},
-		"./log_2": {
-			"default": "./log_2.js"
+		"./log2": {
+			"default": "./log2.js"
 		},
 		"./logic-and": {
 			"default": "./logic-and.js"
@@ -421,8 +537,17 @@
 		"./logic-or": {
 			"default": "./logic-or.js"
 		},
-		"./lshift": {
-			"default": "./lshift.js"
+		"./lshifti": {
+			"default": "./lshifti.js"
+		},
+		"./lshiftni": {
+			"default": "./lshiftni.js"
+		},
+		"./lshiftnu": {
+			"default": "./lshiftnu.js"
+		},
+		"./lshiftu": {
+			"default": "./lshiftu.js"
 		},
 		"./lt": {
 			"default": "./lt.js"
@@ -535,11 +660,20 @@
 		"./muln": {
 			"default": "./muln.js"
 		},
+		"./mulni": {
+			"default": "./mulni.js"
+		},
 		"./mulns": {
 			"default": "./mulns.js"
 		},
+		"./mulnu": {
+			"default": "./mulnu.js"
+		},
 		"./muls": {
 			"default": "./muls.js"
+		},
+		"./mulu": {
+			"default": "./mulu.js"
 		},
 		"./neg": {
 			"default": "./neg.js"
@@ -556,8 +690,8 @@
 		"./normalizes": {
 			"default": "./normalizes.js"
 		},
-		"./not": {
-			"default": "./not.js"
+		"./ops": {
+			"default": "./ops.js"
 		},
 		"./ortho-normal": {
 			"default": "./ortho-normal.js"
@@ -577,6 +711,9 @@
 		"./pown": {
 			"default": "./pown.js"
 		},
+		"./product": {
+			"default": "./product.js"
+		},
 		"./project": {
 			"default": "./project.js"
 		},
@@ -586,14 +723,26 @@
 		"./rand-distrib": {
 			"default": "./rand-distrib.js"
 		},
+		"./rand-distribs": {
+			"default": "./rand-distribs.js"
+		},
 		"./rand-minmax": {
 			"default": "./rand-minmax.js"
+		},
+		"./rand-minmaxs": {
+			"default": "./rand-minmaxs.js"
 		},
 		"./rand-norm": {
 			"default": "./rand-norm.js"
 		},
 		"./rand-normdistrib": {
 			"default": "./rand-normdistrib.js"
+		},
+		"./rand-normdistribs": {
+			"default": "./rand-normdistribs.js"
+		},
+		"./rand-norms": {
+			"default": "./rand-norms.js"
 		},
 		"./random": {
 			"default": "./random.js"
@@ -606,6 +755,12 @@
 		},
 		"./refract": {
 			"default": "./refract.js"
+		},
+		"./relu": {
+			"default": "./relu.js"
+		},
+		"./relus": {
+			"default": "./relus.js"
 		},
 		"./remainder": {
 			"default": "./remainder.js"
@@ -628,8 +783,20 @@
 		"./round": {
 			"default": "./round.js"
 		},
-		"./rshift": {
-			"default": "./rshift.js"
+		"./roundn": {
+			"default": "./roundn.js"
+		},
+		"./rshifti": {
+			"default": "./rshifti.js"
+		},
+		"./rshiftni": {
+			"default": "./rshiftni.js"
+		},
+		"./rshiftnu": {
+			"default": "./rshiftnu.js"
+		},
+		"./rshiftu": {
+			"default": "./rshiftu.js"
 		},
 		"./rss": {
 			"default": "./rss.js"
@@ -663,6 +830,12 @@
 		},
 		"./setvv": {
 			"default": "./setvv.js"
+		},
+		"./sigmoid": {
+			"default": "./sigmoid.js"
+		},
+		"./sigmoids": {
+			"default": "./sigmoids.js"
 		},
 		"./sign": {
 			"default": "./sign.js"
@@ -721,11 +894,20 @@
 		"./subn": {
 			"default": "./subn.js"
 		},
+		"./subni": {
+			"default": "./subni.js"
+		},
 		"./subns": {
 			"default": "./subns.js"
 		},
+		"./subnu": {
+			"default": "./subnu.js"
+		},
 		"./subs": {
 			"default": "./subs.js"
+		},
+		"./subu": {
+			"default": "./subu.js"
 		},
 		"./sum": {
 			"default": "./sum.js"
@@ -738,6 +920,9 @@
 		},
 		"./tanh": {
 			"default": "./tanh.js"
+		},
+		"./tanhs": {
+			"default": "./tanhs.js"
 		},
 		"./tensor": {
 			"default": "./tensor.js"

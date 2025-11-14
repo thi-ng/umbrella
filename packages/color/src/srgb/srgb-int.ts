@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyColor } from "../api.js";
 import { __ensureAlpha } from "../internal/ensure.js";

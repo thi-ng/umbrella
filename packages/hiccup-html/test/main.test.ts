@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref, Maybe } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { defElement, type AttribVal } from "../src/index.js";

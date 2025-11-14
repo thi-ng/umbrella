@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, PathSegment } from "./api.js";
 import { fattribs, ff, fpoint, fpoints } from "./format.js";
 

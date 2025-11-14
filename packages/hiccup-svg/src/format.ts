@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";
@@ -71,7 +72,7 @@ const __numericAttribs = (attribs: Attribs, ids: string[]) => {
  * number or an
  * [`IColor`](https://docs.thi.ng/umbrella/color/interfaces/IColor.html)
  * instance, it will be converted into a CSS color string using
- * [`css()`](https://docs.thi.ng/umbrella/color/functions/css.html).
+ * [`css`](https://docs.thi.ng/umbrella/color/functions/css.html).
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)` refs
  * (used for referencing gradients).
@@ -158,7 +159,7 @@ const __buildTransform = (attribs: Attribs) => {
  * Attempts to convert a single color attrib value. If `col` is prefixed with
  * `$`, the value will be converted into a `url(#...)` reference. If not a
  * string already, it will be converted into a CSS color string using
- * [`css()`](https://docs.thi.ng/umbrella/color/functions/css.html)
+ * [`css`](https://docs.thi.ng/umbrella/color/functions/css.html)
  *
  * {@link fattribs}
  *

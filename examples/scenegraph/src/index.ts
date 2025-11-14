@@ -1,11 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
-import {
-	asPolygon,
-	circle,
-	pointInside,
-	rect,
-	type IShape2,
-} from "@thi.ng/geom";
+import { asPolygon, circle, pointInside, rect } from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
@@ -17,17 +12,6 @@ import { cartesian2, mulN2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
  * Specialized scene graph node using @thi.ng/geom shapes as body.
  */
 class GeomNode extends Node2D {
-	constructor(
-		id: string,
-		parent: Node2D,
-		t: Vec,
-		r: number,
-		s: Vec | number,
-		body: IShape2
-	) {
-		super(id, parent, t, r, s, body);
-	}
-
 	/**
 	 * Override method to check for actual point containment with body
 	 * shape.
@@ -60,67 +44,73 @@ const colors = cycle([
 // scene graph definition
 
 // set root node scale to window.devicePixelRatio
-const root = new Node2D("root", null, [0, 0], 0, 1);
+const root = new Node2D({ id: "root" });
 
 // main geometry node w/ origin at canvas center
-const hex = new GeomNode(
-	"main",
-	root,
-	[300, 300],
-	0,
-	200,
-	asPolygon(circle(0.5, { fill: "#0ff" }), 6)[0]
-);
+const hex = new GeomNode({
+	id: "main",
+	parent: root,
+	translate: [300, 300],
+	scale: 200,
+	body: asPolygon(circle(0.5, { fill: "#0ff" }), 6)[0],
+});
 
 // rotated child node
-const triangle = new GeomNode(
-	"tri",
-	hex,
-	[0, 0],
-	PI / 4,
-	1,
-	asPolygon(circle(0.5, { fill: "#f0f" }), 3)[0]
-);
+const triangle = new GeomNode({
+	id: "tri",
+	parent: hex,
+	rotate: PI / 4,
+	body: asPolygon(circle(0.5, { fill: "#f0f" }), 3)[0],
+});
 
 // secondary children
 const satellites = [
 	...map(
 		(i) =>
-			new GeomNode(
-				`sat-${i}`,
-				triangle,
-				cartesian2([], [1, i * HALF_PI]),
-				0,
-				0.2,
-				rect([-0.5, -0.5], [1, 1], { fill: "#cf0" })
-			),
+			new GeomNode({
+				id: `sat-${i}`,
+				parent: triangle,
+				translate: cartesian2([], [1, i * HALF_PI]),
+				scale: 0.2,
+				body: rect([-0.5, -0.5], [1, 1], { fill: "#cf0" }),
+			}),
 		range(4)
 	),
 ];
 
 // this node uses a hdom component function as body to create the dynamic
 // crosshair and node info overlay
-const infoNode = new Node2D("info", root, mouse, 0, 1, () => [
-	"g",
-	{},
-	// crosshair
-	["g", { stroke: "#999", dash: [2, 2] }, ["hline", {}, 0], ["vline", {}, 0]],
-	// only show text overlay if info present
-	info
-		? [
-				"g",
-				{ fill: "#fff" },
-				rect([0, -40], [68, 40], { fill: "rgba(0,0,0,0.8)" }),
-				[
-					"text",
-					{},
-					[8, -10],
-					`${info.p![0].toFixed(2)}, ${info.p![1].toFixed(2)}`,
-				],
-				["text", {}, [8, -24], `ID: ${info.node.id}`],
-		  ]
-		: undefined,
-]);
+const infoNode = new Node2D({
+	id: "info",
+	parent: root,
+	translate: mouse,
+	body: () => [
+		"g",
+		{},
+		// crosshair
+		[
+			"g",
+			{ stroke: "#999", dash: [2, 2] },
+			["hline", {}, 0],
+			["vline", {}, 0],
+		],
+		// only show text overlay if info present
+		info
+			? [
+					"g",
+					{ fill: "#fff" },
+					rect([0, -40], [68, 40], { fill: "rgba(0,0,0,0.8)" }),
+					[
+						"text",
+						{},
+						[8, -10],
+						`${info.p![0].toFixed(2)}, ${info.p![1].toFixed(2)}`,
+					],
+					["text", {}, [8, -24], `ID: ${info.node.id}`],
+			  ]
+			: undefined,
+	],
+});
 
 // mousemove event handler
 const updateMouse = (e: MouseEvent) => {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp } from "@thi.ng/math/interval";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { setC2, setC3 } from "@thi.ng/vectors/setc";

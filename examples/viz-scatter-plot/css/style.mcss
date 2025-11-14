@@ -11,7 +11,7 @@
 
 body { system-sans-serif ma3 }
 
-#scatter circle { fill(1) { :hover { fill(2) } } }
+#scatter circle { fill(color1) { :hover { fill(color2) } } }
 
 #controls {
 	mb3

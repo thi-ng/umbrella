@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, IRelease, Maybe } from "@thi.ng/api";
 import { sizeOf, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
@@ -364,7 +365,7 @@ export class AttribPool implements IRelease {
 /** @internal */
 const __resizeAttribs = (
 	specs: IObjectOf<AttribSpec>,
-	buf: ArrayBuffer,
+	buf: ArrayBufferLike,
 	dest: number,
 	stride: number,
 	num: number

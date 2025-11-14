@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn3O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -57,8 +58,9 @@ export type ConvoleFn = {
  *
  * @remarks
  * Implementations:
- * - [`convolveClosed()`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveClosed.html))
- * - [`convolveOpen()`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveOpen.html))
+ *
+ * - [`convolveClosed`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveClosed.html))
+ * - [`convolveOpen`](https://docs.thi.ng/umbrella/geom-poly-utils/functions/convolveOpen.html))
  *
  * Currently only implemented for:
  *

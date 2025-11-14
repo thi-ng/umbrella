@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { beforeEach, expect, test } from "bun:test";
 import { DGraph } from "../src/index.js";
 

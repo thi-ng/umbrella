@@ -1,12 +1,13 @@
+// SPDX-License-Identifier: Apache-2.0
 export const link = (ctx: any, href: string, body?: any) => [
 	"a",
 	{ ...ctx.link, href },
 	body || href,
 ];
 
-export const twitterLink = (_: any, username: string) => [
+export const socialLink = (_: any, username: string) => [
 	link,
-	`https://twitter.com/${username}`,
+	`https://mastodon.thi.ng/${username}`,
 	"@" + username,
 ];
 

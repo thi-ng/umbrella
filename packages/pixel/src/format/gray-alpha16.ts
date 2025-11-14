@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Lane } from "../api.js";
 import { __luminanceABGR } from "../internal/utils.js";
 import { defIntFormat } from "./int-format.js";

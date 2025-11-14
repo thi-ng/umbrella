@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArrayBufferLike } from "./is-arraybufferlike.js";
 import { isNumber } from "./is-number.js";
 

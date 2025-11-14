@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatSym } from "@thi.ng/shader-ast";
 import { F, V3 } from "@thi.ng/shader-ast/api/types";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
@@ -19,10 +20,10 @@ import type { RaymarchScene } from "../api.js";
 import { clamp01 } from "../math/clamp.js";
 
 /**
- * Higher order function returning an function to compute the Ambient
- * Occlusion term / shadow factor for given SDF scene function. The
- * returned function takes 2 arguments: surface pos and normal. It
- * returns a float in [0..1] interval (zero = fully occluded).
+ * Higher order function returning an function to compute the Ambient Occlusion
+ * term / shadow factor for given SDF scene function. The returned function
+ * takes 2 arguments: surface pos and normal. It returns a float in `[0,1]`
+ * interval (zero = fully occluded).
  *
  * @param scene -
  * @param numSamples -

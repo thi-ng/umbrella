@@ -4,33 +4,33 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "positions" },
 			"name": "<v>",
+			"doc": { "group": "positions" },
 			"props": "position",
 			"values": ["absolute", "relative", "fixed", "static", "sticky"]
 		},
 		{
-			"doc": { "group": "positions", "desc": "<v>" },
 			"name": "<var>-<v>",
+			"doc": { "group": "positions", "desc": "<v>" },
 			"props": "<var>",
 			"values": "pos",
 			"unit": "rem",
 			"vars": ["top", "right", "bottom", "left"]
 		},
 		{
-			"doc": { "group": "z-indices" },
 			"name": "z-<v>",
+			"doc": { "group": "z-indices" },
 			"props": "z-index",
 			"values": [0, 1, 2, 3, 4, 5, 999, 9999]
 		}
 	],
 	"templates": [
 		{
+			"name": "<var>",
 			"doc": {
 				"group": "positions",
 				"args": ["coordinate (incl. units)"]
 			},
-			"name": "<var>",
 			"props": "<var>",
 			"vars": ["top", "right", "bottom", "left"]
 		}

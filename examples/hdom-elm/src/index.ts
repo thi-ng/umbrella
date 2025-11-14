@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import { setIn, updateIn } from "@thi.ng/paths";
 import { Z3 } from "@thi.ng/strings";
-import { DEC, DEFER, INC, RANDOM } from "./api";
-import { mount } from "./elm";
+import { DEC, DEFER, INC, RANDOM } from "./api.js";
+import { mount } from "./elm.js";
 
 mount(
 	// state / model

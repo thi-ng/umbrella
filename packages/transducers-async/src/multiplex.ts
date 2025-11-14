@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { juxtAsync } from "@thi.ng/compose";
 import type { AsyncMultiplexTxLike, AsyncTransducer } from "./api.js";
 import { map } from "./map.js";

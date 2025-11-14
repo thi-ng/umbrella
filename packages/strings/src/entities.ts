@@ -1,6 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
  * - https://www.w3.org/TR/xml-entity-names/byalpha.html
  */

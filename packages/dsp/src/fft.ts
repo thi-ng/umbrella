@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3, Maybe, NumericArray } from "@thi.ng/api";
 import type { ComplexArray } from "./api.js";
 import { isComplex } from "./complex.js";
@@ -281,8 +282,8 @@ export const scaleFFT = (
  * By default assumes a rectangular window and the resulting scale factor of 2 /
  * N.
  *
- * References:
- * - https://holometer.fnal.gov/GH_FFT.pdf
+ * Reference:
+ * https://holometer.fnal.gov/GH_FFT.pdf
  *
  * @param complex -
  * @param window -
@@ -301,8 +302,8 @@ export const normalizeFFT = (
  * By default assumes a rectangular window and the resulting scale factor of N /
  * 2.
  *
- * References:
- * - https://holometer.fnal.gov/GH_FFT.pdf
+ * Reference:
+ * https://holometer.fnal.gov/GH_FFT.pdf
  *
  * @param complex -
  * @param window -
@@ -321,8 +322,8 @@ export const denormalizeFFT = (
  * {@link spectrumPhase}. The `eps` value might have to be adjusted and should
  * be approx. `max(spectrumMag(fft))/10000`.
  *
- * References:
- * - https://www.gaussianwaves.com/2015/11/interpreting-fft-results-obtaining-magnitude-and-phase-information/
+ * Reference:
+ * https://www.gaussianwaves.com/2015/11/interpreting-fft-results-obtaining-magnitude-and-phase-information/
  *
  * @param complex -
  * @param eps -

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { TypedArray } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
@@ -6,6 +7,7 @@ import { realpathSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { sep } from "node:path";
 import { ensureDirForFile } from "./dir.js";
+import { maskedPath } from "./mask.js";
 
 /**
  * Constructs a temp file path using {@link tempFilePath} and writes `body` to
@@ -24,7 +26,7 @@ export const createTempFile = (
 	ext?: string
 ) => {
 	const path = tempFilePath(name, ext);
-	logger?.debug("creating temp file:", path);
+	logger?.info("creating temp file:", maskedPath(path));
 	ensureDirForFile(path);
 	writeFileSync(path, body, isString(body) ? "utf-8" : undefined);
 	return path;
@@ -36,10 +38,10 @@ export const createTempFile = (
  *
  * @remarks
  * If no `name` is given, constructs a random filename of `tmp-XXX` (16 random
- * chars).
+ * chars). Default extension is an empty string.
  *
  * @param name
  * @param ext
  */
-export const tempFilePath = (name?: string, ext = "") =>
-	realpathSync(tmpdir()) + sep + (name || randomID(16, "tmp-")) + ext;
+export const tempFilePath = (name = randomID(16, "tmp-"), ext = "") =>
+	realpathSync(tmpdir()) + sep + name + ext;

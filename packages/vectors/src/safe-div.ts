@@ -1,17 +1,45 @@
-import { safeDiv as _div } from "@thi.ng/math/safe-div";
-import type { MultiVecOpVV, VecOpVV } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_VV, FN2 } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { safeDiv as op } from "@thi.ng/math/safe-div";
+import { defOpVV } from "./defopvv.js";
+
+const [a, b, c, d] = defOpVV(op);
 
 /**
- * Componentwise application of
- * [`safeDiv()`](https://docs.thi.ng/umbrella/math/functions/safeDiv.html).
+ * Componentwise divides given 2D vector `a` by vector `b`. If a divisor
+ * component is zero, the result will be zero too. Multi-method.
  *
- * @param out -
- * @param a -
- * @param b -
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
  */
-export const [safeDiv, safeDiv2, safeDiv3, safeDiv4] = defHofOp<
-	MultiVecOpVV,
-	VecOpVV
->(_div, FN2("op"), ARGS_VV);
+export const safeDiv = a;
+
+/**
+ * Componentwise divides given 2D vector `a` by vector `b`. If a divisor
+ * component is zero, the result will be zero too.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const safeDiv2 = b;
+
+/**
+ * Componentwise divides given 3D vector `a` by vector `b`. If a divisor
+ * component is zero, the result will be zero too.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const safeDiv3 = c;
+
+/**
+ * Componentwise divides given 4D vector `a` by vector `b`. If a divisor
+ * component is zero, the result will be zero too.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const safeDiv4 = d;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const compress = (m: number, n: number, dense: ArrayLike<number>) => {
 	const major: number[] = [0];
 	const minor: number[] = [];

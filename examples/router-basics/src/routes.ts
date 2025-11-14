@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Route } from "@thi.ng/router";
 
 // route definitions:

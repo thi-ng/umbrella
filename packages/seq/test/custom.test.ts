@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISeqable } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { concat, ensureSeq, iterator } from "../src/index.js";

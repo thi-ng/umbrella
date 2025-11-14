@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec2Term } from "@thi.ng/shader-ast";
 import { V3 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
@@ -9,7 +10,7 @@ import { abs } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Returns counter-clockwise perpendicular vector (assuming
- * Y-up). [-y, x]
+ * Y-up). `[-y,x]`
  *
  * @param v -
  */
@@ -17,7 +18,7 @@ export const perpendicularCCW = (v: Vec2Term) => vec2(neg($y(v)), $x(v));
 
 /**
  * Inline function. Returns clockwise perpendicular vector (assuming Y-up).
- * [y,-x]
+ * `[y,-x]`
  *
  * @param v -
  */

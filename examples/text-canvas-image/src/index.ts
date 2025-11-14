@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { imageFromURL, intBufferFromImage, RGB565 } from "@thi.ng/pixel";
 import { canvas, formatCanvas, setAt } from "@thi.ng/text-canvas";
 import { FMT_HTML565 } from "@thi.ng/text-format";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { HSBLSpec, Processor } from "../api.js";
 
 export const hsblProc: Processor = async (spec, input) => {

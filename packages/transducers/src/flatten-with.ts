@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DeepArrayValue, Fn, Nullable } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { isString } from "@thi.ng/checks/is-string";

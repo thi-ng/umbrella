@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, Fn2, Fn3, Fn4, Fn5, Fn6, Keys } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { Term } from "@thi.ng/shader-ast";
@@ -84,11 +85,15 @@ export interface JSBuiltinsBinary<T> {
 
 export interface JSBuiltinsFloat<T> extends JSBuiltinsCommon<T> {
 	acos: Fn<T, T>;
+	acosh: Fn<T, T>;
 	asin: Fn<T, T>;
+	asinh: Fn<T, T>;
 	atan: Fn<T, T>;
+	atanh: Fn<T, T>;
 	atannn: Fn2<T, T, T>;
 	ceil: Fn<T, T>;
 	cos: Fn<T, T>;
+	cosh: Fn<T, T>;
 	degrees: Fn<T, T>;
 	dFdx: Fn<T, T>;
 	dFdy: Fn<T, T>;
@@ -107,10 +112,12 @@ export interface JSBuiltinsFloat<T> extends JSBuiltinsCommon<T> {
 	pow: Fn2<T, T, T>;
 	radians: Fn<T, T>;
 	sin: Fn<T, T>;
+	sinh: Fn<T, T>;
 	smoothstep: Fn3<T, T, T, T>;
 	sqrt: Fn<T, T>;
 	step: Fn2<T, T, T>;
 	tan: Fn<T, T>;
+	tanh: Fn<T, T>;
 }
 
 export interface JSBuiltinsInt<T>

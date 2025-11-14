@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import type { FloatTerm, Vec4Sym } from "@thi.ng/shader-ast";
 import { V4 } from "@thi.ng/shader-ast/api/types";
@@ -17,7 +18,7 @@ const __coeff = (col: Vec4Sym, f: FloatTerm) =>
  * optimized AST function which accepts 2 RGBA colors (vec4) and returns blended
  * & clamped result (also a vec4).
  *
- * @remark
+ * @remarks
  * All built-in PD operators are defined via this HOF. The two given coefficient
  * functions are used to extract blending coefficients for src/dest colors and
  * are called with the alpha components of both colors.

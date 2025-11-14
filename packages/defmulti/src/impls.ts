@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Implementation, MultiFn } from "./api.js";

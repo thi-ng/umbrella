@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Maybe } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import type { Reducer } from "./api.js";
@@ -5,7 +6,7 @@ import type { Reducer } from "./api.js";
 /**
  * Similar to {@link push}, but sorts result array upon completion using
  * optionally given comparator (default
- * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html)).
+ * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html)).
  *
  * @param cmp -
  */

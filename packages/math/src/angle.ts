@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
 import { DEG2RAD, HALF_PI, INV_HALF_PI, PI, RAD2DEG, TAU } from "./api.js";
 
@@ -24,7 +25,7 @@ export const cossin = (theta: number, n = 1): [number, number] => [
 ];
 
 /**
- * Projects `theta` into [0 .. 2π] interval.
+ * Projects `theta` into `[0,2π]` interval.
  *
  * @param theta -
  */
@@ -37,8 +38,8 @@ export const absInnerAngle: FnN = (theta) => (
 );
 
 /**
- * Returns smallest absolute angle difference between `a` and `b`.
- * Result will be in [0 .. π] interval.
+ * Returns smallest absolute angle difference between `a` and `b`. Result will
+ * be in `[0,π]` interval.
  *
  * @param a -
  * @param b -
@@ -47,7 +48,7 @@ export const angleDist: FnN2 = (a, b) =>
 	absInnerAngle(absTheta((b % TAU) - (a % TAU)));
 
 /**
- * Like `Math.atan2`, but always returns angle in [0 .. TAU) interval.
+ * Like `Math.atan2`, but always returns angle in `[0,TAU)` interval.
  *
  * @param y -
  * @param x -
@@ -97,8 +98,8 @@ export const sec: FnN = (theta) => 1 / Math.cos(theta);
 export const cot: FnN = (theta) => 1 / Math.tan(theta);
 
 /**
- * Law of Cosines. Takes length of two sides of a triangle and the inner
- * angle (in radians) between them. Returns length of third side.
+ * Law of Cosines. Takes length of two sides of a triangle and the inner angle
+ * (in radians) between them. Returns length of third side.
  *
  * @param a -
  * @param b -
@@ -108,7 +109,7 @@ export const loc: FnN3 = (a, b, gamma) =>
 	Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
 
 /**
- * Approximates cos(xπ) for x in [-1,1]
+ * Approximates cos(xπ) for x in `[-1,1]`
  *
  * @param x -
  */
@@ -126,7 +127,7 @@ const __fastCos: FnN = (x) => {
  * Fast cosine approximation using {@link normCos} (polynomial). Max. error
  * ~0.00059693
  *
- * In [0 .. 2π] interval, approx. 18-20% faster than `Math.cos` on V8.
+ * In `[0,2π]` interval, approx. 18-20% faster than `Math.cos` on V8.
  *
  * @param theta - in radians
  */

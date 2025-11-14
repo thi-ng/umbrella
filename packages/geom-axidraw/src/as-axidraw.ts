@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import type { DrawCommand } from "@thi.ng/axidraw/api";
 import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
@@ -43,7 +44,7 @@ import { pointsByNearestNeighbor } from "./sort.js";
  *
  * Currently supported shape types (at least all types which are supported by
  * the
- * [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)
+ * [`asPolyline`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)
  * function):
  *
  * - arc

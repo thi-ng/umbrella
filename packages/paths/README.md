@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/paths](https://media.thi.ng/umbrella/banners-20230807/thing-paths.svg?c7ad0393)
+# ![@thi.ng/paths](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-paths.svg?c7ad0393)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -313,9 +313,9 @@ state2.a.b.c;
 ### Prototype pollution
 
 Mainly a potential concern for the non-typechecked versions - currently, only
-the mutation functions (i.e. `mutIn`, `mutInUnsafe()` etc.) explicitly disallow
-updating an object's `__proto__`, `prototype` or `constructor` properties.
-However, the package provides the
+the mutation functions (i.e. `mutIn`, `mutInUnsafe()`, `deleteIn`,
+`deleteInUnsafe` etc.) explicitly disallow updating an object's `__proto__`,
+`prototype` or `constructor` properties. The package provides the
 [`disallowProtoPath()`](https://docs.thi.ng/umbrella/paths/functions/disallowProtoPath.html)
 helper which can be used in conjunction with the other setters in situations
 where it's advisable to do so.

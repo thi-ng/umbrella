@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IID } from "@thi.ng/api";
 import type { ILogger as APILogger, LogEntry, LogLevel } from "@thi.ng/logger";
 import type { ISubscribable } from "@thi.ng/rstream";

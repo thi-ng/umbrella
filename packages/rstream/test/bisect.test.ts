@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map } from "@thi.ng/transducers";
 import { beforeEach, expect, test } from "bun:test";
 import { Stream, bisect, fromIterable, subscription } from "../src/index.js";

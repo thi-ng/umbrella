@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureChannel } from "@thi.ng/pixel/checks";
 import { FloatBuffer } from "@thi.ng/pixel/float";
 import { FLOAT_NORMAL } from "@thi.ng/pixel/format/float-norm";

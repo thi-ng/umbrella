@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners-20230807/thing-arrays.svg?2bff0ab9)
+# ![@thi.ng/arrays](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-arrays.svg?2bff0ab9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -60,7 +60,7 @@ For Node.js REPL:
 const arr = await import("@thi.ng/arrays");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.23 KB
 
 ## Dependencies
 
@@ -112,6 +112,7 @@ directory are using this package:
 - [`levenshtein()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/levenshtein.ts)
 - [`multiSwap()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [`peek()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/peek.ts)
+- [`permutation()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/permutation.ts)
 - [`quickSort()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/quicksort.ts)
 - [`rotate()` / `rotateTyped()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/rotate.ts)
 - [`selectThresholdMin()` / `selectThresholdMax()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/threshold.ts)

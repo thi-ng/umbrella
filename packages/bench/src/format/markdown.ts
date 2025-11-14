@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString } from "@thi.ng/api";
 import { EMPTY, FLOAT, type BenchmarkFormatter } from "../api.js";
 

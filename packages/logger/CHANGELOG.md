@@ -1,13 +1,43 @@
 # Change Log
 
-- **Last updated**: 2025-01-14T12:23:33Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.2.1) (2025-10-07)
+
+#### 🩹 Bug fixes
+
+- update `StreamLogger` to accept `WritableStream` as target ([d6fa3d6](https://github.com/thi-ng/umbrella/commit/d6fa3d6))
+  - previously used: `NodeJS.WriteStream` => `NodeJS.WritableStream`
+  - update docs
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.2.0) (2025-09-25)
+
+#### 🚀 Features
+
+- update MemoryLogger & `expandArgsJSON()` ([2bf3731](https://github.com/thi-ng/umbrella/commit/2bf3731))
+  - add MemoryLogger ctor, add optional expand arg
+  - update `expandArgsJSON()` to return array (not string), same as `expandArgs()`
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.1.0) (2025-02-10)
+
+#### 🚀 Features
+
+- add `ILogger.none()`, add `methodForLevel()` ([66651b1](https://github.com/thi-ng/umbrella/commit/66651b1))
+  - update `ILogger`
+  - update all impls (`ALogger`, `NULL_LOGGER`)
+
+#### 🩹 Bug fixes
+
+- fix import ([0a68035](https://github.com/thi-ng/umbrella/commit/0a68035))
 
 ### [3.0.27](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.0.27) (2025-01-14)
 
@@ -75,27 +105,3 @@ and/or version bumps of transitive dependencies.
   - refactor ConsoleLogger
   - add LogEntry tuple type (migrated from [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/main/packages/rstream-log))
   - add tests
-
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@1.1.0) (2021-11-17)
-
-#### 🚀 Features
-
-- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
-  Improving the overall build ergonomics
-  - introduced a tools workspaces
-  - imported it in all needed packages/examples
-  - inclusive project root
-
-### [1.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@1.0.1) (2021-10-13)
-
-#### ♻️ Refactoring
-
-- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
-  - add .js suffix for all relative imports
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@0.1.0) (2021-10-12)
-
-#### 🚀 Features
-
-- extract as new pkg ([e0399a8](https://github.com/thi-ng/umbrella/commit/e0399a8))
-  - migrate logging related types & classes from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api)

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn3, TypedArray } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { swap } from "./swap.js";
@@ -12,7 +13,7 @@ import { swap } from "./swap.js";
  * indices (both inclusive).
  *
  * Uses Hoare partitioning scheme.
- * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html) is
+ * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html) is
  * used as default comparator and {@link swap} from this package as default swap
  * function. Also see {@link multiSwap}.
  *

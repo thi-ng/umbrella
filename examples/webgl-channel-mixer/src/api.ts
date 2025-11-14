@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Stream } from "@thi.ng/rstream";
 
 export type Vec2 = [number, number];

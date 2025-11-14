@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import {
 	assocObj,
@@ -12,7 +13,7 @@ import {
 } from "@thi.ng/transducers";
 import { execSync } from "node:child_process";
 import { resolve } from "node:path";
-import type { Commit } from "../common/api";
+import type { Commit } from "../common/api.js";
 
 /**
  * Calls out to git to retrieve raw log string.
@@ -22,7 +23,7 @@ import type { Commit } from "../common/api";
 const gitLog = (repoPath: string) =>
 	execSync(
 		`git log --pretty=format:"%ad~~%an~~%h~~%s" --shortstat --date=iso-strict`,
-		{ cwd: resolve(repoPath) }
+		{ cwd: resolve(repoPath), maxBuffer: 4 * 1024 * 1024 }
 	)
 		.toString()
 		.trim();

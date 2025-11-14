@@ -6,6 +6,12 @@
 
 {{pkg.description}}
 
+> [!NOTE]
+> The generated output of the code examples in this readme might vary due to the
+> inherent randomness in the system. Please consult the [controlled
+> randomness](#controlled-randomness) section for further information about
+> deterministic outputs.
+
 ## Features
 
 The generator works with a simple plain text format, supporting the following
@@ -281,7 +287,7 @@ configured via options given to `generate()`:
 
 ```ts
 import { generate } from "@thi.ng/proctext";
-import { SYSTEM } from "@thi.ng/random";
+import { SYSTEM, XsAdd } from "@thi.ng/random";
 
 // here we show default options used
 generate(`...`, {
@@ -289,6 +295,9 @@ generate(`...`, {
 	maxHist: 1,
 	maxTrials: 10
 });
+
+// using a seeded PRNG for deterministic behavior/output
+generate(`...`, { rnd: new XsAdd(0xdecafbad) });
 ```
 
 The `maxHist = 1` means that for each variable only the last value picked will

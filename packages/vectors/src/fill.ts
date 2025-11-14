@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IVector } from "./api.js";
 import { mapV } from "./map.js";
 import { set } from "./set.js";
@@ -33,4 +34,4 @@ export const fill = (
 	v: IVector<any>,
 	num: number,
 	so = out.length * out.stride
-) => mapV(set.impl(v.length), out, v, num, so, 0);
+) => mapV(set.impl(v.length)!, out, v, num, so, 0);

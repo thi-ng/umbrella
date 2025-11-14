@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatArray, Fn, Fn3, FnN3, NumericArray } from "@thi.ng/api";
 import type { IPixelBuffer } from "@thi.ng/pixel";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { XsAdd } from "@thi.ng/random";
 import { beforeEach, expect, test } from "bun:test";
 import { AST } from "../src/index.js";

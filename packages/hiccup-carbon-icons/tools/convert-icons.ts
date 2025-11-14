@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { interpolate } from "@thi.ng/strings";
 import { execSync } from "child_process";
 import { readdirSync, writeFileSync, statSync } from "fs";

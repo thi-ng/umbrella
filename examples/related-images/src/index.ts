@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity } from "@thi.ng/api";
 import { div, h3 } from "@thi.ng/hiccup-html";
 import { $compile, $switch } from "@thi.ng/rdom";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./compare.js";
 export * from "./keys.js";
 export * from "./length.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { timedResult } from "@thi.ng/bench";
 import { KdTreeMap } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";

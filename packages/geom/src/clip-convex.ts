@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -54,7 +55,7 @@ const __clipVertices = ($: IShape, boundary: IShape | ReadonlyVec[]) => {
  *
  * @remarks
  * Internally uses
- * [`sutherlandHodgeman()`](https://docs.thi.ng/umbrella/geom-clip-poly/functions/sutherlandHodgeman.html).
+ * [`sutherlandHodgeman`](https://docs.thi.ng/umbrella/geom-clip-poly/functions/sutherlandHodgeman.html).
  * For groups, calls itself for each child shape individually and returns a new
  * group of results (if any).
  *

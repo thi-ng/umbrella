@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2, Maybe } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
@@ -6,7 +7,7 @@ import { set } from "@thi.ng/vectors/set";
 /**
  * Returns closest point to `p` in given point array, optionally using custom
  * distance function `dist` (default:
- * [`distSq()`](https://docs.thi.ng/umbrella/vectors/functions/distSq.html)).
+ * [`distSq`](https://docs.thi.ng/umbrella/vectors/functions/distSq.html)).
  *
  * @param p -
  * @param pts -

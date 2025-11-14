@@ -1,4 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
+import { identity } from "@thi.ng/api/fn";
 import { clamp01 } from "@thi.ng/math/interval";
 import { Lane, type FloatFormat, type FloatFormatSpec } from "../api.js";
 import { __luminanceABGR } from "../internal/utils.js";
@@ -15,7 +17,8 @@ export const defFloatFormat = (fmt: FloatFormatSpec) => {
 		size: chan.length,
 		shift: chanShift,
 		range: [0, 1],
-		getNormalized: (val) => clamp01(val),
+		normalized: clamp01,
+		fromNormalized: identity,
 	};
 	if (fmt.convert) {
 		Object.assign(res, fmt.convert);

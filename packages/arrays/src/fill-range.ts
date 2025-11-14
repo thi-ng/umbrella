@@ -1,12 +1,13 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 
 /**
- * Fills given array with values in [start .. end) interval from `index`
- * and with optional `step` size.
+ * Fills given array with values in `[start,end)` interval from `index` and with
+ * optional `step` size.
  *
  * @remarks
- * `start` and `end` default to 0 and array length, `step` defaults to 1
- * or -1 (depending on range). Returns array.
+ * `start` and `end` default to 0 and array length, `step` defaults to 1 or -1
+ * (depending on range). Returns array.
  *
  * @example
  * ```ts tangle:../export/fill-range.ts

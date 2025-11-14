@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { now, timeDiff, type Timestamp } from "@thi.ng/timestamp";
 import type { Transducer } from "./api.js";
@@ -12,7 +13,8 @@ import { partitionBy } from "./partition-by.js";
  * @remarks
  * Only to be used in async contexts, NOT with {@link transduce} directly.
  *
- * Also see:
+ * See also:
+ *
  * - [`thi.ng/transducers-async`](https://thi.ng/transducers-async).
  * - [`thi.ng/rstream`](https://thi.ng/rstream)
  *

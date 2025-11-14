@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Attribs = Record<string, any>;
 
 export type Vec2Like = ArrayLike<number>;

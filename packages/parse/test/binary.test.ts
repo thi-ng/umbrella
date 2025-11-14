@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors";
 import { test } from "bun:test";
 import {

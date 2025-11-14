@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { asSvg, svgDoc, withAttribs } from "@thi.ng/geom";

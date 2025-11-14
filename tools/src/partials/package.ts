@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { dirs, readJSON, readText } from "@thi.ng/file-io";
@@ -19,8 +20,7 @@ export const isNodeOnly = (pkg: Package) =>
 export const isBrowserOnly = (pkg: Package) =>
 	pkg.keywords ? pkg.keywords.includes("browser") : false;
 
-export const isWebModule = (pkg: Package) =>
-	!isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;
+export const isWebModule = (pkg: Package) => !isNodeOnly(pkg);
 
 export const pkgLink = (config: Config, name: string) => {
 	let url: Maybe<string> = undefined;

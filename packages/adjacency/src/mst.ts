@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { DisjointSet } from "@thi.ng/disjoint-set";
@@ -18,10 +19,11 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  * criteria. The result edges will be in ascending order, based on the supplied
  * cost function. The cost function is called once for each edge and return
  * values will be cached prior to sorting (see
- * [`sortByCachedKey()`](https://docs.thi.ng/umbrella/arrays/functions/sortByCachedKey.html)
+ * [`sortByCachedKey`](https://docs.thi.ng/umbrella/arrays/functions/sortByCachedKey.html)
  * for details).
  *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
  *
  * @example
@@ -30,10 +32,10 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  * import { distSq } from "@thi.ng/vectors";
  *
  * // 2D vectors
- * verts = [[0,0], [0,1], [1,1], [1,2], [4,2]]
+ * const verts = [[0,0], [0,1], [1,1], [1,2], [4,2]]
  *
  * // connections (vertex ID pairs)
- * edges = [[0,1], [0,4], [1,2], [1,3], [2,3], [2,4]]
+ * const edges = [[0,1], [0,4], [1,2], [1,3], [2,3], [2,4]]
  *
  * console.log(
  *   mst(
@@ -46,7 +48,7 @@ import { DisjointSet } from "@thi.ng/disjoint-set";
  *     (e) => e
  *   )
  * );
- * // [ [ 0, 1 ], [ 1, 2 ], [ 2, 3 ], [ 2, 4 ] ]
+ * // [ [ 1, 2 ], [ 2, 3 ], [ 0, 1 ], [ 2, 4 ] ]
  * ```
  *
  * @param edges - edge pairs

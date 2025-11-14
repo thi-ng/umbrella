@@ -42,8 +42,8 @@
 		"screenshot": "examples/soa-ecs-100k.png"
 	},
 	"devDependencies": {
-		"typescript": "^5.7.2",
-		"vite": "^5.4.11"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.12"
 	},
 	"keywords": [
 		"3d",

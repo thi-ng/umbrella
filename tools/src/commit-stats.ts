@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { lower, percent, split } from "@thi.ng/strings";
 import {
 	assocObj,

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
 import { clamp01 } from "./interval.js";
 
@@ -26,7 +27,7 @@ export const smoothStep: FnN3 = (edge, edge2, x) =>
 
 /**
  * Specialized version of {@link smoothStep}, assuming edges are 0/1
- * respectively and `x` is in [0..1]. No clamping performed.
+ * respectively and `x` is in `[0,1]`. No clamping performed.
  *
  * @param x
  */
@@ -47,7 +48,7 @@ export const smootherStep: FnN3 = (edge, edge2, x) =>
 
 /**
  * Specialized version of {@link smootherStep}, assuming edges are 0/1
- * respectively and `x` is in [0..1]. No clamping performed.
+ * respectively and `x` is in `[0,1]`. No clamping performed.
  *
  * @param x
  */
@@ -64,7 +65,7 @@ export const smootherStep01: FnN = (x) => x * x * x * (x * (x * 6 - 15) + 10);
  * - Pulse: k=0.005, n=-10
  * - Ease-in: k=0.5, n=0.25
  *
- * Interactive graph: https://www.desmos.com/calculator/gcnuyppycz
+ * [Interactive graph](https://www.desmos.com/calculator/gcnuyppycz)
  *
  * @param k -
  * @param n -

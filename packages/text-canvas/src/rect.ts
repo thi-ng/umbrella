@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { NONE } from "@thi.ng/text-format/api";

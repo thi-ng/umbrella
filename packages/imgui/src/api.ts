@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { IMGUI } from "./gui.js";

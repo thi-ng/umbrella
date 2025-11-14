@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Select4 } from "@thi.ng/api";
 import type { Swizzle, Term } from "../api/nodes.js";
 import type {

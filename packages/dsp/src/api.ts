@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, IDeref, NumericArray } from "@thi.ng/api";
 
 export type StatelessOscillator = (

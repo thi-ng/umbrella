@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sum } from "@thi.ng/vectors/sum";
 import type { ReadonlyMat } from "./api.js";
 import { diag } from "./diag.js";

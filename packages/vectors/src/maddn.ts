@@ -1,17 +1,49 @@
-import type { MultiVecOpVNV, VecOpVNV } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { ARGS_VNV, ARGS_VV, MATH2A_N } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVNV } from "./defopvnv.js";
+import { $madd } from "./ops.js";
+
+const [a, b, c, d] = defOpVNV($madd);
 
 /**
- * Returns `out = a * n + b`.
+ * Componentwise nD vector multiply-add with a uniform scalar factor.
+ * `o = a * n + b`. Multi-method.
  *
- * @param out - vec
- * @param a - vec
+ * @param o - output vector
+ * @param a - input vector
  * @param n - scalar
- * @param b - vec
+ * @param b - input vector
  */
-export const [maddN, maddN2, maddN3, maddN4] = defOp<MultiVecOpVNV, VecOpVNV>(
-	MATH2A_N("*", "+"),
-	ARGS_VNV,
-	ARGS_VV
-);
+export const maddN = a;
+
+/**
+ * Componentwise 2D vector multiply-add with a uniform scalar factor.
+ * `o = a * n + b`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param b - input vector
+ */
+export const maddN2 = b;
+
+/**
+ * Componentwise 3D vector multiply-add with a uniform scalar factor.
+ * `o = a * n + b`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param b - input vector
+ */
+export const maddN3 = c;
+
+/**
+ * Componentwise 4D vector multiply-add with a uniform scalar factor.
+ * `o = a * n + b`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param b - input vector
+ */
+export const maddN4 = d;

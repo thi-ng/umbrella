@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { MSub } from "./mult.js";
 
@@ -31,6 +32,26 @@ export class PubSub<K, V> {
 	}
 
 	/**
+	 * Similar to {@link PubSub.subscribeTopic}, but for one-off event handling.
+	 * Creates a new subscription for topic `id` and waits for next value. Once
+	 * received, it immediately unsubscribes again and then calls `fn` with
+	 * value.
+	 *
+	 * @param id
+	 * @param fn
+	 */
+	subscribeOnce(id: K, fn: Fn<V, void>) {
+		const sub = this.subscribeTopic(id);
+		const $this = this;
+		(async () => {
+			for await (let x of sub) {
+				$this.unsubscribeTopic(id, sub);
+				fn(x);
+			}
+		})();
+	}
+
+	/**
 	 * Attempts to remove given child subscription (presumably created via
 	 * {@link PubSub.subscribeTopic}). Returns true if removal was successful.
 	 *
@@ -39,7 +60,7 @@ export class PubSub<K, V> {
 	unsubscribeTopic(id: K, sub: AsyncIterable<V>) {
 		const subs = this.topics.get(id);
 		if (!subs) return false;
-		const idx = subs.findIndex((x) => x === sub) ?? -1;
+		const idx = subs.findIndex((x) => x === sub);
 		if (idx >= 0) {
 			subs.splice(idx, 1);
 			(<MSub<V>>sub).resolve(undefined);

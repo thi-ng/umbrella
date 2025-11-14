@@ -1,8 +1,49 @@
-import type { MultiVecOpVVN, VecOpVVN } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { ARGS_VVN, MIX_N } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVVN } from "./defopvvn.js";
+import { $mix } from "./ops.js";
 
-export const [mixN, mixN2, mixN3, mixN4] = defOp<MultiVecOpVVN, VecOpVVN>(
-	MIX_N,
-	ARGS_VVN
-);
+const [a, b, c, d] = defOpVVN($mix);
+
+/**
+ * Componentwise nD vector linear interpolation with a uniform scalar factor.
+ * `o = a + (b - a) * n`. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const mixN = a;
+
+/**
+ * Componentwise 2D vector linear interpolation with a uniform scalar factor.
+ * `o = a + (b - a) * n`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const mixN2 = b;
+
+/**
+ * Componentwise 3D vector linear interpolation with a uniform scalar factor.
+ * `o = a + (b - a) * n`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const mixN3 = c;
+
+/**
+ * Componentwise 4D vector linear interpolation with a uniform scalar factor.
+ * `o = a + (b - a) * n`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const mixN4 = d;

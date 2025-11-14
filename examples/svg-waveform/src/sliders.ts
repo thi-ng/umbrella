@@ -1,4 +1,5 @@
-import * as ev from "./events";
+// SPDX-License-Identifier: Apache-2.0
+import * as ev from "./events.js";
 
 /**
  * Slider definitions used to generate UI components and their event handlers

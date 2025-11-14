@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, NumericArray } from "@thi.ng/api";
 import type { DTMetric } from "./api.js";
 import { EUCLEDIAN } from "./metric.js";
@@ -7,7 +8,7 @@ import { EUCLEDIAN } from "./metric.js";
  * provided distance metric (default: {@link EUCLEDIAN}). Any non-zero values in
  * the input grid are used as seed locations for the distance field. Returns a
  * plain `Float32Array` of distance values. If `normalize` is > 0 (default: 1),
- * the result values will be normalized to the [0,normalize] interval.
+ * the result values will be normalized to the `[0,normalize]` interval.
  *
  * @remarks
  * The returned array will always be tightly packed, regardless of strides given

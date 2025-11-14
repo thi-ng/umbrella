@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { button, div, textArea } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { slidingWindow } from "@thi.ng/transducers";

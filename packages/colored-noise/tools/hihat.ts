@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { green } from "@thi.ng/colored-noise";
 import { adsr, iterable, product } from "@thi.ng/dsp";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";

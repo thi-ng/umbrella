@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { add3 } from "@thi.ng/vectors/add";
 import { addN3 } from "@thi.ng/vectors/addn";
 import { ZERO3, type Vec } from "@thi.ng/vectors/api";

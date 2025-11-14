@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2, IReset, Pair } from "@thi.ng/api";
 
 /**
@@ -20,14 +21,15 @@ export interface IDistance<T> {
 	readonly metric: Metric<T>;
 
 	/**
-	 * Converts Eucledian distance `x` into the metric of this instance.
+	 * Converts "untransformed" raw distance `x` into the metric of this instance.
 	 *
 	 * @param x -
 	 */
 	to(x: number): number;
 
 	/**
-	 * Converts `x` from the metric of this instance into an Eucledian value.
+	 * Converts `x` from the metric of this instance into an "untransformed" raw
+	 * value.
 	 *
 	 * @param x -
 	 */
@@ -50,14 +52,15 @@ export interface INeighborhood<P, T> extends IReset {
 
 	/**
 	 * Returns true, if distance `d` is <= current radius of this neighborhood.
-	 * If `eucledian` is true (default: true), then `d` will first be converted
-	 * into the metric used by this neighborhood using {@link IDistance.to},
-	 * otherwise it is expected to be already in that metric space.
+	 * If `untransformed` is true (default: true), then `d` will first be
+	 * converted into the metric used by this neighborhood using
+	 * {@link IDistance.to}, otherwise it is expected to be already in that
+	 * metric's space.
 	 *
 	 * @param d -
-	 * @param eucledian -
+	 * @param untransformed -
 	 */
-	includesDistance(d: number, eucledian?: boolean): boolean;
+	includesDistance(d: number, untransformed?: boolean): boolean;
 
 	/**
 	 * Computes distance metric between `pos` and this neighborhood's target

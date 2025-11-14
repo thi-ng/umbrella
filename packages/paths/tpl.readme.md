@@ -235,9 +235,9 @@ state2.a.b.c;
 ### Prototype pollution
 
 Mainly a potential concern for the non-typechecked versions - currently, only
-the mutation functions (i.e. `mutIn`, `mutInUnsafe()` etc.) explicitly disallow
-updating an object's `__proto__`, `prototype` or `constructor` properties.
-However, the package provides the
+the mutation functions (i.e. `mutIn`, `mutInUnsafe()`, `deleteIn`,
+`deleteInUnsafe` etc.) explicitly disallow updating an object's `__proto__`,
+`prototype` or `constructor` properties. The package provides the
 [`disallowProtoPath()`](https://docs.thi.ng/umbrella/paths/functions/disallowProtoPath.html)
 helper which can be used in conjunction with the other setters in situations
 where it's advisable to do so.

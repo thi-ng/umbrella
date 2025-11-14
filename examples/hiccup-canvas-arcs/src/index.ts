@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas2d } from "@thi.ng/canvas";
 import {
 	colorFromRange,
@@ -11,7 +12,7 @@ import { fit01, TAU } from "@thi.ng/math";
 import { SYSTEM, weightedRandom } from "@thi.ng/random";
 import { fromDOMEvent, fromRAF } from "@thi.ng/rstream";
 import { map, normRange } from "@thi.ng/transducers";
-import { dist, type Vec } from "@thi.ng/vectors";
+import { dist2, type Vec } from "@thi.ng/vectors";
 
 // optional, configure CSS color conversions to use use CSS Color Level 4
 // (i.e. direct support for LCH colors and avoiding conversions to sRGB)
@@ -87,7 +88,7 @@ fromRAF().subscribe({
 						weight: w,
 						stroke:
 							m &&
-							dist(m, closestPoint(a, m)!) <
+							dist2(m, closestPoint(a, m)!) <
 								Math.max(PICK_DIST, w)
 								? PICK_COL
 								: col,

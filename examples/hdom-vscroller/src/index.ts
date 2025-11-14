@@ -1,9 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
 import { start } from "@thi.ng/hdom";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import _commits from "./commits.json";
 import _logo from "./logo-64.png";
 import _packages from "./packages.json";
-import { virtualScroller } from "./vscroller";
+import { virtualScroller } from "./vscroller.js";
 
 type Commit = [string, string, string];
 type Package = [string, string];

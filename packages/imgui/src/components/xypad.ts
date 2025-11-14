@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import { line } from "@thi.ng/geom/line";
 import { rect } from "@thi.ng/geom/rect";
@@ -53,13 +54,13 @@ export const xyPad = ({
 }: XYPadOpts) => {
 	let box: LayoutBox;
 	const ch = layout.cellH;
-	const gap = layout.gap;
+	const gapY = layout.gapY;
 	if (mode === "square") {
 		box = layout.nextSquare();
 	} else {
-		const rows = mode === "prop" ? (layout.cellW / (ch + gap)) | 0 : mode;
+		const rows = mode === "prop" ? (layout.cellW / (ch + gapY)) | 0 : mode;
 		box = layout.next([1, rows + 1]);
-		box.h -= ch + gap;
+		box.h -= ch + gapY;
 	}
 	return xyPadRaw(
 		gui,
@@ -74,7 +75,7 @@ export const xyPad = ({
 		value,
 		yUp,
 		0,
-		box.h + gap + ch / 2 + gui.theme.baseLine,
+		box.h + gapY + ch / 2 + gui.theme.baseLine,
 		label,
 		fmt,
 		info

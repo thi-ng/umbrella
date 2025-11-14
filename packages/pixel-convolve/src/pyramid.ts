@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import type { FloatBuffer } from "@thi.ng/pixel/float";
 import type { KernelSpec } from "./api.js";

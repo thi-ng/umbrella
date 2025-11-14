@@ -1,4 +1,4 @@
-import { wrapOnce } from "@thi.ng/math/interval";
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { clamp2 as $clamp2, clamp3 as $clamp3 } from "@thi.ng/vectors/clamp";
 import type { GlobalConstraint } from "./api.js";
@@ -16,7 +16,7 @@ export const clamp3 =
 /** @internal */
 const __wrap = (p: Vec, i: number, x: number, min: number, max: number) => {
 	if (x < min || x > max) {
-		p[i] = wrapOnce(x, min, max);
+		p[i] = x < min ? x - min + max : x > max ? x - max + min : x;
 		return true;
 	}
 };

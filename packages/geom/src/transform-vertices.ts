@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, IShape2, IShape3, TransformVertexFn } from "./api.js";
@@ -36,7 +37,7 @@ export type TransformVerticesFn = {
  * provided function, which is being called for each vertex individually and
  * should produce a transformation matrix.
  *
- * @remark
+ * @remarks
  * Some shape types will be automatically converted to other types prior to
  * transformation because they cannot be reliably represented in their original
  * type anymore, this includes:

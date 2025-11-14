@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import type { IntChannel } from "../api.js";
 import { __luminanceABGR } from "./utils.js";

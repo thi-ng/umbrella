@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { lch, type ColorRangePreset, type ColorThemePart } from "@thi.ng/color";
 import type { ISubscribable, ISubscriber } from "@thi.ng/rstream";
-import { NUM_STATE_TOKENS, type MainOutputs } from "./api";
+import { NUM_STATE_TOKENS, type MainOutputs } from "./api.js";
 
 export const initFromHash = (
 	parts: IObjectOf<ISubscriber<ColorThemePart>>,

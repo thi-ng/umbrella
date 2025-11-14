@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatSym, Vec4Sym } from "@thi.ng/shader-ast";
 import { S3D, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";

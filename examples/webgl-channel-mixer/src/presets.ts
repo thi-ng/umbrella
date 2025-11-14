@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { randomID } from "@thi.ng/random";
 import {
@@ -6,13 +7,43 @@ import {
 	DEFAULT_R,
 	type Controls,
 	type ReactiveControls,
-} from "./api";
+} from "./api.js";
 
 export const PRESETS: Record<string, Controls> = {
 	"<default>": {
 		r: DEFAULT_R,
 		g: DEFAULT_G,
 		b: DEFAULT_B,
+		exposure: [0, 0],
+	},
+	"RGB → RBG": {
+		r: DEFAULT_R,
+		g: DEFAULT_B,
+		b: DEFAULT_G,
+		exposure: [0, 0],
+	},
+	"RGB → GBR": {
+		r: DEFAULT_G,
+		g: DEFAULT_B,
+		b: DEFAULT_R,
+		exposure: [0, 0],
+	},
+	"RGB → GRB": {
+		r: DEFAULT_G,
+		g: DEFAULT_R,
+		b: DEFAULT_B,
+		exposure: [0, 0],
+	},
+	"RGB → BRG": {
+		r: DEFAULT_B,
+		g: DEFAULT_R,
+		b: DEFAULT_G,
+		exposure: [0, 0],
+	},
+	"RGB → BGR": {
+		r: DEFAULT_B,
+		g: DEFAULT_G,
+		b: DEFAULT_R,
 		exposure: [0, 0],
 	},
 	Dolomites: {

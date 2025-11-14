@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { juxt } from "@thi.ng/compose/juxt";
 import type { MultiplexTxLike, Transducer } from "./api.js";
 import { map } from "./map.js";
@@ -5,7 +6,7 @@ import { step } from "./step.js";
 
 /**
  * Yields a new transducer which applies given transducers in parallel (using
- * [`juxt()`](https://docs.thi.ng/umbrella/compose/functions/juxt.html) &
+ * [`juxt`](https://docs.thi.ng/umbrella/compose/functions/juxt.html) &
  * {@link step}) and produces tuples of results.
  *
  * @remarks
@@ -123,7 +124,9 @@ export function multiplex(...args: any[]) {
 			null,
 			<any>(
 				args.map((xf) =>
-					Array.isArray(xf) ? step(xf[0], xf[1]) : step(xf)
+					Array.isArray(xf)
+						? step(xf[0], xf[1], false)
+						: step(xf, true, false)
 				)
 			)
 		)

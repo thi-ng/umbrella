@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { Fn0, IObjectOf } from "@thi.ng/api";
 import { flag, type Command } from "@thi.ng/args";
@@ -445,10 +446,19 @@ export function* splitLine(line: string) {
 	let end = line.length;
 	let depth = 0;
 	let args = 0;
+	let str = false;
 	for (let i = 0; i < end; i++) {
 		const c = line[i];
-		if (c === " " || c === "\t") {
-			if (!(depth || args) && from >= 0) {
+		if (c === '"' && !(depth || args)) {
+			if (str) {
+				yield line.substring(from, i + 1);
+				from = -1;
+				str = false;
+			} else {
+				str = true;
+			}
+		} else if (c === " " || c === "\t") {
+			if (!(depth || args || str) && from >= 0) {
 				yield line.substring(from, i);
 				from = -1;
 			}
@@ -470,6 +480,7 @@ export function* splitLine(line: string) {
 			from = i;
 		}
 	}
+	if (str) illegalArgs("string literals must be fully on a single line");
 	if (depth) illegalArgs("template calls must be fully on a single line");
 	if (args) illegalArgs("verbatim properties must be fully on a single line");
 	if (from >= 0) yield line.substring(from, end);
@@ -551,12 +562,19 @@ const __parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
 	let lastQueryIdx = token.lastIndexOf(QUERY_SEP);
 	if (lastQueryIdx < 0) return { token };
 	const tplArgIdx = token.indexOf("(");
-	if (tplArgIdx > 0) {
+	const verbatimArgIdx = token.indexOf("[");
+	if (tplArgIdx > 0 || verbatimArgIdx > 0) {
+		const idx =
+			tplArgIdx > 0
+				? verbatimArgIdx > 0
+					? Math.min(tplArgIdx, verbatimArgIdx)
+					: tplArgIdx
+				: verbatimArgIdx;
 		// check if template with query sep inside args only
-		if (tplArgIdx < lastQueryIdx && token.indexOf(QUERY_SEP) > tplArgIdx)
+		if (idx < lastQueryIdx && token.indexOf(QUERY_SEP) > idx)
 			return { token };
 		// otherwise, find last query sep in template ID only
-		lastQueryIdx = token.substring(0, tplArgIdx).lastIndexOf(QUERY_SEP);
+		lastQueryIdx = token.substring(0, idx).lastIndexOf(QUERY_SEP);
 	}
 	const query = token.substring(0, lastQueryIdx);
 	const parts = query.split(QUERY_SEP);
@@ -573,7 +591,7 @@ const __parseMediaQueryToken = (token: string, mediaQueries: Set<string>) => {
  *
  * @remarks
  * See
- * [`at_media()`](https://docs.thi.ng/umbrella/hiccup-css/functions/at_media.html)
+ * [`at_media`](https://docs.thi.ng/umbrella/hiccup-css/functions/at_media.html)
  * for details
  *
  * @param mediaQueryDefs
@@ -610,7 +628,9 @@ const __addPlainDef = (
 /** @internal */
 const __varDecl = (id: string): IObjectOf<any> => {
 	const idx = id.indexOf("=");
-	return { [`--${id.substring(0, idx)}`]: id.substring(idx + 1) };
+	const key = id.substring(0, idx);
+	const value = id.substring(idx + 1);
+	return { [`--${key}`]: value[0] === '"' ? value.slice(1, -1) : value };
 };
 
 /** @internal */

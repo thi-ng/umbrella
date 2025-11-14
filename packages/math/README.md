@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/math](https://media.thi.ng/umbrella/banners-20230807/thing-math.svg?3abd517f)
+# ![@thi.ng/math](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-math.svg?3abd517f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/math.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -77,7 +77,7 @@ For Node.js REPL:
 const math = await import("@thi.ng/math");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.80 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.04 KB
 
 ## Dependencies
 

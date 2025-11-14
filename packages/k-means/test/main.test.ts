@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { HAVERSINE_LATLON } from "@thi.ng/distance";
 import { XsAdd } from "@thi.ng/random";
 import { expect, test } from "bun:test";

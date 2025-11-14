@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3 } from "@thi.ng/api";
 import type { IHiccupShape2 } from "@thi.ng/geom";
 import { resample } from "@thi.ng/geom-resample/resample";

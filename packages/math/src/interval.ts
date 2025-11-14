@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3, FnN4, FnU2, FnU3 } from "@thi.ng/api";
 
 /**
@@ -10,35 +11,35 @@ import type { FnN, FnN2, FnN3, FnN4, FnU2, FnU3 } from "@thi.ng/api";
 export const clamp: FnN3 = (x, min, max) => (x < min ? min : x > max ? max : x);
 
 /**
- * Clamps value `x` to closed [0 .. ∞] interval.
+ * Clamps value `x` to closed `[0,∞]` interval.
  *
  * @param x -
  */
 export const clamp0: FnN = (x) => (x > 0 ? x : 0);
 
 /**
- * Clamps value `x` to closed [0 .. 1] interval.
+ * Clamps value `x` to closed `[0,1]` interval.
  *
  * @param x -
  */
 export const clamp01: FnN = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 /**
- * Clamps value `x` to closed [-1 .. 1] interval.
+ * Clamps value `x` to closed `[-1,1]` interval.
  *
  * @param x -
  */
 export const clamp11: FnN = (x) => (x < -1 ? -1 : x > 1 ? 1 : x);
 
 /**
- * Clamps value `x` to closed [0 .. 0.5] interval.
+ * Clamps value `x` to closed `[0,0.5]` interval.
  *
  * @param x -
  */
 export const clamp05: FnN = (x) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
 
 /**
- * Returns 2-tuple of [min(x,y), max(x,y)].
+ * Returns 2-tuple of `[min(x,y), max(x,y)]`.
  *
  * @param x
  * @param y
@@ -47,8 +48,7 @@ export const minMax: FnU2<number, [number, number]> = (x, y) =>
 	x < y ? [x, y] : [y, x];
 
 /**
- * Folds `x` back inside closed [min..max] interval. Also see
- * {@link wrapOnce}.
+ * Folds `x` back inside closed `[min,max]` interval. Also see {@link wrapOnce}.
  *
  * @param x -
  * @param min -
@@ -69,9 +69,9 @@ export const wrap: FnN3 = (x, min, max) => {
 };
 
 /**
- * Like {@link wrap}, but optimized for cases where `x` is guaranteed to
- * be in `[min - d, max + d]` interval, where `d = max - min`. Result
- * will be in closed `[min..max]` interval.
+ * Like {@link wrap}, but optimized for cases where `x` is guaranteed to be in
+ * `[min-d,max+d]` interval, where `d = max - min`. Result will be in closed
+ * `[min,max]` interval.
  *
  * @param x -
  * @param min -
@@ -81,14 +81,14 @@ export const wrapOnce: FnN3 = (x, min, max) =>
 	x < min ? x - min + max : x > max ? x - max + min : x;
 
 /**
- * Similar to {@link wrapOnce} for [0..1] interval.
+ * Similar to {@link wrapOnce} for `[0,1]` interval.
  *
  * @param x -
  */
 export const wrap01: FnN = (x) => (x < 0 ? x + 1 : x > 1 ? x - 1 : x);
 
 /**
- * Similar to {@link wrapOnce} for [-1..1] interval.
+ * Similar to {@link wrapOnce} for `[-1,1]` interval.
  *
  * @param x -
  */
@@ -157,7 +157,7 @@ export const minNonZero2: FnN2 = (a, b) =>
 export const minNonZero3: FnN3 = (a, b, c) => minNonZero2(minNonZero2(a, b), c);
 
 /**
- * See `smax()`.
+ * Smooth minimum. See {@link smax} for details.
  *
  * @param a -
  * @param b -
@@ -167,7 +167,7 @@ export const smin: FnN3 = (a, b, k) => smax(a, b, -k);
 
 /**
  * Smooth maximum. Note: Result values will be slightly larger than max value
- * near max(a,b) + eps due to exponential decay. Higher `k` values reduce the
+ * near `max(a, b) + eps` due to exponential decay. Higher `k` values reduce the
  * error, but also reduce the smoothing. Recommended k=16.
  *
  * https://en.wikipedia.org/wiki/Smooth_maximum
@@ -197,12 +197,13 @@ export const absMin: FnN2 = (a, b) => (Math.abs(a) < Math.abs(b) ? a : b);
 export const absMax: FnN2 = (a, b) => (Math.abs(a) > Math.abs(b) ? a : b);
 
 /**
- * If `abs(x) > abs(e)`, recursively mirrors `x` back into `[-e .. +e]`
- * interval at respective positive/negative boundary.
+ * If `abs(x) > abs(e)`, recursively mirrors `x` back into `[-e,e]` interval at
+ * respective positive/negative boundary.
  *
  * @remarks
  * References:
- * - https://www.desmos.com/calculator/lkyf2ag3ta
+ *
+ * - [Interactive graph](https://www.desmos.com/calculator/lkyf2ag3ta)
  * - https://www.musicdsp.org/en/latest/Effects/203-fold-back-distortion.html
  *
  * @param e - threshold (> 0)
@@ -213,7 +214,7 @@ export const foldback: FnN2 = (e, x) =>
 
 /**
  * Similar to {@link foldback}, but with fixed target range: Folds `x` into the
- * closed [0..1] interval, using infinite internal reflection on either side of
+ * closed `[0,1]` interval, using infinite internal reflection on either side of
  * the interval.
  *
  * @param x
@@ -221,7 +222,7 @@ export const foldback: FnN2 = (e, x) =>
 export const foldback01: FnN = (x) => ((x = Math.abs(x) % 2) > 1 ? 2 - x : x);
 
 /**
- * Returns true iff `x` is in closed interval `[min .. max]`
+ * Returns true iff `x` is in closed interval `[min,max]`
  *
  * @param x -
  * @param min -
@@ -231,7 +232,7 @@ export const inRange: FnU3<number, boolean> = (x, min, max) =>
 	x >= min && x <= max;
 
 /**
- * Returns true iff `x` is in open interval `(min .. max)`
+ * Returns true iff `x` is in open interval `(min,max)`
  *
  * @param x -
  * @param min -

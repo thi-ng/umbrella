@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { button, div } from "@thi.ng/hiccup-html";
 import { $attribs, $compile } from "@thi.ng/rdom";
 import { cycle } from "@thi.ng/transducers";

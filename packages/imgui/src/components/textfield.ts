@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
 import { fitClamped } from "@thi.ng/math/fit";

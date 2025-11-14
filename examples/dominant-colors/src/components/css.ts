@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import { css } from "@thi.ng/color";
 import { li, ul } from "@thi.ng/hiccup-html";
-import type { DominantColor } from "../api";
+import type { DominantColor } from "../api.js";
 
 export const cssPalette = (colors: DominantColor[]) =>
 	ul(

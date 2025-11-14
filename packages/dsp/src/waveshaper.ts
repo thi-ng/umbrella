@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import { PI } from "@thi.ng/math/api";
 import { AProc } from "./aproc.js";
@@ -5,16 +6,14 @@ import { AProc } from "./aproc.js";
 export type WaveShaperFn = Fn2<number, number, number>;
 
 /**
- * Customizable wave shaper for user defined shaping function supporting
- * one (optional, implementation specific) adjustable curve parameter.
- * By default uses {@link waveshapeTan} and supports configurable
- * curvature. Post-amplification is applied to the transformed result
- * value (see remarks).
+ * Customizable wave shaper for user defined shaping function supporting one
+ * (optional, implementation specific) adjustable curve parameter. By default
+ * uses {@link waveshapeTan} and supports configurable curvature.
+ * Post-amplification is applied to the transformed result value (see remarks).
  *
  * @remarks
- * If `amp` is `true` (default), the curve will be normalized such that
- * input values in the [-1 .. 1] range will be mapped to the same output
- * interval.
+ * If `amp` is `true` (default), the curve will be normalized such that input
+ * values in the `[-1,1]` range will be mapped to the same output interval.
  *
  * The following wave shaping functions are supplied by default:
  *
@@ -22,8 +21,7 @@ export type WaveShaperFn = Fn2<number, number, number>;
  * - {@link waveshapeSigmoid}
  * - {@link waveshapeSin}
  *
- * Interactive graph:
- * - https://www.desmos.com/calculator/hg4i7o836i
+ * [Interactive graph](https://www.desmos.com/calculator/hg4i7o836i)
  *
  * @param thresh - fold threshold
  * @param amp - post amplifier / autogain flag

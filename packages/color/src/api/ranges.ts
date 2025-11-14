@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Range } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyColor } from "../api.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns first element of given array or `undefined` if array is empty.
  *

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { equiv } from "@thi.ng/equiv";
 import { beforeEach, expect, test } from "bun:test";
 import { ECS, MemMappedComponent } from "../src/index.js";

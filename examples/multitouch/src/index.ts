@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas } from "@thi.ng/hdom-canvas";
 import { memoize1 } from "@thi.ng/memoize";
 import { sync, trigger } from "@thi.ng/rstream";

@@ -22,7 +22,7 @@
 		"event",
 		"example",
 		"hdom",
-		"interceptor",
+		"interceptors",
 		"io",
 		"json",
 		"ui"
@@ -39,7 +39,7 @@
 		]
 	},
 	"devDependencies": {
-		"typescript": "^5.7.2",
-		"vite": "^5.4.11"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.12"
 	}
 }

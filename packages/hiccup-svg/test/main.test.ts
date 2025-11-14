@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hsv } from "@thi.ng/color";
 import { expect, test } from "bun:test";
-import { convertTree } from "../src/index.js";
+import { circle, convertTree } from "../src/index.js";
 
 test("convertTree", () => {
 	const res = convertTree([
@@ -37,6 +38,36 @@ test("convertTree", () => {
 				x2: "100.0",
 				y1: "-1.2",
 				y2: "-100.0",
+			},
+		],
+	]);
+});
+
+test("convertTree (disable conversion)", () => {
+	const res = convertTree([
+		"g",
+		{},
+		circle([0, 0], 1, { __convert: false }),
+		["circle", {}, [0, 0], 2],
+	]);
+	expect(res).toEqual([
+		"g",
+		{},
+		[
+			"circle",
+			{
+				__convert: false,
+				cx: "0",
+				cy: "0",
+				r: "1",
+			},
+		],
+		[
+			"circle",
+			{
+				cx: "0",
+				cy: "0",
+				r: "2",
 			},
 		],
 	]);

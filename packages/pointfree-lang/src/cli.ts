@@ -1,20 +1,27 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { FnU, IObjectOf } from "@thi.ng/api";
-import { cliApp, flag, string, type Command } from "@thi.ng/args";
+import {
+	ARG_VERBOSE,
+	cliApp,
+	configureLogLevel,
+	string,
+	THING_HEADER,
+	type Command,
+} from "@thi.ng/args";
 import { timedResult } from "@thi.ng/bench";
 import { readJSON, readText, writeFile } from "@thi.ng/file-io";
-import { LogLevel } from "@thi.ng/logger";
 import { ensureStack, type StackContext } from "@thi.ng/pointfree";
-import { readFileSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ffi, run, runU } from "./runtime.js";
 
 interface CLIOpts {
-	debug: boolean;
 	exec?: string;
+	verbose: boolean;
 }
 
-const PKG = readJSON(resolve(process.argv[2], "../package.json"));
+const PKG = readJSON(join(process.argv[2], "package.json"));
 
 const CMD: Command<CLIOpts, CLIOpts> = {
 	desc: "",
@@ -90,25 +97,19 @@ cliApp({
 	name: "pointfree",
 	start: 3,
 	opts: {
-		debug: flag({ alias: "d", desc: "print debug info", group: "main" }),
-		exec: string({ alias: "e", default: "", desc: "execute given string" }),
+		...ARG_VERBOSE,
+		exec: string({ alias: "e", desc: "Execute given string" }),
 	},
 	commands: { CMD },
 	single: true,
 	usage: {
-		prefix: `
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ ${PKG.name} v${PKG.version}
- █ █ █ █ █ █ █ █ █ │ Forth-style DSL & CLI
-                 █ │
-               █ █ │
+		prefix: `${THING_HEADER(PKG.name, PKG.version, "Forth-style DSL & CLI")}
 
 Usage: pointfree [opts] [file]\n\n`,
 		paramWidth: 24,
 	},
 	ctx: async (ctx) => {
-		if (ctx.opts.debug) ctx.logger.level = LogLevel.DEBUG;
+		configureLogLevel(ctx.logger, ctx.opts.verbose);
 		return ctx;
 	},
 });

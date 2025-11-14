@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { eqDelta, roundTo } from "@thi.ng/math";
 import { expect, test } from "bun:test";
 import {

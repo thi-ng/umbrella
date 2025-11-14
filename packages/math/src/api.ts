@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const PI = Math.PI;
 export const TAU = PI * 2;
 export const HALF_PI = PI / 2;

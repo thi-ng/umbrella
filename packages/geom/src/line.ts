@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { liangBarsky2 } from "@thi.ng/geom-clip-line/liang-barsky";
 import type { Vec, VecPair } from "@thi.ng/vectors";

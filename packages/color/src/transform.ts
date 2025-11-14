@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mix } from "@thi.ng/math/mix";
 import type { ColorMatrix, ReadonlyColor } from "./api.js";
 import { RGB_LUMINANCE_REC709, WHITE } from "./api/constants.js";
@@ -24,7 +25,7 @@ const S8 = 0.283;
  * @param out - result
  * @param mat - transform matrix
  * @param src - source color
- * @param clampOut - true, if result should be clamped to [0..1]
+ * @param clampOut - true, if result should be clamped to `[0,1]`
  */
 export const transform = __mulV45;
 
@@ -125,7 +126,7 @@ export const hueRotateMat = (theta: number): ColorMatrix => {
 
 /**
  * Color temperature adjustment matrix. `x` controls blue/yellow, `y` controls
- * green/magenta axis (both params in [-1,1] range).
+ * green/magenta axis (both params in `[-1,1]` range).
  *
  * @param x
  * @param y

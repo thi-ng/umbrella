@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
 import { reactive, sync } from "@thi.ng/rstream";
 import { percent } from "@thi.ng/strings";
 import { comp, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { dial } from "./dial";
+import { dial } from "./dial.js";
 
 // hdom context & app state object
 export const ctx = {

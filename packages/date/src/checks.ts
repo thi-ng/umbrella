@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";

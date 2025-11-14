@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ALogger } from "@thi.ng/logger/alogger";
 import {
 	LogLevel,

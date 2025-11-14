@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import type { Vec } from "@thi.ng/vectors";
 import { normalize2 } from "@thi.ng/vectors/normalize";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { SYSTEM } from "@thi.ng/random/system";

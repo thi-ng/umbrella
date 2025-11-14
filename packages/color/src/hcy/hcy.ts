@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
@@ -36,7 +37,7 @@ export declare class HCY implements TypedColor<HCY> {
 /**
  * @remarks
  * Note: As with other hue-based color modes in this package, the hue is stored
- * normalized (in [0..1] interval) and NOT as degrees.
+ * normalized (in `[0,1]` interval) and NOT as degrees.
  */
 export const hcy = <ColorFactory<HCY>>defColor({
 	mode: "hcy",

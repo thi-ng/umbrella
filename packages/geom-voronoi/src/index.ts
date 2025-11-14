@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Pair } from "@thi.ng/api";
 import { defBitField, type BitField } from "@thi.ng/bitfield/bitfield";
 import { isNumber } from "@thi.ng/checks/is-number";

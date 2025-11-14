@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Pair } from "@thi.ng/api";
 import { isMap } from "@thi.ng/checks/is-map";
 

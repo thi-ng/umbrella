@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Transducer } from "./api.js";
 import { sideEffect } from "./side-effect.js";
 

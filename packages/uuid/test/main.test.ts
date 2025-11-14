@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Xoshiro128 } from "@thi.ng/random";
 import { expect, test } from "bun:test";
 import { uuid, uuidv4Bytes } from "../src/index.js";

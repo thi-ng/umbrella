@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Keys } from "@thi.ng/api";
 import type { ISubscribable, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
 import { fromObject } from "@thi.ng/rstream/object";
@@ -19,7 +20,7 @@ import { $subWithID } from "./sub.js";
  *
  * @remarks
  * Uses
- * [`fromObject()`](https://docs.thi.ng/umbrella/rstream/functions/fromObject.html)
+ * [`fromObject`](https://docs.thi.ng/umbrella/rstream/functions/fromObject.html)
  * for creating the internal key-value streams. These can then be used by
  * `inner` to produce reactive child elements. The given `src` object is only
  * used to seed those streams with initial values. The component wrapper can be

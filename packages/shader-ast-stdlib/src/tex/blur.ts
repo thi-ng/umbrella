@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Sampler2DSym, Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { S2D, V2, V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Nullable } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { State, type ISubscription, type WithErrorHandlerOpts } from "./api.js";

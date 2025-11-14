@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DGraph } from "@thi.ng/dgraph";
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";

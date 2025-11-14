@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { NO_OP } from "@thi.ng/api/api";
 import type { IReducible, Reducer, TxLike } from "./api.js";

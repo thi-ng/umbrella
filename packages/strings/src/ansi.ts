@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const RE = /\x1b\[[0-9;]+m/g;
 
 /**

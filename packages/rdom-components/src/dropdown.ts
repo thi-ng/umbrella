@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { option, select, type SelectAttribs } from "@thi.ng/hiccup-html/forms";
 import { $input } from "@thi.ng/rdom/event";

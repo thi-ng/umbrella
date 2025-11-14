@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ITimeStep, ReadonlyTimeStep } from "@thi.ng/timestep";
 import { integrateAll, interpolateAll } from "@thi.ng/timestep/timestep";
 import type { IBoidAccel } from "./api.js";

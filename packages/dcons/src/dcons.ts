@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	Comparator,
 	Fn,
@@ -327,7 +328,9 @@ export class DCons<T>
 	 * https://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
 	 *
 	 * @remarks
-	 * Uses [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html) as default comparator.
+	 * Uses
+	 * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
+	 * as default comparator.
 	 *
 	 * @param cmp -
 	 */

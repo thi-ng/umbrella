@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Always, Derefed, IObjectOf } from "@thi.ng/api";
 import { comp } from "@thi.ng/transducers/comp";
 import { labeled } from "@thi.ng/transducers/labeled";
@@ -103,7 +104,7 @@ export interface StreamSyncOpts<
  * option to `false`.
  *
  * The synchronization is done via the
- * [`partitionSync()`](https://docs.thi.ng/umbrella/transducers/functions/partitionSync-1.html)
+ * [`partitionSync`](https://docs.thi.ng/umbrella/transducers/functions/partitionSync-1.html)
  * transducer from the [`thi.ng/transducers`](https://thi.ng/transducers)
  * package. See this function's docs for further details.
  *
@@ -138,7 +139,7 @@ export const sync = <A extends IObjectOf<ISubscribable<any>>, B = SyncTuple<A>>(
 ) => new StreamSync<A, B>(opts);
 
 /**
- * @see {@link sync} for reference & examples.
+ * See {@link sync} for reference & examples.
  */
 export class StreamSync<
 	A extends IObjectOf<ISubscribable<any>>,

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0 } from "@thi.ng/api";
 import { State } from "./api.js";
 import { __nextID } from "./idgen.js";
@@ -65,7 +66,7 @@ export interface TunnelOpts<A> {
 export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
 
 /**
- * @see {@link tunnel} for reference & examples.
+ * See {@link tunnel} for reference & examples.
  */
 export class Tunnel<A, B> extends Subscription<A, B> {
 	workers: Worker[];

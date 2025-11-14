@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { start } from "@thi.ng/hdom";
 import { getInUnsafe, setInUnsafe } from "@thi.ng/paths";
 

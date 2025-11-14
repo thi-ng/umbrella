@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners-20230807/thing-vectors.svg?33739496)
+# ![@thi.ng/vectors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-vectors.svg?33739496)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -17,8 +17,7 @@
 - [About](#about)
   - [Features](#features)
 - [Status](#status)
-  - [Breaking changes in v6.0.0](#breaking-changes-in-v600)
-  - [Breaking changes in v3.0.0](#breaking-changes-in-v300)
+  - [Breaking changes in v8.0.0](#breaking-changes-in-v800)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -52,7 +51,6 @@
   - [Boolean vector logic](#boolean-vector-logic)
   - [Componentwise comparisons](#componentwise-comparisons)
   - [Hashing](#hashing)
-  - [Code generator](#code-generator)
 - [Authors](#authors)
 - [License](#license)
 
@@ -63,10 +61,10 @@ Optimized 2d/3d/4d and arbitrary length vector operations, support for memory ma
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.
 
-This package provides **over 875(!) largely code generated functions** and
-supporting types to perform vector operations on fixed and arbitrary-length
-vectors, both packed and strided (i.e. where individual vector components are
-not successive array elements, for example in [SOA memory
+This package provides **almost 900(!) functions** and supporting types to
+perform vector operations on fixed and arbitrary-length vectors, both packed and
+strided (i.e. where individual vector components are not successive array
+elements, for example in [SOA memory
 layouts](https://en.wikipedia.org/wiki/AoS_and_SoA)).
 
 Includes componentwise logic operations for boolean vectors, componentwise
@@ -75,35 +73,35 @@ unsigned integer vectors.
 
 ### Features
 
-- Small & fast: The vast majority of functions are code generated with
-  fixed-sized versions not using any loops. Minified + gzipped, the entire
-  package is ~11.8KB (though you'll hardly ever use all functions).
+- The vast majority of operations are templated via higher-order functions with
+  fixed-sized 2D/3D/4D versions being loop-free. Minified + gzipped, the entire
+  package is ~15KB (though most projects will likely use only a small subset of
+  the provided functions).
 - Unified API: Any `ArrayLike` type can be used as vector containers (e.g. JS
-  arrays, typed arrays, custom impls). Most functions are implemented as
-  multi-methods, dispatching to any potentially optimized versions based on
+  arrays, typed arrays, custom vector classes). Most functions are implemented
+  as multi-methods, dispatching to any potentially optimized versions based on
   given vector arguments.
-- Highly modular: Each function is defined in its own submodule / file. In
-  addition to each generic multi-method base function, all fixed-length
-  optimized versions are exported too. E.g. If
+- Highly modular & tree-shakeable: Each function is defined in its own
+  submodule/file. In addition to each generic multi-method base function, all
+  fixed-length optimized versions are exported too. E.g. If
   [`add`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/add.ts)
   performs vector addition on arbitrary-length vectors, `add2`, `add3`, `add4`
   are the optimized version for fixed-length vectors...
 - Pluggable interface: The [`VecAPI`
   interface](https://docs.thi.ng/umbrella/vectors/interfaces/VecAPI.html)
-  defines objects of the ~70 most common vector operations implemented for
+  defines objects with the ~70 most common vector operations implemented for
   specific vector sizes. Using this interface simplifies performance-critical
-  use cases & algorithms which target different dimensions (e.g. 2d/3d),
-  but should use the avaiable size-optimized vector ops. See
+  use cases & algorithms which target different dimensions (e.g. 2D/3D), but
+  should use the avaiable size-optimized vector ops. See
   [`VEC2`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec2-api.ts),
   [`VEC3`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec3-api.ts)
   and
   [`VEC4`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec4-api.ts)
 - Extensible: Custom vector ops can be defined in a similar manner using the
-  provided code generation helpers (see
-  [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
-  and
-  [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/emit.ts)
-  for details).
+  provided code templating helpers (see
+  [`vop()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
+  and various `defOpXXX()` functions, e.g.
+  [`defOpV()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/defopv.ts)).
 - Immutable by default: Each operation producing a vector result takes an output
   vector as first argument. If `null`, the vector given as 2nd argument will
   (usually) be used as output (i.e. for mutation).
@@ -117,8 +115,8 @@ unsigned integer vectors.
   [`addS`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/adds.ts)
   vs. `add`) also support striding without the need for extra class wrappers.
   This is handled via additional index and stride arguments for each
-  input/output vector. These functions are only available for sizes 2 / 3 / 4,
-  though.
+  input/output vector. These functions are _mostly_ only available for sizes 2 /
+  3 / 4, though. Example: [SOA-ECS](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
 - Random vector functions support the `IRandom` interface defined by
   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
   to work with custom (P)RNGs. If omitted, the built-in `Math.random()` will be
@@ -133,28 +131,39 @@ Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bvectors%5D+in%3Atitle)
 
-### Breaking changes in v6.0.0
+### Breaking changes in v8.0.0
 
-The introduction of seveveral standard [libc math
-functions](https://www.cplusplus.com/reference/cmath/) to the
-[@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-package caused a behavior change of existing `fmod()` function. For symmetry
-reasons the same changes have been applied to this package...
+Due to an increase of web security measures, many websites are implementing
+strict(er) [Content Security
+Policies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP)
+including `default-src` or `script-src` directives. These directives disallow
+usage of any dynamic code generation, as it was _heavily_ utilized by this
+package in earlier versions. To allow this package being used in such
+environments, a complete rewrite was undertaken, replacing code generation with
+code templating via higher-order functions.
 
-- swap `fmod()` ⇄ `mod()`, to align the latter with its GLSL counterpart
-- the new `fmod()` has standard libc behavior (same as JS `%` operator)
-- add `remainder()` with standard libc behavior
+To the user, most of these underlying changes are invisible with the exception
+of some other refactoring, renaming & restructuring:
 
-### Breaking changes in v3.0.0
+- `atan` functions are now called `atan_2`, `atan_3`, `atan_4`
+- `atan2` functions are now called `atan2_2`, `atan2_3`, `atan2_4`
+- `exp` functions are now called `exp_2`, `exp_3`, `exp_4`
+- `exp2` (aka `2^x`) functions are now called `exp2_2`, `exp2_3`, `exp2_4`
+- `log` functions are now called `log_2`, `log_3`, `log_4`
+- `log2` functions are now called `log2_2`, `log2_3`, `log2_4`
 
-- to avoid confusion, the arg order of `madd` and `maddN` functions have
-  been updated to be compatible with the OpenCL `mad` function and to
-  generally follow the expanded name, i.e. multiply-add:
-  - `madd([], a, b, c)`: before `a + b * c`, now: `a * b + c`
-  - `maddN([], a, b, n)` => `maddN([], a, n, b)` (i.e. `a * n + b`)
-- rename `perpendicularLeft2` => `perpendicularCCW`
-- rename `perpendicularRight2` => `perpendicularCW`
-- rename `normalLeft2`/ `normalRight2` => `normalCCW` / `normalCW`
+The former code generator functionality has been removed and replaced with a set
+of higher-order templating functions. There're many variations of function
+template families (one family per operation type/signature), all of which are
+prefixed with `defOpXXX`. See relevant files in the [/src]() directory... (Also
+note: If you want to use these template functions/submodules for your own custom
+vector ops — they are _not_ exposed via package-level imports and need to be
+imported directly!)
+
+Other structural changes (only relevant when _not_ using package-level imports):
+Some source files have been broken up to be more granular. Not listing them here
+for brevity. Please consult source code (or submit an issue) if an existing
+import doesn't work anymore.
 
 ## Related packages
 
@@ -197,26 +206,24 @@ For Node.js REPL:
 const vec = await import("@thi.ng/vectors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 14.01 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.66 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-35 projects in this repo's
+36 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -239,6 +246,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>                        | Canvas based Immediate Mode GUI components                                                   | [Demo](https://demo.thi.ng/umbrella/imgui/)                 | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)                 |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/>                      | Animated sine plasma effect visualized using contour lines                                   | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>                    | k-means clustering visualization                                                             | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>                 | Optical flow analysis of web cam or video inputs                                             | [Demo](https://demo.thi.ng/umbrella/optical-flow/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                                     | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/quasi-lattice.png" width="240"/>                 | Quasi-random lattice generator                                                               | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/quasi-lattice)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                                  | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)            |
@@ -479,31 +487,31 @@ addS2([], [1,0,2,0], [0,10,0,0,0,20], 0, 0, 1, 1, 2, 4)
 
 Component wise op with one input vector and single scalar:
 
-| Function     | Generic | Fixed | Strided | Int          | Comments                   |
-|--------------|---------|-------|---------|--------------|----------------------------|
-| `addN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `divN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `mulN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `subN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `neg`        | ✓       |       |         |              | same as `mulN(out, v, -1)` |
-| `fmodN`      | ✓       | 2-4   |         |              | (C/JS behavior)            |
-| `modN`       | ✓       | 2-4   |         |              | (GLSL behavior)            |
-| `powN`       | ✓       | 2-4   |         |              |                            |
-| `remainderN` | ✓       | 2-4   |         |              | (C behavior)               |
-| `roundN`     | ✓       | 2-4   |         |              |                            |
+| Function     | Generic | Fixed | Strided  | Int          | Comments                   |
+|--------------|---------|-------|----------|--------------|----------------------------|
+| `addN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `divN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `mulN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `subN`       | ✓       | 2-4   | S, S2-S4 | I2-I4, U2-U4 |                            |
+| `neg`        | ✓       | 2-4   |          |              | same as `mulN(out, v, -1)` |
+| `fmodN`      | ✓       | 2-4   |          |              | (C/JS behavior)            |
+| `modN`       | ✓       | 2-4   |          |              | (GLSL behavior)            |
+| `powN`       | ✓       | 2-4   |          |              |                            |
+| `remainderN` | ✓       | 2-4   |          |              | (C behavior)               |
+| `roundN`     | ✓       | 2-4   |          |              |                            |
 
 ### Combined operations
 
-| Function | Generic | Fixed | Strided | Int | Comments    |
-|----------|---------|-------|---------|-----|-------------|
-| `addm`   | ✓       | 2-4   | S2-S4   |     | (a + b) * c |
-| `addmN`  | ✓       | 2-4   | S2-S4   |     | (a + b) * n |
-| `madd`   | ✓       | 2-4   | S2-S4   |     | a * n + c   |
-| `maddN`  | ✓       | 2-4   | S2-S4   |     | a * n + b   |
-| `msub`   | ✓       | 2-4   | S2-S4   |     | a * n - c   |
-| `msubN`  | ✓       | 2-4   | S2-S4   |     | a * n - b   |
-| `subm`   | ✓       | 2-4   | S2-S4   |     | (a - b) * c |
-| `submN`  | ✓       | 2-4   | S2-S4   |     | (a - b) * n |
+| Function | Generic | Fixed | Strided  | Int | Comments    |
+|----------|---------|-------|----------|-----|-------------|
+| `addm`   | ✓       | 2-4   | S, S2-S4 |     | (a + b) * c |
+| `addmN`  | ✓       | 2-4   | S, S2-S4 |     | (a + b) * n |
+| `madd`   | ✓       | 2-4   | S, S2-S4 |     | a * n + c   |
+| `maddN`  | ✓       | 2-4   | S, S2-S4 |     | a * n + b   |
+| `msub`   | ✓       | 2-4   | S, S2-S4 |     | a * n - c   |
+| `msubN`  | ✓       | 2-4   | S, S2-S4 |     | a * n - b   |
+| `subm`   | ✓       | 2-4   | S, S2-S4 |     | (a - b) * c |
+| `submN`  | ✓       | 2-4   | S, S2-S4 |     | (a - b) * n |
 
 ### Constraints
 
@@ -526,39 +534,39 @@ Component wise op with one input vector and single scalar:
 
 ### Dot product
 
-| Function | Generic | Fixed | Strided | Cwise      | Comments |
-|----------|---------|-------|---------|------------|----------|
-| `dot`    | ✓       | 2-4   | S2-S4   | C4, C6, C8 |          |
+| Function | Generic | Fixed | Strided  | Cwise      | Comments |
+|----------|---------|-------|----------|------------|----------|
+| `dot`    | ✓       | 2-4   | S, S2-S4 | C4, C6, C8 |          |
 
 ### Interpolation
 
-| Function       | Generic | Fixed   | Strided | Int | Comments |
-|----------------|---------|---------|---------|-----|----------|
-| `fit`          | ✓       | 2-4     |         |     |          |
-| `fit01`        | ✓       | _2 - _4 |         |     |          |
-| `fit11`        | ✓       | _2 - _4 |         |     |          |
-| `mix`          | ✓       | 2-4     | S2 - S4 |     |          |
-| `mixN`         | ✓       | 2-4     | S2 - S4 |     |          |
-| `mixBilinear`  | ✓       | 2-4     |         |     |          |
-| `mixCubic`     | ✓       |         |         |     |          |
-| `mixQuadratic` | ✓       |         |         |     |          |
-| `smoothStep`   | ✓       | 2-4     |         |     |          |
-| `step`         | ✓       | 2-4     |         |     |          |
+| Function       | Generic | Fixed   | Strided    | Int | Comments |
+|----------------|---------|---------|------------|-----|----------|
+| `fit`          | ✓       | 2-4     |            |     |          |
+| `fit01`        | ✓       | _2 - _4 |            |     |          |
+| `fit11`        | ✓       | _2 - _4 |            |     |          |
+| `mix`          | ✓       | 2-4     | S, S2 - S4 |     |          |
+| `mixN`         | ✓       | 2-4     | S, S2 - S4 |     |          |
+| `mixBilinear`  | ✓       | 2-4     |            |     |          |
+| `mixCubic`     | ✓       |         |            |     |          |
+| `mixQuadratic` | ✓       |         |            |     |          |
+| `smoothStep`   | ✓       | 2-4     |            |     |          |
+| `step`         | ✓       | 2-4     |            |     |          |
 
 ### Normalization / magnitude
 
-| Function    | Generic | Fixed | Strided | Int | Comments             |
-|-------------|---------|-------|---------|-----|----------------------|
-| `limit`     | ✓       |       |         |     |                      |
-| `mag`       | ✓       |       | S2-S4   |     |                      |
-| `magSq`     | ✓       | 2-4   | S2-S4   |     |                      |
-| `normalize` | ✓       |       | S2-S4   |     | w/ opt target length |
+| Function    | Generic | Fixed | Strided  | Int | Comments             |
+|-------------|---------|-------|----------|-----|----------------------|
+| `limit`     | ✓       |       |          |     |                      |
+| `mag`       | ✓       | 2-4   | S, S2-S4 |     |                      |
+| `magSq`     | ✓       | 2-4   | S, S2-S4 |     |                      |
+| `normalize` | ✓       |       | S, S2-S4 |     | w/ opt target length |
 
 ### Distances
 
 | Function              | Generic | Fixed | Strided | Int | Comments            |
 |-----------------------|---------|-------|---------|-----|---------------------|
-| `dist`                | ✓       |       |         |     |                     |
+| `dist`                | ✓       | 2-4   |         |     |                     |
 | `distSq`              | ✓       | 2-4   |         |     |                     |
 | `distBrayCurtis`      | ✓       |       |         |     |                     |
 | `distCanberra`        | ✓       |       |         |     |                     |
@@ -580,11 +588,11 @@ Component wise op with one input vector and single scalar:
 |--------------------|---------|-------|---------|-----|--------------------------|
 | `angleBetween`     |         | 2, 3  |         |     |                          |
 | `angleRatio`       | ✓       |       |         |     |                          |
-| `atan_2`           | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
+| `atan2`            | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
 | `bisect`           |         | 2     |         |     |                          |
 | `cornerBisector`   | ✓       |       |         |     |                          |
 | `degrees`          | ✓       | 2-4   |         |     |                          |
-| `direction`        | ✓       |       |         |     | normalize(b - a)         |
+| `direction`        | ✓       | 2-3   |         |     | normalize(b - a)         |
 | `faceForward`      | ✓       |       |         |     |                          |
 | `heading`          | ✓       |       |         |     | alias `headingXY`        |
 | `headingXY`        | ✓       |       |         |     |                          |
@@ -630,14 +638,14 @@ All ops support custom PRNG impls based on the
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 `IRandom` interface and use `Math.random` by default:
 
-| Function          | Generic | Fixed | Strided | Int | Comments |
-|-------------------|---------|-------|---------|-----|----------|
-| `jitter`          | ✓       |       |         |     |          |
-| `randMinMax`      | ✓       | 2-4   | S2-S4   |     |          |
-| `randNorm`        | ✓       | 2-4   | S2-S4   |     |          |
-| `randNormDistrib` | ✓       | 2-4   | S2-S4   |     |          |
-| `random`          | ✓       | 2-4   | S2-S4   |     |          |
-| `randomDistrib`   | ✓       | 2-4   | S2-S4   |     |          |
+| Function          | Generic | Fixed | Strided  | Int | Comments |
+|-------------------|---------|-------|----------|-----|----------|
+| `jitter`          | ✓       |       |          |     |          |
+| `randMinMax`      | ✓       | 2-4   | S, S2-S4 |     |          |
+| `randNorm`        | ✓       | 2-4   | S, S2-S4 |     |          |
+| `randNormDistrib` | ✓       | 2-4   | S, S2-S4 |     |          |
+| `random`          | ✓       | 2-4   | S, S2-S4 |     |          |
+| `randomDistrib`   | ✓       | 2-4   | S, S2-S4 |     |          |
 
 ### Unary vector math ops
 
@@ -645,12 +653,17 @@ All ops support custom PRNG impls based on the
 |-------------------|---------|-------|---------|-----|--------------------|
 | `abs`             | ✓       | 2-4   |         |     |                    |
 | `acos`            | ✓       | 2-4   |         |     |                    |
+| `acosh`           | ✓       | 2-4   |         |     |                    |
 | `asin`            | ✓       | 2-4   |         |     |                    |
-| `atan`            | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
+| `asinh`           | ✓       | 2-4   |         |     |                    |
+| `atan` (1)        | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
+| `atanh` (1)       | ✓       | 2-4   |         |     |                    |
+| `atan2` (1)       | ✓       | 2-4   |         |     | `Math.atan(y / x)` |
 | `ceil`            | ✓       | 2-4   |         |     |                    |
 | `cos`             | ✓       | 2-4   |         |     |                    |
 | `cosh`            | ✓       | 2-4   |         |     |                    |
-| `exp`             | ✓       | 2-4   |         |     |                    |
+| `exp` (1)         | ✓       | 2-4   |         |     |                    |
+| `exp2` (1)        | ✓       | 2-4   |         |     |                    |
 | `floor`           | ✓       | 2-4   |         |     |                    |
 | `fract`           | ✓       | 2-4   |         |     |                    |
 | `fromHomogeneous` | ✓       | 3, 4  |         |     | 3D/4D only         |
@@ -658,18 +671,25 @@ All ops support custom PRNG impls based on the
 | `invSqrt`         | ✓       | 2-4   |         |     |                    |
 | `isInf`           | ✓       | 2-4   |         |     |                    |
 | `isNaN`           | ✓       | 2-4   |         |     |                    |
-| `log`             | ✓       | 2-4   |         |     |                    |
+| `leakyRelu`       | ✓       |       | S       |     |                    |
+| `log` (1)         | ✓       | 2-4   |         |     |                    |
+| `log2` (1)        | ✓       | 2-4   |         |     |                    |
 | `major`           | ✓       | 2-4   |         |     |                    |
 | `minor`           | ✓       | 2-4   |         |     |                    |
+| `relu`            | ✓       |       | S       |     |                    |
 | `round`           | ✓       | 2-4   |         |     |                    |
+| `sigmoid`         | ✓       |       | S       |     |                    |
 | `sign`            | ✓       | 2-4   |         |     |                    |
 | `sin`             | ✓       | 2-4   |         |     |                    |
 | `sinh`            | ✓       | 2-4   |         |     |                    |
 | `sqrt`            | ✓       | 2-4   |         |     |                    |
 | `sum`             | ✓       | 2-4   |         |     |                    |
 | `tan`             | ✓       | 2-4   |         |     |                    |
+| `tanh`            | ✓       | 2-4   | S       |     |                    |
 | `trunc`           | ✓       | 2-4   |         |     |                    |
 | `wrap`            | ✓       | 2-4   |         |     |                    |
+
+- (1): Fixed names are suffixed with `_2`, `_3`, `_4`
 
 ### Vector array batch processing
 
@@ -724,7 +744,6 @@ forced accordingly.
 | `logicNot`  | ✓       | 2-4   |         |     |                   |
 | `every`     | ✓       | 2-4   |         |     | returns `boolean` |
 | `some`      | ✓       | 2-4   |         |     | returns `boolean` |
-| `not`       | ✓       | 2-4   |         |     |                   |
 
 ### Componentwise comparisons
 
@@ -742,19 +761,6 @@ All resulting in boolean vectors:
 ### Hashing
 
 - `hash`
-
-### Code generator
-
-- `compile` / `compileG` / `compileGHOF` / `compileHOF`
-- `defOp` / `defOpS` / `defFnOp` / `defHofOp`
-- `defMathNOp` / `defMathOp`
-- `vop`
-
-For more information about the code generator see:
-
-- [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/emit.ts)
-- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/templates.ts)
-- [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
 
 ## Authors
 

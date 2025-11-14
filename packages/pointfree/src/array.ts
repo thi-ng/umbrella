@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
@@ -40,7 +41,7 @@ import { $stackFn, defWord } from "./word.js";
  * // [ 1 ] // correct!
  * ```
  *
- * ( -- [] )
+ * Stack effect: `( -- [] )`
  *
  * @param ctx -
  */
@@ -50,7 +51,7 @@ export const list = (ctx: StackContext) => (ctx[0].push([]), ctx);
  * Pushes new empty JS object on d-stack.
  * Same reasoning as for {@link list}.
  *
- * ( -- {} )
+ * Stack effect: `( -- {} )`
  *
  * @param ctx -
  */
@@ -59,7 +60,7 @@ export const obj = (ctx: StackContext) => (ctx[0].push({}), ctx);
 /**
  * Pushes `val` on the LHS of array.
  *
- * ( val arr -- arr )
+ * Stack effect: `( val arr -- arr )`
  *
  * @param ctx -
  */
@@ -75,7 +76,7 @@ export const pushl = (ctx: StackContext) => {
 /**
  * Pushes `val` on the RHS of array.
  *
- * ( arr val -- arr )
+ * Stack effect: `( arr val -- arr )`
  *
  * @param ctx -
  */
@@ -92,7 +93,7 @@ export const pushr = (ctx: StackContext) => {
  * Removes RHS from array as new TOS on d-stack.
  * Throws error is `arr` is empty.
  *
- * ( arr -- arr arr[-1] )
+ * Stack effect: `( arr -- arr arr[-1] )`
  *
  * @param ctx -
  */
@@ -119,7 +120,7 @@ export const vdiv = defOp2v((b, a) => a / b);
 /**
  * Splits vector / array at given index `x`.
  *
- * ( arr x -- [...] [...] )
+ * Stack effect: `( arr x -- [...] [...] )`
  *
  * @param ctx -
  */
@@ -136,7 +137,7 @@ export const split = (ctx: StackContext) => {
 /**
  * Concatenates `arr2` onto `arr1`:
  *
- * ( arr1 arr2 -- arr )
+ * Stack effect: `( arr1 arr2 -- arr )`
  *
  * @param ctx -
  */
@@ -151,7 +152,7 @@ export const cat = (ctx: StackContext) => {
 /**
  * Similar to {@link cat}, but concatenates `arr1` onto `arr2`:
  *
- * ( arr1 arr2 -- arr )
+ * Stack effect: `( arr1 arr2 -- arr )`
  *
  * @param ctx -
  */
@@ -166,7 +167,7 @@ export const catr = (ctx: StackContext) => {
 /**
  * Generic array transformer.
  *
- * ( arr q -- ? )
+ * Stack effect: `( arr q -- ? )`
  *
  * Pops both args from d-stack, then executes quotation for each array
  * item (each pushed on d-stack prior to calling quotation). Can produce
@@ -254,7 +255,7 @@ export const mapl = (ctx: StackContext) => {
 /**
  * Similar to {@link mapl}, but produces new array of transformed values.
  *
- * ( arr q -- arr )
+ * Stack effect: `( arr q -- arr )`
  *
  * @example
  * ```js
@@ -298,7 +299,7 @@ export const mapll = (ctx: StackContext) => {
  * Convenience wrapper for {@link mapl} to provide an alternative stack layout
  * for reduction purposes:
  *
- * ( arr q init -- reduction )
+ * Stack effect: `( arr q init -- reduction )`
  */
 export const foldl = defWord([invrot, mapl]);
 
@@ -307,7 +308,7 @@ export const foldl = defWord([invrot, mapl]);
  * values and pushes it as new TOS. The original collected stack values
  * are removed from d-stack.
  *
- * ( ... n --- ... [...] )
+ * Stack effect: `( ... n --- ... [...] )`
  *
  * @param ctx -
  */
@@ -326,7 +327,7 @@ export const collect = (ctx: StackContext) => {
  * `n`. The size can be given as number or a stack function producing a
  * number.
  *
- * ( ... -- [...])
+ * Stack effect: `( ... -- [...])`
  *
  * @param n -
  */
@@ -349,7 +350,7 @@ export const join = defOp2((sep, buf) => buf.join(sep));
 /**
  * Pushes length of TOS on d-stack.
  *
- * ( x -- x.length )
+ * Stack effect: `( x -- x.length )`
  *
  * @param ctx -
  */
@@ -358,7 +359,7 @@ export const length = defOp1((x) => x.length);
 /**
  * Replaces TOS with its shallow copy. MUST be an array or plain object.
  *
- * ( x -- copy )
+ * Stack effect: `( x -- copy )`
  */
 export const copy = defOp1((x) =>
 	isArray(x)
@@ -371,7 +372,7 @@ export const copy = defOp1((x) =>
 /**
  * Reads key/index from object/array.
  *
- * ( obj k -- obj[k] )
+ * Stack effect: `( obj k -- obj[k] )`
  *
  * @param ctx -
  */
@@ -380,7 +381,7 @@ export const at = defOp2((b, a) => a[b]);
 /**
  * Writes `val` at key/index in object/array.
  *
- * ( val obj k -- obj )
+ * Stack effect: `( val obj k -- obj )`
  *
  * @param ctx -
  */
@@ -410,7 +411,7 @@ export const setat = (ctx: StackContext) => {
  * // { c: 3, b: 2, a: 1 }
  * ```
  *
- * (v1 v2 .. [k1 k2 ..] obj -- obj )
+ * Stack effect: `(v1 v2 .. [k1 k2 ..] obj -- obj )`
  *
  * @param ctx -
  */

@@ -1,4 +1,5 @@
-import type { IObjectOf, Keys, NumOrString, Predicate2 } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
+import type { Keys, NumOrString, Predicate2 } from "@thi.ng/api";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { range } from "@thi.ng/transducers/range";
 import type { CommonOpts, ISubscription, SubscriptionOpts } from "./api.js";
@@ -11,13 +12,13 @@ export type KeyStreams<T, K extends Keys<T>> = {
 
 export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	/**
-	 * Array of selected `keys` (else selects all by default) for which
-	 * to create streams.
+	 * Array of selected `keys` (else selects all by default) for which to
+	 * create streams.
 	 */
 	keys: K[];
 	/**
-	 * If true (default), all created streams will be seeded with key
-	 * values from the source object.
+	 * If true (default), all created streams will be seeded with key values
+	 * from the source object.
 	 *
 	 * @defaultValue true
 	 */
@@ -28,7 +29,7 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	defaults: Partial<T>;
 	/**
 	 * If true, attaches
-	 * [`dedupe()`](https://docs.thi.ng/umbrella/transducers/functions/dedupe.html)
+	 * [`dedupe`](https://docs.thi.ng/umbrella/transducers/functions/dedupe.html)
 	 * transducer to each key's value stream to avoid obsolete downstream
 	 * propagation when a key's value hasn't actually changed.
 	 *
@@ -36,8 +37,8 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	 */
 	dedupe: boolean;
 	/**
-	 * Generic equality predicate to be used for `dedupe` (`===` by
-	 * default). Ignored if `dedupe` option is false.
+	 * Generic equality predicate to be used for `dedupe` (`===` by default).
+	 * Ignored if `dedupe` option is false.
 	 */
 	equiv: Predicate2<any>;
 }
@@ -161,7 +162,7 @@ export class StreamObj<
 	 * Object of managed & typed streams for registered keys.
 	 */
 	keys: NumOrString[];
-	streams: IObjectOf<Subscription<any, any>> = {};
+	streams: { [id in K]-?: ISubscription<T[id], T[id]> } = <any>{};
 	defaults?: Partial<T>;
 
 	constructor(src: T, opts: Partial<StreamObjOpts<T, K>> = {}) {
@@ -176,7 +177,7 @@ export class StreamObj<
 				  }
 				: opts;
 		for (let k of this.keys) {
-			this.streams[k] = subscription(undefined, {
+			this.streams[<K>k] = subscription(undefined, {
 				..._opts,
 				id: `${this.id}-${k}`,
 			});
@@ -199,8 +200,10 @@ export class StreamObj<
 		this.cacheLast && (this.last = x);
 		for (let k of this.keys) {
 			const val = x[<K>k];
-			this.streams[k].next(
-				this.defaults && val === undefined ? this.defaults[<K>k] : val
+			this.streams[<K>k].next(
+				this.defaults && val === undefined
+					? this.defaults[<K>k]
+					: <any>val
 			);
 		}
 		super.next(x);
@@ -208,7 +211,7 @@ export class StreamObj<
 
 	done() {
 		for (let k of this.keys) {
-			this.streams[k].done();
+			this.streams[<K>k].done?.();
 		}
 		super.done();
 	}
@@ -216,7 +219,7 @@ export class StreamObj<
 	unsubscribe(sub?: ISubscription<T, any> | undefined) {
 		if (!sub) {
 			for (let k of this.keys) {
-				this.streams[k].unsubscribe();
+				this.streams[<K>k].unsubscribe();
 			}
 		}
 		return super.unsubscribe(sub);

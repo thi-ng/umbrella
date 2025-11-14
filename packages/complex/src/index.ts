@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, Predicate, Predicate2 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { cossin } from "@thi.ng/math/angle";
@@ -21,12 +22,12 @@ export type ComplexOp1 = Fn<Complex, Complex>;
 export type ComplexOp2 = Fn2<Complex, Complex | number, Complex>;
 
 /**
- * Complex `i` aka [0, 1]
+ * Complex `i` aka `[0,1]`
  */
 export const I: Complex = Object.freeze([0, 1]);
 
 /**
- * Same as 1/i, i.e. [0, -1]
+ * Same as 1/i, i.e. `[0,-1]`
  */
 export const J: Complex = Object.freeze([0, -1]);
 

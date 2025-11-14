@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { swapLane13 } from "@thi.ng/binary";
 import type { IWasmAPI, WasmModuleSpec } from "@thi.ng/wasm-api";
 import { WasmDomModule, type WasmDom } from "@thi.ng/wasm-api-dom/dom";
@@ -26,6 +27,7 @@ import {
  *
  * @remarks
  * Module defines the following dependencies:
+ *
  * - [WasmDomModule](https://docs.thi.ng/umbrella/wasm-api-dom/variables/WasmDomModule.html)
  *
  * See
@@ -269,7 +271,7 @@ export class WasmCanvas2D implements IWasmAPI<WasmCanvas2DExports> {
 				const { img, dest } = this.ensureRegion(x, y, width, height);
 				const src = this.parent.getU8Array(addr, dest.length);
 				for (let i = 0, n = src.length; i < n; i++)
-					dest[i] = 0xff000000 | (x * 0x010101);
+					dest[i] = 0xff000000 | (src[i] * 0x010101);
 				this.ctx!.putImageData(img, x, y);
 			},
 

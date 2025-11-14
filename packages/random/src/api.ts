@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy } from "@thi.ng/api";
 
 export interface INorm {
@@ -29,14 +30,14 @@ export interface INorm {
 
 export interface IRandom extends INorm {
 	/**
-	 * Returns unsigned 32bit int in [0..0xffffffff] interval.
+	 * Returns unsigned 32bit int in `[0,0xffffffff]` interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
 	 */
 	int(): number;
 	/**
-	 * Returns float in [0..max) interval.
+	 * Returns float in `[0,max)` interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
@@ -45,14 +46,14 @@ export interface IRandom extends INorm {
 	 */
 	float(max?: number): number;
 	/**
-	 *  Calls {@link IRandom.float} and returns true iff result is < `p`
-	 *  (assumed to be in [0..1] interval).
+	 * Calls {@link IRandom.float} and returns true iff result is < `p` (assumed
+	 * to be in `[0,1]` interval).
 	 *
 	 * @param p
 	 */
 	probability(p: number): boolean;
 	/**
-	 * Returns float in [min..max) interval.
+	 * Returns float in `[min,max)` interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
@@ -62,7 +63,7 @@ export interface IRandom extends INorm {
 	 */
 	minmax(min: number, max: number): number;
 	/**
-	 * Returns int in **signed** integer [min..max) interval.
+	 * Returns int in **signed** integer `[min,max)` interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
@@ -72,7 +73,7 @@ export interface IRandom extends INorm {
 	 */
 	minmaxInt(min: number, max: number): number;
 	/**
-	 * Returns int in **unsigned** integer [min..max) interval.
+	 * Returns int in **unsigned** integer `[min,max)` interval.
 	 *
 	 * @remarks
 	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn0, Nullable } from "@thi.ng/api";
 import type { Reducer } from "./api.js";
 import { __compareOp } from "./internal/mathop.js";

@@ -1,10 +1,58 @@
-import type { VecOpSGVN, VecOpSVN } from "./api.js";
-import { defOpS } from "./compile/emit.js";
-import { ARGS_V, ARGS_VN, MATH_N, SARGS_V } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpSVN } from "./defopsvn.js";
+import { $add } from "./ops.js";
 
-export const [addNS, addNS2, addNS3, addNS4] = defOpS<VecOpSGVN, VecOpSVN>(
-	MATH_N("+"),
-	ARGS_VN,
-	SARGS_V,
-	ARGS_V
-);
+const [a, b, c, d] = defOpSVN($add);
+
+/**
+ * Componentwise nD strided vector addition with uniform scalar.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param size - vector size
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ */
+export const addNS = a;
+
+/**
+ * Componentwise 2D strided vector addition with uniform scalar.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ */
+export const addNS2 = b;
+
+/**
+ * Componentwise 3D strided vector addition with uniform scalar.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ */
+export const addNS3 = c;
+
+/**
+ * Componentwise 4D strided vector addition with uniform scalar.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param n - scalar
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ */
+export const addNS4 = d;

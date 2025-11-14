@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Basic HTML document abstraction for hiccup serialization.
  * See ./html.ts for usage

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { delayed as _delayed } from "@thi.ng/compose/delayed";
 import type { Transducer } from "./api.js";
 import { map } from "./map.js";

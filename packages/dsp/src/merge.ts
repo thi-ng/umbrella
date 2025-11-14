@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { AGen } from "./agen.js";
 import { type IGen } from "./api.js";
 

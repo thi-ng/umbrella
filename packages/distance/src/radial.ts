@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref } from "@thi.ng/api";
 import { clamp0 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";

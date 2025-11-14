@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dirs, readJSON, writeJSON, writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
 import { group, text } from "@thi.ng/hiccup-svg";

@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/imago](https://media.thi.ng/umbrella/banners-20230807/thing-imago.svg?e5ca4d48)
+# ![@thi.ng/imago](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-imago.svg?e5ca4d48)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imago.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -260,6 +260,21 @@ be written.
 
 For all other formats, if no output path is provided in the spec, no file will
 be written, but the encoded image buffer itself will be recorded in the outputs.
+Use the `raw` output option to obtain the raw pixel data (number of channels
+used will depend on previous operations).
+
+```js
+import { processImage, output } from "@thi.ng/imago";
+
+const result = await processImage(
+    "example.png",
+    [output({id: "main", raw: { alpha: false } })]
+);
+
+// raw pixel data buffer
+result.outputs.main
+// <Buffer ...>
+```
 
 #### Templated output paths
 
@@ -360,7 +375,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.94 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.20 KB
 
 ## Dependencies
 

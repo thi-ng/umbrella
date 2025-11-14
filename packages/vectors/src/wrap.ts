@@ -1,10 +1,49 @@
-import { wrap as _wrap } from "@thi.ng/math/interval";
-import type { MultiVecOpVVV, VecOpVVV } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_VVV, FN3 } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { wrap as op } from "@thi.ng/math/interval";
+import { defOpVVV } from "./defopvvv.js";
 
-export const [wrap, wrap2, wrap3, wrap4] = defHofOp<MultiVecOpVVV, VecOpVVV>(
-	_wrap,
-	FN3(),
-	ARGS_VVV
-);
+const [a, b, c, d] = defOpVVV(op);
+
+/**
+ * Componentwise folds given 2D vector `a` into the closed interval defined by
+ * vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const wrap = a;
+
+/**
+ * Componentwise folds given 2D vector `a` into the closed interval defined by
+ * vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const wrap2 = b;
+
+/**
+ * Componentwise folds given 3D vector `a` into the closed interval defined by
+ * vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const wrap3 = c;
+
+/**
+ * Componentwise folds given 4D vector `a` into the closed interval defined by
+ * vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const wrap4 = d;

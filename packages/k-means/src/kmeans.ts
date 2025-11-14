@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDistance } from "@thi.ng/distance";
 import { argmin } from "@thi.ng/distance/argmin";
 import { DIST_SQ } from "@thi.ng/distance/squared";
@@ -5,7 +6,7 @@ import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { weightedRandom } from "@thi.ng/random/weighted-random";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
 import { median } from "@thi.ng/vectors/median";
 import { mulN } from "@thi.ng/vectors/muln";
@@ -27,24 +28,25 @@ import type { CentroidStrategy, Cluster, KMeansOpts } from "./api.js";
 export const kmeans = <T extends ReadonlyVec>(
 	k: number,
 	samples: T[],
-	opts?: Partial<KMeansOpts>
+	opts: Partial<KMeansOpts> = {}
 ) => {
-	let { dist, initial, maxIter, rnd, strategy } = {
-		dist: DIST_SQ,
-		maxIter: 32,
-		strategy: means,
-		...opts,
-	};
+	let {
+		dim = samples[0].length,
+		dist = DIST_SQ,
+		maxIter = 32,
+		strategy = means,
+		exponent,
+		initial,
+		rnd,
+	} = opts;
 	const num = samples.length;
-	const dim = samples[0].length;
-	const centroidIDs = Array.isArray(initial)
+	const centroids = Array.isArray(initial)
 		? initial
 		: initial
 		? initial(k, samples, dist, rnd)
-		: initKmeanspp(k, samples, dist, rnd);
-	assert(centroidIDs.length > 0, `missing initial centroids`);
-	k = centroidIDs.length;
-	const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
+		: kmeansPlusPlus(k, samples, dist, rnd, exponent);
+	assert(centroids.length > 0, `missing initial centroids`);
+	k = centroids.length;
 	const clusters = new Uint32Array(num).fill(k);
 	let update = true;
 	while (update && maxIter-- > 0) {
@@ -71,7 +73,13 @@ export const kmeans = <T extends ReadonlyVec>(
  * fulfilled (e.g. due to lower number of samples and/or distance metric).
  * Throws an error if `samples` are empty.
  *
+ * The optional `exponent` (default: 2) is applied to scale the distances to
+ * nearest centroid, which will be used to control the weight distribution for
+ * choosing next centroid. A higher exponent means that points with larger
+ * distances will be more prioritized in the random selection.
+ *
  * References:
+ *
  * - https://en.wikipedia.org/wiki/K-means%2B%2B
  * - http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf
  * - http://vldb.org/pvldb/vol5/p622_bahmanbahmani_vldb2012.pdf (TODO)
@@ -80,12 +88,14 @@ export const kmeans = <T extends ReadonlyVec>(
  * @param samples -
  * @param dist -
  * @param rnd -
+ * @param exponent -
  */
-export const initKmeanspp = <T extends ReadonlyVec>(
+export const kmeansPlusPlus = <T extends ReadonlyVec>(
 	k: number,
 	samples: T[],
 	dist: IDistance<ReadonlyVec> = DIST_SQ,
-	rnd: IRandom = SYSTEM
+	rnd: IRandom = SYSTEM,
+	exponent = 2
 ) => {
 	const num = samples.length;
 	assert(num > 0, `missing samples`);
@@ -99,7 +109,7 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 		const probs = samples.map((p) => {
 			const d =
 				dist.from(metric(p, centroids[argmin(p, centroids, dist)!])) **
-				2;
+				exponent;
 			psum += d;
 			return d;
 		});
@@ -111,7 +121,7 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 		centroidIDs.push(id);
 		centroids.push(samples[id]);
 	}
-	return centroidIDs;
+	return centroids;
 };
 
 /** @internal */

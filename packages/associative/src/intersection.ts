@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { empty } from "@thi.ng/object-utils/empty";
 import type { Reducer } from "@thi.ng/transducers";
 import { __combineSet } from "./internal/combine.js";
@@ -33,9 +34,9 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
  * Reducer version of {@link intersection}. If `src` is given returns the
  * reduced intersection of given inputs, else merely returns a reducer to be
  * used with
- * [`reduce()`](https://docs.thi.ng/umbrella/transducers/functions/reduce.html)
+ * [`reduce`](https://docs.thi.ng/umbrella/transducers/functions/reduce.html)
  * /
- * [`transduce()`](https://docs.thi.ng/umbrella/transducers/functions/transduce.html)
+ * [`transduce`](https://docs.thi.ng/umbrella/transducers/functions/transduce.html)
  * functions.
  *
  * @param src - input collections

@@ -1,28 +1,21 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, Maybe, Pair, Predicate2 } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { findIndex } from "@thi.ng/arrays/find";
 import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api.js";
 import { dissoc } from "./dissoc.js";
+import { __disposableValues } from "./internal/dispose.js";
 import { __equivSet } from "./internal/equiv.js";
-import { __inspectable } from "./internal/inspect.js";
+import { __tostringMixin } from "./internal/tostring.js";
 import { into } from "./into.js";
-
-interface ArraySetProps<T> {
-	vals: T[];
-	equiv: Predicate2<T>;
-}
-
-const __private = new WeakMap<ArraySet<any>, ArraySetProps<any>>();
-
-const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
 
 /**
  * An alternative set implementation to the native ES6 Set type. Uses
  * customizable equality/equivalence predicate and so is more useful when
  * dealing with structured data. Implements full API of native Set and by the
  * default uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
  * equivalence checking.
  *
  * Additionally, the type also implements the
@@ -31,20 +24,28 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * [`IEquiv`](https://docs.thi.ng/umbrella/api/interfaces/IEquiv.html)
  * interfaces itself.
  */
-@__inspectable
+@__disposableValues
+@__tostringMixin
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
+	#vals: T[];
+	#equiv: Predicate2<T>;
+
 	constructor(
 		vals?: Iterable<T> | null,
 		opts: Partial<EquivSetOpts<T>> = {}
 	) {
 		super();
-		__private.set(this, { equiv: opts.equiv || equiv, vals: [] });
+		this.#equiv = opts.equiv || equiv;
+		this.#vals = [];
 		vals && this.into(vals);
 	}
 
-	*[Symbol.iterator](): IterableIterator<T> {
-		yield* __vals(this);
+	*[Symbol.iterator](): SetIterator<T> {
+		yield* this.#vals;
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get [Symbol.species]() {
 		return ArraySet;
@@ -55,13 +56,12 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	get size(): number {
-		return __vals(this).length;
+		return this.#vals.length;
 	}
 
 	copy(): ArraySet<T> {
-		const { equiv, vals } = __private.get(this)!;
-		const s = new ArraySet<T>(null, { equiv });
-		__private.get(s)!.vals = vals.slice();
+		const s = new ArraySet<T>(null, { equiv: this.#equiv });
+		s.#vals = this.#vals.slice();
 		return s;
 	}
 
@@ -70,17 +70,17 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	clear() {
-		__vals(this).length = 0;
+		this.#vals.length = 0;
 	}
 
 	first(): Maybe<T> {
 		if (this.size) {
-			return __vals(this)[0];
+			return this.#vals[0];
 		}
 	}
 
 	add(key: T) {
-		!this.has(key) && __vals(this).push(key);
+		!this.has(key) && this.#vals.push(key);
 		return this;
 	}
 
@@ -100,13 +100,13 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	 * @param notFound - default value
 	 */
 	get(key: T, notFound?: T): Maybe<T> {
-		const { equiv, vals } = __private.get(this)!;
-		const i = findIndex(vals, key, equiv);
-		return i >= 0 ? vals[i] : notFound;
+		const i = findIndex(this.#vals, key, this.#equiv);
+		return i >= 0 ? this.#vals[i] : notFound;
 	}
 
 	delete(key: T) {
-		const { equiv, vals } = __private.get(this)!;
+		const equiv = this.#equiv;
+		const vals = this.#vals;
 		for (let i = vals.length; i-- > 0; ) {
 			if (equiv(vals[i], key)) {
 				vals.splice(i, 1);
@@ -133,29 +133,29 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	 * @param thisArg -
 	 */
 	forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
-		const vals = __vals(this);
+		const vals = this.#vals;
 		for (let i = vals.length; i-- > 0; ) {
 			const v = vals[i];
 			fn.call(thisArg, v, v, this);
 		}
 	}
 
-	*entries(): IterableIterator<Pair<T, T>> {
-		for (let v of __vals(this)) {
+	*entries(): SetIterator<Pair<T, T>> {
+		for (let v of this.#vals) {
 			yield [v, v];
 		}
 	}
 
-	*keys(): IterableIterator<T> {
-		yield* __vals(this);
+	*keys(): SetIterator<T> {
+		yield* this.#vals;
 	}
 
-	*values(): IterableIterator<T> {
-		yield* __vals(this);
+	*values(): SetIterator<T> {
+		yield* this.#vals;
 	}
 
 	opts(): EquivSetOpts<T> {
-		return { equiv: __private.get(this)!.equiv };
+		return { equiv: this.#equiv };
 	}
 }
 

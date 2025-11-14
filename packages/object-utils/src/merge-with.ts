@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, IObjectOf, Nullable } from "@thi.ng/api";
 import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
 import { copy, copyObj } from "./copy.js";

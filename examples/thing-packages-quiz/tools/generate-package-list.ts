@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dirs, writeText } from "@thi.ng/file-io";
 import { map } from "@thi.ng/transducers";
 

@@ -8,16 +8,16 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
-		"clean": "bun ../../tools/src/clean-package.ts zig-cache zig-out",
+		"clean": "bun ../../tools/src/clean-package.ts .zig-cache zig-out",
 		"docs": "yarn prepare:zig && zig build docs -p .",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
-		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/bin/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
+		"build:zig": "yarn prepare:zig && zig build && wasm-opt zig-out/bin/main.wasm -o src/main.wasm -O3 -all && wasm-dis -o src/main.wast src/main.wasm",
 		"prepare:zig": "cp ../../node_modules/@thi.ng/wasm-api/zig/build.zig wasm-api-build.zig",
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
-		"typescript": "^5.7.2",
-		"vite": "^5.4.11"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.12"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
@@ -45,7 +45,7 @@
 		"interop",
 		"time",
 		"ui",
-		"webassembly",
+		"wasm",
 		"zig"
 	]
 }

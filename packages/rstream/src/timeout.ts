@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { State, type CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
@@ -36,7 +37,7 @@ export const timeout = <T>(
 ): Subscription<T, T> => new Timeout(timeoutMs, opts);
 
 /**
- * @see {@link timeout} for reference & examples.
+ * See {@link timeout} for reference & examples.
  */
 class Timeout<T> extends Subscription<T, T> {
 	protected timeoutMs: number;

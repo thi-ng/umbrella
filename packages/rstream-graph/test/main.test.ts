@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Atom } from "@thi.ng/atom";
 import { fromIterable } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";

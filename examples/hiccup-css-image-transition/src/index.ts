@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { diagonal2d } from "@thi.ng/grid-iterators";
 import {
 	PRETTY,

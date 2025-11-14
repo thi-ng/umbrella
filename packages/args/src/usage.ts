@@ -1,18 +1,20 @@
-import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { lengthAnsi } from "@thi.ng/strings/ansi";
+// SPDX-License-Identifier: Apache-2.0
+import type { IObjectOf, Pair } from "@thi.ng/api";
 import { capitalize, kebab } from "@thi.ng/strings/case";
-import { padRight } from "@thi.ng/strings/pad-right";
-import { repeat } from "@thi.ng/strings/repeat";
 import { stringify } from "@thi.ng/strings/stringify";
-import { SPLIT_ANSI, wordWrapLines } from "@thi.ng/strings/word-wrap";
 import {
-	DEFAULT_THEME,
 	type ArgSpecExt,
 	type Args,
 	type ColorTheme,
 	type UsageOpts,
 } from "./api.js";
+import {
+	__ansi,
+	__colorTheme,
+	__padRightAnsi,
+	__wrap,
+	__wrapWithIndent,
+} from "./utils.js";
 
 export const usage = <T extends IObjectOf<any>>(
 	specs: Args<T>,
@@ -27,14 +29,11 @@ export const usage = <T extends IObjectOf<any>>(
 		groups: ["flags", "main"],
 		...opts,
 	};
-	const theme = isPlainObject(opts.color)
-		? { ...DEFAULT_THEME, ...opts.color }
-		: opts.color
-		? DEFAULT_THEME
-		: <ColorTheme>{};
-	const indent = repeat(" ", opts.paramWidth!);
+	const theme = __colorTheme(opts.color);
 	const format = (ids: string[]) =>
-		ids.map((id) => __argUsage(id, specs[id], opts, theme, indent));
+		ids.map((id) =>
+			__argUsage(id, specs[id], opts, theme, opts.paramWidth!)
+		);
 	const sortedIDs = Object.keys(specs).sort();
 	const groups: Pair<string, string[]>[] = opts.groups
 		? opts.groups
@@ -65,13 +64,13 @@ const __argUsage = (
 	spec: ArgSpecExt,
 	opts: Partial<UsageOpts>,
 	theme: ColorTheme,
-	indent: string
+	indent: number
 ) => {
 	const hint = __argHint(spec, theme);
 	const alias = __argAlias(spec, theme, hint);
 	const name = __ansi(`--${kebab(id)}`, theme.param!);
 	const params = `${alias}${name}${hint}`;
-	const isRequired = spec.optional === false && spec.default === undefined;
+	const isRequired = !!spec.required && spec.default === undefined;
 	const prefixes: string[] = [];
 	isRequired && prefixes.push("required");
 	spec.multi && prefixes.push("multiple");
@@ -80,10 +79,8 @@ const __argUsage = (
 		(spec.desc || "") +
 		__argDefault(spec, opts, theme);
 	return (
-		padRight(opts.paramWidth!)(params, lengthAnsi(params)) +
-		__wrap(body, opts.lineWidth! - opts.paramWidth!)
-			.map((l, i) => (i > 0 ? indent + l : l))
-			.join("\n")
+		__padRightAnsi(params, opts.paramWidth!) +
+		__wrapWithIndent(body, indent, opts.lineWidth!)
 	);
 };
 
@@ -124,17 +121,3 @@ const __argDefault = (
 				theme.default
 		  )
 		: "";
-
-/** @internal */
-const __ansi = (x: string, col: number) =>
-	col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
-
-/** @internal */
-const __wrap = (str: Maybe<string>, width: number) =>
-	str
-		? wordWrapLines(str, {
-				width,
-				splitter: SPLIT_ANSI,
-				hard: false,
-		  })
-		: [];

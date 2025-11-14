@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Dual, Op1, Op1N, Op2, Op3, Op4 } from "./api.js";
 
 /**

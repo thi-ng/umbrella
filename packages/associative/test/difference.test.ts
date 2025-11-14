@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { equiv } from "@thi.ng/equiv";
 import { expect, test } from "bun:test";
 import { ArraySet, difference } from "../src/index.js";

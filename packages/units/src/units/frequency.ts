@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { s } from "./time.js";
 import { defUnit, div, mul, prefix, reciprocal } from "../unit.js";
 

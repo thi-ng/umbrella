@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isSet } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { beforeEach, expect, test } from "bun:test";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNode } from "@thi.ng/checks/is-node";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { CommonOpts } from "./api.js";
@@ -9,7 +10,7 @@ export interface FromRAFOpts extends CommonOpts {
 	/**
 	 * Browser only. If true (default: false), passes the timestamps received
 	 * via `requestAnimationFrame()` as stream values. If false, a simple
-	 * counter [0..∞) will be emitted.
+	 * counter `[0,∞)` will be emitted.
 	 *
 	 * @defaultValue false
 	 */

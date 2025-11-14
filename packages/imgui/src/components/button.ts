@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn5 } from "@thi.ng/api";
 import type { IShape } from "@thi.ng/geom";
 import { rect } from "@thi.ng/geom/rect";

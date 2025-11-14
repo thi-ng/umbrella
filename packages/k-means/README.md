@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/k-means](https://media.thi.ng/umbrella/banners-20230807/thing-k-means.svg?d8d57f39)
+# ![@thi.ng/k-means](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-k-means.svg?d8d57f39)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/k-means.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -25,7 +25,16 @@
 
 ## About
 
-Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors.
+k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors.
+
+In addition to the main
+[`kmeans()`](https://docs.thi.ng/umbrella/k-means/functions/kmeans.html)
+implementation, the following k-means centroid initialization functions are
+provided (can also be used in isolation to extract cluster centroids):
+
+- [`kmeansPlusPlus()`](https://docs.thi.ng/umbrella/k-means/functions/kmeansPlusPlus.html)
+- [`meanCut()`](https://docs.thi.ng/umbrella/k-means/functions/meanCut.html)
+- [`medianCut()`](https://docs.thi.ng/umbrella/k-means/functions/medianCut.html)
 
 ## Status
 
@@ -59,7 +68,7 @@ For Node.js REPL:
 const kmeans = await import("@thi.ng/k-means");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 884 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.10 KB
 
 ## Dependencies
 

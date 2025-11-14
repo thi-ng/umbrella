@@ -1,5 +1,5 @@
 #!/bin/sh
-BUILD=zig-out/lib
+BUILD=zig-out/bin
 
 zig build
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { comparator2 } from "@thi.ng/vectors/compare";
 

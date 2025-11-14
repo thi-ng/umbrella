@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
-import { type AppState } from "../api";
-import { computeCanvasSize } from "./canvas";
+import { type AppState } from "../api.js";
+import { computeCanvasSize } from "./canvas.js";
 
 /**
  * Global/central state atom, single source of truth. Various subscriptions will

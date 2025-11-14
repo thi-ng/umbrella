@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { string, type Command } from "@thi.ng/args";
 import {
@@ -41,11 +42,11 @@ export const DEVELOP: Command<DevelopOpts, CommonOpts, AppCtx<DevelopOpts>> = {
 		...ARG_WATCH,
 		outCss: string({
 			desc: "Output file for CSS bundle",
-			optional: false,
+			required: true,
 		}),
 		outSpecs: string({
 			desc: "Output file for framework",
-			optional: false,
+			required: true,
 		}),
 	},
 	fn: async (ctx) => {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Build helpers for using modules/packages distributed via NPM
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
@@ -21,7 +22,7 @@ pub const WasmLibOpts = struct {
     /// `wasm-api` and `wasm-api-bindgen` are auto-added as dependency for all...
     modules: ?[]const ModuleSpec = null,
     /// Build mode override (else allows config via CLI args)
-    optimize: ?std.builtin.Mode = null,
+    optimize: ?std.builtin.OptimizeMode = null,
     /// Additional WASM target features, e.g. `.simd128` to enable SIMD
     features: ?[]const std.Target.wasm.Feature = null,
     /// Initial memory (in bytes, MUST be multiple of 0x10000)
@@ -53,16 +54,18 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.Step.Compile {
     const optimize = if (opts.optimize) |m| m else b.standardOptimizeOption(.{});
     const lib = b.addExecutable(.{
         .name = "main",
-        .root_source_file = b.path(opts.root),
-        .target = b.resolveTargetQuery(
-            .{
-                .cpu_arch = .wasm32,
-                .os_tag = .freestanding,
-                .cpu_features_add = if (opts.features) |features| std.Target.wasm.featureSet(features) else std.Target.Cpu.Feature.Set.empty,
-            },
-        ),
-        .optimize = optimize,
-        .strip = (optimize == .ReleaseSmall or optimize == .ReleaseFast),
+        .root_module = b.createModule(.{
+            .root_source_file = b.path(opts.root),
+            .target = b.resolveTargetQuery(
+                .{
+                    .cpu_arch = .wasm32,
+                    .os_tag = .freestanding,
+                    .cpu_features_add = if (opts.features) |features| std.Target.wasm.featureSet(features) else std.Target.Cpu.Feature.Set.empty,
+                },
+            ),
+            .optimize = optimize,
+            .strip = (optimize == .ReleaseSmall or optimize == .ReleaseFast),
+        }),
     });
 
     // build flags

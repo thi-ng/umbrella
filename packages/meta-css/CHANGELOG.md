@@ -1,13 +1,62 @@
 # Change Log
 
-- **Last updated**: 2025-01-14T12:23:33Z
+- **Last updated**: 2025-11-13T12:38:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.19.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.19.28) (2025-09-26)
+
+#### ♻️ Refactoring
+
+- update CLI arg specs ([34596a3](https://github.com/thi-ng/umbrella/commit/34596a3))
+
+### [0.19.21](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.19.21) (2025-08-06)
+
+#### ♻️ Refactoring
+
+- update CLI internals ([c91e873](https://github.com/thi-ng/umbrella/commit/c91e873))
+
+### [0.19.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.19.2) (2025-06-27)
+
+#### ♻️ Refactoring
+
+- minor update CLI wrapper ([e0b0c34](https://github.com/thi-ng/umbrella/commit/e0b0c34))
+
+## [0.19.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.19.0) (2025-06-26)
+
+#### 🚀 Features
+
+- add support for string literals in var assignments ([2749c30](https://github.com/thi-ng/umbrella/commit/2749c30))
+  - use string lit to ignore white space in var assignments
+    - `name="a b c"` => `--name: a b c;`
+  - add/update tests
+- add tween-colors() template fn ([a5b8f9d](https://github.com/thi-ng/umbrella/commit/a5b8f9d))
+- add border-style specs ([c4cbd2f](https://github.com/thi-ng/umbrella/commit/c4cbd2f))
+- add/replace color ops ([ba78142](https://github.com/thi-ng/umbrella/commit/ba78142))
+  - replace existing `def-rgb/hsl/lch` / `adjust-rgb/hsl/lch` with:
+    - `adjust-color()`
+    - `lighten-color()`
+    - `rotate-color()`
+    - `saturate-color()`
+    - `with-alpha()`
+  - all color ops using `oklch()` now
+- add `font-family()` tpl fn ([38c65d4](https://github.com/thi-ng/umbrella/commit/38c65d4))
+
+## [0.18.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.18.0) (2025-02-11)
+
+#### 🚀 Features
+
+- update CLI wrapper, make `bun` optional ([a694c9d](https://github.com/thi-ng/umbrella/commit/a694c9d))
+  - check if `bun` is available, otherwise fallback to `node`
+  - update CLI args (add metacss pkg dir)
+  - update readme
 
 ### [0.17.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/meta-css@0.17.8) (2025-01-14)
 

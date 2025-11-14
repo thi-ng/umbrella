@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
@@ -167,7 +168,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * default.
  *
  * See {@link FORMATTERS} for available date component format IDs. To escape a
- * formatter and use as a string literal, prefix the term with `\\`.
+ * formatter and use as a string literal, prefix the term with a backslash.
  *
  * @example
  * ```ts tangle:../export/def-format.ts
@@ -314,7 +315,7 @@ export const FMT_ss = defFormat(["ss"]);
  * Returns {@link LOCALE.now} if absolute difference is < `eps` milliseconds
  * (default: 100).
  *
- * @see {@link formatRelativeParts} for alternative output.
+ * See {@link formatRelativeParts} for alternative output.
  *
  *
  * @example

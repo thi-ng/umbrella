@@ -14,8 +14,8 @@ Please refer to the instructions on the wiki:
 ### Regenerating the package list
 
 The list of packages and their tags is generated from the contents of the repo
-`/packages` directory. Run this command to (re)generate the source file
-[`/src/packages.json`](src/packages.json):
+`/packages` directory. Before running this example locally, you must first run
+the following command to (re)generate the index file `/src/packages.json`:
 
 ```text
 yarn tool:packages

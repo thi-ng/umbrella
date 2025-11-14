@@ -53,7 +53,7 @@
 	{
 		"name": "WindowInfo",
 		"type": "struct",
-		"doc": "Various browser window related information [TODO]",
+		"doc": "Various browser window related information (TODO)",
 		"fields": [
 			{ "name": "innerWidth", "type": "u16" },
 			{ "name": "innerHeight", "type": "u16" },

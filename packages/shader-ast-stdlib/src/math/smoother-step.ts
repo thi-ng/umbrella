@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { PrimTypeMap, TaggedFn1 } from "@thi.ng/shader-ast";
 import { F, V2, V3, V4 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -12,7 +13,7 @@ const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
 
 /**
  * Specialized version of {@link smootherStep}, assuming edges are 0/1
- * respectively and `x` is in [0..1]. No clamping performed.
+ * respectively and `x` is in `[0,1]`. No clamping performed.
  *
  * @param x
  */

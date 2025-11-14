@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ColoredNoiseOpts } from "./api.js";
 import { blue } from "./blue.js";
 import { interleave } from "./utils.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, IDeref, IObjectOf, Maybe, Nullable } from "@thi.ng/api";
 import type { ParseContext, ParseScope, ParseState } from "./context.js";
 

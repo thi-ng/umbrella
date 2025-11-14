@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DeepArrayValue } from "@thi.ng/api";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import type { Transducer } from "./api.js";
@@ -16,7 +17,7 @@ import { flattenWith } from "./flatten-with.js";
  * import { flatten } from "@thi.ng/transducers";
  *
  * console.log(
- *   [...flatten([[1, [2, 3]], ["abc", "cde"]])]
+ *   [...flatten([[1, [2, 3]], ["abc", "def"]])]
  * );
  * // [1, 2, 3, "abc", "def"]
  *

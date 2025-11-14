@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { TypedArray } from "@thi.ng/api";
 
 /**
@@ -12,7 +13,7 @@ import type { TypedArray } from "@thi.ng/api";
  * @param buf
  * @param num
  */
-export const rotate = <T>(buf: Array<T>, num: number) => {
+export const rotate = <T>(buf: T[], num: number) => {
 	if (!(num = __distance(buf, num))) return buf;
 	if (num < 0) {
 		buf.push(...buf.splice(0, -num));

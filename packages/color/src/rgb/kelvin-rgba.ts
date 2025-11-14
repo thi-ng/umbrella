@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC4 } from "@thi.ng/vectors/setc";
 import { srgb, type SRGB } from "../srgb/srgb.js";
@@ -18,6 +19,7 @@ const B3 = 0.453646839257496;
 /**
  * @remarks
  * Based on:
+ *
  * - https://github.com/neilbartlett/color-temperature/blob/develop/index.js
  * - http://www.zombieprototypes.com/?p=210
  *

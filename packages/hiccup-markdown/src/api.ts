@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { ParseState } from "@thi.ng/parse";
@@ -43,7 +44,7 @@ export interface TagTransforms {
 	 */
 	blockquote(ctx: TransformCtx, body: any[], meta?: any): any;
 	/**
-	 * Handler for forced line breaks (aka lines ending with `\`).
+	 * Handler for forced line breaks (aka lines ending with backslash).
 	 *
 	 * @param ctx
 	 */

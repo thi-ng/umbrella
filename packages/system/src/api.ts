@@ -1,4 +1,5 @@
-import type { Fn, Keys } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
+import type { Fn, Keys, MaybePromise } from "@thi.ng/api";
 import { ROOT } from "@thi.ng/logger/root";
 import type { System } from "./system.js";
 
@@ -17,7 +18,7 @@ export interface ILifecycle<T extends SystemMap<T> = any> {
 	 * components will be stopped (see {@link ILifecycle.stop}) in reverse
 	 * order.
 	 */
-	start?(sys: System<T>): Promise<boolean>;
+	start?(sys: System<T>): MaybePromise<boolean>;
 	/**
 	 * Similar to {@link ILifecycle.start} but for stopping components.
 	 *
@@ -25,7 +26,7 @@ export interface ILifecycle<T extends SystemMap<T> = any> {
 	 * {@link ILifecycle.start}, returning false will **not** stop the shutdown
 	 * of other components.
 	 */
-	stop?(sys: System<T>): Promise<boolean>;
+	stop?(sys: System<T>): MaybePromise<boolean>;
 	// allow extension and disable weak type detection
 	// https://github.com/thi-ng/umbrella/issues/247#issuecomment-687196363
 	[id: string]: any;
@@ -42,7 +43,7 @@ export type SystemMap<T> = Record<Keys<T>, ILifecycle>;
  */
 export type ComponentFactory<T extends SystemMap<T>> = Fn<
 	T,
-	Promise<ILifecycle>
+	MaybePromise<ILifecycle>
 >;
 
 export interface SystemSpec<T extends SystemMap<T>> {

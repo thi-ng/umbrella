@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/parse](https://media.thi.ng/umbrella/banners-20230807/thing-parse.svg?68aa7075)
+# ![@thi.ng/parse](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-parse.svg?68aa7075)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/parse.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -103,7 +103,7 @@ For Node.js REPL:
 const parse = await import("@thi.ng/parse");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.42 KB
 
 ## Dependencies
 
@@ -387,42 +387,50 @@ Custom transforms functions can be supplied via an additional arg to
 be overwritten) and correspond to the [above mentioned
 transforms](#transformers):
 
-- `binary` - parse as binary number
-- `collect` - collect sub terms into array
-- `discard` - discard result
-- `float` - join & parse as floating point number
-- `hex` - join & parse as hex integer
-- `hoist` - replace AST node with its 1st child
-- `hoistR` - use result of 1st child term only
-- `int` - join & parse as integer
-- `join` - join sub terms into single string
-- `json` - join & parse as JSON
-- `print` - print out node's subtree (AST)
-- `trim` - trim result
+| **Transform** | **Description**                       |
+|---------------|---------------------------------------|
+| `binary`      | parse as binary number                |
+| `collect`     | collect sub terms into array          |
+| `discard`     | discard result                        |
+| `float`       | join & parse as floating point number |
+| `hex`         | join & parse as hex integer           |
+| `hoist`       | replace AST node with its 1st child   |
+| `hoistR`      | use result of 1st child term only     |
+| `int`         | join & parse as integer               |
+| `join`        | join sub terms into single string     |
+| `json`        | join & parse as JSON                  |
+| `print`       | print out node's subtree (AST)        |
+| `trim`        | trim result                           |
 
 For convenience, the following built-in parser presets are available as
 rule references in the grammar definition as well:
 
-- `ALPHA`
-- `ALPHA_NUM`
-- `BIT`
-- `DIGIT`
-- `DNL` - discarded newline
-- `END` - input end
-- `ESC` - escape sequences
-- `FLOAT`
-- `HEX_DIGIT`
-- `INT`
-- `LEND` - line end
-- `LSTART` - line start
-- `NL` - newline chars
-- `START` - input start
-- `STRING`
-- `UNICODE`
-- `WB` - word boundary
-- `WS`
-- `WS0`
-- `WS1`
+| **Preset**    | **Description**                                            |
+|---------------|------------------------------------------------------------|
+| `ALPHA`       | single alphabetical char `[A-Za-z]`                        |
+| `ALPHA_NUM`   | single alphanumeric char `[A-Za-z0-9]`                     |
+| `BIT`         | single 0 or 1 digit                                        |
+| `BINARY_UINT` | unprefixed & unsigned binary integer (parsed as JS number) |
+| `DIGIT`       | single decimal digit                                       |
+| `DNL`         | discarded single newline char                              |
+| `END`         | input end                                                  |
+| `ESC`         | single escape sequence                                     |
+| `FLOAT`       | floating point number (parsed as JS number)                |
+| `HEX_DIGIT`   | single hex digit `[0-9a-fA-F]`                             |
+| `HEX_UINT`    | unprefixed & unsigned hex integer (parsed as JS number)    |
+| `INT`         | signed/unsigned decimal integer (parsed as JS number)      |
+| `LEND`        | line end                                                   |
+| `LSTART`      | line start                                                 |
+| `NL`          | single newline char `[\n\r]`                               |
+| `SPACE`       | single space or tab `[ \t]`                                |
+| `START`       | input start                                                |
+| `STRING`      | quoted string, incl. escapes, `"foo\"bar\u2587"`           |
+| `UNICODE`     | unicode escape sequence `\uxxxx`                           |
+| `UINT`        | unsigned decimal integer (parsed as JS number)             |
+| `WB`          | word boundary                                              |
+| `WS`          | single whitespace char                                     |
+| `WS0`         | zero or more whitespace chars                              |
+| `WS1`         | one or more whitespace chars                               |
 
 ## Examples
 
@@ -452,24 +460,24 @@ const ctx = defContext(`
 
 // parse & print AST
 print(lang!.rules.expr)(ctx);
-// expr: null
-//   list: null
-//     expr: null
+// expr: undefined
+//   list: undefined
+//     expr: undefined
 //       sym: "def"
 //       sym: "hello"
-//       list: null
-//         expr: null
+//       list: undefined
+//         expr: undefined
 //           sym: "x"
-//       list: null
-//         expr: null
+//       list: undefined
+//         expr: undefined
 //           sym: "str"
 //           string: "hello, "
 //           sym: "x"
-//   list: null
-//     expr: null
+//   list: undefined
+//     expr: undefined
 //       sym: "print"
-//       list: null
-//         expr: null
+//       list: undefined
+//         expr: undefined
 //           sym: "hello"
 //           real: 42
 
@@ -479,8 +487,8 @@ print(lang!.rules.expr)(ctx);
 // the two top-level s-expressions...
 console.log(ctx.children);
 // [
-//   { id: 'list', state: null, children: [ [Object] ], result: null },
-//   { id: 'list', state: null, children: [ [Object] ], result: null }
+//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined, ... },
+//   ParseScope { id: 'list', state: null, children: [ [Object] ], result: undefined, ... }
 // ]
 ```
 

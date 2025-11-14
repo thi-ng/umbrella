@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
 import { DEFAULT_EPS } from "@thi.ng/api/api";
 import { isString } from "@thi.ng/checks/is-string";
@@ -164,13 +165,13 @@ export const parse = (src: string) => {
 };
 
 /**
- * Returns new infinite interval `[-∞..∞]`
+ * Returns new infinite interval `[-∞,∞]`
  */
 export const infinity = () => new Interval(-Infinity, Infinity);
 
 /**
- * Returns new interval of `[min..∞]` or `(min..∞]` depending on if `open` is
- * true (default: false).
+ * Returns new interval of `[min,∞]` or `(min,∞]` depending on if `open` is true
+ * (default: false).
  *
  * @param min -
  * @param open -
@@ -179,8 +180,8 @@ export const withMin = (min: number, open = false) =>
 	new Interval(min, Infinity, open, false);
 
 /**
- * Returns new interval of `[∞..max]` or `[∞..max)` depending on if `open` is
- * true (default: false).
+ * Returns new interval of `[∞,max]` or `[∞,max)` depending on if `open` is true
+ * (default: false).
  *
  * @param max -
  * @param open -
@@ -189,7 +190,7 @@ export const withMax = (max: number, open = false) =>
 	new Interval(-Infinity, max, false, open);
 
 /**
- * Returns an open interval `(min..max)`
+ * Returns an open interval `(min,max)`
  *
  * @param min -
  * @param max -
@@ -198,7 +199,7 @@ export const open = (min: number, max: number) =>
 	new Interval(min, max, true, true);
 
 /**
- * Returns a semi-open interval `(min..max]`, open on the LHS.
+ * Returns a semi-open interval `(min,max]`, open on the LHS.
  *
  * @param min -
  * @param max -
@@ -207,7 +208,7 @@ export const openClosed = (min: number, max: number) =>
 	new Interval(min, max, true, false);
 
 /**
- * Returns a semi-open interval `[min..max)`, open on the RHS.
+ * Returns a semi-open interval `[min,max)`, open on the RHS.
  *
  * @param min -
  * @param max -
@@ -216,7 +217,7 @@ export const closedOpen = (min: number, max: number) =>
 	new Interval(min, max, false, true);
 
 /**
- * Returns a closed interval `(min..max)`.
+ * Returns a closed interval `(min,max)`.
  *
  * @param min -
  * @param max -
@@ -310,8 +311,8 @@ export const isAfter = (
 		: i.l > <number>x;
 
 /**
- * Compares interval `a` with `b` and returns a comparator value
- * (-1, 0 or 1). Comparison order is: LHS, RHS, openness.
+ * Compares interval `a` with `b` and returns a comparator value (-1, 0 or 1).
+ * Comparison order is: LHS, RHS, openness.
  *
  * @param a -
  * @param b -
@@ -358,8 +359,7 @@ export const include = (i: Readonly<Interval>, x: number) =>
 		: i.copy();
 
 /**
- * Returns the distance between intervals, or zero if they touch or
- * overlap.
+ * Returns the distance between intervals, or zero if they touch or overlap.
  *
  * @param a -
  * @param b -
@@ -378,9 +378,8 @@ export const transform = (i: Readonly<Interval>, fn: Fn<number, number>) =>
 	new Interval(fn(i.l), fn(i.r), i.lopen, i.ropen);
 
 /**
- * Returns classifier for interval `a` WRT given interval `b`. E.g.
- * if the result is `Classifier.SUPERSET`, then interval `a` fully
- * contains `b`.
+ * Returns classifier for interval `a` WRT given interval `b`. E.g. if the
+ * result is `Classifier.SUPERSET`, then interval `a` fully contains `b`.
  *
  * ```text
  * EQUIV
@@ -431,8 +430,8 @@ export const classify = (a: Readonly<Interval>, b: Readonly<Interval>) =>
 		: Classifier.SUBSET;
 
 /**
- * Returns true if interval `a` intersects `b` in any way (incl.
- * subset / superset).
+ * Returns true if interval `a` intersects `b` in any way (incl. subset /
+ * superset).
  *
  * @param a -
  * @param b -
@@ -487,9 +486,8 @@ export const suffix = (a: Readonly<Interval>, b: Readonly<Interval>) => {
 };
 
 /**
- * Returns the lesser value of either `x` or interval `i`'s RHS value. If
- * the interval is open on the RHS, and `x >= r`, then `r - eps` will be
- * returned.
+ * Returns the lesser value of either `x` or interval `i`'s RHS value. If the
+ * interval is open on the RHS, and `x >= r`, then `r - eps` will be returned.
  *
  * @param i -
  * @param x -
@@ -499,9 +497,8 @@ export const min = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
 	i.ropen ? (x >= i.r ? i.r - eps : x) : x > i.r ? i.r : x;
 
 /**
- * Returns the greater value of either `x` or interval `i`'s LHS value. If
- * the interval is open on the LHS, and `x <= l`, then `l + eps` will be
- * returned.
+ * Returns the greater value of either `x` or interval `i`'s LHS value. If the
+ * interval is open on the LHS, and `x <= l`, then `l + eps` will be returned.
  *
  * @param i -
  * @param x -
@@ -525,8 +522,8 @@ export const clamp = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
  * lie in the `(i.l-i.size .. i.r+i.size)` interval.
  *
  * @remarks
- * Current implementation is recursive and O(N) where N =
- * ceil(max(|x-i.l|, \x-i.r|) / i.size).
+ * Current implementation is recursive and O(N) where N = ceil(max(|x-i.l|,
+ * \x-i.r|) / i.size).
  *
  * See {@link min} or {@link max} for handling of optional `eps` arg.
  *

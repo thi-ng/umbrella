@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { deref, isDeref, type MaybeDeref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
@@ -168,7 +169,7 @@ export const $el = (
  *
  * @remarks
  * See thi.ng/hiccup docs for reference:
- * - https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
+ * https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
  *
  * @param body
  * @param parent
@@ -290,7 +291,7 @@ export const $html = (
  * string, a string array or an object of booleans. If the latter, the given
  * class names are either added to or removed from the current list of classes.
  * See
- * [`mergeClasses()`](https://docs.thi.ng/umbrella/hiccup/functions/mergeClasses.html)
+ * [`mergeClasses`](https://docs.thi.ng/umbrella/hiccup/functions/mergeClasses.html)
  * for details.
  *
  * CSS style rules can be defined via the `style` attrib. Please see

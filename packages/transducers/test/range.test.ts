@@ -1,5 +1,28 @@
+// SPDX-License-Identifier: Apache-2.0
 import { describe, expect, test } from "bun:test";
-import { range2d, rangeNd } from "../src/index.js";
+import {
+	push,
+	range,
+	range2d,
+	rangeNd,
+	reduce,
+	reduced,
+} from "../src/index.js";
+
+describe("range", () => {
+	test("$reduce", () => {
+		expect(reduce(push(), range(4))).toEqual([0, 1, 2, 3]);
+		expect(reduce(push(), range(2, 4, 0.5))).toEqual([2, 2.5, 3, 3.5]);
+		expect(reduce(push(), range(4, 0))).toEqual([4, 3, 2, 1]);
+		expect(reduce(push(), range(4, 2, -0.5))).toEqual([4, 3.5, 3, 2.5]);
+	});
+
+	test("$reduce (reduced)", () => {
+		expect(
+			reduce([() => 0, (x) => x, (_, x) => reduced(x)], range(100, 200))
+		).toEqual(100);
+	});
+});
 
 describe("range2d", () => {
 	test("forward", () => {

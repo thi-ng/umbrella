@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs } from "./api.js";
 import { closestPointPlane } from "@thi.ng/geom-closest-point/plane";

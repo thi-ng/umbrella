@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { intersectRayPolyline } from "@thi.ng/geom-isec/ray-poly";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 

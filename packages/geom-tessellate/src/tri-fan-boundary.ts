@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Tessellator } from "./api.js";
 
 export const triFanBoundary: Tessellator = (_, faces, pids) => {

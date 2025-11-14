@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import type { Parser, ScopeTransform } from "../api.js";
 import { xform } from "../combinators/xform.js";
@@ -41,9 +42,9 @@ export const xfPrint = (fn: Fn<string, void> = console.log) => {
  * import { ALPHA, defContext, lit, oneOrMore, print, seq } from "@thi.ng/parse";
  *
  * print(seq([lit("["), oneOrMore(ALPHA), lit("]")]))(defContext("[abc]"));
- * // seq: null
+ * // seq: undefined
  * //   lit: "["
- * //   repeat1: null
+ * //   repeat1: undefined
  * //     oneOf: "a"
  * //     oneOf: "b"
  * //     oneOf: "c"

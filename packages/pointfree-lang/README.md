@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners-20230807/thing-pointfree-lang.svg?587e6428)
+# ![@thi.ng/pointfree-lang](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pointfree-lang.svg?587e6428)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -129,13 +129,18 @@ The package includes a `pointfree` CLI command to evaluate strings or files:
 ```text
 npx @thi.ng/pointfree-lang
 
-Usage: pointfree [options] [file]
+ █ █   █           │
+██ █               │
+ █ █ █ █   █ █ █ █ │ @thi.ng/pointfree-lang v2.3.30
+ █ █ █ █ █ █ █ █ █ │ Forth-style DSL & CLI
+                 █ │
+               █ █ │
 
-Options:
-  -V, --version     output the version number
-  -d, --debug       print debug info
-  -e, --exec <src>  execute given string
-  -h, --help        display help for command
+Usage: pointfree [opts] [file]
+
+-v, --verbose           Display extra information
+
+-e STR, --exec STR      Execute given string
 ```
 
 For CLI usage, in addition to the other language features discussed further below, the following words are available too (more to be added):

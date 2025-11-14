@@ -50,6 +50,7 @@
 - [`levenshtein()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/levenshtein.ts)
 - [`multiSwap()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [`peek()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/peek.ts)
+- [`permutation()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/permutation.ts)
 - [`quickSort()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/quicksort.ts)
 - [`rotate()` / `rotateTyped()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/rotate.ts)
 - [`selectThresholdMin()` / `selectThresholdMax()`](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/threshold.ts)

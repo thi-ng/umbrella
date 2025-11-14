@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Keys } from "@thi.ng/api";
 import { css, hcy } from "@thi.ng/color";
 import { deleteIn } from "@thi.ng/paths";
@@ -11,9 +12,9 @@ import {
 	type LayerControls,
 	type LayerParams,
 	type TraceMode,
-} from "../api";
-import { DB } from "./atom";
-import { main } from "./process";
+} from "../api.js";
+import { DB } from "./atom.js";
+import { main } from "./process.js";
 
 /**
  * Define default params for new layer (incl. random color)

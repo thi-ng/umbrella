@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defDGraph } from "@thi.ng/dgraph";
 import { expect, test } from "bun:test";
 import { toDot } from "../src/index.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, IReset } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { add } from "./add.js";
@@ -24,7 +25,7 @@ export interface ADSROpts {
 	 */
 	d: number;
 	/**
-	 * Sustain level/gain (in [0..1] range). Default: 1
+	 * Sustain level/gain (in `[0,1]` range). Default: 1
 	 */
 	s: number;
 	/**
@@ -54,26 +55,26 @@ export interface ADSROpts {
 }
 
 /**
- * Time based ADSR envelope gen with customizable exponential attack,
- * decay and release curves.
+ * Time based ADSR envelope gen with customizable exponential attack, decay and
+ * release curves.
  *
  * @remarks
- * The attack, decay and release options are to be given in samples
- * (`num = time_in_seconds * sample_rate`). Unless the sustain length
- * (`slen` opt) is finite (default: ∞), the release phase of the
- * envelope MUST be triggered manually by calling {@link ADSR.release}.
- * If only attack & decay phases are required, initialize the sustain
- * level to zero and configure `dcurve` to adjust falloff shape.
+ * The attack, decay and release options are to be given in samples (`num =
+ * time_in_seconds * sample_rate`). Unless the sustain length (`slen` opt) is
+ * finite (default: ∞), the release phase of the envelope MUST be triggered
+ * manually by calling {@link ADSR.release}. If only attack & decay phases are
+ * required, initialize the sustain level to zero and configure `dcurve` to
+ * adjust falloff shape.
  *
- * The envelope can be re-used & restarted by calling
- * {@link ADSR.reset}. This will move the internal state back to the
- * beginning of the attack phase and start producing a new envelope with
- * current settings. Note: Any changes done to the envelope parameters
- * are only guaranteed to be fully applied after reset.
+ * The envelope can be re-used & restarted by calling {@link ADSR.reset}. This
+ * will move the internal state back to the beginning of the attack phase and
+ * start producing a new envelope with current settings. Note: Any changes done
+ * to the envelope parameters are only guaranteed to be fully applied after
+ * reset.
  *
- * The `acurve` and `dcurve` options can be used to control the
- * exponential curvature of the attack, decay and release phases.
- * Recommended range [0.0001 - 100] (curved -> linear).
+ * The `acurve` and `dcurve` options can be used to control the exponential
+ * curvature of the attack, decay and release phases. Recommended range
+ * `[0.0001,100]` (curved -> linear).
  *
  * @param opts -
  */

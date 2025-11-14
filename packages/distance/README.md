@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/distance](https://media.thi.ng/umbrella/banners-20230807/thing-distance.svg?7bd4f62f)
+# ![@thi.ng/distance](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-distance.svg?7bd4f62f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/distance.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -111,7 +111,7 @@ package.
 ## Related packages
 
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
-- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) - Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors
+- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) - k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 
 ## Installation
@@ -140,7 +140,7 @@ For Node.js REPL:
 const dist = await import("@thi.ng/distance");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.41 KB
 
 ## Dependencies
 

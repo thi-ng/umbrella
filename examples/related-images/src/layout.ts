@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { argMin, selectThresholdMin } from "@thi.ng/arrays";
 import type { LayoutItem, RankedItem } from "./api.js";
 
@@ -53,7 +54,7 @@ export const columnLayout = (opts: LayoutOpts) => {
 };
 
 // build a function which selects the correct number of columns for a given
-// window width. returns default value (here: 5) if none of the thresholds/breakpoints
+// window width. returns default value (here: 9) if none of the thresholds/breakpoints
 // can be matched (i.e. for larger window sizes)
 // see: https://docs.thi.ng/umbrella/arrays/functions/selectThresholdMin.html
 export const columnsForWidth = selectThresholdMin(

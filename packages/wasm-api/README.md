@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api](https://media.thi.ng/umbrella/banners-20230807/thing-wasm-api.svg?a4addfc6)
+# ![@thi.ng/wasm-api](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api.svg?a4addfc6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -22,7 +22,7 @@
   - [API module auto-initialization](#api-module-auto-initialization)
 - [Object indices & handles](#object-indices--handles)
 - [Using the Zig build system](#using-the-zig-build-system)
-  - [Zig v0.13 or newer](#zig-v013-or-newer)
+  - [Zig v0.15 or newer](#zig-v015-or-newer)
   - [Example projects](#example-projects)
 - [Naming & structural conventions](#naming--structural-conventions)
 - [Status](#status)
@@ -379,14 +379,15 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
-### Zig v0.13 or newer
+### Zig v0.15 or newer
 
-**IMPORTANT:** Due to recent syntax & build system changes in Zig
-[v0.12.0](https://ziglang.org/download/0.12.0/release-notes.html) &
-[v0.13.0](https://ziglang.org/download/0.13.0/release-notes.html), older Zig
-versions are not actively supported anymore (however, [build files for older
-versions are still
-included](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig))
+**IMPORTANT:** Due to breaking syntax & build system changes in recent Zig
+versions, older Zig versions than
+[v0.15.1](https://ziglang.org/download/0.15.1/release-notes.html), are not
+actively supported anymore (however, [build files for older versions are still
+included](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig)).
+
+Please see [bundled examples](#usage-examples) for more details...
 
 ```zig
 const std = @import("std");

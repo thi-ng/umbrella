@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { HEX } from "@thi.ng/strings/groups";
 import { oneOrMore, repeat } from "../combinators/repeat.js";
 import { xform } from "../combinators/xform.js";

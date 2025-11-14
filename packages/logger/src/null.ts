@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { LogLevel, type ILogger } from "./api.js";
 
 /**
@@ -16,5 +17,6 @@ export const NULL_LOGGER: ILogger = Object.freeze({
 	info() {},
 	warn() {},
 	severe() {},
+	none() {},
 	logEntry() {},
 });

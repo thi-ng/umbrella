@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:export
 import type { Fn, Maybe } from "@thi.ng/api";
 import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";

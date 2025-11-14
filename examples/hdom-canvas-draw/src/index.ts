@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
 import { StreamSync, sync, trigger } from "@thi.ng/rstream";
@@ -12,7 +13,7 @@ import {
 	zip,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { dist } from "@thi.ng/vectors";
+import { dist2 } from "@thi.ng/vectors";
 
 // canvas size
 const W = 480;
@@ -22,7 +23,7 @@ const W = 480;
 const line =
 	([a, b]: number[][]) =>
 	(_: any, attribs: any) =>
-		["line", { ...attribs, weight: dist(a, b) / 4 }, a, b];
+		["line", { ...attribs, weight: dist2(a, b) / 4 }, a, b];
 
 // higher order root component function. takes a @thi.ng/rstream
 // `StreamSync` instance as argument to dynamically add a new input

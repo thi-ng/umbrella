@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IntBuffer } from "@thi.ng/pixel";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import { syncRAF } from "@thi.ng/rstream";
@@ -9,9 +10,9 @@ import {
 	SET_KERNEL_WIDTH,
 	type AppState,
 	type Event,
-} from "./api";
-import { dispatch } from "./events";
-import { state } from "./state";
+} from "./api.js";
+import { dispatch } from "./events.js";
+import { state } from "./state.js";
 
 /**
  * Canvas component w/ life cycle methods

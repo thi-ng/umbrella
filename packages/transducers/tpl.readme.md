@@ -741,6 +741,7 @@ transduce(map((x) => x*10), push(), range(4))
 ```
 
 - [benchmark](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/benchmark.ts)
+- [binned](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/binned.ts)
 - [cat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cat.ts)
 - [converge](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/converge.ts)
 - [convolve2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/convolve.ts)

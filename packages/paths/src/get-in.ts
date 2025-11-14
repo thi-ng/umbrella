@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	DeepPath,
 	Maybe,
@@ -16,12 +17,12 @@ import type {
 import { defGetter } from "./getter.js";
 
 /**
- * Unchecked version of {@link getIn}. Returns `undefined` if path is
+ * Non-typechecked version of {@link getIn}. Returns `undefined` if path is
  * invalid.
  *
  * @remarks
- * The type parameter `T` can be used to indicate the type of the nested
- * value to be retrieved (default: `any`).
+ * The type parameter `T` can be used to indicate the type of the nested value
+ * to be retrieved (default: `any`).
  *
  * @example
  * ```ts tangle:../export/get-in-unsafe.ts

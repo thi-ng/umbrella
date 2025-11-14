@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { addG } from "./addg.js";
 import { curve } from "./curve.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./api.js";
 export * from "./domain.js";
 export * from "./plot.js";
@@ -13,3 +14,4 @@ export * from "./plot/line.js";
 export * from "./plot/scatter.js";
 export * from "./plot/stacked-intervals.js";
 export * from "./plot/utils.js";
+export * from "./plot/vector-field.js";

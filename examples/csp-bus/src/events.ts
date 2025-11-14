@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import { Channel, consumeWith, into, pubsub } from "@thi.ng/csp";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
@@ -8,7 +9,7 @@ import type {
 	LogEvent,
 	StartCounterEvent,
 	StopAllEvent,
-} from "./api";
+} from "./api.js";
 
 // the event bus is a simple wrapper for a pubsub CSP channel construct. events
 // are triggered by writing a new value to the pubsub

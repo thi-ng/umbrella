@@ -1,13 +1,63 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.4.0) (2025-07-25)
+
+#### 🚀 Features
+
+- add support for absolute output paths ([c440e25](https://github.com/thi-ng/umbrella/commit/c440e25))
+  - update `formatPath()` to always return abs path
+  - simplify `outputProc()` path handling
+
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.3.0) (2025-07-21)
+
+#### 🚀 Features
+
+- add `dataURL` output option ([eca0ee3](https://github.com/thi-ng/umbrella/commit/eca0ee3))
+
+### [1.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.2.1) (2025-07-14)
+
+#### 🩹 Bug fixes
+
+- update `outputMeta` value type ([294afc8](https://github.com/thi-ng/umbrella/commit/294afc8))
+
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.2.0) (2025-07-14)
+
+#### 🚀 Features
+
+- add `outputMeta` for raw outputs ([37810d3](https://github.com/thi-ng/umbrella/commit/37810d3))
+
+### [1.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.1.6) (2025-07-12)
+
+#### 🩹 Bug fixes
+
+- update raw output, remove alpha if needed ([c0559bf](https://github.com/thi-ng/umbrella/commit/c0559bf))
+
+### [1.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.1.3) (2025-07-02)
+
+#### 🩹 Bug fixes
+
+- update non-file (in-memory) output handling ([cef4642](https://github.com/thi-ng/umbrella/commit/cef4642))
+  - update `outputProc()` if no path is given
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.1.0) (2025-05-28)
+
+#### 🚀 Features
+
+- add support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/main/packages/pixel) int buffers as input ([e0b6de6](https://github.com/thi-ng/umbrella/commit/e0b6de6))
+  - update `processImage()`, update docs
+  - add `isIntBufferLike()` helper
+  - rename `src/units.ts` => `src/utils.ts`
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@0.8.0) (2024-07-06)
 

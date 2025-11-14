@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn4 } from "@thi.ng/api";
 import type { Node2D } from "@thi.ng/scenegraph";
 import type {

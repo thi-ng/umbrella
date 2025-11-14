@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const __removeAllIDs = (
 	impl: { removeID(id: string): boolean },
 	ids: Iterable<string>

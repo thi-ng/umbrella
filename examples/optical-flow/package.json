@@ -1,0 +1,49 @@
+{
+	"name": "@example/optical-flow",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Optical flow analysis of web cam or video inputs",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "yarn css:build && yarn start:only",
+		"start:only": "vite --host --open",
+		"dev": "mprocs 'yarn css:watch' 'yarn start:only'",
+		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
+		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
+		"build": "yarn css:build && tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"@thi.ng/meta-css": "workspace:^",
+		"typescript": "^5.9.3",
+		"vite": "^7.1.12"
+	},
+	"dependencies": {
+		"@thi.ng/bench": "workspace:^",
+		"@thi.ng/canvas": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/pixel-flow": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-stats": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"canvas",
+			"pixel",
+			"pixel-flow",
+			"rdom",
+			"transducers",
+			"transducers-stats",
+			"vectors"
+		],
+		"screenshot": "examples/optical-flow.avif"
+	}
+}

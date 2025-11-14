@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { eqDeltaArray } from "@thi.ng/vectors";
 import { describe, expect, test } from "bun:test";
 import {

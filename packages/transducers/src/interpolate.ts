@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "./api.js";
@@ -25,6 +26,7 @@ import { partition } from "./partition.js";
  * iterator...
  *
  * See also:
+ *
  * - {@link interpolateHermite}
  * - {@link interpolateLinear}
  * - {@link extendSides}

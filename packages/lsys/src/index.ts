@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { partial } from "@thi.ng/compose/partial";
@@ -12,18 +13,36 @@ import { last } from "@thi.ng/transducers/last";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { take } from "@thi.ng/transducers/take";
 import type { Vec } from "@thi.ng/vectors";
-import { add } from "@thi.ng/vectors/add";
+import { add2 } from "@thi.ng/vectors/add";
+
+/**
+ * Symbol used as fallback for unmatched symbols in {@link RuleImplementations}.
+ */
+export const DEFAULT: unique symbol = Symbol();
 
 export type LSysSymbol = string | number;
 export type ProductionResult = ArrayLike<LSysSymbol> & Iterable<LSysSymbol>;
 export type ProductionRules = IObjectOf<
 	ProductionResult | Fn<LSysSymbol, ProductionResult>
 >;
-export type RuleImplementations<T> = IObjectOf<Fn2<T, LSysSymbol, void>>;
+
+/**
+ * Object with L-System symbols as keys and their implementations/operators as
+ * values.
+ *
+ * @remarks
+ * The {@link DEFAULT} symbol can be used as fallback impl, used for any
+ * unmatched symbols.
+ */
+export type RuleImplementations<T extends object> = IObjectOf<
+	Fn2<T, LSysSymbol, void>
+>;
 
 export interface Turtle2D {
 	/**
-	 * Current position. Default: [0,0]
+	 * Current position.
+	 *
+	 * @defaultValue `[0,0]`
 	 */
 	pos: Vec;
 	/**
@@ -35,40 +54,52 @@ export interface Turtle2D {
 	 */
 	delta: number;
 	/**
-	 * Max. random direction change when processing "/" symbol.
-	 * Normalized percentage of `delta`. Default: 0.25 (25%)
+	 * Max. random direction change when processing "/" symbol. Normalized
+	 * percentage of `delta`.
+	 *
+	 * @defaultValue 0.25 (25%)
 	 */
 	jitter: number;
 	/**
-	 * Step distance. Default: 1
+	 * Step distance.
+	 *
+	 * @defaultValue 1
 	 */
 	step: number;
 	/**
-	 * Probability to keep current branch alive when processing "k"
-	 * symbol. Default: 0.99
+	 * Probability to keep current branch alive when processing "k" symbol.
+	 *
+	 * @defaultValue 0.99
 	 */
 	aliveProb: number;
 	/**
-	 * Decay factor for `delta`. Should be in (0,1) interval.
-	 * Default: 0.9
+	 * Decay factor for `delta`. Should be in `(0,1)` interval.
+	 *
+	 * @defaultValue 0.9
 	 */
 	decayDelta: number;
 	/**
-	 * Decay factor for `step`. Should be in (0,1) interval.
-	 * Default: 0.9
+	 * Decay factor for `step`. Should be in `(0,1)` interval.
+	 *
+	 * @defaultValue 0.9
 	 */
 	decayStep: number;
 	/**
 	 * Decay factor for `aliveProp`.
-	 * Default: 0.95
+	 *
+	 * @defaultValue 0.95
 	 */
 	decayAlive: number;
 	/**
-	 * PRNG to use for probability checks. Default: SYSTEM
+	 * PRNG to use for probability checks.
+	 *
+	 * @defaultValue [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
 	 */
 	rnd: IRandom;
 	/**
-	 * Alive flag. Default: true
+	 * Alive flag.
+	 *
+	 * @defaultValue true
 	 */
 	alive: boolean;
 	/**
@@ -89,14 +120,14 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
 	// move forward
 	f: (ctx) => {
 		if (ctx.alive) {
-			ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
+			ctx.pos = add2([], ctx.pos, cossin(ctx.theta, ctx.step));
 			ctx.curr.push(ctx.pos);
 		}
 	},
 	g: (ctx) => {
 		if (ctx.alive) {
 			ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
-			ctx.pos = add([], ctx.pos, cossin(ctx.theta, ctx.step));
+			ctx.pos = add2([], ctx.pos, cossin(ctx.theta, ctx.step));
 			ctx.curr = [ctx.pos];
 		}
 	},
@@ -210,8 +241,8 @@ export const expand = (
 	);
 
 /**
- * Sequentially processes iterable of symbols using provided rule
- * implementations and suitable execution context object.
+ * Sequentially processes iterable of symbols using provided
+ * {@link RuleImplementations} and suitable execution context object.
  *
  * @remarks
  * See {@link turtle2d} and {@link TURTLE_IMPL_2D}.
@@ -220,13 +251,14 @@ export const expand = (
  * @param impls
  * @param syms
  */
-export const interpret = <T>(
+export const interpret = <T extends object>(
 	ctx: T,
 	impls: RuleImplementations<T>,
 	syms: Iterable<LSysSymbol>
 ) => {
+	const defaultImpl = impls[<any>DEFAULT];
 	for (let s of syms) {
-		impls[s]?.(ctx, s);
+		(impls[s] || defaultImpl)?.(ctx, s);
 	}
 	return ctx;
 };

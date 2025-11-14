@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
@@ -124,7 +125,7 @@ const DLG_MAIN = kernel5(
  *
  * @remarks
  * Reference:
- * - https://web.archive.org/web/20060816003547/https://algorithmicbotany.org/papers/subgpu.sig2003.pdf
+ * https://web.archive.org/web/20060816003547/https://algorithmicbotany.org/papers/subgpu.sig2003.pdf
  */
 export const SUBDIV_DLG: SubdivKernel = {
 	fn: (pts) => DLG_MAIN(pts),
@@ -133,16 +134,17 @@ export const SUBDIV_DLG: SubdivKernel = {
 };
 
 /**
- * Higher-order subdiv kernel. Takes an array of 2-tuples of `[t,x]` where `t`
- * is the normalized split position (along each edge) and `x` is the normalized
- * displacement amount (relative to edge length). The `closed` flag indicates if
- * to be used for open/closed curves. Returns a {@link SubdivKernel} which
- * results in `displace.length` points for each original edge and displaces each
- * point by `displace[i][1] * edgeLength` units along the normal of the edge.
+ * Higher-order 2D only subdiv kernel. Takes an array of 2-tuples of `[t,x]`
+ * where `t` is the normalized split position (along each edge) and `x` is the
+ * normalized displacement amount (relative to edge length). The `closed` flag
+ * indicates if to be used for open/closed curves. Returns a
+ * {@link SubdivKernel} which results in `displace.length` points for each
+ * original edge and displaces each point by `displace[i][1] * edgeLength` units
+ * along the normal of the edge.
  *
  * @remarks
  * The original edge end points are always remaining in place. The normalized
- * split positions `t` must be in the open (0,1) interval.
+ * split positions `t` must be in the open `(0,1)` interval.
  *
  * @example
  * ```ts tangle:../export/subdiv-displace.ts
@@ -153,7 +155,7 @@ export const SUBDIV_DLG: SubdivKernel = {
  *
  * // subdivide polyline with the kernel
  * console.log(
- *   subdivide([[0,0], [100, 100], [200, 0]], kernel)
+ *   subdivide([[0,0], [100, 100], [200, 0]], [kernel])
  * );
  * // [
  * //   [ 0, 0 ], [ 50, 0 ], [ 50, 100 ], [ 100, 100 ],

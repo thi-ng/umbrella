@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec3Term } from "@thi.ng/shader-ast";
 import { vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { dot } from "@thi.ng/shader-ast/builtin/math";

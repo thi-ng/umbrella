@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Val1 } from "@thi.ng/api";
 
 // event ID constants

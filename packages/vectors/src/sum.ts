@@ -1,17 +1,41 @@
-import { add } from "@thi.ng/transducers/add";
-import { reduce } from "@thi.ng/transducers/reduce";
-import type { MultiVecOpRoV } from "./api.js";
+// SPDX-License-Identifier: Apache-2.0
+import type { MultiVecOpRoV, VecOpRoV } from "./api.js";
 import { vop } from "./vop.js";
 
 /**
- * Returns component sum of vector `v`.
+ * Returns component sum of 2D vector `v`.
  *
  * @param v -
  */
-export const sum: MultiVecOpRoV<number> = vop();
+export const sum2: VecOpRoV<number> = (a) => a[0] + a[1];
 
-sum.default((v) => reduce(add(), v));
+/**
+ * Returns component sum of 3D vector `v`.
+ *
+ * @param v -
+ */
+export const sum3: VecOpRoV<number> = (a) => a[0] + a[1] + a[2];
 
-export const sum2 = sum.add(2, (a) => a[0] + a[1]);
-export const sum3 = sum.add(3, (a) => a[0] + a[1] + a[2]);
-export const sum4 = sum.add(4, (a) => a[0] + a[1] + a[2] + a[3]);
+/**
+ * Returns component sum of 4D vector `v`.
+ *
+ * @param v -
+ */
+export const sum4: VecOpRoV<number> = (a) => a[0] + a[1] + a[2] + a[3];
+
+/**
+ * Returns component sum of nD vector `v`. Multi-method.
+ *
+ * @param v -
+ */
+export const sum: MultiVecOpRoV<number> = vop(
+	0,
+	(v) => {
+		let res = 0;
+		for (let i = v.length; i-- > 0; ) res += v[i];
+		return res;
+	},
+	sum2,
+	sum3,
+	sum4
+);

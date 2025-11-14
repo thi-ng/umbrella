@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Multi-behavior 2D cellular automata
 //!
 //! Cells can be in a configurable number of states with each state
@@ -23,7 +24,7 @@ pub const Behavior = struct {
 };
 
 allocator: std.mem.Allocator,
-rnd: std.rand.Random,
+rnd: std.Random,
 behaviors: []const Behavior,
 buf: []u8,
 cells: []u8,
@@ -36,7 +37,7 @@ const Self = @This();
 
 pub fn init(
     allocator: std.mem.Allocator,
-    rnd: std.rand.Random,
+    rnd: std.Random,
     width: u16,
     height: u16,
     behaviors: []const Behavior,

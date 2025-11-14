@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, TypedArray } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { swap } from "./swap.js";
@@ -25,7 +26,7 @@ import { swap } from "./swap.js";
  * ```
  *
  * Based on pseudo-code from:
- * - https://en.wikipedia.org/wiki/Floyd%E2%80%93Rivest_algorithm
+ * https://en.wikipedia.org/wiki/Floyd%E2%80%93Rivest_algorithm
  *
  * @param buf
  * @param k

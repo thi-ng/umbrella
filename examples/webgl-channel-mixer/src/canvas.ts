@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { Component, type NumOrElement } from "@thi.ng/rdom";
 import type { ISubscribable } from "@thi.ng/rstream";
@@ -13,7 +14,7 @@ import {
 	draw,
 	type ModelSpec,
 } from "@thi.ng/webgl";
-import { DEFAULT_B, DEFAULT_G, DEFAULT_R, type Controls } from "./api";
+import { DEFAULT_B, DEFAULT_G, DEFAULT_R, type Controls } from "./api.js";
 
 /**
  * Reactive WebGL based image component implementing the actual channel editing,

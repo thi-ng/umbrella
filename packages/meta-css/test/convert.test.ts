@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { COMPACT } from "@thi.ng/hiccup-css";
 import { NULL_LOGGER } from "@thi.ng/logger";
 import { expect, test } from "bun:test";
@@ -25,14 +26,22 @@ test("var decls", () => {
 		mediaQueryIDs: new Set(["foo"]),
 	};
 	processSpec(
-		`:root { color-1=#f00 foo:color2=#00f color_3=var(--color2) content-["a=b"] foo:content-["c=d"] }`,
+		`:root {
+		color-1=#f00
+		pad="1px 2px"
+		gradient=linear-gradient(white black)
+		foo:color2=#00f
+		color_3=var(--color2)
+		content-["a=b"]
+		foo:content-["c=d"]
+		}`,
 		proc
 	);
 	const bundle: string[] = [];
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		':root{--color-1:#f00;--color_3:var(--color2);content:"a=b";}',
+		':root{--color-1:#f00;--pad:1px 2px;--gradient:linear-gradient(white black);--color_3:var(--color2);content:"a=b";}',
 		'@media (foo){:root{--color2:#00f;content:"c=d";}}',
 	]);
 });
@@ -88,14 +97,15 @@ test("verbatim", () => {
 	};
 	const bundle: string[] = [];
 	processSpec(
-		`#test { prop-name-[foo\ bar] foo:prop-name-[1px] { [type=test] { prop-name-[nested] } } }`,
+		`#test { prop-name-[foo\ bar] foo:prop-name-[1px] { [type=test] { prop-name-[nested] } } }
+		#test2 { content-["test:"] foo:content-["foo:"] }`,
 		proc
 	);
 	processPlainRules(bundle, proc);
 	processMediaQueries(bundle, proc);
 	expect(bundle).toEqual([
-		"#test{prop-name:foo bar;}#test[type=test]{prop-name:nested;}",
-		"@media (foo){#test{prop-name:1px;}}",
+		`#test{prop-name:foo bar;}#test[type=test]{prop-name:nested;}#test2{content:"test:";}`,
+		'@media (foo){#test{prop-name:1px;}#test2{content:"foo:";}}',
 	]);
 });
 
@@ -116,6 +126,8 @@ test("split line", () => {
 	]);
 	expect([...splitLine("a-[b c]")]).toEqual(["a-[b c]"]);
 	expect([...splitLine("a-[b [c]]")]).toEqual(["a-[b [c]]"]);
+	expect([...splitLine(`a="b,c"`)]).toEqual([`a="b,c"`]);
+	expect([...splitLine(`a-["b,c"]`)]).toEqual([`a-["b,c"]`]);
 	expect(() => [...splitLine("f(a,b))")]).toThrow();
 	expect(() => [...splitLine("a, b {f(a,b}")]).toThrow();
 	expect(() => [...splitLine("a-[b [c]")]).toThrow();

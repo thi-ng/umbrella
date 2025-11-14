@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks";
 import type { GrayscaleSpec, Processor } from "../api.js";
 

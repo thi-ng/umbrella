@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { indent } from "./impl.js";
 import type { RuleFn } from "./api.js";
 

@@ -1,10 +1,11 @@
 *       text=auto eol=lf
-*.gif	-text
-*.jpg	-text
-*.mp4	-text
-*.pdf	-text
-*.png	-text
-*.gz	-text
+*.gif	binary
+*.jpg	binary
+*.mp4	binary
+*.pdf	binary
+*.png	binary
+*.gz	binary
 *.meta	linguist-language=text
 tools/doc/* linguist-documentation
+/.yarn/releases/** binary
 yarn.lock -diff

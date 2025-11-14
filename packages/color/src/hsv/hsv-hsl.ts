@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ColorOp } from "../api.js";
 import { clampH } from "../clamp.js";
 

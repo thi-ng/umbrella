@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
 import { writeFileSync } from "fs";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { identity, type Fn } from "@thi.ng/api/fn";
 import { gibbs } from "./anti-alias.js";
 import type { StatelessOscillator } from "./api.js";
@@ -9,8 +10,8 @@ import { sin } from "./osc-sin.js";
  *
  * @remarks
  * The `freqFn` and `ampFn` functions are used to compute respective frequency
- * and amplitude factors for each of the `n` requested harmonics (given in [i,n]
- * range).
+ * and amplitude factors for each of the `n` requested harmonics (given in
+ * `[i,n]` range).
  *
  * @param osc -
  * @param freqFn -
@@ -44,8 +45,7 @@ export const additive = (
  * each partial.
  *
  * @remarks
- * Interactive graph of this oscillator:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * [Interactive graph of this oscillator](https://www.desmos.com/calculator/irugw6gnhy)
  *
  * @param n - number of partials
  * @param useGibbs -
@@ -64,8 +64,7 @@ export const squareAdditive = (n = 8, useGibbs = true) =>
  * {@link gibbs} to each partial.
  *
  * @remarks
- * Interactive graph of this oscillator:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * [Interactive graph of this oscillator](https://www.desmos.com/calculator/irugw6gnhy)
  *
  * @param n - number of partials
  * @param useGibbs -

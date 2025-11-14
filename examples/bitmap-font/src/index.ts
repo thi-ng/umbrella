@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { div, inputText, pre } from "@thi.ng/hiccup-html";
 import { $compile, $input } from "@thi.ng/rdom";
@@ -15,7 +16,7 @@ import {
 	zip,
 } from "@thi.ng/transducers";
 import { bits } from "@thi.ng/transducers-binary";
-import { FONT } from "./font";
+import { FONT } from "./font.js";
 
 // retrieve font bytes for given char (only printable ASCII range supported)
 const lookupChar = (c: string) => {

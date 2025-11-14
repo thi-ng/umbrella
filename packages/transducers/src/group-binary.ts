@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import type { Reducer } from "./api.js";
 import { groupByObj } from "./group-by-obj.js";
@@ -59,7 +60,7 @@ const __branchPred =
  * // [ 5 ]
  *
  * console.log(tree[0][1][1]);    // 011* == branch
- * // [ [ 6 ], [ 7 ] ]
+ * // { "0": [ 6 ], "1": [ 7 ] }
  * ```
  *
  * Using {@link frequencies} as leaf reducer:

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { button, div } from "@thi.ng/hiccup-html";

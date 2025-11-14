@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, SamplingOpts } from "./api.js";
 import { ComplexPolygon } from "./api/complex-polygon.js";
 import type { Path } from "./api/path.js";

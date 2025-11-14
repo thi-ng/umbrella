@@ -1,27 +1,27 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
 
 export interface SyntaxOpts {
 	/**
 	 * An array of string pairs defining possible S-expression / scope
-	 * delimiters [open, close]. By default only the classic ["(",")"]
-	 * pair is defined. Only single character delimiters are supported.
+	 * delimiters `[open, close]`. By default only the classic `["(",")"]` pair
+	 * is defined. Only single character delimiters are supported.
 	 *
 	 * {@link DEFAULT_SYNTAX}
 	 */
 	scopes: string[][];
 	/**
-	 * Regex to identify whitespace a single whitespace character.
-	 * Default: space, tab, newline, comma
+	 * Regex to identify whitespace a single whitespace character. Default:
+	 * space, tab, newline, comma
 	 */
 	whiteSpace: RegExp;
 	/**
-	 * Single character string to delineate string values.
-	 * Default: `"`
+	 * Single character string to delineate string values. Default: `"`
 	 */
 	string: string;
 	/**
-	 * Single character string for comments (always active until next line break)
-	 * Default: `;`
+	 * Single character string for comments (always active until next line
+	 * break) Default: `;`
 	 */
 	comment: string;
 }

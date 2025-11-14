@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU3 } from "@thi.ng/api";
 import type { Bit } from "./api.js";
 import { defMask } from "./mask.js";
@@ -6,7 +7,7 @@ import { defMask } from "./mask.js";
  * Clears bit in given uint `x`.
  *
  * @param x - value
- * @param bit - bit number (0..31)
+ * @param bit - bit number `(0,31)`
  */
 export const bitClear = (x: number, bit: Bit) => (x & ~(1 << bit)) >>> 0;
 
@@ -22,7 +23,7 @@ export const bitFlip = (x: number, bit: Bit) => (x ^ (1 << bit)) >>> 0;
  * Sets bit in given uint `x`.
  *
  * @param x - value
- * @param bit - bit number (0..31)
+ * @param bit - bit number `(0,31)`
  */
 export const bitSet = (x: number, bit: Bit) => (x | (1 << bit)) >>> 0;
 

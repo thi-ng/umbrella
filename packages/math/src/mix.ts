@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
 import { EPS, HALF_PI, PI } from "./api.js";
 
@@ -6,7 +7,7 @@ import { EPS, HALF_PI, PI } from "./api.js";
  *
  * @param a - start value
  * @param b - end value
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
 
@@ -36,7 +37,73 @@ export const mixBilinear: FnN6 = (a, b, c, d, u, v) => {
 };
 
 /**
+ * Trilinear interpolation of given values (`a`..`h`) with interpolation factors
+ * `u`,`v`,`w` (in `[0,1]` range).
+ *
+ * @example
+ * ```text
+ * c +-------+ d
+ *   |\      :\
+ *   | \     : \
+ *   |g +-------+ h
+ *   |  |    :  |
+ * a +··|····+ b|
+ *    \ |     \ |
+ *     \|      \|
+ *    e +-------+ f
+ * ```
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param e
+ * @param f
+ * @param g
+ * @param h
+ * @param u
+ * @param v
+ * @param w
+ */
+export const mixTrilinear = (
+	a: number,
+	b: number,
+	c: number,
+	d: number,
+	e: number,
+	f: number,
+	g: number,
+	h: number,
+	u: number,
+	v: number,
+	w: number
+) => {
+	const iu = 1 - u;
+	const iv = 1 - v;
+	const iw = 1 - w;
+	const uv = u * v;
+	const u_iv = u * iv;
+	const iu_v = iu * v;
+	const iuv = iu * iv;
+	return (
+		a * iuv * iw +
+		b * u_iv * iw +
+		c * iu_v * iw +
+		d * uv * iw +
+		e * iuv * w +
+		f * u_iv * w +
+		g * iu_v * w +
+		h * uv * w
+	);
+};
+
+/**
  * Computes quadratic bezier interpolation for normalized value `t`.
+ * Interpolated result is between end points `a` and `c` with `b` a control
+ * point.
+ *
+ * @remarks
+ * [Interactive graph](https://www.desmos.com/calculator/s3cvphot1o)
  *
  * @param a
  * @param b
@@ -49,7 +116,11 @@ export const mixQuadratic: FnN4 = (a, b, c, t) => {
 };
 
 /**
- * Computes cubic bezier interpolation for normalized value `t`.
+ * Computes cubic bezier interpolation for normalized value `t`. Interpolated
+ * result is between end points `a` and `d` with `b` and `c` control points.
+ *
+ * @remarks
+ * [Interactive graph](https://www.desmos.com/calculator/dfc6twzlmk)
  *
  * @param a
  * @param b
@@ -70,11 +141,12 @@ export const mixCubic: FnN5 = (a, b, c, d, t) => {
  * inform the tangent of the interpolation curve. The interpolated result is
  * that of `b` and `c`.
  *
+ * @remarks
  * Assumes all inputs are uniformly spaced. If that's not the case, use
  * {@link mixCubicHermite} with one of the tangent generators supporting
  * non-uniform spacing of points.
  *
- * See: https://www.desmos.com/calculator/j4gf8g9vkr
+ * [Interactive graph](https://www.desmos.com/calculator/j4gf8g9vkr)
  *
  * Source:
  * https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html
@@ -199,6 +271,35 @@ export const mixBicubic = (
 	);
 
 /**
+ * Parametric interpolation function for 4 samples `a`...`d` and interpolation
+ * `kernel` and factor `t`. The interpolation is assumed to be between `b` and
+ * `c`, using `a` and `d` as neighbors. Interpolation factor `t` is in the [0,1]
+ * range.
+ *
+ * @remarks
+ * The `kernel` is avaluated for 4 different `t`s @ `t-1`, `t`, `t+1`, `t+2`
+ * (corresponding to samples `a`..`d`).
+ *
+ * This function can be used with e.g. {@link defLanczos} (filter radius=2) or
+ * {@link defMitchell}.
+ *
+ * @param kernel
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param t
+ */
+export const mixKernel4 = (
+	kernel: FnN,
+	a: number,
+	b: number,
+	c: number,
+	d: number,
+	t: number
+) => a * kernel(t + 1) + b * kernel(t) + c * kernel(t - 1) + d * kernel(t - 2);
+
+/**
  * Helper function for {@link mixCubicHermite}. Computes cardinal tangents based
  * on point neighbors of a point B (not given), i.e. `a` (predecessor) and `c`
  * (successor) and their times (defaults to uniformly spaced). The optional
@@ -252,7 +353,7 @@ export const tangentDiff3 = (
 
 /**
  * HOF interpolator. Takes a timing function `f` and interval `[from,to]`.
- * Returns function which takes normalized time (in [0,1] range) as single arg
+ * Returns function which takes normalized time (in `[0,1]` range) as single arg
  * and returns interpolated value.
  *
  * @example
@@ -288,9 +389,9 @@ export const tween =
  * Circular interpolation (ease out): `sqrt(1 - (1 - t)^2)`
  *
  * @remarks
- * Reference: https://www.desmos.com/calculator/tisoiazdrw
+ * [Interactive graph](https://www.desmos.com/calculator/tisoiazdrw)
  *
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const circular: FnN = (t) => {
 	t = 1 - t;
@@ -301,9 +402,9 @@ export const circular: FnN = (t) => {
  * Inverse/flipped version of {@link circular} (ease in).
  *
  * @remarks
- * Reference: https://www.desmos.com/calculator/tisoiazdrw
+ * [Interactive graph](https://www.desmos.com/calculator/tisoiazdrw)
  *
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const invCircular: FnN = (t) => 1 - circular(1 - t);
 
@@ -312,8 +413,8 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  * strength.
  *
  * @remarks
- * Lens position must be given in (0..1) interval. Lens strength must be in
- * [-1,1] range. If negative, the lens will be bundling values near `pos`, if
+ * Lens position must be given in `(0,1)` interval. Lens strength must be in
+ * `[-1,1]` range. If negative, the lens will be bundling values near `pos`, if
  * positive the lens has dilating characteristics and will spread values near
  * `pos` towards the edges.
  *
@@ -347,7 +448,7 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  *
  * @param pos - lens pos
  * @param strength - lens strength
- * @param t - interpolation factor [0..1]
+ * @param t - interpolation factor `[0,1]`
  */
 export const lens: FnN3 = (pos, strength, t) => {
 	const impl = strength > 0 ? invCircular : circular;
@@ -364,8 +465,7 @@ export const decimated: FnN2 = (n, t) => Math.floor(t * n) / n;
  * Spring oscillator with damping.
  *
  * @remarks
- * Interactive graph:
- * https://www.desmos.com/calculator/tywbpw8pck
+ * [Interactive graph](https://www.desmos.com/calculator/tywbpw8pck)
  *
  * @param k
  * @param amp
@@ -425,7 +525,7 @@ export const sinc: FnN = (t) => (t !== 0 ? Math.sin(t) / t : 1);
  * @remarks
  * https://en.wikipedia.org/wiki/Sinc_function
  *
- * @see {@link sinc}
+ * See {@link sinc}
  *
  * @param k -
  * @param t -
@@ -437,13 +537,68 @@ export const sincNormalized: FnN2 = (k, t) => sinc(PI * k * t);
  * returns 0.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/pmypqgefle
+ * References:
+ *
+ * - [Interactive graph](https://www.desmos.com/calculator/ccpog9yol8)
+ * - https://en.wikipedia.org/wiki/Lanczos_resampling
  *
  * @param a -
  * @param t -
  */
 export const lanczos: FnN2 = (a, t) =>
-	t !== 0 ? (-a < t && t < a ? sinc(PI * t) * sinc((PI * t) / a) : 0) : 1;
+	t !== 0
+		? -a < t && t < a
+			? ((t *= PI), (a * Math.sin(t) * Math.sin(t / a)) / (t * t))
+			: 0
+		: 1;
+
+/**
+ * Higher-order version of {@link lanczos} for filter size `a` (should be 1, 2
+ * or 3). Returns function which takes single param `t` and computes its Lanczos
+ * filter coefficient.
+ *
+ * @param a
+ */
+export const defLanczos =
+	(a: number): FnN =>
+	(t) =>
+		lanczos(a, t);
+
+/**
+ * Higher-order Mitchell-Netravali filter kernel for params `b` and `c`. Returns
+ * function which takes single param `t` and computes its filter coefficient.
+ *
+ * @remarks
+ * Default `b` and `c` values are: b=1/3, c=1/3. The returned function can be
+ * used with {@link mixKernel4}.
+ *
+ * References:
+ *
+ * - https://en.wikipedia.org/wiki/Mitchell%E2%80%93Netravali_filters
+ *
+ * @param b
+ * @param c
+ */
+export const defMitchell = (b = 1 / 3, c = 1 / 3) => {
+	const b12 = 12 * b;
+	const c6 = 6 * c;
+	const k1 = 12 - 9 * b - c6;
+	const k2 = -18 + b12 + c6;
+	const k3 = 6 - 2 * b;
+	const k4 = -b - c6;
+	const k5 = 6 * b + 30 * c;
+	const k6 = -b12 - 48 * c;
+	const k7 = 8 * b + 24 * c;
+	return (t: number) => {
+		if (t < 0) t = -t;
+		const t2 = t * t;
+		return t < 1
+			? (k1 * t2 * t + k2 * t2 + k3) / 6
+			: t < 2
+			? (k4 * t2 * t + k5 * t2 + k6 * t + k7) / 6
+			: 0;
+	};
+};
 
 /**
  * Sigmoid function for inputs arounds center bias.
@@ -460,7 +615,7 @@ export const sigmoid: FnN3 = (bias, k, t) =>
 	t != bias ? 1 / (1 + Math.exp(-k * (t - bias))) : 0.5;
 
 /**
- * Sigmoid function for inputs in [0..1] interval. Center bias = 0.5.
+ * Sigmoid function for inputs in `[0,1]` interval. Center bias = 0.5.
  *
  * @param k - steepness
  * @param t - input value
@@ -468,7 +623,7 @@ export const sigmoid: FnN3 = (bias, k, t) =>
 export const sigmoid01: FnN2 = (k, t) => sigmoid(0.5, k, t);
 
 /**
- * Sigmoid function for inputs in [-1..+1] interval. Center bias = 0
+ * Sigmoid function for inputs in `[-1,1]` interval. Center bias = 0
  *
  * @param k -
  * @param t -
@@ -480,12 +635,11 @@ export const sigmoid11: FnN2 = (k, t) => sigmoid(0, k, t);
  * https://arxiv.org/abs/2010.09714
  *
  * @remarks
- * Interactive graph:
- * https://www.desmos.com/calculator/u6bkm5rb7t
+ * [Interactive graph](https://www.desmos.com/calculator/u6bkm5rb7t)
  *
- * @param a - curve strength. recommended (0..64]
- * @param b - pivot position [0..1]
- * @param t - input val [0..1]
+ * @param a - curve strength. recommended `(0,64]`
+ * @param b - pivot position `[0,1]`
+ * @param t - input val `[0,1]`
  */
 export const schlick: FnN3 = (a, b, t) =>
 	t <= b
@@ -493,9 +647,9 @@ export const schlick: FnN3 = (a, b, t) =>
 		: ((1 - b) * (t - 1)) / (1 - t - a * (b - t) + EPS) + 1;
 
 /**
- * Computes exponential factor to interpolate from `a` to `b` over
- * `num` steps. I.e. multiplying `a` with the returned factor will yield
- * `b` after `num` steps. All args must be > 0.
+ * Computes exponential factor to interpolate from `a` to `b` over `num` steps.
+ * I.e. multiplying `a` with the returned factor will yield `b` after `num`
+ * steps. All args must be > 0.
  *
  * @param a -
  * @param b -
@@ -504,10 +658,57 @@ export const schlick: FnN3 = (a, b, t) =>
 export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
 
 /**
+ * Computes framerate-independent interpolation factor `t` for use with
+ * `mix(a,b, t)`, where `delta` is the time passed since last frame, `rate` is a
+ * user-defined interpolation rate and `fps` is the reference framerate (default
+ * = 60).
+ *
+ * @remarks
+ * Reference:
+ * https://blog.pkh.me/p/41-fixing-the-iterative-damping-interpolation-in-video-games.html
+ *
+ * @example
+ * ```ts tangle:../export/exp-rate.ts
+ * import { mix, expRate } from "@thi.ng/math";
+ *
+ * // fixed example framerate
+ * const FPS = 5;
+ * // arbitrary interpolation rate
+ * const RATE = 0.5;
+ *
+ * // start value
+ * let value = 0;
+ *
+ * // interpolate for 3 seconds at given FPS
+ * for(let i = 0; i < 3 * FPS; i++) {
+ *   // compute current frame delta time (here static)
+ *   const delta = 1 / FPS;
+ *   // iteratively interpolate to target=100 in a framerate agnostic manner,
+ *   // using RATE and 60 fps as reference frame rate
+ *   value = mix(value, 100, expRate(delta, RATE, 60));
+ *   console.log(i, value);
+ * }
+ * // 0 9.554162585016023
+ * // 1 18.195504943022847
+ * // 2 26.01123940261784
+ * // ...
+ * // 12 72.89486380583645
+ * // 13 75.48453258671687
+ * // 14 77.82678020185855
+ * ```
+ *
+ * @param delta
+ * @param rate
+ * @param fps
+ */
+export const expRate = (delta: number, rate: number, fps = 60) =>
+	1 - Math.exp(-delta * -fps * Math.log(1 - rate / fps));
+
+/**
  * Computes gaussian bell curve for given center `bias` and `sigma` (spread).
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/aq6hdzxprv
+ * [Interactive graph](https://www.desmos.com/calculator/aq6hdzxprv)
  *
  * @param bias -
  * @param sigma -

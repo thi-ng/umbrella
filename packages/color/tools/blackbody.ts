@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { swatchesH } from "@thi.ng/color";
 import { mix } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";

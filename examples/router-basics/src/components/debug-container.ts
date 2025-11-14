@@ -1,6 +1,7 @@
-import type { AppContext } from "../api";
-import { TOGGLE_DEBUG } from "../events";
-import { eventLink } from "./event-link";
+// SPDX-License-Identifier: Apache-2.0
+import type { AppContext } from "../api.js";
+import { TOGGLE_DEBUG } from "../events.js";
+import { eventLink } from "./event-link.js";
 
 /**
  * Collapsible component showing stringified app state.

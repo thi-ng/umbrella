@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import type { AsyncTxLike } from "./api.js";

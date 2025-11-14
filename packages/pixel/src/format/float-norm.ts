@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { Lane, type FloatFormat } from "../api.js";
 
@@ -16,7 +17,8 @@ export const FLOAT_NORMAL: FloatFormat = {
 	shift: { 3: 0, 2: 8, 1: 16 },
 	size: 3,
 	range: [-1, 1],
-	getNormalized: (val) => clamp01(val * 0.5 + 0.5),
+	normalized: (val) => clamp01(val * 0.5 + 0.5),
+	fromNormalized: (val) => val * 2 - 1,
 	fromABGR: (src) => [
 		__from(src & 0xff),
 		__from((src >> 8) & 0xff),

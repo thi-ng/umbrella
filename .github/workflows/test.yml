@@ -20,15 +20,15 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871
-            - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+            - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
               with:
-                  node-version: ">=20.0.0"
+                  node-version: "24.11.0"
                   cache: "yarn"
-            - uses: goto-bus-stop/setup-zig@abea47f85e598557f500fa1fd2ab7464fcb39406
+            - uses: mlugg/setup-zig@8d6198c65fb0feaa111df26e6b467fea8345e46f
               with:
-                  version: 0.13.0
-            - uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5
+                  version: 0.15.1
+            - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
               with:
                   bun-version: latest
             - run: yarn install --immutable

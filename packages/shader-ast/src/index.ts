@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./api/function.js";
 export * from "./api/nodes.js";
 export * from "./api/ops.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Helper function to immutably merge attribs from two sources and
  * concatenate their `class` values and merge their `style` maps (if

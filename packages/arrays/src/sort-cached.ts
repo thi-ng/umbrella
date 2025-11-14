@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { compare } from "@thi.ng/compare/compare";

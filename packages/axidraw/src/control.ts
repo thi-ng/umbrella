@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref, IReset } from "@thi.ng/api";
 import { AxiDrawState } from "./api.js";
 

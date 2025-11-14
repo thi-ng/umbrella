@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface DownloadOpts {
 	/**
 	 * MIME type. If not given, attempts to derive MIME type from given

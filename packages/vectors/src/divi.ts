@@ -1,9 +1,41 @@
-import { defBitOp, defBitOpN } from "./compile/emit.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVV } from "./defopvv.js";
+import { $divI } from "./ops.js";
 
-export const [divI, divI2, divI3, divI4] = defBitOp("/", true);
+const [a, b, c, d] = defOpVV($divI);
 
-export const [divU, divU2, divU3, divU4] = defBitOp("/");
+/**
+ * Componentwise nD signed integer vector division. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const divI = a;
 
-export const [divNI, divNI2, divNI3, divNI4] = defBitOpN("/", true);
+/**
+ * Componentwise 2D signed integer vector division.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const divI2 = b;
 
-export const [divNU, divNU2, divNU3, divNU4] = defBitOpN("/");
+/**
+ * Componentwise 3D signed integer vector division.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const divI3 = c;
+
+/**
+ * Componentwise 4D signed integer vector division.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const divI4 = d;

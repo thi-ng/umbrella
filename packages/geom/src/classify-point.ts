@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -38,6 +39,7 @@ import { __dispatch } from "./internal/dispatch.js";
  * similar checks as this function.
  *
  * Also see:
+ *
  * - {@link closestPoint}
  * - {@link pointInside}
  * - {@link proximity}

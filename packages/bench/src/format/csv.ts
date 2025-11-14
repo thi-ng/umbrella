@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EMPTY, FLOAT, type BenchmarkFormatter } from "../api.js";
 
 export const FORMAT_CSV: BenchmarkFormatter = {

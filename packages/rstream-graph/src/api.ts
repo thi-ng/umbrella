@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf, NumOrString, Path } from "@thi.ng/api";
 import type { ResolveFn } from "@thi.ng/resolve-map";
 import type { ISubscription } from "@thi.ng/rstream";

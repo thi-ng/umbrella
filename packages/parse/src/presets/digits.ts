@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { oneOrMore } from "../combinators/repeat.js";
 import { range } from "../prims/range.js";
 

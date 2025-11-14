@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface IBase extends BaseCommon, IBaseEncode, IBaseDecode {}
 
 export interface BaseCommon {

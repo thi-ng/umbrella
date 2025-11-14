@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { css, lch } from "@thi.ng/color";
 import { group, svg } from "@thi.ng/hiccup-svg";
 import { SYSTEM } from "@thi.ng/random";

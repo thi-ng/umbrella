@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-webgl",
-	"version": "0.1.26",
+	"version": "1.0.10",
 	"description": "WebGL bridge API for hybrid TypeScript & WASM (Zig) applications",
 	"type": "module",
 	"module": "./index.js",
@@ -31,28 +31,26 @@
 		"build": "yarn build:esbuild && yarn build:decl",
 		"build:decl": "tsc --declaration --emitDeclarationOnly",
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
-		"build:types": "npx wasm-api-bindgen  -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
+		"build:types": "npx wasm-api-bindgen  -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/types.ts --lang zig -o zig/types.zig src/typedefs.json",
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/wasm-api": "^2.3.2",
-		"@thi.ng/wasm-api-dom": "^1.0.19",
-		"@thi.ng/webgl": "^6.9.31"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/wasm-api": "^2.4.9",
+		"@thi.ng/wasm-api-dom": "^2.0.9",
+		"@thi.ng/webgl": "^6.9.85"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"@thi.ng/wasm-api-bindgen": "^1.1.2",
-		"esbuild": "^0.24.2",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"@thi.ng/wasm-api-bindgen": "^1.2.54",
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"browser",
@@ -60,7 +58,7 @@
 		"interop",
 		"shader",
 		"typescript",
-		"webassembly",
+		"wasm",
 		"webgl",
 		"zig"
 	],
@@ -98,6 +96,7 @@
 			"webgl"
 		],
 		"status": "alpha",
+		"tag": "wasm",
 		"year": 2024
 	}
 }

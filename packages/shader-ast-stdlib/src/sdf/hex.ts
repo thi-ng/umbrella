@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec2Sym } from "@thi.ng/shader-ast";
 import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
@@ -19,7 +20,7 @@ import {
  *
  * @remarks
  * Ported from original GLSL impl by Inigo Quilez:
- * - https://iquilezles.org/articles/distfunctions2d/
+ * https://iquilezles.org/articles/distfunctions2d/
  */
 export const sdfHexagon2 = defn(F, "sdfHexagon2", [V2, F], (p, r) => {
 	const TAN30 = 0.5773502691896257;

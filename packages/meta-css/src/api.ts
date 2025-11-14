@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { IObjectOf, NumOrString } from "@thi.ng/api";
 import { flag, int, string, strings, type CommandCtx } from "@thi.ng/args";
@@ -80,7 +81,7 @@ export type TemplateSpec = Omit<Spec, "key" | "values">;
 export const ARG_SPECS = {
 	specs: string({
 		alias: "s",
-		optional: false,
+		required: true,
 		desc: "Path to generated JSON defs",
 	}),
 };

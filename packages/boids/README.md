@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/boids](https://media.thi.ng/umbrella/banners-20230807/thing-boids.svg?2fecdc5a)
+# ![@thi.ng/boids](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-boids.svg?2fecdc5a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/boids.svg)](https://www.npmjs.com/package/@thi.ng/boids)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/boids.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -111,7 +111,7 @@ For Node.js REPL:
 const boids = await import("@thi.ng/boids");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.91 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB
 
 ## Dependencies
 

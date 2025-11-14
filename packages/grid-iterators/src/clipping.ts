@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3, FnU2, FnU7, FnU8, Maybe, Tuple } from "@thi.ng/api";
 
 /**
@@ -52,7 +53,7 @@ export const intersectRectCircle: FnU7<number, boolean> = (
 ) => __axis(cx, x, w) + __axis(cy, y, h) <= r * r;
 
 /**
- * Based on [`liangBarsky2Raw()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/liangBarsky2Raw.html), but with diff return type.
+ * Based on [`liangBarsky2Raw`](https://docs.thi.ng/umbrella/geom-clip-line/functions/liangBarsky2Raw.html), but with diff return type.
  *
  * @param ax -
  * @param ay -

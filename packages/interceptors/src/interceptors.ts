@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnO, Maybe, Path } from "@thi.ng/api";
 import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";

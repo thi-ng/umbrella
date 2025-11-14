@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { shuffle } from "@thi.ng/arrays";
 import { equiv } from "@thi.ng/equiv";
 import { XsAdd } from "@thi.ng/random";

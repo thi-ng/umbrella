@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IBase } from "./api.js";
 import { BaseNDecoder } from "./decode.js";
 import { BaseNEncoder } from "./encode.js";

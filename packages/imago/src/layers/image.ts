@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors";
 import sharp from "sharp";
 import type { CompLayerFn, Dim, ImgLayer } from "../api.js";
-import { computeSize, ensureSize, positionOrGravity } from "../units.js";
+import { computeSize, ensureSize, positionOrGravity } from "../utils.js";
 
 export const imageLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	const {

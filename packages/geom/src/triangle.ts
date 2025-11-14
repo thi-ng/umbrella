@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { equilateralTriangle2 } from "@thi.ng/geom-poly-utils/equilateral";
 import type { Vec } from "@thi.ng/vectors";

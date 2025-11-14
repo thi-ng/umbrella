@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math/api";
 import { AGen } from "./agen.js";

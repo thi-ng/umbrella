@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ISeq } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import { cons, lazyseq } from "../src/index.js";

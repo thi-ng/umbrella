@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Takes an array of string parts and returns a new string of each part's
  * initial character. The `mode` arg can be used to customize result casing

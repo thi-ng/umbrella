@@ -1,8 +1,13 @@
-import type { Fn, Fn2, IDeref, IObjectOf } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
+import type { Fn, Fn2, IDeref, IObjectOf, Predicate } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { FormatPresets } from "@thi.ng/text-format";
 
 export interface ArgSpecBase {
+	/**
+	 * Unique arg type ID
+	 */
+	type: string;
 	/**
 	 * Shorthand for given arg/option
 	 */
@@ -33,53 +38,80 @@ export interface ArgSpecBase {
 	group?: string;
 }
 
-export type ArgSpecRestrict<T> = undefined extends T
-	? {}
-	: { optional: false } | { default: T };
+export type ArgSpec<T> = ArgSpecBase & ArgSpecRequired<T>;
 
-export type ArgSpec<T> = ArgSpecBase & ArgSpecRestrict<T>;
+export type ArgSpecRequired<T> = undefined extends T
+	? { default?: T }
+	: { required: true } | { default: T };
 
-export type ArgSpecExt = ArgSpec<any> & {
-	coerce?: Fn<any, any>;
-	delim?: string;
-	default?: any;
-	flag?: boolean;
-	fn?: Fn<string, boolean>;
-	multi?: boolean;
-	optional?: any;
+export type Args<T extends object> = {
+	[id in keyof T]: ArgSpec<T[id]>;
 };
 
-export type Args<T extends IObjectOf<any>> = {
-	[id in keyof T]: boolean extends T[id]
-		? ArgSpec<T[id]> & { flag: true }
-		: any[] extends T[id]
-		? ArgSpec<T[id]> & {
-				coerce: Fn<string[], Exclude<T[id], undefined>>;
-				multi: true;
-				delim?: string;
-		  }
-		: KVDict extends T[id]
-		? ArgSpec<T[id]> & {
-				coerce: Fn<string[], Exclude<T[id], undefined>>;
-				multi: true;
-		  }
-		: KVMultiDict extends T[id]
-		? ArgSpec<T[id]> & {
-				coerce: Fn<string[], Exclude<T[id], undefined>>;
-				multi: true;
-		  }
-		: ArgSpec<T[id]> & {
-				coerce: Fn<string, Exclude<T[id], undefined>>;
-		  };
+/**
+ * Partial arg spec given to various argument factory functions.
+ */
+export type ArgDef = Omit<ArgSpecBase, "type">;
+/**
+ * Partial arg spec (for required arguments) given to various argument factory
+ * functions.
+ */
+export type ArgDefRequired<T> = ArgDef & ({ default: T } | { required: true });
+
+/**
+ * @internal
+ */
+export type ArgSpecExt = ArgSpec<any> & {
+	/**
+	 * Value coercion fn.
+	 */
+	coerce?: Fn<any, any>;
+	/**
+	 * Delimiter to split values (only used for `multi` args and if `split=false`)
+	 */
+	delim?: string;
+	/**
+	 * Default value
+	 */
+	default?: any;
+	/**
+	 * User defined validation fn (can be used for side effects too).
+	 */
+	fn?: Predicate<string>;
+	/**
+	 * Indicator flag for args accepting multiple values
+	 */
+	multi?: boolean;
+	/**
+	 * Indicator flag for required args.
+	 */
+	required?: true;
+	/**
+	 * Unless false, collected values are split via `delim` prior to calling
+	 * coercion function. Only used for `multi` specs.
+	 */
+	split?: boolean;
 };
 
 export type KVDict = IObjectOf<string>;
 export type KVMultiDict = IObjectOf<string[]>;
 
 export interface ParseResult<T> {
+	/**
+	 * Parsed arguments
+	 */
 	result: T;
+	/**
+	 * `process.argv` index (+1) where parsing stopped
+	 */
 	index: number;
+	/**
+	 * If true, all elements of `process.argv` have been consumed
+	 */
 	done: boolean;
+	/**
+	 * Remaining unparsed elements of `process.argv` (if any)
+	 */
 	rest: string[];
 }
 
@@ -100,7 +132,7 @@ export interface ParseOpts {
 	/**
 	 * Only used if `showUsage` is enabled.
 	 *
-	 * @see {@link UsageOpts}
+	 * Also see {@link UsageOpts}
 	 */
 	usageOpts: Partial<UsageOpts>;
 	/**
@@ -178,6 +210,8 @@ export interface UsageOpts {
  */
 export interface ColorTheme {
 	default: number;
+	command: number;
+	error: number;
 	hint: number;
 	multi: number;
 	param: number;
@@ -186,6 +220,8 @@ export interface ColorTheme {
 
 export const DEFAULT_THEME: ColorTheme = {
 	default: 95,
+	command: 92,
+	error: 91,
 	hint: 90,
 	multi: 90,
 	param: 96,
@@ -260,7 +296,7 @@ export interface Command<
 	CTX extends CommandCtx<OPTS, BASE> = CommandCtx<OPTS, BASE>
 > {
 	/**
-	 * Command description (short, single line)
+	 * Command description (any length, will be word wrapped if needed)
 	 */
 	desc: string;
 	/**
@@ -269,9 +305,10 @@ export interface Command<
 	opts: Args<Omit<OPTS, keyof BASE>>;
 	/**
 	 * Number of required rest input value (after all parsed options). Leave
-	 * unset to allow any number.
+	 * unset to allow any number. If given as tuple, the values are interpreted
+	 * as acceptable `[min,max]` range.
 	 */
-	inputs?: number;
+	inputs?: number | [number, number];
 	/**
 	 * Actual command function/implementation.
 	 */

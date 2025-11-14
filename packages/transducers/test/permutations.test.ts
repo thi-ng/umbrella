@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { swizzle } from "@thi.ng/arrays";
 import { describe, expect, test } from "bun:test";
 import {

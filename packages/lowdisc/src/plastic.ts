@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import { kronecker } from "./kronecker.js";
 import { lowDiscrepancy } from "./lowdisc.js";
@@ -5,8 +6,8 @@ import { lowDiscrepancy } from "./lowdisc.js";
 /**
  * Computes the `d`-th Harmonious number, with:
  *
- * - d=1 : PHI (Golden ratio)
- * - d=2 : PLASTIC (Plastic number)
+ * - d=1 PHI (Golden ratio)
+ * - d=2 PLASTIC (Plastic number)
  *
  * @remarks
  * See {@link plasticND} for references.

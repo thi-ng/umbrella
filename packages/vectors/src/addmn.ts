@@ -1,11 +1,45 @@
-import type { MultiVecOpVVN, VecOpVVN } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { ARGS_VVN, MATH2_N } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVVN } from "./defopvvn.js";
+import { $addm } from "./ops.js";
+
+const [a, b, c, d] = defOpVVN($addm);
 
 /**
- * Returns `out = (a + b) * n`.
+ * Componentwise nD vector add-multiply. `o = (a + b) * n`. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
  */
-export const [addmN, addmN2, addmN3, addmN4] = defOp<MultiVecOpVVN, VecOpVVN>(
-	MATH2_N("+", "*"),
-	ARGS_VVN
-);
+export const addmN = a;
+
+/**
+ * Componentwise 2D vector add-multiply. `o = (a + b) * n`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const addmN2 = b;
+
+/**
+ * Componentwise 3D vector add-multiply. `o = (a + b) * n`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const addmN3 = c;
+
+/**
+ * Componentwise 4D vector add-multiply. `o = (a + b) * n`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param n - scalar
+ */
+export const addmN4 = d;

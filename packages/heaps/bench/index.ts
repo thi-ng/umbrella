@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { benchmark } from "@thi.ng/bench";
 import { SYSTEM } from "@thi.ng/random";
 import { repeatedly } from "@thi.ng/transducers";

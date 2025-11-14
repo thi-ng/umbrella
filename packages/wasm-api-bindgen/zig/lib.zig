@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Common helper types used by thi.ng/wasm-api-bindgen
 //! None of these type have any further dependencies
 

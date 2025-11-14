@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, IShape2, PCLike } from "./api.js";
@@ -20,7 +21,7 @@ export type ConvexHullFn = {
  *
  * @remarks
  * Internally uses
- * [`grahamScan2()`](https://docs.thi.ng/umbrella/geom-hull/functions/grahamScan2.html).
+ * [`grahamScan2`](https://docs.thi.ng/umbrella/geom-hull/functions/grahamScan2.html).
  *
  * Currently implemented for:
  *

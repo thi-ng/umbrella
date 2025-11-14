@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { StackContext } from "./api.js";
 import { $ } from "./safe.js";
@@ -7,7 +8,7 @@ import { $ } from "./safe.js";
 /**
  * Pushes current env onto d-stack.
  *
- * ( -- env )
+ * Stack effect: `( -- env )`
  *
  * @param ctx -
  * @param env -
@@ -18,7 +19,7 @@ export const pushenv = (ctx: StackContext) => (ctx[0].push(ctx[2]), ctx);
  * Loads value for `key` from current env and pushes it on d-stack.
  * Throws error if var doesn't exist.
  *
- * ( key -- env[key] )
+ * Stack effect: `( key -- env[key] )`
  *
  * @param ctx -
  * @param env -
@@ -35,7 +36,7 @@ export const load = (ctx: StackContext) => {
 /**
  * Stores `val` under `key` in env.
  *
- * ( val key -- )
+ * Stack effect: `( val key -- )`
  *
  * @param ctx -
  * @param env -
@@ -49,7 +50,8 @@ export const store = (ctx: StackContext) => (
  * preconfigured `key` instead of reading it from d-stack at runtime
  * (also slightly faster). Throws error if var doesn't exist.
  *
- * ( -- env[key] )
+ * Stack effect: `( -- env[key] )`
+ *
  * @param ctx -
  * @param env -
  */
@@ -65,7 +67,7 @@ export const defLoadKey = (key: PropertyKey) => (ctx: StackContext) => {
  * preconfigure `key` instead of reading it from d-stack at runtime
  * (also slightly faster).
  *
- * ( val -- )
+ * Stack effect: `( val -- )`
  *
  * @param ctx -
  * @param env -

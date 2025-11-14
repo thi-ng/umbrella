@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { abs, add, mul, type Complex } from "@thi.ng/complex";
 import { SHADES_ASCII_16, canvas, formatCanvas } from "@thi.ng/text-canvas";
 import { map, range2d, run } from "@thi.ng/transducers";

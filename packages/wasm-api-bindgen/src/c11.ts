@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { topoSort } from "@thi.ng/arrays/topo-sort";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";

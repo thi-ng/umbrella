@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3 } from "@thi.ng/api";
 import { THIRD, TWO_THIRD } from "@thi.ng/math/api";
 import { solveTridiagonal } from "@thi.ng/math/solve";
@@ -15,11 +16,12 @@ import { set2 } from "@thi.ng/vectors/set";
 
 /**
  * Fits a cubic bezier spline to the given array of `points` and tension param
- * `omega` (in [0,1] range), using John D. Hobby's algorithm/paper: "Smooth,
+ * `omega` (in `[0,1]` range), using John D. Hobby's algorithm/paper: "Smooth,
  * Easy to Compute Interpolating Splines".
  *
  * @remarks
  * References:
+ *
  * - https://link.springer.com/content/pdf/10.1007/BF02187690.pdf
  * - https://web.archive.org/web/20220816011347/https://ctan.math.washington.edu/tex-archive/graphics/pgf/contrib/hobby/hobby.pdf
  * - http://weitz.de/hobby/

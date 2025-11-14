@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import { reactive, syncRAF } from "@thi.ng/rstream";
 import { gestureStream, type GestureStream } from "@thi.ng/rstream-gestures";
 import { add2, mulN2, type Vec } from "@thi.ng/vectors";
-import { DB } from "./atom";
+import { DB } from "./atom.js";
 
 /**
  * Compute the currently available canvas size available (window width minus

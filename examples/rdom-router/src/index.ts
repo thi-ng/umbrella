@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
 import { exposeGlobal } from "@thi.ng/expose";
 import { anchor, button, div, h1, img, main, nav } from "@thi.ng/hiccup-html";

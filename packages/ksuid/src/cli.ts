@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defKSUID32 } from "./ksuid32.js";
 
 const bytes = parseInt(process.argv[3] || "16");

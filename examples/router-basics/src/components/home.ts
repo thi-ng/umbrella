@@ -1,5 +1,6 @@
-import type { AppContext } from "../api";
-import { externalLink } from "./external-link";
+// SPDX-License-Identifier: Apache-2.0
+import type { AppContext } from "../api.js";
+import { externalLink } from "./external-link.js";
 
 /**
  * Homepage component.

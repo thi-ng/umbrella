@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EN_SHORT } from "@thi.ng/date";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";

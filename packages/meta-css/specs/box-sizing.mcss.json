@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "box sizing", "desc": "<v>" },
 			"name": "<v>",
+			"doc": { "group": "box sizing", "desc": "<v>" },
 			"props": "box-sizing",
 			"values": ["border-box", "content-box"]
 		}

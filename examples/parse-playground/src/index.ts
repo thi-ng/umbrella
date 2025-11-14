@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
 import { downloadWithMime } from "@thi.ng/dl-asset";

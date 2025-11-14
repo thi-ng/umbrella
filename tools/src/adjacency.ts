@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAdjBitMatrix } from "@thi.ng/adjacency";
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { CDATA, COMMENT, serialize } from "@thi.ng/hiccup";
@@ -17,6 +18,8 @@ import { comp, filter, iterator, map, range } from "@thi.ng/transducers";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
 import { shortName } from "./partials/package.js";
+import { S3_BUCKET_DEPS, S3_COMPRESS_OPTS } from "./aws-config.js";
+import { compressFile } from "./utils.js";
 
 const W = 16;
 const LW = 150;
@@ -314,13 +317,13 @@ svg.addEventListener("touchstart", handleInteraction);`,
 );
 
 writeText("assets/deps.svg", serialize(doc, { xml: true }), LOGGER);
-execFileSync("gzip", "-9 -f assets/deps.svg".split(" "));
+compressFile("assets/deps.svg");
 
 console.log("uploading...");
 console.log(
 	execFileSync(
 		"aws",
-		"s3 cp assets/deps.svg.gz s3://dependencies.thi.ng/index.svg --content-type image/svg+xml --content-encoding gzip --acl public-read --profile thing-umbrella".split(
+		`s3 cp assets/deps.svg.br ${S3_BUCKET_DEPS}/index.svg --content-type image/svg+xml ${S3_COMPRESS_OPTS}`.split(
 			" "
 		)
 	).toString()

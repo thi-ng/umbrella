@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { circle, group, polygon, text, vertices } from "@thi.ng/geom";
 import { DVMesh } from "@thi.ng/geom-voronoi";
 import { haltonND, kroneckerND, plasticND } from "@thi.ng/lowdisc";

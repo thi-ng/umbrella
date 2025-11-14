@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cross2 } from "@thi.ng/vectors/cross";
 import { divN2 } from "@thi.ng/vectors/divn";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { decodeToCanvas, encodeFromCanvas } from "@thi.ng/blurhash";
 import { imageCanvas } from "@thi.ng/canvas";
 import { div, h1, h2, section, textArea } from "@thi.ng/hiccup-html";

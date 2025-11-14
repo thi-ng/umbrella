@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { compL } from "@thi.ng/compose/comp";
@@ -55,7 +56,7 @@ export const unwrap = ([stack]: StackContext, n = 1) =>
  * Note: The provided (or merged) env is only active within the
  * execution scope of the word.
  *
- * ( ? -- ? )
+ * Stack effect: `( ? -- ? )`
  *
  * @param prog -
  * @param env -
@@ -108,7 +109,7 @@ export const defWordU = (
  * Executes TOS as stack function and places result back on d-stack. TOS
  * MUST be a valid word or quotation.
  *
- * ( x -- x() )
+ * Stack effect: `( x -- x() )`
  *
  * @param ctx -
  */
@@ -121,7 +122,7 @@ export const exec = (ctx: StackContext) => (
  * within an implicit `try .. catch` and if an error was thrown pushes
  * it on stack and executes error quotation.
  *
- * ( body catch -- ? )
+ * Stack effect: `( body catch -- ? )`
  *
  * @param ctx -
  */
@@ -144,7 +145,7 @@ export const $try = (ctx: StackContext) => {
  * element. Calls fn with all remaining items in quot as arguments and
  * pushes result back on d-stack (even if fn returned `undefined`).
  *
- * ( [f ...] -- f(...) )
+ * Stack effect: `( [f ...] -- f(...) )`
  *
  * @param ctx -
  */

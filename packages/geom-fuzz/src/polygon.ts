@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asCubic } from "@thi.ng/geom/as-cubic";
 import { group } from "@thi.ng/geom/group";
 import { pathFromCubics } from "@thi.ng/geom/path-from-cubics";

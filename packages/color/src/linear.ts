@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Maps a single linear RGB channel value to sRGB.
  *

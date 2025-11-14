@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div } from "@thi.ng/hiccup-html";
-import { PRESETS, type PresetID } from "../api";
-import { applyPresetForID, loadPreset, savePreset } from "../state/presets";
-import { button, dropdown, fileButton, title } from "./common";
+import { PRESETS, type PresetID } from "../api.js";
+import { applyPresetForID, loadPreset, savePreset } from "../state/presets.js";
+import { button, dropdown, fileButton, title } from "./common.js";
 
 export const presetControls = div(
 	{},

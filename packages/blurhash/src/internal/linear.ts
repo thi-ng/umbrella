@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp01 } from "@thi.ng/math/interval";
 
 const G = 1 / 2.2;

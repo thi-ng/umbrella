@@ -1,22 +1,26 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { argMax, argMin } from "@thi.ng/arrays/argmin";
 import type { CellSpan, LayoutBox } from "./api.js";
+import { layoutBox } from "./box.js";
 import { GridLayout, __DEFAULT_SPANS } from "./grid-layout.js";
 
 /**
  * An extension of {@link GridLayout} which tracks individual column-based
  * heights and so can create more complex, irregular, packed, space-filling
- * layout arrangements. This layout algorithm prioritizes the column(s) with the
- * lowest height.
+ * layout arrangements. This layout algorithm prioritizes allocating the
+ * column(s) with the currently lowest height.
  *
  * The class also provides a {@link StackedLayout.availableSpan} method to find
  * available space and help equalize columns and fill/allocate any bottom gaps.
  *
  * **IMPORTANT:** As with {@link GridLayout}, nested layouts MUST be completed
  * first before requesting new cells (aka {@link LayoutBox}es) from a parent,
- * otherwise unintended overlaps will occur.
+ * otherwise unintended overlaps will occur. Also see {@link IGridLayout.nest}
+ * for more details.
  */
 export class StackedLayout extends GridLayout {
+	/** Number of rows per column */
 	offsets: Uint32Array;
 	currSpan = 1;
 
@@ -27,19 +31,25 @@ export class StackedLayout extends GridLayout {
 		width: number,
 		cols: number,
 		rowH: number,
-		gap: number
+		gapX: number,
+		gapY = gapX
 	) {
-		super(parent, x, y, width, cols, rowH, gap);
+		super(parent, x, y, width, cols, rowH, gapX, gapY);
 		this.offsets = new Uint32Array(cols);
 	}
 
-	nest(cols: number, spans?: CellSpan, gap = this.gap): StackedLayout {
+	nest(
+		cols: number,
+		spans?: CellSpan,
+		gapX = this.gapX,
+		gapY = this.gapY
+	): StackedLayout {
 		const { x, y, w } = this.next(spans);
-		return new StackedLayout(this, x, y, w, cols, this.cellH, gap);
+		return new StackedLayout(this, x, y, w, cols, this.cellH, gapX, gapY);
 	}
 
-	next(spans = __DEFAULT_SPANS): LayoutBox {
-		const { cellWG, cellHG, gap, cols, offsets } = this;
+	next(spans = __DEFAULT_SPANS) {
+		const { cellWG, cellHG, gapX, gapY, cols, offsets } = this;
 		const cspan = Math.min(spans[0], cols);
 		const rspan = spans[1];
 		let minY = Infinity;
@@ -55,22 +65,23 @@ export class StackedLayout extends GridLayout {
 				column = i;
 			}
 		}
-		const h = rspan * cellHG - gap;
-		const cell: LayoutBox = {
-			x: this.x + column * cellWG,
-			y: this.y + maxY * cellHG,
-			w: cspan * cellWG - gap,
+		const h = rspan * cellHG - gapY;
+		const cell = layoutBox(
+			this.x + column * cellWG,
+			this.y + maxY * cellHG,
+			cspan * cellWG - gapX,
 			h,
-			cw: this.cellW,
-			ch: this.cellH,
-			gap,
-			span: [cspan, rspan],
-		};
+			this.cellW,
+			this.cellH,
+			gapX,
+			gapY,
+			[cspan, rspan]
+		);
 		this.currRow = maxY;
 		this.currCol = column;
 		offsets.fill(maxY + rspan, column, column + cspan);
 		this.currSpan = cspan;
-		this.parent?.propagateSize(Math.max(...this.offsets));
+		this.parent?.propagateSize(Math.max(...offsets));
 		return cell;
 	}
 
@@ -129,7 +140,8 @@ export class StackedLayout extends GridLayout {
  * @param width -
  * @param cols -
  * @param rowH -
- * @param gap -
+ * @param gapX -
+ * @param gapY -
  */
 export const stackedLayout = (
 	x: number,
@@ -137,5 +149,6 @@ export const stackedLayout = (
 	width: number,
 	cols = 4,
 	rowH = 16,
-	gap = 4
-) => new StackedLayout(null, x, y, width, cols, rowH, gap);
+	gapX = 4,
+	gapY = gapX
+) => new StackedLayout(null, x, y, width, cols, rowH, gapX, gapY);

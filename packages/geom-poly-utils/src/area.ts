@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { cross2 } from "@thi.ng/vectors/cross";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";

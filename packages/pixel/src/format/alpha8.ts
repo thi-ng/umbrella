@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defIntFormat } from "./int-format.js";
 
 export const ALPHA8 = defIntFormat({

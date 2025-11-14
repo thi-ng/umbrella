@@ -1,4 +1,5 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
+import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { assert } from "@thi.ng/errors/assert";
@@ -65,10 +66,9 @@ interface ParametricOps {
 }
 
 /**
- * Takes an
- * [`IShape`](https://docs.thi.ng/umbrella/geom/interfaces/IShape.html)
+ * Takes an [`IShape`](https://docs.thi.ng/umbrella/geom/interfaces/IShape.html)
  * instance (possibly a tree, e.g. via
- * [`group()`](https://docs.thi.ng/umbrella/geom/functions/group.html)) and
+ * [`group`](https://docs.thi.ng/umbrella/geom/functions/group.html)) and
  * converts it into a {@link SDFn}.
  *
  * @remarks
@@ -92,7 +92,7 @@ interface ParametricOps {
  * number of vertices. If not specified
  * [`DEFAULT_SAMPLES`](https://docs.thi.ng/umbrella/geom-resample/variables/DEFAULT_SAMPLES.html)
  * will be used (which can be globally set via
- * [`setDefaultSamples()`](https://docs.thi.ng/umbrella/geom-resample/functions/setDefaultSamples.html)).
+ * [`setDefaultSamples`](https://docs.thi.ng/umbrella/geom-resample/functions/setDefaultSamples.html)).
  */
 export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 	__dispatch,
@@ -203,7 +203,7 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 );
 
 /** @internal */
-const __sdfAttribs = (attribs?: Attribs): Partial<SDFAttribs> =>
+const __sdfAttribs = (attribs?: Attribs): Maybe<Partial<SDFAttribs>> =>
 	attribs ? attribs.__sdf : undefined;
 
 const OPS = <const>["chamfer", "round", "smooth", "steps"];

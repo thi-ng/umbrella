@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
 import { escapeEntities } from "@thi.ng/strings";
 import { expect, test } from "bun:test";
-import { DOCTYPE_HTML, XML_PROC, serialize } from "../src/index.js";
+import { DOCTYPE_HTML, INLINE, XML_PROC, serialize } from "../src/index.js";
 
 const _check = (a: any, b: any) => expect(serialize(a)).toBe(b);
 
@@ -368,3 +369,30 @@ test("escape entities (custom)", () =>
 			escapeFn: escapeEntities,
 		})
 	).toBe("<div>&Auml;&ouml;&uuml; &lt;&amp;&gt; &apos;&quot; &mdash;</div>"));
+
+test("escape behavior attrib", () =>
+	expect(
+		serialize(
+			[
+				"a",
+				"&",
+				[
+					"b",
+					{ __escape: false },
+					"x < y",
+					["c", { __escape: true }, "'"],
+				],
+				"&",
+			],
+			{
+				escape: true,
+			}
+		)
+	).toBe("<a>&amp;<b>x < y<c>&apos;</c></b>&amp;</a>"));
+
+test("inline", () =>
+	expect(
+		serialize(["div", {}, [INLINE, "<inline>&amp;</inline>"]], {
+			escape: true,
+		})
+	).toBe("<div><inline>&amp;</inline></div>"));

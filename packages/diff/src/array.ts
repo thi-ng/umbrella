@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU3, Nullable } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 import type { ArrayDiff, DiffKeyMap, DiffMode, EditLog } from "./api.js";
@@ -58,7 +59,7 @@ const __simpleDiff = <T>(
  *
  * @remarks
  * Various optimizations, fixes & refactorings. By default uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
  * equality checks.
  *
  * - https://publications.mpi-cbg.de/Wu_1990_6334.pdf

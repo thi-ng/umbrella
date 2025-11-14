@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import type { Reducer, Transducer } from "./api.js";
 import { compR } from "./compr.js";

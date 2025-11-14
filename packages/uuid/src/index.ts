@@ -1,12 +1,13 @@
+// SPDX-License-Identifier: Apache-2.0
 import { uuid as $uuid } from "@thi.ng/hex";
 import type { IRandom } from "@thi.ng/random";
 import { randomBytes, randomBytesFrom } from "@thi.ng/random/random-bytes";
 
 /**
  * Depending on if `rnd` is given, uses
- * [randomBytesFrom()](https://docs.thi.ng/umbrella/random/functions/randomBytesFrom.html)
+ * [`randomBytesFrom`](https://docs.thi.ng/umbrella/random/functions/randomBytesFrom.html)
  * or
- * [randomBytes()](https://docs.thi.ng/umbrella/random/functions/randomBytes.html)
+ * [`randomBytes`](https://docs.thi.ng/umbrella/random/functions/randomBytes.html)
  * to fill given (optional) byte array with a new UUIDv4. Creates new Uint8Array
  * if none given.
  *

@@ -1,16 +1,17 @@
+// SPDX-License-Identifier: Apache-2.0
 import { addW4 } from "./addw.js";
 import type { ReadonlyVec, Vec } from "./api.js";
 
 /**
  * Vector version of
- * [`mixCubic()`](https://docs.thi.ng/umbrella/math/functions/mixCubic.html).
+ * [`mixCubic`](https://docs.thi.ng/umbrella/math/functions/mixCubic.html).
  *
  * @param out - result
  * @param a -
  * @param b -
  * @param c -
  * @param d -
- * @param t - interpolation coeff [0..1]
+ * @param t - interpolation coeff `[0,1]`
  */
 export const mixCubic = (
 	out: Vec | null,

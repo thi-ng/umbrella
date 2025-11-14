@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors";
 import { resolve } from "node:path";
 import type { Processor, ICCSpec } from "../api.js";

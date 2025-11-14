@@ -1,8 +1,13 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { NO_OP } from "@thi.ng/api/api";
 import { unescapeEntities } from "@thi.ng/strings/entities";
 import { ESCAPES } from "@thi.ng/strings/escape";
 import type { Transducer } from "@thi.ng/transducers";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
+import { last } from "@thi.ng/transducers/last";
 import { fsm, type FSMState, type FSMStateMap } from "@thi.ng/transducers-fsm";
 import { __iter, iterator } from "@thi.ng/transducers/iterator";
 
@@ -172,6 +177,66 @@ export function parse(...args: any[]): any {
 	});
 }
 
+/**
+ * Convenience helper for certain applications of {@link parse} to produce a
+ * tree of the parsed document.
+ *
+ * @remarks
+ * This functions always enables the {@link ParseOpts.children} option, only
+ * keeps {@link Type.ELEM_END} events and only returns the last one, i.e that of
+ * the root element (including all children).
+ *
+ * Also see {@link parseAsHiccup}.
+ *
+ * @param src
+ * @param opts
+ */
+export const parseAsTree = (src: string, opts?: Partial<ParseOpts>) =>
+	transduce(
+		comp(
+			parse({ ...opts, children: true }),
+			filter((x) => x.type === Type.ELEM_END)
+		),
+		last<ParseEvent>(),
+		src
+	);
+
+/**
+ * Convenience helper for certain applications of {@link parse} to produce a
+ * tree of the parsed document in thi.ng/hiccup format.
+ *
+ * @remarks
+ * Uses {@link parseAsTree} and then transforms result.
+ *
+ * @example
+ * ```ts tangle:../export/parse-as-hiccup.ts
+ * import { parseAsHiccup } from "@thi.ng/sax";
+ *
+ * const doc = `<svg><g id="foo"><circle x="0" y="0" r="100"/></g></svg>`;
+ *
+ * console.log(parseAsHiccup(doc));
+ * // ["svg", {}, ["g", { id: "foo" }, ["circle", { x: "0", y: "0", r: "100" }]]]
+ * ```
+ *
+ * @param src
+ * @param opts
+ */
+export const parseAsHiccup = (src: string, opts?: Partial<ParseOpts>) =>
+	__toHiccup(parseAsTree(src, opts));
+
+/** @internal */
+const __toHiccup = (
+	root: Partial<ParseElement>
+): [string, IObjectOf<string>, ...any[]] => [
+	root.tag!,
+	root.attribs ?? {},
+	...(root.children?.length
+		? root.children.map(__toHiccup)
+		: root.body
+		? [root.body]
+		: []),
+];
+
 /** @internal */
 const __isWS = (x: string) => {
 	const c = x.charCodeAt(0);
@@ -183,16 +248,37 @@ const __isWS = (x: string) => {
 	);
 };
 
-/** @internal */
+/**
+ * Reference:
+ * https://www.w3.org/TR/xml11/#sec-common-syn
+ *
+ * @internal */
 const __isTagChar = (x: string) => {
 	const c = x.charCodeAt(0);
 	return (
-		(c >= 0x41 && c <= 0x5a) || // A-Z
 		(c >= 0x61 && c <= 0x7a) || // a-z
 		(c >= 0x30 && c <= 0x39) || // 0-9
-		c == 0x2d || // -
-		c == 0x5f || // _
-		c == 0x3a // :
+		(c >= 0x41 && c <= 0x5a) || // A-Z
+		c === 0x3a || // :
+		c === 0x2d || // -
+		c === 0x5f || // _
+		c === 0x2e || // .
+		c === 0xb7 ||
+		(c >= 0xc0 && c <= 0xd6) ||
+		(c >= 0xf8 && c <= 0x2ff) ||
+		(c >= 0x300 && c <= 0x36f) ||
+		(c >= 0x370 && c <= 0x37d) ||
+		(c >= 0x37f && c <= 0x1fff) ||
+		(c >= 0x37f && c <= 0x1fff) ||
+		c === 0x200c ||
+		c === 0x200d ||
+		c === 0x203f ||
+		c === 0x2040 ||
+		(c >= 0x2070 && c <= 0x218f) ||
+		(c >= 0x2c00 && c <= 0x2fef) ||
+		(c >= 0x3001 && c <= 0xd7ff) ||
+		(c >= 0xf900 && c <= 0xfdcf) ||
+		(c >= 0xfdf0 && c <= 0xfffd)
 	);
 };
 

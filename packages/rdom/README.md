@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rdom](https://media.thi.ng/umbrella/banners-20230807/thing-rdom.svg?d2d60d82)
+# ![@thi.ng/rdom](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rdom.svg?d2d60d82)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rdom.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -332,7 +332,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-49 projects in this repo's
+51 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -353,6 +353,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/lispy-repl.png" width="240"/>           | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>        | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/>      | Basic thi.ng/meta-css usage & testbed                                                                   | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>        | Optical flow analysis of web cam or video inputs                                                        | [Demo](https://demo.thi.ng/umbrella/optical-flow/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>     | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>    | Matrix-based image color adjustments                                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>      | Randomized 4-point 2D color gradient image generator                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)     |
@@ -384,6 +385,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>       | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-packages-quiz.avif" width="240"/> | thi.ng/rdom & thi.ng/rstream based quiz to guess thi.ng package names                                   | [Demo](https://demo.thi.ng/umbrella/thing-packages-quiz/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-packages-quiz) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>         | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/tsne-colors.avif" width="240"/>         | Animated t-SNE visualization of 4D data                                                                 | [Demo](https://demo.thi.ng/umbrella/tsne-colors/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/tsne-colors)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>     | Interactive ridge-line plot                                                                             | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif" width="240"/>    | Interactive scatter & line plot of low-discrepancy samples                                              | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-scatter-plot)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>  | rdom & WebGL-based image channel editor                                                                 | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-channel-mixer) |

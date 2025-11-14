@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { COSINE_GRADIENTS, cosineGradient } from "@thi.ng/color";
 import { threadLast } from "@thi.ng/compose";

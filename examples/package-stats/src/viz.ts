@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { group, line, rect, svg, text } from "@thi.ng/hiccup-svg";
 import { fit, fit01 } from "@thi.ng/math";
 import { map, mapcat, mapIndexed, range } from "@thi.ng/transducers";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Index, Swizzle, Sym } from "./nodes.js";
 import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "./terms.js";
 

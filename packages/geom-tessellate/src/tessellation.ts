@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { KdTreeMap } from "@thi.ng/geom-accel/kd-tree-map";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { distSq2, distSq3 } from "@thi.ng/vectors/distsq";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Computes dot product of 2 arrays. Assumes `a` and `b` are equal
  * sized, but only considers length of `a`.

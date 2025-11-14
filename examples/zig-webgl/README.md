@@ -11,6 +11,35 @@ Please refer to the instructions on the wiki:
 - [Development](https://github.com/thi-ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
 - [Production build](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
 
+Additionally, this example requires Zig & Binaryen installed (and on the
+`$PATH`) for building the WebAssembly binary.
+
+You can download the latest version from the Zig website or (my own preferred
+method) using [asdf](https://asdf-vm.com/) to install it (even just locally for
+this project):
+
+```bash
+# if needed, first install zig plugin for asdf
+asdf plugin-add zig https://github.com/cheetah/asdf-zig.git
+
+# asdf supports multiple versions of a tool, here to install latest dev version
+asdf install zig 0.15.1
+
+# global use of that version
+asdf global zig 0.15.1
+
+# or only use that version in this project (already pre-configured)
+asdf local zig 0.15.1
+```
+
+-   [Zig](https://ziglang.org) v0.15.1 or newer versions (see
+    [comments](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system))
+-   [Binaryen](https://github.com/WebAssembly/binaryen)
+
+Please see the comments in
+[build.zig](https://github.com/thi-ng/tpl-umbrella-zig/blob/main/build.zig) for
+more details...
+
 ## Authors
 
 - Karsten Schmidt

@@ -1,5 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ColorLayer, CompLayerFn } from "../api.js";
-import { coerceColor, computeSize, positionOrGravity } from "../units.js";
+import { coerceColor, computeSize, positionOrGravity } from "../utils.js";
 
 export const colorLayerImpl: CompLayerFn = async (layer, _, ctx) => {
 	const {

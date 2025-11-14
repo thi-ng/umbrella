@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Range0_3 } from "@thi.ng/api";
 import { mod } from "@thi.ng/math";
 import {
@@ -7,9 +8,9 @@ import {
 	intBufferFromImage,
 } from "@thi.ng/pixel";
 import { read } from "@thi.ng/pixel-io-netpbm";
-import type { DitherMode, ImageParam } from "../api";
-import { DB } from "./atom";
-import { resetCanvasView } from "./canvas";
+import type { DitherMode, ImageParam } from "../api.js";
+import { DB } from "./atom.js";
+import { resetCanvasView } from "./canvas.js";
 
 /**
  * Asynchronously loads an image and then places the result pixel buffer into

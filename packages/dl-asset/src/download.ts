@@ -1,4 +1,4 @@
-import type { TypedArray } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
 import { preferredType } from "@thi.ng/mime";
 import type { DownloadOpts } from "./api.js";
 import { downloadWithMime } from "./raw.js";
@@ -15,7 +15,7 @@ import { downloadWithMime } from "./raw.js";
  */
 export const download = (
 	name: string,
-	src: string | TypedArray | ArrayBuffer | Blob,
+	src: BlobPart,
 	opts: Partial<DownloadOpts> = {}
 ) => {
 	if (opts.mime === undefined) {

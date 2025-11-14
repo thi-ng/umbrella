@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map } from "@thi.ng/transducers/map";
 import { normRange } from "@thi.ng/transducers/norm-range";
 import type { ReadonlyVec } from "@thi.ng/vectors";

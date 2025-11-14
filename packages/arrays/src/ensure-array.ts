@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { ensureIterable } from "./ensure-iterable.js";
@@ -13,7 +14,7 @@ import { ensureIterable } from "./ensure-iterable.js";
  *
  * @param x -
  */
-export const ensureArray = (x: any): any[] =>
+export const ensureArray = <T = any>(x: any): T[] =>
 	isArray(x) ? x : [...ensureIterable(x)];
 
 /**
@@ -23,5 +24,5 @@ export const ensureArray = (x: any): any[] =>
  *
  * @param x -
  */
-export const ensureArrayLike = (x: any): ArrayLike<any> =>
+export const ensureArrayLike = <T = any>(x: any): ArrayLike<T> =>
 	isArrayLike(x) ? x : [...ensureIterable(x)];

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hasWASM } from "@thi.ng/checks";
 import { expect, test } from "bun:test";
 import {

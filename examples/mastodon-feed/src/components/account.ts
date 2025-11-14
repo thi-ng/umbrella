@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { anchor, div, h1, img, inputText, span } from "@thi.ng/hiccup-html";
 import { $input, $inputTrigger } from "@thi.ng/rdom";
 import type { ISubscriber, ISubscription } from "@thi.ng/rstream";

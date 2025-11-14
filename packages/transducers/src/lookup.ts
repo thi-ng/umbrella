@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns function accepting a single index arg used to
  * lookup value in given array. No bounds checks are done.

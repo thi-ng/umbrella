@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp01 } from "@thi.ng/math/interval";
 import { mix, mixBilinear } from "@thi.ng/math/mix";
 import { fract } from "@thi.ng/math/prec";

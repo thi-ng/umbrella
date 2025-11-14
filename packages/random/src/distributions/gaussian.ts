@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IRandom } from "../api.js";
 import { SYSTEM } from "../system.js";
 
@@ -7,7 +8,7 @@ import { SYSTEM } from "../system.js";
  * (Central Limit Theorem).
  *
  * @remarks
- * The default configuration produces samples in the approx. [-0.5,0.5] range
+ * The default configuration produces samples in the approx. `[-0.5,0.5]` range
  * with a ~12% standard deviation.
  *
  * Reference: https://en.wikipedia.org/wiki/Central_limit_theorem

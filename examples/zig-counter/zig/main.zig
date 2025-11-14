@@ -1,18 +1,15 @@
+// SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 const schedule = @import("wasm-api-schedule").schedule;
-
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/zig/lib.zig
-var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-pub const WASM_ALLOCATOR = gpa.allocator();
+pub const WASM_ALLOCATOR = std.heap.wasm_allocator;
 
 /// Simple click counter component
 const Counter = struct {
@@ -46,7 +43,7 @@ const Counter = struct {
             .parent = parent,
             .attribs = dom.attribs(&.{
                 // define & add click event listener w/ user context arg
-                dom.Attrib.event("click", onClick, self),
+                dom.types.Attrib.event("click", onClick, self),
             }),
         });
     }
@@ -76,7 +73,7 @@ const Counter = struct {
     }
 
     /// event listener & state update
-    fn onClick(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+    fn onClick(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
         // safely cast raw pointer
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;
@@ -85,7 +82,7 @@ const Counter = struct {
             // Supply a snapshot of current state as user context for the update
             // Since this is a one-off callback, we don't have to hold on
             // to the returned listener ID (auto-cleanup)
-            _ = schedule(.once, 500, onTimeout, self.snapshot()) catch return;
+            _ = schedule(.once, 1000, onTimeout, self.snapshot()) catch return;
         }
     }
 

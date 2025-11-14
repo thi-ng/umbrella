@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { renderOnce } from "@thi.ng/hdom";
 import { clamp } from "@thi.ng/math";
 import {
@@ -10,9 +11,9 @@ import {
 import { Z2 } from "@thi.ng/strings";
 import { dedupe, map, reducer, scan, sideEffect } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { app, printApp } from "./components";
-import { ctx } from "./config";
-import { SLIDES } from "./slides";
+import { app, printApp } from "./components.js";
+import { ctx } from "./config.js";
+import { SLIDES } from "./slides.js";
 
 const INTERACTIVE = true;
 

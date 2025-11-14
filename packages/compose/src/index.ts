@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./comp.js";
 export * from "./complement.js";
 export * from "./constantly.js";

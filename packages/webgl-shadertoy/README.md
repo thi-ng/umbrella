@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/webgl-shadertoy](https://media.thi.ng/umbrella/banners-20230807/thing-webgl-shadertoy.svg?a1a6131e)
+# ![@thi.ng/webgl-shadertoy](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-webgl-shadertoy.svg?a1a6131e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-shadertoy.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -60,7 +60,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 693 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 818 bytes
 
 ## Dependencies
 

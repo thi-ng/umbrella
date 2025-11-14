@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners-20230807/thing-hiccup-markdown.svg?1af87372)
+# ![@thi.ng/hiccup-markdown](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-markdown.svg?1af87372)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -296,15 +296,15 @@ defaults/outputs.
 
 Example with custom link elements:
 
-```ts
+```ts tangle:export/readme-parse.ts
 import { parse, type TagTransforms } from "@thi.ng/hiccup-markdown";
 
 const tags: Partial<TagTransforms> = {
-    link: (ctx, href, body) => ["a.link.blue", { href }, ...body]
+    link: (ctx, href, title, body) => ["a.link.blue", { href }, ...body]
 };
 
 // parse with custom tag transform overrides
-parse("[label](url)", { tags }).result;
+console.log(parse("[label](url)", { tags }).result);
 // [
 //   ["p", {}, ["a.link.blue", { href: "url" }, "label"]]
 // ]
@@ -312,14 +312,14 @@ parse("[label](url)", { tags }).result;
 
 ### Serializing to HTML
 
-```ts
+```ts tangle:export/readme-serialize.ts
 import { serialize } from "@thi.ng/hiccup";
 import { parse } from "@thi.ng/hiccup-markdown";
 
 const src = `# Hello world\n[This is a _test_](http://example.com) :smile:`;
 
 // convert to hiccup tree
-parse(src).result
+console.log(parse(src).result);
 // [
 //   [ "h1", { id: "hello-world" }, "Hello world" ],
 //   [
@@ -336,8 +336,8 @@ parse(src).result
 //   ]
 // ]
 
-// or serialize to HTML
-serialize(parse(src).result);
+// roundtrip, serialize back to HTML
+console.log(serialize(parse(src).result));
 // <h1 id="hello-world">Hello world</h1><p><a href="http://example.com">This is a <em>test</em></a> 😄</p>
 ```
 
@@ -387,7 +387,7 @@ See source code for reference.
 
 ### Usage examples
 
-```ts
+```ts tangle:export/readme-serialize2.ts
 import { serialize } from "@thi.ng/hiccup-markdown";
 
 // list component
@@ -408,6 +408,7 @@ const thingLink = (_, id, label) =>
 
 // Note: the same hiccup tree can be serialized to HTML via @thi.ng/hiccup or
 // used interactively in the browser w/ @thi.ng/hdom
+console.log(
 serialize(
     ["div",
         ["h1", "Hello Markdown"],
@@ -441,6 +442,7 @@ serialize(
     // optional context object passed to all component functions
     { magic: 42 }
 )
+);
 ```
 
 Resulting Markdown:
@@ -548,7 +550,7 @@ For Node.js REPL:
 const md = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.62 KB
 
 ## Dependencies
 

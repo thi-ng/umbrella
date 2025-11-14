@@ -1,14 +1,15 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { Atom, defAtom, defViewUnsafe } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus, trace, valueSetter } from "@thi.ng/interceptors";
 import { EVENT_ROUTE_CHANGED, HTMLRouter } from "@thi.ng/router";
-import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
-import { debugContainer } from "./components/debug-container";
-import { nav } from "./components/nav";
-import * as fx from "./effects";
-import * as ev from "./events";
+import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api.js";
+import { debugContainer } from "./components/debug-container.js";
+import { nav } from "./components/nav.js";
+import * as fx from "./effects.js";
+import * as ev from "./events.js";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own

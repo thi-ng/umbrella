@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { wait } from "./delayed.js";
 
 export async function* asAsyncIterable<T>(src: Iterable<T>, delay = 0) {

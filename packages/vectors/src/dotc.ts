@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN4, FnN6, FnN8 } from "@thi.ng/api";
 
 /**

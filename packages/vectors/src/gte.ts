@@ -1,7 +1,32 @@
-import type { CompareOp, MultiCompareOp } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { MATH } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVVNew } from "./defopvv-new.js";
 
-export const [gte, gte2, gte3, gte4] = defOp<MultiCompareOp, CompareOp>(
-	MATH(">=")
-);
+const [a, b, c, d] = defOpVVNew<number, boolean>((a, b) => a >= b);
+
+/**
+ * Compnentwise checks if given nD vector `a` is greater than or equal `b` and
+ * writes results to boolean output vector. If `out` is null, creates a new
+ * result vector. Multi-method.
+ */
+export const gte = a;
+
+/**
+ * Compnentwise checks if given 2D vector `a` is greater than or equal `b` and
+ * writes results to boolean output vector. If `out` is null, creates a new
+ * result vector.
+ */
+export const gte2 = b;
+
+/**
+ * Compnentwise checks if given 2D vector `a` is greater than or equal `b` and
+ * writes results to boolean output vector. If `out` is null, creates a new
+ * result vector.
+ */
+export const gte3 = c;
+
+/**
+ * Compnentwise checks if given 2D vector `a` is greater than or equal `b` and
+ * writes results to boolean output vector. If `out` is null, creates a new
+ * result vector.
+ */
+export const gte4 = d;

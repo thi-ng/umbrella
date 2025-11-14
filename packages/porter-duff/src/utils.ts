@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import type { Color, ReadonlyColor } from "./api.js";
 

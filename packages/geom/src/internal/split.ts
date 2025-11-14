@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mixN } from "@thi.ng/vectors/mixn";
 import type { PCLike, PCLikeConstructor } from "../api.js";
 import { __pointArraysAsShapes } from "./points-as-shape.js";

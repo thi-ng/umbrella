@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import {
 	Tuple,
@@ -11,6 +12,7 @@ import {
 	kvPairs,
 	kvPairsMulti,
 	oneOf,
+	oneOfMulti,
 	parse,
 	size,
 	string,
@@ -41,7 +43,7 @@ test("basic / string", () => {
 		})
 	).toEqual({ result: { a: "a" }, index: 0, done: true, rest: [] });
 	expect(() =>
-		parse<{ a: string }>({ a: string({ optional: false }) }, [], {
+		parse<{ a: string }>({ a: string({ required: true }) }, [], {
 			showUsage: false,
 		})
 	).toThrow();
@@ -54,7 +56,7 @@ test("flag", () => {
 		})
 	).toEqual({ result: { a: true }, index: 1, done: true, rest: [] });
 	expect(
-		parse<{ a: boolean }>({ a: flag({ default: false }) }, [], {
+		parse<{ a: boolean }>({ a: flag({}) }, [], {
 			start: 0,
 		})
 	).toEqual({ result: { a: false }, index: 0, done: true, rest: [] });
@@ -84,16 +86,16 @@ test("number", () => {
 	).toThrow();
 });
 
-test("enum", () => {
+test("oneOf", () => {
 	type E = "abc" | "xyz";
 	const opts: E[] = ["abc", "xyz"];
 	expect(
-		parse<{ a?: E }>({ a: oneOf(opts, {}) }, ["--a", "abc"], {
+		parse<{ a?: E }>({ a: oneOf({ opts }) }, ["--a", "abc"], {
 			start: 0,
 		})
 	).toEqual({ result: { a: "abc" }, index: 2, done: true, rest: [] });
 	expect(
-		parse<{ a?: E }>({ a: oneOf(opts, { default: "xyz" }) }, [])
+		parse<{ a?: E }>({ a: oneOf({ opts, default: "xyz" }) }, [])
 	).toEqual({
 		result: { a: "xyz" },
 		index: 2,
@@ -101,7 +103,40 @@ test("enum", () => {
 		rest: [],
 	});
 	expect(() =>
-		parse<{ a?: E }>({ a: oneOf(opts, {}) }, ["--a", "def"], {
+		parse<{ a?: E }>({ a: oneOf({ opts }) }, ["--a", "def"], {
+			start: 0,
+			showUsage: false,
+		})
+	).toThrow();
+});
+
+test("oneOfMulti", () => {
+	type E = "abc" | "xyz";
+	const opts: E[] = ["abc", "xyz"];
+	expect(
+		parse<{ a?: E[] }>(
+			{ a: oneOfMulti({ opts }) },
+			["--a", "abc", "--a", "xyz"],
+			{
+				start: 0,
+			}
+		)
+	).toEqual({
+		result: { a: ["abc", "xyz"] },
+		index: 4,
+		done: true,
+		rest: [],
+	});
+	expect(
+		parse<{ a?: E[] }>({ a: oneOfMulti({ opts, default: ["xyz"] }) }, [])
+	).toEqual({
+		result: { a: ["xyz"] },
+		index: 2,
+		done: true,
+		rest: [],
+	});
+	expect(() =>
+		parse<{ a?: E[] }>({ a: oneOfMulti({ opts }) }, ["--a", "def"], {
 			start: 0,
 			showUsage: false,
 		})
@@ -124,9 +159,13 @@ test("kv", () => {
 		rest: [],
 	});
 	expect(
-		parse<{ a?: KVDict }>({ a: kvPairs({}, ":") }, ["--a", "foo:bar"], {
-			start: 0,
-		})
+		parse<{ a?: KVDict }>(
+			{ a: kvPairs({ delim: ":" }) },
+			["--a", "foo:bar"],
+			{
+				start: 0,
+			}
+		)
 	).toEqual({
 		result: { a: { foo: "bar" } },
 		index: 2,
@@ -134,10 +173,14 @@ test("kv", () => {
 		rest: [],
 	});
 	expect(() =>
-		parse<{ a?: KVDict }>({ a: kvPairs({}, ":", true) }, ["--a", "foo"], {
-			start: 0,
-			showUsage: false,
-		})
+		parse<{ a?: KVDict }>(
+			{ a: kvPairs({ delim: ":", strict: true }) },
+			["--a", "foo"],
+			{
+				start: 0,
+				showUsage: false,
+			}
+		)
 	).toThrow();
 });
 
@@ -174,7 +217,7 @@ test("number[]", () => {
 	).toEqual({ result: { a: [1, 2] }, index: 4, done: true, rest: [] });
 	expect(
 		parse<{ a?: number[] }>(
-			{ a: ints({ delim: "," }) },
+			{ a: ints({ delim: ",", required: true }) },
 			["--a", "1,2", "--a", "3,4"],
 			{
 				start: 0,
@@ -192,7 +235,7 @@ test("tuple", () => {
 	};
 	expect(
 		parse<{ a?: Tuple<number> }>(
-			{ a: tuple(coerceInt, 3, {}) },
+			{ a: tuple({ size: 3, coerce: coerceInt }) },
 			["--a", "1,2,3"],
 			{
 				start: 0,
@@ -201,7 +244,7 @@ test("tuple", () => {
 	).toEqual(res);
 	expect(
 		parse<{ a?: Tuple<number> }>(
-			{ a: size(3, {}, "x") },
+			{ a: size({ size: 3, delim: "x" }) },
 			["--a", "1x2x3"],
 			{
 				start: 0,
@@ -229,4 +272,21 @@ test("long alias", () => {
 			start: 0,
 		})
 	).toEqual({ result: { a: "a" }, index: 2, done: true, rest: [] });
+});
+
+test("value w/ hyphen prefix", () => {
+	expect(
+		parse<{ a?: string }>({ a: string({}) }, ["--a", "-value"], {
+			start: 0,
+		})
+	).toEqual({ result: { a: "-value" }, index: 2, done: true, rest: [] });
+});
+
+test("missing value", () => {
+	expect(() =>
+		parse<{ a?: string }>({ a: string({}) }, ["--a"], {
+			start: 0,
+			showUsage: false,
+		})
+	).toThrow("missing value for: --a");
 });

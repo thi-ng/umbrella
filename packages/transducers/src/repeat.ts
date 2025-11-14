@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Iterator yielding an infinite (by default) repetition of given value
  * `x`. If `n` is given, only produces that many values.

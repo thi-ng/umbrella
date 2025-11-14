@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
@@ -11,9 +12,9 @@ export interface DiagonalSlopeOpts extends GridIterOpts2D {
 
 /**
  * Similar to {@link diagonalSlopeX}. Yields sequence of 2D grid coordinates in
- * diagonal order with configurable slope, starting at [0,0]. Each diagonal
- * starts at y=0 and progresses in +y direction and every `step` steps, one
- * step in -x direction.
+ * diagonal order with configurable slope, starting at `[0,0]`. Each diagonal
+ * starts at y=0 and progresses in +y direction and every `step` steps, one step
+ * in -x direction.
  *
  * @example
  * ```ts tangle:../export/diagonal-slopey.ts
@@ -72,9 +73,9 @@ export function* diagonalSlopeY(opts: DiagonalSlopeOpts) {
 
 /**
  * Similar to {@link diagonalSlopeY}. Yields sequence of 2D grid coordinates in
- * diagonal order with configurable slope, starting at [step-1,0]. Each
- * diagonal starts at y=0 and progresses in -x direction and every `step`
- * steps, one step in +y direction.
+ * diagonal order with configurable slope, starting at `[step-1,0]`. Each
+ * diagonal starts at y=0 and progresses in -x direction and every `step` steps,
+ * one step in +y direction.
  *
  * @param opts -
  */

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatTerm } from "@thi.ng/shader-ast";
 import { vec2 } from "@thi.ng/shader-ast/ast/lit";
 import { mul } from "@thi.ng/shader-ast/ast/ops";

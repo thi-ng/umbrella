@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Mat } from "./api.js";
 import { scale22, scale23, scale33, scale44 } from "./scale.js";
 

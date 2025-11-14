@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners-20230807/thing-hiccup.svg?2a2bf94f)
+# ![@thi.ng/hiccup](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup.svg?2a2bf94f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -37,6 +37,7 @@
   - [Component objects](#component-objects)
   - [Behavior control attributes](#behavior-control-attributes)
   - [Comments](#comments)
+  - [Inlined/embedded markup](#inlinedembedded-markup)
   - [XML / DTD processing instructions](#xml--dtd-processing-instructions)
 - [API](#api)
   - [serialize()](#serialize)
@@ -183,7 +184,7 @@ For Node.js REPL:
 const h = await import("@thi.ng/hiccup");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.20 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.24 KB
 
 ## Dependencies
 
@@ -391,7 +392,9 @@ serialize([div, {id: "foo"}, "bar"]);
 
 Also see
 [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
-for related functionality.
+and
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+for related (and more advanced) functionality.
 
 ```ts tangle:export/readme-circles.js
 import { serialize } from "@thi.ng/hiccup";
@@ -554,11 +557,10 @@ Re-formatted HTML output:
 
 The sibling library
 [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-supports components with basic life cycle methods (init, render,
-release). In order to support serialization of hdom component trees,
-hiccup too supports such components since version 2.0.0. However, for
-static serialization only the `render` method is of interest and others
-are ignored.
+supports components with basic life cycle methods (init, render, release). To
+support serialization of hdom component trees, hiccup too supports such
+components since version 2.0.0. For static serialization only the `render`
+method is of interest and others are ignored.
 
 ```js
 const component = {
@@ -573,6 +575,7 @@ serialize([component, "Hello world", "Body"]);
 The following attributes can be used to control the serialization
 behavior of individual elements / tree branches:
 
+- **`__escape`** - boolean flag to enable/disable entity escaping
 - **`__skip`** - if true, skips serialization (also used by
   [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
 - **`__serialize`** - if false, skips serialization (hiccup only)
@@ -585,7 +588,7 @@ serialize(["div.container", ["div", { __skip: true }, "ignore me"]]);
 ### Comments
 
 Single or multiline comments can be included using the special `COMMENT`
-tag (`__COMMENT__`) (always WITHOUT attributes!).
+tag (or `__COMMENT__`, always WITHOUT attributes!).
 
 ```ts
 import { COMMENT } from "@thi.ng/hiccup";
@@ -599,6 +602,22 @@ import { COMMENT } from "@thi.ng/hiccup";
 //     Hello
 //     world
 // -->
+```
+
+### Inlined/embedded markup
+
+Pre-serialized markup can be inlined without any further processing using the
+special `INLINE` tag (or `__INLINE__`, always WITHOUT attributes!):
+
+```js
+import { INLINE, serialize } from "@thi.ng/hiccup";
+
+serialize(
+    ["div", {}
+        [INLINE, "<h3>Inlined &amp; Embedded</h3><p>Lorem ipsum...</p>"]
+    ]
+);
+// <div><h3>Inlined &amp; Embedded</h3><p>Lorem ipsum...</p></div>
 ```
 
 ### XML / DTD processing instructions

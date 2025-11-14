@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	IClear,
 	ICopy,
@@ -19,6 +20,7 @@ import { Heap } from "./heap.js";
  * configurable value equality handling and priority ordering.
  *
  * @remarks
+ *
  * - By default higher priority values mean higher priority.
  * - Already queued items can be reprioritized or removed.
  * - The queue head can be inspected via `peek()` and/or `peekPriority()`

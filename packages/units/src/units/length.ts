@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { coherent, defUnit, mul, prefix } from "../unit.js";
 
 export const m = defUnit("m", "meter", coherent(1));

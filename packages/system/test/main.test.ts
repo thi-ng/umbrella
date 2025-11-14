@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { defSystem, LOGGER, type ILifecycle } from "../src/index.js";
 import { MemoryLogger } from "@thi.ng/logger";
@@ -12,11 +13,11 @@ test("basic", async () => {
 		info(msg: string) {
 			log.push(msg);
 		}
-		async start() {
+		start() {
 			this.info("start logger");
 			return true;
 		}
-		async stop() {
+		stop() {
 			this.info("stop logger");
 			return true;
 		}
@@ -57,12 +58,12 @@ test("basic", async () => {
 
 	const foo = defSystem<FooSys>({
 		db: {
-			factory: async (deps) => new DB(deps.logger, deps.state),
+			factory: (deps) => new DB(deps.logger, deps.state),
 			deps: ["logger", "state"],
 		},
-		logger: { factory: async () => new Logger() },
+		logger: { factory: () => new Logger() },
 		state: {
-			factory: async ({ logger }) => new Cache(logger),
+			factory: ({ logger }) => new Cache(logger),
 			deps: ["logger"],
 		},
 		dummy: {
@@ -114,8 +115,8 @@ test("non-lifecycle objects", async () => {
 	}
 
 	const sys = await defSystem<{ foo: Foo; bar: { foo: Foo } }>({
-		foo: { factory: async () => ({ x: 42 }) },
-		bar: { factory: async ({ foo }) => ({ foo }), deps: ["foo"] },
+		foo: { factory: () => ({ x: 42 }) },
+		bar: { factory: ({ foo }) => ({ foo }), deps: ["foo"] },
 	}).init();
 	expect(sys.components.foo).toBe(sys.components.bar.foo);
 
@@ -139,13 +140,13 @@ test("failed start, stop existing", async () => {
 	};
 
 	const sys = defSystem<Foo>({
-		a: { factory: async () => ({ start: fn("a1"), stop: fn("a2") }) },
+		a: { factory: () => ({ start: fn("a1"), stop: fn("a2") }) },
 		b: {
-			factory: async () => ({ start: fn("b1"), stop: fn("b2") }),
+			factory: () => ({ start: fn("b1"), stop: fn("b2") }),
 			deps: ["a"],
 		},
 		c: {
-			factory: async () => ({
+			factory: () => ({
 				start: async () => {
 					order.push("c");
 					return false;
@@ -176,7 +177,7 @@ test("pass system to lifecycle", async () => {
 
 	const sys = defSystem<App>({
 		foo: {
-			factory: async () => ({
+			factory: () => ({
 				start: async (sys) => {
 					expect(sys.components.foo).toBeDefined();
 					return true;

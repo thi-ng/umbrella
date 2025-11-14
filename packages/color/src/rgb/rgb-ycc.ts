@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { dot3 } from "@thi.ng/vectors/dot";
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor } from "../api.js";

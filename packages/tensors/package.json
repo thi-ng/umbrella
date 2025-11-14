@@ -1,0 +1,345 @@
+{
+	"name": "@thi.ng/tensors",
+	"version": "0.10.6",
+	"description": "0D/1D/2D/3D/4D tensors with extensible polymorphic operations and customizable storage",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://thi.ng/tensors",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		},
+		{
+			"type": "liberapay",
+			"url": "https://liberapay.com/thi.ng"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "bun ../../tools/src/clean-package.ts",
+		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.14.0",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/equiv": "^2.1.97",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/random": "^4.1.32",
+		"@thi.ng/strings": "^3.9.28",
+		"@thi.ng/vectors": "^8.6.12"
+	},
+	"devDependencies": {
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
+	},
+	"keywords": [
+		"1d",
+		"2d",
+		"3d",
+		"4d",
+		"activation",
+		"algebra",
+		"array",
+		"blur",
+		"broadcast",
+		"conversion",
+		"convolution",
+		"data-oriented",
+		"datastructure",
+		"decomposition",
+		"detect",
+		"diagonal",
+		"dotproduct",
+		"edge",
+		"equality",
+		"filter",
+		"gaussian",
+		"gradient",
+		"interval",
+		"math",
+		"matrix",
+		"memory-mapped",
+		"nd",
+		"polymorphic",
+		"pool",
+		"presets",
+		"random",
+		"smoothstep",
+		"step",
+		"svd",
+		"tensor",
+		"typedarray",
+		"typescript",
+		"vector"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./abs": {
+			"default": "./abs.js"
+		},
+		"./add": {
+			"default": "./add.js"
+		},
+		"./addn": {
+			"default": "./addn.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./apply-kernel": {
+			"default": "./apply-kernel.js"
+		},
+		"./broadcast": {
+			"default": "./broadcast.js"
+		},
+		"./clamp": {
+			"default": "./clamp.js"
+		},
+		"./clampn": {
+			"default": "./clampn.js"
+		},
+		"./convert": {
+			"default": "./convert.js"
+		},
+		"./convolve": {
+			"default": "./convolve.js"
+		},
+		"./cos": {
+			"default": "./cos.js"
+		},
+		"./defopn": {
+			"default": "./defopn.js"
+		},
+		"./defoprt": {
+			"default": "./defoprt.js"
+		},
+		"./defoprtt": {
+			"default": "./defoprtt.js"
+		},
+		"./defopt": {
+			"default": "./defopt.js"
+		},
+		"./defoptn": {
+			"default": "./defoptn.js"
+		},
+		"./defoptnn": {
+			"default": "./defoptnn.js"
+		},
+		"./defoptt": {
+			"default": "./defoptt.js"
+		},
+		"./defopttt": {
+			"default": "./defopttt.js"
+		},
+		"./diagonal": {
+			"default": "./diagonal.js"
+		},
+		"./div": {
+			"default": "./div.js"
+		},
+		"./divn": {
+			"default": "./divn.js"
+		},
+		"./dot": {
+			"default": "./dot.js"
+		},
+		"./errors": {
+			"default": "./errors.js"
+		},
+		"./exp": {
+			"default": "./exp.js"
+		},
+		"./exp2": {
+			"default": "./exp2.js"
+		},
+		"./filtered-indices": {
+			"default": "./filtered-indices.js"
+		},
+		"./format": {
+			"default": "./format.js"
+		},
+		"./identity": {
+			"default": "./identity.js"
+		},
+		"./integrate": {
+			"default": "./integrate.js"
+		},
+		"./kernels": {
+			"default": "./kernels.js"
+		},
+		"./log": {
+			"default": "./log.js"
+		},
+		"./log2": {
+			"default": "./log2.js"
+		},
+		"./mag": {
+			"default": "./mag.js"
+		},
+		"./magsq": {
+			"default": "./magsq.js"
+		},
+		"./max": {
+			"default": "./max.js"
+		},
+		"./maxn": {
+			"default": "./maxn.js"
+		},
+		"./mean": {
+			"default": "./mean.js"
+		},
+		"./min": {
+			"default": "./min.js"
+		},
+		"./minn": {
+			"default": "./minn.js"
+		},
+		"./mul": {
+			"default": "./mul.js"
+		},
+		"./mulm": {
+			"default": "./mulm.js"
+		},
+		"./muln": {
+			"default": "./muln.js"
+		},
+		"./mulv": {
+			"default": "./mulv.js"
+		},
+		"./normalize": {
+			"default": "./normalize.js"
+		},
+		"./pow": {
+			"default": "./pow.js"
+		},
+		"./pown": {
+			"default": "./pown.js"
+		},
+		"./product": {
+			"default": "./product.js"
+		},
+		"./rand-distrib": {
+			"default": "./rand-distrib.js"
+		},
+		"./range": {
+			"default": "./range.js"
+		},
+		"./relu": {
+			"default": "./relu.js"
+		},
+		"./relun": {
+			"default": "./relun.js"
+		},
+		"./sample": {
+			"default": "./sample.js"
+		},
+		"./select": {
+			"default": "./select.js"
+		},
+		"./set": {
+			"default": "./set.js"
+		},
+		"./setn": {
+			"default": "./setn.js"
+		},
+		"./sigmoid": {
+			"default": "./sigmoid.js"
+		},
+		"./sin": {
+			"default": "./sin.js"
+		},
+		"./smoothstep": {
+			"default": "./smoothstep.js"
+		},
+		"./smoothstepn": {
+			"default": "./smoothstepn.js"
+		},
+		"./softmax": {
+			"default": "./softmax.js"
+		},
+		"./softplus": {
+			"default": "./softplus.js"
+		},
+		"./sqrt": {
+			"default": "./sqrt.js"
+		},
+		"./step": {
+			"default": "./step.js"
+		},
+		"./stepn": {
+			"default": "./stepn.js"
+		},
+		"./storage": {
+			"default": "./storage.js"
+		},
+		"./sub": {
+			"default": "./sub.js"
+		},
+		"./subn": {
+			"default": "./subn.js"
+		},
+		"./sum": {
+			"default": "./sum.js"
+		},
+		"./svd": {
+			"default": "./svd.js"
+		},
+		"./swap": {
+			"default": "./swap.js"
+		},
+		"./tan": {
+			"default": "./tan.js"
+		},
+		"./tanh": {
+			"default": "./tanh.js"
+		},
+		"./tensor": {
+			"default": "./tensor.js"
+		},
+		"./top": {
+			"default": "./top.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2018
+	}
+}

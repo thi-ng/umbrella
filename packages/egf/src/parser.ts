@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { unsupported } from "@thi.ng/errors/unsupported";
@@ -233,7 +234,7 @@ const __initContext = (ctx: Partial<ParseContext> = {}) => {
 	};
 };
 
-/** @interal */
+/** @internal */
 export const $parseFile = (path: string, ctx?: Partial<ParseContext>) => {
 	const $ctx = __initContext(ctx);
 	$ctx.file = path = resolvePath($ctx.cwd, path);

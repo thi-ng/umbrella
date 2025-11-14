@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom/polygon";
 import { isLayout } from "@thi.ng/layout/checks";
@@ -29,7 +30,15 @@ export const dropdown = ({
 	const open = gui.state<boolean>(id, () => false);
 	const nested = isLayout(layout)
 		? layout.nest(1, [1, open ? items.length : 1])
-		: gridLayout(layout.x, layout.y, layout.w, 1, layout.ch, layout.gap);
+		: gridLayout(
+				layout.x,
+				layout.y,
+				layout.w,
+				1,
+				layout.ch,
+				layout.gapX,
+				layout.gapY
+		  );
 	let res: Maybe<number>;
 	const box = nested.next();
 	const { x, y, w, h } = box;
@@ -88,7 +97,7 @@ export const dropdown = ({
 				gui,
 				layout: box,
 				id: `${id}-${value}`,
-				label: items[value],
+				label: items[value] ?? label,
 				labelHover: label,
 				info,
 			})

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2 } from "@thi.ng/api";
 import type { VecOpVN } from "./api.js";
 import { set } from "./set.js";

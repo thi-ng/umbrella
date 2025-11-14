@@ -1,19 +1,20 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ICopy, IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math/api";
 import { AGen } from "./agen.js";
 
 /**
  * Generator of sine & cosine values of given frequency in the form of
- * [sin,cos] tuples. Start phase always zero.
+ * `[sin,cos]` tuples. Start phase always zero.
  *
  * @remarks
- * Implementation based on a self-oscillating SVF (state-variable
- * filter) without using any trig functions. Therefore, ~30% faster, but
- * precision only useful for very low (< ~2Hz) frequencies. Due to
- * floating point error accumulation, phase & amplitude drift will occur
- * for higher frequencies.
+ * Implementation based on a self-oscillating SVF (state-variable filter)
+ * without using any trig functions. Therefore, ~30% faster, but precision only
+ * useful for very low (< ~2Hz) frequencies. Due to floating point error
+ * accumulation, phase & amplitude drift will occur for higher frequencies.
  *
  * References:
+ *
  * - http://www.earlevel.com/main/2003/03/02/the-digital-state-variable-filter/
  *
  * @param freq - normalized freq

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Consumes given iterable, presumably for any implicit side-effects. Iterable
  * MUST be finite!

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { equivSet } from "@thi.ng/equiv";
 import { readJSON, writeJSON } from "@thi.ng/file-io";
 import { existsSync, readdirSync, statSync } from "node:fs";

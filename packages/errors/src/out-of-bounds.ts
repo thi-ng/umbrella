@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defError } from "./deferror.js";
 
 export const OutOfBoundsError = defError<any>(() => "index out of bounds");

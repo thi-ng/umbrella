@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IColor } from "../api.js";
 
 export const __dispatch0 = (src: IColor) => src.mode;

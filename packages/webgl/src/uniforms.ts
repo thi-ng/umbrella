@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn3, IObjectOf, Maybe, Nullable } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices/constants";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { QUARTER_PI } from "@thi.ng/math/api";
 import { clamp11 } from "@thi.ng/math/interval";
 import type { IGen } from "./api.js";
@@ -7,7 +8,7 @@ import type { NumericArray } from "@thi.ng/api";
 
 /**
  * Positions and converts a mono signal into a stereo signal using given `pos`
- * in the [-1..1] range to control the panning (-1 = left, +1 = right).
+ * in the `[-1,1]` range to control the panning (-1 = left, +1 = right).
  *
  * @remarks
  * Reference:

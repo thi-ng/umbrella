@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { SQRT3 } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { abs2 } from "@thi.ng/vectors/abs";
@@ -128,7 +129,7 @@ export const distPolyline2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
  * https://iquilezles.org/articles/distfunctions2d/
  *
  * @param p
- * @param apert - pre-computed vec2 of [sin, cos] of aperture angle
+ * @param apert - pre-computed vec2 of `[sin,cos]` of aperture angle
  * @param ra - inner radius
  * @param rb - outer radius offset (thickness)
  */

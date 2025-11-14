@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Nullable } from "@thi.ng/api";
 import type { Stringer } from "@thi.ng/strings";
 
@@ -20,7 +21,9 @@ export type CellTransform = Fn2<string, any, any>;
 
 export interface ColumnSpec {
 	/**
-	 * Rename column to given name in result objects.
+	 * Rename column to given name in result objects. MUST be given if
+	 * {@link ColumnSpec.default} is defined and column specs are provided to
+	 * {@link parseCSV} as array (rather than as object).
 	 */
 	alias?: string;
 	/**
@@ -29,6 +32,19 @@ export interface ColumnSpec {
 	 * actual value for the cell.
 	 */
 	tx?: CellTransform;
+	/**
+	 * Default value or function to use if column is missing entirely, or if a
+	 * column/cell value is empty string and there is no {@link ColumnSpec.tx}
+	 * defined (which would always be called first).
+	 *
+	 * @remarks
+	 * If `default` is a function, it will be called with the entire
+	 * {@link CSVRecord} constructed so far and the return value used as
+	 * default.
+	 *
+	 * Also see note about {@link ColumnSpec.alias}.
+	 */
+	default?: any;
 }
 
 export type ColumnSpecs = Record<string, ColumnSpec>;

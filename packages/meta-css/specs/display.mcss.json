@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "display mode", "desc": "<v>" },
 			"name": "<k>",
+			"doc": { "group": "display mode", "desc": "<v>" },
 			"props": "display",
 			"values": {
 				"db": "block",
@@ -19,25 +19,25 @@
 			}
 		},
 		{
-			"doc": { "group": "visibility" },
 			"name": "<v>",
+			"doc": { "group": "visibility" },
 			"props": { "visibility": "<v> !important" },
 			"values": ["hidden", "visible", "collapse"]
 		}
 	],
 	"templates": [
 		{
-			"doc": { "group": "layout", "args": ["num: column count"] },
 			"name": "columns",
+			"doc": { "group": "layout", "args": ["num: column count"] },
 			"props": "column-count"
 		},
 		{
+			"name": "appearance",
 			"doc": {
 				"group": "appearance",
 				"desc": "Sets appearance (incl. `-webkit` prefixed version) to given value",
 				"args": ["mode: CSS value"]
 			},
-			"name": "appearance",
 			"props": { "appearance": "{0}", "-webkit-appearance": "{0}" }
 		}
 	]

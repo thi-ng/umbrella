@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors/setc";
 import type { ColorOp } from "../api.js";

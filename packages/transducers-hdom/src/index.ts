@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
 import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
 import { resolveRoot } from "@thi.ng/hdom/resolve";
@@ -12,7 +13,7 @@ import { scan } from "@thi.ng/transducers/scan";
  * root element.
  *
  * By default, incoming values are first normalized using hdom's
- * [`normalizeTree()`](https://docs.thi.ng/umbrella/hdom/functions/normalizeTree.html)
+ * [`normalizeTree`](https://docs.thi.ng/umbrella/hdom/functions/normalizeTree.html)
  * function and a copy of the given (optional) `ctx` object is provided to all
  * embedded component functions in the tree. If the `autoDerefKeys` option is
  * given, attempts to auto-expand/deref the given keys in the user supplied
@@ -38,7 +39,7 @@ import { scan } from "@thi.ng/transducers/scan";
  * trees).
  *
  * Please see here for further details:
- * [`start()`](https://docs.thi.ng/umbrella/hdom/functions/start.html)
+ * [`start`](https://docs.thi.ng/umbrella/hdom/functions/start.html)
  *
  * @param opts - hdom options
  */

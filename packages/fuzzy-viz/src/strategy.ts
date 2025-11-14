@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, IClear, IDeref } from "@thi.ng/api";
 import type { DefuzzStrategy, FuzzyFn, LVarDomain } from "@thi.ng/fuzzy";
 import { variable } from "@thi.ng/fuzzy/var";
@@ -23,7 +24,7 @@ import { varToHiccup } from "./var.js";
  * can be obtained through the
  * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) mechanism
  * implemented by the returned function. Since
- * [`defuzz()`](https://docs.thi.ng/umbrella/fuzzy/functions/defuzz.html) might
+ * [`defuzz`](https://docs.thi.ng/umbrella/fuzzy/functions/defuzz.html) might
  * call the strategy multiple times (i.e. if there are multiple output vars
  * used), `.deref()` will always return an array of secondary results.
  *

@@ -1,5 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
-import { parseCSV, parseCSVFromString } from "../src/index.js";
+import { int, parseCSV, parseCSVFromString } from "../src/index.js";
 
 test("header", () => {
 	expect([...parseCSV({ header: ["a", "b", "c"] }, ["1,2,3"])]).toEqual([
@@ -80,4 +81,49 @@ test("quotes in header", () => {
 			`"foo","bar\nbaz","fin,\n#ignore"\n#ignore2\n1,2,3\n`
 		),
 	]).toEqual([{ foo: "1", "bar\nbaz": "2", "fin,\n#ignore": "3" }]);
+});
+
+test("default values (missing column)", () => {
+	expect([
+		...parseCSVFromString(
+			{
+				cols: {
+					b: { default: 42 },
+					c: { default: (row: any) => row.a + "/" + row.b },
+				},
+			},
+			`"a"\n23\n`
+		),
+	]).toEqual([{ a: "23", b: 42, c: "23/42" }]);
+});
+
+test("default values (missing column, array)", () => {
+	expect([
+		...parseCSVFromString(
+			{ cols: [{}, { alias: "b", default: 42 }] },
+			`"a"\n23\n`
+		),
+	]).toEqual([{ a: "23", b: 42 }]);
+	expect(() => [
+		...parseCSVFromString({ cols: [{}, { default: 42 }] }, `"a"\n23\n`),
+	]).toThrow("missing column alias");
+});
+
+test("default values (missing in row)", () => {
+	expect([
+		...parseCSVFromString(
+			{
+				cols: {
+					a: { tx: int() },
+					b: { tx: int(), default: 42 },
+					c: { default: "?" },
+				},
+			},
+			`a,b,c\n23,\n24,43,\n25,,c3`
+		),
+	]).toEqual([
+		{ a: 23, b: 42, c: "?" },
+		{ a: 24, b: 43, c: "?" },
+		{ a: 25, b: 0, c: "c3" },
+	]);
 });

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";

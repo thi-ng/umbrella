@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { add22 } from "@thi.ng/matrices/add";
 import { addN22 } from "@thi.ng/matrices/addn";
 import { div22 } from "@thi.ng/matrices/div";
@@ -9,7 +10,7 @@ import { mulV22 } from "@thi.ng/matrices/mulv";
 import { mulVM22 } from "@thi.ng/matrices/mulvm";
 import { sub22 } from "@thi.ng/matrices/sub";
 import { subN22 } from "@thi.ng/matrices/subn";
-import { neg } from "@thi.ng/vectors/neg";
+import { neg4 } from "@thi.ng/vectors/neg";
 import type { JSBuiltinsMat } from "../api.js";
 import { POOL_VEC4 } from "../pool.js";
 
@@ -32,7 +33,7 @@ export const MAT2: JSBuiltinsMat = {
 	mulvm: (a, b) => mulVM22(next(), a, b),
 	mulvn: (a, b) => mulN22(next(), a, b),
 	sub: (a, b) => sub22(next(), a, b),
-	sub1: (a) => neg(next(), a),
+	sub1: (a) => neg4(next(), a),
 	subnv: (a, b) => sub22(null, uniform(a), b),
 	subvn: (a, b) => subN22(next(), a, b),
 };

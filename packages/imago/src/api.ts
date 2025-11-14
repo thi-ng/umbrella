@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	Fn,
 	Fn3,
@@ -5,6 +6,7 @@ import type {
 	Keys,
 	Range1_4,
 	TypedArray,
+	UIntArray,
 } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type {
@@ -83,6 +85,17 @@ export interface Position {
 }
 
 export type BufferLike = TypedArray | Buffer;
+
+/**
+ * Simplified interface of thi.ng/pixel `IntBuffer`, only defining parts
+ * relevant to the conversion for {@link processImage}.
+ */
+export interface IntBufferLike {
+	width: number;
+	height: number;
+	format: { channels: unknown[] };
+	data: UIntArray;
+}
 
 export type Processor = Fn3<
 	ProcSpec,
@@ -382,8 +395,8 @@ export interface OutputSpec extends ProcSpec {
 	 * {@link OutputSpec.path} will be ignored and no file will be written.
 	 *
 	 * @remarks
-	 * The value given is the blurhash detail setting in the [1,9] range (usual
-	 * default is 4), possibly given separately for X/Y axes.
+	 * The value given is the blurhash detail setting in the `[1,9]` range
+	 * (usual default is 4), possibly given separately for X/Y axes.
 	 *
 	 * Important: Ensure the image has already been downsized to ~50-500 pixels.
 	 * Larger images are causing unnecessary & long processing...
@@ -437,6 +450,19 @@ export interface OutputSpec extends ProcSpec {
 	 * WebP output options. See [Sharp docs](https://sharp.pixelplumbing.com/api-output#webp)
 	 */
 	webp?: WebpOptions;
+	/**
+	 * Only used if {@link OutputSpec.path} is NOT set. If true, output will be
+	 * captured as data URL, otherwise as binary data/buffer.
+	 *
+	 * @remarks
+	 * Other conditions:
+	 *
+	 * - Requires {@link OutputSpec.format} to be set to a data URL compatible
+	 *   image format.
+	 * - An error will be thrown during processing if the encoded image size
+	 *   exceeds 32KB.
+	 */
+	dataURL?: boolean;
 }
 
 export interface ResizeSpec extends ProcSpec {
@@ -537,6 +563,11 @@ export interface ImgProcCtx {
 	 * {@link output}.
 	 */
 	outputs: Record<string, string | Buffer>;
+	/**
+	 * Recorded metadata of outputs which requested it, keyed by IDs given via
+	 * {@link OutputSpec} / {@link output} (current `raw` format only).
+	 */
+	outputMeta: Record<string, Record<string, any>>;
 	/**
 	 * See {@link ImgProcOpts.env} for details/comments.
 	 */

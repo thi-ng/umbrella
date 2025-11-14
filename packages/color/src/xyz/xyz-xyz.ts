@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ColorOp } from "../api.js";
 import { BRADFORD_D50_D65, BRADFORD_D65_D50 } from "../api/constants.js";
 import { __mulV33 } from "../internal/matrix-ops.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const maybeParseInt = (x: string, defaultVal: any = 0, radix = 10) => {
 	const n = parseInt(x, radix);
 	return isNaN(n) ? defaultVal : n;

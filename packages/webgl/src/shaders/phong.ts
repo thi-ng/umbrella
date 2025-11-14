@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Sym } from "@thi.ng/shader-ast";
 import { F, M4, V3 } from "@thi.ng/shader-ast/api/types";
 import { diffuseLighting } from "@thi.ng/shader-ast-stdlib/light/lambert";

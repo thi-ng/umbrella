@@ -1,9 +1,41 @@
-import { defBitOp, defBitOpN } from "./compile/emit.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVV } from "./defopvv.js";
+import { $addI } from "./ops.js";
 
-export const [addI, addI2, addI3, addI4] = defBitOp("+", true);
+const [a, b, c, d] = defOpVV($addI);
 
-export const [addU, addU2, addU3, addU4] = defBitOp("+");
+/**
+ * Componentwise nD signed integer vector addition. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const addI = a;
 
-export const [addNI, addNI2, addNI3, addNI4] = defBitOpN("+", true);
+/**
+ * Componentwise 2D signed integer vector addition.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const addI2 = b;
 
-export const [addNU, addNU2, addNU3, addNU4] = defBitOpN("+");
+/**
+ * Componentwise 3D signed integer vector addition.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const addI3 = c;
+
+/**
+ * Componentwise 4D signed integer vector addition.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const addI4 = d;

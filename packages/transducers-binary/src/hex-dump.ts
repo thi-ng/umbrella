@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { juxt } from "@thi.ng/compose/juxt";
 import { U32, U8 } from "@thi.ng/hex";
 import type { Transducer } from "@thi.ng/transducers";
@@ -12,7 +13,7 @@ import type { HexDumpOpts } from "./api.js";
 /**
  * Transforms bytes into a sequence of hexdump lines with configurable number of
  * `columns` and `address` offset. Uses
- * [`partition()`](https://docs.thi.ng/umbrella/transducers/functions/partition.html)
+ * [`partition`](https://docs.thi.ng/umbrella/transducers/functions/partition.html)
  * internally, so new lines are only produced once filled. If the input hasn't
  * an exact multiple of `cols` bytes, the last line will be padded with zeroes.
  *

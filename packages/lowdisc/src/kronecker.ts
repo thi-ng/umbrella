@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { lowDiscrepancy } from "./lowdisc.js";
 
 /** @internal */
@@ -10,7 +11,8 @@ const __fract = (x: number) => x - Math.floor(x);
  * `(0..1)` interval.
  *
  * @remarks
- * Reference:
+ * References:
+ *
  * - https://math.stackexchange.com/a/2848339
  * - http://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/
  *

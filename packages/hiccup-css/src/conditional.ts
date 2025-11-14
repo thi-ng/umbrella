@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isString } from "@thi.ng/checks/is-string";
 import { expand, indent } from "./impl.js";
 import type { Conditional, CSSOpts, RuleFn } from "./api.js";

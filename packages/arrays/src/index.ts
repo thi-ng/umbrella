@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./api.js";
 export * from "./argmin.js";
 export * from "./arg-sort.js";
@@ -8,6 +9,7 @@ export * from "./ends-with.js";
 export * from "./ensure-array.js";
 export * from "./ensure-iterable.js";
 export * from "./fill-range.js";
+export * from "./filter-all.js";
 export * from "./find.js";
 export * from "./find-sequence.js";
 export * from "./floyd-rivest.js";
@@ -17,7 +19,9 @@ export * from "./insert.js";
 export * from "./into.js";
 export * from "./iterator.js";
 export * from "./levenshtein.js";
+export * from "./lookup.js";
 export * from "./peek.js";
+export * from "./permutation.js";
 export * from "./quicksort.js";
 export * from "./rotate.js";
 export * from "./shuffle.js";

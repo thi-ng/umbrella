@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Path } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { setIn } from "./set-in.js";

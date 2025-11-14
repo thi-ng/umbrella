@@ -6,6 +6,15 @@
 
 {{pkg.description}}
 
+In addition to the main
+[`kmeans()`](https://docs.thi.ng/umbrella/k-means/functions/kmeans.html)
+implementation, the following k-means centroid initialization functions are
+provided (can also be used in isolation to extract cluster centroids):
+
+- [`kmeansPlusPlus()`](https://docs.thi.ng/umbrella/k-means/functions/kmeansPlusPlus.html)
+- [`meanCut()`](https://docs.thi.ng/umbrella/k-means/functions/meanCut.html)
+- [`medianCut()`](https://docs.thi.ng/umbrella/k-means/functions/medianCut.html)
+
 {{meta.status}}
 
 {{repo.supportPackages}}

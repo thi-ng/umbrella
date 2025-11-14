@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS } from "@thi.ng/math/api";
 import type { ColorOp } from "../api.js";
 import { luminanceRgb } from "../luminance-rgb.js";

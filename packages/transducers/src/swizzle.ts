@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { swizzle as _swizzle } from "@thi.ng/arrays/swizzle";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "./api.js";
@@ -30,7 +31,7 @@ import { map } from "./map.js";
  *
  * @remarks
  * Also see
- * [`swizzle()`](https://docs.thi.ng/umbrella/arrays/functions/swizzle.html)
+ * [`swizzle`](https://docs.thi.ng/umbrella/arrays/functions/swizzle.html)
  *
  * @param order - key order
  */

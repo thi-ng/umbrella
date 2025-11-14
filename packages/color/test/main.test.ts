@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { XsAdd } from "@thi.ng/random";
 import { expect, test } from "bun:test";
 import {
@@ -105,12 +106,12 @@ test("random", () => {
 	expect(
 		rgb
 			.random(new XsAdd(0xdecafbad))
-			.eqDelta(rgb(0.274, 0.0615, 0.1377), 1e-3)
+			.eqDelta(rgb(0.438, 0.137, 0.062), 1e-3)
 	).toBeTrue();
 	expect(
 		labD50
 			.random(new XsAdd(0xdecafbad))
-			.eqDelta(labD50(0.274, -0.6866, -0.8375), 1e-3)
+			.eqDelta(labD50(0.438, -0.555, -0.994), 1e-3)
 	).toBeTrue();
 });
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN2, FnN3, FnU2 } from "@thi.ng/api";
 
 /**
@@ -60,6 +61,7 @@ export const fmod: FnN2 = (x, y) => x % y;
  * tuple of `[sig, exp]`.
  *
  * @remarks
+ *
  * - If `x` is zero, both parts (significand and exponent) are zero.
  * - If `x` is negative, the significand returned by this function is negative.
  *

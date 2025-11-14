@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec2Sym } from "@thi.ng/shader-ast/api/syms";
 import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
@@ -10,7 +11,7 @@ import { abs, cos, length, sin } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Returns signed distance from `p` to 2D circular arc with `aperture` (in
- * [0..π] interval), radius `ra` and `thickness`.
+ * `[0,π]` interval), radius `ra` and `thickness`.
  *
  * @remarks
  * Slightly modified version (easier to use aperture control) of original GLSL

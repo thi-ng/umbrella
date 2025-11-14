@@ -1,9 +1,41 @@
-import { defBitOp, defBitOpN } from "./compile/emit.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVV } from "./defopvv.js";
+import { $mulI } from "./ops.js";
 
-export const [mulI, mulI2, mulI3, mulI4] = defBitOp("*", true);
+const [a, b, c, d] = defOpVV($mulI);
 
-export const [mulU, mulU2, mulU3, mulU4] = defBitOp("*");
+/**
+ * Componentwise nD signed integer vector multiplication. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const mulI = a;
 
-export const [mulNI, mulNI2, mulNI3, mulNI4] = defBitOpN("*", true);
+/**
+ * Componentwise 2D signed integer vector multiplication.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const mulI2 = b;
 
-export const [mulNU, mulNU2, mulNU3, mulNU4] = defBitOpN("*");
+/**
+ * Componentwise 3D signed integer vector multiplication.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const mulI3 = c;
+
+/**
+ * Componentwise 4D signed integer vector multiplication.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const mulI4 = d;

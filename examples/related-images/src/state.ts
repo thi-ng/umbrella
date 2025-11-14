@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { reactive } from "@thi.ng/rstream";
 import { gallery } from "./gallery.js";
 import { preload } from "./preload.js";

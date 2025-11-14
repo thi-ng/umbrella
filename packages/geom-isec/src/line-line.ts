@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU4 } from "@thi.ng/api";
 import { closestPointSegment } from "@thi.ng/geom-closest-point/line";
 import { EPS } from "@thi.ng/math/api";
@@ -6,6 +7,16 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mixN2 } from "@thi.ng/vectors/mixn";
 import { IntersectionType, type IntersectionResult } from "./api.js";
 
+/**
+ * 2D only. Computes intersection between two lines defined by pairs `a`,`b` and
+ * `c`,`d`.
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param eps
+ */
 export const intersectLineLine = (
 	a: ReadonlyVec,
 	b: ReadonlyVec,

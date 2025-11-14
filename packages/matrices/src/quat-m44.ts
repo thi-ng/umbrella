@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ZERO3, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { setC } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api.js";

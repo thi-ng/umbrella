@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { defBitField } from "../src/index.js";
 
@@ -13,6 +14,21 @@ test("setAt (number)", () => {
 	expect(bf.at(1)).toBeFalsy();
 	bf.setAt(1, 4);
 	expect(bf.at(1)).toBeTruthy();
+});
+
+test("fill", () => {
+	expect([...defBitField(32).fill(1, 5).data]).toEqual([
+		0b0000_0111, 255, 255, 255,
+	]);
+	expect([...defBitField(32).fill(1, 3, 7).data]).toEqual([
+		0b0001_1110, 0, 0, 0,
+	]);
+	expect([...defBitField(32).fill(1, 3, 18).data]).toEqual([
+		0b0001_1111, 255, 0b1100_0000, 0,
+	]);
+	expect([...defBitField(32).fill(1).fill(0, 3, 18).data]).toEqual([
+		0b1110_0000, 0, 0b0011_1111, 255,
+	]);
 });
 
 test("positions", () => {
@@ -40,4 +56,26 @@ test("similarity", () => {
 	);
 	expect(a.similarity([0, 0, 0, 0, 0, 0])).toBe(0);
 	expect(() => a.similarity([])).toThrow();
+});
+
+test("firstZero", () => {
+	const a = defBitField(32);
+	a.data.set([255, 0b0011_0111, 255, 255]);
+	expect(a.firstZero()).toBe(8);
+	expect(a.firstZero(8)).toBe(8);
+	expect(a.firstZero(9)).toBe(9);
+	expect(a.firstZero(10)).toBe(12);
+	expect(a.firstZero(12)).toBe(12);
+	expect(a.firstZero(13)).toBe(-1);
+});
+
+test("firstOne", () => {
+	const a = defBitField(32);
+	a.data.set([0, 0b1100_1000, 0, 0]);
+	expect(a.firstOne()).toBe(8);
+	expect(a.firstOne(8)).toBe(8);
+	expect(a.firstOne(9)).toBe(9);
+	expect(a.firstOne(10)).toBe(12);
+	expect(a.firstOne(12)).toBe(12);
+	expect(a.firstOne(13)).toBe(-1);
 });

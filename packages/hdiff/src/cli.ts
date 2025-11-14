@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
@@ -8,7 +9,7 @@ let src1;
 let src2;
 let headerBody;
 
-const args = process.argv.slice(2);
+const args = process.argv.slice(3);
 if (args.length === 3) {
 	const [path, rev1, rev2] = args;
 	src1 = execSync(`git show ${rev1}:${path}`).toString();
@@ -18,7 +19,19 @@ if (args.length === 3) {
 	const [rev1, rev2] = args;
 	src1 = readFileSync(rev1).toString();
 	src2 = readFileSync(rev2).toString();
-	headerBody = ["header", ["h1", "File diff"], ["code", `${rev1} ⇌ ${rev2}`]];
+	headerBody = [
+		"header",
+		[
+			"h1",
+			"File diff",
+			[
+				"small",
+				"Made with ",
+				["a", { href: "https://thi.ng/hdiff" }, "thi.ng/hdiff"],
+			],
+		],
+		["code", `${rev1} ⇌ ${rev2}`],
+	];
 } else {
 	console.log("Usage:\n\thdiff file1 file2\n\thdiff relpath gitrev1 gitrev2");
 	process.exit(1);

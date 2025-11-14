@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api.js";
 import { float } from "./float.js";
@@ -6,11 +7,11 @@ import { float } from "./float.js";
  * Higher order formatter for n-D vectors, with each element formatted using
  * `prec` and using optional delimiter and pre/postfixes.
  *
- * @size - vector size (optimized for size 1-4)
- * @prec - precision (see {@link float}) or existing number formatter
- * @delim - delimiter (default: `,`)
- * @pre - prefix (default: `[`)
- * @post - prefix (default: `]`)
+ * @param size - vector size (optimized for size 1-4)
+ * @param prec - precision (see {@link float}) or existing number formatter
+ * @param delim - delimiter (default: `,`)
+ * @param pre - prefix (default: `[`)
+ * @param post - prefix (default: `]`)
  */
 export const vector: (
 	size: number,

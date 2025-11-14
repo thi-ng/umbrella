@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { rect } from "@thi.ng/geom/rect";
 import { isLayout } from "@thi.ng/layout/checks";
 import { hash } from "@thi.ng/vectors/hash";

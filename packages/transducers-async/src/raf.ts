@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref, Maybe } from "@thi.ng/api";
 import type { ClosableAsyncGenerator } from "./api.js";
 import { source } from "./source.js";
@@ -6,17 +7,17 @@ export interface RAFOpts {
 	/**
 	 * If true (default: false), passes the timestamps received
 	 * via `requestAnimationFrame()` as iterator values. If false, a simple
-	 * counter [0..∞) will be emitted.
+	 * counter `[0,∞)` will be emitted.
 	 *
 	 * @defaultValue false
 	 */
 	timestamp: boolean;
 	/**
-	 * Only used if {@link RAFOpts.timestamp} is enabled. If given as
-	 * number, the value will be subtracted from all emitted timestamps. If this
-	 * option is set to true, the timestamps will be automatically zero-adjusted
-	 * such that the first emitted value will be zero. If undefined (default),
-	 * the browser supplied timestamps will be used as is.
+	 * Only used if {@link RAFOpts.timestamp} is enabled. If given as number,
+	 * the value will be subtracted from all emitted timestamps. If this option
+	 * is set to true, the timestamps will be automatically zero-adjusted such
+	 * that the first emitted value will be zero. If undefined (default), the
+	 * browser supplied timestamps will be used as is.
 	 */
 	t0: number | boolean;
 }

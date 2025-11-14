@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
-	fromUtf8CodePoint,
 	utf8Length as $utf8Length,
+	fromUtf8CodePoint,
 } from "@thi.ng/strings/utf8";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
@@ -133,7 +134,7 @@ export function utf8Decode(src?: Iterable<number>): any {
  * ```
  */
 export function utf8Encode(): Transducer<string, number>;
-export function utf8Encode(src: string): Uint8Array;
+export function utf8Encode(src: string): Uint8Array<ArrayBuffer>;
 export function utf8Encode(src?: string): any {
 	return src != null
 		? new Uint8Array(iterator(utf8Encode(), src))
@@ -194,7 +195,8 @@ export function utf8Encode(src?: string): any {
 }
 
 /**
- * Re-export of [utf8Length()](https://docs.thi.ng/umbrella/strings/functions/utf8Length.html).
+ * Re-export of
+ * [`utf8Length`](https://docs.thi.ng/umbrella/strings/functions/utf8Length.html).
  *
  * @deprecated migrated to thi.ng/strings pkg
  */

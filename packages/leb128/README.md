@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/leb128](https://media.thi.ng/umbrella/banners-20230807/thing-leb128.svg?ef6255a3)
+# ![@thi.ng/leb128](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-leb128.svg?ef6255a3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/leb128.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -89,13 +89,12 @@ For Node.js REPL:
 const leb = await import("@thi.ng/leb128");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 967 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1019 bytes
 
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
 
 ## API
 

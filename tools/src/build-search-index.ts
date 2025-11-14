@@ -1,4 +1,4 @@
-import { ArraySet } from "@thi.ng/associative";
+// SPDX-License-Identifier: Apache-2.0
 import { timed } from "@thi.ng/bench";
 import {
 	files,
@@ -9,10 +9,10 @@ import {
 } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/msgpack";
 import { MultiTrie } from "@thi.ng/trie";
-import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
-import { AWS_PROFILE, CF_DISTRO_DOCS, S3_PREFIX } from "./aws-config.js";
+import { S3_BUCKET_DOCS, S3_COMPRESS_OPTS } from "./aws-config.js";
 import { build, defEncoder } from "./search.js";
+import { compressFile, execAWS } from "./utils.js";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
 const RE_DOC_END = /^\s+\*\/$/;
@@ -24,9 +24,10 @@ type IndexValue = number;
 
 const fileIDs = new Map<string, number>();
 const pkgIDs = new Map<string, number>();
-const index = new MultiTrie<string, IndexValue>(null, {
-	vals: () => new ArraySet<IndexValue>(),
-});
+const index = new MultiTrie<string, IndexValue>(
+	null
+	// { values: () => new ArraySet<IndexValue>() }
+);
 const ignore = new Set(readJSON("./tools/ignore-words.json", LOGGER));
 
 const encodeConfig = [
@@ -73,7 +74,7 @@ for (let f of files("packages", ".ts")) {
 				continue;
 			if (!knownWords.has(word)) {
 				// knownWords.add(word);
-				index.add(word, encode(pkgId, fileId, ln));
+				index.add(word.split(""), encode(pkgId, fileId, ln));
 				indexed = true;
 			}
 		} else if (isComment && !isCode) {
@@ -84,7 +85,7 @@ for (let f of files("packages", ".ts")) {
 				if (ignore.has(word)) continue;
 				if (!knownWords.has(word)) {
 					// knownWords.add(word);
-					index.add(word, encode(pkgId, fileId, ln));
+					index.add(word.split(""), encode(pkgId, fileId, ln));
 					indexed = true;
 				}
 			}
@@ -114,21 +115,15 @@ writeFile(
 	{},
 	LOGGER
 );
-execFileSync("gzip", "-9 -f assets/search.bin".split(" "));
+compressFile("assets/search.bin");
 
 console.log("uploading...");
 console.log(
-	execFileSync(
-		"aws",
-		"s3 cp assets/search.bin.gz s3://docs.thi.ng/umbrella/search-index-latest.bin --content-encoding gzip --acl public-read --profile thing-umbrella".split(
-			" "
-		)
-	).toString()
-);
-
-execFileSync(
-	"aws",
-	`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${S3_PREFIX}/search-index-latest.bin ${AWS_PROFILE}`.split(
-		" "
+	execAWS(
+		`s3 cp assets/search.bin.br ${S3_BUCKET_DOCS}/umbrella/search-index-latest.bin ${S3_COMPRESS_OPTS}`
 	)
 );
+
+// execAWS(
+// 	`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${S3_PREFIX}/search-index-latest.bin ${AWS_PROFILE}`
+// );

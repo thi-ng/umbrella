@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { suite } from "@thi.ng/bench";
 import { parseHtml } from "@thi.ng/hiccup-html-parse";
 import { bytes } from "@thi.ng/strings";

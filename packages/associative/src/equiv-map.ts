@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	Fn3,
 	ICopy,
@@ -14,21 +15,13 @@ import { pairs } from "@thi.ng/transducers/pairs";
 import type { EquivMapOpts, IEquivSet } from "./api.js";
 import { ArraySet } from "./array-set.js";
 import { dissoc } from "./dissoc.js";
+import { __disposableEntries } from "./internal/dispose.js";
 import { __equivMap } from "./internal/equiv.js";
-import { __inspectable } from "./internal/inspect.js";
+import { __tostringMixin } from "./internal/tostring.js";
 import { into } from "./into.js";
 
-interface MapProps<K, V> {
-	keys: IEquivSet<K>;
-	map: Map<K, V>;
-	opts: EquivMapOpts<K>;
-}
-
-const __private = new WeakMap<EquivMap<any, any>, MapProps<any, any>>();
-
-const __map = (map: EquivMap<any, any>) => __private.get(map)!.map;
-
-@__inspectable
+@__disposableEntries
+@__tostringMixin
 export class EquivMap<K, V>
 	extends Map<K, V>
 	implements
@@ -37,11 +30,15 @@ export class EquivMap<K, V>
 		IEmpty<EquivMap<K, V>>,
 		IEquiv
 {
+	#keys: IEquivSet<K>;
+	#map: Map<K, V>;
+	#opts: EquivMapOpts<K>;
+
 	/**
 	 * Creates a new instance with optional initial key-value pairs and provided
 	 * options. If no `opts` are given, uses `ArraySet` for storing canonical
 	 * keys and
-	 * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+	 * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
 	 * checking key equivalence.
 	 *
 	 * @param pairs - key-value pairs
@@ -53,19 +50,20 @@ export class EquivMap<K, V>
 	) {
 		super();
 		const _opts: EquivMapOpts<K> = { equiv, keys: ArraySet, ...opts };
-		__private.set(this, {
-			keys: new _opts.keys(null, { equiv: _opts.equiv }),
-			map: new Map<K, V>(),
-			opts: _opts,
-		});
+		this.#keys = new _opts.keys(null, { equiv: _opts.equiv });
+		this.#map = new Map<K, V>();
+		this.#opts = _opts;
 		if (pairs) {
 			this.into(pairs);
 		}
 	}
 
-	[Symbol.iterator](): IterableIterator<Pair<K, V>> {
+	[Symbol.iterator](): MapIterator<Pair<K, V>> {
 		return this.entries();
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get [Symbol.species]() {
 		return EquivMap;
@@ -76,27 +74,23 @@ export class EquivMap<K, V>
 	}
 
 	get size(): number {
-		return __private.get(this)!.keys.size;
+		return this.#keys.size;
 	}
 
 	clear() {
-		const { keys, map } = __private.get(this)!;
-		keys.clear();
-		map.clear();
+		this.#keys.clear();
+		this.#map.clear();
 	}
 
 	empty(): EquivMap<K, V> {
-		return new EquivMap<K, V>(null, __private.get(this)!.opts);
+		return new EquivMap<K, V>(null, this.#opts);
 	}
 
 	copy() {
-		const { keys, map, opts } = __private.get(this)!;
 		const m = new EquivMap<K, V>();
-		__private.set(m, {
-			keys: keys.copy(),
-			map: new Map<K, V>(map),
-			opts,
-		});
+		m.#keys = this.#keys.copy();
+		m.#map = new Map<K, V>(this.#map);
+		m.#opts = this.#opts;
 		return m;
 	}
 
@@ -105,11 +99,10 @@ export class EquivMap<K, V>
 	}
 
 	delete(key: K) {
-		const { keys, map } = __private.get(this)!;
-		key = keys.get(key, SEMAPHORE);
-		if (key !== <any>SEMAPHORE) {
-			map.delete(key);
-			keys.delete(key);
+		const $key = this.#keys.get(key, <any>SEMAPHORE);
+		if ($key !== SEMAPHORE) {
+			this.#map.delete($key!);
+			this.#keys.delete($key!);
 			return true;
 		}
 		return false;
@@ -128,32 +121,27 @@ export class EquivMap<K, V>
 	 * @param thisArg -
 	 */
 	forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
-		for (let pair of __map(this)) {
+		for (let pair of this.#map) {
 			fn.call(thisArg, pair[1], pair[0], this);
 		}
 	}
 
 	get(key: K, notFound?: V): Maybe<V> {
-		const { keys, map } = __private.get(this)!;
-		key = keys.get(key, SEMAPHORE);
-		if (key !== <any>SEMAPHORE) {
-			return map.get(key);
-		}
-		return notFound;
+		const $key = this.#keys.get(key, <any>SEMAPHORE);
+		return $key !== SEMAPHORE ? this.#map.get($key!) : notFound;
 	}
 
 	has(key: K): boolean {
-		return __private.get(this)!.keys.has(key);
+		return this.#keys.has(key);
 	}
 
 	set(key: K, value: V) {
-		const { keys, map } = __private.get(this)!;
-		const k = keys.get(key, SEMAPHORE);
-		if (k !== <any>SEMAPHORE) {
-			map.set(k, value);
+		const $key = this.#keys.get(key, <any>SEMAPHORE);
+		if ($key !== SEMAPHORE) {
+			this.#map.set($key!, value);
 		} else {
-			keys.add(key);
-			map.set(key, value);
+			this.#keys.add(key);
+			this.#map.set(key, value);
 		}
 		return this;
 	}
@@ -162,20 +150,20 @@ export class EquivMap<K, V>
 		return <this>into(this, pairs);
 	}
 
-	entries(): IterableIterator<Pair<K, V>> {
-		return __map(this).entries();
+	entries(): MapIterator<Pair<K, V>> {
+		return this.#map.entries();
 	}
 
-	keys(): IterableIterator<K> {
-		return __map(this).keys();
+	keys(): MapIterator<K> {
+		return this.#map.keys();
 	}
 
-	values(): IterableIterator<V> {
-		return __map(this).values();
+	values(): MapIterator<V> {
+		return this.#map.values();
 	}
 
 	opts(): EquivMapOpts<K> {
-		return __private.get(this)!.opts;
+		return this.#opts;
 	}
 }
 

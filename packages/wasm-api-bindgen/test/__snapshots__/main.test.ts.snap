@@ -132,61 +132,61 @@ import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm
 const __str = (mem: IWasmMemoryAccess, base: number, isConst = true) => new WasmStringSlice(mem, base, isConst);
 
 export interface Foo extends WasmTypeBase {
-\treadonly single: WasmStringSlice;
-\treadonly constSingle: WasmStringSlice;
-\treadonly multi: WasmStringSlice[];
-\treadonly singlePtr: Pointer<WasmStringSlice>;
-\treadonly multiPtr: Pointer<WasmStringSlice[]>;
-\treadonly slice: WasmStringSlice[];
-\treadonly constSlice: WasmStringSlice[];
+	readonly single: WasmStringSlice;
+	readonly constSingle: WasmStringSlice;
+	readonly multi: WasmStringSlice[];
+	readonly singlePtr: Pointer<WasmStringSlice>;
+	readonly multiPtr: Pointer<WasmStringSlice[]>;
+	readonly slice: WasmStringSlice[];
+	readonly constSlice: WasmStringSlice[];
 }
 
 // @ts-ignore possibly unused args
 export const $Foo = defType<Foo>(4, 56, (mem, base) => {
-\tlet $singlePtr: Pointer<WasmStringSlice>, $multiPtr: Pointer<WasmStringSlice[]>;
-\tlet $single: WasmStringSlice, $constSingle: WasmStringSlice;
-\treturn {
-\t\tget single(): WasmStringSlice {
-\t\t\treturn $single || ($single = __str(mem, base, false));
-\t\t},
-\t\tget constSingle(): WasmStringSlice {
-\t\t\treturn $constSingle || ($constSingle = __str(mem, (base + 8)));
-\t\t},
-\t\tget multi(): WasmStringSlice[] {
-\t\t\tconst addr = (base + 16);
-\t\t\tconst $multi: WasmStringSlice[] = [];
-\t\t\tfor(let i = 0; i < 2; i++) $multi.push(__str(mem, addr + i * 8));
-\t\t\treturn $multi;
-\t\t},
-\t\tget singlePtr(): Pointer<WasmStringSlice> {
-\t\t\treturn $singlePtr || ($singlePtr = new Pointer<WasmStringSlice>(mem, (base + 32),
-\t\t\t(addr) => __str(mem, addr, true)
-\t\t\t));
-\t\t},
-\t\tget multiPtr(): Pointer<WasmStringSlice[]> {
-\t\t\treturn $multiPtr || ($multiPtr = new Pointer<WasmStringSlice[]>(mem, (base + 36),
-\t\t\t(addr) => {
-\t\t\t\tconst $buf: WasmStringSlice[] = [];
-\t\t\t\tfor(let i = 0; i < 2; i++) $buf.push(__str(mem, addr + i * 8));
-\t\t\t\treturn $buf;
-\t\t\t}
-\t\t\t));
-\t\t},
-\t\tget slice(): WasmStringSlice[] {
-\t\t\tconst addr = mem.u32[(base + 40) >>> 2];
-\t\t\tconst len = mem.u32[(base + 44) >>> 2];
-\t\t\tconst $slice: WasmStringSlice[] = [];
-\t\t\tfor(let i = 0; i < len; i++) $slice.push(__str(mem, addr + i * 8, false));
-\t\t\treturn $slice;
-\t\t},
-\t\tget constSlice(): WasmStringSlice[] {
-\t\t\tconst addr = mem.u32[(base + 48) >>> 2];
-\t\t\tconst len = mem.u32[(base + 52) >>> 2];
-\t\t\tconst $constSlice: WasmStringSlice[] = [];
-\t\t\tfor(let i = 0; i < len; i++) $constSlice.push(__str(mem, addr + i * 8));
-\t\t\treturn $constSlice;
-\t\t},
-\t};
+	let $singlePtr: Pointer<WasmStringSlice>, $multiPtr: Pointer<WasmStringSlice[]>;
+	let $single: WasmStringSlice, $constSingle: WasmStringSlice;
+	return {
+		get single(): WasmStringSlice {
+			return $single || ($single = __str(mem, base, false));
+		},
+		get constSingle(): WasmStringSlice {
+			return $constSingle || ($constSingle = __str(mem, (base + 8)));
+		},
+		get multi(): WasmStringSlice[] {
+			const addr = (base + 16);
+			const $multi: WasmStringSlice[] = [];
+			for(let i = 0; i < 2; i++) $multi.push(__str(mem, addr + i * 8));
+			return $multi;
+		},
+		get singlePtr(): Pointer<WasmStringSlice> {
+			return $singlePtr || ($singlePtr = new Pointer<WasmStringSlice>(mem, (base + 32),
+			(addr) => __str(mem, addr, true)
+			));
+		},
+		get multiPtr(): Pointer<WasmStringSlice[]> {
+			return $multiPtr || ($multiPtr = new Pointer<WasmStringSlice[]>(mem, (base + 36),
+			(addr) => {
+				const $buf: WasmStringSlice[] = [];
+				for(let i = 0; i < 2; i++) $buf.push(__str(mem, addr + i * 8));
+				return $buf;
+			}
+			));
+		},
+		get slice(): WasmStringSlice[] {
+			const addr = mem.u32[(base + 40) >>> 2];
+			const len = mem.u32[(base + 44) >>> 2];
+			const $slice: WasmStringSlice[] = [];
+			for(let i = 0; i < len; i++) $slice.push(__str(mem, addr + i * 8, false));
+			return $slice;
+		},
+		get constSlice(): WasmStringSlice[] {
+			const addr = mem.u32[(base + 48) >>> 2];
+			const len = mem.u32[(base + 52) >>> 2];
+			const $constSlice: WasmStringSlice[] = [];
+			for(let i = 0; i < len; i++) $constSlice.push(__str(mem, addr + i * 8));
+			return $constSlice;
+		},
+	};
 });
 "
 `;
@@ -431,61 +431,61 @@ import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm
 const __str = (mem: IWasmMemoryAccess, base: number, isConst = true) => new WasmStringPtr(mem, base, isConst);
 
 export interface Foo extends WasmTypeBase {
-\treadonly single: WasmStringPtr;
-\treadonly constSingle: WasmStringPtr;
-\treadonly multi: WasmStringPtr[];
-\treadonly singlePtr: Pointer<WasmStringPtr>;
-\treadonly multiPtr: Pointer<WasmStringPtr[]>;
-\treadonly slice: WasmStringPtr[];
-\treadonly constSlice: WasmStringPtr[];
+	readonly single: WasmStringPtr;
+	readonly constSingle: WasmStringPtr;
+	readonly multi: WasmStringPtr[];
+	readonly singlePtr: Pointer<WasmStringPtr>;
+	readonly multiPtr: Pointer<WasmStringPtr[]>;
+	readonly slice: WasmStringPtr[];
+	readonly constSlice: WasmStringPtr[];
 }
 
 // @ts-ignore possibly unused args
 export const $Foo = defType<Foo>(4, 56, (mem, base) => {
-\tlet $singlePtr: Pointer<WasmStringPtr>, $multiPtr: Pointer<WasmStringPtr[]>;
-\tlet $single: WasmStringPtr, $constSingle: WasmStringPtr;
-\treturn {
-\t\tget single(): WasmStringPtr {
-\t\t\treturn $single || ($single = __str(mem, base, false));
-\t\t},
-\t\tget constSingle(): WasmStringPtr {
-\t\t\treturn $constSingle || ($constSingle = __str(mem, (base + 8)));
-\t\t},
-\t\tget multi(): WasmStringPtr[] {
-\t\t\tconst addr = (base + 16);
-\t\t\tconst $multi: WasmStringPtr[] = [];
-\t\t\tfor(let i = 0; i < 2; i++) $multi.push(__str(mem, addr + i * 4));
-\t\t\treturn $multi;
-\t\t},
-\t\tget singlePtr(): Pointer<WasmStringPtr> {
-\t\t\treturn $singlePtr || ($singlePtr = new Pointer<WasmStringPtr>(mem, (base + 32),
-\t\t\t(addr) => __str(mem, addr, true)
-\t\t\t));
-\t\t},
-\t\tget multiPtr(): Pointer<WasmStringPtr[]> {
-\t\t\treturn $multiPtr || ($multiPtr = new Pointer<WasmStringPtr[]>(mem, (base + 36),
-\t\t\t(addr) => {
-\t\t\t\tconst $buf: WasmStringPtr[] = [];
-\t\t\t\tfor(let i = 0; i < 2; i++) $buf.push(__str(mem, addr + i * 4));
-\t\t\t\treturn $buf;
-\t\t\t}
-\t\t\t));
-\t\t},
-\t\tget slice(): WasmStringPtr[] {
-\t\t\tconst addr = mem.u32[(base + 40) >>> 2];
-\t\t\tconst len = mem.u32[(base + 44) >>> 2];
-\t\t\tconst $slice: WasmStringPtr[] = [];
-\t\t\tfor(let i = 0; i < len; i++) $slice.push(__str(mem, addr + i * 4, false));
-\t\t\treturn $slice;
-\t\t},
-\t\tget constSlice(): WasmStringPtr[] {
-\t\t\tconst addr = mem.u32[(base + 48) >>> 2];
-\t\t\tconst len = mem.u32[(base + 52) >>> 2];
-\t\t\tconst $constSlice: WasmStringPtr[] = [];
-\t\t\tfor(let i = 0; i < len; i++) $constSlice.push(__str(mem, addr + i * 4));
-\t\t\treturn $constSlice;
-\t\t},
-\t};
+	let $singlePtr: Pointer<WasmStringPtr>, $multiPtr: Pointer<WasmStringPtr[]>;
+	let $single: WasmStringPtr, $constSingle: WasmStringPtr;
+	return {
+		get single(): WasmStringPtr {
+			return $single || ($single = __str(mem, base, false));
+		},
+		get constSingle(): WasmStringPtr {
+			return $constSingle || ($constSingle = __str(mem, (base + 8)));
+		},
+		get multi(): WasmStringPtr[] {
+			const addr = (base + 16);
+			const $multi: WasmStringPtr[] = [];
+			for(let i = 0; i < 2; i++) $multi.push(__str(mem, addr + i * 4));
+			return $multi;
+		},
+		get singlePtr(): Pointer<WasmStringPtr> {
+			return $singlePtr || ($singlePtr = new Pointer<WasmStringPtr>(mem, (base + 32),
+			(addr) => __str(mem, addr, true)
+			));
+		},
+		get multiPtr(): Pointer<WasmStringPtr[]> {
+			return $multiPtr || ($multiPtr = new Pointer<WasmStringPtr[]>(mem, (base + 36),
+			(addr) => {
+				const $buf: WasmStringPtr[] = [];
+				for(let i = 0; i < 2; i++) $buf.push(__str(mem, addr + i * 4));
+				return $buf;
+			}
+			));
+		},
+		get slice(): WasmStringPtr[] {
+			const addr = mem.u32[(base + 40) >>> 2];
+			const len = mem.u32[(base + 44) >>> 2];
+			const $slice: WasmStringPtr[] = [];
+			for(let i = 0; i < len; i++) $slice.push(__str(mem, addr + i * 4, false));
+			return $slice;
+		},
+		get constSlice(): WasmStringPtr[] {
+			const addr = mem.u32[(base + 48) >>> 2];
+			const len = mem.u32[(base + 52) >>> 2];
+			const $constSlice: WasmStringPtr[] = [];
+			for(let i = 0; i < len; i++) $constSlice.push(__str(mem, addr + i * 4));
+			return $constSlice;
+		},
+	};
 });
 "
 `;
@@ -640,75 +640,75 @@ import { defType, Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySli
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface A extends WasmTypeBase {
-\t/**
-\t * Zig type: \`u8\`
-\t */
-\ta: number;
-\t/**
-\t * Zig type: \`u32\`
-\t */
-\tb: number;
-\t/**
-\t * Zig type: \`*[3]u16\`
-\t */
-\treadonly c: Pointer<Uint16Array>;
-\t/**
-\t * Zig type: \`f64\`
-\t */
-\td: number;
+	/**
+	 * Zig type: \`u8\`
+	 */
+	a: number;
+	/**
+	 * Zig type: \`u32\`
+	 */
+	b: number;
+	/**
+	 * Zig type: \`*[3]u16\`
+	 */
+	readonly c: Pointer<Uint16Array>;
+	/**
+	 * Zig type: \`f64\`
+	 */
+	d: number;
 }
 
 // @ts-ignore possibly unused args
 export const $A = defType<A>(8, 24, (mem, base) => {
-\tlet $c: Pointer<Uint16Array>;
-\treturn {
-\t\tget a(): number {
-\t\t\treturn mem.u8[base];
-\t\t},
-\t\tset a(x: number) {
-\t\t\tmem.u8[base] = x;
-\t\t},
-\t\tget b(): number {
-\t\t\treturn mem.u32[(base + 4) >>> 2];
-\t\t},
-\t\tset b(x: number) {
-\t\t\tmem.u32[(base + 4) >>> 2] = x;
-\t\t},
-\t\tget c(): Pointer<Uint16Array> {
-\t\t\treturn $c || ($c = new Pointer<Uint16Array>(mem, (base + 8),
-\t\t\t(addr) => mem.u16.subarray(addr, addr + 3)
-\t\t\t));
-\t\t},
-\t\tget d(): number {
-\t\t\treturn mem.f64[(base + 16) >>> 3];
-\t\t},
-\t\tset d(x: number) {
-\t\t\tmem.f64[(base + 16) >>> 3] = x;
-\t\t},
-\t};
+	let $c: Pointer<Uint16Array>;
+	return {
+		get a(): number {
+			return mem.u8[base];
+		},
+		set a(x: number) {
+			mem.u8[base] = x;
+		},
+		get b(): number {
+			return mem.u32[(base + 4) >>> 2];
+		},
+		set b(x: number) {
+			mem.u32[(base + 4) >>> 2] = x;
+		},
+		get c(): Pointer<Uint16Array> {
+			return $c || ($c = new Pointer<Uint16Array>(mem, (base + 8),
+			(addr) => mem.u16.subarray(addr, addr + 3)
+			));
+		},
+		get d(): number {
+			return mem.f64[(base + 16) >>> 3];
+		},
+		set d(x: number) {
+			mem.f64[(base + 16) >>> 3] = x;
+		},
+	};
 });
 
 export interface B extends WasmTypeBase {
-\treadonly a: A[];
-\t/**
-\t * Zig type: \`u64\`
-\t */
-\tb: bigint;
+	readonly a: A[];
+	/**
+	 * Zig type: \`u64\`
+	 */
+	b: bigint;
 }
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(8, 72, (mem, base) => {
-\treturn {
-\t\tget a(): A[] {
-\t\t\treturn __array(mem, $A, base, 3);
-\t\t},
-\t\tget b(): bigint {
-\t\t\treturn mem.u64[base >>> 3];
-\t\t},
-\t\tset b(x: bigint) {
-\t\t\tmem.u64[base >>> 3] = x;
-\t\t},
-\t};
+	return {
+		get a(): A[] {
+			return __array(mem, $A, base, 3);
+		},
+		get b(): bigint {
+			return mem.u64[base >>> 3];
+		},
+		set b(x: bigint) {
+			mem.u64[base >>> 3] = x;
+		},
+	};
 });
 "
 `;
@@ -770,80 +770,80 @@ import { defType, Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySli
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface A extends WasmTypeBase {
-\t/**
-\t * Zig type: \`u32\`
-\t */
-\ta: number;
-\t/**
-\t * Zig type: \`*u32\`
-\t */
-\treadonly ptr: Pointer<number>;
-\t/**
-\t * Zig type: \`*[2]u32\`
-\t */
-\treadonly ptr2: Pointer<Uint32Array>;
-\t/**
-\t * Zig type: \`*const u32\`
-\t */
-\treadonly constPtr: Pointer<number>;
-\t/**
-\t * Zig type: \`U32Slice\`
-\t */
-\treadonly slice: Uint32Array;
-\t/**
-\t * Zig type: \`ConstU32Slice\`
-\t */
-\treadonly constSlice: Uint32Array;
-\t/**
-\t * Zig type: \`[3]u32\`
-\t */
-\treadonly array: Uint32Array;
-\t/**
-\t * Zig type: \`[3]u32\`
-\t */
-\treadonly constArray: Uint32Array;
+	/**
+	 * Zig type: \`u32\`
+	 */
+	a: number;
+	/**
+	 * Zig type: \`*u32\`
+	 */
+	readonly ptr: Pointer<number>;
+	/**
+	 * Zig type: \`*[2]u32\`
+	 */
+	readonly ptr2: Pointer<Uint32Array>;
+	/**
+	 * Zig type: \`*const u32\`
+	 */
+	readonly constPtr: Pointer<number>;
+	/**
+	 * Zig type: \`U32Slice\`
+	 */
+	readonly slice: Uint32Array;
+	/**
+	 * Zig type: \`ConstU32Slice\`
+	 */
+	readonly constSlice: Uint32Array;
+	/**
+	 * Zig type: \`[3]u32\`
+	 */
+	readonly array: Uint32Array;
+	/**
+	 * Zig type: \`[3]u32\`
+	 */
+	readonly constArray: Uint32Array;
 }
 
 // @ts-ignore possibly unused args
 export const $A = defType<A>(4, 56, (mem, base) => {
-\tlet $ptr: Pointer<number>, $ptr2: Pointer<Uint32Array>, $constPtr: Pointer<number>;
-\treturn {
-\t\tget a(): number {
-\t\t\treturn mem.u32[base >>> 2];
-\t\t},
-\t\tset a(x: number) {
-\t\t\tmem.u32[base >>> 2] = x;
-\t\t},
-\t\tget ptr(): Pointer<number> {
-\t\t\treturn $ptr || ($ptr = new Pointer<number>(mem, (base + 4),
-\t\t\t(addr) => mem.u32[addr >>> 2]
-\t\t\t));
-\t\t},
-\t\tget ptr2(): Pointer<Uint32Array> {
-\t\t\treturn $ptr2 || ($ptr2 = new Pointer<Uint32Array>(mem, (base + 8),
-\t\t\t(addr) => mem.u32.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t\tget constPtr(): Pointer<number> {
-\t\t\treturn $constPtr || ($constPtr = new Pointer<number>(mem, (base + 12),
-\t\t\t(addr) => mem.u32[addr >>> 2]
-\t\t\t));
-\t\t},
-\t\tget slice(): Uint32Array {
-\t\t\treturn __primslice32(mem, mem.u32, (base + 16), 2);
-\t\t},
-\t\tget constSlice(): Uint32Array {
-\t\t\treturn __primslice32(mem, mem.u32, (base + 24), 2);
-\t\t},
-\t\tget array(): Uint32Array {
-\t\t\tconst addr = (base + 32) >>> 2;
-\t\t\treturn mem.u32.subarray(addr, addr + 3);
-\t\t},
-\t\tget constArray(): Uint32Array {
-\t\t\tconst addr = (base + 44) >>> 2;
-\t\t\treturn mem.u32.subarray(addr, addr + 3);
-\t\t},
-\t};
+	let $ptr: Pointer<number>, $ptr2: Pointer<Uint32Array>, $constPtr: Pointer<number>;
+	return {
+		get a(): number {
+			return mem.u32[base >>> 2];
+		},
+		set a(x: number) {
+			mem.u32[base >>> 2] = x;
+		},
+		get ptr(): Pointer<number> {
+			return $ptr || ($ptr = new Pointer<number>(mem, (base + 4),
+			(addr) => mem.u32[addr >>> 2]
+			));
+		},
+		get ptr2(): Pointer<Uint32Array> {
+			return $ptr2 || ($ptr2 = new Pointer<Uint32Array>(mem, (base + 8),
+			(addr) => mem.u32.subarray(addr, addr + 2)
+			));
+		},
+		get constPtr(): Pointer<number> {
+			return $constPtr || ($constPtr = new Pointer<number>(mem, (base + 12),
+			(addr) => mem.u32[addr >>> 2]
+			));
+		},
+		get slice(): Uint32Array {
+			return __primslice32(mem, mem.u32, (base + 16), 2);
+		},
+		get constSlice(): Uint32Array {
+			return __primslice32(mem, mem.u32, (base + 24), 2);
+		},
+		get array(): Uint32Array {
+			const addr = (base + 32) >>> 2;
+			return mem.u32.subarray(addr, addr + 3);
+		},
+		get constArray(): Uint32Array {
+			const addr = (base + 44) >>> 2;
+			return mem.u32.subarray(addr, addr + 3);
+		},
+	};
 });
 "
 `;
@@ -910,47 +910,47 @@ import { defType, Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySli
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export enum A {
-\tFOO,
-\tBAR,
-\tBAZ = 10,
+	FOO,
+	BAR,
+	BAZ = 10,
 }
 
 export interface B extends WasmTypeBase {
-\tsingle: A;
-\treadonly array: Int32Array;
-\treadonly slice: Int32Array;
-\treadonly ptr: Pointer<A>;
-\treadonly ptr2: Pointer<Int32Array>;
+	single: A;
+	readonly array: Int32Array;
+	readonly slice: Int32Array;
+	readonly ptr: Pointer<A>;
+	readonly ptr2: Pointer<Int32Array>;
 }
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(4, 28, (mem, base) => {
-\tlet $ptr: Pointer<A>, $ptr2: Pointer<Int32Array>;
-\treturn {
-\t\tget single(): A {
-\t\t\treturn mem.i32[base >>> 2];
-\t\t},
-\t\tset single(x: A) {
-\t\t\tmem.i32[base >>> 2] = x;
-\t\t},
-\t\tget array(): Int32Array {
-\t\t\tconst addr = (base + 4) >>> 2;
-\t\t\treturn mem.i32.subarray(addr, addr + 2);
-\t\t},
-\t\tget slice(): Int32Array {
-\t\t\treturn __primslice32(mem, mem.i32, (base + 12), 2);
-\t\t},
-\t\tget ptr(): Pointer<A> {
-\t\t\treturn $ptr || ($ptr = new Pointer<A>(mem, (base + 20),
-\t\t\t(addr) => mem.i32[addr >>> 2]
-\t\t\t));
-\t\t},
-\t\tget ptr2(): Pointer<Int32Array> {
-\t\t\treturn $ptr2 || ($ptr2 = new Pointer<Int32Array>(mem, (base + 24),
-\t\t\t(addr) => mem.i32.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t};
+	let $ptr: Pointer<A>, $ptr2: Pointer<Int32Array>;
+	return {
+		get single(): A {
+			return mem.i32[base >>> 2];
+		},
+		set single(x: A) {
+			mem.i32[base >>> 2] = x;
+		},
+		get array(): Int32Array {
+			const addr = (base + 4) >>> 2;
+			return mem.i32.subarray(addr, addr + 2);
+		},
+		get slice(): Int32Array {
+			return __primslice32(mem, mem.i32, (base + 12), 2);
+		},
+		get ptr(): Pointer<A> {
+			return $ptr || ($ptr = new Pointer<A>(mem, (base + 20),
+			(addr) => mem.i32[addr >>> 2]
+			));
+		},
+		get ptr2(): Pointer<Int32Array> {
+			return $ptr2 || ($ptr2 = new Pointer<Int32Array>(mem, (base + 24),
+			(addr) => mem.i32.subarray(addr, addr + 2)
+			));
+		},
+	};
 });
 "
 `;
@@ -1016,56 +1016,56 @@ import { defType, Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySli
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface B extends WasmTypeBase {
-\t/**
-\t * Zig type: \`u32\`
-\t */
-\ta: number;
-\t/**
-\t * Zig type: \`*u32\`
-\t */
-\treadonly ptr: Pointer<number>;
-\t/**
-\t * Zig type: \`*[2]u32\`
-\t */
-\treadonly ptr2: Pointer<Uint32Array>;
-\t/**
-\t * Zig type: \`[2]u32\`
-\t */
-\treadonly array: Uint32Array;
-\t/**
-\t * Zig type: \`U32Slice\`
-\t */
-\treadonly slice: Uint32Array;
+	/**
+	 * Zig type: \`u32\`
+	 */
+	a: number;
+	/**
+	 * Zig type: \`*u32\`
+	 */
+	readonly ptr: Pointer<number>;
+	/**
+	 * Zig type: \`*[2]u32\`
+	 */
+	readonly ptr2: Pointer<Uint32Array>;
+	/**
+	 * Zig type: \`[2]u32\`
+	 */
+	readonly array: Uint32Array;
+	/**
+	 * Zig type: \`U32Slice\`
+	 */
+	readonly slice: Uint32Array;
 }
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(4, 28, (mem, base) => {
-\tlet $ptr: Pointer<number>, $ptr2: Pointer<Uint32Array>;
-\treturn {
-\t\tget a(): number {
-\t\t\treturn mem.u32[base >>> 2];
-\t\t},
-\t\tset a(x: number) {
-\t\t\tmem.u32[base >>> 2] = x;
-\t\t},
-\t\tget ptr(): Pointer<number> {
-\t\t\treturn $ptr || ($ptr = new Pointer<number>(mem, (base + 4),
-\t\t\t(addr) => mem.u32[addr >>> 2]
-\t\t\t));
-\t\t},
-\t\tget ptr2(): Pointer<Uint32Array> {
-\t\t\treturn $ptr2 || ($ptr2 = new Pointer<Uint32Array>(mem, (base + 8),
-\t\t\t(addr) => mem.u32.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t\tget array(): Uint32Array {
-\t\t\tconst addr = (base + 12) >>> 2;
-\t\t\treturn mem.u32.subarray(addr, addr + 2);
-\t\t},
-\t\tget slice(): Uint32Array {
-\t\t\treturn __primslice32(mem, mem.u32, (base + 20), 2);
-\t\t},
-\t};
+	let $ptr: Pointer<number>, $ptr2: Pointer<Uint32Array>;
+	return {
+		get a(): number {
+			return mem.u32[base >>> 2];
+		},
+		set a(x: number) {
+			mem.u32[base >>> 2] = x;
+		},
+		get ptr(): Pointer<number> {
+			return $ptr || ($ptr = new Pointer<number>(mem, (base + 4),
+			(addr) => mem.u32[addr >>> 2]
+			));
+		},
+		get ptr2(): Pointer<Uint32Array> {
+			return $ptr2 || ($ptr2 = new Pointer<Uint32Array>(mem, (base + 8),
+			(addr) => mem.u32.subarray(addr, addr + 2)
+			));
+		},
+		get array(): Uint32Array {
+			const addr = (base + 12) >>> 2;
+			return mem.u32.subarray(addr, addr + 2);
+		},
+		get slice(): Uint32Array {
+			return __primslice32(mem, mem.u32, (base + 20), 2);
+		},
+	};
 });
 "
 `;
@@ -1077,7 +1077,7 @@ const bindgen = @import("wasm-api-bindgen");
 pub const ASlice = bindgen.Slice([]A, [*]A);
 pub const ConstASlice = bindgen.Slice([]const A, [*]const A);
 
-pub const A = *const fn (x: *u32, y: bindgen.ConstStringPtr) callconv(.C) void;
+pub const A = *const fn (x: *u32, y: bindgen.ConstStringPtr) callconv(.c) void;
 
 pub const B = extern struct {
     a: A,
@@ -1422,209 +1422,209 @@ import { defType, Pointer, WasmStringPtr, type IWasmMemoryAccess, type MemorySli
 import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm-api/memory";
 
 export interface A extends WasmTypeBase {
-\t/**
-\t * Zig type: \`u16\`
-\t */
-\ta: number;
+	/**
+	 * Zig type: \`u16\`
+	 */
+	a: number;
 }
 
 // @ts-ignore possibly unused args
 export const $A = defType<A>(2, 2, (mem, base) => {
-\treturn {
-\t\tget a(): number {
-\t\t\treturn mem.u16[base >>> 1];
-\t\t},
-\t\tset a(x: number) {
-\t\t\tmem.u16[base >>> 1] = x;
-\t\t},
-\t};
+	return {
+		get a(): number {
+			return mem.u16[base >>> 1];
+		},
+		set a(x: number) {
+			mem.u16[base >>> 1] = x;
+		},
+	};
 });
 
 export interface B extends WasmTypeBase {
-\t/**
-\t * Zig type: \`U8Slice\`
-\t */
-\treadonly slice: Uint8Array;
-\t/**
-\t * Zig type: \`ConstU8Slice\`
-\t */
-\treadonly constSlice: Uint8Array;
-\t/**
-\t * Zig type: \`*u8\`
-\t */
-\treadonly ptr: Pointer<number>;
-\t/**
-\t * Zig type: \`*const u8\`
-\t */
-\treadonly constPtr: Pointer<number>;
-\t/**
-\t * Zig type: \`*[2]u8\`
-\t */
-\treadonly ptr2: Pointer<Uint8Array>;
-\t/**
-\t * Zig type: \`*[2:0]u8\`
-\t */
-\treadonly ptr2sentinel: Pointer<Uint8Array>;
-\t/**
-\t * Zig type: \`*const [2]u8\`
-\t */
-\treadonly constPtr2: Pointer<Uint8Array>;
-\t/**
-\t * Zig type: \`*const [2:0]u8\`
-\t */
-\treadonly constPtr2sentinel: Pointer<Uint8Array>;
-\t/**
-\t * Multi pointer: \`[*]u8\`
-\t * 
-\t * @remarks
-\t * Only the pointer's target address can be accessed
-\t */
-\tptrMulti: number;
-\t/**
-\t * Multi pointer: \`[*:255]u8\`
-\t * 
-\t * @remarks
-\t * Only the pointer's target address can be accessed
-\t */
-\tptrMultiSentinel: number;
-\t/**
-\t * Multi pointer: \`[*]const u8\`
-\t * 
-\t * @remarks
-\t * Only the pointer's target address can be accessed
-\t */
-\tconstPtrMulti: number;
-\t/**
-\t * Multi pointer: \`[*:255]const u8\`
-\t * 
-\t * @remarks
-\t * Only the pointer's target address can be accessed
-\t */
-\tconstPtrMultiSentinel: number;
-\t/**
-\t * Zig type: \`[2]i32\`
-\t */
-\treadonly array: Int32Array;
-\t/**
-\t * Zig type: \`[2:0]i32\`
-\t */
-\treadonly arraySentinel: Int32Array;
-\taSingle: A;
-\treadonly aSlice: A[];
-\treadonly constASlice: A[];
-\treadonly aPtr: Pointer<A>;
-\treadonly aPtr2: Pointer<A[]>;
-\t/**
-\t * Multiple A's
-\t * 
-\t * @remarks
-\t * Multi pointer: \`[*]A\`
-\t * Only the pointer's target address can be accessed
-\t */
-\taPtrMulti: number;
+	/**
+	 * Zig type: \`U8Slice\`
+	 */
+	readonly slice: Uint8Array;
+	/**
+	 * Zig type: \`ConstU8Slice\`
+	 */
+	readonly constSlice: Uint8Array;
+	/**
+	 * Zig type: \`*u8\`
+	 */
+	readonly ptr: Pointer<number>;
+	/**
+	 * Zig type: \`*const u8\`
+	 */
+	readonly constPtr: Pointer<number>;
+	/**
+	 * Zig type: \`*[2]u8\`
+	 */
+	readonly ptr2: Pointer<Uint8Array>;
+	/**
+	 * Zig type: \`*[2:0]u8\`
+	 */
+	readonly ptr2sentinel: Pointer<Uint8Array>;
+	/**
+	 * Zig type: \`*const [2]u8\`
+	 */
+	readonly constPtr2: Pointer<Uint8Array>;
+	/**
+	 * Zig type: \`*const [2:0]u8\`
+	 */
+	readonly constPtr2sentinel: Pointer<Uint8Array>;
+	/**
+	 * Multi pointer: \`[*]u8\`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	ptrMulti: number;
+	/**
+	 * Multi pointer: \`[*:255]u8\`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	ptrMultiSentinel: number;
+	/**
+	 * Multi pointer: \`[*]const u8\`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	constPtrMulti: number;
+	/**
+	 * Multi pointer: \`[*:255]const u8\`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	constPtrMultiSentinel: number;
+	/**
+	 * Zig type: \`[2]i32\`
+	 */
+	readonly array: Int32Array;
+	/**
+	 * Zig type: \`[2:0]i32\`
+	 */
+	readonly arraySentinel: Int32Array;
+	aSingle: A;
+	readonly aSlice: A[];
+	readonly constASlice: A[];
+	readonly aPtr: Pointer<A>;
+	readonly aPtr2: Pointer<A[]>;
+	/**
+	 * Multiple A's
+	 * 
+	 * @remarks
+	 * Multi pointer: \`[*]A\`
+	 * Only the pointer's target address can be accessed
+	 */
+	aPtrMulti: number;
 }
 
 // @ts-ignore possibly unused args
 export const $B = defType<B>(4, 108, (mem, base) => {
-\tlet $ptr: Pointer<number>, $constPtr: Pointer<number>, $ptr2: Pointer<Uint8Array>, $ptr2sentinel: Pointer<Uint8Array>, $constPtr2: Pointer<Uint8Array>, $constPtr2sentinel: Pointer<Uint8Array>, $aPtr: Pointer<A>, $aPtr2: Pointer<A[]>;
-\treturn {
-\t\tget slice(): Uint8Array {
-\t\t\treturn __primslice32(mem, mem.u8, base, 0);
-\t\t},
-\t\tget constSlice(): Uint8Array {
-\t\t\treturn __primslice32(mem, mem.u8, (base + 8), 0);
-\t\t},
-\t\tget ptr(): Pointer<number> {
-\t\t\treturn $ptr || ($ptr = new Pointer<number>(mem, (base + 16),
-\t\t\t(addr) => mem.u8[addr >>> 0]
-\t\t\t));
-\t\t},
-\t\tget constPtr(): Pointer<number> {
-\t\t\treturn $constPtr || ($constPtr = new Pointer<number>(mem, (base + 20),
-\t\t\t(addr) => mem.u8[addr >>> 0]
-\t\t\t));
-\t\t},
-\t\tget ptr2(): Pointer<Uint8Array> {
-\t\t\treturn $ptr2 || ($ptr2 = new Pointer<Uint8Array>(mem, (base + 24),
-\t\t\t(addr) => mem.u8.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t\tget ptr2sentinel(): Pointer<Uint8Array> {
-\t\t\treturn $ptr2sentinel || ($ptr2sentinel = new Pointer<Uint8Array>(mem, (base + 28),
-\t\t\t(addr) => mem.u8.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t\tget constPtr2(): Pointer<Uint8Array> {
-\t\t\treturn $constPtr2 || ($constPtr2 = new Pointer<Uint8Array>(mem, (base + 32),
-\t\t\t(addr) => mem.u8.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t\tget constPtr2sentinel(): Pointer<Uint8Array> {
-\t\t\treturn $constPtr2sentinel || ($constPtr2sentinel = new Pointer<Uint8Array>(mem, (base + 36),
-\t\t\t(addr) => mem.u8.subarray(addr, addr + 2)
-\t\t\t));
-\t\t},
-\t\tget ptrMulti(): number {
-\t\t\treturn mem.u32[(base + 40) >>> 2];
-\t\t},
-\t\tset ptrMulti(x: number) {
-\t\t\tmem.u32[(base + 40) >>> 2] = x;
-\t\t},
-\t\tget ptrMultiSentinel(): number {
-\t\t\treturn mem.u32[(base + 44) >>> 2];
-\t\t},
-\t\tset ptrMultiSentinel(x: number) {
-\t\t\tmem.u32[(base + 44) >>> 2] = x;
-\t\t},
-\t\tget constPtrMulti(): number {
-\t\t\treturn mem.u32[(base + 48) >>> 2];
-\t\t},
-\t\tset constPtrMulti(x: number) {
-\t\t\tmem.u32[(base + 48) >>> 2] = x;
-\t\t},
-\t\tget constPtrMultiSentinel(): number {
-\t\t\treturn mem.u32[(base + 52) >>> 2];
-\t\t},
-\t\tset constPtrMultiSentinel(x: number) {
-\t\t\tmem.u32[(base + 52) >>> 2] = x;
-\t\t},
-\t\tget array(): Int32Array {
-\t\t\tconst addr = (base + 56) >>> 2;
-\t\t\treturn mem.i32.subarray(addr, addr + 2);
-\t\t},
-\t\tget arraySentinel(): Int32Array {
-\t\t\tconst addr = (base + 64) >>> 2;
-\t\t\treturn mem.i32.subarray(addr, addr + 2);
-\t\t},
-\t\tget aSingle(): A {
-\t\t\treturn $A(mem).instance((base + 76));
-\t\t},
-\t\tset aSingle(x: A) {
-\t\t\tmem.u8.set(x.__bytes, (base + 76));
-\t\t},
-\t\tget aSlice(): A[] {
-\t\t\treturn __slice32(mem, $A, (base + 80));
-\t\t},
-\t\tget constASlice(): A[] {
-\t\t\treturn __slice32(mem, $A, (base + 88));
-\t\t},
-\t\tget aPtr(): Pointer<A> {
-\t\t\treturn $aPtr || ($aPtr = new Pointer<A>(mem, (base + 96),
-\t\t\t(addr) => $A(mem).instance(addr)
-\t\t\t));
-\t\t},
-\t\tget aPtr2(): Pointer<A[]> {
-\t\t\treturn $aPtr2 || ($aPtr2 = new Pointer<A[]>(mem, (base + 100),
-\t\t\t(addr) => __array(mem, $A, addr, 2)
-\t\t\t));
-\t\t},
-\t\tget aPtrMulti(): number {
-\t\t\treturn mem.u32[(base + 104) >>> 2];
-\t\t},
-\t\tset aPtrMulti(x: number) {
-\t\t\tmem.u32[(base + 104) >>> 2] = x;
-\t\t},
-\t};
+	let $ptr: Pointer<number>, $constPtr: Pointer<number>, $ptr2: Pointer<Uint8Array>, $ptr2sentinel: Pointer<Uint8Array>, $constPtr2: Pointer<Uint8Array>, $constPtr2sentinel: Pointer<Uint8Array>, $aPtr: Pointer<A>, $aPtr2: Pointer<A[]>;
+	return {
+		get slice(): Uint8Array {
+			return __primslice32(mem, mem.u8, base, 0);
+		},
+		get constSlice(): Uint8Array {
+			return __primslice32(mem, mem.u8, (base + 8), 0);
+		},
+		get ptr(): Pointer<number> {
+			return $ptr || ($ptr = new Pointer<number>(mem, (base + 16),
+			(addr) => mem.u8[addr >>> 0]
+			));
+		},
+		get constPtr(): Pointer<number> {
+			return $constPtr || ($constPtr = new Pointer<number>(mem, (base + 20),
+			(addr) => mem.u8[addr >>> 0]
+			));
+		},
+		get ptr2(): Pointer<Uint8Array> {
+			return $ptr2 || ($ptr2 = new Pointer<Uint8Array>(mem, (base + 24),
+			(addr) => mem.u8.subarray(addr, addr + 2)
+			));
+		},
+		get ptr2sentinel(): Pointer<Uint8Array> {
+			return $ptr2sentinel || ($ptr2sentinel = new Pointer<Uint8Array>(mem, (base + 28),
+			(addr) => mem.u8.subarray(addr, addr + 2)
+			));
+		},
+		get constPtr2(): Pointer<Uint8Array> {
+			return $constPtr2 || ($constPtr2 = new Pointer<Uint8Array>(mem, (base + 32),
+			(addr) => mem.u8.subarray(addr, addr + 2)
+			));
+		},
+		get constPtr2sentinel(): Pointer<Uint8Array> {
+			return $constPtr2sentinel || ($constPtr2sentinel = new Pointer<Uint8Array>(mem, (base + 36),
+			(addr) => mem.u8.subarray(addr, addr + 2)
+			));
+		},
+		get ptrMulti(): number {
+			return mem.u32[(base + 40) >>> 2];
+		},
+		set ptrMulti(x: number) {
+			mem.u32[(base + 40) >>> 2] = x;
+		},
+		get ptrMultiSentinel(): number {
+			return mem.u32[(base + 44) >>> 2];
+		},
+		set ptrMultiSentinel(x: number) {
+			mem.u32[(base + 44) >>> 2] = x;
+		},
+		get constPtrMulti(): number {
+			return mem.u32[(base + 48) >>> 2];
+		},
+		set constPtrMulti(x: number) {
+			mem.u32[(base + 48) >>> 2] = x;
+		},
+		get constPtrMultiSentinel(): number {
+			return mem.u32[(base + 52) >>> 2];
+		},
+		set constPtrMultiSentinel(x: number) {
+			mem.u32[(base + 52) >>> 2] = x;
+		},
+		get array(): Int32Array {
+			const addr = (base + 56) >>> 2;
+			return mem.i32.subarray(addr, addr + 2);
+		},
+		get arraySentinel(): Int32Array {
+			const addr = (base + 64) >>> 2;
+			return mem.i32.subarray(addr, addr + 2);
+		},
+		get aSingle(): A {
+			return $A(mem).instance((base + 76));
+		},
+		set aSingle(x: A) {
+			mem.u8.set(x.__bytes, (base + 76));
+		},
+		get aSlice(): A[] {
+			return __slice32(mem, $A, (base + 80));
+		},
+		get constASlice(): A[] {
+			return __slice32(mem, $A, (base + 88));
+		},
+		get aPtr(): Pointer<A> {
+			return $aPtr || ($aPtr = new Pointer<A>(mem, (base + 96),
+			(addr) => $A(mem).instance(addr)
+			));
+		},
+		get aPtr2(): Pointer<A[]> {
+			return $aPtr2 || ($aPtr2 = new Pointer<A[]>(mem, (base + 100),
+			(addr) => __array(mem, $A, addr, 2)
+			));
+		},
+		get aPtrMulti(): number {
+			return mem.u32[(base + 104) >>> 2];
+		},
+		set aPtrMulti(x: number) {
+			mem.u32[(base + 104) >>> 2] = x;
+		},
+	};
 });
 "
 `;
@@ -2034,34 +2034,34 @@ import { __array, __instanceArray, __slice32, __primslice32 } from "@thi.ng/wasm
 // external type: Bar (size: 18, align: 16)
 
 export interface Foo extends WasmTypeBase {
-\ta: Bar;
-\treadonly b: Pointer<Bar>;
-\treadonly c: Bar[];
-\treadonly d: Bar[];
+	a: Bar;
+	readonly b: Pointer<Bar>;
+	readonly c: Bar[];
+	readonly d: Bar[];
 }
 
 // @ts-ignore possibly unused args
 export const $Foo = defType<Foo>(16, 112, (mem, base) => {
-\tlet $b: Pointer<Bar>;
-\treturn {
-\t\tget a(): Bar {
-\t\t\treturn $Bar(mem).instance(base);
-\t\t},
-\t\tset a(x: Bar) {
-\t\t\tmem.u8.set(x.__bytes, base);
-\t\t},
-\t\tget b(): Pointer<Bar> {
-\t\t\treturn $b || ($b = new Pointer<Bar>(mem, (base + 32),
-\t\t\t(addr) => $Bar(mem).instance(addr)
-\t\t\t));
-\t\t},
-\t\tget c(): Bar[] {
-\t\t\treturn __array(mem, $Bar, (base + 48), 2);
-\t\t},
-\t\tget d(): Bar[] {
-\t\t\treturn __slice32(mem, $Bar, (base + 96));
-\t\t},
-\t};
+	let $b: Pointer<Bar>;
+	return {
+		get a(): Bar {
+			return $Bar(mem).instance(base);
+		},
+		set a(x: Bar) {
+			mem.u8.set(x.__bytes, base);
+		},
+		get b(): Pointer<Bar> {
+			return $b || ($b = new Pointer<Bar>(mem, (base + 32),
+			(addr) => $Bar(mem).instance(addr)
+			));
+		},
+		get c(): Bar[] {
+			return __array(mem, $Bar, (base + 48), 2);
+		},
+		get d(): Bar[] {
+			return __slice32(mem, $Bar, (base + 96));
+		},
+	};
 });
 "
 `;

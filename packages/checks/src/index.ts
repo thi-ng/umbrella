@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./exists-not-null.js";
 export * from "./exists.js";
 export * from "./has-bigint.js";
@@ -20,6 +21,7 @@ export * from "./is-bigint.js";
 export * from "./is-blob.js";
 export * from "./is-boolean.js";
 export * from "./is-chrome.js";
+export * from "./is-dark-mode.js";
 export * from "./is-data-url.js";
 export * from "./is-date.js";
 export * from "./is-even.js";

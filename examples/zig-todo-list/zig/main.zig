@@ -1,7 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
-const todo = @import("api.zig");
+
+const api = @import("api.zig");
+const types = @import("types.zig");
 const State = @import("state.zig");
 
 // only needed for debug builds
@@ -12,27 +15,23 @@ pub fn log(
     _: anytype,
 ) void {}
 
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/zig/lib.zig
-var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-pub const WASM_ALLOCATOR = gpa.allocator();
+pub const WASM_ALLOCATOR = std.heap.wasm_allocator;
 
 /// Central app state
 var STATE: State = undefined;
 
 /// Dummy handler to log input event value to console
-fn onInput(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
+fn onInput(e: *const dom.types.Event, _: ?*anyopaque) callconv(.c) void {
     wasm.printStr(e.body.input.getValue());
 }
 
 /// Key event handler to handle Enter & Esc keys
-fn onKeydown(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
+fn onKeydown(e: *const dom.types.Event, _: ?*anyopaque) callconv(.c) void {
     if (std.mem.eql(u8, e.body.key.getKey(), "Enter")) {
         onAddTask(e, null);
     } else if (std.mem.eql(u8, e.body.key.getKey(), "Escape")) {
@@ -40,7 +39,7 @@ fn onKeydown(e: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
     }
 }
 
-fn onAddTask(_: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
+fn onAddTask(_: *const dom.types.Event, _: ?*anyopaque) callconv(.c) void {
     const input = dom.getElementByID("newtask");
     const body = dom.getStringAttribAlloc(input, "value");
     defer WASM_ALLOCATOR.free(body);
@@ -85,10 +84,10 @@ fn initApp() !void {
                         .id = "newtask",
                         .class = "pa2",
                         .attribs = dom.attribs(&.{
-                            dom.Attrib.string("placeholder", "What needs to be done?"),
-                            dom.Attrib.flag("autofocus", true),
-                            dom.Attrib.event("keydown", onKeydown, null),
-                            dom.Attrib.event("input", onInput, null),
+                            dom.types.Attrib.string("placeholder", "What needs to be done?"),
+                            dom.types.Attrib.flag("autofocus", true),
+                            dom.types.Attrib.event("keydown", onKeydown, null),
+                            dom.types.Attrib.event("input", onInput, null),
                         }),
                     },
                     .{
@@ -96,7 +95,7 @@ fn initApp() !void {
                         .class = "ma0 mt2 db w-100 pa2",
                         .text = "Add Task",
                         .attribs = dom.attribs(&.{
-                            dom.Attrib.event("click", onAddTask, null),
+                            dom.types.Attrib.event("click", onAddTask, null),
                         }),
                     },
                 }),
@@ -104,8 +103,8 @@ fn initApp() !void {
         }),
     });
 
-    var tasks: []todo.Task = undefined;
-    todo.loadTasks(&tasks);
+    var tasks: []types.Task = undefined;
+    api.loadTasks(&tasks);
     defer WASM_ALLOCATOR.free(tasks);
 
     for (tasks) |*t| {

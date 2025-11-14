@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2 } from "@thi.ng/api";
 import {
 	DEFAULT_IMPL,
@@ -6,7 +7,7 @@ import {
 	type HDOMOpts,
 } from "@thi.ng/hdom";
 import { derefContext } from "@thi.ng/hiccup";
-import type { Event, Signal } from "./api";
+import type { Event, Signal } from "./api.js";
 
 export const mount = <T>(
 	model: T,

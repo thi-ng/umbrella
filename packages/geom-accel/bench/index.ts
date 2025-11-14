@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { suite } from "@thi.ng/bench";
 import { repeatedly } from "@thi.ng/transducers";
 import { randMinMax3, ReadonlyVec } from "@thi.ng/vectors";

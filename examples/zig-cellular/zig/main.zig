@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Main Zig application (aka root package)
 
 const std = @import("std");
@@ -5,9 +6,6 @@ const wasm = @import("wasm-api");
 const canvas2d = @import("wasm-api-canvas");
 const dom = @import("wasm-api-dom");
 const CA = @import("ca.zig");
-
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
@@ -17,11 +15,11 @@ pub usingnamespace wasm;
 // 2MB fixed "heap" buffer for allocator
 var mem: [2 * 1024 * 1024]u8 = undefined;
 // setup allocator
-var fba = std.heap.FixedBufferAllocator.init(&mem);
-pub const WASM_ALLOCATOR = fba.allocator();
+var alloc = std.heap.FixedBufferAllocator.init(&mem);
+pub const WASM_ALLOCATOR = alloc.allocator();
 
 // initialize PRNG instance
-var rnd = std.rand.DefaultPrng.init(0xdecafbad);
+var rnd = std.Random.DefaultPrng.init(0xdecafbad);
 
 var sim: CA = undefined;
 var canvas: i32 = 0;
@@ -114,7 +112,7 @@ fn initApp() !void {
     requestLoop();
 }
 
-fn update(_: f64, _: ?*anyopaque) callconv(.C) void {
+fn update(_: f64, _: ?*anyopaque) callconv(.c) void {
     sim.update();
     // write pixels (using current palette) to canvas
     canvas2d.putPixelsIndexed(sim.cells.ptr, &palette, palette.len);
@@ -123,7 +121,7 @@ fn update(_: f64, _: ?*anyopaque) callconv(.C) void {
 
 /// Triggers next sim frame via requestAnimationFrame
 fn requestLoop() void {
-    _ = dom.requestAnimationFrame(update, null) catch |e| @panic(@errorName(e));
+    _ = dom.events.requestAnimationFrame(update, null) catch |e| @panic(@errorName(e));
 }
 
 /// Main entry point (called from JS)

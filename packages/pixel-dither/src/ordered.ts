@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
 import type { IntBuffer } from "@thi.ng/pixel";
@@ -32,7 +33,7 @@ const __init = (
  *
  * @remarks
  * Reference:
- * - https://en.wikipedia.org/wiki/Ordered_dithering
+ * https://en.wikipedia.org/wiki/Ordered_dithering
  *
  * @param size -
  */

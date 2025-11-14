@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DAY, durationAs } from "@thi.ng/date";
 import {
 	deleteFile,
@@ -85,7 +86,7 @@ for (let f of pkgDirs) {
 		writeText(tmpFile, $html, LOGGER);
 		execFileSync(
 			"aws",
-			`s3 cp ${tmpFile} s3://thi.ng/${id} ${S3_OPTS} --content-type text/html --cache-control ${CACHE_CTRL}`.split(
+			`s3 cp ${tmpFile} s3://thi-ng/${id} ${S3_OPTS} --content-type text/html --cache-control ${CACHE_CTRL}`.split(
 				" "
 			)
 		);

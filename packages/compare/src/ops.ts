@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString, Predicate2 } from "@thi.ng/api";
 
 export type Operator = "=" | "!=" | "<" | "<=" | ">=" | ">";

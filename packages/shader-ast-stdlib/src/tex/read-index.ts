@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IntTerm, IVec2Term, Sampler2DTerm } from "@thi.ng/shader-ast";
 import { $x, $xy, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";

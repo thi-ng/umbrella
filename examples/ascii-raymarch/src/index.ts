@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fiber } from "@thi.ng/fibers";
 import { GRAY8, RGB565, intBuffer } from "@thi.ng/pixel";
 import { renderBuffer, rgbaRgb565 } from "@thi.ng/shader-ast-js";

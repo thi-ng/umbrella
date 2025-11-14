@@ -1,8 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray, StringOrSym } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { memoizeO } from "@thi.ng/memoize/memoizeo";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
 import type { IVector } from "./api.js";
 import { eqDeltaS } from "./eqdelta.js";
 import { stridedValues } from "./iterator.js";
@@ -35,10 +34,12 @@ const PROPS = new Set<StringOrSym>([
 ]);
 
 /** @internal */
-const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
-	...map(String, range(size)),
-	...PROPS,
-]);
+const __keys = memoizeO<number, StringOrSym[]>((size: number) => {
+	const keys: StringOrSym[] = [];
+	for (let i = 0; i < size; i++) keys.push(String(i));
+	keys.push(...PROPS);
+	return keys;
+});
 
 /**
  * Wrapper for strided, arbitrary length vectors.
@@ -56,14 +57,14 @@ const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
  *
  * Read/write access for the following properties:
  *
- * - array indices in the [0 .. `size`) interval
+ * - array indices in the `[0,size)` interval
  * - `offset` - start index
  * - `stride` - component stride
  * - `buf` - backing buffer (readonly)
  * - `length` - vector size
  *
- * Array index access uses bounds checking against the [0 .. `size`) interval,
- * but, for performance reasons, **not** against the actual wrapped buffer.
+ * Array index access uses bounds checking against the `[0,size)` interval, but,
+ * for performance reasons, **not** against the actual wrapped buffer.
  *
  * Note: ES6 proxies are ~10x slower than standard array accesses. If several
  * computations are to be performed on such vectors it will be much more
@@ -95,8 +96,8 @@ const __keys = memoizeO<number, StringOrSym[]>((size: number) => [
  * console.log(copy(a));
  * // [1, 2, 3]
  *
- * console.log(a.copyView());
- * // Proxy [ [ 1, 0, 2, 0, 3, 0 ], ... }
+ * console.log(a.copyView().toString());
+ * // [1.000, 2.000, 3.000]
  *
  * console.log(eqDelta(a, [1, 2, 3]));
  * // true

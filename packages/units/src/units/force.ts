@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { m_s2 } from "./accel.js";
 import { kg } from "./mass.js";
 import { defUnit, mul } from "../unit.js";

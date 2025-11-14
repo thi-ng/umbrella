@@ -1,23 +1,22 @@
+// SPDX-License-Identifier: Apache-2.0
 import { encode } from "@thi.ng/blurhash";
 import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import { writeFile, writeJSON } from "@thi.ng/file-io";
-import { join, resolve } from "node:path";
+import { firstNonNullKey } from "@thi.ng/object-utils";
 import type { Sharp } from "sharp";
 import type { ImgProcCtx, OutputSpec, Processor } from "../api.js";
 import { formatPath } from "../path.js";
-import { illegalArgs } from "@thi.ng/errors";
 
 export const outputProc: Processor = async (spec, input, ctx) => {
 	const opts = <OutputSpec>spec;
-	const outDir = resolve(ctx.opts.outDir || ".");
 	let output = input.clone();
 	if (opts.blurhash) {
 		await __outputBlurHash(opts, output, ctx);
 		return [input, false];
 	}
-	if (!opts.path) illegalArgs("output path missing");
 	if (opts.raw) {
-		await __outputRaw(opts, output, ctx, outDir);
+		await __outputRaw(opts, output, ctx);
 		return [input, false];
 	}
 	if (ctx.meta.exif && ctx.opts.keepEXIF) {
@@ -33,7 +32,20 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 		ctx.logger.debug("using stored ICC profile:", ctx.iccFile);
 		output = output.withIccProfile(ctx.iccFile);
 	}
-	let format = /\.(\w+)$/.exec(opts.path)?.[1];
+	let format = opts.path
+		? /\.(\w+)$/.exec(opts.path)?.[1]
+		: firstNonNullKey(opts, [
+				"avif",
+				"gif",
+				"jp2",
+				"jpeg",
+				"jxl",
+				"png",
+				"raw",
+				"tile",
+				"tiff",
+				"webp",
+		  ]);
 	switch (format) {
 		case "avif":
 			if (opts.avif) output = output.avif(opts.avif);
@@ -65,14 +77,14 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 	if (format) output = output.toFormat(<any>format);
 	const result = await output.toBuffer();
 	if (opts.path !== undefined) {
-		const path = join(
-			outDir,
-			formatPath(opts.path, ctx, <OutputSpec>spec, result)
-		);
+		const path = formatPath(opts.path, ctx, <OutputSpec>spec, result);
 		writeFile(path, result, null, ctx.logger);
 		ctx.outputs[opts.id] = path;
 	} else {
-		ctx.outputs[opts.id] = result;
+		ctx.outputs[opts.id] =
+			format && opts.dataURL
+				? asDataURL(`image/${format}`, result)
+				: result;
 	}
 	return [input, false];
 };
@@ -81,24 +93,27 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 const __outputRaw = async (
 	opts: OutputSpec,
 	output: Sharp,
-	ctx: ImgProcCtx,
-	outDir: string
+	ctx: ImgProcCtx
 ) => {
 	const { alpha = false, meta = false } = isPlainObject(opts.raw)
 		? opts.raw
 		: {};
 	if (alpha) output = output.ensureAlpha();
+	else output = output.removeAlpha();
 	const { data, info } = await output
 		.raw()
 		.toBuffer({ resolveWithObject: true });
+	if (meta) {
+		ctx.outputMeta[opts.id] = { ...info, exif: ctx.exif };
+	}
 	if (opts.path !== undefined) {
-		const path = join(outDir, formatPath(opts.path!, ctx, opts, data));
+		const path = formatPath(opts.path!, ctx, opts, data);
 		writeFile(path, data, null, ctx.logger);
 		ctx.outputs[opts.id] = path;
 		if (meta) {
 			writeJSON(
 				path + ".meta.json",
-				{ ...info, exif: ctx.exif },
+				ctx.outputMeta[opts.id],
 				undefined,
 				undefined,
 				ctx.logger
@@ -130,4 +145,10 @@ const __outputBlurHash = async (
 	);
 	ctx.logger.debug("computed blurhash:", hash);
 	ctx.outputs[opts.id] = hash;
+};
+
+export const asDataURL = (mime: string, data: Buffer) => {
+	if (data.length > 0x8000)
+		illegalArgs("encoded image too large for dataURL (max. 32KB allowed)");
+	return `data:${mime};base64,${data.toString("base64")}`;
 };

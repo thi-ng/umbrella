@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:export
 import { equiv } from "@thi.ng/equiv";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU3 } from "@thi.ng/api";
 
 /**
@@ -35,9 +36,9 @@ const __index = (
 };
 
 /**
- * Returns index of the first local & internal minima found in given
- * `values` array, or -1 if no such minima exists. The search range can
- * be optionally defined via semi-open [from, to) index interval.
+ * Returns index of the first local & internal minima found in given `values`
+ * array, or -1 if no such minima exists. The search range can be optionally
+ * defined via semi-open `[from,to)` index interval.
  *
  * @param values -
  * @param from -
@@ -47,9 +48,9 @@ export const minimaIndex = (values: number[], from = 0, to = values.length) =>
 	__index(isMinima, values, from, to);
 
 /**
- * Returns index of the first local & internal maxima found in given
- * `values` array, or -1 if no such maxima exists. The search range can
- * be optionally defined via semi-open [from, to) index interval.
+ * Returns index of the first local & internal maxima found in given `values`
+ * array, or -1 if no such maxima exists. The search range can be optionally
+ * defined via semi-open `[from,to)` index interval.
  *
  * @param values -
  * @param from -
@@ -73,9 +74,9 @@ function* indices(
 }
 
 /**
- * Returns an iterator yielding all minima indices in given `values`
- * array. The search range can be optionally defined via semi-open
- * [from, to) index interval.
+ * Returns an iterator yielding all minima indices in given `values` array. The
+ * search range can be optionally defined via semi-open `[from,to)` index
+ * interval.
  *
  * @param values -
  * @param from -
@@ -85,9 +86,9 @@ export const minimaIndices = (values: number[], from = 0, to = values.length) =>
 	indices(minimaIndex, values, from, to);
 
 /**
- * Returns an iterator yielding all maxima indices in given `values`
- * array. The search range can be optionally defined via semi-open
- * [from, to) index interval.
+ * Returns an iterator yielding all maxima indices in given `values` array. The
+ * search range can be optionally defined via semi-open `[from,to)` index
+ * interval.
  *
  * @param values -
  * @param from -

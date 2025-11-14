@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Like {@link commonKeysObj}, but for ES6 Maps.
  *
@@ -25,7 +26,7 @@ export const commonKeysMap = <K>(
  * import { commonKeysObj } from "@thi.ng/object-utils";
  *
  * console.log(
- *   commonKeys({ a: 1, b: 2 }, { c: 10, b: 20, a: 30 })
+ *   commonKeysObj({ a: 1, b: 2 }, { c: 10, b: 20, a: 30 })
  * );
  * // [ "a", "b" ]
  * ```

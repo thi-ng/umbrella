@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./button.js";
 export * from "./button-group.js";
 export * from "./canvas.js";

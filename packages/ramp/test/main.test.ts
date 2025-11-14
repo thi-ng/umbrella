@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { repeatedly } from "@thi.ng/transducers";
 import { linear, type Frame } from "../src/index.js";

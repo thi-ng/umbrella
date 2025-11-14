@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 import {
@@ -18,8 +19,8 @@ import {
 	page,
 	repeat,
 } from "@thi.ng/transducers";
-import * as fx from "./effects";
-import * as ev from "./events";
+import * as fx from "./effects.js";
+import * as ev from "./events.js";
 
 export const PAGE_LEN = 5;
 

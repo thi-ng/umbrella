@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
 import { WasmBridge, type IWasmAPI, type WasmType } from "@thi.ng/wasm-api";
@@ -6,7 +7,7 @@ import {
 	WasmScheduleModule,
 	type WasmScheduleExports,
 } from "@thi.ng/wasm-api-schedule";
-import { $Task, TaskState, type Task } from "./api";
+import { $Task, TaskState, type Task } from "./api.js";
 import WASM_URL from "./main.wasm?url";
 
 /**

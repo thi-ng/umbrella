@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { contrast, css, srgb } from "@thi.ng/color";
 import { div, inputColor } from "@thi.ng/hiccup-html";
 import {

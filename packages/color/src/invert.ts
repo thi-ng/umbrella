@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3 } from "@thi.ng/api";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { fit } from "@thi.ng/math/fit";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, FnU2, NumOrString, Predicate2 } from "@thi.ng/api";
 
 export type VClock = Record<NumOrString, number>;
@@ -8,7 +9,7 @@ export type VClock = Record<NumOrString, number>;
  *
  * @remarks
  * Be aware of JS number precision limitations! Clocks will only be precise for
- * clock(id) <= 2**53-1, which is equivalent to ~285421 years @ a constant
+ * `clock(id) <= 2**53-1`, which is equivalent to ~285421 years @ a constant
  * 1000Hz update frequency.
  *
  * @param clock -

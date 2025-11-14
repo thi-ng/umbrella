@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray, TypedArray } from "./typedarray.js";
 
 export interface INDBase<BUF extends any[] | TypedArray = any[]> {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Benchmark, BenchmarkResult, BenchmarkSuiteOpts } from "./api.js";
 import { benchmark, DEFAULT_OPTS, outputString } from "./benchmark.js";
 

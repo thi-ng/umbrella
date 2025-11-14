@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
 import { px } from "@thi.ng/hiccup-css";

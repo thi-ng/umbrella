@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptiveCanvas2d } from "@thi.ng/canvas";
 import { circle, classifyPoint, group, smoothPolygon } from "@thi.ng/geom";
 import { draw } from "@thi.ng/hiccup-canvas";

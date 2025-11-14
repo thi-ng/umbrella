@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { iterator, map, mapcat, multiplex, step } from "../src/index.js";
 import { identity } from "@thi.ng/api";

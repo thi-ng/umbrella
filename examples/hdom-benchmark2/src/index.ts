@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { splat4_24 } from "@thi.ng/binary";
 import { start } from "@thi.ng/hdom";
 import { dropdown, fpsCounter } from "@thi.ng/hdom-components";

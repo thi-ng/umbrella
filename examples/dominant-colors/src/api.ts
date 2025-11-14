@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator } from "@thi.ng/api";
 import type { LCH } from "@thi.ng/color";
 import { compareByKey, compareByKeys2, compareNumDesc } from "@thi.ng/compare";

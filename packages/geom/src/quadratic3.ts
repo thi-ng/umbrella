@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { quadraticFromLine as _line } from "@thi.ng/geom-splines/quadratic-line";
 import type { Vec } from "@thi.ng/vectors";

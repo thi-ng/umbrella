@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
@@ -9,7 +10,7 @@ import type { TargetImpl } from "./api/target.js";
  * / compile target function which serializes a given AST using the provided
  * node type implementations.
  *
- * [`targetGLSL()`](https://docs.thi.ng/umbrella/shader-ast-glsl/functions/targetGLSL.html)
+ * [`targetGLSL`](https://docs.thi.ng/umbrella/shader-ast-glsl/functions/targetGLSL.html)
  *
  * @param impls -
  */

@@ -1,13 +1,34 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/tangle@1.1.39) (2025-09-25)
+
+#### ♻️ Refactoring
+
+- simplify CLI impl via cliApp() wrapper ([f6ae3be](https://github.com/thi-ng/umbrella/commit/f6ae3be))
+
+### [1.1.34](https://github.com/thi-ng/umbrella/tree/@thi.ng/tangle@1.1.34) (2025-08-06)
+
+#### ♻️ Refactoring
+
+- update CLI internals, rename `--debug` => `--verbose` ([5756b75](https://github.com/thi-ng/umbrella/commit/5756b75))
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tangle@1.1.0) (2025-02-11)
+
+#### 🚀 Features
+
+- update CLI wrapper ([8fd0ffb](https://github.com/thi-ng/umbrella/commit/8fd0ffb))
+  - check if `bun` is available, otherwise fallback to `node`
 
 ### [0.2.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/tangle@0.2.17) (2024-06-21)
 

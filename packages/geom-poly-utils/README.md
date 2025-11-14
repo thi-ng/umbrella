@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-poly-utils](https://media.thi.ng/umbrella/banners-20230807/thing-geom-poly-utils.svg?fdf24370)
+# ![@thi.ng/geom-poly-utils](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-poly-utils.svg?fdf24370)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-poly-utils.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -72,7 +72,7 @@ For Node.js REPL:
 const gpu = await import("@thi.ng/geom-poly-utils");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.69 KB
 
 ## Dependencies
 

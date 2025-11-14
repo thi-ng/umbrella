@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isArray } from "@thi.ng/checks/is-array";

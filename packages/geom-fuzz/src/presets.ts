@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Color, HatchDir } from "./api.js";
 import { defHatch } from "./hatch.js";
 

@@ -1,4 +1,5 @@
-import type { AppContext } from "../api";
+// SPDX-License-Identifier: Apache-2.0
+import type { AppContext } from "../api.js";
 
 /**
  * User stylable external link component.

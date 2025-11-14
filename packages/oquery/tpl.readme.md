@@ -83,7 +83,7 @@ Object queries expect an object of the following structure:
 
 A concrete example:
 
-```ts tangle:export/readme.ts
+```ts id:db
 const DB = {
     alice: {
         age: 33,
@@ -111,11 +111,16 @@ To find all answers for the question: Who knows Bob?
 ```ts tangle:export/readme.ts
 import { defQuery } from "@thi.ng/oquery";
 
+// include above DB definition
+<<db>>
+
 // create query w/ custom options
 // (options explained further below...)
 const q = defQuery({ partial: true });
 
-console.log(q(DB, null, "knows", "bob"));
+console.log(
+	q(DB, null, "knows", "bob")
+);
 // {
 //   alice: { knows: [ 'bob' ] },
 //   charlie: { knows: [ 'bob' ] },
@@ -150,7 +155,9 @@ table above.
 
 ```ts tangle:export/readme.ts
 // Who does Alice know?
-q(DB, "alice", "knows", null)
+console.log(
+	q(DB, "alice", "knows", null)
+);
 // { alice: { knows: [ 'bob', 'charlie', 'dori' ] } }
 ```
 
@@ -160,7 +167,9 @@ terms).
 
 ```ts tangle:export/readme.ts
 // Anyone with initial "A" knows Charlie?
-q(DB, (s) => s[0] === "a", "knows", "charlie")
+console.log(
+	q(DB, (s) => s[0] === "a", "knows", "charlie")
+);
 // { alice: { knows: [ 'charlie' ] } }
 ```
 
@@ -177,7 +186,9 @@ const DBALT: Person[] = [
   { id: "charlie", knows: ["alice","bob","dori"] },
 ];
 
-defQuery<Person[]>()(DBALT, "knows", "alice")
+console.log(
+	defQuery<Person[]>()(DBALT, "knows", "alice")
+);
 // [
 //   { id: 'bob', knows: [ 'alice' ] },
 //   { id: 'charlie', knows: [ 'alice', 'bob', 'dori' ] }
@@ -192,19 +203,28 @@ above](#query-patterns)...
 ```ts tangle:export/readme2.ts
 import { defQuery } from "@thi.ng/oquery";
 
+// include above DB definition
+<<db>>
+
 // using partial result objects option for brevity here
 const q = defQuery({ partial: true });
 
 // find all subjects with `type = "person"` relationship
-q(DB, null, "type", "person");
+console.log(
+	q(DB, null, "type", "person")
+);
 // { alice: { type: 'person' }, bob: { type: 'person' } }
 
 // everyone w/ given min age
-q(DB, null, "age", (age) => age >= 33)
+console.log(
+	q(DB, null, "age", (age: number) => age >= 33)
+);
 // { alice: { age: 33 } }
 
 // select only subjects with A/B initials
-q(DB, (id) => id >= "a" && id < "c", null, null)
+console.log(
+	q(DB, (id) => id >= "a" && id < "c", null, null)
+);
 // {
 //   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' },
 //   bob: { age: 32, knows: [ 'alice' ], type: 'person', spouse: 'alice' }
@@ -217,7 +237,9 @@ Union vs. intersection queries:
 const union = defQuery();
 
 // who knows bob OR charlie?
-union(DB, null, "knows", ["bob", "charlie"]);
+console.log(
+	union(DB, null, "knows", ["bob", "charlie"])
+);
 // {
 //   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' },
 //   charlie: { parent: 'alice', knows: [ 'alice', 'bob', 'dori' ] },
@@ -227,7 +249,9 @@ union(DB, null, "knows", ["bob", "charlie"]);
 const isec = defQuery({ intersect: true });
 
 // who knows bob AND charlie?
-isec(DB, null, "knows", ["bob", "charlie"]);
+console.log(
+	isec(DB, null, "knows", ["bob", "charlie"])
+);
 // {
 //   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' }
 // }

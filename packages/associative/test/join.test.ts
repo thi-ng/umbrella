@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { ArraySet, join, joinWith } from "../src/index.js";
 

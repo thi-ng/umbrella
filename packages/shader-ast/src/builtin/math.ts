@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {
 	BVec2Term,
@@ -122,10 +123,16 @@ export const radians = __primOp1("radians");
 export const degrees = __primOp1("degrees");
 
 export const cos = __primOp1("cos");
+export const cosh = __primOp1("cosh");
 export const sin = __primOp1("sin");
+export const sinh = __primOp1("sinh");
 export const tan = __primOp1("tan");
+export const tanh = __primOp1("tanh");
 export const acos = __primOp1("acos");
+export const acosh = __primOp1("acosh");
 export const asin = __primOp1("asin");
+export const asinh = __primOp1("asinh");
+export const atanh = __primOp1("atanh");
 
 export function atan<T extends Prim>(a: Term<T>): FnCall<T>;
 // prettier-ignore

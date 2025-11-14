@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { minError } from "@thi.ng/math/min-error";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
@@ -9,7 +10,7 @@ import { mixCubic } from "@thi.ng/vectors/mix-cubic";
  * control the recursion behavior. If `eps` is given, the search is terminated
  * as soon as a point with a shorter *squared* distance than `eps` is found.
  *
- * [`minError()`](https://docs.thi.ng/umbrella/math/functions/minError.html)
+ * [`minError`](https://docs.thi.ng/umbrella/math/functions/minError.html)
  *
  * @param p - query point
  * @param a - control point 1

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sliding } from "@thi.ng/buffers/sliding";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
@@ -6,7 +7,7 @@ import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
  * Like
- * [`movingAverage()`](https://docs.thi.ng/umbrella/transducers/functions/movingAverage.html),
+ * [`movingAverage`](https://docs.thi.ng/umbrella/transducers/functions/movingAverage.html),
  * but using more efficient linked list as sliding window buffer.
  *
  * Note: the number of results will be `period-1` less than the number of

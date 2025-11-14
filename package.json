@@ -7,14 +7,12 @@
 		"tools"
 	],
 	"devDependencies": {
-		"@microsoft/api-documenter": "^7.26.3",
-		"@microsoft/api-extractor": "^7.48.1",
-		"bun-types": "^1.1.42",
-		"esbuild": "^0.24.2",
+		"bun-types": "1.3.1",
+		"esbuild": "^0.25.11",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
@@ -25,21 +23,21 @@
 		"build:examples": "yarn @example run build",
 		"clean": "yarn @thi.ng run clean",
 		"doc": "yarn @thi.ng run doc",
-		"doc:ae": "yarn @thi.ng run doc:ae && scripts/collect-apis",
 		"doc:readme": "yarn @thi.ng run doc:readme",
 		"doc:examples": "bun tools/src/readme-examples.ts",
 		"pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && bun tools/src/deploy-docs.ts",
 		"test": "yarn build:esbuild && yarn test:prepare && yarn test:only",
 		"test:prepare": "yarn @thi.ng run test:prepare",
-		"test:only": "(cd packages && bun test)",
+		"test:only": "yarn @thi.ng run test:prepare && (cd packages && bun test)",
 		"tool:cleanup": "bun tools/src/cleanup.ts",
 		"tool:deps": "bun tools/src/adjacency.ts",
 		"tool:exports": "bun tools/src/generate-export-maps.ts && bun tools/src/check-exports.ts",
 		"tool:imports": "bun tools/src/check-imports.ts",
 		"tool:prune": "bun tools/src/prune-changelogs.ts",
+		"tool:browser": "(cd examples/thing-browser && yarn tool:packages && yarn build) && bun tools/src/deploy-example.ts thing-browser",
 		"tool:searchindex": "bun tools/src/build-search-index.ts",
 		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn doc:readme && yarn tool:searchindex && yarn tool:deps",
 		"tool:tangle": "yarn @thi.ng run tool:tangle"
 	},
-	"packageManager": "yarn@4.6.0"
+	"packageManager": "yarn@4.11.0"
 }

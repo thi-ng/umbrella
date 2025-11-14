@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FMT_ANSI16 } from "./ansi.js";
 import { defFormatPresets } from "./format.js";
 import { FMT_NONE } from "./none.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { TypedColor } from "./api.js";
 import { hsv } from "./hsv/hsv.js";

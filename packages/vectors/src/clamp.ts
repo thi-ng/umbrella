@@ -1,23 +1,49 @@
-import {
-	clamp as _clamp,
-	clamp01 as _clamp01,
-	clamp11 as _clamp11,
-} from "@thi.ng/math/interval";
-import type { MultiVecOpV, MultiVecOpVVV, VecOpV, VecOpVVV } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_V, ARGS_VVV, FN, FN3 } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { clamp as op } from "@thi.ng/math/interval";
+import { defOpVVV } from "./defopvvv.js";
 
-export const [clamp, clamp2, clamp3, clamp4] = defHofOp<
-	MultiVecOpVVV,
-	VecOpVVV
->(_clamp, FN3(), ARGS_VVV);
+const [a, b, c, d] = defOpVVV(op);
 
-export const [clamp01, clamp01_2, clamp01_3, clamp01_4] = defHofOp<
-	MultiVecOpV,
-	VecOpV
->(_clamp01, FN(), ARGS_V);
+/**
+ * Componentwise constrains given nD vector `a` to the closed interval defined
+ * by vectors `b` and `c`. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const clamp = a;
 
-export const [clamp11, clamp11_2, clamp11_3, clamp11_4] = defHofOp<
-	MultiVecOpV,
-	VecOpV
->(_clamp11, FN(), ARGS_V);
+/**
+ * Componentwise constrains given 2D vector `a` to the closed interval defined
+ * by vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const clamp2 = b;
+
+/**
+ * Componentwise constrains given 3D vector `a` to the closed interval defined
+ * by vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const clamp3 = c;
+
+/**
+ * Componentwise constrains given 4D vector `a` to the closed interval defined
+ * by vectors `b` and `c`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const clamp4 = d;

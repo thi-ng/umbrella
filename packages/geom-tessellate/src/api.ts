@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IEmpty } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 

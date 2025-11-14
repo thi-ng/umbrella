@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import { css } from "@thi.ng/color/css/css";
 import { argb32 } from "@thi.ng/color/int/int";

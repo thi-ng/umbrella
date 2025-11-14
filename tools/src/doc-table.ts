@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
@@ -74,13 +75,15 @@ writeText(
 						rel: "stylesheet",
 					},
 				],
+				["script", {}, "window.goatcounter={path:p=>location.host+p};"],
 				[
 					"script",
 					{
+						data: {
+							goatcounter: "https://thing.goatcounter.com/count",
+						},
 						async: true,
-						defer: true,
-						"data-domain": "thi.ng",
-						src: "https://plausible.io/js/plausible.js",
+						src: "//gc.zgo.at/count.js",
 					},
 				],
 			],

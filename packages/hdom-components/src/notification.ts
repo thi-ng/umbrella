@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { appLink } from "./link.js";
 import type { IObjectOf } from "@thi.ng/api";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	U16 as $16,
 	U24 as $24,

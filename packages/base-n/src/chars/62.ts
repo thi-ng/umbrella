@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { B26_LC_CHARS } from "./26.js";
 import { B36_CHARS } from "./36.js";
 

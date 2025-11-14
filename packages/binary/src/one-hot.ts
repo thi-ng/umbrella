@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Range0_31 } from "@thi.ng/api";
 import { clz32 } from "./count.js";
 

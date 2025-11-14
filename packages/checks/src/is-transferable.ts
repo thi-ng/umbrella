@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 declare var SharedArrayBuffer: any;
 
 export const isTransferable = (x: any) =>

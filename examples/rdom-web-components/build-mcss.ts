@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { files } from "@thi.ng/file-io";
 import { spawn, execFileSync } from "node:child_process";
 

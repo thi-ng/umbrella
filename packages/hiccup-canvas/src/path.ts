@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { fromEndPoints } from "@thi.ng/geom-arc/from-endpoints";
 import type { ReadonlyVec } from "@thi.ng/vectors";

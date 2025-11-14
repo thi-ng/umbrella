@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mapIndexed } from "@thi.ng/transducers";
 import { distHaversineLatLon, type ReadonlyVec } from "@thi.ng/vectors";
 import { beforeEach, describe, expect, test } from "bun:test";

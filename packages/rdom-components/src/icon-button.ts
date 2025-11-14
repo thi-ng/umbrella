@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MaybeDeref } from "@thi.ng/api";
 import { button, type InputAttribs } from "@thi.ng/hiccup-html/forms";
 import { i } from "@thi.ng/hiccup-html/inline";

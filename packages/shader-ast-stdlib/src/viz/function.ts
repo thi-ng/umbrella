@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	FloatSym,
 	Func1,
@@ -57,14 +58,14 @@ export interface FnSampleOpts {
 	area: boolean;
 	/**
 	 * Min X position (in function domain). The function will only be evaluated
-	 * within the [min..max] domain.
+	 * within the `[min,max]` domain.
 	 *
 	 * @defaultValue 0
 	 */
 	min: number;
 	/**
 	 * Max X position (in function domain). The function will only be evaluated
-	 * within the [min..max] domain.
+	 * within the `[min,max]` domain.
 	 *
 	 * @defaultValue 1
 	 */

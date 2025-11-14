@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { lengthAnsi } from "./ansi.js";
 import type { IWordSplit, WordWrapOpts } from "./api.js";
 import { split } from "./split.js";
@@ -118,7 +119,7 @@ const __wrapWord = (
  * {@link Line} objects, which can simply be `.join("\n")`ed to convert back
  * into text.
  *
- * @see {@link wordWrap} for main user facing alternative.
+ * See {@link wordWrap} for main user facing alternative.
  *
  * @param line -
  * @param opts -
@@ -154,7 +155,7 @@ export const wordWrapLine = (
  * {@link Line} objects, which can simply be `.join("\n")`ed to convert back
  * into text.
  *
- * @see {@link wordWrap} for main user facing alternative.
+ * See {@link wordWrap} for main user facing alternative.
  *
  * @param lines -
  * @param opts -

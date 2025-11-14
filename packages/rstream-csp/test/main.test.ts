@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fromAsyncIterable } from "@thi.ng/csp";
 import { State } from "@thi.ng/rstream";
 import { expect, test } from "bun:test";

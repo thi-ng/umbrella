@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fitClamped, fract } from "@thi.ng/math";
@@ -13,9 +14,9 @@ import {
 	PRESETS,
 	SNAP,
 	WIDTH,
-} from "./api";
-import { initAudio, isAudioActive, stopAudio, updateAudio } from "./audio";
-import { rampViz } from "./components";
+} from "./api.js";
+import { initAudio, isAudioActive, stopAudio, updateAudio } from "./audio.js";
+import { rampViz } from "./components.js";
 
 const timeForPos = (x: number) => fitClamped(x, PAD, WIDTH - PAD, 0, 1);
 

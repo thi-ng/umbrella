@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { pixelCanvas2d } from "@thi.ng/canvas";
 import { NUM_THEMES, asInt } from "@thi.ng/color-palettes";
 import {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGrid2D, TypedArray } from "@thi.ng/api";
 import { isPrimitive } from "@thi.ng/checks";
 import { hlineClipped, vlineClipped } from "@thi.ng/grid-iterators/hvline";

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-sdf",
-	"version": "1.0.3",
+	"version": "1.0.60",
 	"description": "2D Signed Distance Field creation from @thi.ng/geom shapes, conversions, sampling, combinators",
 	"type": "module",
 	"module": "./index.js",
@@ -33,30 +33,28 @@
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/checks": "^3.6.19",
-		"@thi.ng/defmulti": "^3.0.55",
-		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/geom": "^8.1.23",
-		"@thi.ng/geom-isoline": "^2.1.155",
-		"@thi.ng/geom-poly-utils": "^3.0.27",
-		"@thi.ng/geom-resample": "^3.0.27",
-		"@thi.ng/math": "^5.11.16",
-		"@thi.ng/transducers": "^9.2.14",
-		"@thi.ng/vectors": "^7.12.15"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/defmulti": "^3.0.83",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/geom": "^8.3.6",
+		"@thi.ng/geom-isoline": "^2.1.202",
+		"@thi.ng/geom-poly-utils": "^3.1.5",
+		"@thi.ng/geom-resample": "^3.0.68",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/transducers": "^9.6.16",
+		"@thi.ng/vectors": "^8.6.12"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"esbuild": "^0.24.2",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"2d",
@@ -129,6 +127,7 @@
 			"shader-ast-stdlib"
 		],
 		"status": "alpha",
+		"tag": "sdf",
 		"year": 2022
 	}
 }

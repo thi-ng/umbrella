@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -99,14 +100,14 @@ export type AsCubicFn = {
  * - {@link Group3} (only used for eligible children)
  * - {@link ComplexPolygon}
  * - {@link Polygon}
- * - {@link Polygon3}
+ * - {@link Polygon3} (no support for mode: "break" or "hobby")
  * - {@link Polyline}
- * - {@link Polyline3}
+ * - {@link Polyline3} (no support for mode: "break" or "hobby")
  * - {@link Quad}
- * - {@link Quad3}
+ * - {@link Quad3} (no support for mode: "break" or "hobby")
  * - {@link Rect}
  * - {@link Triangle}
- * - {@link Triangle3}
+ * - {@link Triangle3} (no support for mode: "break" or "hobby")
  *
  * @param shape
  * @param opts
@@ -122,6 +123,7 @@ export const asCubic = <AsCubicFn>(
 			quad3: "poly3",
 			rect: "$aspoly",
 			tri: "poly",
+			tri3: "poly3",
 		},
 		{
 			$aspoly: ($, opts) => asCubic(asPolygon($)[0], opts),
@@ -211,7 +213,6 @@ export const asCubic = <AsCubicFn>(
 			poly3: ($: Polygon3, opts) =>
 				__polyCubic(Cubic3, $, opts, {
 					default: closedCubicFromControlPoints,
-					break: closedCubicFromBreakPoints,
 				}),
 
 			polyline: ($: Polyline, opts) =>
@@ -224,7 +225,6 @@ export const asCubic = <AsCubicFn>(
 			polyline3: ($: Polyline3, opts) =>
 				__polyCubic(Cubic3, $, opts, {
 					default: openCubicFromControlPoints,
-					break: openCubicFromBreakPoints,
 				}),
 
 			quadratic: ({ points: [a, b, c], attribs }: Quadratic, opts) => [

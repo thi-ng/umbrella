@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // best practice tip: define event & effect names as consts or enums and
 // avoid hardcoded strings for more safety and easier refactoring
 

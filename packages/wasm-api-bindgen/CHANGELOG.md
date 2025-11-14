@@ -1,13 +1,47 @@
 # Change Log
 
-- **Last updated**: 2025-01-10T10:06:26Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.2.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.45) (2025-09-26)
+
+#### ♻️ Refactoring
+
+- update CLI arg specs ([7c43dac](https://github.com/thi-ng/umbrella/commit/7c43dac))
+
+### [1.2.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.42) (2025-09-25)
+
+#### ♻️ Refactoring
+
+- simplify CLI impl via cliApp() wrapper ([f0ca0a9](https://github.com/thi-ng/umbrella/commit/f0ca0a9))
+
+### [1.2.40](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.40) (2025-09-02)
+
+#### 🩹 Bug fixes
+
+- update zig function pointer callconv ([5cfd515](https://github.com/thi-ng/umbrella/commit/5cfd515))
+  - use `callconv(.c)` (older format now deprecated in 0.15.1)
+
+### [1.2.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.36) (2025-08-06)
+
+#### ♻️ Refactoring
+
+- update CLI internals ([51a7659](https://github.com/thi-ng/umbrella/commit/51a7659))
+
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.2.0) (2025-02-11)
+
+#### 🚀 Features
+
+- update CLI wrapper ([cbbb33f](https://github.com/thi-ng/umbrella/commit/cbbb33f))
+  - check if `bun` is available, otherwise fallback to `node`
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@1.1.0) (2025-01-10)
 

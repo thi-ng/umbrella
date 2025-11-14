@@ -1,5 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fit01 } from "@thi.ng/math";
-import { GRADIENTS } from "./gradient";
+import { GRADIENTS } from "./gradient.js";
 
 // host message listener & responder
 const $self: any = self;

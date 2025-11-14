@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { farthestPointSegment } from "@thi.ng/geom-closest-point/line";
 import { EPS } from "@thi.ng/math/api";
 import type { Vec } from "@thi.ng/vectors";

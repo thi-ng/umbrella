@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components";

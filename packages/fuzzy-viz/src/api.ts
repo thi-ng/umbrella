@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn3 } from "@thi.ng/api";
 import type { FuzzyFn, LVarDomain } from "@thi.ng/fuzzy";
 
@@ -50,12 +51,12 @@ export interface VizualizeVarOpts {
 	 */
 	labels: boolean;
 	/**
-	 * Color factory function. Converts number in [0..1) interval into an CSS
+	 * Color factory function. Converts number in `[0,1)` interval into an CSS
 	 * color string.
 	 */
 	stroke: Fn<number, string>;
 	/**
-	 * Color factory function. Converts number in [0..1) interval into an CSS
+	 * Color factory function. Converts number in `[0,1)` interval into an CSS
 	 * color string.
 	 */
 	fill: Fn<number, string>;

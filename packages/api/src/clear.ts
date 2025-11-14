@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Interface for mutable types supporting internal cleanup (e.g.
  * removing all values in a container etc.).

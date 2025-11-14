@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/tangle](https://media.thi.ng/umbrella/banners-20230807/thing-tangle.svg?c4f26baa)
+# ![@thi.ng/tangle](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-tangle.svg?c4f26baa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/tangle.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -189,24 +189,24 @@ lib.md (e.g. maybe a library of useful snippets for a larger project):
 Calling the `tangle` CLI util, we can process these example files and produce
 the following two outputs:
 
-```bash
+```text
 npx @thi.ng/tangle --help
 
-#  █ █   █           │
-# ██ █               │
-#  █ █ █ █   █ █ █ █ │ @thi.ng/tangle 0.1.0
-#  █ █ █ █ █ █ █ █ █ │ Literate programming code block tangling
-#                  █ │
-#                █ █ │
-#
-# usage: tangle [OPTS] SOURCE-FILES(S) ...
-#        tangle --help
-#
-# Flags:
-#
-# -d, --debug         enable debug output
-# --dry-run           enable dry run (don't overwrite files)
-# --no-comments       don't generate comments
+ █ █   █           │
+██ █               │
+ █ █ █ █   █ █ █ █ │ @thi.ng/tangle v1.1.33
+ █ █ █ █ █ █ █ █ █ │ Literate programming code block tangling
+                 █ │
+               █ █ │
+
+usage: tangle [OPTS] SOURCE-FILES(S) ...
+       tangle --help
+
+Flags:
+
+--dry-run           Dry run (no changes applied)
+--no-comments       don't generate comments
+-v, --verbose       Display extra information
 ```
 
 ```bash

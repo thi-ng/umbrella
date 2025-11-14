@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 
 /**
@@ -6,6 +7,7 @@ import type { IObjectOf } from "@thi.ng/api";
  *
  * @remarks
  * See also:
+ *
  * - {@link keys}
  * - {@link pairs}
  *

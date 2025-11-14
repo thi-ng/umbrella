@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners-20230807/thing-hdom.svg?50950462)
+# ![@thi.ng/hdom](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hdom.svg?50950462)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -210,7 +210,7 @@ directory are using this package:
 |                                                                                                                                      | Basic SPA example with atom-based UI router                                      | [Demo](https://demo.thi.ng/umbrella/login-form/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                      | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/>                 | Complete mini SPA app w/ router & async content loading                          | [Demo](https://demo.thi.ng/umbrella/router-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)         |
-|                                                                                                                                      | Minimal rstream dataflow graph                                                   | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>                      | Minimal rstream dataflow graph                                                   | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/>            | Minimal demo of using rstream constructs to form an interceptor-style event loop | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support           | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png" width="240"/>           | rstream based spreadsheet w/ S-expression formula DSL                            | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)   |
@@ -219,7 +219,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>                  | Entity Component System w/ 100k 3D particles                                     | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)               | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)               |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png" width="240"/>                  | Simplistic SVG bar chart component                                               | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                   | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote              | [Demo](http://media.thi.ng/2018/talks/clojurex/index.html)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote              | [Demo](https://demo.thi.ng/umbrella/talk-slides/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png" width="240"/>                     | Obligatory to-do list example with undo/redo                                     | [Demo](https://demo.thi.ng/umbrella/todo-list/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                                      | [Demo](https://demo.thi.ng/umbrella/triple-query/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)          |
 

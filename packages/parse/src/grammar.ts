@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import type { MultiFn4 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
@@ -20,13 +21,13 @@ import { seq, seqD } from "./combinators/seq.js";
 import { xform } from "./combinators/xform.js";
 import { defContext, type ParseScope } from "./context.js";
 import { ALPHA, ALPHA_NUM } from "./presets/alpha.js";
-import { BIT } from "./presets/bits.js";
+import { BINARY_UINT, BIT } from "./presets/bits.js";
 import { DIGIT } from "./presets/digits.js";
 import { ESC, UNICODE } from "./presets/escape.js";
-import { HEX_DIGIT } from "./presets/hex.js";
+import { HEX_DIGIT, HEX_UINT } from "./presets/hex.js";
 import { FLOAT, INT, UINT } from "./presets/numbers.js";
 import { STRING } from "./presets/string.js";
-import { DNL, NL, WS, WS0, WS1 } from "./presets/whitespace.js";
+import { DNL, NL, SPACE, WS, WS0, WS1 } from "./presets/whitespace.js";
 import { always, alwaysD } from "./prims/always.js";
 import {
 	inputEnd,
@@ -458,19 +459,23 @@ export const defGrammar = (
 					ALPHA_NUM,
 					ALPHA,
 					BIT,
+					BINARY_UINT,
 					DIGIT,
 					DNL,
 					END: inputEnd,
 					ESC,
 					FLOAT,
 					HEX_DIGIT,
+					HEX_UINT,
 					INT,
 					LEND: lineEnd,
 					LSTART: lineStart,
 					NL,
+					SPACE,
 					START: inputStart,
 					STRING,
 					UNICODE,
+					UINT,
 					WB: wordBoundary,
 					WS,
 					WS0,

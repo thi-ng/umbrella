@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-subdiv-curve](https://media.thi.ng/umbrella/banners-20230807/thing-geom-subdiv-curve.svg?3e6600db)
+# ![@thi.ng/geom-subdiv-curve](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-subdiv-curve.svg?3e6600db)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-subdiv-curve.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >

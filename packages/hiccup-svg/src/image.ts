@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, Vec2Like } from "./api.js";
 import { fattribs, ff } from "./format.js";
 

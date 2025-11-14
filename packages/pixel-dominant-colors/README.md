@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-dominant-colors](https://media.thi.ng/umbrella/banners-20230807/thing-pixel-dominant-colors.svg?60875ef0)
+# ![@thi.ng/pixel-dominant-colors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-dominant-colors.svg?60875ef0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-dominant-colors.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -33,15 +33,18 @@ extracted from the [@thi.ng/pixel](https://thi.ng/pixel) package.
 
 ### Dominant color extraction
 
-The
-[`dominantColors()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColors.html)
-function applies [k-means
-clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) to
-extract the dominant colors from the given image. The clustering can be
-configured. The function returns an array of `{ color, area }` objects (sorted
-by descending area), where `color` is a cluster's dominant color (in the format
-of the source image) and `area` the normalized cluster size (number of selected
-pixels over total number of pixels in the image).
+The package provides several methods to extract the dominant colors from a given image:
+
+- [`dominantColorsKmeans()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsKmeans.html)
+uses [k-means clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
+- [`dominantColorsMeanCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMeanCut.html)
+- [`dominantColorsMedianCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMedianCut.html)
+
+In all cases the clustering can be configured. The functions return an array of
+`{ color, area }` objects (sorted by descending area), where `color` is a
+cluster's dominant color (in the format of the source image) and `area` the
+normalized cluster size (number of selected pixels over total number of pixels
+in the image).
 
 Also see the [dominant colors example project & online
 tool](https://demo.thi.ng/umbrella/dominant-colors/) based on this function.
@@ -123,13 +126,14 @@ For Node.js REPL:
 const pdc = await import("@thi.ng/pixel-dominant-colors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 223 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 381 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

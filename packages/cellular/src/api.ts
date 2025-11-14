@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, FnN, NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { MultiCA1D } from "./1d.js";

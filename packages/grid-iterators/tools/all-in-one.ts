@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { lch } from "@thi.ng/color";
 import { asSvg, group, polyline, rect, svgDoc } from "@thi.ng/geom";
 import {

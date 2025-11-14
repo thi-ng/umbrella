@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { div, img, video } from "@thi.ng/hiccup-html";

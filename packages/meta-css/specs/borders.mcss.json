@@ -5,15 +5,15 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "border radius", "desc": "<v>" },
 			"name": "br<k>",
+			"doc": { "group": "border radius", "desc": "<v>" },
 			"props": "border-radius",
 			"values": "borders-r",
 			"unit": "rem"
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"name": "br<vid><k>",
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"props": {
 				"border-top<var>-radius": "<v>",
 				"border-bottom<var>-radius": "<v>"
@@ -23,8 +23,8 @@
 			"vars": ["l", "r"]
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"name": "br<vid><k>",
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"props": {
 				"border<var>-left-radius": "<v>",
 				"border<var>-right-radius": "<v>"
@@ -34,14 +34,14 @@
 			"vars": ["t", "b"]
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<v>" },
 			"name": "br-<k>",
+			"doc": { "group": "border radius", "desc": "<v>" },
 			"props": "border-radius",
 			"values": { "100": "100%", "pill": "9999px" }
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"name": "br-pill-<vid>",
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"props": {
 				"border-top<var>-radius": "<v>",
 				"border-bottom<var>-radius": "<v>"
@@ -51,8 +51,8 @@
 			"vars": ["l", "r"]
 		},
 		{
-			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"name": "br-pill-<vid>",
+			"doc": { "group": "border radius", "desc": "<var> <v>" },
 			"props": {
 				"border<var>-left-radius": "<v>",
 				"border<var>-right-radius": "<v>"
@@ -62,8 +62,8 @@
 			"vars": ["t", "b"]
 		},
 		{
-			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"name": "bw<vid><k>",
+			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"props": {
 				"border<var>-style": "solid",
 				"border<var>-width": "<v>"
@@ -73,15 +73,31 @@
 			"vars": ["", "t", "r", "b", "l"]
 		},
 		{
-			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"name": "bw<vid>-<v>px",
+			"doc": { "group": "border width", "desc": "<var> <v>" },
 			"props": {
 				"border<var>-style": "solid",
 				"border<var>-width": "<v>"
 			},
-			"values": [1],
+			"values": [1, 2, 4],
 			"unit": "px",
 			"vars": ["", "t", "r", "b", "l"]
+		},
+		{
+			"name": "bs-<v>",
+			"doc": { "group": "border style" },
+			"props": "border-style",
+			"values": [
+				"none",
+				"dashed",
+				"dotted",
+				"solid",
+				"double",
+				"groove",
+				"ridge",
+				"inset",
+				"outset"
+			]
 		}
 	]
 }

@@ -1,9 +1,7 @@
-import type { FnN2 } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
-import type { NzEntry } from "./api.js";
-
-export type BinOp = FnN2;
+import type { BinOp, NzEntry } from "./api.js";
 
 const ADD: BinOp = (a, b) => a + b;
 const SUB: BinOp = (a, b) => a - b;
@@ -85,33 +83,32 @@ export class SparseVec {
 		return new SparseVec(this.m, res);
 	}
 
-	binop(op: BinOp, v: SparseVec) {
-		this.ensureSize(v);
+	binop(op: BinOp, b: SparseVec) {
+		this.ensureSize(b);
 		const da = this.data;
-		const db = v.data;
+		const db = b.data;
 		const res = [];
+		let ia: number, ib: number, v: number;
 		for (
-			let i = 0, j = 0, la = da.length, lb = db.length;
-			i < la || j < lb;
+			let i = 0, j = 0, na = da.length, nb = db.length;
+			i < na || j < nb;
 
 		) {
-			const ia = da[i],
-				ib = db[j];
+			ia = da[i];
+			ib = db[j];
 			if (ia === ib) {
-				const v = op(da[i + 1], db[j + 1]);
+				v = op(da[i + 1], db[j + 1]);
 				v !== 0 && res.push(ia, v);
 				i += 2;
 				j += 2;
+			} else if (ib === undefined || ia < ib) {
+				v = op(da[i + 1], 0);
+				v !== 0 && res.push(ia, v);
+				i += 2;
 			} else {
-				if (ib === undefined || ia < ib) {
-					const v = op(da[i + 1], 0);
-					v !== 0 && res.push(ia, v);
-					i += 2;
-				} else {
-					const v = op(0, db[j + 1]);
-					v !== 0 && res.push(ib, v);
-					j += 2;
-				}
+				v = op(0, db[j + 1]);
+				v !== 0 && res.push(ib, v);
+				j += 2;
 			}
 		}
 		return new SparseVec(this.m, res);
@@ -168,16 +165,20 @@ export class SparseVec {
 		const da = this.data;
 		const db = v.data;
 		let res = 0;
-		for (let i = da.length - 2, j = db.length - 2; i >= 0 && j >= 0; ) {
-			const ia = da[i],
-				ib = db[j];
+		let ia: number, ib: number;
+		for (
+			let i = 0, j = 0, na = da.length, nb = db.length;
+			i < na && j < nb;
+
+		) {
+			ia = da[i];
+			ib = db[j];
 			if (ia === ib) {
 				res += da[i + 1] * db[j + 1];
-				i -= 2;
-				j -= 2;
-			} else {
-				ia > ib ? (i -= 2) : (j -= 2);
-			}
+				i += 2;
+				j += 2;
+			} else if (ia < ib) i += 2;
+			else j += 2;
 		}
 		return res;
 	}
@@ -185,8 +186,8 @@ export class SparseVec {
 	magSquared() {
 		const d = this.data;
 		let mag = 0;
-		for (let i = d.length - 1; i >= 1; i -= 2) {
-			mag += d[i] * d[i];
+		for (let i = 1, n = d.length; i < n; i += 2) {
+			mag += d[i] ** 2;
 		}
 		return mag;
 	}
@@ -200,7 +201,7 @@ export class SparseVec {
 		if (mag > 1e-9) {
 			n /= Math.sqrt(mag);
 			const d = this.data;
-			for (let i = d.length - 1; i >= 1; i -= 2) {
+			for (let i = 1, l = d.length; i < l; i += 2) {
 				d[i] *= n;
 			}
 		}
@@ -210,10 +211,14 @@ export class SparseVec {
 	toDense() {
 		const res = new Array(this.m).fill(0);
 		const d = this.data;
-		for (let i = d.length - 2; i >= 0; i -= 2) {
+		for (let i = 0, n = d.length; i < n; i += 2) {
 			res[d[i]] = d[i + 1];
 		}
 		return res;
+	}
+
+	toString() {
+		return `[${this.toDense().join(",")}]`;
 	}
 
 	protected ensureSize(v: SparseVec) {

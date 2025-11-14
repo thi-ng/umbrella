@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mixin } from "../mixin.js";
 import type { IObjectOf } from "../object.js";
 import type { IWatch, Watch } from "../watch.js";

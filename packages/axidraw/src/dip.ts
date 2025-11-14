@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { flatten1 } from "@thi.ng/transducers/flatten1";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";

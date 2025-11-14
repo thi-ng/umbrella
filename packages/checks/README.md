@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners-20230807/thing-checks.svg?567a74c6)
+# ![@thi.ng/checks](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-checks.svg?567a74c6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/checks.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -49,6 +49,7 @@ Collection of 70+ type, feature & value checks.
 - [`isBlob`](https://docs.thi.ng/umbrella/checks/functions/isBlob.html)
 - [`isBoolean`](https://docs.thi.ng/umbrella/checks/functions/isBoolean.html)
 - [`isChrome`](https://docs.thi.ng/umbrella/checks/functions/isChrome.html)
+- [`isDarkMode`](https://docs.thi.ng/umbrella/checks/functions/isDarkMode.html)
 - [`isDataURL`](https://docs.thi.ng/umbrella/checks/functions/isDataURL.html)
 - [`isDate`](https://docs.thi.ng/umbrella/checks/functions/isDate.html)
 - [`isEven`](https://docs.thi.ng/umbrella/checks/functions/isEven.html)
@@ -134,11 +135,11 @@ For Node.js REPL:
 const ch = await import("@thi.ng/checks");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.65 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.71 KB
 
 ## Dependencies
 
-- [tslib](https://www.typescriptlang.org/)
+None
 
 ## API
 

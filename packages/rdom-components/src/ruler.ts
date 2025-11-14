@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { anchor } from "@thi.ng/hiccup-html/inline";
 import { table, tbody, td, tr } from "@thi.ng/hiccup-html/table";
@@ -5,7 +6,7 @@ import { map } from "@thi.ng/transducers/map";
 import { normRange } from "@thi.ng/transducers/norm-range";
 
 /**
- * Returns a <table> element with rows of labeled percentage anchors as scroll
+ * Returns a `<table>` element with rows of labeled percentage anchors as scroll
  * targets. `numSteps` default is 4 (aka 25%).
  *
  * @remarks

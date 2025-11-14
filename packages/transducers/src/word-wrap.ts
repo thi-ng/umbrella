@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Transducer } from "./api.js";
 import { __iter, iterator } from "./iterator.js";
 import { partitionBy } from "./partition-by.js";

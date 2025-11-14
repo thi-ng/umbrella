@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { mat23to44 } from "@thi.ng/matrices";
 import { F, S2D } from "@thi.ng/shader-ast";
@@ -15,7 +16,7 @@ import {
 	type GLVec,
 	type ModelSpec,
 } from "@thi.ng/webgl";
-import type { AppCtx, OpSpec, UserUniforms } from "./api";
+import type { AppCtx, OpSpec, UserUniforms } from "./api.js";
 
 export class OpNode<T extends UserUniforms> {
 	tex: Texture;

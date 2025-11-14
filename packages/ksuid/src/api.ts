@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { BaseN } from "@thi.ng/base-n";
 import type { IRandom } from "@thi.ng/random";
 

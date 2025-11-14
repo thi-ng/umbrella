@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2, FnU3, FnU4 } from "@thi.ng/api";
 
 type Op2 = FnU2<boolean>;

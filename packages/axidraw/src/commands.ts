@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
 	CommentCommand,
@@ -119,7 +120,7 @@ export const COMMENT = (msg: string): CommentCommand => ["comment", msg];
  * console.log(
  *   [...complete([ MOVE([0, 0]) ])]
  * );
- * // [ ["start"], ["M", [0, 0]], ["stop"] ]
+ * // [ ["start"], ["M", [0, 0], 1], ["stop"] ]
  * ```
  *
  * @param commands

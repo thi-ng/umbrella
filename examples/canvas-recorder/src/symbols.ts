@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // An array of symbols
 export const SYMBOLS = [
 	"=±≡⊥—⊫ǁ⊠⊡⊢⊣⊤⊥⊦⊧⊨⊩⊪⊫",

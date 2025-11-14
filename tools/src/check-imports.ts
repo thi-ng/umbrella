@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { unionR } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
 import { dirs, files, readJSON, readText } from "@thi.ng/file-io";
@@ -48,22 +49,16 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 		map((src) => usedDependencies(src)),
 		unionR<string>(),
 		// check /src or /src.xyz folders, but not under /dev or /export
-		dirs(root, /(?<!\/(dev|export|node_modules).*)\/src(\.\w+)?$/)
+		dirs(root, /\/src(\.\w+)?$/)
 	);
-	const pkg = readJSON(pkgPath);
+	const pkg = readJSON(pkgPath, LOGGER);
 	!pkg.dependencies && (pkg.dependencies = {});
 	const mergedDeps = unionR<string>([deps, keys(pkg.dependencies)]);
 	let edit = false;
 	const pairs: [string, string][] = [];
 	for (let d of mergedDeps) {
 		if (!d.startsWith("@thi.ng")) {
-			if (
-				d.startsWith("@types") ||
-				d.startsWith("node:") ||
-				d.startsWith("bun:") ||
-				d === "tslib"
-			)
-				continue;
+			if (/^(@types|node:|bun:)/.test(d) || d === "tslib") continue;
 			if (deps.has(d) && !pkg.dependencies[d]) {
 				LOGGER.warn("missing 3rd party dependency:", d);
 				exitOnFail && process.exit(1);
@@ -74,7 +69,10 @@ const updateImports = (root: string, latest = false, exitOnFail = true) => {
 				pairs.push([d, pkg.dependencies[d]]);
 			}
 		} else if (deps.has(d) && !pkg.dependencies[d]) {
-			const depPkg = readJSON(`${PKG_ROOT}/${shortName(d)}/package.json`);
+			const depPkg = readJSON(
+				`${PKG_ROOT}/${shortName(d)}/package.json`,
+				LOGGER
+			);
 			pairs.push([d, latest ? "workspace:^" : `^${depPkg.version}`]);
 			edit = true;
 		} else if (!deps.has(d)) {
@@ -96,7 +94,9 @@ const checkLocalImports = (root: string, exitOnFail = true) => {
 		const badImports = transduce(
 			comp(
 				NON_COMMENT_LINES,
-				map((line) => /from "(\.\/[a-z0-9/-]+)"/.exec(line!)),
+				map((line) =>
+					/from ["']((\.\/|(\.\.\/)+)[a-z0-9/-]+)["']/.exec(line!)
+				),
 				keep(),
 				pluck(1)
 			),
@@ -112,7 +112,7 @@ const checkLocalImports = (root: string, exitOnFail = true) => {
 
 const checkPackage = (root: string, latest = false) => {
 	updateImports(root, latest, root.startsWith(PKG_ROOT));
-	if (root.startsWith(PKG_ROOT)) checkLocalImports(root);
+	checkLocalImports(root);
 };
 
 const checkPackages = (parent: string, latest = false) => {

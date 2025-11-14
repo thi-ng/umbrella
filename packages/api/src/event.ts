@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "./fn.js";
 import type { IID } from "./id.js";
 

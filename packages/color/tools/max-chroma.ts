@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays";
 import {
 	comp,

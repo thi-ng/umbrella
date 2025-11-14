@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ArrayLikeIterable, Fn3, FnN2, ILength } from "@thi.ng/api";
 
 export interface Color extends Iterable<number>, ILength {

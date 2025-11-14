@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ConsoleLogger } from "@thi.ng/logger";
 import { LOGGER } from "../src/index.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { CSR } from "@thi.ng/sparse/csr";
 import type { DegreeType, Edge, IGraph } from "./api.js";
@@ -125,6 +126,7 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 	 *
 	 * @remarks
 	 * References:
+	 *
 	 * - https://en.wikipedia.org/wiki/Laplacian_matrix
 	 * - https://en.wikipedia.org/wiki/Discrete_Laplace_operator
 	 *

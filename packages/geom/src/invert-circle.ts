@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { magSq2 } from "@thi.ng/vectors/magsq";
@@ -31,7 +32,7 @@ export const invertCircle = (c: Circle, ref: Circle) => {
  * Applies inversion of point `p` in regards to reference circle `ref`.
  *
  * @remarks
- * From Wikipedia: "[...]for a point inside the circle, the nearer the point to
+ * From Wikipedia: "...for a point inside the circle, the nearer the point to
  * the center, the further away its transformation. While for any point (inside
  * or outside the circle), the nearer the point to the circle, the closer its
  * transformation."

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DistanceFn } from "./api.js";
 import { distSq, distSq2, distSq3, distSq4 } from "./distsq.js";
 

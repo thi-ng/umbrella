@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { __magsq2, __magsq4 } from "./inline/magsq";
 
 export function mag2_f32_aos(out: usize, a: usize, num: usize): usize {

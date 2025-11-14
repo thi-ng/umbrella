@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Range = [number, number];
 
 export type Range0_1 = 0 | 1;
@@ -54,7 +55,7 @@ export type Range32_63 = Range32_47 | Range48_63;
  * Type LUT of allowed range values `[0..n)` for given range size `n`.
  *
  * @example
- * ```
+ * ```text
  * RangeValueMap[4] -> 0 | 1 | 2 | 3
  * ```
  */

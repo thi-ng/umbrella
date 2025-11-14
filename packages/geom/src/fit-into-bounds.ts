@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { minNonZero2, minNonZero3 } from "@thi.ng/math/interval";
 import { safeDiv } from "@thi.ng/math/safe-div";

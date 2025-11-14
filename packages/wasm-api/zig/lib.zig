@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Zig API for https://thi.ng/wasm-api
 
 const std = @import("std");
@@ -12,7 +13,7 @@ pub const ManagedIndex = @import("managed-index.zig").ManagedIndex;
 pub fn ptrCast(comptime T: type, ptr: ?*anyopaque) ?T {
     if (ptr == null) return null;
     const info = @typeInfo(T);
-    if (info != .Pointer) @compileError("require pointer type");
+    if (info != .pointer) @compileError("require pointer type");
     return @ptrCast(@alignCast(ptr));
 }
 
@@ -51,7 +52,7 @@ pub inline fn allocator() ?std.mem.Allocator {
 /// Note: For SIMD compatibility all allocations are aligned to 16 bytes
 pub export fn _wasm_allocate(numBytes: usize) usize {
     if (allocator()) |alloc| {
-        const mem = alloc.alignedAlloc(u8, 16, numBytes) catch return 0;
+        const mem = alloc.alignedAlloc(u8, .@"16", numBytes) catch return 0;
         return @intFromPtr(mem.ptr);
     }
     return 0;

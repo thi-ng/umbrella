@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn, FnN, FnN2 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
@@ -14,8 +15,8 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
  * and each array item (default: identity).
  *
  * The optional `cmp` comparator (default:
- * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html))
- * is then used to identify the index of `x`. The sort order of `buf` MUST be
+ * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html)) is
+ * then used to identify the index of `x`. The sort order of `buf` MUST be
  * compatible with that of `cmp`.
  *
  * @example
@@ -61,7 +62,7 @@ export const binarySearch = <A, B>(
 /**
  * Similar to {@link binarySearch}, but optimized for numeric arrays and
  * supporting custom comparators (default:
- * [`compareNumAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumAsc.html)).
+ * [`compareNumAsc`](https://docs.thi.ng/umbrella/compare/functions/compareNumAsc.html)).
  *
  * @param buf - array
  * @param x - search value

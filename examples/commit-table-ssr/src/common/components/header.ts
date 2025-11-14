@@ -1,4 +1,5 @@
-import type { AppContext } from "../api";
+// SPDX-License-Identifier: Apache-2.0
+import type { AppContext } from "../api.js";
 
 export const header = (ctx: AppContext, title: string) => [
 	"section",

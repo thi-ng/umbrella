@@ -1,14 +1,16 @@
+// SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
-const dom = @import("api.zig");
 const wasm = @import("wasm-api");
 
-var eventListeners: wasm.ManagedIndex(dom.EventListener, u16) = undefined;
-var rafListeners: wasm.ManagedIndex(dom.RAFListener, u16) = undefined;
+const types = @import("types.zig");
+
+var eventListeners: wasm.ManagedIndex(types.EventListener, u16) = undefined;
+var rafListeners: wasm.ManagedIndex(types.RAFListener, u16) = undefined;
 
 /// Initializes the managed indices for DOM resources
 pub fn init(allocator: std.mem.Allocator) void {
-    eventListeners = wasm.ManagedIndex(dom.EventListener, u16).init(allocator);
-    rafListeners = wasm.ManagedIndex(dom.RAFListener, u16).init(allocator);
+    eventListeners = wasm.ManagedIndex(types.EventListener, u16).init(allocator);
+    rafListeners = wasm.ManagedIndex(types.RAFListener, u16).init(allocator);
 }
 
 pub fn deinit() void {
@@ -17,7 +19,7 @@ pub fn deinit() void {
 }
 
 /// Internal callback. Called from JS
-export fn _dom_callListener(listenerID: u16, event: *const dom.Event) void {
+export fn _dom_callListener(listenerID: u16, event: *const types.Event) void {
     if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.ctx);
 }
 
@@ -25,13 +27,13 @@ pub extern "dom" fn _addListener(elementID: i32, name: [*:0]const u8, listenerID
 
 /// Adds given listener to a DOM element for event `name`.
 /// Returns an unique listener ID.
-pub fn addListener(elementID: i32, name: [*:0]const u8, callback: dom.EventCallback, ctx: ?*anyopaque) !u16 {
+pub fn addListener(elementID: i32, name: [*:0]const u8, callback: types.EventCallback, ctx: ?*anyopaque) !u16 {
     const listenerID = try eventListeners.add(.{ .callback = callback, .ctx = ctx });
     _addListener(elementID, name, listenerID);
     return listenerID;
 }
 
-export fn _dom_addListener(listener: *const dom.EventListener) i32 {
+export fn _dom_addListener(listener: *const types.EventListener) i32 {
     const listenerID = eventListeners.add(listener.*) catch return -1;
     return @as(i32, listenerID);
 }
@@ -66,7 +68,7 @@ pub extern "dom" fn stopImmediatePropagation() void;
 pub extern "dom" fn _requestAnimationFrame(listenerID: u16) void;
 
 /// Registers given listener for next animation frame
-pub fn requestAnimationFrame(callback: dom.RAFCallback, ctx: ?*anyopaque) !u16 {
+pub fn requestAnimationFrame(callback: types.RAFCallback, ctx: ?*anyopaque) !u16 {
     const id = try rafListeners.add(.{ .callback = callback, .ctx = ctx });
     _requestAnimationFrame(id);
     return id;

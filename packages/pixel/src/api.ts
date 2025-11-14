@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	Fn,
 	Fn2,
@@ -195,29 +196,40 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 	range: [number, number];
 
 	/**
-	 * Maps given value to [0..1] interval. Used in combination with
+	 * Maps given value to `[0,1]` interval. Used in combination with
 	 * {@link IntChannel.setFloat}.
 	 *
 	 * @param val
 	 */
-	getNormalized(val: number): number;
+	normalized(val: number): number;
+
+	fromNormalized(val: number): number;
 }
 
 export interface RawPixelBuffer extends CanvasContext {
 	img: ImageData;
-	data: Uint32Array;
+	data: Uint32Array<ArrayBuffer>;
 }
 
 export interface OffscreenRawPixelBuffer extends OffscreenCanvasContext {
 	img: ImageData;
-	data: Uint32Array;
+	data: Uint32Array<ArrayBuffer>;
 }
 
 export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
 	extends IGrid2D<T, P> {
 	readonly width: number;
 	readonly height: number;
-	readonly format: IABGRConvert<any>;
+	/**
+	 * Pixel format.
+	 *
+	 * @remarks
+	 * When modifying this value, it's the user's responsibility to ensure
+	 * storage compatibility between old and new formats. If the number of
+	 * channels or channel resolution varies, use `.as(newFormat)` to trigger an
+	 * actual conversion.
+	 */
+	format: IABGRConvert<any>;
 
 	/**
 	 * Extracts region as new pixel buffer in same format.
@@ -262,6 +274,10 @@ export interface IBlit<T extends IPixelBuffer> {
 			| OffscreenCanvasRenderingContext2D,
 		opts?: Partial<BlitCanvasOpts>
 	): void;
+}
+
+export interface ISetImageData {
+	setImageData(idata: ImageData): this;
 }
 
 export interface IToImageData {

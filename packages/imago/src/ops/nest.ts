@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Sharp } from "sharp";
 import type { NestSpec, Processor } from "../api.js";
 import { processImage } from "../proc.js";

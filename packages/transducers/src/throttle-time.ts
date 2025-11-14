@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { now, timeDiff, type Timestamp } from "@thi.ng/timestamp";
 import type { Transducer } from "./api.js";
@@ -11,7 +12,8 @@ import { throttle } from "./throttle.js";
  * @remarks
  * Only to be used in async contexts and NOT with {@link transduce} directly.
  *
- * Also see:
+ * See also:
+ *
  * - [`thi.ng/rstream`](https://thi.ng/rstream)
  * - [`thi.ng/csp`](https://thi.ng/csp).
  *
@@ -26,7 +28,7 @@ export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
 	return isIterable(src)
 		? iterator1(throttleTime(delay), src)
 		: throttle<T>(() => {
-				let prev: Timestamp = 0;
+				let prev: Timestamp = now();
 				return () => {
 					const t = now();
 					return timeDiff(prev, t) >= delay

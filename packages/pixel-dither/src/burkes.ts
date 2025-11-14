@@ -1,11 +1,12 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DitherKernel } from "./api.js";
 
 /**
  * Burkes dither kernel (similar/improved version of {@link STUCKI}).
  *
  * @remarks
- * References:
- * - https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
+ * Reference:
+ * https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
  */
 export const BURKES: DitherKernel = {
 	ox: [1, 2, -2, -1, 0, 1, 2],

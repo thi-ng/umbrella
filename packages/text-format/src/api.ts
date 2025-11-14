@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Keys } from "@thi.ng/api";
 
 // bits 0-3: fg

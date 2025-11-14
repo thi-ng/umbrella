@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { aabb, ellipse, polygon, rect } from "../src/index.js";
 

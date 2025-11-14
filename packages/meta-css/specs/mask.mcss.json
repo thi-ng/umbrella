@@ -5,8 +5,8 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "mask", "desc": "<v>" },
 			"name": "mask-clip-<k>",
+			"doc": { "group": "mask", "desc": "<v>" },
 			"props": "mask-clip",
 			"values": {
 				"content": "content-box",
@@ -19,8 +19,8 @@
 			}
 		},
 		{
-			"doc": { "group": "mask", "desc": "<v>" },
 			"name": "mask-<vid>-<v>",
+			"doc": { "group": "mask", "desc": "<v>" },
 			"props": "mask-<vid>",
 			"values": ["alpha", "luminance", "match-source"],
 			"vars": ["mode", "type"]

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IRandom } from "./api.js";
 
 const INV_MAX = 1 / 2 ** 32;

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Text } from "@thi.ng/geom";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 

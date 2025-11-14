@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, FnN7, FnU4, FnU5 } from "@thi.ng/api";
 import { closestT } from "@thi.ng/geom-closest-point/line";
 import { sign } from "@thi.ng/math/abs";
@@ -8,7 +9,7 @@ import { clockwise2 } from "@thi.ng/vectors/clockwise";
 import { direction2 } from "@thi.ng/vectors/direction";
 import { distSq } from "@thi.ng/vectors/distsq";
 import { dot2, dot3 } from "@thi.ng/vectors/dot";
-import { magSq } from "@thi.ng/vectors/magsq";
+import { magSq2 } from "@thi.ng/vectors/magsq";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
@@ -16,11 +17,11 @@ import { vop } from "@thi.ng/vectors/vop";
 
 /**
  * Returns classifier for point `p`, relative to infinite 2D line defined by
- * point `a` and line direction `dir`. one of the following:
+ * point `a` and line direction `dir`. One of the following:
  *
- * - 0 if `p` lies on the line (using `eps` as tolerance)
- * - -1 if `p` is right (clockwise) of the line segment
- * - +1 if `p` is left (counterclockwise) of the line segment
+ * - `0` if `p` lies on the line (using `eps` as tolerance)
+ * - `-1` if `p` is right (clockwise) of the line segment
+ * - `+1` if `p` is left (counterclockwise) of the line segment
  *
  * @param p
  * @param a
@@ -97,7 +98,7 @@ export const pointInSegments = (
 };
 
 /**
- * Returns true if point `p` is inside the circle defined by `pos` and `r`.
+ * Returns true if point `p` is inside the nD circle defined by `pos` and `r`.
  *
  * @param p
  * @param pos
@@ -106,6 +107,7 @@ export const pointInSegments = (
 export const pointInCircle = (p: ReadonlyVec, pos: ReadonlyVec, r: number) =>
 	distSq(pos, p) <= r * r;
 
+/** Alias for {@link pointInCircle} */
 export const pointInSphere = pointInCircle;
 
 /**
@@ -228,8 +230,8 @@ export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
 };
 
 /**
- * Returns true if point `p` is in the circumcircle of triangle defined by `a`,
- * `b`, `c`.
+ * 2D only. Returns true if point `p` is in the circumcircle of triangle defined
+ * by `a`, `b`, `c`.
  *
  * @param p
  * @param a
@@ -237,10 +239,10 @@ export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
  * @param c
  */
 export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (p, a, b, c) =>
-	magSq(a) * signedArea2(b, c, p) -
-		magSq(b) * signedArea2(a, c, p) +
-		magSq(c) * signedArea2(a, b, p) -
-		magSq(p) * signedArea2(a, b, c) >
+	magSq2(a) * signedArea2(b, c, p) -
+		magSq2(b) * signedArea2(a, c, p) +
+		magSq2(c) * signedArea2(a, b, p) -
+		magSq2(p) * signedArea2(a, b, c) >
 	0;
 
 /**

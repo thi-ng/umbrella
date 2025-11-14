@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { TAU } from "@thi.ng/math/api";
 import { cycle } from "@thi.ng/transducers/cycle";
@@ -14,7 +15,7 @@ export const polygon = (pts?: Iterable<Vec>, attribs?: Attribs) =>
 	new Polygon(pts, attribs);
 
 /**
- * Syntax sugar for {@link starWithCentroid}, using [0,0] as center.
+ * Syntax sugar for {@link starWithCentroid}, using `[0,0]` as center.
  *
  * @param r
  * @param n

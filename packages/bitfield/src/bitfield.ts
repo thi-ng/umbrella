@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, IClear, ICopy, ILength } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
 import { popCountArray } from "@thi.ng/binary/count";
@@ -134,6 +135,23 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 					: (<ArrayLike<boolean | number>>vals)[i]
 			);
 		}
+		return this;
+	}
+
+	/**
+	 * Set bits from `start` until `end` index to given `value`. If `end` is
+	 * omitted, defaults to end of entire field.
+	 *
+	 * @param value
+	 * @param start
+	 * @param end
+	 */
+	fill(value: boolean | number, start = 0, end = this.n) {
+		const $end = end === this.n ? align(start, 8) : end;
+		for (let i = start; i < $end; i++) this.setAt(i, value);
+		// fill remaining bytes
+		if (end === this.n) this.data.fill(value ? 0xff : 0, $end >>> 3);
+		return this;
 	}
 
 	/**
@@ -170,7 +188,7 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 
 	/**
 	 * Computes the Jaccard similarity with given `field`. Returns a value in
-	 * [0..1] interval: 1.0 if `a` and `b` are equal, or 0.0 if none of the
+	 * `[0,1]` interval: 1.0 if `a` and `b` are equal, or 0.0 if none of the
 	 * components match.
 	 *
 	 * @remarks
@@ -213,6 +231,56 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 
 	not() {
 		return this.binOp(this, bitNot);
+	}
+
+	/**
+	 * Returns position of first 0-bit, starting at given `from` search
+	 * position. Returns -1 if unsuccessful.
+	 *
+	 * @param from
+	 */
+	firstZero(from = 0) {
+		const { data } = this;
+		for (
+			let i = from >>> 3, len = data.length, first = true;
+			i < len;
+			i++
+		) {
+			let x = data[i];
+			if (first) {
+				x |= 0xff ^ ((1 << (8 - (from & 7))) - 1);
+				first = false;
+			}
+			if (x === 0xff) continue;
+			const b = (i << 3) + Math.clz32(x ^ 0xff) - 24;
+			if (b >= from) return b;
+		}
+		return -1;
+	}
+
+	/**
+	 * Returns position of first 1-bit, starting at given `from` search
+	 * position. Returns -1 if unsuccessful.
+	 *
+	 * @param from
+	 */
+	firstOne(from = 0) {
+		const { data } = this;
+		for (
+			let i = from >>> 3, len = data.length, first = true;
+			i < len;
+			i++
+		) {
+			let x = data[i];
+			if (first) {
+				x &= (1 << (8 - (from & 7))) - 1;
+				first = false;
+			}
+			if (!x) continue;
+			const b = (i << 3) + Math.clz32(x) - 24;
+			if (b >= from) return b;
+		}
+		return -1;
 	}
 
 	toString() {

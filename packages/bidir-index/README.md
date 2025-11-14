@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/bidir-index](https://media.thi.ng/umbrella/banners-20230807/thing-bidir-index.svg?8640f413)
+# ![@thi.ng/bidir-index](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-bidir-index.svg?8640f413)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bidir-index.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -20,6 +20,7 @@
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+- [Basic usage example](#basic-usage-example)
 - [Authors](#authors)
 - [License](#license)
 
@@ -66,7 +67,7 @@ For Node.js REPL:
 const bi = await import("@thi.ng/bidir-index");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 657 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 884 bytes
 
 ## Dependencies
 
@@ -77,6 +78,43 @@ None
 [Generated API docs](https://docs.thi.ng/umbrella/bidir-index/)
 
 TODO
+
+## Basic usage example
+
+```ts tangle:export/readme.ts
+import { defBidirIndex, encodeObject, decodeObject } from "@thi.ng/bidir-index";
+
+const index = defBidirIndex<string>();
+
+// given object keys are auto-indexed, array initialized with given default
+console.log(
+  encodeObject(index, { r: 1, g: 2, b: 3, a: 4 }, 0)
+);
+// [1, 2, 3, 4]
+
+// use custom default and without updating index
+console.log(
+  encodeObject(index, { b: 3, r: 1, g: 2 }, -1, false)
+);
+// [1, 2, 3, -1] (missing key `a` mapped to given default value)
+
+// decode with defaults/fallback
+console.log(
+  decodeObject(index, [255, 128, 64], { a: 1 })
+);
+// { r: 255, g: 128, b: 64, a: 1 }
+
+// add more keys to index (already known ones will be skipped)
+// returns array of mapped IDs for given keys
+index.addAll(["r", "g", "b", "a", "foo"]);
+// [0, 1, 2, 3, 4]
+
+// decoding will skip nullish values
+console.log(
+  decodeObject(index, [null, null, null, null, "bar"])
+);
+// { foo: "bar" }
+```
 
 ## Authors
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { V3 } from "@thi.ng/shader-ast/api/types";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";

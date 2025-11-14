@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, FnN2, Maybe } from "@thi.ng/api";
 import { pointInRect } from "@thi.ng/geom-isec/point";
 import { polygon } from "@thi.ng/geom/polygon";

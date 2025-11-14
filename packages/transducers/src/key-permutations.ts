@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Pair } from "@thi.ng/api";
 import { assocObj } from "./assoc-obj.js";
 import { map } from "./map.js";

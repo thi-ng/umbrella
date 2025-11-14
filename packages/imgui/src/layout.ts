@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 

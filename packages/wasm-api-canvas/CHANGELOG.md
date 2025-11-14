@@ -1,13 +1,27 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.52](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-canvas@1.0.52) (2025-09-01)
+
+#### ♻️ Refactoring
+
+- internal restructure of generated types ([245f919](https://github.com/thi-ng/umbrella/commit/245f919))
+
+### [1.0.34](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-canvas@1.0.34) (2025-04-06)
+
+#### 🩹 Bug fixes
+
+- fix `putPixelRegionGray()` ([c5b198d](https://github.com/thi-ng/umbrella/commit/c5b198d))
 
 ### [1.0.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-canvas@1.0.10) (2024-11-10)
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Nullable, Pair } from "@thi.ng/api";
 import type { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math/api";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU } from "@thi.ng/api";
 import type { FloatTerm, NumericF } from "@thi.ng/shader-ast";
 import {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { aseq, concat, concatA, iterator, rseq } from "../src/index.js";
 

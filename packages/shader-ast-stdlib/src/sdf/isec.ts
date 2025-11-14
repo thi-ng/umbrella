@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatTerm } from "@thi.ng/shader-ast";
 import { max } from "@thi.ng/shader-ast/builtin/math";
 

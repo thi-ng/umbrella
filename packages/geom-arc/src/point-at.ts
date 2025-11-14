@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cossin } from "@thi.ng/math/angle";
 import { fit01 } from "@thi.ng/math/fit";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

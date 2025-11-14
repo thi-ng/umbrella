@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, NumOrString } from "@thi.ng/api";
 
 export enum Align {
@@ -50,7 +51,7 @@ export interface ImageOpts {
 	chars: string | NumOrString[];
 	/**
 	 * Format to apply to each pixel. If a function is given, it will be called
-	 * for each pixel value, normalized to [0..1] interval (and after gamma
+	 * for each pixel value, normalized to `[0,1]` interval (and after gamma
 	 * correction). The function MUST return a valid format ID.
 	 */
 	format: number | FnN;

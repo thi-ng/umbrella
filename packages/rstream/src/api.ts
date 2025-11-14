@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, IDeref, IID, Maybe } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
 import type { Stream } from "./stream.js";
@@ -153,7 +154,7 @@ export interface ISubscribable<A> extends IDeref<Maybe<A>>, IID<string> {
 	 * attached to the returned wrapped sub will also only receive those
 	 * transformed values.
 	 *
-	 * @see {@link ITransformable}
+	 * See {@link ITransformable}
 	 *
 	 * @param sub -
 	 * @param opts -

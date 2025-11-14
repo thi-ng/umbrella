@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners-20230807/thing-transducers.svg?58ca567a)
+# ![@thi.ng/transducers](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers.svg?58ca567a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -150,7 +150,7 @@ For Node.js REPL:
 const tx = await import("@thi.ng/transducers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 9.12 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.20 KB
 
 ## Dependencies
 
@@ -168,7 +168,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-73 projects in this repo's
+74 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -207,6 +207,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/lispy-repl.png" width="240"/>                    | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>                    | Worker based, interactive Mandelbrot visualization                                                      | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>                 | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>                 | Optical flow analysis of web cam or video inputs                                                        | [Demo](https://demo.thi.ng/umbrella/optical-flow/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                                                |                                                            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>              | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-waveform.jpg" width="240"/>                | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-waveform)       |
@@ -224,7 +225,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>                | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>                  | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>              | Animated Voronoi diagram, cubic splines & SVG download                                                  | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)     |
-|                                                                                                                                      | Minimal rstream dataflow graph                                                                          | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>                      | Minimal rstream dataflow graph                                                                          | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/>            | Minimal demo of using rstream constructs to form an interceptor-style event loop                        | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support                                  | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)         |
 |                                                                                                                                      | rstream based UI updates & state handling                                                               | [Demo](https://demo.thi.ng/umbrella/rstream-hdom/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-hdom)         |
@@ -235,7 +236,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png" width="240"/>                  | Simplistic SVG bar chart component                                                                      | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                                                   | [Demo](https://demo.thi.ng/umbrella/svg-resample/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                                          | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote                                     | [Demo](http://media.thi.ng/2018/talks/clojurex/index.html) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote                                     | [Demo](https://demo.thi.ng/umbrella/talk-slides/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>                | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                                                             | [Demo](https://demo.thi.ng/umbrella/triple-query/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)         |
@@ -934,6 +935,7 @@ transduce(map((x) => x*10), push(), range(4))
 ```
 
 - [benchmark](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/benchmark.ts)
+- [binned](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/binned.ts)
 - [cat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cat.ts)
 - [converge](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/converge.ts)
 - [convolve2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/convolve.ts)

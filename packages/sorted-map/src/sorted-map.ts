@@ -1,24 +1,17 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn3, IObjectOf, Maybe, Pair } from "@thi.ng/api";
 import { dissoc } from "@thi.ng/associative/dissoc";
+import { __disposableEntries } from "@thi.ng/associative/internal/dispose";
 import { __equivMap } from "@thi.ng/associative/internal/equiv";
-import { __inspectable } from "@thi.ng/associative/internal/inspect";
+import { __tostringMixin } from "@thi.ng/associative/internal/tostring";
 import { into } from "@thi.ng/associative/into";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { compare } from "@thi.ng/compare/compare";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Reduced, ReductionFn } from "@thi.ng/transducers";
-import { map } from "@thi.ng/transducers/map";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import type { SortedMapOpts } from "./api.js";
-
-interface SortedMapState<K, V> {
-	head: Node<K, V>;
-	cmp: Comparator<K>;
-	p: number;
-	rnd: IRandom;
-	size: number;
-}
 
 /** @internal */
 class Node<K, V> {
@@ -29,10 +22,6 @@ class Node<K, V> {
 
 	constructor(public k?: K, public v?: V, public level = 0) {}
 }
-
-// stores private properties for all instances
-// http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
-const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
 /**
  * Sorted map implementation based on Skip List data structure. Supports any
@@ -46,40 +35,52 @@ const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
  * - https://www.youtube.com/watch?v=kBwUoWpeH_Q (MIT courseware)
  * - https://www.educba.com/skip-list-java/
  */
-@__inspectable
+@__disposableEntries
+@__tostringMixin
 export class SortedMap<K, V> extends Map<K, V> {
+	#head: Node<K, V>;
+	#cmp: Comparator<K>;
+	#p: number;
+	#rnd: IRandom;
+	#size: number;
+
 	constructor(
 		pairs?: Iterable<Pair<K, V>> | null,
 		opts: Partial<SortedMapOpts<K>> = {}
 	) {
 		super();
-		__private.set(this, {
-			head: new Node(),
-			cmp: opts.compare || compare,
-			rnd: opts.rnd || SYSTEM,
-			p: opts.probability || 1 / Math.E,
-			size: 0,
-		});
+		this.#head = new Node();
+		this.#cmp = opts.compare || compare;
+		this.#rnd = opts.rnd || SYSTEM;
+		this.#p = opts.probability || 1 / Math.E;
+		this.#size = 0;
 		if (pairs) {
 			this.into(pairs);
 		}
 	}
 
 	get size(): number {
-		return __private.get(this)!.size;
+		return this.#size;
 	}
 
 	get [Symbol.species]() {
 		return SortedMap;
 	}
 
-	*[Symbol.iterator](): IterableIterator<Pair<K, V>> {
+	get [Symbol.toStringTag]() {
+		return "SortedMap";
+	}
+
+	*[Symbol.iterator](): MapIterator<Pair<K, V>> {
 		let node: Maybe<Node<K, V>> = this.firstNode();
 		while (node?.k !== undefined) {
 			yield [node.k, node.v!];
 			node = node.next;
 		}
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	/**
 	 * Yields iterator of sorted `[key, value]` pairs, optionally taking given
@@ -96,13 +97,13 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 * @param max
 	 */
-	*entries(key?: K, max = false): IterableIterator<Pair<K, V>> {
+	*entries(key?: K, max = false): MapIterator<Pair<K, V>> {
 		if (key === undefined) {
 			yield* this;
 			return;
 		}
-		const { cmp, size } = __private.get(this)!;
-		if (!size) return;
+		if (!this.#size) return;
+		const cmp = this.#cmp;
 		if (max) {
 			let node: Maybe<Node<K, V>> = this.firstNode();
 			while (node?.k !== undefined && cmp(node.k, key) <= 0) {
@@ -127,8 +128,10 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 * @param max
 	 */
-	keys(key?: K, max = false): IterableIterator<K> {
-		return map((p) => p[0], this.entries(key, max));
+	*keys(key?: K, max = false): MapIterator<K> {
+		for (let p of this.entries(key, max)) {
+			yield p[0];
+		}
 	}
 
 	/**
@@ -137,14 +140,15 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 * @param max
 	 */
-	values(key?: K, max = false): IterableIterator<V> {
-		return map((p) => p[1], this.entries(key, max));
+	*values(key?: K, max = false): MapIterator<V> {
+		for (let p of this.entries(key, max)) {
+			yield p[1];
+		}
 	}
 
 	clear() {
-		const $this = __private.get(this)!;
-		$this.head = new Node<K, V>();
-		$this.size = 0;
+		this.#head = new Node<K, V>();
+		this.#size = 0;
 	}
 
 	empty(): SortedMap<K, V> {
@@ -185,24 +189,20 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	get(key: K, notFound?: V): Maybe<V> {
-		const $this = __private.get(this)!;
 		const node = this.findNode(key);
-		return node.k !== undefined && $this.cmp(node.k, key) === 0
+		return node.k !== undefined && this.#cmp(node.k, key) === 0
 			? node.v
 			: notFound;
 	}
 
 	has(key: K): boolean {
-		const { cmp } = __private.get(this)!;
 		const node = this.findNode(key);
-		return node.k !== undefined && cmp(node.k, key) === 0;
+		return node.k !== undefined && this.#cmp(node.k, key) === 0;
 	}
 
 	set(key: K, val: V) {
-		const $this = __private.get(this)!;
-		const { cmp, p, rnd } = $this;
 		let node: Maybe<Node<K, V>> = this.findNode(key);
-		if (node.k !== undefined && cmp(node.k, key) === 0) {
+		if (node.k !== undefined && this.#cmp(node.k, key) === 0) {
 			node.v = val;
 			while (node.down) {
 				node = node!.down;
@@ -213,7 +213,9 @@ export class SortedMap<K, V> extends Map<K, V> {
 		let newNode = new Node(key, val, node.level);
 		this.insertInLane(node, newNode);
 		let currLevel = node.level;
-		let headLevel = $this.head.level;
+		let headLevel = this.#head.level;
+		const rnd = this.#rnd;
+		const p = this.#p;
 		while (rnd.probability(p)) {
 			// check if new head (at a new level) is needed
 			if (currLevel >= headLevel) {
@@ -222,8 +224,8 @@ export class SortedMap<K, V> extends Map<K, V> {
 					undefined,
 					headLevel + 1
 				);
-				this.linkLanes(newHead, $this.head);
-				$this.head = newHead;
+				this.linkLanes(newHead, this.#head);
+				this.#head = newHead;
 				headLevel++;
 			}
 			// find nearest predecessor with up link
@@ -237,14 +239,13 @@ export class SortedMap<K, V> extends Map<K, V> {
 			newNode = tmp;
 			currLevel++;
 		}
-		$this.size++;
+		this.#size++;
 		return this;
 	}
 
 	delete(key: K) {
-		const $this = __private.get(this)!;
 		let node: Maybe<Node<K, V>> = this.findNode(key);
-		if (node.k === undefined || $this.cmp(node.k, key) !== 0) return false;
+		if (node.k === undefined || this.#cmp(node.k, key) !== 0) return false;
 		// descent to lowest level
 		while (node.down) node = node.down;
 		let prev: Maybe<Node<K, V>>;
@@ -258,11 +259,11 @@ export class SortedMap<K, V> extends Map<K, V> {
 			node = node.up;
 		}
 		// patch up head
-		while (!$this.head.next && $this.head.down) {
-			$this.head = $this.head.down;
-			$this.head.up = undefined;
+		while (!this.#head.next && this.#head.down) {
+			this.#head = this.#head.down;
+			this.#head.up = undefined;
 		}
-		$this.size--;
+		this.#size--;
 		return true;
 	}
 
@@ -298,11 +299,10 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	opts(): SortedMapOpts<K> {
-		const $this = __private.get(this)!;
 		return {
-			compare: $this.cmp,
-			probability: $this.p,
-			rnd: $this.rnd,
+			compare: this.#cmp,
+			probability: this.#p,
+			rnd: this.#rnd,
 		};
 	}
 
@@ -335,8 +335,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * will be the first data node (with the smallest key).
 	 */
 	protected firstNode() {
-		const { head } = __private.get(this)!;
-		let node: Maybe<Node<K, V>> = head;
+		let node: Maybe<Node<K, V>> = this.#head;
 		while (node.down) node = node.down;
 		while (node.prev) node = node.prev;
 		if (node.next) node = node.next;
@@ -350,8 +349,8 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param key
 	 */
 	protected findNode(key: K) {
-		let { cmp, head } = __private.get(this)!;
-		let node: Node<K, V> = head;
+		const cmp = this.#cmp;
+		let node: Node<K, V> = this.#head;
 		let next: Maybe<Node<K, V>>;
 		let down: Maybe<Node<K, V>>;
 		let nodeKey: Maybe<K>;

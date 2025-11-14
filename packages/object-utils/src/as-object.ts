@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Pair, NumOrString, IObjectOf } from "@thi.ng/api";
 
 /**

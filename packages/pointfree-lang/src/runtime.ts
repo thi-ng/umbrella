@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, FnU, IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
@@ -12,6 +13,7 @@ const __nodeLoc = (node: ASTNode) =>
 
 /**
  * Looks up given symbol (word name) in this order of priority:
+ *
  * - current `env.__words`
  * - {@link ALIASES}
  * - @thi.ng/pointfree built-ins

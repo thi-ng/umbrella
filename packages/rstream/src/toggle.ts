@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CommonOpts } from "./api.js";
 import { toggle as $toggle } from "@thi.ng/transducers/toggle";
 import { Subscription } from "./subscription.js";

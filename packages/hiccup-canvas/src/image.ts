@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import type { IToImageData } from "@thi.ng/pixel";

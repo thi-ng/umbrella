@@ -1,18 +1,40 @@
-import type {
-	BVecOpVN,
-	BVecOpVV,
-	MultiBVecOpVN,
-	MultiBVecOpVV,
-} from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { ARGS_VN, MATH, MATH_N } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVV } from "./defopvv.js";
 
-export const [logicOr, logicOr2, logicOr3, logicOr4] = defOp<
-	MultiBVecOpVV,
-	BVecOpVV
->(MATH("||"));
+const [a, b, c, d] = defOpVV<boolean>((a, b) => a || b);
 
-export const [logicOrN, logicOrN2, logicOrN3, logicOrN4] = defOp<
-	MultiBVecOpVN,
-	BVecOpVN
->(MATH_N("||"), ARGS_VN);
+/**
+ * Componentwise logical OR of given nD boolean vectors. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const logicOr = a;
+
+/**
+ * Componentwise logical OR of given 2D boolean vectors.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const logicOr2 = b;
+
+/**
+ * Componentwise logical OR of given 3D boolean vectors.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const logicOr3 = c;
+
+/**
+ * Componentwise logical OR of given 4D boolean vectors.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ */
+export const logicOr4 = d;

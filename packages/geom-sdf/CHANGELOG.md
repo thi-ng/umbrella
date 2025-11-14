@@ -1,13 +1,21 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@1.0.15) (2025-03-10)
+
+#### 🩹 Bug fixes
+
+- update return types (TS5.8.2) ([541db4c](https://github.com/thi-ng/umbrella/commit/541db4c))
 
 ### [0.4.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@0.4.2) (2024-06-21)
 

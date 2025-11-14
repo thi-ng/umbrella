@@ -1,9 +1,17 @@
+// SPDX-License-Identifier: Apache-2.0
+import type { Range1_4 } from "@thi.ng/api";
 import { isArrayBufferView, isString } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { createTempFile, deleteFile } from "@thi.ng/file-io";
 import { ROOT } from "@thi.ng/logger";
 import sharp, { type Sharp } from "sharp";
-import type { BufferLike, ImgProcCtx, ImgProcOpts, ProcSpec } from "./api.js";
+import type {
+	BufferLike,
+	ImgProcCtx,
+	ImgProcOpts,
+	IntBufferLike,
+	ProcSpec,
+} from "./api.js";
 import { blurProc } from "./ops/blur.js";
 import { compositeProc } from "./ops/composite.js";
 import { cropProc } from "./ops/crop.js";
@@ -18,19 +26,19 @@ import { nestProc } from "./ops/nest.js";
 import { outputProc } from "./ops/output.js";
 import { resizeProc } from "./ops/resize.js";
 import { rotateProc } from "./ops/rotate.js";
-import { ensureSize } from "./units.js";
+import { ensureSize, isIntBufferLike } from "./utils.js";
 
 // ROOT.set(new ConsoleLogger());
 export const LOGGER = ROOT.childLogger("imgproc");
 
 /**
- * Main API function. Takes an image input (file path, buffer or existing Sharp
- * instance) and applies given processing pipeline specs in sequence. Returns a
- * promise of final processed image, input metadata (if any), an environment
- * object of arbitrary data (likely produced by custom ops/processors) and an
- * object of all written output paths (keyed by each output's
- * {@link OutputSpec.id}). The process pipeline can be additionally configured
- * via provided options.
+ * Main API function. Takes an image input (file path, Buffer, ArrayBuffer,
+ * thi.ng/pixel IntBuffer or an existing Sharp instance) and applies given
+ * processing pipeline specs in sequence. Returns a promise of final processed
+ * image, input metadata (if any), an environment object of arbitrary data
+ * (likely produced by custom ops/processors) and an object of all written
+ * output paths (keyed by each output's {@link OutputSpec.id}). The process
+ * pipeline can be additionally configured via provided options.
  *
  * @remarks
  * The `parentCtx` arg is internal use only (nested processors)!
@@ -41,7 +49,7 @@ export const LOGGER = ROOT.childLogger("imgproc");
  * @param parentCtx
  */
 export const processImage = async (
-	src: string | BufferLike | ArrayBuffer | Sharp,
+	src: string | BufferLike | ArrayBuffer | IntBufferLike | Sharp,
 	specs: ProcSpec[],
 	opts: Partial<ImgProcOpts> = {},
 	parentCtx?: ImgProcCtx
@@ -49,6 +57,14 @@ export const processImage = async (
 	let img =
 		isString(src) || isArrayBufferView(src)
 			? sharp(<string | BufferLike>src)
+			: isIntBufferLike(src)
+			? sharp(new Uint8Array(src.data.buffer), {
+					raw: {
+						width: src.width,
+						height: src.height,
+						channels: <Range1_4>src.format.channels.length,
+					},
+			  })
 			: <Sharp>src;
 	const meta = await img.metadata();
 	ensureSize(meta);
@@ -56,6 +72,7 @@ export const processImage = async (
 	const ctx: ImgProcCtx = {
 		path: isString(src) ? src : parentCtx?.path,
 		outputs: parentCtx ? parentCtx.outputs : {},
+		outputMeta: parentCtx ? parentCtx.outputMeta : {},
 		env: parentCtx ? parentCtx.env : opts.env || {},
 		logger: opts.logger || LOGGER,
 		size: [meta.width!, meta.height!],
@@ -95,7 +112,13 @@ export const processImage = async (
 				},
 			});
 		}
-		return { img, meta, env: ctx.env, outputs: ctx.outputs };
+		return {
+			img,
+			meta,
+			env: ctx.env,
+			outputs: ctx.outputs,
+			outputMeta: ctx.outputMeta,
+		};
 	} finally {
 		if (ctx.iccFile) deleteFile(ctx.iccFile, ctx.logger);
 	}

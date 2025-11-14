@@ -1,7 +1,7 @@
+// SPDX-License-Identifier: Apache-2.0
 import { hasWASM } from "@thi.ng/checks/has-wasm";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { BINARY } from "./binary.js";
 
 interface LEB128 {
@@ -28,7 +28,9 @@ let U8: Uint8Array;
 
 if (hasWASM()) {
 	const inst = new WebAssembly.Instance(
-		new WebAssembly.Module(base64Decode(BINARY))
+		new WebAssembly.Module(
+			new Uint8Array([...atob(BINARY)].map((x) => x.charCodeAt(0)))
+		)
 	);
 	wasm = <any>inst.exports;
 	// mapped view of the data buffer

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defError } from "@thi.ng/errors/deferror";
 import { floatBuffer } from "@thi.ng/pixel/float";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";

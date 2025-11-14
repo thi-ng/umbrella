@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, EventAttribs, StringAttrib } from "./api.js";
 import { defElement, defElements } from "./def.js";
 

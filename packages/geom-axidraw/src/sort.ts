@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
 import type { IShape2 } from "@thi.ng/geom";
@@ -16,7 +17,7 @@ import type { PointOrdering, ShapeOrdering } from "./api.js";
  * Higher order point ordering fn. Adds points to given spatial
  * index/acceleration structure and then lazily sorts them by nearest neighbor
  * distance, starting selection of first point based on given `ref` point
- * (default: [0, 0]).
+ * (default: `[0,0]`).
  *
  * @remarks
  * By default is using a
@@ -43,8 +44,8 @@ export const pointsByNearestNeighbor = (
 	};
 
 /**
- * Higher order point ordering fn. Sorts points by proximity to given `ref` point
- * (default: [0, 0]).
+ * Higher order point ordering fn. Sorts points by proximity to given `ref`
+ * point (default: `[0,0]`).
  *
  * @param ref
  */
@@ -60,7 +61,7 @@ export const pointsByProximity =
 
 /**
  * Higher order shape sorting fn. Sorts shapes by their centroid's proximity to
- * given `ref` point (default: [0, 0]).
+ * given `ref` point (default: `[0,0]`).
  *
  * @param ref
  */

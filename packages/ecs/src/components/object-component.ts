@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { UIntArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { IMemPoolArray } from "@thi.ng/malloc";

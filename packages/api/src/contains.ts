@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Generic interface for collection types to check if a given value is
  * part of the collection.

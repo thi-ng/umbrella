@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/equiv",
-	"version": "2.1.72",
+	"version": "2.1.97",
 	"description": "Extensible deep value equivalence checking for any data types",
 	"type": "module",
 	"module": "./index.js",
@@ -33,17 +33,15 @@
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"esbuild": "^0.24.2",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"array",

@@ -1,18 +1,14 @@
+// SPDX-License-Identifier: Apache-2.0
 import { type Fn } from "@thi.ng/api";
-import { cliApp, flag, string, strings, type CommandCtx } from "@thi.ng/args";
+import { cliApp, flag, string, type CommandCtx } from "@thi.ng/args";
 import { dirs, files, readJSON } from "@thi.ng/file-io";
-import type { ILogger } from "@thi.ng/logger";
 import { preferredType } from "@thi.ng/mime";
 import { map } from "@thi.ng/transducers";
 import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { basename, resolve } from "node:path";
-import {
-	AWS_PROFILE,
-	CF_DISTRO_EXAMPLES,
-	S3_BUCKET_EXAMPLES,
-	S3_OPTS,
-} from "./aws-config.js";
+import { S3_BUCKET_EXAMPLES, S3_COMPRESS_OPTS, S3_OPTS } from "./aws-config.js";
+import { compressFile, execAWS } from "./utils.js";
 
 interface UploadOpts {
 	ext: string;
@@ -22,26 +18,20 @@ interface UploadOpts {
 }
 
 interface CLIOpts {
-	noInvalidate: boolean;
+	// noInvalidate: boolean;
 	base: string;
 	dest: string;
+	rename?: string;
 }
 
 interface CLICtx extends CommandCtx<CLIOpts, any> {}
 
-const COMPRESS_OPTS = `${S3_OPTS} --content-encoding br`;
 const NEVER_COMPRESS = new Set(["mp4"]);
-
-const execAWS = (args: string, logger: ILogger) => {
-	const $args = args.split(" ");
-	logger.info("aws", args);
-	execFileSync("aws", $args);
-};
 
 const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 	const BASE = `${opts.base}/${name}`;
 	const BUILD = `${opts.base}/${name}/dist/`;
-	const DEST_DIR = `/${opts.dest}/${name}`;
+	const DEST_DIR = `/${opts.dest}/${opts.rename ?? name}`;
 	const PKG = readJSON(resolve(`${BASE}/package.json`), logger);
 
 	if (PKG["thi.ng"]?.online === false) {
@@ -67,9 +57,9 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 			logger.debug(f, "->", fd, type);
 			opts.process && opts.process(f);
 			if (opts.compress && !NEVER_COMPRESS.has(ext)) {
-				execFileSync("brotli", ["-9", f]);
+				compressFile(f);
 				execAWS(
-					`s3 cp ${f}.br ${fd} ${COMPRESS_OPTS} --content-type ${type}`,
+					`s3 cp ${f}.br ${fd} ${S3_COMPRESS_OPTS} --content-type ${type}`,
 					logger
 				);
 			} else {
@@ -90,13 +80,13 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 	uploadAssets("", { ext: ".json", depth: 1 });
 	uploadAssets("", { ext: ".html" });
 
-	if (!opts.noInvalidate) {
-		logger.info("invaliding", DEST_DIR);
-		execAWS(
-			`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths ${DEST_DIR}/* ${AWS_PROFILE}`,
-			logger
-		);
-	}
+	// if (!opts.noInvalidate) {
+	// 	logger.info("invaliding", DEST_DIR);
+	// 	execAWS(
+	// 		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths ${DEST_DIR}/* ${AWS_PROFILE}`,
+	// 		logger
+	// 	);
+	// }
 };
 
 cliApp<CLIOpts, CLICtx>({
@@ -111,10 +101,15 @@ cliApp<CLIOpts, CLICtx>({
 			desc: "Destination S3 directory",
 			default: "umbrella",
 		}),
-		noInvalidate: flag({
-			alias: "n",
-			desc: "Don't create a CDN invalidation for the example(s)",
+		rename: string({
+			alias: "r",
+			desc: "New name on S3 (only for single uploads)",
+			required: false,
 		}),
+		// noInvalidate: flag({
+		// 	alias: "n",
+		// 	desc: "Don't create a CDN invalidation for the example(s)",
+		// }),
 	},
 	commands: {
 		default: {
@@ -124,7 +119,7 @@ cliApp<CLIOpts, CLICtx>({
 				let isAll = !inputs.length;
 				if (isAll) {
 					inputs = [...map(basename, dirs(ctx.opts.base, "", 1))];
-					ctx.opts.noInvalidate = true;
+					// ctx.opts.noInvalidate = true;
 				}
 				for (let name of inputs) {
 					ctx.logger.info("--------------------------------");
@@ -139,13 +134,13 @@ cliApp<CLIOpts, CLICtx>({
 						);
 					}
 				}
-				if (isAll) {
-					ctx.logger.info("invaliding all");
-					execAWS(
-						`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths /${ctx.opts.dest}/* ${AWS_PROFILE}`,
-						ctx.logger
-					);
-				}
+				// if (isAll) {
+				// 	ctx.logger.info("invaliding all");
+				// 	execAWS(
+				// 		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths /${ctx.opts.dest}/* ${AWS_PROFILE}`,
+				// 		ctx.logger
+				// 	);
+				// }
 				ctx.logger.info("done");
 			},
 			opts: {},
@@ -156,6 +151,6 @@ cliApp<CLIOpts, CLICtx>({
 	ctx: async (ctx) => ctx,
 	usage: {
 		prefix: "Usage: deploy-example [OPTS] [NAME...]",
-		paramWidth: 20,
+		paramWidth: 24,
 	},
 });

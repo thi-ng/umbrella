@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable, Predicate } from "@thi.ng/api";
 import { bounds2 } from "@thi.ng/geom-poly-utils/bounds";
 import { sign } from "@thi.ng/math/abs";

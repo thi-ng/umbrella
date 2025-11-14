@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, NumericArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -10,7 +11,7 @@ import { DIST_SQ, DIST_SQ1 } from "./squared.js";
  * and returns index of the sample closest to `p` (according to `dist`, default:
  * {@link DIST_SQ}).
  *
- * @reference
+ * @remarks
  * Use {@link argminT} for non-vector inputs.
  *
  * https://en.wikipedia.org/wiki/Arg_max#Arg_min
@@ -61,7 +62,7 @@ export const argminN = (
  * representation, then computes and returns index of the sample closest to `p`
  * (according to `dist`).
  *
- * @reference
+ * @remarks
  * Use {@link argmin} if all items are vectors already.
  *
  * @param p -

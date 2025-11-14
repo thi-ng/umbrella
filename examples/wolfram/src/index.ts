@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { dropdown } from "@thi.ng/hdom-components";
 import {

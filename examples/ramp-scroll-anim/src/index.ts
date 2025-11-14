@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { ch, px } from "@thi.ng/hiccup-css";
 import { group, linear, wrap } from "@thi.ng/ramp";

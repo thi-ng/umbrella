@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString } from "@thi.ng/api";
 import { expect, test } from "bun:test";
 import {
@@ -15,6 +16,7 @@ import {
 	multiplex,
 	multiplexObj,
 	partition,
+	pubsub,
 	push,
 	range,
 	repeatedly,
@@ -247,6 +249,31 @@ test("partition", async (done) => {
 	expect(
 		await transduce(partition(2, true), push<number[]>(), [1, 2, 3])
 	).toEqual([[1, 2], [3]]);
+	done();
+});
+
+test("pubsub", async (done) => {
+	const src = source<string>();
+	const bus = pubsub(src, (x) => x[0]);
+	const a1 = bus.subscribeTopic("a");
+	const b1 = bus.subscribeTopic("b");
+	const av = push(a1);
+	const bv = push(b1);
+	src.write("a1");
+	await delayed(null, 1);
+	src.write("a2");
+	await delayed(null, 1);
+	src.write("b1");
+	await delayed(null, 1);
+	bus.subscribeOnce("b", (x) => expect(x).toBe("b2"));
+	src.write("b2");
+	await delayed(null, 1);
+	src.write("b3");
+	await delayed(null, 1);
+	expect(bus.unsubscribeTopic("a", a1)).toBeTrue();
+	expect(bus.unsubscribeTopic("b", b1)).toBeTrue();
+	expect(await av).toEqual(["a1", "a2"]);
+	expect(await bv).toEqual(["b1", "b2", "b3"]);
 	done();
 });
 

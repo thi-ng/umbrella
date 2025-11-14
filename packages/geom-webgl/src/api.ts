@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn3 } from "@thi.ng/api";
 import type { Attribs, IShape, ITessellation, Tessellator } from "@thi.ng/geom";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

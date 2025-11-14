@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";

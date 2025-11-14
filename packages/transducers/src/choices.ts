@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
@@ -11,7 +12,7 @@ import { repeatedly } from "./repeatedly.js";
  *
  * @remarks
  * Internally uses
- * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
+ * [`weightedRandom`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
  *
  * @example
  * ```ts tangle:../export/choices.ts

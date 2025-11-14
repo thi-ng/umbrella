@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./api/blend.js";
 export * from "./api/buffers.js";
 export * from "./api/canvas.js";

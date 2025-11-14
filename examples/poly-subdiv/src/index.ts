@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { argMax } from "@thi.ng/arrays";
 import { canvas2d } from "@thi.ng/canvas";
 import { COSINE_GRADIENTS, cosineColor } from "@thi.ng/color";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays/peek";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";

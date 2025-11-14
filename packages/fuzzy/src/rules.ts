@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2 } from "@thi.ng/api";
 import type { LVarKeySet, LVarSet, Rule } from "./api.js";
 import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
@@ -14,7 +15,7 @@ import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
  * The optional rule weight (default: 1) is used by {@link defuzz} to adjust
  * rule importance.
  *
- * Also @see {@link and}, {@link strongAnd}, {@link or} for syntax sugar.
+ * Also see {@link and}, {@link strongAnd}, {@link or} for syntax sugar.
  *
  * @example
  * ```ts

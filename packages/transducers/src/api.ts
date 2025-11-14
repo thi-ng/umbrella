@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator, Fn, Fn0, IObjectOf } from "@thi.ng/api";
 import type { Reduced } from "./reduced.js";
 
@@ -60,7 +61,7 @@ export type MaybeReduced<T> = Reduced<T> | T;
  * console.log(
  *   transduce(new Mul(11), push(), range(4))
  * );
- * // [0, 11, 22, 33, 44]
+ * // [0, 11, 22, 33]
  *
  * // also usable w/ comp()
  * const res = transduce(

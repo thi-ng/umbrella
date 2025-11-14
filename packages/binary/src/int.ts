@@ -1,8 +1,9 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN } from "@thi.ng/api";
 
 /**
  * Converts signed i8 to unsigned u8 value. Input is assumed to be in
- * [-0x80,0x7f] range. Does NOT perform clamping. Branchless.
+ * `[-0x80,0x7f]` range. Does NOT perform clamping. Branchless.
  *
  * @param x
  * @returns
@@ -11,7 +12,7 @@ export const i8u8: FnN = (x) => (x >>> 0) & 0xff;
 
 /**
  * Converts signed i16 to unsigned u16 value. Input is assumed to be in
- * [-0x8000,0x7fff] range. Does NOT perform clamping. Branchless.
+ * `[-0x8000,0x7fff]` range. Does NOT perform clamping. Branchless.
  *
  * @param x
  * @returns

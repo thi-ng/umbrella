@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2 } from "@thi.ng/api";
 import { EPS } from "./api.js";
 
@@ -11,7 +12,7 @@ export const absDiff: FnN2 = (a, b) => Math.abs(a - b);
 
 /**
  * Similar to `Math.sign()`, but uses `eps` to determine the zero value (i.e. if
- * `x` is in [-eps,eps] interval).
+ * `x` is in `[-eps,eps]` interval).
  *
  * @param x
  * @param eps

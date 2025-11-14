@@ -1,8 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { TypedArray } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
 import type { Readable } from "node:stream";
+import { maskedPath } from "./mask.js";
 
 export type HashAlgo =
 	| "gost-mac"
@@ -32,7 +34,7 @@ export const fileHash = async (
 	logger?: ILogger,
 	algo: HashAlgo = "sha256"
 ) => {
-	logger?.info("reading file:", path);
+	logger?.info("reading file:", maskedPath(path));
 	return await streamHash(createReadStream(path), logger, algo);
 };
 

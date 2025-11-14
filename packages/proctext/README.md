@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/proctext](https://media.thi.ng/umbrella/banners-20230807/thing-proctext.svg?de076745)
+# ![@thi.ng/proctext](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-proctext.svg?de076745)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/proctext.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -35,6 +35,12 @@
 ## About
 
 Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions.
+
+> [!NOTE]
+> The generated output of the code examples in this readme might vary due to the
+> inherent randomness in the system. Please consult the [controlled
+> randomness](#controlled-randomness) section for further information about
+> deterministic outputs.
 
 ## Features
 
@@ -310,7 +316,7 @@ configured via options given to `generate()`:
 
 ```ts
 import { generate } from "@thi.ng/proctext";
-import { SYSTEM } from "@thi.ng/random";
+import { SYSTEM, XsAdd } from "@thi.ng/random";
 
 // here we show default options used
 generate(`...`, {
@@ -318,6 +324,9 @@ generate(`...`, {
     maxHist: 1,
     maxTrials: 10
 });
+
+// using a seeded PRNG for deterministic behavior/output
+generate(`...`, { rnd: new XsAdd(0xdecafbad) });
 ```
 
 The `maxHist = 1` means that for each variable only the last value picked will

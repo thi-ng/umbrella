@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { NULL_LOGGER } from "@thi.ng/logger";

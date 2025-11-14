@@ -1,9 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs } from "./api.js";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math/api";
 import { add2 } from "@thi.ng/vectors/add";
 import { ZERO2, type ReadonlyVec, type Vec } from "@thi.ng/vectors/api";
-import { dist } from "@thi.ng/vectors/dist";
+import { dist2 } from "@thi.ng/vectors/dist";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { max2 } from "@thi.ng/vectors/max";
 import { min2 } from "@thi.ng/vectors/min";
@@ -106,7 +107,7 @@ export function inscribedSquareHex(...args: any[]) {
 	if (args.length === 1) {
 		const pts = (<Polygon>args[0]).points;
 		pos = centroid(pts);
-		l = dist(pts[0], pts[1]);
+		l = dist2(pts[0], pts[1]);
 	} else {
 		[pos, l] = args;
 	}

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { B83_CHARS } from "@thi.ng/base-n/chars/83";
 import { BaseNDecoder } from "@thi.ng/base-n/decode";
 import { canvas2d, type Canvas2DOpts } from "@thi.ng/canvas";

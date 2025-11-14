@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe, NumOrString } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { ISubscribable } from "@thi.ng/rstream";

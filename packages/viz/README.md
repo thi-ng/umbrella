@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/viz](https://media.thi.ng/umbrella/banners-20230807/thing-viz.svg?aa791127)
+# ![@thi.ng/viz](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-viz.svg?aa791127)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/viz.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -37,27 +37,27 @@ For reference & what to expect (links to the Clojure version):
 - [Examples](https://github.com/thi-ng/geom/blob/feature/no-org/org/examples/viz/demos.org)
 - [Source](https://github.com/thi-ng/geom/blob/feature/no-org/org/src/viz/core.org)
 
-| Example outputs                                                |                                                          |
-|----------------------------------------------------------------|----------------------------------------------------------|
-| ![](https://media.thi.ng/geom/viz/scatter-linear-3.svg)        | ![](https://media.thi.ng/geom/viz/scatter-log-3.svg)     |
-| Logarithmic X-axis, linear Y                                   | Log X, Log Y                                             |
-| ![](https://media.thi.ng/geom/viz/lineplot-3.svg)              | ![](https://media.thi.ng/geom/viz/areaplot-3.svg)        |
-| Line plot (cartesian)                                          | Area plot (cartesian)                                    |
-| ![](https://media.thi.ng/geom/viz/lineplot-polar-3.svg)        | ![](https://media.thi.ng/geom/viz/areaplot-polar-3.svg)  |
-| Line plot (polar)                                              | Area plot (polar)                                        |
-| ![](https://media.thi.ng/geom/viz/bars-3.svg)                  | ![](https://media.thi.ng/geom/viz/bars-interleave-3.svg) |
-| Single value per domain position                               | 3 interleaved values (datasets) per domain position      |
-| ![](https://media.thi.ng/geom/viz/radarplot-3.svg)             | ![](https://media.thi.ng/geom/viz/radarplot-minmax.svg)  |
-| 6 categories, 3 data sets, single values                       | 6 categories, 3 data sets, min-max intervals             |
-| ![](https://media.thi.ng/geom/viz/hm-rainbow2.svg)             | ![](https://media.thi.ng/geom/viz/hm-orange-blue.svg)    |
-| Heatmap w/ rainbow gradient presets                            |                                                          |
-| ![](https://media.thi.ng/geom/viz/hmp-yellow-magenta-cyan.svg) | ![](https://media.thi.ng/geom/viz/hmp-green-magenta.svg) |
-| Heatmap polar projection                                       |                                                          |
-| ![](https://media.thi.ng/geom/viz/hms-rainbow2.svg)            | ![](https://media.thi.ng/geom/viz/hmsp-rainbow2.svg)     |
-| w/ custom shape fn                                             | polar projection, custom shape fn                        |
-| ![](https://media.thi.ng/geom/viz/contours-4.svg)              | ![](https://media.thi.ng/geom/viz/terrain-6.svg)         |
-| Contour plot                                                   |                                                          |
-| ![](https://media.thi.ng/geom/viz/timeline-3.svg)              |                                                          |
+| Example outputs                                                                                       |                                                                                                 |
+|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/scatter-linear-3.svg)        | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/scatter-log-3.svg)     |
+| Logarithmic X-axis, linear Y                                                                          | Log X, Log Y                                                                                    |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/lineplot-3.svg)              | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/areaplot-3.svg)        |
+| Line plot (cartesian)                                                                                 | Area plot (cartesian)                                                                           |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/lineplot-polar-3.svg)        | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/areaplot-polar-3.svg)  |
+| Line plot (polar)                                                                                     | Area plot (polar)                                                                               |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/bars-3.svg)                  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/bars-interleave-3.svg) |
+| Single value per domain position                                                                      | 3 interleaved values (datasets) per domain position                                             |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/radarplot-3.svg)             | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/radarplot-minmax.svg)  |
+| 6 categories, 3 data sets, single values                                                              | 6 categories, 3 data sets, min-max intervals                                                    |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/hm-rainbow2.svg)             | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/hm-orange-blue.svg)    |
+| Heatmap w/ rainbow gradient presets                                                                   |                                                                                                 |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/hmp-yellow-magenta-cyan.svg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/hmp-green-magenta.svg) |
+| Heatmap polar projection                                                                              |                                                                                                 |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/hms-rainbow2.svg)            | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/hmsp-rainbow2.svg)     |
+| w/ custom shape fn                                                                                    | polar projection, custom shape fn                                                               |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/contours-4.svg)              | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/terrain-6.svg)         |
+| Contour plot                                                                                          |                                                                                                 |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/viz/timeline-3.svg)              |                                                                                                 |
 
 ## Status
 
@@ -97,7 +97,7 @@ For Node.js REPL:
 const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.99 KB
 
 ## Dependencies
 
@@ -108,6 +108,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.63 KB
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

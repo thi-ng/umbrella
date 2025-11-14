@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isPrimitive } from "@thi.ng/checks/is-primitive";
 import { distEucledian3, distLch } from "@thi.ng/color/distance";
 import { hsv } from "@thi.ng/color/hsv/hsv";
@@ -66,15 +67,15 @@ export const compFilter = (...filters: ThemePredicate[]): ThemePredicate =>
 
 /**
  * Theme predicate which ensures colors are within the given normalized hue
- * range ([0..1] interval). See {@link defFilter} for more details.
+ * range (`[0,1]` interval). See {@link defFilter} for more details.
  *
  * @remarks
  * Since LCH uses different hue values than the more familiar HSV/HSL color
  * wheel, LCH colors too will be first converted to HSV to ensure uniform
  * results.
  *
- * If `max < min`, the filter will consider hues in both the `[min..1] and
- * [0..max]` intervals (i.e. angular wraparound on color wheel).
+ * If `max < min`, the filter will consider hues in both the `[min,1]` and
+ * `[0,max]` intervals (i.e. angular wraparound on color wheel).
  *
  * @param min
  * @param max
@@ -89,7 +90,7 @@ export const hue = (min: number, max: number, threshold?: number) =>
 
 /**
  * Theme predicate which ensures colors are within the given normalized chroma
- * range ([0..1] interval). See {@link defFilter} for more details.
+ * range (`[0,1]` interval). See {@link defFilter} for more details.
  *
  * @remarks
  * Internally converts colors to LCH (unless already the case).
@@ -106,7 +107,7 @@ export const chroma = (min: number, max: number, threshold?: number) =>
 
 /**
  * Theme predicate which ensures colors are within the given normalized
- * luminance range ([0..1] interval). See {@link defFilter} for more details.
+ * luminance range (`[0,1]` interval). See {@link defFilter} for more details.
  *
  * @param min
  * @param max
@@ -126,7 +127,7 @@ export const luma = (min: number, max: number, threshold?: number) =>
  * Internally converts colors to LCH (unless already the case).
  *
  * See {@link defFilter} &
- * [`distLch()`](https://docs.thi.ng/umbrella/color/functions/distLch.html) for
+ * [`distLch`](https://docs.thi.ng/umbrella/color/functions/distLch.html) for
  * more details.
  *
  * @param min
@@ -153,7 +154,7 @@ export const proximityLCH = (
  * Internally converts colors to sRGB (unless already the case).
  *
  * See {@link defFilter} &
- * [`distEucledian3()`](https://docs.thi.ng/umbrella/color/functions/distEucledian3.html)
+ * [`distEucledian3`](https://docs.thi.ng/umbrella/color/functions/distEucledian3.html)
  * for more details.
  *
  * @param min

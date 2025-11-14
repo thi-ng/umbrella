@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	comp,
 	iterator,
@@ -6,9 +7,9 @@ import {
 	partitionBy,
 	repeat,
 } from "@thi.ng/transducers";
-import type { AppContext, Commit } from "../api";
-import { commitLink } from "./commit-link";
-import { table } from "./table";
+import type { AppContext, Commit } from "../api.js";
+import { commitLink } from "./commit-link.js";
+import { table } from "./table.js";
 
 /**
  * Git commit log table component. Consumes iterable of `Commit` objects

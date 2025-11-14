@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./bollinger.js";
 export * from "./donchian.js";
 export * from "./ema.js";

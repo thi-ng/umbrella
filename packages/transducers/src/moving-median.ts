@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { SortOpts, Transducer } from "./api.js";
 import { comp } from "./comp.js";
 import { __sortOpts } from "./internal/sort-opts.js";

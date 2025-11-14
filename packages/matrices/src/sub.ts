@@ -1,6 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+import { $sub } from "@thi.ng/vectors/ops";
 import { sub as _sub, sub4 } from "@thi.ng/vectors/sub";
 import type { MatOpMM, MultiMatOpMM } from "./api.js";
-import { defMath } from "./compile/emit.js";
+import { defMath } from "./defmath.js";
 
 /**
  * Componentwise matrix subtraction. If `out` is not given, writes
@@ -14,4 +16,4 @@ import { defMath } from "./compile/emit.js";
  */
 export const sub: MultiMatOpMM = _sub;
 export const sub22: MatOpMM = sub4;
-export const [sub23, sub33, sub44] = defMath(sub, "-");
+export const [sub23, sub33, sub44] = defMath($sub);

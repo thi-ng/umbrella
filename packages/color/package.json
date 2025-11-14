@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color",
-	"version": "5.7.18",
+	"version": "5.8.2",
 	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
 	"type": "module",
 	"module": "./index.js",
@@ -33,9 +33,8 @@
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "bun ../../tools/src/clean-package.ts css hcy hsi hsl hsv int lab lch oklab oklch rgb srgb xyy xyz ycc",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:limits": "bun tools/limits.ts",
 		"tool:maxchroma": "bun tools/max-chroma.ts",
@@ -44,25 +43,24 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.11.16",
-		"@thi.ng/arrays": "^2.10.11",
-		"@thi.ng/binary": "^3.4.39",
-		"@thi.ng/checks": "^3.6.19",
-		"@thi.ng/compare": "^2.4.8",
-		"@thi.ng/compose": "^3.0.19",
-		"@thi.ng/defmulti": "^3.0.55",
-		"@thi.ng/errors": "^2.5.22",
-		"@thi.ng/math": "^5.11.16",
-		"@thi.ng/random": "^4.1.7",
-		"@thi.ng/strings": "^3.9.0",
-		"@thi.ng/transducers": "^9.2.14",
-		"@thi.ng/vectors": "^7.12.15"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.14.0",
+		"@thi.ng/binary": "^3.4.65",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/compare": "^2.4.33",
+		"@thi.ng/compose": "^3.0.44",
+		"@thi.ng/defmulti": "^3.0.83",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/random": "^4.1.32",
+		"@thi.ng/strings": "^3.9.28",
+		"@thi.ng/transducers": "^9.6.16",
+		"@thi.ng/vectors": "^8.6.12"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"esbuild": "^0.24.2",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"color",

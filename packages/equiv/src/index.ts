@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const OBJP = Object.getPrototypeOf({});
 const FN = "function";
 const STR = "string";

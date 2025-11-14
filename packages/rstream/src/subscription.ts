@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { peek } from "@thi.ng/arrays/peek";
@@ -165,7 +166,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	 * Creates a new child subscription using given transducers and optional
 	 * subscription ID. Supports up to 4 transducers and if more than one
 	 * transducer is given, composes them in left-to-right order using
-	 * [`comp()`](https://docs.thi.ng/umbrella/transducers/functions/comp.html).
+	 * [`comp`](https://docs.thi.ng/umbrella/transducers/functions/comp.html).
 	 *
 	 * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
 	 */
@@ -218,7 +219,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 
 	/**
 	 * Syntax sugar for {@link Subscription.transform} when using a single
-	 * [`map()`](https://docs.thi.ng/umbrella/transducers/functions/map.html)
+	 * [`map`](https://docs.thi.ng/umbrella/transducers/functions/map.html)
 	 * transducer only. The given function `fn` is used as `map`'s
 	 * transformation fn.
 	 *

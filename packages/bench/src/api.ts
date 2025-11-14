@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn0, Fn2 } from "@thi.ng/api";
 
 export type { Timestamp } from "@thi.ng/timestamp";

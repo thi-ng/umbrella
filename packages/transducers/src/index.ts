@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./api.js";
 export * from "./ensure.js";
 export * from "./iterator.js";
@@ -59,6 +60,7 @@ export * from "./sub.js";
 // transducers
 
 export * from "./benchmark.js";
+export * from "./binned.js";
 export * from "./cat.js";
 export * from "./converge.js";
 export * from "./convolve.js";
@@ -80,6 +82,7 @@ export * from "./interpolate.js";
 export * from "./interpolate-hermite.js";
 export * from "./interpolate-linear.js";
 export * from "./interpose.js";
+export * from "./join.js";
 export * from "./keep.js";
 export * from "./labeled.js";
 export * from "./length.js";

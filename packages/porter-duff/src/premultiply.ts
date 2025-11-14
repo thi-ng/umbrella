@@ -1,9 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Color, ReadonlyColor } from "./api.js";
 import { setC4, setV4 } from "./utils.js";
 
 /**
- * Multiplies RGB channels w/ alpha channel. Assumes alpha is in last
- * vector component and [0..1] interval. Does NOT clamp result.
+ * Multiplies RGB channels w/ alpha channel. Assumes alpha is in last vector
+ * component and `[0,1]` interval. Does NOT clamp result.
  *
  * @param out -
  * @param src -
@@ -30,8 +31,8 @@ export const premultiplyInt = (src: number) => {
 };
 
 /**
- * Reverse operation of {@link premultiply}. Divides RGB channels
- * by alpha, unless alpha is zero. Does NOT clamp result.
+ * Reverse operation of {@link premultiply}. Divides RGB channels by alpha,
+ * unless alpha is zero. Does NOT clamp result.
  *
  * @param out -
  * @param src -
@@ -46,9 +47,9 @@ export const postmultiply = (out: Color | null, src: ReadonlyColor) => {
 };
 
 /**
- * Reverse op of {@link premultiplyInt}. Assumes 8bits/channel and alpha in
- * MSB lane. Divides RGB channels by alpha (unless zero) and DOES clamp
- * result to avoid overflows.
+ * Reverse op of {@link premultiplyInt}. Assumes 8bits/channel and alpha in MSB
+ * lane. Divides RGB channels by alpha (unless zero) and DOES clamp result to
+ * avoid overflows.
  *
  * @param src -
  */

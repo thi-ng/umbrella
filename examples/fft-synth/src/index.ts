@@ -1,12 +1,13 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fit, fitClamped } from "@thi.ng/math";
 import { fromAtom, fromDOMEvent, merge, sync, syncRAF } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { WINDOW_LEN } from "./config";
-import { gui, updateGUI } from "./gui";
-import { DB } from "./state";
+import { WINDOW_LEN } from "./config.js";
+import { gui, updateGUI } from "./gui.js";
+import { DB } from "./state.js";
 
 const main = sync({
 	src: {

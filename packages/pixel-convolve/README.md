@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-convolve](https://media.thi.ng/umbrella/banners-20230807/thing-pixel-convolve.svg?68dd5cd4)
+# ![@thi.ng/pixel-convolve](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-convolve.svg?68dd5cd4)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-convolve.svg)](https://www.npmjs.com/package/@thi.ng/pixel-convolve)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-convolve.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -48,6 +48,8 @@ following convolution kernel presets are provided for convenience:
 |------------------|-------------|
 | `BOX_BLUR3`      | 3x3         |
 | `BOX_BLUR5`      | 5x5         |
+| `EDGE3`          | 3x3         |
+| `EDGE5`          | 5x5         |
 | `GAUSSIAN_BLUR3` | 3x3         |
 | `GAUSSIAN_BLUR5` | 5x5         |
 | `GAUSSIAN(n)`    | 2n+1 x 2n+1 |
@@ -166,7 +168,7 @@ For Node.js REPL:
 const pc = await import("@thi.ng/pixel-convolve");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.29 KB
 
 ## Dependencies
 

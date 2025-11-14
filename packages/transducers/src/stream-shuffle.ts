@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { shuffle } from "@thi.ng/arrays/shuffle";
 import { isPlainObject } from "@thi.ng/checks";
 import type { IRandom } from "@thi.ng/random";
@@ -12,7 +13,7 @@ export interface StreamShuffleOpts {
 	 */
 	n: number;
 	/**
-	 * Max. shuffle ops per new input (in [0..n] range)
+	 * Max. shuffle ops per new input (in `[0,n]` range)
 	 *
 	 * @defaultValue same as `n`
 	 */

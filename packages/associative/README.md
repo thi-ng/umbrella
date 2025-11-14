@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/associative](https://media.thi.ng/umbrella/banners-20230807/thing-associative.svg?8301e9d6)
+# ![@thi.ng/associative](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-associative.svg?8301e9d6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/associative.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -187,7 +187,7 @@ For Node.js REPL:
 const assoc = await import("@thi.ng/associative");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.14 KB
 
 ## Dependencies
 
@@ -199,7 +199,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.16 KB
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://www.typescriptlang.org/)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

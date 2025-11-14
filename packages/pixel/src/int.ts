@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, FnN2, ICopy, IEmpty, Maybe, Range0_3 } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import {
@@ -20,12 +21,14 @@ import {
 	type BlitCanvasOpts,
 	type BlitOpts,
 	type Filter,
+	type FloatFormat,
 	type IBlend,
 	type IBlit,
 	type IInvert,
 	type IPixelBuffer,
 	type IResizable,
 	type IRotate,
+	type ISetImageData,
 	type IToImageData,
 	type IntChannel,
 	type IntFormat,
@@ -37,8 +40,10 @@ import {
 	ensureAlpha,
 	ensureChannel,
 	ensureImageData,
+	ensureImageDataSize,
 	ensureSize,
 } from "./checks.js";
+import { FloatBuffer } from "./float.js";
 import { ABGR8888 } from "./format/abgr8888.js";
 import { defIntFormat } from "./format/int-format.js";
 import { imageCanvas } from "./image.js";
@@ -137,11 +142,12 @@ export class IntBuffer
 		IInvert<IntBuffer>,
 		IResizable<IntBuffer, IntSampler>,
 		IRotate<IntBuffer>,
+		ISetImageData,
 		IToImageData
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];
-	readonly format: IntFormat;
+	format: IntFormat;
 	data: UIntArray;
 
 	constructor(
@@ -183,8 +189,28 @@ export class IntBuffer
 		yield* this.data;
 	}
 
-	as(fmt: IntFormat): IntBuffer {
-		return this.getRegion(0, 0, this.width, this.height, fmt)!;
+	as(fmt: IntFormat): IntBuffer;
+	as(fmt: FloatFormat): FloatBuffer;
+	as(fmt: IntFormat | FloatFormat) {
+		if (!(<any>fmt).__float)
+			return this.getRegion(
+				0,
+				0,
+				this.width,
+				this.height,
+				<IntFormat>fmt
+			)!;
+		const dest = new FloatBuffer(this.width, this.height, <FloatFormat>fmt);
+		const {
+			data: dbuf,
+			format: dfmt,
+			stride: [stride],
+		} = dest;
+		const { data: sbuf, format: sfmt } = this;
+		for (let i = sbuf.length; i-- > 0; ) {
+			dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
+		}
+		return dest;
 	}
 
 	copy() {
@@ -303,6 +329,17 @@ export class IntBuffer
 		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		__blitCanvas(this, canvas, opts);
+	}
+
+	setImageData(idata: ImageData) {
+		ensureImageDataSize(idata, this.width, this.height);
+		const src = new Uint32Array(idata.data.buffer);
+		const dest = this.data;
+		const fmt = this.format.fromABGR;
+		for (let i = src.length; i-- > 0; ) {
+			dest[i] = fmt(src[i]);
+		}
+		return this;
 	}
 
 	toImageData(idata?: ImageData) {

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { V3 } from "@thi.ng/shader-ast/api/types";
 import type { GLSL } from "./api/glsl.js";
 import type { Material } from "./api/material.js";

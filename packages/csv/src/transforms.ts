@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
@@ -17,6 +18,22 @@ export const upper: CellTransform = (x) => x.toUpperCase();
  * @param x -
  */
 export const lower: CellTransform = (x) => x.toLowerCase();
+
+/**
+ * Higher-order cell parse value transform. Attempts to parse given input as
+ * JSON and returns it. Returns configured `defaultVal` in case of parse error.
+ *
+ * @param defaultVal
+ */
+export const json =
+	(defaultVal?: any): CellTransform =>
+	(x) => {
+		try {
+			return JSON.parse(x);
+		} catch (e) {
+			return defaultVal;
+		}
+	};
 
 /**
  * Higher-order cell parse value transform. Attempts to parse cell values as

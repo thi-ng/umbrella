@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/sparse](https://media.thi.ng/umbrella/banners-20230807/thing-sparse.svg?15247854)
+# ![@thi.ng/sparse](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-sparse.svg?15247854)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sparse.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -69,7 +69,7 @@ For Node.js REPL:
 const spa = await import("@thi.ng/sparse");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.40 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.76 KB
 
 ## Dependencies
 

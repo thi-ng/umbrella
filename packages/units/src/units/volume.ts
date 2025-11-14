@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { cm, km, m, mm } from "./length.js";
 import { defUnit, mul, pow, prefix } from "../unit.js";
 

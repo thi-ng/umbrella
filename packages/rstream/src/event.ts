@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream, Stream } from "./stream.js";

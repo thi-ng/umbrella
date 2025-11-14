@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/random-fxhash](https://media.thi.ng/umbrella/banners-20230807/thing-random-fxhash.svg?fc9d1c4b)
+# ![@thi.ng/random-fxhash](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-random-fxhash.svg?fc9d1c4b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random-fxhash.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -93,6 +93,14 @@ ESM import:
 ```ts
 import * as rfx from "@thi.ng/random-fxhash";
 ```
+
+Browser ESM import:
+
+```html
+<script type="module" src="https://esm.run/@thi.ng/random-fxhash"></script>
+```
+
+[JSDelivr documentation](https://www.jsdelivr.com/)
 
 For Node.js REPL:
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU } from "@thi.ng/api";
 import { deref, isDeref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
@@ -12,6 +13,7 @@ import {
 	ATTRIB_JOIN_DELIMS,
 	CDATA,
 	COMMENT,
+	INLINE,
 	NO_CLOSE_EMPTY,
 	NO_SPANS,
 	PROC_TAGS,
@@ -39,7 +41,7 @@ export interface SerializeOpts {
 	/**
 	 * Only used if {@link SerializeOpts.escape} is enabled. Function to escape
 	 * entities. By default uses
-	 * [`escapeEntitiesNum()`](https://docs.thi.ng/umbrella/strings/functions/escapeEntitiesNum.html).
+	 * [`escapeEntitiesNum`](https://docs.thi.ng/umbrella/strings/functions/escapeEntitiesNum.html).
 	 */
 	escapeFn: FnU<string>;
 	/**
@@ -245,6 +247,8 @@ const __serializeElement = (tree: any[], opts: SerializeOpts, path: any[]) => {
 		  )
 		: tag === COMMENT
 		? __serializeComment(tree)
+		: tag === INLINE
+		? __serializeInline(tree)
 		: tag == CDATA
 		? __serializeCData(tree)
 		: isString(tag)
@@ -260,6 +264,7 @@ const __serializeTag = (tree: any[], opts: SerializeOpts, path: any[]) => {
 	const attribs = tree[1];
 	if (attribs.__skip || attribs.__serialize === false) return "";
 	opts.keys && attribs.key === undefined && (attribs.key = path.join("-"));
+	if (attribs.__escape != null) opts = { ...opts, escape: attribs.__escape };
 	const tag = tree[0];
 	const body = tree[2]
 		? __serializeBody(tag, tree[2], opts, path)
@@ -351,6 +356,9 @@ const __serializeComment = (tree: any[]) =>
 				.map((x) => "    " + x)
 				.join("\n")}\n-->\n`
 		: `\n<!-- ${tree[1]} -->\n`;
+
+/** @internal */
+const __serializeInline = (tree: any[]) => tree.slice(1).join("");
 
 /** @internal */
 const __serializeCData = (tree: any[]) =>

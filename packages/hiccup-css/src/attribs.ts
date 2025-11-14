@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 const $ =
 	(op: string) =>
 	(id: string, x: string | number, caseSensitve = true) =>

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { fitClamped } from "@thi.ng/math/fit";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { str } from "@thi.ng/transducers/str";

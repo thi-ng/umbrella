@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IntBuffer } from "@thi.ng/pixel";
 import { GRAY16 } from "@thi.ng/pixel/format/gray16";
 

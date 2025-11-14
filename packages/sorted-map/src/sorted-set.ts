@@ -1,16 +1,16 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, ICompare, Maybe, Pair } from "@thi.ng/api";
 import type { IEquivSet } from "@thi.ng/associative";
 import { dissoc } from "@thi.ng/associative/dissoc";
+import { __disposableValues } from "@thi.ng/associative/internal/dispose";
 import { __equivSet } from "@thi.ng/associative/internal/equiv";
-import { __inspectable } from "@thi.ng/associative/internal/inspect";
+import { __tostringMixin } from "@thi.ng/associative/internal/tostring";
 import { into } from "@thi.ng/associative/into";
 import { compare } from "@thi.ng/compare/compare";
 import type { IReducible, Reduced, ReductionFn } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import type { SortedSetOpts } from "./api.js";
 import { SortedMap } from "./sorted-map.js";
-
-const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
 
 /**
  * Sorted set implementation with standard ES6 Set API, customizable value
@@ -22,8 +22,9 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  *   {@link SortedSet.disj}
  *
  * Furthermore, this class implements the
- * [`ICopy`](https://docs.thi.ng/umbrella/api/interfaces/ICopy.html), IEmpty`,
- * [`ICompare`](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html) and
+ * [`ICopy`](https://docs.thi.ng/umbrella/api/interfaces/ICopy.html),
+ * [`ICompare`](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html),
+ * [`IEmpty`](https://docs.thi.ng/umbrella/api/interfaces/IEmpty.html) and
  * [`IEquiv`](https://docs.thi.ng/umbrella/api/interfaces/IEquiv.html)
  * interfaces defined by [`thi.ng/api`](https://thi.ng/api). The latter two
  * allow instances to be used as keys themselves in other data types defined in
@@ -32,11 +33,14 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * This set uses a {@link SortedMap} as backing store and therefore has the same
  * resizing characteristics.
  */
-@__inspectable
+@__disposableValues
+@__tostringMixin
 export class SortedSet<T>
 	extends Set<T>
 	implements IEquivSet<T>, ICompare<Set<T>>, IReducible<T, any>
 {
+	#map: SortedMap<T, T>;
+
 	/**
 	 * Creates new instance with optional given values and/or
 	 * implementation options. The options are the same as used by
@@ -47,18 +51,18 @@ export class SortedSet<T>
 	 */
 	constructor(values?: Iterable<T> | null, opts?: Partial<SortedSetOpts<T>>) {
 		super();
-		__private.set(
-			this,
-			new SortedMap<T, T>(
-				values ? map((x) => <Pair<T, T>>[x, x], values) : null,
-				opts
-			)
+		this.#map = new SortedMap<T, T>(
+			values ? map((x) => <Pair<T, T>>[x, x], values) : null,
+			opts
 		);
 	}
 
-	[Symbol.iterator](): IterableIterator<T> {
+	[Symbol.iterator](): SetIterator<T> {
 		return this.keys();
 	}
+
+	// mixin
+	[Symbol.dispose]() {}
 
 	get [Symbol.species]() {
 		return SortedSet;
@@ -69,7 +73,7 @@ export class SortedSet<T>
 	}
 
 	get size(): number {
-		return __private.get(this)!.size;
+		return this.#map.size;
 	}
 
 	copy(): SortedSet<T> {
@@ -102,23 +106,23 @@ export class SortedSet<T>
 	}
 
 	$reduce<R>(rfn: ReductionFn<T, any>, acc: R | Reduced<R>) {
-		return __private.get(this)!.$reduce((_acc, x) => rfn(_acc, x[0]), acc);
+		return this.#map.$reduce((_acc, x) => rfn(_acc, x[0]), acc);
 	}
 
-	entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
-		return __private.get(this)!.entries(key, max);
+	entries(key?: T, max = false): SetIterator<Pair<T, T>> {
+		return this.#map.entries(key, max);
 	}
 
-	keys(key?: T, max = false): IterableIterator<T> {
-		return __private.get(this)!.keys(key, max);
+	keys(key?: T, max = false): SetIterator<T> {
+		return this.#map.keys(key, max);
 	}
 
-	values(key?: T, max = false): IterableIterator<T> {
-		return __private.get(this)!.values(key, max);
+	values(key?: T, max = false): SetIterator<T> {
+		return this.#map.values(key, max);
 	}
 
 	add(key: T) {
-		__private.get(this)!.set(key, key);
+		this.#map.set(key, key);
 		return this;
 	}
 
@@ -127,16 +131,16 @@ export class SortedSet<T>
 	}
 
 	clear(): void {
-		__private.get(this)!.clear();
+		this.#map.clear();
 	}
 
-	first(): T {
-		const first = __private.get(this)!.first();
+	first(): Maybe<T> {
+		const first = this.#map.first();
 		return first ? first[0] : undefined;
 	}
 
 	delete(key: T): boolean {
-		return __private.get(this)!.delete(key);
+		return this.#map.delete(key);
 	}
 
 	disj(keys: Iterable<T>) {
@@ -153,15 +157,15 @@ export class SortedSet<T>
 	}
 
 	has(key: T): boolean {
-		return __private.get(this)!.has(key);
+		return this.#map.has(key);
 	}
 
 	get(key: T, notFound?: T): Maybe<T> {
-		return __private.get(this)!.get(key, notFound);
+		return this.#map.get(key, notFound);
 	}
 
 	opts(): SortedSetOpts<T> {
-		return __private.get(this)!.opts();
+		return this.#map.opts();
 	}
 }
 

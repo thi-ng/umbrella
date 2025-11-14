@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { $compile, $refresh } from "@thi.ng/rdom";
 import { reactive, stream, sync } from "@thi.ng/rstream";
 import { cycle, map, slidingWindow } from "@thi.ng/transducers";

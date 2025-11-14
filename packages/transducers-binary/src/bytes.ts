@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	bytes16,
 	bytes24,
@@ -149,13 +150,18 @@ export function asBytes(src?: Iterable<BinStructItem>): any {
 		  });
 }
 
-export function bytes(cap?: number): Reducer<BinStructItem, Uint8Array>;
-export function bytes(cap: number, src: Iterable<BinStructItem>): Uint8Array;
+export function bytes(
+	cap?: number
+): Reducer<BinStructItem, Uint8Array<ArrayBuffer>>;
+export function bytes(
+	cap: number,
+	src: Iterable<BinStructItem>
+): Uint8Array<ArrayBuffer>;
 export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
 	let view: DataView;
 	let pos = 0;
 
-	const ensure = (acc: Uint8Array, size: number) => {
+	const ensure = (acc: Uint8Array<ArrayBuffer>, size: number) => {
 		if (pos + size <= cap) return acc;
 		cap *= 2;
 		const buf = new Uint8Array(cap);
@@ -167,7 +173,7 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
 	const setArray = (
 		fn: string,
 		stride: number,
-		acc: Uint8Array,
+		acc: Uint8Array<ArrayBuffer>,
 		x: any,
 		le: boolean
 	) => {
@@ -181,7 +187,7 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
 
 	return src
 		? reduce(bytes(cap), src)
-		: <Reducer<BinStructItem, Uint8Array>>[
+		: <Reducer<BinStructItem, Uint8Array<ArrayBuffer>>>[
 				() => new Uint8Array(cap),
 				(acc) => acc.subarray(0, pos),
 				(acc, [type, x, le = false]) => {

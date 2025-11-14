@@ -1,17 +1,49 @@
-import { smoothStep as _step } from "@thi.ng/math/step";
-import type { MultiVecOpVVV, VecOpVVV } from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { DEFAULT_OUT, FN3 } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { smoothStep as op } from "@thi.ng/math/step";
+import { defOpVVV } from "./defopvvv.js";
+
+const [a, b, c, d] = defOpVVV(op, 1, false);
 
 /**
- * Like GLSL `smoothstep()`
+ * Componentwise computes GLSL `smoothstep()` for given nD vector `c` and using
+ * "edge" vectors `a` and `b`. Multi-method.
  *
- * @param out -
- * @param e1 -
- * @param e2 -
- * @param v -
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
  */
-export const [smoothStep, smoothStep2, smoothStep3, smoothStep4] = defHofOp<
-	MultiVecOpVVV,
-	VecOpVVV
->(_step, FN3(), "o,e1,e2,a", undefined, "o", 3, DEFAULT_OUT);
+export const smoothStep = a;
+
+/**
+ * Componentwise computes GLSL `smoothstep()` for given 2D vector `c` and using
+ * "edge" vectors `a` and `b`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const smoothStep2 = b;
+
+/**
+ * Componentwise computes GLSL `smoothstep()` for given 3D vector `c` and using
+ * "edge" vectors `a` and `b`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const smoothStep3 = c;
+
+/**
+ * Componentwise computes GLSL `smoothstep()` for given 4D vector `c` and using
+ * "edge" vectors `a` and `b`.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const smoothStep4 = d;

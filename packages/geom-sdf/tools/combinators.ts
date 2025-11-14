@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { writeText } from "@thi.ng/file-io";
 import { asSvg, bounds, group, rectWithCentroid, svgDoc } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d, SDFAttribs } from "@thi.ng/geom-sdf";

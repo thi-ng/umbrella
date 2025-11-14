@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -161,9 +162,10 @@ export class Quantity<T extends number | number[]> implements IDeref<T> {
  * polymorphic functions: {@link div}, {@link mul}, {@link reciprocal} and
  * {@link convert}.
  *
- * The {@link Quantity} class also implements the standard [`IDeref`]()
- * interface to obtain unwrapped amount (though only should be used for
- * dimensionless quantities). Use {@link convert} otherwise!
+ * The {@link Quantity} class also implements the standard
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) interface
+ * to obtain unwrapped amount (though only should be used for dimensionless
+ * quantities). Use {@link convert} otherwise!
  *
  * @example
  * ```ts tangle:../export/quantity.ts

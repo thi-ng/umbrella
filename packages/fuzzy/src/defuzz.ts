@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import type { FuzzyFn, LVarSet, Rule } from "./api.js";
 import { constant, intersect, union, weighted } from "./shapes.js";

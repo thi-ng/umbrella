@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { Atom } from "@thi.ng/atom";
 import { toDot } from "@thi.ng/dgraph-dot";

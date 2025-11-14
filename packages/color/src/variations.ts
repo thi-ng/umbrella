@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IRandom } from "@thi.ng/random";
 import { pickRandom } from "@thi.ng/random/pick-random";
 import { SYSTEM } from "@thi.ng/random/system";

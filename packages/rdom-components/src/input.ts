@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { div } from "@thi.ng/hiccup-html/blocks";

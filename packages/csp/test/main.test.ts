@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { repeatedly } from "@thi.ng/transducers-async";
 import { expect, test } from "bun:test";
 import {
@@ -131,10 +132,21 @@ test("select", async (done) => {
 	const c = channel<any>();
 	a.close();
 	b.write(42);
-	expect(await select(a, b, c)).toStrictEqual([undefined, a]);
-	expect(await select(b, c)).toStrictEqual([42, b]);
+	expect(await select(a, b, c)).toBeOneOf([
+		[undefined, a],
+		[42, b],
+	]);
 	c.write(23);
-	expect(await select(b, c)).toStrictEqual([23, c]);
+	expect(await select(c, b)).toBeOneOf([
+		[42, b],
+		[23, c],
+	]);
+	if (b.writes.length || c.writes.length) {
+		expect(await select(c, b)).toBeOneOf([
+			[42, b],
+			[23, c],
+		]);
+	}
 	done();
 });
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { argMin, selectThresholdMin } from "@thi.ng/arrays";
 import { colorFromRange, css } from "@thi.ng/color";
 import { br, button, div, h3 } from "@thi.ng/hiccup-html";

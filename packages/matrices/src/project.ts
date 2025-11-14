@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { fromHomogeneous4 } from "@thi.ng/vectors/homogeneous";
 import type { ReadonlyMat } from "./api.js";

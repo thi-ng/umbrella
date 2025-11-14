@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	LogLevel,
 	type ILogger,
@@ -52,6 +53,8 @@ export abstract class ALogger implements ILogger {
 	severe(...args: any[]) {
 		this.log(LogLevel.SEVERE, args);
 	}
+
+	none() {}
 
 	protected log(level: LogLevel, args: any[]) {
 		this.level <= level &&

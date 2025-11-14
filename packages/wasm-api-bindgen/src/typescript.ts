@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Nullable, NumOrString } from "@thi.ng/api";
 import {
 	BIGINT_ARRAY_CTORS,

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DEFAULT_OPTS, type ColoredNoiseOpts } from "./api.js";
 import { preseed, sum } from "./utils.js";
 

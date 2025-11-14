@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/fuzzy-viz](https://media.thi.ng/umbrella/banners-20230807/thing-fuzzy-viz.svg?5f703c99)
+# ![@thi.ng/fuzzy-viz](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-fuzzy-viz.svg?5f703c99)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fuzzy-viz.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -88,7 +88,7 @@ variable](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy#linguis
 ```ts tangle:export/readme-svg.ts
 import { invSigmoid, sigmoid, trapezoid, variable } from "@thi.ng/fuzzy";
 import { varToSvg } from "@thi.ng/fuzzy-viz";
-import { writeFileSync } "node:fs";
+import { writeFileSync } from "node:fs";
 
 // temperature sets (in celsius)
 const temp = variable([-20, 40], {

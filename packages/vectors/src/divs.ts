@@ -1,7 +1,66 @@
-import type { VecOpSGVV, VecOpSVV } from "./api.js";
-import { defOpS } from "./compile/emit.js";
-import { MATH } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpSVV } from "./defopsvv.js";
+import { $div } from "./ops.js";
 
-export const [divS, divS2, divS3, divS4] = defOpS<VecOpSGVV, VecOpSVV>(
-	MATH("/")
-);
+const [a, b, c, d] = defOpSVV($div);
+
+/**
+ * Componentwise nD strided vector division.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param size - vector size
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param ib - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ * @param sb - stride (default: 1)
+ */
+export const divS = a;
+
+/**
+ * Componentwise 2D strided vector division.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param ib - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ * @param sb - stride (default: 1)
+ */
+export const divS2 = b;
+
+/**
+ * Componentwise 3D strided vector division.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param ib - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ * @param sb - stride (default: 1)
+ */
+export const divS3 = c;
+
+/**
+ * Componentwise 4D strided vector division.
+ *
+ * @param out - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param io - index (default: 0)
+ * @param ia - index (default: 0)
+ * @param ib - index (default: 0)
+ * @param so - stride (default: 1)
+ * @param sa - stride (default: 1)
+ * @param sb - stride (default: 1)
+ */
+export const divS4 = d;

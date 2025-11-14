@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate2 } from "@thi.ng/api";
 import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
 

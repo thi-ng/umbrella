@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export var buf: [10]u8 = undefined;
 
 /// Encodes 64bit uint `src` and writes result bytes into `dest` (must
@@ -29,7 +30,7 @@ pub fn leb128DecodeU(src: []u8, num: *u8) u64 {
     var shift: u6 = 0;
     var n: u8 = 0;
     while (n < 10) {
-        var byte = src[n];
+        const byte = src[n];
         res |= @as(u64, @intCast(byte & 0x7f)) << shift;
         shift += 7;
         n += 1;
@@ -54,7 +55,7 @@ pub fn leb128EncodeI(src: i64, dest: []u8) u8 {
     var more: bool = true;
     while (more) {
         var byte: u8 = @intCast(x & 0x7f);
-        var sign: bool = (byte & 0x40) > 0;
+        const sign: bool = (byte & 0x40) > 0;
         x >>= 7;
         if ((x == 0 and !sign) or (x == -1 and sign)) {
             more = false;

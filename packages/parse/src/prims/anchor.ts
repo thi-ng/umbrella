@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable, Predicate2 } from "@thi.ng/api";
 import { ALPHA_NUM } from "@thi.ng/strings/groups";
 import type { Parser } from "../api.js";

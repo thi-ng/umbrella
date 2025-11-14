@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN3, FnU3 } from "@thi.ng/api";
 import { clamp01, inRange } from "@thi.ng/math/interval";
 import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn2, Fn3, Fn4, Fn5, FnAny } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { AGen } from "./agen.js";

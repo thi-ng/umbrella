@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { resolve as resolveMap } from "@thi.ng/resolve-map";
 import {
 	fromInterval,
@@ -15,11 +16,11 @@ import {
 	transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import type { AppContext, Commit } from "../common/api";
-import { header } from "../common/components/header";
-import { link } from "../common/components/link";
-import { repoTable } from "../common/components/repo-table";
-import { ctx } from "../common/config";
+import type { AppContext, Commit } from "../common/api.js";
+import { header } from "../common/components/header.js";
+import { link } from "../common/components/link.js";
+import { repoTable } from "../common/components/repo-table.js";
+import { ctx } from "../common/config.js";
 
 const COMMITS_URL =
 	process.env.NODE_ENV === "production" ? "./commits.json" : "/commits";

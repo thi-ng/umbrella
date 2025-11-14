@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { abs3 } from "./abs.js";
 import { acos3 } from "./acos.js";
 import { add3 } from "./add.js";
@@ -6,9 +7,12 @@ import { addmN3 } from "./addmn.js";
 import { addN3 } from "./addn.js";
 import { ONE3, ZERO3, type VecAPI } from "./api.js";
 import { asin3 } from "./asin.js";
-import { atan3, atan_23 } from "./atan.js";
+import { atan_3 } from "./atan.js";
+import { atan2_3 } from "./atan2.js";
 import { ceil3 } from "./ceil.js";
-import { clamp01_3, clamp3 } from "./clamp.js";
+import { clamp3 } from "./clamp.js";
+import { clamp01_3 } from "./clamp01.js";
+import { clampN3 } from "./clampn.js";
 import { cos3 } from "./cos.js";
 import { degrees3 } from "./degrees.js";
 import { dist3 } from "./dist.js";
@@ -19,9 +23,10 @@ import { dot3 } from "./dot.js";
 import { eq3 } from "./eq.js";
 import { eqDelta3 } from "./eqdelta.js";
 import { equals3 } from "./equals.js";
-import { exp3 } from "./exp.js";
-import { exp_23 } from "./exp_2.js";
-import { fit01_3, fit3 } from "./fit.js";
+import { exp_3 } from "./exp.js";
+import { exp2_3 } from "./exp2.js";
+import { fit3 } from "./fit.js";
+import { fit01_3 } from "./fit01.js";
 import { floor3 } from "./floor.js";
 import { fmod3 } from "./fmod.js";
 import { fract3 } from "./fract.js";
@@ -29,8 +34,8 @@ import { gt3 } from "./gt.js";
 import { gte3 } from "./gte.js";
 import { invSqrt3 } from "./invsqrt.js";
 import { limit3 } from "./limit.js";
-import { log3 } from "./log.js";
-import { log_23 } from "./log_2.js";
+import { log_3 } from "./log.js";
+import { log2_3 } from "./log2.js";
 import { lt3 } from "./lt.js";
 import { lte3 } from "./lte.js";
 import { madd3 } from "./madd.js";
@@ -88,10 +93,11 @@ export const VEC3: VecAPI = {
 	addm: addm3,
 	addmN: addmN3,
 	asin: asin3,
-	atan: atan3,
-	atan2: atan_23,
+	atan: atan_3,
+	atan2: atan2_3,
 	ceil: ceil3,
 	clamp: clamp3,
+	clampN: clampN3,
 	clamp01: clamp01_3,
 	cos: cos3,
 	degrees: degrees3,
@@ -102,8 +108,8 @@ export const VEC3: VecAPI = {
 	dot: dot3,
 	eqDelta: eqDelta3,
 	equals: equals3,
-	exp: exp3,
-	exp2: exp_23,
+	exp: exp_3,
+	exp2: exp2_3,
 	fit: fit3,
 	fit01: fit01_3,
 	floor: floor3,
@@ -115,8 +121,8 @@ export const VEC3: VecAPI = {
 	mag: mag3,
 	magSq: magSq3,
 	limit: limit3,
-	log: log3,
-	log2: log_23,
+	log: log_3,
+	log2: log2_3,
 	major: major3,
 	max: max3,
 	min: min3,

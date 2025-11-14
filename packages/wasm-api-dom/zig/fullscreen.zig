@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 pub const FullscreenCallback = *const fn () void;
 
 var fsCallback: ?FullscreenCallback = null;

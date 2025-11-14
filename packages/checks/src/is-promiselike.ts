@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "./implements-function.js";
 
 export const isPromiseLike = <T = any>(x: any): x is Promise<T> =>

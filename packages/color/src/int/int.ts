@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ArrayLikeIterable, Fn, NumericArray } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
@@ -7,7 +8,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
-import { declareIndex } from "@thi.ng/vectors/compile/accessors";
+import { declareIndex } from "@thi.ng/vectors/accessors";
 import { eqDelta4 } from "@thi.ng/vectors/eqdelta";
 import type {
 	ColorFactory,

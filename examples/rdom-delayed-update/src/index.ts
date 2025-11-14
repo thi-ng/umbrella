@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { delayed } from "@thi.ng/compose";
 import { comment, div, h3, img } from "@thi.ng/hiccup-html";
 import { SYSTEM } from "@thi.ng/random";

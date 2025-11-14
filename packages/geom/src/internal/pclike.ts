@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:export
 import { isArray } from "@thi.ng/checks/is-array";
 import { assert } from "@thi.ng/errors/assert";

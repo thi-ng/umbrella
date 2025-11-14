@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asInt } from "@thi.ng/api/typedarray";
 
 export function* hline(x: number, y: number, len: number) {

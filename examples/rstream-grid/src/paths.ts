@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // single source of truth definitions for parameter paths in central
 // app state atom
 

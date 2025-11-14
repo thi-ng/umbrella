@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Approx. 1900 emoji codes. Inverse mapping of {@link NAMES}, i.e. here the
  * emoji names are keys to look up the actual emoji characters in this object.
@@ -6,6 +7,7 @@
  * Source: https://github.com/omnidan/node-emoji/blob/master/lib/emoji.json
  *
  * Changes:
+ *
  * - sorted alphabetically
  * - updated names, replaced all hyphens with underscores
  */

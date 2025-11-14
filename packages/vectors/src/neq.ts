@@ -1,7 +1,32 @@
-import type { CompareOp, MultiCompareOp } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { MATH } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVVNew } from "./defopvv-new.js";
 
-export const [neq, neq2, neq3, neq4] = defOp<MultiCompareOp, CompareOp>(
-	MATH("!==")
-);
+const [a, b, c, d] = defOpVVNew<number, boolean>((a, b) => a !== b);
+
+/**
+ * Compnentwise checks if given 4D vectors `a` and `b` are unequal (using `!==`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector. Multi-method.
+ */
+export const neq = a;
+
+/**
+ * Compnentwise checks if given 2D vectors `a` and `b` are unequal (using `!==`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector.
+ */
+export const neq2 = b;
+
+/**
+ * Compnentwise checks if given 3D vectors `a` and `b` are unequal (using `!==`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector.
+ */
+export const neq3 = c;
+
+/**
+ * Compnentwise checks if given 4D vectors `a` and `b` are unequal (using `!==`
+ * for comparison) and writes results to boolean output vector. If `out` is
+ * null, creates a new result vector.
+ */
+export const neq4 = d;

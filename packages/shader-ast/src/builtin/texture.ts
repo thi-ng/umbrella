@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {

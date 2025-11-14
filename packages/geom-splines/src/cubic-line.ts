@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU2 } from "@thi.ng/api";
 import type { Vec } from "@thi.ng/vectors";
 import { mixN } from "@thi.ng/vectors/mixn";

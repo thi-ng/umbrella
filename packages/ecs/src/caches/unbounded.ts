@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Maybe } from "@thi.ng/api";
 import type { ICache } from "../api.js";
 

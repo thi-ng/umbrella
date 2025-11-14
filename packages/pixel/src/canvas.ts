@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { canvas2d, type Canvas2DOpts } from "@thi.ng/canvas";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { OffscreenRawPixelBuffer, RawPixelBuffer } from "./api.js";

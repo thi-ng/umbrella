@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { comp, iterator, map, range, takeNth } from "@thi.ng/transducers";
 import { expect, test } from "bun:test";
 import { fsm } from "../src/index.js";

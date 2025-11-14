@@ -31,9 +31,9 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/geom-resample": "workspace:^",
 		"@thi.ng/geom-voronoi": "workspace:^",
 		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",
@@ -64,7 +64,7 @@
 		"screenshot": "examples/rotating-voronoi.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^5.7.2",
-		"vite": "^5.4.11"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.12"
 	}
 }

@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/shader-ast-js](https://media.thi.ng/umbrella/banners-20230807/thing-shader-ast-js.svg?4a61902f)
+# ![@thi.ng/shader-ast-js](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-shader-ast-js.svg?4a61902f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-js.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -87,7 +87,7 @@ For Node.js REPL:
 const js = await import("@thi.ng/shader-ast-js");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.56 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.73 KB
 
 ## Dependencies
 

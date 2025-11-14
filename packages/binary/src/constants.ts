@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /** @internal */
 const __defBits = (n: number) =>
 	new Array(n).fill(0).map((_, i) => 1 << (n - 1 - i));

@@ -1,5 +1,6 @@
-import type { AppContext } from "../api";
-import { link } from "./link";
+// SPDX-License-Identifier: Apache-2.0
+import type { AppContext } from "../api.js";
+import { link } from "./link.js";
 
 /**
  * Link component which links to given SHA commit hash using the

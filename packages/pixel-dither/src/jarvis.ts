@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DitherKernel } from "./api.js";
 
 const A = 64 / 48;
@@ -10,6 +11,7 @@ const D = 7 * A;
  *
  * @remarks
  * References:
+ *
  * - https://en.wikipedia.org/wiki/Error_diffusion#minimized_average_error
  * - https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
  */

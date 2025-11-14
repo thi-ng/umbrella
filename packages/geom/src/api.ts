@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, ICopy, IToHiccup } from "@thi.ng/api";
 import * as isec from "@thi.ng/geom-isec/api";
 import * as sample from "@thi.ng/geom-resample/api";
@@ -210,12 +211,12 @@ export interface CubicOpts {
 	 * Controls behavior of curve conversion/interpolation:
 	 *
 	 * - `default`: Original vertices are used control points (see
-	 *   [`closedCubicFromControlPoints()`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromControlPoints.html))
-	 * - `break`: Original vertices are used as curve points, tangents are
-	 *   computed automatically (see
-	 *   [`closedCubicFromBreakPoints()`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromBreakPoints.html))
-	 * - `hobby`: Use John Hobby's interpolation algorithm (see
-	 *   [`cubicHobby2()`](https://docs.thi.ng/umbrella/geom-splines/functions/cubicHobby2.html))
+	 *   [`closedCubicFromControlPoints`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromControlPoints.html))
+	 * - `break`: 2D only. Original vertices are used as curve points, tangents
+	 *   are computed automatically (see
+	 *   [`closedCubicFromBreakPoints`](https://docs.thi.ng/umbrella/geom-splines/functions/closedCubicFromBreakPoints.html))
+	 * - `hobby`: 2D only. Use John Hobby's interpolation algorithm (see
+	 *   [`cubicHobby2`](https://docs.thi.ng/umbrella/geom-splines/functions/cubicHobby2.html))
 	 */
 	mode: "default" | "break" | "hobby";
 	/**

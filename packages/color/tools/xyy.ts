@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { oklab, xyy, xyzD50 } from "@thi.ng/color";
 import { circle, setPrecision } from "@thi.ng/hiccup-svg";
 import { map, normRange3d, push, transduce } from "@thi.ng/transducers";

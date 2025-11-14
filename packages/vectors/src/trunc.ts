@@ -1,6 +1,36 @@
-import type { MultiVecOpV, VecOpV } from "./api.js";
-import { defFnOp } from "./compile/emit.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpV } from "./defopv.js";
 
-export const [trunc, trunc2, trunc3, trunc4] = defFnOp<MultiVecOpV, VecOpV>(
-	"Math.trunc"
-);
+const [a, b, c, d] = defOpV(Math.trunc);
+
+/**
+ * Componentwise computes `Math.trunc` of given nD vector. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const trunc = a;
+
+/**
+ * Componentwise computes `Math.trunc` of given 2D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const trunc2 = b;
+
+/**
+ * Componentwise computes `Math.trunc` of given 3D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const trunc3 = c;
+
+/**
+ * Componentwise computes `Math.trunc` of given 4D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const trunc4 = d;

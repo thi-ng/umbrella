@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * On Firefox `TouchEvent` is undefined if the hardware doesn't support touch.
  * Therefore this predicate checks for that first before verifying if `e` is

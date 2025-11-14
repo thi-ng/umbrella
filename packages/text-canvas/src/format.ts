@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StringFormat } from "@thi.ng/text-format";
 import { format, formatNone } from "@thi.ng/text-format/format";
 import type { Canvas } from "./canvas.js";

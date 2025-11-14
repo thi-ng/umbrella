@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { colorFromRange, setAlpha, srgb } from "@thi.ng/color";
 import { downloadCanvas } from "@thi.ng/dl-asset";
 import { curve } from "@thi.ng/dsp";

@@ -1,10 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div } from "@thi.ng/hiccup-html";
 import {
 	geometryStats,
 	jsonExportTrigger,
 	svgExportTrigger,
-} from "../state/process";
-import { smallButton, title } from "./common";
+} from "../state/process.js";
+import { smallButton, title } from "./common.js";
 
 export const exportControls = div(
 	{

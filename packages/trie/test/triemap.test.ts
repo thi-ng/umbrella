@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { beforeEach, expect, test } from "bun:test";
 import { TrieMap } from "../src/index.js";
 
@@ -10,6 +11,7 @@ beforeEach(
 			["hello", "en"],
 			["hallo", "de"],
 			["hallo", "de-at"],
+			["ha", "n/a"],
 			["hola", "es"],
 			["hold", "en"],
 			["hej", "se"],
@@ -18,7 +20,7 @@ beforeEach(
 
 test("keys", () => {
 	expect(new Set(root.keys())).toEqual(
-		new Set(["hey", "hello", "hallo", "hallo", "hola", "hold", "hej"])
+		new Set(["hey", "hello", "hallo", "hallo", "hola", "hold", "hej", "ha"])
 	);
 	expect(new Set(root.find("he")!.keys())).toEqual(
 		new Set(["y", "llo", "j"])
@@ -27,14 +29,16 @@ test("keys", () => {
 
 test("values", () => {
 	expect(new Set(root.values())).toEqual(
-		new Set(["en", "es", "de-at", "se"])
+		new Set(["en", "es", "de-at", "se", "n/a"])
 	);
 	expect(new Set(root.find("he")!.values())).toEqual(new Set(["en", "se"]));
 });
 
 test("delete", () => {
 	expect(root.delete("he")).toBeTrue();
-	expect(new Set(root.keys())).toEqual(new Set(["hola", "hold", "hallo"]));
+	expect(new Set(root.keys())).toEqual(
+		new Set(["hola", "hold", "hallo", "ha"])
+	);
 	expect(root.delete("hallo")).toBeTrue();
 	expect(root.get("hallo")).toBeUndefined();
 	expect(root.delete("h")).toBeTrue();
@@ -47,6 +51,6 @@ test("known prefix", () => {
 });
 
 test("suffixes", () => {
-	expect([...root.suffixes("he")]).toEqual(["j", "llo", "y"]);
-	expect([...root.suffixes("he", true)]).toEqual(["hej", "hello", "hey"]);
+	expect([...root.keys("he", false)]).toEqual(["j", "llo", "y"]);
+	expect([...root.keys("he", true)]).toEqual(["hej", "hello", "hey"]);
 });

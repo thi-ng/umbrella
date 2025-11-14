@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray } from "@thi.ng/api";
 import { AProc } from "./aproc.js";
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import {
 	anchor,

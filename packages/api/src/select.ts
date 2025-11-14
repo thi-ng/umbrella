@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Select2<T, Q, A, B> = T extends Q ? A : B;
 
 export type Select3<T, Q1, Q2, A, B, C> = T extends Q1

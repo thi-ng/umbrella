@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defError } from "@thi.ng/errors/deferror";
 
 /**
@@ -31,7 +32,7 @@ export const utf8Length = (str: string) => {
 
 /**
  * Non-transducer version of
- * [`utf8Decode()`](https://docs.thi.ng/umbrella/transducers-binary/functions/utf8Decode.html).
+ * [`utf8Decode`](https://docs.thi.ng/umbrella/transducers-binary/functions/utf8Decode.html).
  * Decodes `num` bytes from `start` index in given byte buffer. In Firefox this
  * is much faster than using the `TextDecoder` API.
  *
@@ -71,7 +72,7 @@ export const utf8Decode = (buf: Uint8Array, start: number, num: number) => {
 
 /**
  * Non-transducer version of
- * [`utf8Encode()`](https://docs.thi.ng/umbrella/transducers-binary/functions/utf8Encode.html).
+ * [`utf8Encode`](https://docs.thi.ng/umbrella/transducers-binary/functions/utf8Encode.html).
  *
  * @remarks
  * If `capacity` is given, initializes the byte array to that size (and assumes
@@ -81,6 +82,7 @@ export const utf8Decode = (buf: Uint8Array, start: number, num: number) => {
  * `4 * src.length`.
  *
  * Based on:
+ *
  * - https://github.com/thi-ng/umbrella/blob/main/packages/transducers-binary/src/utf8.ts
  * - https://gist.github.com/pascaldekloe/62546103a1576803dade9269ccf76330
  *

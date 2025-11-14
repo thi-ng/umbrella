@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // swizzle gen:
 // console.log([...permutations("xyz","xyz")].map((x) =>`"${x.join("")}"`).join(" | "))
 

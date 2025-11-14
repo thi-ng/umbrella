@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import type { MultiFn2O } from "@thi.ng/defmulti";
@@ -140,7 +141,7 @@ export type SubdivCurveFn = {
  *
  * - {@link SUBDIV_CHAIKIN}
  * - {@link SUBDIV_CUBIC}
- * - {@link SUBDIV_DISPLACE} (higher order kernel)
+ * - {@link SUBDIV_DISPLACE} (2D only, higher order kernel)
  * - {@link SUBDIV_DLG}
  * - {@link SUBDIV_MID}
  * - {@link SUBDIV_THIRDS}
@@ -167,10 +168,10 @@ export type SubdivCurveFn = {
  *
  * @example
  * ```ts tangle:../export/subdiv-curve.ts
- * import { asSvg, rect, subdivCurve, SUBDIV_CHAIKIN_CLOSED } from "@thi.ng/geom";
+ * import { asSvg, rect, subdivCurve, SUBDIV_CHAIKIN } from "@thi.ng/geom";
  *
  * console.log(
- *   asSvg(subdivCurve(rect(100), SUBDIV_CHAIKIN_CLOSED))
+ *   asSvg(subdivCurve(rect(100), SUBDIV_CHAIKIN))
  * );
  * // <polygon points="0,25 25,0 75,0 100,25 100,75 75,100 25,100 0,75"/>
  * ```

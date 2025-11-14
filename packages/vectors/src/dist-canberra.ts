@@ -1,4 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { DistanceFn } from "./api.js";
+
+/** @internal */
+const { abs } = Math;
 
 /**
  * @remarks
@@ -12,8 +16,8 @@ export const distCanberra: DistanceFn = (a, b) => {
 	for (let i = a.length; i-- > 0; ) {
 		const aa = a[i];
 		const bb = b[i];
-		const d = Math.abs(aa) + Math.abs(bb);
-		d > 0 && (delta += Math.abs(aa - bb) / d);
+		const d = abs(aa) + abs(bb);
+		d > 0 && (delta += abs(aa - bb) / d);
 	}
 	return delta;
 };

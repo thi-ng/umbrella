@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
 
@@ -8,7 +9,7 @@ export const copy = (x: any, ctor: Function) =>
 
 /**
  * Creates shallow copy of `src` object without any properties for which
- * [`isIllegalKey()`](https://docs.thi.ng/umbrella/checks/functions/isIllegalKey.html)
+ * [`isIllegalKey`](https://docs.thi.ng/umbrella/checks/functions/isIllegalKey.html)
  * returns true.
  *
  * @param src

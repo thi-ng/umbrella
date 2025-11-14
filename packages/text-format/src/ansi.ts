@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { memoizeO } from "@thi.ng/memoize/memoizeo";
 import type { StringFormat } from "./api.js";
 import { defFormat } from "./format.js";
@@ -71,7 +72,7 @@ const F6 = 255 / 63;
  * @remarks
  * This mode is intended for image displays, e.g. using thi.ng/pixel and
  * thi.ng/text-canvas
- * [`imageRaw()`](https://docs.thi.ng/umbrella/text-canvas/functions/imageRaw.html).
+ * [`imageRaw`](https://docs.thi.ng/umbrella/text-canvas/functions/imageRaw.html).
  * Also see {@link format565} and {@link format565_8bit}.
  *
  * https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
@@ -101,7 +102,7 @@ export const format256 = (fg: number, bg = 0) =>
 	((bg & 0xff) << 8) | (fg & 0xff);
 
 /**
- * Takes _normalized_ RGB values ([0..1] range) and converts them into an RGB565
+ * Takes _normalized_ RGB values (`[0,1]` range) and converts them into an RGB565
  * value for later use with {@link FMT_ANSI565} or {@link FMT_HTML565}. Does
  * NOT perform clipping!
  *

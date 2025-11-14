@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import { reduce, reductions } from "@thi.ng/transducers";
 import { patchArray, patchObj } from "../src/index.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export interface IToHiccup {
 	/**
 	 * Returns a [thi.ng/hiccup](https://thi.ng/hiccup) compatible

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
@@ -42,7 +43,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  *
  * Regardless of return value, if a state handler has caused a state change to
  * the configured `terminal` state, processing is terminated (by calling
- * [`ensureReduced()`](https://docs.thi.ng/umbrella/transducers/functions/ensureReduced.html))
+ * [`ensureReduced`](https://docs.thi.ng/umbrella/transducers/functions/ensureReduced.html))
  * and no further inputs will be consumed.
  *
  * @example

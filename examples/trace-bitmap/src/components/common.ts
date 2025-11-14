@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import {
@@ -12,7 +13,7 @@ import {
 	type ISubscribable,
 	type ISubscription,
 } from "@thi.ng/rstream";
-import { DB } from "../state/atom";
+import { DB } from "../state/atom.js";
 
 export const title = (title: string) => h3({}, title);
 

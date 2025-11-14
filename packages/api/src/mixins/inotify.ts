@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EVENT_ALL } from "../api.js";
 import type { Event, INotify, Listener } from "../event.js";
 import { mixin } from "../mixin.js";

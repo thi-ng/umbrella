@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { addmN } from "@thi.ng/vectors/addmn";
 import type { Tessellator } from "./api.js";
 

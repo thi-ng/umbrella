@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { fract } from "@thi.ng/math/prec";
 import type { ReadonlyVec } from "@thi.ng/vectors";

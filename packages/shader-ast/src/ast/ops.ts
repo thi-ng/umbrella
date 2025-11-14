@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Assign, Op1, Op2, Sym, Term } from "../api/nodes.js";
@@ -410,8 +411,8 @@ export function bitxor(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 }
 
 /**
- * @reference
- * GLSL ES Specification 3.0, page 71
+ * @remarks
+ * Reference: GLSL ES Specification 3.0, page 71
  *
  * @param l
  * @param r
@@ -427,8 +428,8 @@ export function lshift(l: Term<any>, r: Term<any>): Op2<any> {
 }
 
 /**
- * @reference
- * GLSL ES Specification 3.0, page 71
+ * @remarks
+ * Reference: GLSL ES Specification 3.0, page 71
  *
  * @param l
  * @param r

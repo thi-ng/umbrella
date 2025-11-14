@@ -1,17 +1,17 @@
+// SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
-const api = @import("api.zig");
 
-pub usingnamespace api;
+pub const types = @import("types.zig");
 
-pub extern "webgl" fn canvasGLContext(canvasID: i32, opts: *const api.WebGLContextOpts) i32;
+pub extern "webgl" fn canvasGLContext(canvasID: i32, opts: *const types.WebGLContextOpts) i32;
 
-pub extern "webgl" fn createShader(ctxID: i32, spec: *const api.ShaderSpec) i32;
+pub extern "webgl" fn createShader(ctxID: i32, spec: *const types.ShaderSpec) i32;
 
-pub extern "webgl" fn createModel(ctxID: i32, spec: *const api.ModelSpec) i32;
+pub extern "webgl" fn createModel(ctxID: i32, spec: *const types.ModelSpec) i32;
 
-pub extern "webgl" fn createTexture(ctxID: i32, spec: *const api.TextureSpec) i32;
+pub extern "webgl" fn createTexture(ctxID: i32, spec: *const types.TextureSpec) i32;
 
-pub extern "webgl" fn updateAttrib(modelID: i32, name: [*:0]const u8, spec: *const api.AttribUpdateSpec) void;
+pub extern "webgl" fn updateAttrib(modelID: i32, name: [*:0]const u8, spec: *const types.AttribUpdateSpec) void;
 
 pub extern "webgl" fn uniformVec(modelID: i32, name: [*:0]const u8, value: [*]const f32, size: u32) void;
 
@@ -28,6 +28,13 @@ pub extern "webgl" fn uniformUInt(modelID: i32, name: [*:0]const u8, value: u32)
 pub extern "webgl" fn draw(modelID: i32) void;
 
 pub extern "webgl" fn clear(ctxID: i32, r: f32, g: f32, b: f32, a: f32) void;
+
+// hoist generated helpers
+pub const modelAttribs = types.modelAttribs;
+pub const modelUniforms = types.modelUniforms;
+pub const shaderAttribs = types.shaderAttribs;
+pub const shaderUniforms = types.shaderUniforms;
+pub const shaderVaryings = types.shaderVaryings;
 
 // Syntax sugar for `uniformVec()` and vec2 values
 pub fn uniformVec2(modelID: i32, name: [*:0]const u8, value: *const [2]f32) void {
@@ -66,7 +73,7 @@ pub fn modelAttribF32(
     size: usize,
     stride: usize,
     offset: usize,
-) api.ModelAttribSpec {
+) types.ModelAttribSpec {
     return .{
         .name = name,
         .data = attribDataF32(data),
@@ -84,7 +91,7 @@ pub fn modelAttribI32(
     size: usize,
     stride: usize,
     offset: usize,
-) api.ModelAttribSpec {
+) types.ModelAttribSpec {
     return .{
         .name = name,
         .data = attribDataI32(data),
@@ -102,7 +109,7 @@ pub fn modelAttribU32(
     size: usize,
     stride: usize,
     offset: usize,
-) api.ModelAttribSpec {
+) types.ModelAttribSpec {
     return .{
         .name = name,
         .data = attribDataU32(data),
@@ -125,19 +132,19 @@ pub fn updateAttribU32(modelID: i32, name: [*:0]const u8, data: []const u32, off
     updateAttrib(modelID, name, &.{ .data = attribDataU32(data), .offset = offset });
 }
 
-pub inline fn attribDataF32(data: []const f32) api.ModelAttribData {
-    return .{ .f32 = api.ConstF32Slice.wrap(data) };
+pub inline fn attribDataF32(data: []const f32) types.ModelAttribData {
+    return .{ .f32 = types.ConstF32Slice.wrap(data) };
 }
 
-pub inline fn attribDataI32(data: []const i32) api.ModelAttribData {
-    return .{ .i32 = api.ConstI32Slice.wrap(data) };
+pub inline fn attribDataI32(data: []const i32) types.ModelAttribData {
+    return .{ .i32 = types.ConstI32Slice.wrap(data) };
 }
 
-pub inline fn attribDataU32(data: []const u32) api.ModelAttribData {
-    return .{ .u32 = api.ConstI32Slice.wrap(data) };
+pub inline fn attribDataU32(data: []const u32) types.ModelAttribData {
+    return .{ .u32 = types.ConstI32Slice.wrap(data) };
 }
 
 /// Syntax sugar for defining u8 based `ImageData` from ABGR u32 source data
-pub inline fn textureDataU32(data: []const u32) api.ImageData {
-    return .{ .u8 = api.ConstU8Slice.wrap(std.mem.sliceAsBytes(data)) };
+pub inline fn textureDataU32(data: []const u32) types.ImageData {
+    return .{ .u8 = types.ConstU8Slice.wrap(std.mem.sliceAsBytes(data)) };
 }

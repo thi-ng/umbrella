@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IReset } from "@thi.ng/api";
 import { PI } from "@thi.ng/math/api";
 import { clamp05 } from "@thi.ng/math/interval";
@@ -20,7 +21,7 @@ export const svfAllpass = (fc: number, q?: number) => new SVF("all", fc, q);
  * Multi-type state variable filter w/ trapezoidal integration, after
  * Andrew Simper.
  *
- * Reference:
+ * References:
  *
  * - https://cytomic.com/files/dsp/SvfLinearTrapOptimised2.pdf
  * - https://en.wikipedia.org/wiki/Trapezoidal_rule

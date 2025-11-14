@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defAtom } from "@thi.ng/atom";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { circle, line, svg, text } from "@thi.ng/hiccup-svg";

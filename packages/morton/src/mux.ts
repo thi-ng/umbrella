@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, FnN3 } from "@thi.ng/api";
 import { decode10, decode16, encode10, encode16 } from "./raw.js";
 import {

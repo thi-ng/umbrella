@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { Heap } from "@thi.ng/heaps/heap";

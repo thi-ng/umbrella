@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { TypedArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import {
@@ -13,34 +14,38 @@ import {
 } from "@thi.ng/date";
 import { illegalArgs as unsupported } from "@thi.ng/errors";
 import { createHash } from "node:crypto";
-import { basename } from "node:path";
+import { basename, isAbsolute, join, resolve } from "node:path";
 import type { ImgProcCtx, OutputSpec } from "./api.js";
 
 /** @internal */
 const _ = undefined;
 
 /**
- * Expands/replaces all `{xyz}`-templated identifiers in given file path.
+ * Expands/replaces all `{xyz}`-templated identifiers in given file path and
+ * makes result an absolute path (if needed).
  *
  * @remarks
+ * If the input path is not yet absolute, it will be joined with the
+ * {@link ImgProcOpts.outDir}.
+ *
  * The following built-in IDs are supported and custom IDs will be looked up via
  * the {@link ImgProcOpts.pathParts} options provided to {@link processImage}.
  * Any others will remain as is. Custom IDs take precedence over built-in ones.
  *
- * - name: original base filename (w/o ext)
- * - sha1/224/256/384/512: truncated hash of output
- * - w: current width
- * - h: current height
- * - aspect: "p" (portrait), "l" (landscape) or "sq" (square)
- * - date: yyyyMMdd
- * - time: HHmmss
- * - year: 4-digit year
- * - month: 2-digit month
- * - week: 2-digit week
- * - day: 2-digit day in month
- * - hour: 2-digit hour (24h system)
- * - minute: 2-digit minute
- * - second: 2-digit second
+ * - `name`: original base filename (w/o ext)
+ * - `sha1/224/256/384/512`: truncated hash of output
+ * - `w`: current width
+ * - `h`: current height
+ * - `aspect`: "p" (portrait), "l" (landscape) or "sq" (square)
+ * - `date`: yyyyMMdd
+ * - `time`: HHmmss
+ * - `year`: 4-digit year
+ * - `month`: 2-digit month
+ * - `week`: 2-digit week
+ * - `day`: 2-digit day in month
+ * - `hour`: 2-digit hour (24h system)
+ * - `minute`: 2-digit minute
+ * - `second`: 2-digit second
  *
  * All date/time related values will be in UTC.
  *
@@ -54,8 +59,8 @@ export const formatPath = (
 	ctx: ImgProcCtx,
 	spec: OutputSpec,
 	buf: Buffer | TypedArray
-) =>
-	path.replace(/\{(\w+)\}/g, (match, id) => {
+) => {
+	path = path.replace(/\{(\w+)\}/g, (match, id) => {
 		const custom = ctx.opts.pathParts?.[id];
 		if (custom != null) {
 			return isFunction(custom) ? custom(ctx, spec, buf) : custom;
@@ -105,3 +110,7 @@ export const formatPath = (
 		}
 		return match;
 	});
+	return isAbsolute(path)
+		? path
+		: join(resolve(ctx.opts.outDir || "."), path);
+};

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext } from "./api.js";
 import { $n, $ } from "./safe.js";
 
@@ -5,7 +6,7 @@ import { $n, $ } from "./safe.js";
  * Takes a string and stringified regexp (w/o flags), returns true if
  * regexp matches the string.
  *
- * ( str re -- bool )
+ * Stack effect: `( str re -- bool )`
  *
  * @param ctx -
  */
@@ -19,7 +20,7 @@ export const ismatch = (ctx: StackContext) => {
 };
 
 /**
- * ( str -- obj )
+ * Stack effect: `( str -- obj )`
  *
  * @param ctx -
  */
@@ -31,7 +32,7 @@ export const fromjson = (ctx: StackContext) => {
 };
 
 /**
- * ( x -- str )
+ * Stack effect: `( x -- str )`
  *
  * @param ctx -
  */

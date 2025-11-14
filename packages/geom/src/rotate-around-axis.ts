@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MultiFn3 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { mulV33 } from "@thi.ng/matrices/mulv";

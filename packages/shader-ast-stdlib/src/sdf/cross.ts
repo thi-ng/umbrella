@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
 import { F, V2 } from "@thi.ng/shader-ast/api/types";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
@@ -15,11 +16,12 @@ import { maxComp2 } from "../math/maxcomp.js";
  * radius `r`.
  *
  * @remarks
+ *
  * - `size` consist of overall width/size (in x) and thickness (in y component)
  * - corner radius can also be negative
  *
  * Ported from original GLSL impl by Inigo Quilez:
- * - https://iquilezles.org/articles/distfunctions2d/
+ * https://iquilezles.org/articles/distfunctions2d/
  *
  * @param p -
  * @param size -
@@ -46,7 +48,7 @@ export const sdfCross2 = defn(F, "sdfCross2", [V2, V2, F], (p, size, r) => {
  *
  * @remarks
  * Ported from original GLSL impl by Inigo Quilez:
- * - https://iquilezles.org/articles/distfunctions2d/
+ * https://iquilezles.org/articles/distfunctions2d/
  *
  * @param p -
  * @param size -

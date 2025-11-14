@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/checks",
-	"version": "3.6.19",
+	"version": "3.7.23",
 	"description": "Collection of 70+ type, feature & value checks",
 	"type": "module",
 	"module": "./index.js",
@@ -37,21 +37,16 @@
 		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
-	"dependencies": {
-		"tslib": "^2.8.1"
-	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.48.1",
-		"@types/node": "^22.10.2",
-		"esbuild": "^0.24.2",
-		"typedoc": "^0.27.6",
-		"typescript": "^5.7.2"
+		"@types/node": "^24.9.1",
+		"esbuild": "^0.25.11",
+		"typedoc": "^0.28.14",
+		"typescript": "^5.9.3"
 	},
 	"keywords": [
 		"detect",
@@ -143,6 +138,9 @@
 		},
 		"./is-chrome": {
 			"default": "./is-chrome.js"
+		},
+		"./is-dark-mode": {
+			"default": "./is-dark-mode.js"
 		},
 		"./is-data-url": {
 			"default": "./is-data-url.js"

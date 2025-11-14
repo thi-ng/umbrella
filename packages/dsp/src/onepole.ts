@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IClear, IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math/api";
 import { clamp05 } from "@thi.ng/math/interval";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { Attribs, IHiccupShape2 } from "../api.js";

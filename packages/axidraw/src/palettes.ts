@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { cossin } from "@thi.ng/math/angle";
@@ -76,6 +77,7 @@ export interface RadialPaletteOpts extends BasePaletteOpts {
  * of https://thi.ng/geom-axidraw.
  *
  * Also see:
+ *
  * - {@link LinearPaletteOpts} for options
  * - {@link radialPalette} for circular/elliptical palette layouts
  * - {@link dip} (used internally for dipping sequence)
@@ -171,6 +173,7 @@ export const linearPalette = (opts: LinearPaletteOpts) => {
  *
  * @remarks
  * Also see:
+ *
  * - {@link RadialPaletteOpts} for options
  * - {@link linearPalette} for more details & code example
  * - {@link dip} (used internally for dipping sequence)

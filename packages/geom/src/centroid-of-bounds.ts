@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec } from "@thi.ng/vectors";
 import type { IShape } from "./api.js";
 import { bounds } from "./bounds.js";

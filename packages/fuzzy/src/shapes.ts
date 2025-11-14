@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";
@@ -6,7 +7,7 @@ import { gaussian as $gaussian, sigmoid as $sigmoid } from "@thi.ng/math/mix";
 import type { FuzzyFn } from "./api.js";
 
 /**
- * HOF {@link FuzzyFn} always yielding given `x` (should be in [0,1]
+ * HOF {@link FuzzyFn} always yielding given `x` (should be in `[0,1]`
  * interval).
  *
  * @param x -
@@ -29,8 +30,8 @@ export const point =
 		eqDelta(x, p, eps) ? 1 : 0;
 
 /**
- * HOF {@link FuzzyFn} yielding a rising ramp in [a,b] interval, clamped to
- * [0,1] outputs. Returns 0.0 for inputs <= `a` and 1.0 for inputs >= `b`.
+ * HOF {@link FuzzyFn} yielding a rising ramp in `[a,b]` interval, clamped to
+ *`[0,1]`outputs. Returns 0.0 for inputs <= `a` and 1.0 for inputs >= `b`.
  *
  * @param a -
  * @param b -
@@ -40,8 +41,8 @@ export const ramp: FnU2<number, FuzzyFn> = (a, b) => (x) =>
 
 /**
  * HOF {@link FuzzyFn} yielding a triangle in the input range `[a..b..c]` with
- * `b` defining the position of the peak value (1.0). Returns 0.0 for inputs <
- * `a` or > `c`.
+ * `b` defining the position of the peak value (1.0). Returns 0.0 for inputs
+ * outside the `[a,c]` interval.
  *
  * @param a -
  * @param b -
@@ -168,7 +169,8 @@ export const invAlphaCut =
  * - S-norm like function: 0.0
  *
  * References:
- * - https://www.desmos.com/calculator/pnq6kqzfb5 (interactive graph)
+ *
+ * - [Interactive graph](https://www.desmos.com/calculator/pnq6kqzfb5)
  * - https://en.wikipedia.org/wiki/T-norm
  * - https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts
  *

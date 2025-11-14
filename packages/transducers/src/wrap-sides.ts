@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { inRange } from "@thi.ng/math/interval";
@@ -13,6 +14,7 @@ import { inRange } from "@thi.ng/math/interval";
  * either `nXXX < 0` or larger than `src.length`.
  *
  * See also:
+ *
  * - {@link extendSides}
  * - {@link padSides}
  *

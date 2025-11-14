@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
@@ -125,7 +126,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 							opts
 					  ).type;
 			acc.push(
-				`pub const ${ptr.name} = *const fn (${args}) callconv(.C) ${rtype};`,
+				`pub const ${ptr.name} = *const fn (${args}) callconv(.c) ${rtype};`,
 				""
 			);
 		},

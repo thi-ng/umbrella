@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { AST, type ASTNode, type ASTOpts } from "@thi.ng/gp";
 import { ConsoleLogger, ROOT } from "@thi.ng/logger";
 import { SYSTEM, type IRandom } from "@thi.ng/random";

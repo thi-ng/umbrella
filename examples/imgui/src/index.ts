@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { Atom, History } from "@thi.ng/atom";
 import { timedResult } from "@thi.ng/bench";
@@ -644,7 +645,7 @@ const app = () => {
 							id: "theme",
 							value: state.theme,
 							items: THEME_IDS,
-							title: "GUI theme",
+							label: "GUI theme",
 						})) !== undefined
 					) {
 						DB.resetIn(["theme"], res);
@@ -657,7 +658,7 @@ const app = () => {
 							id: "theme2",
 							value: state.theme,
 							items: THEME_IDS,
-							title: "GUI theme",
+							label: "GUI theme",
 						})) !== undefined
 					) {
 						DB.resetIn(["theme"], res);

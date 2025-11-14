@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import {
 	button,
 	div,
@@ -11,14 +12,14 @@ import { $compile, $inputTrigger } from "@thi.ng/rdom";
 import { inputVectorCoord, staticDropdown } from "@thi.ng/rdom-components";
 import { Stream, reactive, stream, sync } from "@thi.ng/rstream";
 import { map, range } from "@thi.ng/transducers";
-import { DEFAULT_B, DEFAULT_G, DEFAULT_R, STYLE_BT, type Vec2 } from "./api";
-import { WebGLImageCanvas } from "./canvas";
+import { DEFAULT_B, DEFAULT_G, DEFAULT_R, STYLE_BT, type Vec2 } from "./api.js";
+import { WebGLImageCanvas } from "./canvas.js";
 import {
 	PRESETS,
 	downloadPreset,
 	setPresetFromID,
 	setPresetFromObj,
-} from "./presets";
+} from "./presets.js";
 
 // reactive state variables
 const src = stream<File>();

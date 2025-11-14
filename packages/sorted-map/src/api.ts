@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Comparator } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 
@@ -16,7 +17,7 @@ export interface SortedMapOpts<K> {
 	 * comparisons.
 	 *
 	 * @defaultValue
-	 * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
+	 * [`compare`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
 	 */
 	compare: Comparator<K>;
 	/**

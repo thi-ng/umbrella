@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { article, linkCSS, section, slot } from "@thi.ng/hiccup-html";
 import { $tree } from "@thi.ng/rdom";
 import CSS_URL from "./component.css?url";

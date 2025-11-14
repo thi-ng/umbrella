@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { type IDeref } from "@thi.ng/api";
 import type { IDistance, INeighborhood } from "@thi.ng/distance";
@@ -10,13 +11,14 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * @internal
  */
 export class Radial<T> implements INeighborhood<ReadonlyVec, T>, IDeref<T[]> {
+	radius!: number;
 	protected _r!: number;
 	protected _items: T[] = [];
 
 	constructor(
 		public dist: IDistance<ReadonlyVec>,
 		public target: ReadonlyVec,
-		public radius = Infinity
+		radius = Infinity
 	) {
 		this.setRadius(radius);
 	}
@@ -31,9 +33,12 @@ export class Radial<T> implements INeighborhood<ReadonlyVec, T>, IDeref<T[]> {
 	}
 
 	setRadius(r: number) {
-		this.radius = Math.max(0, r);
-		this._r = this.dist.to(this.radius);
-		this.reset();
+		if (this.radius !== r) {
+			this.radius = Math.max(0, r);
+			this._r = this.dist.to(this.radius);
+		}
+		this._items.length = 0;
+		return this;
 	}
 
 	includesDistance(d: number, eucledian = true) {

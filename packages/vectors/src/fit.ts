@@ -1,29 +1,77 @@
-import {
-	fit as _fit,
-	fit01 as _fit01,
-	fit11 as _fit11,
-} from "@thi.ng/math/fit";
-import type {
-	MultiVecOpVVV,
-	MultiVecOpVVVVV,
-	VecOpVVV,
-	VecOpVVVVV,
-} from "./api.js";
-import { defHofOp } from "./compile/emit.js";
-import { ARGS_VVV, FN3, FN5 } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { fit as op } from "@thi.ng/math/fit";
+import type { MultiVecOpVVVVV, VecOpVVVVV } from "./api.js";
+import { vop } from "./vop.js";
 
-export const [fit, fit2, fit3, fit4] = defHofOp<MultiVecOpVVVVV, VecOpVVVVV>(
-	_fit,
-	FN5(),
-	"o,a,b,c,d,e"
+/**
+ * Componentwise maps given 2D vector `a` from the closed source interval
+ * defined by `[b,c]` to the target interval `[d,e]`. Writes result into `o`
+ * (or if null, back into `a`)
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ * @param d - input vector
+ * @param e - input vector
+ */
+export const fit2: VecOpVVVVV = (o, a, b, c, d, e) => {
+	!o && (o = a);
+	o[0] = op(a[0], b[0], c[0], d[0], e[0]);
+	o[1] = op(a[1], b[1], c[1], d[1], e[1]);
+	return o;
+};
+
+/**
+ * Componentwise maps given 3D vector `a` from the closed source interval
+ * defined by `[b,c]` to the target interval `[d,e]`. Writes result into `o`
+ * (or if null, back into `a`)
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ * @param d - input vector
+ * @param e - input vector
+ */
+export const fit3: VecOpVVVVV = (o, a, b, c, d, e) => {
+	!o && (o = a);
+	o[0] = op(a[0], b[0], c[0], d[0], e[0]);
+	o[1] = op(a[1], b[1], c[1], d[1], e[1]);
+	o[2] = op(a[2], b[2], c[2], d[2], e[2]);
+	return o;
+};
+
+/**
+ * Componentwise maps given 4D vector `a` from the closed source interval
+ * defined by `[b,c]` to the target interval `[d,e]`. Writes result into `o`
+ * (or if null, back into `a`)
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ * @param d - input vector
+ * @param e - input vector
+ */
+export const fit4: VecOpVVVVV = (o, a, b, c, d, e) => {
+	!o && (o = a);
+	o[0] = op(a[0], b[0], c[0], d[0], e[0]);
+	o[1] = op(a[1], b[1], c[1], d[1], e[1]);
+	o[2] = op(a[2], b[2], c[2], d[2], e[2]);
+	o[3] = op(a[3], b[3], c[3], d[3], e[3]);
+	return o;
+};
+
+export const fit: MultiVecOpVVVVV = vop(
+	1,
+	(o, a, b, c, d, e) => {
+		!o && (o = a);
+		for (let i = a.length; i-- > 0; )
+			o[i] = op(a[i], b[i], c[i], d[i], e[i]);
+		return o;
+	},
+	fit2,
+	fit3,
+	fit4
 );
-
-export const [fit01, fit01_2, fit01_3, fit01_4] = defHofOp<
-	MultiVecOpVVV,
-	VecOpVVV
->(_fit01, FN3(), ARGS_VVV);
-
-export const [fit11, fit11_2, fit11_3, fit11_4] = defHofOp<
-	MultiVecOpVVV,
-	VecOpVVV
->(_fit11, FN3(), ARGS_VVV);

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Iterator which yields an infinite repetition of given `input`
  * iterable's values. Produces no values if `input` is empty. If `num`

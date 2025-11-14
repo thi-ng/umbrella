@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { asCSS } from "@thi.ng/color-palettes";
 import {
 	asSvg,

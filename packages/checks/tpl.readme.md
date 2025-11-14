@@ -29,6 +29,7 @@
 - [`isBlob`](https://docs.thi.ng/umbrella/checks/functions/isBlob.html)
 - [`isBoolean`](https://docs.thi.ng/umbrella/checks/functions/isBoolean.html)
 - [`isChrome`](https://docs.thi.ng/umbrella/checks/functions/isChrome.html)
+- [`isDarkMode`](https://docs.thi.ng/umbrella/checks/functions/isDarkMode.html)
 - [`isDataURL`](https://docs.thi.ng/umbrella/checks/functions/isDataURL.html)
 - [`isDate`](https://docs.thi.ng/umbrella/checks/functions/isDate.html)
 - [`isEven`](https://docs.thi.ng/umbrella/checks/functions/isEven.html)

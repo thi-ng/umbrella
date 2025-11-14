@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { UIntArray } from "@thi.ng/api";
 import { suite } from "@thi.ng/bench";
 import { decode, encode } from "../src";

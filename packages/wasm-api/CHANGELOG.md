@@ -1,13 +1,37 @@
 # Change Log
 
-- **Last updated**: 2025-01-14T12:23:33Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.4.1) (2025-09-02)
+
+#### ♻️ Refactoring
+
+- update zig `_wasm_allocate()`  & `ManagedIndex` ([3e8870c](https://github.com/thi-ng/umbrella/commit/3e8870c))
+  - store allocator in `ManagedIndex` due to Zig ArrayList defaulting to unmanaged in 0.15.1
+    and managed versions will be removed in future
+  - fix alignment param in `_wasm_allocate()`
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.4.0) (2025-09-01)
+
+#### 🚀 Features
+
+- update Zig build file for Zig v0.15.1 ([ddb2402](https://github.com/thi-ng/umbrella/commit/ddb2402))
+  - set Zig workspace version to 0.15.1
+
+### [2.3.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.3.12) (2025-03-11)
+
+#### ♻️ Refactoring
+
+- minor update core lib (Zig v0.14.0) ([ebe1533](https://github.com/thi-ng/umbrella/commit/ebe1533))
 
 ### [2.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@2.3.1) (2025-01-14)
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumOrString, Path } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -9,11 +10,13 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  * Converts the given key path to canonical form (array).
  *
  * @remarks
- * If given path is an array, performs a safety check to ensure that all path
- * items are strings or numbers and that illegal paths like `[["__proto__"],
- * "foo"]` will be disallowed (throws an error).
+ * If given path is an array, performs a check to ensure that all path items are
+ * strings or numbers (throws error if needed).
  *
- * Also see {@link disallowProtoPath}.
+ * Use {@link disallowProtoPath} for extended functionality to also check for
+ * illegal paths like `[["__proto__"], "foo"]` and throw an error if needed.
+ *
+ * Also see .
  *
  * ```ts tangle:../export/to-path.ts
  * import { toPath } from "@thi.ng/paths";
@@ -32,12 +35,13 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  */
 export const toPath = (path: Path): readonly NumOrString[] => {
 	if (isArray(path)) {
-		if (!path.every((x) => isString(x) || isNumber(x))) __illegal(path);
+		if (!path.every((x) => (isString(x) && x !== "") || isNumber(x)))
+			__illegal(path);
 		return <any[]>path;
 	} else {
 		return isString(path)
 			? path.length > 0
-				? path.split(".")
+				? toPath(path.split("."))
 				: []
 			: path != null
 			? <any[]>[path]
@@ -73,11 +77,11 @@ export const exists = (obj: any, path: Path) => {
 };
 
 /**
- * Helper function. First converts given `path` using {@link toPath} and then
- * analyzes it via
+ * Helper function. First canonicalizes given `path` using {@link toPath} and
+ * then checks it via
  * [`isProtoPath()`](https://docs.thi.ng/umbrella/checks/functions/isProtoPath.html).
  * Throws an error if path contains any property which might lead to prototype
- * poisoning. Returns converted path if valid.
+ * poisoning. Returns canonical path if valid.
  *
  * @remarks
  * The following properties are considered illegal.

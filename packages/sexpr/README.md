@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/sexpr](https://media.thi.ng/umbrella/banners-20230807/thing-sexpr.svg?c7a91f65)
+# ![@thi.ng/sexpr](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-sexpr.svg?c7a91f65)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sexpr.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -47,12 +47,13 @@ Everything else is parsed as is, i.e. as symbol.
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsexpr%5D+in%3Atitle)
 
 ## Related packages
 
+- [@thi.ng/lispy](https://github.com/thi-ng/umbrella/tree/develop/packages/lispy) - Lightweight, extensible, interpreted Lisp-style DSL for embedding in other projects
 - [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse) - Purely functional parser combinators & AST generation for generic inputs
 
 ## Installation
@@ -81,13 +82,14 @@ For Node.js REPL:
 const sexpr = await import("@thi.ng/sexpr");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 865 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 876 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

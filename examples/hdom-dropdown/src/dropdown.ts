@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import { appLink } from "@thi.ng/hdom-components";

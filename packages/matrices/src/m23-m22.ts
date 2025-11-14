@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { set4 } from "@thi.ng/vectors/set";
 import type { MatOpM } from "./api.js";
 

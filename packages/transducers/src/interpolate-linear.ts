@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { mix } from "@thi.ng/math/mix";
 import type { Transducer } from "./api.js";
 import { interpolate } from "./interpolate.js";
@@ -11,6 +12,7 @@ import { interpolate } from "./interpolate.js";
  * produced if there're less than 2 inputs.
  *
  * See also:
+ *
  * - {@link interpolate}
  * - {@link interpolateHermite}
  *

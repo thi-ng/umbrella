@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sincos } from "@thi.ng/math/angle";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
 import type { MatOpN } from "./api.js";

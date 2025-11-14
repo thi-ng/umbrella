@@ -1,55 +1,34 @@
-import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
+import type { Fn2, IObjectOf, Maybe, Pair } from "@thi.ng/api";
 
 export class TrieMap<T> {
-	protected next: IObjectOf<TrieMap<T>> = {};
-	protected val?: T;
+	next: IObjectOf<TrieMap<T>> = {};
+	val?: T;
+
 	protected n = 0;
 
 	constructor(pairs?: Iterable<Pair<string, T>>) {
 		pairs && this.into(pairs);
 	}
 
-	*[Symbol.iterator]() {
-		const queue: Pair<string, TrieMap<T>>[] = [["", this]];
-		while (queue.length) {
-			const [prefix, node] = queue.pop()!;
-			if (node.val !== undefined) {
-				yield [prefix, node.val];
-			} else {
-				node.queueChildren(queue, prefix);
-			}
-		}
+	[Symbol.iterator]() {
+		return this.iterate((key, node) => <Pair<string, T>>[key, node.val]);
 	}
 
-	*keys(prefix = "") {
-		const queue: Pair<string, TrieMap<T>>[] = [[prefix, this]];
-		while (queue.length) {
-			const [key, node] = queue.pop()!;
-			if (node.val !== undefined) {
-				yield key;
-			} else {
-				node.queueChildren(queue, key);
-			}
-		}
+	keys(prefix?: string, includePrefix = true) {
+		return this.iterate((key) => key, prefix, includePrefix);
 	}
 
-	*values() {
-		const queue: TrieMap<T>[] = [this];
-		while (queue.length) {
-			const node = queue.pop()!;
-			if (node.val !== undefined) {
-				yield node.val;
-			} else {
-				queue.push(...Object.values(node.next));
-			}
-		}
+	values(prefix?: string) {
+		return this.iterate((_, node) => node.val!, prefix);
 	}
 
-	*suffixes(prefix: string, withPrefix = false) {
-		const node = this.find(prefix);
-		if (node) {
-			yield* node.keys(withPrefix ? prefix : "");
-		}
+	entries(prefix?: string, includePrefix = true) {
+		return this.iterate(
+			(key, node) => <Pair<string, T>>[key, node.val],
+			prefix,
+			includePrefix
+		);
 	}
 
 	clear() {
@@ -144,14 +123,51 @@ export class TrieMap<T> {
 		return true;
 	}
 
-	protected queueChildren(queue: [string, TrieMap<T>][], prefix: string) {
-		queue.push(
-			...Object.keys(this.next).map(
-				(k) => <Pair<string, TrieMap<T>>>[prefix + k, this.next[k]]
-			)
-		);
+	protected *iterate<V>(
+		fn: Fn2<string, TrieMap<T>, V>,
+		prefix = "",
+		includePrefix = true
+	) {
+		const root = this.find(prefix);
+		if (!root) return;
+		const queue: Pair<string, TrieMap<T>>[] = [
+			[includePrefix ? prefix : "", root],
+		];
+		while (queue.length) {
+			const [key, node] = queue.pop()!;
+			if (node.val !== undefined) yield fn(key, node);
+			queue.push(
+				...Object.entries(node.next).map(
+					([k, v]) => <Pair<string, TrieMap<T>>>[key + k, v]
+				)
+			);
+		}
 	}
 }
 
 export const defTrieMap = <T>(pairs?: Iterable<Pair<string, T>>) =>
 	new TrieMap(pairs);
+
+export type SerializedTrieMap<T> = {
+	next: IObjectOf<SerializedTrieMap<T>>;
+	val?: T;
+};
+
+/**
+ * Reconstruct a {@link MultiTrie} from serialized JSON.
+ *
+ * @param src
+ * @param opts
+ */
+export const defTrieMapFromJSON = <V>(src: SerializedTrieMap<V>) => {
+	const res = defTrieMap<V>();
+	const queue = <[string, SerializedTrieMap<V>][]>[["", src]];
+	while (queue.length) {
+		const [key, node] = queue.pop()!;
+		if (node.val) res.set(key, node.val);
+		for (let [k, child] of Object.entries(node.next)) {
+			queue.push([key + k, child]);
+		}
+	}
+	return res;
+};

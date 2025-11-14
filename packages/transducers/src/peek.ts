@@ -1,10 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
 import { peek as _peek } from "@thi.ng/arrays/peek";
 import type { Transducer } from "./api.js";
 import { map } from "./map.js";
 
 /**
  * Transducer version of
- * [`peek()`](https://docs.thi.ng/umbrella/arrays/functions/peek.html), i.e.
+ * [`peek`](https://docs.thi.ng/umbrella/arrays/functions/peek.html), i.e.
  * extracts the last item of an array.
  *
  * @example

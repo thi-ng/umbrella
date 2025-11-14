@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { HDOMImplementation } from "./api.js";
 import { diffTree } from "./diff.js";
 import {

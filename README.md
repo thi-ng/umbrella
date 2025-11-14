@@ -1,12 +1,13 @@
 ![thi.ng/umbrella](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-umbrella-masthead.jpg)
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thi-ng/umbrella/test.yml?branch=main)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
-[![Code Climate](https://api.codeclimate.com/v1/badges/592940419adb5bf8abaf/maintainability)](https://codeclimate.com/github/thi-ng/umbrella/maintainability)
+[![Become a sponsor](https://img.shields.io/badge/github-sponsor-yellow.svg)](https://github.com/sponsors/postspectacular/)
 [![Become a patron](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/thing_umbrella)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 - [About](#about)
 - [Getting Started](#getting-started)
+  - [Documentation](#documentation)
   - [Project templates](#project-templates)
   - [#HowToThing](#howtothing)
   - [Blog posts](#blog-posts)
@@ -18,23 +19,24 @@
   - [Wiki](#wiki)
 - [Projects](#projects)
   - [Latest updates](#latest-updates)
-  - [Fundamentals](#fundamentals)
-  - [Maths](#maths)
-  - [Randomness](#randomness)
-  - [File / file format / hardware support](#file--file-format--hardware-support)
-  - [Iterator, stream & sequence processing](#iterator-stream--sequence-processing)
-  - [Reactive programming](#reactive-programming)
   - [Algorithms & data structures](#algorithms--data-structures)
-  - [Frontend / UI](#frontend--ui)
-  - [Geometry, image & visualization](#geometry-image--visualization)
-  - [WebGL / GPGPU](#webgl--gpgpu)
-  - [Low-level, binary, memory management, interop](#low-level-binary-memory-management-interop)
   - [DSLs](#dsls)
+  - [File / file format / hardware support](#file--file-format--hardware-support)
+  - [Frontend / UI](#frontend--ui)
+  - [Fundamentals](#fundamentals)
+  - [Geometry, image & visualization](#geometry-image--visualization)
+  - [Iterator, stream & sequence processing](#iterator-stream--sequence-processing)
+  - [Low-level, binary, memory management, interop](#low-level-binary-memory-management-interop)
+  - [Maths](#maths)
+  - [Network](#network)
+  - [Randomness](#randomness)
+  - [Reactive programming](#reactive-programming)
+  - [WebGL / GPGPU](#webgl--gpgpu)
   - [Deprecated packages](#deprecated-packages)
 - [Building](#building)
   - [Building example projects](#building-example-projects)
   - [Testing](#testing)
-  - [Documentation](#documentation)
+  - [Building API docs](#building-api-docs)
   - [Extracting code examples from readme files & comments](#extracting-code-examples-from-readme-files--comments)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -60,9 +62,9 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 200 individual
-TypeScript libraries/packages/tools and ~180 example projects illustrating their
-usage, currently totalling ~208k SLOC and ~4100 source files... Some of the
+Not including deprecations, this mono-repository is home to 210 individual
+TypeScript libraries/packages/tools and ~185 example projects illustrating their
+usage, currently totalling ~244k SLOC and ~4300 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
@@ -150,7 +152,11 @@ least for all the larger and/or more important ones), as well as [hundreds of
 small usage examples/snippets in doc strings & readme
 files](#extracting-code-examples-from-readme-files--comments).
 
-**Documentation and changelogs for all packages: [docs.thi.ng](https://docs.thi.ng/)**
+### Documentation
+
+- [Generated API docs (overview)](https://docs.thi.ng/)
+- [Single page API docs for all pacakges (work-in-progress)](https://docs.thi.ng/umbrella)
+- [Hundreds of usage examples/snippets](#extracting-code-examples-from-readme-files--comments)
 
 If you're unsure about something, please [reach
 out](#community-contributing-getting-help)! Any constructive feedback is always
@@ -306,67 +312,57 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-01-17
+As of: 2025-11-13
 
-| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
-|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/array`](./packages/array) | [![version](https://img.shields.io/npm/v/@thi.ng/array.svg)](https://www.npmjs.com/package/@thi.ng/array) | [changelog](./packages/array/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse) | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse) | [changelog](./packages/parse/CHANGELOG.md) |
+| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
+|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays) | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays) | [changelog](./packages/arrays/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hex`](./packages/hex)       | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)       | [changelog](./packages/hex/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sax`](./packages/sax)       | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)       | [changelog](./packages/sax/CHANGELOG.md)    |
 
-### Fundamentals
+### Algorithms & data structures
 
-| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                              |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|----------------------------------------------------------|
-| [`@thi.ng/args`](./packages/args)                 | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                 | [changelog](./packages/args/CHANGELOG.md)         | Declarative & functional CLI arg parsing & coercions     |
-| [`@thi.ng/api`](./packages/api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                   | [changelog](./packages/api/CHANGELOG.md)          | Common types, decorators, mixins                         |
-| [`@thi.ng/bench`](./packages/bench)               | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)               | [changelog](./packages/bench/CHANGELOG.md)        | Basic benchmarking helpers                               |
-| [`@thi.ng/checks`](./packages/checks)             | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)             | [changelog](./packages/checks/CHANGELOG.md)       | Type & value checks                                      |
-| [`@thi.ng/compare`](./packages/compare)           | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)           | [changelog](./packages/compare/CHANGELOG.md)      | Comparators                                              |
-| [`@thi.ng/compose`](./packages/compose)           | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)           | [changelog](./packages/compose/CHANGELOG.md)      | Functional composition helpers                           |
-| [`@thi.ng/date`](./packages/date)                 | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                 | [changelog](./packages/date/CHANGELOG.md)         | Date/time iterators, formatters, rounding                |
-| [`@thi.ng/defmulti`](./packages/defmulti)         | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)         | [changelog](./packages/defmulti/CHANGELOG.md)     | Dynamic multiple dispatch                                |
-| [`@thi.ng/distance`](./packages/distance)         | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)         | [changelog](./packages/distance/CHANGELOG.md)     | n-D distance metrics & K-nearest neighborhoods           |
-| [`@thi.ng/equiv`](./packages/equiv)               | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)               | [changelog](./packages/equiv/CHANGELOG.md)        | Deep value equivalence checking                          |
-| [`@thi.ng/errors`](./packages/errors)             | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)             | [changelog](./packages/errors/CHANGELOG.md)       | Custom error types                                       |
-| [`@thi.ng/expose`](./packages/expose)             | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)             | [changelog](./packages/expose/CHANGELOG.md)       | Conditional global variable exposition                   |
-| [`@thi.ng/fibers`](./packages/fibers)             | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)             | [changelog](./packages/fibers/CHANGELOG.md)       | Process hierarchies & ops for cooperative multitasking   |
-| [`@thi.ng/hex`](./packages/hex)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)                   | [changelog](./packages/hex/CHANGELOG.md)          | Hex value formatters for U4-64 words                     |
-| [`@thi.ng/logger`](./packages/logger)             | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)             | [changelog](./packages/logger/CHANGELOG.md)       | Basis infrastructure for arbitrary logging               |
-| [`@thi.ng/memoize`](./packages/memoize)           | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)           | [changelog](./packages/memoize/CHANGELOG.md)      | Function memoization w/ customizable caching             |
-| [`@thi.ng/object-utils`](./packages/object-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/object-utils.svg)](https://www.npmjs.com/package/@thi.ng/object-utils) | [changelog](./packages/object-utils/CHANGELOG.md) | Plain JS object & map manipulation                       |
-| [`@thi.ng/oquery`](./packages/oquery)             | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)             | [changelog](./packages/oquery/CHANGELOG.md)       | Pattern based query engine for JS objects                |
-| [`@thi.ng/parse`](./packages/parse)               | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)               | [changelog](./packages/parse/CHANGELOG.md)        | Parser combinators & AST generator/transformer           |
-| [`@thi.ng/paths`](./packages/paths)               | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)               | [changelog](./packages/paths/CHANGELOG.md)        | Immutable nested object accessors                        |
-| [`@thi.ng/strings`](./packages/strings)           | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)           | [changelog](./packages/strings/CHANGELOG.md)      | Higher-order string formatting utils                     |
-| [`@thi.ng/system`](./packages/system)             | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)             | [changelog](./packages/system/CHANGELOG.md)       | Minimal life cycle container for stateful app components |
-| [`@thi.ng/timestamp`](./packages/timestamp)       | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)       | [changelog](./packages/timestamp/CHANGELOG.md)    | Timestamp abstraction/wrapper                            |
-| [`@thi.ng/transclude`](./packages/transclude)     | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)     | [changelog](./packages/transclude/CHANGELOG.md)   | Template engine for text document generation             |
-| [`@thi.ng/units`](./packages/units)               | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)               | [changelog](./packages/units/CHANGELOG.md)        | Extensible SI unit conversions                           |
+| Project                                             | Version                                                                                                                   | Changelog                                          | Description                                           |
+|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|-------------------------------------------------------|
+| [`@thi.ng/adjacency`](./packages/adjacency)         | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)         | [changelog](./packages/adjacency/CHANGELOG.md)     | Adjacency matrices & graph algorithms                 |
+| [`@thi.ng/arrays`](./packages/arrays)               | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)               | [changelog](./packages/arrays/CHANGELOG.md)        | Array utilities                                       |
+| [`@thi.ng/associative`](./packages/associative)     | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)     | [changelog](./packages/associative/CHANGELOG.md)   | Alt Set & Map implementations                         |
+| [`@thi.ng/atom`](./packages/atom)                   | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                   | [changelog](./packages/atom/CHANGELOG.md)          | Immutable value wrappers, views, history              |
+| [`@thi.ng/bitfield`](./packages/bitfield)           | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)           | [changelog](./packages/bitfield/CHANGELOG.md)      | 1D/2D bit field implementations                       |
+| [`@thi.ng/bidir-index`](./packages/bidir-index)     | [![version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index)     | [changelog](./packages/bidir-index/CHANGELOG.md)   | Bi-directional key-value map/index                    |
+| [`@thi.ng/buffers`](./packages/buffers)             | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)             | [changelog](./packages/buffers/CHANGELOG.md)       | Generic read/write buffers w/ diff. behaviors         |
+| [`@thi.ng/cache`](./packages/cache)                 | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)                 | [changelog](./packages/cache/CHANGELOG.md)         | In-memory caches / strategies                         |
+| [`@thi.ng/cellular`](./packages/cellular)           | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)           | [changelog](./packages/cellular/CHANGELOG.md)      | Highly configurable 1D Cellular automata              |
+| [`@thi.ng/dcons`](./packages/dcons)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)                 | [changelog](./packages/dcons/CHANGELOG.md)         | Doubly-linked list                                    |
+| [`@thi.ng/diff`](./packages/diff)                   | [![version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)                   | [changelog](./packages/diff/CHANGELOG.md)          | Array & object diffing                                |
+| [`@thi.ng/disjoint-set`](./packages/disjoint-set)   | [![version](https://img.shields.io/npm/v/@thi.ng/disjoint-set.svg)](https://www.npmjs.com/package/@thi.ng/disjoint-set)   | [changelog](./packages/disjoint-set/CHANGELOG.md)  | Disjoint Set data structure                           |
+| [`@thi.ng/dgraph`](./packages/dgraph)               | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)               | [changelog](./packages/dgraph/CHANGELOG.md)        | Dependency graph                                      |
+| [`@thi.ng/ecs`](./packages/ecs)                     | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                     | [changelog](./packages/ecs/CHANGELOG.md)           | Entity-Component System                               |
+| [`@thi.ng/gp`](./packages/gp)                       | [![version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)                       | [changelog](./packages/gp/CHANGELOG.md)            | Genetic programming helpers / AST gen                 |
+| [`@thi.ng/heaps`](./packages/heaps)                 | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)                 | [changelog](./packages/heaps/CHANGELOG.md)         | Binary & d-ary heap impls                             |
+| [`@thi.ng/idgen`](./packages/idgen)                 | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)                 | [changelog](./packages/idgen/CHANGELOG.md)         | Versioned ID generation / free-list                   |
+| [`@thi.ng/k-means`](./packages/k-means)             | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)             | [changelog](./packages/k-means/CHANGELOG.md)       | K-means clustering of n-D data                        |
+| [`@thi.ng/leaky-bucket`](./packages/leaky-bucket)   | [![version](https://img.shields.io/npm/v/@thi.ng/leaky-bucket.svg)](https://www.npmjs.com/package/@thi.ng/leaky-bucket)   | [changelog](./packages/leaky-bucket/CHANGELOG.md)  | Counter-based Leaky Bucket implementation             |
+| [`@thi.ng/ramp`](./packages/ramp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)                   | [changelog](./packages/ramp/CHANGELOG.md)          | Parametric, interpolated lookup tables                |
+| [`@thi.ng/quad-edge`](./packages/quad-edge)         | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)         | [changelog](./packages/quad-edge/CHANGELOG.md)     | Quad-edge, dual-graph data structure                  |
+| [`@thi.ng/resolve-map`](./packages/resolve-map)     | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)     | [changelog](./packages/resolve-map/CHANGELOG.md)   | DAG computations & value resolution                   |
+| [`@thi.ng/sorted-map`](./packages/sorted-map)       | [![version](https://img.shields.io/npm/v/@thi.ng/sorted-map.svg)](https://www.npmjs.com/package/@thi.ng/sorted-map)       | [changelog](./packages/sorted-map/CHANGELOG.md)    | Sorted map & set datastructure                        |
+| [`@thi.ng/sparse-set`](./packages/sparse-set)       | [![version](https://img.shields.io/npm/v/@thi.ng/sparse-set.svg)](https://www.npmjs.com/package/@thi.ng/sparse-set)       | [changelog](./packages/sparse-set/CHANGELOG.md)    | Sparse set datastructure                              |
+| [`@thi.ng/tensors`](./packages/tensors)             | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)             | [changelog](./packages/tensors/CHANGELOG.md)       | 1D-4D tensors, views & operations                     |
+| [`@thi.ng/text-analysis`](./packages/text-analysis) | [![version](https://img.shields.io/npm/v/@thi.ng/text-analysis.svg)](https://www.npmjs.com/package/@thi.ng/text-analysis) | [changelog](./packages/text-analysis/CHANGELOG.md) | Tokenization, statistics, vector encoding, clustering |
+| [`@thi.ng/trie`](./packages/trie)                   | [![version](https://img.shields.io/npm/v/@thi.ng/trie.svg)](https://www.npmjs.com/package/@thi.ng/trie)                   | [changelog](./packages/trie/CHANGELOG.md)          | Trie-based map datastructure w/ prefix queries        |
+| [`@thi.ng/vclock`](./packages/vclock)               | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)               | [changelog](./packages/vclock/CHANGELOG.md)        | Vector clock functions / comparators                  |
+| [`@thi.ng/zipper`](./packages/zipper)               | [![version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)               | [changelog](./packages/zipper/CHANGELOG.md)        | Immutable tree editing / navigation                   |
 
-### Maths
+### DSLs
 
-| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                                |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|------------------------------------------------------------|
-| [`@thi.ng/dual-algebra`](./packages/dual-algebra) | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra) | [changelog](./packages/dual-algebra/CHANGELOG.md) | Dual number algebra / automatic differentiation            |
-| [`@thi.ng/dsp`](./packages/dsp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                   | [changelog](./packages/dsp/CHANGELOG.md)          | DSP utils, composable signal gens/processors               |
-| [`@thi.ng/fuzzy`](./packages/fuzzy)               | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)               | [changelog](./packages/fuzzy/CHANGELOG.md)        | Fuzzy logic primitives & rule inference engine             |
-| [`@thi.ng/intervals`](./packages/intervals)       | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)       | [changelog](./packages/intervals/CHANGELOG.md)    | Open/closed intervals, queries, set ops                    |
-| [`@thi.ng/math`](./packages/math)                 | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                 | [changelog](./packages/math/CHANGELOG.md)         | Assorted common math functions & utilities                 |
-| [`@thi.ng/matrices`](./packages/matrices)         | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)         | [changelog](./packages/matrices/CHANGELOG.md)     | Matrix operations                                          |
-| [`@thi.ng/sparse`](./packages/sparse)             | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)             | [changelog](./packages/sparse/CHANGELOG.md)       | Sparse matrix & vector impls                               |
-| [`@thi.ng/timestep`](./packages/timestep)         | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)         | [changelog](./packages/timestep/CHANGELOG.md)     | Fixed timestep simulation updates with state interpolation |
-| [`@thi.ng/vectors`](./packages/vectors)           | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)           | [changelog](./packages/vectors/CHANGELOG.md)      | Fixed & arbitrary-length vector ops                        |
-
-### Randomness
-
-| Project                                             | Version                                                                                                                   | Changelog                                          | Description                                              |
-|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
-| [`@thi.ng/colored-noise`](./packages/colored-noise) | [![version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise) | [changelog](./packages/colored-noise/CHANGELOG.md) | 1D colored noise generators                              |
-| [`@thi.ng/ksuid`](./packages/ksuid)                 | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                 | [changelog](./packages/ksuid/CHANGELOG.md)         | K-sortable unique identifiers, binary & base-N encoded   |
-| [`@thi.ng/lowdisc`](./packages/lowdisc)             | [![version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)             | [changelog](./packages/lowdisc/CHANGELOG.md)       | n-D Low discrepancy sequence generators                  |
-| [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations, distributions & utilities |
-| [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) | PRNG impl & utilities for fxhash projects                |
-| [`@thi.ng/uuid`](./packages/uuid)                   | [![version](https://img.shields.io/npm/v/@thi.ng/uuid.svg)](https://www.npmjs.com/package/@thi.ng/uuid)                   | [changelog](./packages/uuid/CHANGELOG.md)          | Binary & string-based UUID v4 generator                  |
+| Project                                               | Version                                                                                                                     | Changelog                                           | Description                                   |
+|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
+| [`@thi.ng/lispy`](./packages/lispy)                   | [![version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)                   | [changelog](./packages/lispy/CHANGELOG.md)          | Extensible, interpreted Lisp-style DSL        |
+| [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
+| [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
+| [`@thi.ng/proctext`](./packages/proctext)             | [![version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext)             | [changelog](./packages/proctext/CHANGELOG.md)       | Procedural text generation engine             |
+| [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure  |
 
 ### File / file format / hardware support
 
@@ -377,6 +373,7 @@ As of: 2025-01-17
 | [`@thi.ng/csv`](./packages/csv)                             | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                             | [changelog](./packages/csv/CHANGELOG.md)               | Customizable CSV parser/object mapper           |
 | [`@thi.ng/dot`](./packages/dot)                             | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                             | [changelog](./packages/dot/CHANGELOG.md)               | Graphviz DOM & export                           |
 | [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)               | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)               | [changelog](./packages/dsp-io-wav/CHANGELOG.md)        | WAV file format exporter                        |
+| [`@thi.ng/egf`](./packages/egf)                             | [![version](https://img.shields.io/npm/v/@thi.ng/egf.svg)](https://www.npmjs.com/package/@thi.ng/egf)                             | [changelog](./packages/egf/CHANGELOG.md)               | Extensible Graph Format                         |
 | [`@thi.ng/file-io`](./packages/file-io)                     | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                     | [changelog](./packages/file-io/CHANGELOG.md)           | Assorted file I/O utils for NodeJS              |
 | [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)             | [changelog](./packages/geom-io-obj/CHANGELOG.md)       | Wavefront OBJ model parser                      |
 | [`@thi.ng/hiccup-css`](./packages/hiccup-css)               | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)               | [changelog](./packages/hiccup-css/CHANGELOG.md)        | CSS from nested JS data structures              |
@@ -394,66 +391,6 @@ As of: 2025-01-17
 | [`@thi.ng/prefixes`](./packages/prefixes)                   | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)                   | [changelog](./packages/prefixes/CHANGELOG.md)          | Linked Data, RDF & xmlns prefixes/URLs          |
 | [`@thi.ng/sax`](./packages/sax)                             | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                             | [changelog](./packages/sax/CHANGELOG.md)               | SAX-like XML parser / transducer                |
 | [`@thi.ng/tangle`](./packages/tangle)                       | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                       | [changelog](./packages/tangle/CHANGELOG.md)            | Literate programming utilities                  |
-
-### Iterator, stream & sequence processing
-
-| Project                                                       | Version                                                                                                                             | Changelog                                               | Description                             |
-|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------|
-| [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                | Channel based async ops                 |
-| [`@thi.ng/grid-iterators`](./packages/grid-iterators)         | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)         | [changelog](./packages/grid-iterators/CHANGELOG.md)     | 2D grid iterator strategies             |
-| [`@thi.ng/seq`](./packages/seq)                               | [![version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)                               | [changelog](./packages/seq/CHANGELOG.md)                | Lisp/Clojure-style sequence abstraction |
-| [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        | Composable data transformations         |
-| [`@thi.ng/transducers-async`](./packages/transducers-async)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)   | [changelog](./packages/transducers-async/CHANGELOG.md)  | Async transducers, reducers & iterators |
-| [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) | Binary data related transducers         |
-| [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    | Finite state transducer                 |
-| [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)     | [changelog](./packages/transducers-hdom/CHANGELOG.md)   | Transducer based hdom UI updates        |
-| [`@thi.ng/transducers-patch`](./packages/transducers-patch)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)   | [changelog](./packages/transducers-patch/CHANGELOG.md)  | Patch-based, array & object editing     |
-| [`@thi.ng/transducers-stats`](./packages/transducers-stats)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)   | [changelog](./packages/transducers-stats/CHANGELOG.md)  | Technical / statistical analysis        |
-
-### Reactive programming
-
-| Project                                                   | Version                                                                                                                         | Changelog                                             | Description                                  |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|----------------------------------------------|
-| [`@thi.ng/rstream`](./packages/rstream)                   | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                   | [changelog](./packages/rstream/CHANGELOG.md)          | Push-based, reactive event stream primitves  |
-| [`@thi.ng/rstream-csp`](./packages/rstream-csp)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)           | [changelog](./packages/rstream-csp/CHANGELOG.md)      | Adapter bridge CSP -> rstream                |
-| [`@thi.ng/rstream-dot`](./packages/rstream-dot)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)           | [changelog](./packages/rstream-dot/CHANGELOG.md)      | Graphviz visualization of rstream topologies |
-| [`@thi.ng/rstream-gestures`](./packages/rstream-gestures) | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures) | [changelog](./packages/rstream-gestures/CHANGELOG.md) | Mouse & touch event stream abstraction       |
-| [`@thi.ng/rstream-graph`](./packages/rstream-graph)       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)       | [changelog](./packages/rstream-graph/CHANGELOG.md)    | Declarative dataflow graph construction      |
-| [`@thi.ng/rstream-log`](./packages/rstream-log)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)           | [changelog](./packages/rstream-log/CHANGELOG.md)      | Hierarchical structured data logging         |
-| [`@thi.ng/rstream-log-file`](./packages/rstream-log-file) | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log-file.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log-file) | [changelog](./packages/rstream-log-file/CHANGELOG.md) | Log-file output handler                      |
-| [`@thi.ng/rstream-query`](./packages/rstream-query)       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)       | [changelog](./packages/rstream-query/CHANGELOG.md)    | Triple store & query engine                  |
-
-### Algorithms & data structures
-
-| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                    |
-|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|------------------------------------------------|
-| [`@thi.ng/adjacency`](./packages/adjacency)       | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)       | [changelog](./packages/adjacency/CHANGELOG.md)    | Adjacency matrices & graph algorithms          |
-| [`@thi.ng/arrays`](./packages/arrays)             | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)             | [changelog](./packages/arrays/CHANGELOG.md)       | Array utilities                                |
-| [`@thi.ng/associative`](./packages/associative)   | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)   | [changelog](./packages/associative/CHANGELOG.md)  | Alt Set & Map implementations                  |
-| [`@thi.ng/atom`](./packages/atom)                 | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                 | [changelog](./packages/atom/CHANGELOG.md)         | Immutable value wrappers, views, history       |
-| [`@thi.ng/bitfield`](./packages/bitfield)         | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)         | [changelog](./packages/bitfield/CHANGELOG.md)     | 1D/2D bit field implementations                |
-| [`@thi.ng/bidir-index`](./packages/bidir-index)   | [![version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index)   | [changelog](./packages/bidir-index/CHANGELOG.md)  | Bi-directional key-value map/index             |
-| [`@thi.ng/buffers`](./packages/buffers)           | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)           | [changelog](./packages/buffers/CHANGELOG.md)      | Generic read/write buffers w/ diff. behaviors  |
-| [`@thi.ng/cache`](./packages/cache)               | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)               | [changelog](./packages/cache/CHANGELOG.md)        | In-memory caches / strategies                  |
-| [`@thi.ng/cellular`](./packages/cellular)         | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)         | [changelog](./packages/cellular/CHANGELOG.md)     | Highly configurable 1D Cellular automata       |
-| [`@thi.ng/dcons`](./packages/dcons)               | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)               | [changelog](./packages/dcons/CHANGELOG.md)        | Doubly-linked list                             |
-| [`@thi.ng/diff`](./packages/diff)                 | [![version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)                 | [changelog](./packages/diff/CHANGELOG.md)         | Array & object diffing                         |
-| [`@thi.ng/disjoint-set`](./packages/disjoint-set) | [![version](https://img.shields.io/npm/v/@thi.ng/disjoint-set.svg)](https://www.npmjs.com/package/@thi.ng/disjoint-set) | [changelog](./packages/disjoint-set/CHANGELOG.md) | Disjoint Set data structure                    |
-| [`@thi.ng/dgraph`](./packages/dgraph)             | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)             | [changelog](./packages/dgraph/CHANGELOG.md)       | Dependency graph                               |
-| [`@thi.ng/ecs`](./packages/ecs)                   | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                   | [changelog](./packages/ecs/CHANGELOG.md)          | Entity-Component System                        |
-| [`@thi.ng/egf`](./packages/egf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/egf.svg)](https://www.npmjs.com/package/@thi.ng/egf)                   | [changelog](./packages/egf/CHANGELOG.md)          | Extensible Graph Format                        |
-| [`@thi.ng/gp`](./packages/gp)                     | [![version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)                     | [changelog](./packages/gp/CHANGELOG.md)           | Genetic programming helpers / AST gen          |
-| [`@thi.ng/heaps`](./packages/heaps)               | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)               | [changelog](./packages/heaps/CHANGELOG.md)        | Binary & d-ary heap impls                      |
-| [`@thi.ng/idgen`](./packages/idgen)               | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)               | [changelog](./packages/idgen/CHANGELOG.md)        | Versioned ID generation / free-list            |
-| [`@thi.ng/k-means`](./packages/k-means)           | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)           | [changelog](./packages/k-means/CHANGELOG.md)      | K-means clustering of n-D data                 |
-| [`@thi.ng/ramp`](./packages/ramp)                 | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)                 | [changelog](./packages/ramp/CHANGELOG.md)         | Parametric, interpolated lookup tables         |
-| [`@thi.ng/quad-edge`](./packages/quad-edge)       | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)       | [changelog](./packages/quad-edge/CHANGELOG.md)    | Quad-edge, dual-graph data structure           |
-| [`@thi.ng/resolve-map`](./packages/resolve-map)   | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)   | [changelog](./packages/resolve-map/CHANGELOG.md)  | DAG computations & value resolution            |
-| [`@thi.ng/sorted-map`](./packages/sorted-map)     | [![version](https://img.shields.io/npm/v/@thi.ng/sorted-map.svg)](https://www.npmjs.com/package/@thi.ng/sorted-map)     | [changelog](./packages/sorted-map/CHANGELOG.md)   | Sorted map & set datastructure                 |
-| [`@thi.ng/sparse-set`](./packages/sparse-set)     | [![version](https://img.shields.io/npm/v/@thi.ng/sparse-set.svg)](https://www.npmjs.com/package/@thi.ng/sparse-set)     | [changelog](./packages/sparse-set/CHANGELOG.md)   | Sparse set datastructure                       |
-| [`@thi.ng/trie`](./packages/trie)                 | [![version](https://img.shields.io/npm/v/@thi.ng/trie.svg)](https://www.npmjs.com/package/@thi.ng/trie)                 | [changelog](./packages/trie/CHANGELOG.md)         | Trie-based map datastructure w/ prefix queries |
-| [`@thi.ng/vclock`](./packages/vclock)             | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)             | [changelog](./packages/vclock/CHANGELOG.md)       | Vector clock functions / comparators           |
-| [`@thi.ng/zipper`](./packages/zipper)             | [![version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)             | [changelog](./packages/zipper/CHANGELOG.md)       | Immutable tree editing / navigation            |
 
 ### Frontend / UI
 
@@ -481,6 +418,37 @@ As of: 2025-01-17
 | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              | Customizable browser & non-browser router        |
 | [`@thi.ng/text-canvas`](./packages/text-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)                 | [changelog](./packages/text-canvas/CHANGELOG.md)         | Text-mode canvas, drawing, tables, charts        |
 | [`@thi.ng/text-format`](./packages/text-format)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)                 | [changelog](./packages/text-format/CHANGELOG.md)         | Color text formatting w/ ANSI & HTML presets     |
+
+### Fundamentals
+
+| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                              |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|----------------------------------------------------------|
+| [`@thi.ng/args`](./packages/args)                 | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                 | [changelog](./packages/args/CHANGELOG.md)         | Declarative & functional CLI arg parsing & coercions     |
+| [`@thi.ng/api`](./packages/api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                   | [changelog](./packages/api/CHANGELOG.md)          | Common types, decorators, mixins                         |
+| [`@thi.ng/bench`](./packages/bench)               | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)               | [changelog](./packages/bench/CHANGELOG.md)        | Basic benchmarking helpers                               |
+| [`@thi.ng/checks`](./packages/checks)             | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)             | [changelog](./packages/checks/CHANGELOG.md)       | Type & value checks                                      |
+| [`@thi.ng/compare`](./packages/compare)           | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)           | [changelog](./packages/compare/CHANGELOG.md)      | Comparators                                              |
+| [`@thi.ng/compose`](./packages/compose)           | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)           | [changelog](./packages/compose/CHANGELOG.md)      | Functional composition helpers                           |
+| [`@thi.ng/date`](./packages/date)                 | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                 | [changelog](./packages/date/CHANGELOG.md)         | Date/time iterators, formatters, rounding                |
+| [`@thi.ng/defmulti`](./packages/defmulti)         | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)         | [changelog](./packages/defmulti/CHANGELOG.md)     | Dynamic multiple dispatch                                |
+| [`@thi.ng/distance`](./packages/distance)         | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)         | [changelog](./packages/distance/CHANGELOG.md)     | n-D distance metrics & K-nearest neighborhoods           |
+| [`@thi.ng/equiv`](./packages/equiv)               | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)               | [changelog](./packages/equiv/CHANGELOG.md)        | Deep value equivalence checking                          |
+| [`@thi.ng/errors`](./packages/errors)             | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)             | [changelog](./packages/errors/CHANGELOG.md)       | Custom error types                                       |
+| [`@thi.ng/expose`](./packages/expose)             | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)             | [changelog](./packages/expose/CHANGELOG.md)       | Conditional global variable exposition                   |
+| [`@thi.ng/fibers`](./packages/fibers)             | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)             | [changelog](./packages/fibers/CHANGELOG.md)       | Process hierarchies & ops for cooperative multitasking   |
+| [`@thi.ng/hex`](./packages/hex)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)                   | [changelog](./packages/hex/CHANGELOG.md)          | Hex value formatters for U4-64 words                     |
+| [`@thi.ng/logger`](./packages/logger)             | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)             | [changelog](./packages/logger/CHANGELOG.md)       | Basis infrastructure for arbitrary logging               |
+| [`@thi.ng/memoize`](./packages/memoize)           | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)           | [changelog](./packages/memoize/CHANGELOG.md)      | Function memoization w/ customizable caching             |
+| [`@thi.ng/metrics`](./packages/metrics)           | [![version](https://img.shields.io/npm/v/@thi.ng/metrics.svg)](https://www.npmjs.com/package/@thi.ng/metrics)           | [changelog](./packages/metrics/CHANGELOG.md)      | Computing & aggregating value metrics (mean, range, sd)  |
+| [`@thi.ng/object-utils`](./packages/object-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/object-utils.svg)](https://www.npmjs.com/package/@thi.ng/object-utils) | [changelog](./packages/object-utils/CHANGELOG.md) | Plain JS object & map manipulation                       |
+| [`@thi.ng/oquery`](./packages/oquery)             | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)             | [changelog](./packages/oquery/CHANGELOG.md)       | Pattern based query engine for JS objects                |
+| [`@thi.ng/parse`](./packages/parse)               | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)               | [changelog](./packages/parse/CHANGELOG.md)        | Parser combinators & AST generator/transformer           |
+| [`@thi.ng/paths`](./packages/paths)               | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)               | [changelog](./packages/paths/CHANGELOG.md)        | Immutable nested object accessors                        |
+| [`@thi.ng/strings`](./packages/strings)           | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)           | [changelog](./packages/strings/CHANGELOG.md)      | Higher-order string formatting utils                     |
+| [`@thi.ng/system`](./packages/system)             | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)             | [changelog](./packages/system/CHANGELOG.md)       | Minimal life cycle container for stateful app components |
+| [`@thi.ng/timestamp`](./packages/timestamp)       | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)       | [changelog](./packages/timestamp/CHANGELOG.md)    | Timestamp abstraction/wrapper                            |
+| [`@thi.ng/transclude`](./packages/transclude)     | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)     | [changelog](./packages/transclude/CHANGELOG.md)   | Template engine for text document generation             |
+| [`@thi.ng/units`](./packages/units)               | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)               | [changelog](./packages/units/CHANGELOG.md)        | Extensible SI unit conversions                           |
 
 ### Geometry, image & visualization
 
@@ -515,28 +483,33 @@ As of: 2025-01-17
 | [`@thi.ng/imago`](./packages/imago)                                 | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)                                 | [changelog](./packages/imago/CHANGELOG.md)                 | Declarative & extensible image processing pipelines |
 | [`@thi.ng/lsys`](./packages/lsys)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                                   | [changelog](./packages/lsys/CHANGELOG.md)                  | Extensible L-System architecture                    |
 | [`@thi.ng/pixel`](./packages/pixel)                                 | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                                 | [changelog](./packages/pixel/CHANGELOG.md)                 | Multi-format pixel buffers                          |
+| [`@thi.ng/pixel-analysis`](./packages/pixel-analysis)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-analysis.svg)](https://www.npmjs.com/package/@thi.ng/pixel-analysis)               | [changelog](./packages/pixel-analysis/CHANGELOG.md)        | Image color & feature analysis utilities            |
 | [`@thi.ng/pixel-convolve`](./packages/pixel-convolve)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-convolve.svg)](https://www.npmjs.com/package/@thi.ng/pixel-convolve)               | [changelog](./packages/pixel-convolve/CHANGELOG.md)        | Extensible image convolution & kernel presets       |
 | [`@thi.ng/pixel-dominant-colors`](./packages/pixel-dominant-colors) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors) | [changelog](./packages/pixel-dominant-colors/CHANGELOG.md) | k-means based dominant colors extraction            |
 | [`@thi.ng/pixel-dither`](./packages/pixel-dither)                   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)                   | [changelog](./packages/pixel-dither/CHANGELOG.md)          | Image dithering w/ various algorithm presets        |
+| [`@thi.ng/pixel-flow`](./packages/pixel-flow)                       | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow)                       | [changelog](./packages/pixel-flow/CHANGELOG.md)            | Optical flow analysis                               |
 | [`@thi.ng/poisson`](./packages/poisson)                             | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                             | [changelog](./packages/poisson/CHANGELOG.md)               | nD Poisson disk sampling                            |
 | [`@thi.ng/porter-duff`](./packages/porter-duff)                     | [![version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)                     | [changelog](./packages/porter-duff/CHANGELOG.md)           | Alpha blending / compositing ops                    |
 | [`@thi.ng/rasterize`](./packages/rasterize)                         | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)                         | [changelog](./packages/rasterize/CHANGELOG.md)             | Shape drawing, filling & rasterization              |
 | [`@thi.ng/scenegraph`](./packages/scenegraph)                       | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)                       | [changelog](./packages/scenegraph/CHANGELOG.md)            | Extensible 2D/3D scenegraph                         |
 | [`@thi.ng/simd`](./packages/simd)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)                                   | [changelog](./packages/simd/CHANGELOG.md)                  | WebAssembly SIMD vector batch processing            |
+| [`@thi.ng/tsne`](./packages/tsne)                                   | [![version](https://img.shields.io/npm/v/@thi.ng/tsne.svg)](https://www.npmjs.com/package/@thi.ng/tsne)                                   | [changelog](./packages/tsne/CHANGELOG.md)                  | Configurable t-SNE visualization solver             |
 | [`@thi.ng/viz`](./packages/viz)                                     | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)                                     | [changelog](./packages/viz/CHANGELOG.md)                   | Declarative & functional data visualization toolkit |
 
-### WebGL / GPGPU
+### Iterator, stream & sequence processing
 
-| Project                                                         | Version                                                                                                                               | Changelog                                                | Description                        |
-|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------|
-| [`@thi.ng/shader-ast`](./packages/shader-ast)                   | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)                   | [changelog](./packages/shader-ast/CHANGELOG.md)          | AST DSL for x-platform shader code |
-| [`@thi.ng/shader-ast-glsl`](./packages/shader-ast-glsl)         | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)         | [changelog](./packages/shader-ast-glsl/CHANGELOG.md)     | GLSL code generator                |
-| [`@thi.ng/shader-ast-js`](./packages/shader-ast-js)             | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)             | [changelog](./packages/shader-ast-js/CHANGELOG.md)       | JS code generator                  |
-| [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) | AST code optimization strategies   |
-| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)     | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md)   | 100+ useful AST shader functions   |
-| [`@thi.ng/webgl`](./packages/webgl)                             | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                             | [changelog](./packages/webgl/CHANGELOG.md)               | WebGL 1/2 / GPGPU facilities       |
-| [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)                   | [changelog](./packages/webgl-msdf/CHANGELOG.md)          | MSDF font rendering                |
-| [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy)         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)         | [changelog](./packages/webgl-shadertoy/CHANGELOG.md)     | Shadertoy-like WebGL setup         |
+| Project                                                       | Version                                                                                                                             | Changelog                                               | Description                             |
+|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------|
+| [`@thi.ng/csp`](./packages/csp)                               | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                               | [changelog](./packages/csp/CHANGELOG.md)                | Channel based async ops                 |
+| [`@thi.ng/grid-iterators`](./packages/grid-iterators)         | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)         | [changelog](./packages/grid-iterators/CHANGELOG.md)     | 2D grid iterator strategies             |
+| [`@thi.ng/seq`](./packages/seq)                               | [![version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)                               | [changelog](./packages/seq/CHANGELOG.md)                | Lisp/Clojure-style sequence abstraction |
+| [`@thi.ng/transducers`](./packages/transducers)               | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)               | [changelog](./packages/transducers/CHANGELOG.md)        | Composable data transformations         |
+| [`@thi.ng/transducers-async`](./packages/transducers-async)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)   | [changelog](./packages/transducers-async/CHANGELOG.md)  | Async transducers, reducers & iterators |
+| [`@thi.ng/transducers-binary`](./packages/transducers-binary) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary) | [changelog](./packages/transducers-binary/CHANGELOG.md) | Binary data related transducers         |
+| [`@thi.ng/transducers-fsm`](./packages/transducers-fsm)       | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)       | [changelog](./packages/transducers-fsm/CHANGELOG.md)    | Finite state transducer                 |
+| [`@thi.ng/transducers-hdom`](./packages/transducers-hdom)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)     | [changelog](./packages/transducers-hdom/CHANGELOG.md)   | Transducer based hdom UI updates        |
+| [`@thi.ng/transducers-patch`](./packages/transducers-patch)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)   | [changelog](./packages/transducers-patch/CHANGELOG.md)  | Patch-based, array & object editing     |
+| [`@thi.ng/transducers-stats`](./packages/transducers-stats)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)   | [changelog](./packages/transducers-stats/CHANGELOG.md)  | Technical / statistical analysis        |
 
 ### Low-level, binary, memory management, interop
 
@@ -545,6 +518,7 @@ As of: 2025-01-17
 | [`@thi.ng/base-n`](./packages/base-n)                       | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)                       | [changelog](./packages/base-n/CHANGELOG.md)            | Arbitrary base-n encoding/decoding with presets |
 | [`@thi.ng/binary`](./packages/binary)                       | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)                       | [changelog](./packages/binary/CHANGELOG.md)            | Assorted binary / bitwise ops, utilities        |
 | [`@thi.ng/bitstream`](./packages/bitstream)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)                 | [changelog](./packages/bitstream/CHANGELOG.md)         | Bitwise input / output streams                  |
+| [`@thi.ng/block-fs`](./packages/block-fs)                   | [![version](https://img.shields.io/npm/v/@thi.ng/block-fs.svg)](https://www.npmjs.com/package/@thi.ng/block-fs)                   | [changelog](./packages/block-fs/CHANGELOG.md)          | Block-based storage & filesystem                |
 | [`@thi.ng/dlogic`](./packages/dlogic)                       | [![version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)                       | [changelog](./packages/dlogic/CHANGELOG.md)            | Digital logic ops / constructs                  |
 | [`@thi.ng/leb128`](./packages/leb128)                       | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                       | [changelog](./packages/leb128/CHANGELOG.md)            | WASM based LEB128 varint encoder / decoder      |
 | [`@thi.ng/malloc`](./packages/malloc)                       | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)                       | [changelog](./packages/malloc/CHANGELOG.md)            | Raw & typed array memory pool & allocator       |
@@ -560,14 +534,62 @@ As of: 2025-01-17
 | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)           | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)           | [changelog](./packages/wasm-api-dom/CHANGELOG.md)      | WASM-side DOM manipulation                      |
 | [`@thi.ng/wasm-api-schedule`](./packages/wasm-api-schedule) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-schedule.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-schedule) | [changelog](./packages/wasm-api-schedule/CHANGELOG.md) | WASM-side delayed code execution/scheduling     |
 
-### DSLs
+### Maths
 
-| Project                                               | Version                                                                                                                     | Changelog                                           | Description                                   |
-|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
-| [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
-| [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
-| [`@thi.ng/proctext`](./packages/proctext)             | [![version](https://img.shields.io/npm/v/@thi.ng/proctext.svg)](https://www.npmjs.com/package/@thi.ng/proctext)             | [changelog](./packages/proctext/CHANGELOG.md)       | Procedural text generation engine             |
-| [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure  |
+| Project                                           | Version                                                                                                                 | Changelog                                         | Description                                                |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|------------------------------------------------------------|
+| [`@thi.ng/dual-algebra`](./packages/dual-algebra) | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra) | [changelog](./packages/dual-algebra/CHANGELOG.md) | Dual number algebra / automatic differentiation            |
+| [`@thi.ng/dsp`](./packages/dsp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                   | [changelog](./packages/dsp/CHANGELOG.md)          | DSP utils, composable signal gens/processors               |
+| [`@thi.ng/fuzzy`](./packages/fuzzy)               | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)               | [changelog](./packages/fuzzy/CHANGELOG.md)        | Fuzzy logic primitives & rule inference engine             |
+| [`@thi.ng/intervals`](./packages/intervals)       | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)       | [changelog](./packages/intervals/CHANGELOG.md)    | Open/closed intervals, queries, set ops                    |
+| [`@thi.ng/math`](./packages/math)                 | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                 | [changelog](./packages/math/CHANGELOG.md)         | Assorted common math functions & utilities                 |
+| [`@thi.ng/matrices`](./packages/matrices)         | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)         | [changelog](./packages/matrices/CHANGELOG.md)     | Matrix operations                                          |
+| [`@thi.ng/sparse`](./packages/sparse)             | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)             | [changelog](./packages/sparse/CHANGELOG.md)       | Sparse matrix & vector impls                               |
+| [`@thi.ng/timestep`](./packages/timestep)         | [![version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)         | [changelog](./packages/timestep/CHANGELOG.md)     | Fixed timestep simulation updates with state interpolation |
+| [`@thi.ng/vectors`](./packages/vectors)           | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)           | [changelog](./packages/vectors/CHANGELOG.md)      | Fixed & arbitrary-length vector ops                        |
+
+### Network
+
+| Project                               | Version                                                                                                     | Changelog                                   | Description                                        |
+|---------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------|----------------------------------------------------|
+| [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) | Minimal, extensible, interceptor-based HTTP server |
+
+### Randomness
+
+| Project                                             | Version                                                                                                                   | Changelog                                          | Description                                              |
+|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
+| [`@thi.ng/colored-noise`](./packages/colored-noise) | [![version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise) | [changelog](./packages/colored-noise/CHANGELOG.md) | 1D colored noise generators                              |
+| [`@thi.ng/ksuid`](./packages/ksuid)                 | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                 | [changelog](./packages/ksuid/CHANGELOG.md)         | K-sortable unique identifiers, binary & base-N encoded   |
+| [`@thi.ng/lowdisc`](./packages/lowdisc)             | [![version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)             | [changelog](./packages/lowdisc/CHANGELOG.md)       | n-D Low discrepancy sequence generators                  |
+| [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations, distributions & utilities |
+| [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) | PRNG impl & utilities for fxhash projects                |
+| [`@thi.ng/uuid`](./packages/uuid)                   | [![version](https://img.shields.io/npm/v/@thi.ng/uuid.svg)](https://www.npmjs.com/package/@thi.ng/uuid)                   | [changelog](./packages/uuid/CHANGELOG.md)          | Binary & string-based UUID v4 generator                  |
+
+### Reactive programming
+
+| Project                                                   | Version                                                                                                                         | Changelog                                             | Description                                  |
+|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|----------------------------------------------|
+| [`@thi.ng/rstream`](./packages/rstream)                   | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                   | [changelog](./packages/rstream/CHANGELOG.md)          | Push-based, reactive event stream primitves  |
+| [`@thi.ng/rstream-csp`](./packages/rstream-csp)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)           | [changelog](./packages/rstream-csp/CHANGELOG.md)      | Adapter bridge CSP -> rstream                |
+| [`@thi.ng/rstream-dot`](./packages/rstream-dot)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)           | [changelog](./packages/rstream-dot/CHANGELOG.md)      | Graphviz visualization of rstream topologies |
+| [`@thi.ng/rstream-gestures`](./packages/rstream-gestures) | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures) | [changelog](./packages/rstream-gestures/CHANGELOG.md) | Mouse & touch event stream abstraction       |
+| [`@thi.ng/rstream-graph`](./packages/rstream-graph)       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)       | [changelog](./packages/rstream-graph/CHANGELOG.md)    | Declarative dataflow graph construction      |
+| [`@thi.ng/rstream-log`](./packages/rstream-log)           | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)           | [changelog](./packages/rstream-log/CHANGELOG.md)      | Hierarchical structured data logging         |
+| [`@thi.ng/rstream-log-file`](./packages/rstream-log-file) | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log-file.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log-file) | [changelog](./packages/rstream-log-file/CHANGELOG.md) | Log-file output handler                      |
+| [`@thi.ng/rstream-query`](./packages/rstream-query)       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)       | [changelog](./packages/rstream-query/CHANGELOG.md)    | Triple store & query engine                  |
+
+### WebGL / GPGPU
+
+| Project                                                         | Version                                                                                                                               | Changelog                                                | Description                        |
+|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------|
+| [`@thi.ng/shader-ast`](./packages/shader-ast)                   | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)                   | [changelog](./packages/shader-ast/CHANGELOG.md)          | AST DSL for x-platform shader code |
+| [`@thi.ng/shader-ast-glsl`](./packages/shader-ast-glsl)         | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)         | [changelog](./packages/shader-ast-glsl/CHANGELOG.md)     | GLSL code generator                |
+| [`@thi.ng/shader-ast-js`](./packages/shader-ast-js)             | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)             | [changelog](./packages/shader-ast-js/CHANGELOG.md)       | JS code generator                  |
+| [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) | AST code optimization strategies   |
+| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)     | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md)   | 100+ useful AST shader functions   |
+| [`@thi.ng/webgl`](./packages/webgl)                             | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                             | [changelog](./packages/webgl/CHANGELOG.md)               | WebGL 1/2 / GPGPU facilities       |
+| [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)                   | [changelog](./packages/webgl-msdf/CHANGELOG.md)          | MSDF font rendering                |
+| [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy)         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)         | [changelog](./packages/webgl-shadertoy/CHANGELOG.md)     | Shadertoy-like WebGL setup         |
 
 ### Deprecated packages
 
@@ -581,6 +603,9 @@ The following packages have been deprecated. Their readmes describe reasons and 
 | [`@thi.ng/testament`](./deprecated/packages/testament) | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament) | [changelog](./packages/testament/CHANGELOG.md) | Minimal test runner                   |
 
 ## Building
+
+> [!IMPORTANT]
+> [Bun](https://bun.sh) is required for running some build & other project tasks.
 
 ```bash
 git clone https://github.com/thi-ng/umbrella.git
@@ -634,11 +659,11 @@ yarn test:only
 yarn workspace @thi.ng/rstream run test
 ```
 
-### Documentation
+### Building API docs
 
 Autogenerated documentation (using
 [TypeDoc](https://github.com/TypeStrong/typedoc)) will be saved under
-`/packages/*/doc/` and is also available at [docs.thi.ng](https://docs.thi.ng).
+`/packages/*/doc/` ([more info](#documentation)).
 
 ```bash
 yarn doc
@@ -798,6 +823,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Hantsouski"><img src="https://avatars.githubusercontent.com/u/17182335?v=4?s=100" width="100px;" alt="Yury"/><br /><sub><b>Yury</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Hantsouski" title="Code">💻</a> <a href="#ideas-Hantsouski" title="Ideas, Planning, & Feedback">🤔</a> <a href="#financial-Hantsouski" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jffaust"><img src="https://avatars.githubusercontent.com/u/4367222?v=4?s=100" width="100px;" alt="Jean-Frédéric Faust"/><br /><sub><b>Jean-Frédéric Faust</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=jffaust" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ajffaust" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/brandtryan"><img src="https://avatars.githubusercontent.com/u/2944781?v=4?s=100" width="100px;" alt="Brandt Ryan"/><br /><sub><b>Brandt Ryan</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Abrandtryan" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bit-app-3000"><img src="https://avatars.githubusercontent.com/u/42169423?v=4?s=100" width="100px;" alt="bit-app-3000"/><br /><sub><b>bit-app-3000</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Abit-app-3000" title="Bug reports">🐛</a> <a href="#ideas-bit-app-3000" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>

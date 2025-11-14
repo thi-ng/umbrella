@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	DeepPath,
 	Fn,
@@ -77,7 +78,7 @@ export const fromViewUnsafe = <T>(
  * Views are readonly and more lightweight versions of [thi.ng/atom
  * cursors](https://docs.thi.ng/umbrella/atom/classes/Cursor.html). The view
  * checks for value changes with given `equiv` predicate (default:
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)). If the
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)). If the
  * predicate returns a falsy result (i.e. there's a new value), the new value is
  * emitted on the stream. The first value emitted is always the (possibly
  * transformed) current value at the stream's start time (i.e. when the first
@@ -89,8 +90,8 @@ export const fromViewUnsafe = <T>(
  * When the stream is cancelled the view is destroyed as well.
  *
  * Also see
- * [`defView()`](https://docs.thi.ng/umbrella/atom/functions/defView.html),
- * [`defViewUnsafe()`](https://docs.thi.ng/umbrella/atom/functions/defViewUnsafe.html)
+ * [`defView`](https://docs.thi.ng/umbrella/atom/functions/defView.html),
+ * [`defViewUnsafe`](https://docs.thi.ng/umbrella/atom/functions/defViewUnsafe.html)
  *
  * @example
  * ```ts tangle:../export/from-view.ts

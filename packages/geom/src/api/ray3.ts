@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Vec } from "@thi.ng/vectors";
 import { maddN3 } from "@thi.ng/vectors/maddn";
 import { set3 } from "@thi.ng/vectors/set";

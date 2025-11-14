@@ -1,4 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isString } from "@thi.ng/checks/is-string";
+import { unescape } from "@thi.ng/strings/escape";
 import {
 	DEFAULT_SYNTAX,
 	type ASTNode,
@@ -56,7 +58,10 @@ export const parse = (
 			let node: ASTNode;
 			let value: number;
 			if (t.startsWith('"')) {
-				node = { type: "str", value: t.substring(1, t.length - 1) };
+				node = {
+					type: "str",
+					value: unescape(t.substring(1, t.length - 1)),
+				};
 			} else if (
 				(t.startsWith("0x") &&
 					!isNaN((value = parseInt(t.substring(2), 16)))) ||

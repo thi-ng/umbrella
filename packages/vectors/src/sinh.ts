@@ -1,6 +1,36 @@
-import type { MultiVecOpV, VecOpV } from "./api.js";
-import { defFnOp } from "./compile/emit.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpV } from "./defopv.js";
 
-export const [sinh, sinh2, sinh3, sinh4] = defFnOp<MultiVecOpV, VecOpV>(
-	"Math.sinh"
-);
+const [a, b, c, d] = defOpV(Math.sinh);
+
+/**
+ * Componentwise computes `Math.sinh` of given nD vector. Multi-method.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const sinh = a;
+
+/**
+ * Componentwise computes `Math.sinh` of given 2D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const sinh2 = b;
+
+/**
+ * Componentwise computes `Math.sinh` of given 3D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const sinh3 = c;
+
+/**
+ * Componentwise computes `Math.sinh` of given 4D vector.
+ *
+ * @param o - output vector
+ * @param a - input vector
+ */
+export const sinh4 = d;

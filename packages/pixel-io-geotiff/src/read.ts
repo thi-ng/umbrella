@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { typedArrayType, type TypedArray } from "@thi.ng/api";
 import { FLOAT_GRAY_RANGE, floatBuffer, type FloatBuffer } from "@thi.ng/pixel";
 import { Pool, fromArrayBuffer, type GeoTIFFImage } from "geotiff";
@@ -28,7 +29,7 @@ export interface GeoTiffOpts {
 }
 
 export const readGeoTiff = async (
-	src: ArrayBufferView,
+	src: ArrayBufferView<ArrayBuffer>,
 	opts: Partial<GeoTiffOpts> = {}
 ): Promise<{ img: FloatBuffer; tiff: GeoTIFFImage }> => {
 	const tiff = await fromArrayBuffer(src.buffer);

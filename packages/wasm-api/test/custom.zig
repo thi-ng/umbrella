@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // Import JS core API
 const js = @import("wasm-api");
 const std = @import("std");

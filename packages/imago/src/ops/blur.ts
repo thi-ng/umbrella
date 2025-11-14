@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { BlurSpec, Processor } from "../api.js";
 
 export const blurProc: Processor = async (spec, input) => {

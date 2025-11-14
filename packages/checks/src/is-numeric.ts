@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Returns true if given string contains only digits, and optionally, a sign
  * prefix.

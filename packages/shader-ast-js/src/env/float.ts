@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { deg, rad } from "@thi.ng/math/angle";
 import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
@@ -8,12 +9,16 @@ import type { JSBuiltinsFloat } from "../api.js";
 export const FLOAT: JSBuiltinsFloat<number> = {
 	abs: Math.abs,
 	acos: Math.acos,
+	acosh: Math.acosh,
 	asin: Math.asin,
+	asinh: Math.asinh,
 	atan: Math.atan,
+	atanh: Math.atanh,
 	atannn: Math.atan2,
 	ceil: Math.ceil,
 	clamp,
 	cos: Math.cos,
+	cosh: Math.cosh,
 	degrees: deg,
 	dFdx: () => 0,
 	dFdy: () => 0,
@@ -35,8 +40,10 @@ export const FLOAT: JSBuiltinsFloat<number> = {
 	radians: rad,
 	sign: Math.sign,
 	sin: Math.sin,
+	sinh: Math.sinh,
 	smoothstep: smoothStep,
 	sqrt: Math.sqrt,
 	step,
 	tan: Math.tan,
+	tanh: Math.tanh,
 };

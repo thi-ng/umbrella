@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { bvec2, defn, greaterThan, ret, vec2 } from "@thi.ng/shader-ast";
 import { eqDelta2 } from "@thi.ng/vectors";
 import { expect, test } from "bun:test";

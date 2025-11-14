@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Barebones alternative to {@link BitOutputStream} for word sizes <= 8 and with
  * minimal API surface. The returned object only exposes 2 functions:

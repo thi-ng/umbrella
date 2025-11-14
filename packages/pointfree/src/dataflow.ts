@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext } from "./api.js";
 import { and, or } from "./logic.js";
 import { $ } from "./safe.js";
@@ -13,7 +14,7 @@ import { $stackFn, defWord, exec } from "./word.js";
  * Removes `x` from d-stack, calls `q` and restores `x` to the top of
  * the d-stack after quotation is finished.
  *
- * ( x q -- x )
+ * Stack effect: `( x q -- x )`
  *
  * Same behavior as: `[swap, movdr, exec, movrd]`, only the current
  * implementation doesn't use r-stack and stashes `x` off stack.
@@ -34,7 +35,7 @@ export const dip = (ctx: StackContext) => {
  * Removes `x y` from d-stack, calls `q` and restores removed vals
  * to the top of the d-stack after quotation is finished.
  *
- * ( x y q -- x y )
+ * Stack effect: `( x y q -- x y )`
  */
 export const dip2 = defWord([swap, [dip], dip]);
 
@@ -42,7 +43,7 @@ export const dip2 = defWord([swap, [dip], dip]);
  * Removes `x y z` from d-stack, calls `q` and restores removed
  * vals to the top of the d-stack after quotation is finished.
  *
- * ( x y z q -- x y z )
+ * Stack effect: `( x y z q -- x y z )`
  */
 export const dip3 = defWord([swap, [dip2], dip]);
 
@@ -50,7 +51,7 @@ export const dip3 = defWord([swap, [dip2], dip]);
  * Removes `x y z w` from d-stack, calls `q` and restores removed
  * vals to the top of the d-stack after quotation is finished.
  *
- * ( x y z w q -- x y z w )
+ * Stack effect: `( x y z w q -- x y z w )`
  */
 export const dip4 = defWord([swap, [dip3], dip]);
 
@@ -58,7 +59,7 @@ export const dip4 = defWord([swap, [dip3], dip]);
  * Calls a quotation with a value on the d-stack, restoring the value
  * after quotation finished.
  *
- * ( x q -- .. x )
+ * Stack effect: `( x q -- .. x )`
  */
 export const keep = defWord([over, [exec], dip]);
 
@@ -66,7 +67,7 @@ export const keep = defWord([over, [exec], dip]);
  * Call a quotation with two values on the stack, restoring the values
  * after quotation finished.
  *
- * ( x y q -- .. x y )
+ * Stack effect: `( x y q -- .. x y )`
  */
 export const keep2 = defWord([[dup2], dip, dip2]);
 
@@ -74,7 +75,7 @@ export const keep2 = defWord([[dup2], dip, dip2]);
  * Call a quotation with three values on the stack, restoring the values
  * after quotation finished.
  *
- * ( x y z q -- .. x y z )
+ * Stack effect: `( x y z q -- .. x y z )`
  */
 export const keep3 = defWord([[dup3], dip, dip3]);
 
@@ -82,7 +83,7 @@ export const keep3 = defWord([[dup3], dip, dip3]);
  * First applies `p` to the value `x`, then applies `q` to the same
  * value.
  *
- * ( x p q -- px qx )
+ * Stack effect: `( x p q -- px qx )`
  */
 export const bi = defWord([[keep], dip, exec]);
 
@@ -90,7 +91,7 @@ export const bi = defWord([[keep], dip, exec]);
  * First applies `p` to the two input values `x y`, then applies `q` to
  * the same values.
  *
- * ( x y p q -- pxy qxy )
+ * Stack effect: `( x y p q -- pxy qxy )`
  */
 export const bi2 = defWord([[keep2], dip, exec]);
 
@@ -98,14 +99,14 @@ export const bi2 = defWord([[keep2], dip, exec]);
  * First applies `p` to the three input values `x y z`, then applies `q`
  * to the same values.
  *
- * ( x y z p q -- pxyz qxyz )
+ * Stack effect: `( x y z p q -- pxyz qxyz )`
  */
 export const bi3 = defWord([[keep3], dip, exec]);
 
 /**
  * Applies `p` to `x`, then `q` to `x`, and finally `r` to `x`
  *
- * ( x p q r -- px qx rx )
+ * Stack effect: `( x p q r -- px qx rx )`
  */
 export const tri = defWord([[[keep], dip, keep], dip, exec]);
 
@@ -113,7 +114,7 @@ export const tri = defWord([[[keep], dip, keep], dip, exec]);
  * Applies `p` to the two input values `x y`, then same with `q`, and
  * finally with `r`.
  *
- * ( x y p q r -- pxy qxy rxy )
+ * Stack effect: `( x y p q r -- pxy qxy rxy )`
  */
 export const tri2 = defWord([[[keep2], dip, keep2], dip, exec]);
 
@@ -121,63 +122,63 @@ export const tri2 = defWord([[[keep2], dip, keep2], dip, exec]);
  * Applies `p` to the three input values `x y z`, then same with `q`,
  * and finally with `r`.
  *
- * ( x y z p q r -- pxyz qxyz rxyz )
+ * Stack effect: `( x y z p q r -- pxyz qxyz rxyz )`
  */
 export const tri3 = defWord([[[keep3], dip, keep3], dip, exec]);
 
 /**
  * Applies `p` to `x`, then applies `q` to `y`.
  *
- * ( x y p q -- px qy )
+ * Stack effect: `( x y p q -- px qy )`
  */
 export const bis = defWord([[dip], dip, exec]);
 
 /**
  * Applies `p` to `a b`, then applies `q` to `c d`.
  *
- * ( a b c d p q -- pab qcd )
+ * Stack effect: `( a b c d p q -- pab qcd )`
  */
 export const bis2 = defWord([[dip2], dip, exec]);
 
 /**
  * Applies `p` to `x`, then `q` to `y`, and finally `r` to `z`.
  *
- * ( x y z p q r -- )
+ * Stack effect: `( x y z p q r -- )`
  */
 export const tris = defWord([[[dip2], dip, dip], dip, exec]);
 
 /**
  * Applies `p` to `u v`, then `q` to `w x`, and finally `r` to `y z`.
  *
- * ( u v w x y z p q r -- puv qwx ryz )
+ * Stack effect: `( u v w x y z p q r -- puv qwx ryz )`
  */
 export const tris2 = defWord([[dip4], dip2, bis2]);
 
 /**
  * Applies the quotation `q` to `x`, then to `y`.
  *
- * ( x y q -- qx qy )
+ * Stack effect: `( x y q -- qx qy )`
  */
 export const bia = defWord([dup, bis]);
 
 /**
  * Applies the quotation `q` to `x y`, then to `z w`.
  *
- * ( x y z w q -- qxy qzw )
+ * Stack effect: `( x y z w q -- qxy qzw )`
  */
 export const bia2 = defWord([dup, bis2]);
 
 /**
  * Applies the `q` to `x`, then to `y`, and finally to `z`.
  *
- * ( x y z q -- qx qy qz )
+ * Stack effect: `( x y z q -- qx qy qz )`
  */
 export const tria = defWord([dup, dup, tris]);
 
 /**
  * Applies the quotation to `u v`, then to `w x`, and then to `y z`.
  *
- * ( u v w x y z q -- quv qwx qyz )
+ * Stack effect: `( u v w x y z q -- quv qwx qyz )`
  */
 export const tria2 = defWord([dup, dup, tris2]);
 
@@ -186,7 +187,7 @@ export const tria2 = defWord([dup, dup, tris2]);
  * results with `and`. The final result will be true if both interim
  * results were truthy.
  *
- * ( x y q -- qx && qy )
+ * Stack effect: `( x y q -- qx && qy )`
  */
 export const both = defWord([bia, and]);
 
@@ -195,6 +196,6 @@ export const both = defWord([bia, and]);
  * The final result will be true if at least one of the interim results
  * was truthy.
  *
- * ( x y q -- qx || qy )
+ * Stack effect: `( x y q -- qx || qy )`
  */
 export const either = defWord([bia, or]);

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { adaptDPI } from "@thi.ng/canvas";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
@@ -31,8 +32,8 @@ import {
 	ZERO3,
 	fit3,
 	madd3,
-	mixN,
-	mulN,
+	mixN3,
+	mulN3,
 	type ReadonlyVec,
 } from "@thi.ng/vectors";
 import {
@@ -140,7 +141,7 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
 		pool.setAttribValue(
 			"dir",
 			i,
-			mixN([], mulN([], pos, 0.1), [0, -1, r.minmax(2, 5)], 0.8)
+			mixN3([], mulN3([], pos, 0.1), [0, -1, r.minmax(2, 5)], 0.8)
 		);
 		pool.setAttribValue("id", i, i);
 	}

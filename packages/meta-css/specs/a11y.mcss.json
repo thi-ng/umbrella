@@ -1,8 +1,8 @@
 {
 	"specs": [
 		{
-			"doc": { "group": "accessibility" },
 			"name": "screen-reader",
+			"doc": { "group": "accessibility" },
 			"props": {
 				"position": "absolute",
 				"padding": 0,
@@ -16,8 +16,8 @@
 			"values": [""]
 		},
 		{
-			"doc": { "group": "accessibility" },
 			"name": "screen-reader-focus",
+			"doc": { "group": "accessibility" },
 			"props": {
 				"position": "static",
 				"width": "auto",

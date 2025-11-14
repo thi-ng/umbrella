@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { ReadonlyVec, Vec } from "./api.js";
 import { maddN } from "./maddn.js";
 import { mulN } from "./muln.js";

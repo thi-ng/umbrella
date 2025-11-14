@@ -1,13 +1,24 @@
 # Change Log
 
-- **Last updated**: 2025-01-04T21:07:38Z
+- **Last updated**: 2025-11-13T12:38:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
+Only versions published since **2022-01-01** are listed here.
+Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.4.0) (2025-11-13)
+
+#### 🚀 Features
+
+- add printHexdump(), update hexdump(), add docs ([2216b87](https://github.com/thi-ng/umbrella/commit/2216b87))
+  - add syntax sugar `printHexdump()`
+  - make args optional
+  - add docs & code examples
 
 ### [2.3.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.3.19) (2023-11-09)
 
@@ -27,63 +38,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add U64BIG ([06bcf05](https://github.com/thi-ng/umbrella/commit/06bcf05))
-
-## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.1.0) (2021-11-17)
-
-#### 🚀 Features
-
-- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
-  Improving the overall build ergonomics
-  - introduced a tools workspaces
-  - imported it in all needed packages/examples
-  - inclusive project root
-
-#### ♻️ Refactoring
-
-- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
-  this commit reverts (partly) changes made in:
-  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
-  overall purpose is better testament ergonomics:
-  instead of having to pass NODE_OPTIONS with every invocation
-  having a binary to handle this for us.
-
-### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.0.1) (2021-10-13)
-
-#### ♻️ Refactoring
-
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
-
-# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.0.0) (2021-10-12)
-
-#### 🛑 Breaking changes
-
-- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
-- BREAKING CHANGE: discontinue CommonJS & UMD versions
-  - only ESM modules will be published from now on
-  - CJS obsolete due to ESM support in recent versions of node:
-    - i.e. launch NodeJS via:
-    - `node --experimental-specifier-resolution=node --experimental-repl-await`
-    - in the node REPL use `await import(...)` instead of `require()`
-  - UMD obsolete due to widespread browser support for ESM
-  Also:
-  - normalize/restructure/reorg all package.json files
-  - cleanup all build scripts, remove obsolete
-  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
-
-#### ♻️ Refactoring
-
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
-
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@0.2.0) (2021-02-20)
-
-#### 🚀 Features
-
-- add uuid() ([c8417b4](https://github.com/thi-ng/umbrella/commit/c8417b4))
-  - migrate/dedupe from [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random) & [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/main/packages/strings)
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@0.1.0) (2020-11-24)
-
-#### 🚀 Features
-
-- import as new package ([1c2f331](https://github.com/thi-ng/umbrella/commit/1c2f331))

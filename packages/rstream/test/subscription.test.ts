@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map, partition } from "@thi.ng/transducers";
 import { expect, test } from "bun:test";
 import {

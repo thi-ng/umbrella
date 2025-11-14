@@ -1,13 +1,11 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+// SPDX-License-Identifier: Apache-2.0
 import { peek } from "@thi.ng/arrays";
-import { OPERATORS } from "@thi.ng/compare";
-import { isFunction } from "@thi.ng/checks";
 import { div, inputText, pre } from "@thi.ng/hiccup-html";
+import { ENV, evalSource } from "@thi.ng/lispy";
 import { $compile, $klist } from "@thi.ng/rdom";
 import { reactive, syncRAF } from "@thi.ng/rstream";
+import { ESCAPES } from "@thi.ng/strings";
 import { slidingWindow } from "@thi.ng/transducers";
-import { $eval } from "./lang.js";
-import KERNEL from "./kernel.lisp?raw";
 
 // type definition for a single REPL item
 interface REPLItem {
@@ -26,19 +24,20 @@ const INTRO = `Welcome to Lispy
 
 Type your S-expressions in the input box below.
 Press Enter to evaluate.
+Click on a previous input to place it back in the prompt.
 
-(def sym val) — define new sym
-(defn sym (arg ...) body-expr ...) — define new function
-(fn (arg ...) body-expr ...) — anonymous function
-(let (sym val ...) body-expr ...) — local symbol bindings
-(if test truthy-expr else-expr) — conditional (else-expr is optional)
-(print ...) — print args
-(count x) — number of element in x
-(first x) — first element of x
-(next x) — remaining elements of x
-(map fn list) — list transformation
-(reduce fn acc list) — list reduction
-(env) — print global environment`;
+See https://thi.ng/lispy readme for details.
+
+Examples:
+
+(env)
+    Show current environment
+(print (join "\\n" (syms)))
+    Print symbols in current environment
+(def name value)
+    Define new global symbol
+(defn name (args...) ...body)
+    Define new function`;
 
 // CSS classes for various REPL item types
 const STYLES: Record<REPLItemType, string> = {
@@ -66,84 +65,22 @@ const repl = reactive<REPLItem>({
 const addItem = (type: REPLItemType, value: string) =>
 	repl.next({ id: peek(repl.deref()!).id + 1, type, value });
 
-// helper function for basic math ops variable arity.
-// with 2+ args: (+ 1 2 3 4) => 10
-// and special cases for 1 arg only, i.e.
-// `(+ 2)` => 0 + 2 => 2
-// `(- 2)` => 0 - 2 => -2
-// `(* 2)` => 1 * 2 => 2
-// `(/ 2)` => 1 / 2 => 0.5
-const mathOp =
-	(fn: Fn2<number, number, number>, fn1: Fn<number, number>) =>
-	(first: any, ...args: any[]) => {
-		return args.length > 0
-			? // use a reduction for 2+ args
-			  args.reduce((acc, x) => fn(acc, x), first)
-			: // apply special case unary function
-			  fn1(first);
-	};
-
-// define initial environment, populated with some useful constants and
-// functions...
-const ENV: Record<string, any> = {
-	// prettier-ignore
-	"+": mathOp((acc, x) => acc + x, (x) => x),
-	// prettier-ignore
-	"*": mathOp((acc, x) => acc * x, (x) => x),
-	// prettier-ignore
-	"-": mathOp((acc, x) => acc - x, (x) => -x),
-	// prettier-ignore
-	"/": mathOp((acc, x) => acc / x, (x) => 1 / x),
-
-	...OPERATORS,
-
-	π: Math.PI,
-	sin: Math.sin,
-	cos: Math.cos,
-	sqrt: Math.sqrt,
-	hypot: Math.hypot,
-	// print args by creating an REPL item
-	print: (...args: any[]) => addItem("print", args.join(" ")),
-	pr: (...args: any[]) =>
-		addItem("print", args.map((x) => JSON.stringify(x)).join(" ")),
-	concat: (list: any[], ...x: any) => list.concat(x),
-	// returns length of first argument (presumably a list or string)
-	// (e.g. `(count "abc")` => 3)
-	count: (arg: any) => arg.length,
-	// returns first item of list/string
-	first: (arg: any) => arg[0],
-	// returns remaining list/string (from 2nd item onward) or undefined if
-	// there're no further items
-	next: (arg: any) => (arg.length > 1 ? arg.slice(1) : undefined),
-	// print a JSON version of the global env
-	env: () =>
-		addItem(
-			"print",
-			JSON.stringify(
-				ENV,
-				(_, val) => (isFunction(val) ? "<function>" : val),
-				2
-			)
-		),
-};
-
-// import & eval more core language terms/functions
-// (add more to kernel.lisp, if needed...)
-$eval(KERNEL, ENV);
+// override built-in print method to redirect outputs to REPL
+ENV.print = (...args: any[]) => addItem("print", args.join(" "));
 
 // REPL input & key event handler
 // if user pressed Enter, evaluate input and update REPL stream
 const processInput = (e: KeyboardEvent) => {
 	if (e.key !== "Enter") return;
 	const el = <HTMLInputElement>e.target;
-	const src = el.value;
+	const src = el.value.replace(/\\(\w)/g, (_, x) => ESCAPES[x] ?? `\\${x}`);
 	// add input text as REPL item
-	addItem("in", src);
+	addItem("in", el.value);
 	// reset input field
 	el.value = "";
 	try {
 		// eval and add output to REPL
-		addItem("out", String($eval(src, ENV)));
+		addItem("out", String(evalSource(src)));
 	} catch (e) {
 		// add error message as REPL item
 		addItem("err", (<Error>e).message);

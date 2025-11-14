@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { atan2Abs } from "@thi.ng/math/angle";
 import { SQRT3, TAU, THIRD } from "@thi.ng/math/api";
 import { setC3 } from "@thi.ng/vectors/setc";

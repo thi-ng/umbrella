@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IDeref } from "@thi.ng/api";
 import { div } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 //! Main Zig application (aka root package)
 
 const std = @import("std");
@@ -6,17 +7,11 @@ const dom = @import("wasm-api-dom");
 const State = @import("state.zig");
 const api = @import("api.zig");
 
-const Attrib = dom.Attrib;
-
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
-var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-pub const WASM_ALLOCATOR = gpa.allocator();
+pub const WASM_ALLOCATOR = std.heap.wasm_allocator;
 
 /// Pre-declare state, will be fully initialized via the initDOM()
 var STATE: State = undefined;
@@ -28,7 +23,7 @@ var STATE: State = undefined;
 /// in this example we're using this arg to pass the global STATE var as user context
 /// (this is purely for demonstration purposes and quite obviously we could just work
 /// with that global var directly here...)
-fn startStroke(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn startStroke(event: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         state.startStroke(event.body.mouse.clientX, event.body.mouse.clientY);
     }
@@ -36,52 +31,52 @@ fn startStroke(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
 
 /// mousemove/touchmove handler (only if active stroke)
 /// the optional opaque pointer argument must be first cast & checked for non-null values
-fn updateStroke(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn updateStroke(event: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         state.updateStroke(event.body.mouse.clientX, event.body.mouse.clientY);
-        dom.preventDefault();
+        dom.events.preventDefault();
     }
 }
 
 /// mouseup/touchend handler
 /// the optional opaque pointer argument must be first cast & checked for non-null values
-fn endStroke(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn endStroke(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     if (wasm.ptrCast(*State, raw)) |state| state.endStroke();
 }
 
-fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn onKeyDown(event: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     // bail if Control key isn't pressed...
     if (!event.body.key.hasModifier(.ctrl)) return;
     const key = event.body.key.getKey();
     if (std.mem.eql(u8, key, "z")) {
         if (wasm.ptrCast(*State, raw)) |state| {
             state.undoStroke();
-            dom.preventDefault();
+            dom.events.preventDefault();
         }
     }
 }
 
-fn onResize(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn onResize(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         resizeCanvas();
         state.requestRedraw();
     }
 }
 
-fn onBtUndo(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn onBtUndo(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     if (wasm.ptrCast(*State, raw)) |state| state.undoStroke();
 }
 
-fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) callconv(.C) void {
+fn onBtDownload(_: *const dom.types.Event, _: ?*anyopaque) callconv(.c) void {
     api.downloadCanvas(STATE.canvasID);
 }
 
-fn onToggleFullscreen(_: *const dom.Event, raw: ?*anyopaque) callconv(.C) void {
+fn onToggleFullscreen(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         if (!state.window.isFullscreen()) {
-            dom.requestFullscreen(dom.window, null);
+            dom.fullscreen.requestFullscreen(dom.window, null);
         } else {
-            dom.exitFullscreen(null);
+            dom.fullscreen.exitFullscreen(null);
         }
     }
 }
@@ -128,7 +123,7 @@ fn initApp() !void {
                         .text = "undo",
                         .class = "mr1",
                         .attribs = dom.attribs(&.{
-                            Attrib.event("click", onBtUndo, &STATE),
+                            dom.types.Attrib.event("click", onBtUndo, &STATE),
                         }),
                     },
                     .{
@@ -136,15 +131,15 @@ fn initApp() !void {
                         .text = "download",
                         .class = "mr1",
                         .attribs = dom.attribs(&.{
-                            Attrib.event("click", onBtDownload, null),
+                            dom.types.Attrib.event("click", onBtDownload, null),
                         }),
                     },
                     .{
                         .tag = "button",
                         .text = "fullscreen",
                         .attribs = dom.attribs(&.{
-                            Attrib.flag("disabled", !STATE.window.hasFullscreen()),
-                            Attrib.event("click", onToggleFullscreen, &STATE),
+                            dom.types.Attrib.flag("disabled", !STATE.window.hasFullscreen()),
+                            dom.types.Attrib.event("click", onToggleFullscreen, &STATE),
                         }),
                     },
                 }),
@@ -161,18 +156,18 @@ fn initApp() !void {
         .dpr = STATE.window.dpr,
         .parent = container,
         .attribs = dom.attribs(&.{
-            Attrib.event("mousedown", startStroke, &STATE),
-            Attrib.event("mousemove", updateStroke, &STATE),
-            Attrib.event("mouseup", endStroke, &STATE),
-            Attrib.event("touchstart", startStroke, &STATE),
-            Attrib.event("touchmove", updateStroke, &STATE),
-            Attrib.event("touchend", endStroke, &STATE),
+            dom.types.Attrib.event("mousedown", startStroke, &STATE),
+            dom.types.Attrib.event("mousemove", updateStroke, &STATE),
+            dom.types.Attrib.event("mouseup", endStroke, &STATE),
+            dom.types.Attrib.event("touchstart", startStroke, &STATE),
+            dom.types.Attrib.event("touchmove", updateStroke, &STATE),
+            dom.types.Attrib.event("touchend", endStroke, &STATE),
         }),
     });
     resizeCanvas();
 
-    _ = try dom.addListener(dom.window, "keydown", onKeyDown, &STATE);
-    _ = try dom.addListener(dom.window, "resize", onResize, &STATE);
+    _ = try dom.events.addListener(dom.window, "keydown", onKeyDown, &STATE);
+    _ = try dom.events.addListener(dom.window, "resize", onResize, &STATE);
 }
 
 /// Main entry point (called from JS)

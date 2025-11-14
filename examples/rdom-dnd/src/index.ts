@@ -1,9 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
 import { ADD_ALT, CLOSE_OUTLINE } from "@thi.ng/hiccup-carbon-icons";
 import { div, para } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { cycle } from "@thi.ng/transducers";
-import { Draggable } from "./draggable";
-import { Notification, type NotifyItem } from "./notification";
+import { Draggable } from "./draggable.js";
+import { Notification, type NotifyItem } from "./notification.js";
 
 const messages = cycle<NotifyItem>([
 	{ type: "info", msg: "All systems working" },

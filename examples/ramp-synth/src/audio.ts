@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { fract } from "@thi.ng/math";
 import type { Ramp } from "@thi.ng/ramp";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { FORMAT_MD, suite } from "@thi.ng/bench";
 import { KSUID32, defKSUID32 } from "@thi.ng/ksuid";
 

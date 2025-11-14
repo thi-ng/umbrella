@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { BaseN } from "@thi.ng/base-n";
 import { BASE62 } from "@thi.ng/base-n/62";
 import { assert } from "@thi.ng/errors/assert";

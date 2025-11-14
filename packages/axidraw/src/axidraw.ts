@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IReset } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { delayed } from "@thi.ng/compose/delayed";
@@ -18,10 +19,10 @@ import {
 } from "@thi.ng/vectors/api";
 import { clamp2 } from "@thi.ng/vectors/clamp";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { mag } from "@thi.ng/vectors/mag";
+import { mag2 } from "@thi.ng/vectors/mag";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { set2 } from "@thi.ng/vectors/set";
-import { zero } from "@thi.ng/vectors/setn";
+import { setN2 } from "@thi.ng/vectors/setn";
 import { sub2 } from "@thi.ng/vectors/sub";
 import {
 	AxiDrawState,
@@ -92,8 +93,8 @@ export class AxiDraw implements IReset {
 	}
 
 	reset() {
-		zero(this.pos);
-		zero(this.targetPos);
+		setN2(this.pos, 0);
+		setN2(this.targetPos, 0);
 		this.send("R\r");
 		return this;
 	}
@@ -151,7 +152,7 @@ export class AxiDraw implements IReset {
 	 * {@link AxiDrawOpts.control} for details).
 	 *
 	 * Reference:
-	 * - http://evil-mad.github.io/EggBot/ebb.html
+	 * http://evil-mad.github.io/EggBot/ebb.html
 	 *
 	 * Also see {@link complete}.
 	 *
@@ -398,7 +399,7 @@ export class AxiDraw implements IReset {
 	}
 
 	/**
-	 * Syntax sugar for {@link AxiDraw.moveTo}([0, 0]).
+	 * Syntax sugar for {@link AxiDraw.moveTo} position `[0,0]`.
 	 */
 	home() {
 		return this.moveTo(ZERO2);
@@ -432,7 +433,7 @@ export class AxiDraw implements IReset {
 			(1000 * maxAxis) /
 			((isPenDown ? opts.speedDown : opts.speedUp) * tempo);
 		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
-		return [duration, mag(delta) / scale];
+		return [duration, mag2(delta) / scale];
 	}
 
 	/**
@@ -440,7 +441,7 @@ export class AxiDraw implements IReset {
 	 *
 	 * @remarks
 	 * Reference:
-	 * - https://github.com/evil-mad/AxiDraw-Processing/blob/80d81a8c897b8a1872b0555af52a8d1b5b13cec4/AxiGen1/AxiGen1.pde#L213
+	 * https://github.com/evil-mad/AxiDraw-Processing/blob/80d81a8c897b8a1872b0555af52a8d1b5b13cec4/AxiGen1/AxiGen1.pde#L213
 	 *
 	 * @param id
 	 * @param x

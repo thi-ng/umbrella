@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN2, Range } from "@thi.ng/api";
 import { norm } from "@thi.ng/math/fit";
 import { clamp0 } from "@thi.ng/math/interval";
@@ -18,9 +19,9 @@ export const tnormNilpotent: FnN2 = (x, y) => (x + y > 1 ? Math.min(x, y) : 0);
  * HOF T-norm. Parametric Hamacher with `p` controlling curvature.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/4bneccqs3p
+ * [Interactive graph](https://www.desmos.com/calculator/4bneccqs3p)
  *
- * @param p - curve param [0..∞], default: 2
+ * @param p - curve param `[0,∞]`, default: 2
  */
 export const tnormHamacher =
 	(p = 2): FnN2 =>
@@ -31,9 +32,9 @@ export const tnormHamacher =
  * HOF T-norm. Parametric Yager with `p` controlling curvature.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/4bneccqs3p
+ * [Interactive graph](https://www.desmos.com/calculator/4bneccqs3p)
  *
- * @param p - curve param [0..∞], default: 2
+ * @param p - curve param `[0,∞]`, default: 2
  */
 export const tnormYager = (p = 2): FnN2 =>
 	p === 0
@@ -44,9 +45,9 @@ export const tnormYager = (p = 2): FnN2 =>
  * HOF T-norm. Parametric Dombi with `p` controlling curvature.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/4bneccqs3p
+ * [Interactive graph](https://www.desmos.com/calculator/4bneccqs3p)
  *
- * @param p - curve param [0..∞], default: 2
+ * @param p - curve param `[0,∞]`, default: 2
  */
 export const tnormDombi = (p = 2): FnN2 =>
 	p === 0
@@ -63,9 +64,9 @@ export const tnormDombi = (p = 2): FnN2 =>
  * HOF T-norm. Parametric Aczél–Alsina with `p` controlling curvature.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/4bneccqs3p
+ * [Interactive graph](https://www.desmos.com/calculator/4bneccqs3p)
  *
- * @param p - curve param [0..∞], default: 2
+ * @param p - curve param `[0,∞]`, default: 2
  */
 export const tnormAczelAlsina =
 	(p = 2): FnN2 =>

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
@@ -33,9 +34,9 @@ import {
 	TRACE_MODES,
 	type AxiDrawConfig,
 	type LayerParams,
-} from "../api";
-import { DB } from "./atom";
-import { addLayer } from "./layers";
+} from "../api.js";
+import { DB } from "./atom.js";
+import { addLayer } from "./layers.js";
 
 /**
  * Reactive transformer to reprocess a loaded image whenever the image itself or

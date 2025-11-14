@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { StackContext } from "./api.js";
 import { $ } from "./safe.js";
 
@@ -6,7 +7,7 @@ import { $ } from "./safe.js";
 /**
  * Prints TOS to console
  *
- * ( x -- )
+ * Stack effect: `( x -- )`
  *
  * @param ctx -
  */

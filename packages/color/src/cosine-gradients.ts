@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnU, FnU2, NumericArray } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose/partial";
 import { TAU } from "@thi.ng/math/api";
@@ -166,7 +167,7 @@ export const COSINE_GRADIENTS: Record<CosineGradientPreset, CosGradientSpec> = {
 
 /**
  * Computes a single linear RGBA color for given gradient spec and normalized
- * position `t` (in [0..1] interval).
+ * position `t` (in `[0,1]` interval).
  *
  * @param spec -
  * @param t -
@@ -211,7 +212,7 @@ export const cosineGradient = (
  *
  * @remarks
  * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
- * for dataviz etc. Also @see {@link multiColorGradientBuffer}.
+ * for dataviz etc. Also see {@link multiColorGradientBuffer}.
  *
  * @param n -  number of colors
  * @param spec - gradient spec
@@ -262,8 +263,7 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
  * an array of `n+1` linear RGBA color samples.
  *
  * @remarks
- * See
- * [`tween()`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
+ * See [`tween`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
  *
  * @example
  * ```ts tangle:../export/cosine-gradient.ts

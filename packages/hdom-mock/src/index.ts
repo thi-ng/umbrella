@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";

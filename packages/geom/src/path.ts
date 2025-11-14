@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Attribs, PathSegment2 } from "./api.js";
 import { Path } from "./api/path.js";
 

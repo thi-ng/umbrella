@@ -1,9 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate2 } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 
 /**
- * Similar to `Array.find()`, but uses [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) as
- * default predicate.
+ * Similar to `Array.find()`, but uses
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) as default
+ * predicate.
  *
  * @param buf - array
  * @param x - search value
@@ -20,8 +22,8 @@ export const find = <T>(
 
 /**
  * Similar to `Array.findIndex()`, but uses
- * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) as
- * default predicate.
+ * [`equiv`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) as default
+ * predicate.
  *
  * @param buf - array
  * @param x - search value

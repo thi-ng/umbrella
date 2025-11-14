@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { eqDelta as $eq } from "@thi.ng/math";
 import { expect, test } from "bun:test";
 import {

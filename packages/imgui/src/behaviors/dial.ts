@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { TAU } from "@thi.ng/math/api";
 import { fit } from "@thi.ng/math/fit";
 import type { ReadonlyVec } from "@thi.ng/vectors";

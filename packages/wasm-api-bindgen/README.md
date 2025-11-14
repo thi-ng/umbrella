@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api-bindgen](https://media.thi.ng/umbrella/banners-20230807/thing-wasm-api-bindgen.svg?73258d56)
+# ![@thi.ng/wasm-api-bindgen](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api-bindgen.svg?73258d56)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-bindgen.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -485,7 +485,7 @@ $ npx @thi.ng/wasm-api
 
  █ █   █           │
 ██ █               │
- █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api-bindgen 0.6.0
+ █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api-bindgen v1.2.35
  █ █ █ █ █ █ █ █ █ │ Multi-language data bindings code generator
                  █ │
                █ █ │
@@ -495,8 +495,8 @@ usage: wasm-api-bindgen [OPTS] JSON-INPUT-FILE(S) ...
 
 Flags:
 
--d, --debug                     enable debug output & functions
---dry-run                       enable dry run (don't overwrite files)
+--dry-run                       Dry run (no changes applied)
+-v, --verbose                   Display extra information
 
 Main:
 

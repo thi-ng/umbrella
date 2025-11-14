@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { StackContext, StackProc } from "./api.js";
@@ -15,7 +16,7 @@ import { $stackFn } from "./word.js";
  * Note: Unlike JS `if() {...} else {...}` constructs, the actual
  * conditional is NOT part of this word.
  *
- * ( bool -- ? )
+ * Stack effect: `( bool -- ? )`
  *
  * @param _then -
  * @param _else -
@@ -32,7 +33,7 @@ export const defCond =
  * on d-stack. Executes `thenq` word/quotation if `test` is truthy, else runs
  * `elseq`.
  *
- * ( test thenq elseq -- ? )
+ * Stack effect: `( test thenq elseq -- ? )`
  *
  * @param ctx -
  */
@@ -48,7 +49,7 @@ export const condq = (ctx: StackContext) => {
  * Similar to {@link condq}, but only expects `test` result and truthy branch
  * d-stack. Executes word/quotation if `test` is truthy, else does nothing.
  *
- * ( test whenq -- ? )
+ * Stack effect: `( test whenq -- ? )`
  *
  * @param ctx -
  */

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { map } from "@thi.ng/transducers/map";
 import { range2d } from "@thi.ng/transducers/range2d";
 import type { GridIterOpts2D } from "./api.js";

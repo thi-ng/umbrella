@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { group } from "@thi.ng/geom/group";
 import { line } from "@thi.ng/geom/line";
@@ -9,11 +10,11 @@ import { roundTo } from "@thi.ng/math/prec";
 import type { Frame, Ramp } from "@thi.ng/ramp";
 import { map } from "@thi.ng/transducers/map";
 import { ONE2, ZERO2, type Vec } from "@thi.ng/vectors/api";
-import { clamp01_2 } from "@thi.ng/vectors/clamp";
+import { clamp01_2 } from "@thi.ng/vectors/clamp01";
 import { fit2 } from "@thi.ng/vectors/fit";
 import { hash } from "@thi.ng/vectors/hash";
 import { mix2 } from "@thi.ng/vectors/mix";
-import { Key, type ComponentOpts } from "../api.js";
+import { Key, type Color, type ComponentOpts } from "../api.js";
 import { isHoverSlider } from "../behaviors/slider.js";
 import type { IMGUI } from "../gui.js";
 import { layoutBox } from "../layout.js";
@@ -25,6 +26,8 @@ export interface RampOpts extends Omit<ComponentOpts, "label"> {
 	 * User defined interpolation mode. Only used to compute internal hash of
 	 * ramp curve geometry, i.e. if the {@link RampOpts.ramp} interpolation
 	 * method changes, so should this mode value.
+	 *
+	 * @defaultValue 0
 	 */
 	mode?: number;
 	/**
@@ -33,6 +36,16 @@ export interface RampOpts extends Omit<ComponentOpts, "label"> {
 	 * @defaultValue 0.05
 	 */
 	eps?: number;
+	/**
+	 * Ramp resolution (number of vertices for area plot)
+	 *
+	 * @defaultValue 100
+	 */
+	samples?: number;
+	/**
+	 * Optional fill color override (default: GUI text color)
+	 */
+	fill?: Color;
 }
 
 export const ramp = ({
@@ -43,6 +56,8 @@ export const ramp = ({
 	mode = 0,
 	info,
 	eps = 0.05,
+	samples = 100,
+	fill = gui.textColor(false),
 }: RampOpts) => {
 	const { x, y, w, h } = layoutBox(layout);
 	const maxX = x + w;
@@ -52,7 +67,6 @@ export const ramp = ({
 	const key = hash([x, y, w, h]);
 	gui.registerID(id, key);
 	const box = gui.resource(id, key, () => rect([x, y], [w, h]));
-	const col = gui.textColor(false);
 	const hover = isHoverSlider(gui, id, box, "move");
 	const stops = ramp.stops;
 	let selID = -1;
@@ -92,11 +106,11 @@ export const ramp = ({
 					[
 						[x, maxY],
 						mix2([], pos, maxPos, [0, stops[0][1]]),
-						...__rampVertices(ramp, pos, maxPos),
+						...__rampVertices(ramp, pos, maxPos, samples),
 						mix2([], pos, maxPos, [1, stops[stops.length - 1][1]]),
 						[maxX, maxY],
 					],
-					{ fill: col }
+					{ fill }
 				)
 			),
 			...stops.map(([t], i) => {
@@ -130,7 +144,7 @@ const __rampVertices = (
 	ramp: Ramp<number>,
 	pos: Vec,
 	maxPos: Vec,
-	numSamples = 100
+	numSamples: number
 ) => map((p) => mix2(p, pos, maxPos, p), ramp.samples(numSamples));
 
 /** @internal */

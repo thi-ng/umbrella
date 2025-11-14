@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	ArrayLikeIterable,
 	Fn,
@@ -12,22 +13,21 @@ import type {
 	IEmpty,
 	IEqualsDelta,
 	ILength,
+	Maybe,
 	NumericArray,
 	Tuple,
 	TypedArray,
 } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 
-export interface Vec extends Iterable<number>, ILength {
-	[id: number]: number;
+export interface Vec<T = number> extends Iterable<T>, ILength {
+	[id: number]: T;
 }
 
-export interface BVec extends Iterable<boolean>, ILength {
-	[id: number]: boolean;
-}
+export type BVec = Vec<boolean>;
 
-export type ReadonlyVec = ArrayLikeIterable<number>;
-export type ReadonlyBVec = ArrayLikeIterable<boolean>;
+export type ReadonlyVec<T = number> = ArrayLikeIterable<T>;
+export type ReadonlyBVec = ReadonlyVec<boolean>;
 
 export type Vec2Like = Tuple<number, 2> | TypedArray;
 export type Vec3Like = Tuple<number, 3> | TypedArray;
@@ -79,34 +79,51 @@ export interface MultiVecOp<VOP> {
 	 *
 	 * @param dim -
 	 */
-	impl(dim: number): VOP;
+	impl(dim?: number): Maybe<VOP>;
 }
 
-export type VecPair = [Vec, Vec];
+export type VecPair<T = number> = [Vec<T>, Vec<T>];
 
-export type VecOpV = Fn2<Vec | null, ReadonlyVec, Vec>;
-export type VecOpN = Fn2<Vec | null, number, Vec>;
-export type VecOpVV = Fn3<Vec | null, ReadonlyVec, ReadonlyVec, Vec>;
+export type VecOpV<A = number, B = A> = Fn2<
+	Vec<B> | null,
+	ReadonlyVec<A>,
+	Vec<B>
+>;
+
+export type VecOpN = Fn2<Vec, number, Vec>;
+
+export type VecOpVV<A = number, B = A> = Fn3<
+	Vec<B> | null,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	Vec<B>
+>;
+
 export type VecOpVN = Fn3<Vec | null, ReadonlyVec, number, Vec>;
-export type VecOpVVV = Fn4<
-	Vec | null,
-	ReadonlyVec,
-	ReadonlyVec,
-	ReadonlyVec,
-	Vec
+
+export type VecOpVVV<A = number, B = A> = Fn4<
+	Vec<B> | null,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	Vec<B>
 >;
 export type VecOpVVN = Fn4<Vec | null, ReadonlyVec, ReadonlyVec, number, Vec>;
+
 export type VecOpVNV = Fn4<Vec | null, ReadonlyVec, number, ReadonlyVec, Vec>;
+
 export type VecOpVNN = Fn4<Vec | null, ReadonlyVec, number, number, Vec>;
-export type VecOpVVVVV = Fn6<
-	Vec | null,
-	ReadonlyVec,
-	ReadonlyVec,
-	ReadonlyVec,
-	ReadonlyVec,
-	ReadonlyVec,
-	Vec
+
+export type VecOpVVVVV<A = number, B = A> = Fn6<
+	Vec<B> | null,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	ReadonlyVec<A>,
+	Vec<B>
 >;
+
 export type VecOpVVVVNN = Fn7<
 	Vec | null,
 	ReadonlyVec,
@@ -119,17 +136,32 @@ export type VecOpVVVVNN = Fn7<
 >;
 
 export type VecOpVO<T> = (out: Vec | null, a: ReadonlyVec, b?: T) => Vec;
+
+export type VecOpVVO<O> = (
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c?: O
+) => Vec;
+
 export type VecOpOO<A, B> = (out: Vec | null, a?: A, b?: B) => Vec;
+
 export type VecOpOOO<A, B, C> = (out: Vec | null, a?: A, b?: B, c?: C) => Vec;
-export type VecOpNNO<T> = (out: Vec | null, a: number, b: number, c?: T) => Vec;
+
+export type VecOpNO<O> = (out: Vec | null, a: number, b?: O) => Vec;
+
+export type VecOpNNO<O> = (out: Vec | null, a: number, b: number, c?: O) => Vec;
 
 export type VecOpRoV<T> = Fn<ReadonlyVec, T>;
+
 export type VecOpRoVV<T> = FnU2<ReadonlyVec, T>;
+
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
 export type VecOpFN = (out: Vec | null, fn: Fn0<number>, n?: number) => Vec;
 
 export type VecOpFNO = (out: Vec | null, fn?: Fn0<number>, n?: number) => Vec;
+
 export type VecOpNFO = (out: Vec | null, n?: number, fn?: Fn0<number>) => Vec;
 
 export type VecOpSV = (
@@ -140,6 +172,7 @@ export type VecOpSV = (
 	so?: number,
 	sa?: number
 ) => Vec;
+
 export type VecOpSGV = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -156,6 +189,7 @@ export type VecOpSN = (
 	io?: number,
 	so?: number
 ) => Vec;
+
 export type VecOpSGN = (
 	out: Vec | null,
 	n: number,
@@ -173,6 +207,7 @@ export type VecOpSVN = (
 	so?: number,
 	sa?: number
 ) => Vec;
+
 export type VecOpSGVN = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -195,6 +230,7 @@ export type VecOpSVV = (
 	sa?: number,
 	sb?: number
 ) => Vec;
+
 export type VecOpSGVV = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -220,6 +256,7 @@ export type VecOpSVNV = (
 	sa?: number,
 	sb?: number
 ) => Vec;
+
 export type VecOpSGVNV = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -246,6 +283,7 @@ export type VecOpSVVN = (
 	sa?: number,
 	sb?: number
 ) => Vec;
+
 export type VecOpSGVVN = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -274,6 +312,7 @@ export type VecOpSVVV = (
 	sb?: number,
 	sc?: number
 ) => Vec;
+
 export type VecOpSGVVV = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -291,6 +330,7 @@ export type VecOpSGVVV = (
 ) => Vec;
 
 export type VecOpSRoV<T> = (a: ReadonlyVec, ia?: number, sa?: number) => T;
+
 export type VecOpSGRoV<T> = (
 	a: ReadonlyVec,
 	num: number,
@@ -316,11 +356,12 @@ export type VecOpSVO<T> = (
 	so?: number,
 	sa?: number
 ) => Vec;
-export type VecOpSGVO<T> = (
+
+export type VecOpSGVO<O> = (
 	out: Vec | null,
 	a: ReadonlyVec,
 	num: number,
-	b?: T,
+	b?: O,
 	io?: number,
 	ia?: number,
 	so?: number,
@@ -334,6 +375,7 @@ export type VecOpSOO<A, B> = (
 	ia?: number,
 	sa?: number
 ) => Vec;
+
 export type VecOpSGOO<A, B> = (
 	a: Vec | null,
 	num: number,
@@ -351,6 +393,7 @@ export type VecOpSOOO<A, B, C> = (
 	ia?: number,
 	sa?: number
 ) => Vec;
+
 export type VecOpSGOOO<A, B, C> = (
 	a: Vec | null,
 	num: number,
@@ -373,6 +416,7 @@ export type VecOpSVVO<O> = (
 	sa?: number,
 	sb?: number
 ) => Vec;
+
 export type VecOpSGVVO<O> = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -395,6 +439,7 @@ export type VecOpSGFN = (
 	io?: number,
 	so?: number
 ) => Vec;
+
 export type VecOpSFN = (
 	out: Vec | null,
 	fn: Fn0<number>,
@@ -405,21 +450,24 @@ export type VecOpSFN = (
 
 export type MultiVecOpImpl<T> = T & MultiVecOp<T>;
 
-export type MultiVecOpV = MultiVecOpImpl<VecOpV>;
+export type MultiVecOpV<A = number, B = A> = MultiVecOpImpl<VecOpV<A, B>>;
 export type MultiVecOpN = MultiVecOpImpl<VecOpN>;
-export type MultiVecOpVV = MultiVecOpImpl<VecOpVV>;
+export type MultiVecOpVV<A = number, B = A> = MultiVecOpImpl<VecOpVV<A, B>>;
 export type MultiVecOpVN = MultiVecOpImpl<VecOpVN>;
-export type MultiVecOpVVV = MultiVecOpImpl<VecOpVVV>;
+export type MultiVecOpVVV<A = number, B = A> = MultiVecOpImpl<VecOpVVV<A, B>>;
 export type MultiVecOpVVN = MultiVecOpImpl<VecOpVVN>;
 export type MultiVecOpVNV = MultiVecOpImpl<VecOpVNV>;
 export type MultiVecOpVNN = MultiVecOpImpl<VecOpVNN>;
-export type MultiVecOpVVVVV = MultiVecOpImpl<VecOpVVVVV>;
+export type MultiVecOpVVVVV<A = number, B = A> = MultiVecOpImpl<
+	VecOpVVVVV<A, B>
+>;
 export type MultiVecOpVVVVNN = MultiVecOpImpl<VecOpVVVVNN>;
 
-export type MultiVecOpVO<T> = MultiVecOpImpl<VecOpVO<T>>;
+export type MultiVecOpVO<O> = MultiVecOpImpl<VecOpVO<O>>;
+export type MultiVecOpVVO<O> = MultiVecOpImpl<VecOpVVO<O>>;
 export type MultiVecOpOO<A, B> = MultiVecOpImpl<VecOpOO<A, B>>;
 export type MultiVecOpOOO<A, B, C> = MultiVecOpImpl<VecOpOOO<A, B, C>>;
-export type MultiVecOpNNO<T> = MultiVecOpImpl<VecOpNNO<T>>;
+export type MultiVecOpNNO<O> = MultiVecOpImpl<VecOpNNO<O>>;
 
 export type MultiVecOpRoV<T> = MultiVecOpImpl<VecOpRoV<T>>;
 export type MultiVecOpRoVV<T> = MultiVecOpImpl<VecOpRoVV<T>>;
@@ -431,12 +479,12 @@ export type MultiVecOpNFO = MultiVecOpImpl<VecOpNFO>;
 export type MultiVecOpSFN = MultiVecOpImpl<VecOpSFN>;
 
 export type BVecOpRoV<T> = Fn<ReadonlyBVec, T>;
-export type BVecOpV = Fn2<BVec | null, ReadonlyBVec, BVec>;
-export type BVecOpVV = Fn3<BVec | null, ReadonlyBVec, ReadonlyBVec, BVec>;
+export type BVecOpV = VecOpV<boolean>;
+export type BVecOpVV = VecOpVV<boolean>;
 export type BVecOpVN = Fn3<BVec | null, ReadonlyBVec, boolean, BVec>;
 
-export type ToBVecOpV = Fn2<BVec | null, ReadonlyVec, BVec>;
-export type FromBVecOpV = Fn2<Vec | null, ReadonlyBVec, Vec>;
+export type ToBVecOpV = VecOpV<number, boolean>;
+export type FromBVecOpV = VecOpV<boolean, number>;
 
 export type MultiBVecOpV = MultiVecOpImpl<BVecOpV>;
 export type MultiBVecOpVV = MultiVecOpImpl<BVecOpVV>;
@@ -523,6 +571,7 @@ export interface VecAPI {
 	atan2: VecOpVV;
 	ceil: VecOpV;
 	clamp: VecOpVVV;
+	clampN: VecOpVNN;
 	clamp01: VecOpV;
 	cos: VecOpV;
 	degrees: VecOpV;
@@ -566,8 +615,8 @@ export interface VecAPI {
 	radians: VecOpV;
 	random: VecOpOOO<number, number, IRandom>;
 	randomDistrib: VecOpFNO;
-	randMinMax: VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>;
-	randNorm: (v: Vec | null, n?: number, rnd?: IRandom) => Vec;
+	randMinMax: VecOpVVO<IRandom>;
+	randNorm: VecOpOO<number, IRandom>;
 	randNormDistrib: VecOpNFO;
 	round: VecOpVV;
 	set: VecOpV;
@@ -591,8 +640,6 @@ export interface VecAPI {
 	lt: CompareOp;
 	lte: CompareOp;
 }
-
-export type Template = (syms: string[], i?: number) => string;
 
 export interface ToStringOpts {
 	/**

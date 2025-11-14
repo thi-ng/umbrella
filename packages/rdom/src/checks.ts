@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { COMMENT } from "@thi.ng/hiccup/api";
 import type { IComponent } from "./api.js";
@@ -8,6 +9,7 @@ import type { IComponent } from "./api.js";
  *
  * @remarks
  * See thi.ng/hiccup docs for reference:
+ *
  * - https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
  *
  * @param tree

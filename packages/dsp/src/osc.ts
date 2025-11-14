@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
 import { Add, add } from "./add.js";
 import { AGen } from "./agen.js";

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { equiv } from "@thi.ng/equiv";
 import { eqDelta } from "@thi.ng/vectors";
 import { init } from "../src/index.js";

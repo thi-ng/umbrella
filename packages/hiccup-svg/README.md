@@ -1,13 +1,13 @@
 <!-- This file is generated - DO NOT EDIT! -->
 <!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-svg](https://media.thi.ng/umbrella/banners-20230807/thing-hiccup-svg.svg?b89d2384)
+# ![@thi.ng/hiccup-svg](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-svg.svg?b89d2384)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-svg.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 200 standalone projects, maintained as part
+> This is one of 210 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -66,8 +66,9 @@ definitions and recursively converts it into an hiccup flavor which is ready for
 SVG serialization (i.e. using stringified geometry attribs). This conversion
 also involves translation & re-organization of various attributes. This function
 returns a new tree. The original remains untouched, as will any unrecognized
-tree / shape nodes (those will be transferred as-is to the result tree). See
-example below.
+tree / shape nodes (those will be transferred as-is to the result tree).
+Conversion can be explicitly disabled for individual elements (tree branches) by
+setting the `__convert: false` control attribute. See example below.
 
 Tree conversion can be implicitly triggered by providing a `__convert: true`
 attribute to the root `svg()` element. This conversion also supports the
@@ -179,7 +180,7 @@ For Node.js REPL:
 const svg = await import("@thi.ng/hiccup-svg");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.49 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
 
 ## Dependencies
 

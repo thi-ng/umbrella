@@ -1,14 +1,15 @@
+// SPDX-License-Identifier: Apache-2.0
 import { TAU } from "@thi.ng/math/api";
 import type { StatelessOscillator } from "./api.js";
 
 /**
  * Returns a {@link StatelessOscillator} function with adjustable waveform based
- * on given `squareness` param (in [0..1) interval). If `squareness = 0` the
+ * on given `squareness` param (in `[0,1)` interval). If `squareness = 0` the
  * waveform will be a perfect sine. Higher values morph the waveform
  * increasingly into a square wave.
  *
  * @remarks
- * Interactive graph: https://www.desmos.com/calculator/nbvd97m3kl
+ * [Interactive graph](https://www.desmos.com/calculator/nbvd97m3kl)
  *
  * @param squareness
  */

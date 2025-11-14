@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Color } from "../api.js";
 import { srgbRgb } from "../srgb/srgb-rgb.js";
 import {

@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, NumericArray } from "@thi.ng/api";
 import { Delay, conjugate, ifft } from "@thi.ng/dsp";
-import { BIN_AMP, NUM_BINS, PITCH_SCALE } from "./config";
-import { DB } from "./state";
+import { BIN_AMP, NUM_BINS, PITCH_SCALE } from "./config.js";
+import { DB } from "./state.js";
 
 export const makeBins = () => new Array(NUM_BINS).fill(0);
 
@@ -41,7 +42,7 @@ export const updateAudio = () => {
 	}
 	delay.next(bins);
 	const wave = ifft(conjugate(bins))[0];
-	DB.resetIn(["wave"], <Float64Array>wave);
+	DB.resetIn(["wave"], <Float64Array<ArrayBuffer>>wave);
 
 	if (!actx) return;
 	const left = buf.getChannelData(0);

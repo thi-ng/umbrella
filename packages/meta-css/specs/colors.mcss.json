@@ -51,8 +51,8 @@
 	},
 	"specs": [
 		{
-			"doc": { "group": "color scheme", "desc": "<v>" },
 			"name": "color-scheme-<k>",
+			"doc": { "group": "color scheme", "desc": "<v>" },
 			"props": "color-scheme",
 			"values": {
 				"light": "light",
@@ -61,58 +61,58 @@
 			}
 		},
 		{
-			"doc": { "group": "border color", "desc": "<v>" },
 			"name": "border-color-<k>",
+			"doc": { "group": "border color", "desc": "<v>" },
 			"props": "border-color",
 			"values": "palette"
 		},
 		{
-			"doc": { "group": "border color", "desc": "<v>" },
 			"name": "border-color-<k>",
+			"doc": { "group": "border color", "desc": "<v>" },
 			"props": "border-color",
 			"values": "grays"
 		},
 		{
-			"doc": { "group": "text color", "desc": "<v>" },
 			"name": "color-<k>",
+			"doc": { "group": "text color", "desc": "<v>" },
 			"props": "color",
 			"values": "palette"
 		},
 		{
-			"doc": { "group": "text color", "desc": "<v>" },
 			"name": "color-<k>",
+			"doc": { "group": "text color", "desc": "<v>" },
 			"props": "color",
 			"values": "grays"
 		},
 		{
-			"doc": { "group": "background color", "desc": "<v>" },
 			"name": "bg-color-<k>",
+			"doc": { "group": "background color", "desc": "<v>" },
 			"props": "background-color",
 			"values": "palette"
 		},
 		{
-			"doc": { "group": "background color", "desc": "<v>" },
 			"name": "bg-color-<k>",
+			"doc": { "group": "background color", "desc": "<v>" },
 			"props": "background-color",
 			"values": "grays"
 		},
 		{
-			"doc": { "group": "svg", "desc": "<v>" },
 			"name": "<var>-<k>",
+			"doc": { "group": "svg", "desc": "<v>" },
 			"props": { "<var>": "<v>" },
 			"values": "palette",
 			"vars": ["fill-stroke"]
 		},
 		{
-			"doc": { "group": "svg", "desc": "<v>" },
 			"name": "<var>-<k>",
+			"doc": { "group": "svg", "desc": "<v>" },
 			"props": { "<var>": "<v>" },
 			"values": "grays",
 			"vars": ["fill-stroke"]
 		},
 		{
-			"doc": { "group": "opacity", "desc": "<v>" },
 			"name": "o-<k>",
+			"doc": { "group": "opacity", "desc": "<v>" },
 			"props": "opacity",
 			"values": {
 				"0": 0,
@@ -131,6 +131,7 @@
 	],
 	"templates": [
 		{
+			"name": "border-light-dark",
 			"doc": {
 				"group": "color scheme",
 				"desc": "Sets `border-color` using CSS light-dark() function",
@@ -139,12 +140,12 @@
 					"dark: variable name (without `--` prefix)"
 				]
 			},
-			"name": "border-light-dark",
 			"props": {
 				"border-color": "light-dark(var(--{0}), var(--{1}))"
 			}
 		},
 		{
+			"name": "bg-light-dark",
 			"doc": {
 				"group": "color scheme",
 				"desc": "Sets `background-color` using CSS light-dark() function",
@@ -153,12 +154,12 @@
 					"dark: variable name (without `--` prefix)"
 				]
 			},
-			"name": "bg-light-dark",
 			"props": {
 				"background-color": "light-dark(var(--{0}), var(--{1}))"
 			}
 		},
 		{
+			"name": "light-dark",
 			"doc": {
 				"group": "color scheme",
 				"desc": "Sets `color` using CSS light-dark() function",
@@ -167,12 +168,12 @@
 					"dark: variable name (without `--` prefix)"
 				]
 			},
-			"name": "light-dark",
 			"props": {
 				"color": "light-dark(var(--{0}), var(--{1}))"
 			}
 		},
 		{
+			"name": "<var>-light-dark",
 			"doc": {
 				"group": "color scheme",
 				"desc": "Sets `<var>` color using CSS light-dark() function",
@@ -181,40 +182,39 @@
 					"dark: variable name (without `--` prefix)"
 				]
 			},
-			"name": "<var>-light-dark",
 			"props": { "<var>": "light-dark(var(--{0}), var(--{1}))" },
 			"vars": ["fill-stroke"]
 		},
 		{
+			"name": "border-color",
 			"doc": {
 				"group": "border color",
 				"args": ["name: variable name (without `--` prefix)"]
 			},
-			"name": "border-color",
 			"props": { "border-color": "var(--{0})" }
 		},
 		{
+			"name": "color",
 			"doc": {
 				"group": "text color",
 				"args": ["name: variable name (without `--` prefix)"]
 			},
-			"name": "color",
 			"props": { "color": "var(--{0})" }
 		},
 		{
+			"name": "bg-color",
 			"doc": {
 				"group": "background color",
 				"args": ["name: variable name (without `--` prefix)"]
 			},
-			"name": "bg-color",
 			"props": { "background-color": "var(--{0})" }
 		},
 		{
+			"name": "<var>",
 			"doc": {
 				"group": "svg",
 				"args": ["name: variable name (without `--` prefix)"]
 			},
-			"name": "<var>",
 			"props": { "<var>": "var(--{0})" },
 			"vars": ["fill-stroke"]
 		}

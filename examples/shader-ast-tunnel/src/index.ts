@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { intAbgr32Srgb } from "@thi.ng/color";
 import { ABGR8888, defSampler, intBuffer } from "@thi.ng/pixel";
 import {

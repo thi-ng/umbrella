@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IClosable, IWriteable } from "./api.js";
 import { Channel } from "./channel.js";
 import { __nextID } from "./idgen.js";

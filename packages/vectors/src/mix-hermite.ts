@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { addmN } from "./addmn.js";
 import { addW4 } from "./addw.js";
 import type { ReadonlyVec, Vec } from "./api.js";
@@ -5,14 +6,14 @@ import { submN } from "./submn.js";
 
 /**
  * Vector version of
- * [`mixCubicHermite()`](https://docs.thi.ng/umbrella/math/functions/mixCubicHermite.html).
+ * [`mixCubicHermite`](https://docs.thi.ng/umbrella/math/functions/mixCubicHermite.html).
  *
  * @param out - result
  * @param a -
  * @param ta - tangent A
  * @param b -
  * @param tb - tangent B
- * @param t - interpolation coeff [0..1]
+ * @param t - interpolation coeff `[0,1]`
  */
 export const mixCubicHermite = (
 	out: Vec | null,
@@ -39,11 +40,10 @@ export const mixCubicHermite = (
 };
 
 /**
- * Convenience version of {@link mixCubicHermite}, using 4 input points
- * and {@link tangentCardinal} to compute the tangents for points `b`
- * and `c` (with optional `scale`, default 0.5). Interpolated result
- * point is that of `b` and `c`, with `a` and `d` only being used for
- * tangent calculations.
+ * Convenience version of {@link mixCubicHermite}, using 4 input points and
+ * {@link tangentCardinal} to compute the tangents for points `b` and `c` (with
+ * optional `scale`, default 0.5). Interpolated result point is that of `b` and
+ * `c`, with `a` and `d` only being used for tangent calculations.
  *
  * If `out` is null, stores result in `b`.
  *
@@ -52,7 +52,7 @@ export const mixCubicHermite = (
  * @param b -
  * @param c -
  * @param d -
- * @param t - interpolation coeff [0..1]
+ * @param t - interpolation coeff `[0,1]`
  * @param scale - tangent tightness / scale
  */
 export const mixHermiteCardinal = (
@@ -74,10 +74,10 @@ export const mixHermiteCardinal = (
 	);
 
 /**
- * Convenience version of {@link mixCubicHermite}, using 4 input points
- * and {@link tangentDiff3} to compute the tangents for points `b` and
- * `c`. Interpolated result point is that of `b` and `c`, with `a` and
- * `d` only being used for tangent calculations.
+ * Convenience version of {@link mixCubicHermite}, using 4 input points and
+ * {@link tangentDiff3} to compute the tangents for points `b` and `c`.
+ * Interpolated result point is that of `b` and `c`, with `a` and `d` only being
+ * used for tangent calculations.
  *
  * If `out` is null, stores result in `b`.
  *
@@ -86,7 +86,7 @@ export const mixHermiteCardinal = (
  * @param b -
  * @param c -
  * @param d -
- * @param t - interpolation coeff [0..1]
+ * @param t - interpolation coeff `[0,1]`
  */
 export const mixHermiteDiff3 = (
 	out: Vec,
@@ -107,7 +107,7 @@ export const mixHermiteDiff3 = (
 
 /**
  * Vector version of
- * [`tangentCardinal()`](https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html).
+ * [`tangentCardinal`](https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html).
  *
  * @param out -
  * @param prev -
@@ -127,7 +127,7 @@ export const tangentCardinal = (
 
 /**
  * Vector version of
- * [`tangentDiff3()`](https://docs.thi.ng/umbrella/math/functions/tangentDiff3.html).
+ * [`tangentDiff3`](https://docs.thi.ng/umbrella/math/functions/tangentDiff3.html).
  *
  * @param out - result
  * @param prev -

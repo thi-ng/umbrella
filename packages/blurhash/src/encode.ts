@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { FnN, FnN3, FnN4 } from "@thi.ng/api";
 import { B83_CHARS } from "@thi.ng/base-n/chars/83";
 import { BaseNEncoder } from "@thi.ng/base-n/encode";
@@ -13,8 +14,8 @@ const BASE83 = new BaseNEncoder(B83_CHARS);
 
 /**
  * Computes the blurhash for the given ABGR 32bit pixel array, image size and
- * detail settings (`detailX` & `detailY` both in [1..9] range, X default = 4, Y
- * default is same as X value).
+ * detail settings (`detailX` & `detailY` both in `[1,9]` range, X default = 4,
+ * Y default is same as X value).
  *
  * @param pixels
  * @param width

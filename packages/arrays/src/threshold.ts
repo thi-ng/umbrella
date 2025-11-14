@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Higher order function. Takes an object of threshold values and their target
  * values, as well as a default value. Returns a new function which then matches

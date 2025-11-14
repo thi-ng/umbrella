@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn3, Maybe, TypedArray } from "@thi.ng/api";
 
 /**
@@ -7,7 +8,7 @@ import type { Fn3, Maybe, TypedArray } from "@thi.ng/api";
  * @remarks
  * Where `src` values are the same as `mask`, the corresponding `dest` values
  * will be left unchanged. Performs region clipping, i.e. `dx` can be outside
- * the [0..dest.length) interval.
+ * the `[0,dest.length)` interval.
  *
  * @example
  * ```ts tangle:../export/blit1d.ts

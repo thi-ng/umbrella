@@ -1,18 +1,16 @@
+// SPDX-License-Identifier: Apache-2.0
 const std = @import("std");
 const wasm = @import("wasm-api");
 const dom = @import("wasm-api-dom");
 const schedule = @import("wasm-api-schedule");
 const gl = @import("wasm-api-webgl");
 
-// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
-pub usingnamespace wasm;
-
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/zig/lib.zig
-// var alloc = std.heap.GeneralPurposeAllocator(.{}){};
+// pub const WASM_ALLOCATOR = std.heap.wasm_allocator;
 var buf: [1024]u8 = undefined;
 var alloc = std.heap.FixedBufferAllocator.init(&buf);
 pub const WASM_ALLOCATOR = alloc.allocator();
@@ -124,7 +122,7 @@ fn init() !void {
                 .value = .{ .vec3 = [_]f32{ 1, 0, 0 } },
             },
         }),
-        .textures = gl.ConstI32Slice.wrap(&[_]i32{tex}),
+        .textures = gl.types.ConstI32Slice.wrap(&[_]i32{tex}),
         .mode = .triangles,
         .num = 3,
         .numInstances = 3,

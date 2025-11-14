@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 import { mix } from "@thi.ng/math/mix";
 import { map } from "@thi.ng/transducers/map";

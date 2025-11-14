@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CommonOpts } from "./api.js";
 
 let NEXT_ID = 0;

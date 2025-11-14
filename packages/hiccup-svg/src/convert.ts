@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { circle } from "./circle.js";
@@ -53,6 +54,9 @@ const precisionStack: number[] = [];
  * remains untouched, as will any unrecognized tree/shape nodes.
  *
  * @remarks
+ * The `__convert` control attribute can be used to explicitly disable
+ * conversion for the given tree branch (i.e. use `{ __convert: false }`).
+ *
  * The `__prec` control attribute can be used (on a per-shape basis) to control
  * the formatting used for various floating point values (except color
  * conversions). See {@link setPrecision}. Child shapes (of a group) inherit the
@@ -77,6 +81,7 @@ export const convertTree = (tree: any): any[] | null => {
 		return tree.map(convertTree);
 	}
 	let attribs = __convertAttribs(tree[1]);
+	if (attribs.__convert === false) return tree;
 	if (attribs.__prec) {
 		precisionStack.push(PRECISION);
 		setPrecision(attribs.__prec);

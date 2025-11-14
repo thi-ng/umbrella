@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { MaybeAsyncIterable, Nullable } from "@thi.ng/api";
 import { ensureIterable } from "./ensure.js";
 

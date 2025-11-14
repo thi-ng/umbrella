@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Predicate } from "@thi.ng/api";
 import {
 	div,
@@ -11,8 +12,8 @@ import {
 	TRACE_MODE_ORDER,
 	type LayerParam,
 	type TraceMode,
-} from "../api";
-import { DB } from "../state/atom";
+} from "../api.js";
+import { DB } from "../state/atom.js";
 import {
 	addLayer,
 	duplicateLayer,
@@ -20,9 +21,9 @@ import {
 	removeLayer,
 	setLayerMode,
 	updateLayerParam,
-} from "../state/layers";
-import { layerOrder } from "../state/process";
-import { button, dropdown, title } from "./common";
+} from "../state/layers.js";
+import { layerOrder } from "../state/process.js";
+import { button, dropdown, title } from "./common.js";
 
 const layerControlsForID = (layerID: string) => {
 	const { ctrls } = DB.deref().layers[layerID];

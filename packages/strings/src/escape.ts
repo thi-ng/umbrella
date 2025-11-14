@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { U16, U32 } from "./radix.js";
 
 export const ESCAPES: Record<string, string> = {
@@ -31,7 +32,8 @@ export const ESCAPES_REV: Record<number, string> = {
  * backslash escape sequences.
  *
  * @remarks
- * - Well-known low-ASCII control chars will be escaped using simple `\`, e.g.
+ *
+ * - Well-known low-ASCII control chars will be escaped using backslash, e.g.
  *   0x0a => `\n`
  * - Non-BMP chars will be escaped using `\Uxxxxxxxx`
  * - Chars outside 0x20 - 0x7e range will be escaped using `\uxxxxx`

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export type Stack = any[];
 export type StackEnv = any;
 export type StackFn = (ctx: StackContext) => StackContext;

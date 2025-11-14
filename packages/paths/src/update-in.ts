@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type {
 	DeepPath,
 	OptPathVal,
@@ -23,8 +24,8 @@ import { defSetter } from "./setter.js";
  * result as new value. Does **not** modify original state.
  *
  * @remarks
- * Unchecked version of {@link updateIn}. The type parameter `T` can be used to
- * indicate the type of the nested value to be updated (default: `any`).
+ * Non-typechecked version of {@link updateIn}. The type parameter `T` can be
+ * used to indicate the type of the nested value to be updated (default: `any`).
  *
  * @example
  * ```ts tangle:../export/update-in-unsafe.ts

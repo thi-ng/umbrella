@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyMat } from "./api.js";

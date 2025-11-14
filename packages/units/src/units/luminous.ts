@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { sr } from "./angle.js";
 import { m2 } from "./area.js";
 import { coherent, defUnit, div, mul } from "../unit.js";

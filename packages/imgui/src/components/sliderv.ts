@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom/rect";
 import { fit, norm } from "@thi.ng/math/fit";

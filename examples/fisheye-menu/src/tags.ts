@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Dummy list of items/tags for the fisheye menu
  */

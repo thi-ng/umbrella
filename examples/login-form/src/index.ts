@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable, Path } from "@thi.ng/api";
 import { defAtom, defView } from "@thi.ng/atom";
 import { exposeGlobal } from "@thi.ng/expose";

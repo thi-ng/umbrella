@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { delayed } from "@thi.ng/compose";
 import { beforeEach, describe, expect, test } from "bun:test";
 import { TLRUCache, type TLRUCacheEntry } from "../src/index.js";

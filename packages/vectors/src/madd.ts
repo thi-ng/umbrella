@@ -1,19 +1,48 @@
-import type { MultiVecOpVVV, VecOpVVV } from "./api.js";
-import { defOp } from "./compile/emit.js";
-import { ARGS_VVV, MATH2 } from "./compile/templates.js";
+// SPDX-License-Identifier: Apache-2.0
+import { defOpVVV } from "./defopvvv.js";
+import { $madd } from "./ops.js";
+
+const [a, b, c, d] = defOpVVV($madd);
 
 /**
- * Returns `out = a * b + c`.
+ * Componentwise nD vector multiply-add. `o = a * b + c`. Multi-method.
  *
- * - {@link addm}
- * - {@link maddN}
- *
- * @param out -
- * @param a -
- * @param b -
- * @param c -
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
  */
-export const [madd, madd2, madd3, madd4] = defOp<MultiVecOpVVV, VecOpVVV>(
-	MATH2("*", "+"),
-	ARGS_VVV
-);
+export const madd = a;
+
+/**
+ * Componentwise 2D vector multiply-add.
+ * `o = a * b + c`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const madd2 = b;
+
+/**
+ * Componentwise 3D vector multiply-add.
+ * `o = a * b + c`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const madd3 = c;
+
+/**
+ * Componentwise 4D vector multiply-add.
+ * `o = a * b + c`
+ *
+ * @param o - output vector
+ * @param a - input vector
+ * @param b - input vector
+ * @param c - input vector
+ */
+export const madd4 = d;

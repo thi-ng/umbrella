@@ -1,9 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { IReadWriteBuffer } from "./api.js";
 
 /**
- * Returns a {@link FIFOBuffer} ring buffer with given max. capacity.
+ * Returns a {@link FIFOBuffer} ring buffer with given max. capacity and
+ * first-in first-out (i.e. queue) behavior.
  *
  * @remarks
  * With this implementation, new writes will be ignored whilst the buffer's
@@ -26,7 +28,7 @@ export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
 
 	constructor(cap = 1) {
 		assert(cap >= 1, `capacity must be >= 1`);
-		this.buf = new Array(cap + 1);
+		this.buf = new Array(cap);
 	}
 
 	get length() {
@@ -47,7 +49,7 @@ export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
 	}
 
 	readable() {
-		return this.rpos !== this.wpos;
+		return this.len > 0;
 	}
 
 	read() {
@@ -65,7 +67,7 @@ export class FIFOBuffer<T> implements IReadWriteBuffer<T> {
 	}
 
 	writable() {
-		return (this.wpos + 1) % this.buf.length !== this.rpos;
+		return this.len < this.buf.length;
 	}
 
 	write(x: T) {
