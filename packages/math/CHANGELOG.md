@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-10-25T22:30:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.13.0) (2025-10-24)
+
+#### 🚀 Features
+
+- add `expRate()` interpolation helper ([bfe091c](https://github.com/thi-ng/umbrella/commit/bfe091c))
 
 ## [5.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.12.0) (2025-09-01)
 

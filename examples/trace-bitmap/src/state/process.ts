@@ -34,7 +34,7 @@ import {
 	TRACE_MODES,
 	type AxiDrawConfig,
 	type LayerParams,
-} from "../api";
+} from "../api.js";
 import { DB } from "./atom.js";
 import { addLayer } from "./layers.js";
 

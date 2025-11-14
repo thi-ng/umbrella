@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "9.6.10",
+	"version": "9.6.16",
 	"description": "Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations",
 	"type": "module",
 	"module": "./index.js",
@@ -38,23 +38,23 @@
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/arrays": "^2.13.11",
-		"@thi.ng/checks": "^3.7.18",
-		"@thi.ng/compare": "^2.4.28",
-		"@thi.ng/compose": "^3.0.39",
-		"@thi.ng/errors": "^2.5.42",
-		"@thi.ng/math": "^5.12.0",
-		"@thi.ng/random": "^4.1.27",
-		"@thi.ng/timestamp": "^1.1.21"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.14.0",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/compare": "^2.4.33",
+		"@thi.ng/compose": "^3.0.44",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/random": "^4.1.32",
+		"@thi.ng/timestamp": "^1.1.26"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

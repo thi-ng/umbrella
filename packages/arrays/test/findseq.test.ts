@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
-import { findSequence } from "../src/index.js";
+import { findSequence, findLastSequence } from "../src/index.js";
 
 test("findSequence basic", () => {
 	expect(findSequence([1, 2, 3], [1, 2, 3])).toBe(0);
@@ -20,4 +20,26 @@ test("findSequence rep", () => {
 
 test("findSequence empty", () => {
 	expect(findSequence([1, 2, 3, 1, 2, 3, 4], [])).toBe(-1);
+});
+
+test("findLastSequence basic", () => {
+	expect(findLastSequence([1, 2, 3], [1, 2, 3])).toBe(0);
+	expect(findLastSequence([1, 1, 1, 2, 3, 4], [1, 2, 3])).toBe(2);
+	expect(findLastSequence([1, 1, 1, 2, 3, 4], [1, 2, 3], 1)).toBe(-1);
+	expect(findLastSequence([1, 1, 1, 2, 3, 4], [1, 2, 3, 4])).toBe(2);
+	expect(findLastSequence([1, 1, 1, 2, 3, 4], [1, 2, 3, 4, 5])).toBe(-1);
+	expect(findLastSequence([1, 1, 1, 2, 3, 4], [1, 1, 2, 3, 4])).toBe(1);
+	expect(findLastSequence([1, 2, 3], [1, 2, 3, 4])).toBe(-1);
+});
+
+// prettier-ignore
+test("findLastSequence rep", () => {
+	expect(findLastSequence([1, 2, 3, 1, 2, 3, 4], [1, 2, 3, 4])).toBe(3);
+	expect(findLastSequence([1, 2, 3, 1, 2, 3, 4, 1, 2, 3], [1, 2, 3], 1)).toBe(0);
+	expect(findLastSequence([1, 2, 3, 1, 2, 3, 4, 1, 2, 3], [1, 2, 3], 4)).toBe(3);
+	expect(findLastSequence([1, 2, 3, 1, 2, 3, 4, 1, 2, 3], [1, 2, 3], 8)).toBe(7);
+});
+
+test("findLastSequence empty", () => {
+	expect(findLastSequence([1, 2, 3, 1, 2, 3, 4], [])).toBe(-1);
 });

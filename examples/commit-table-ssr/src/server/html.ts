@@ -3,8 +3,8 @@ import type { Nullable } from "@thi.ng/api";
 import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
 import { mergeDeepObj } from "@thi.ng/object-utils";
 import { map } from "@thi.ng/transducers";
-import type { AppContext, HTMLDoc } from "../common/api";
-import { DEFAULT_DOC } from "../common/config";
+import type { AppContext, HTMLDoc } from "../common/api.js";
+import { DEFAULT_DOC } from "../common/config.js";
 
 /**
  * Takes a `HTMLDoc` object and serializes it into an HTML5 string. The

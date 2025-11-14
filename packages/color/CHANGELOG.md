@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-09-01T16:38:35Z
+- **Last updated**: 2025-10-28T10:15:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,28 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.8.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.8.1) (2025-10-28)
+
+#### ♻️ Refactoring
+
+- update writeSVG() helper ([df320cc](https://github.com/thi-ng/umbrella/commit/df320cc))
+
+## [5.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.8.0) (2025-10-25)
+
+#### 🚀 Features
+
+- update all color strategy fns ([3eab307](https://github.com/thi-ng/umbrella/commit/3eab307))
+  - update functions to accept `MaybeColor`, fix internal LCH handling, remove result clamping
+    - `complementaryStrategy`
+    - `analogStrategy`
+    - `splitAnalogStrategy`
+    - `splitComplementaryStrategy`
+    - `monochromeStrategy`
+    - `triadicStrategy`
+    - `tetradicStrategy`
+    - `squareStrategy`
+- add `cssColors()` helper ([2c080a3](https://github.com/thi-ng/umbrella/commit/2c080a3))
 
 ### [5.7.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.7.33) (2025-04-16)
 

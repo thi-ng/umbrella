@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-voronoi",
-	"version": "2.3.137",
+	"version": "2.3.143",
 	"description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
 	"type": "module",
 	"module": "./index.js",
@@ -34,24 +34,24 @@
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/bitfield": "^2.4.13",
-		"@thi.ng/checks": "^3.7.18",
-		"@thi.ng/geom-clip-line": "^2.3.152",
-		"@thi.ng/geom-clip-poly": "^2.1.194",
-		"@thi.ng/geom-isec": "^4.0.62",
-		"@thi.ng/geom-poly-utils": "^3.0.62",
-		"@thi.ng/math": "^5.12.0",
-		"@thi.ng/quad-edge": "^3.1.100",
-		"@thi.ng/vectors": "^8.6.6"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/bitfield": "^2.4.19",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/geom-clip-line": "^2.3.158",
+		"@thi.ng/geom-clip-poly": "^2.1.200",
+		"@thi.ng/geom-isec": "^4.0.68",
+		"@thi.ng/geom-poly-utils": "^3.1.5",
+		"@thi.ng/math": "^5.13.4",
+		"@thi.ng/quad-edge": "^3.1.105",
+		"@thi.ng/vectors": "^8.6.12"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

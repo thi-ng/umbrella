@@ -18,7 +18,7 @@
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.9.3",
-		"vite": "^7.1.9"
+		"vite": "^7.1.12"
 	},
 	"dependencies": {
 		"@thi.ng/hiccup": "workspace:^",

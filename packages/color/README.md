@@ -21,6 +21,14 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
     - [Color creation / conversion](#color-creation--conversion)
   - [Storage & memory mapping](#storage--memory-mapping)
   - [Color theme generation](#color-theme-generation)
+  - [Color theme strategies](#color-theme-strategies)
+    - [Analog colors](#analog-colors)
+    - [Split-analog colors](#split-analog-colors)
+    - [Complementary colors](#complementary-colors)
+    - [Split-complementary colors](#split-complementary-colors)
+    - [Monochrome colors](#monochrome-colors)
+    - [Triadic colors](#triadic-colors)
+    - [Tetradic colors](#tetradic-colors)
   - [Color sorting & distance](#color-sorting--distance)
     - [Sorting memory-mapped colors](#sorting-memory-mapped-colors)
   - [Gradients](#gradients)
@@ -371,6 +379,105 @@ writeFileSync("swatches-ex01.svg", serialize(doc));
 ```
 
 ![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
+
+### Color theme strategies
+
+In addition to the above approaches to create color themes, the package also
+provides these more standard strategies to derive a color theme from a given
+base color (all configurable, examples shown here only use default params).
+These functions accept colors in any format, but computation and results are
+always in LCH.
+
+#### Analog colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/analogStrategy.html)
+
+```ts tangle:export/analog-strategy.ts
+import { analogStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(analogStrategy("#f60")));
+// [ "#ff6600", "#ff2c63", "#c58f00" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/analog-strategy.svg)
+
+#### Split-analog colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/splitAnalogStrategy.html)
+
+```ts tangle:export/split-analog-strategy.ts
+import { splitAnalogStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(splitAnalogStrategy("#f60")));
+// [ "#ff6600", "#00bcd4", "#00a6ff", "#c58f00" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-analog-strategy.svg)
+
+#### Complementary colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/complementaryStrategy.html)
+
+```ts tangle:export/complementary-strategy.ts
+import { complementaryStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(complementaryStrategy("#f60")));
+// [ "#ff6600", "#00b6ff" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/complementary-strategy.svg)
+
+#### Split-complementary colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/splitComplementaryStrategy.html)
+
+```ts tangle:export/split-complementary-strategy.ts
+import { splitComplementaryStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(splitComplementaryStrategy("#f60")));
+// [ "#ff6600", "#00bcd4", "#00a6ff" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-complementary-strategy.svg)
+
+#### Monochrome colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/monochromeStrategy.html)
+
+```ts tangle:export/monochrome-strategy.ts
+import { monochromeStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(monochromeStrategy("#f60")));
+// [ "#490000", "#880000", "#d44100", "#ff872d", "#ffce71" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/monochrome-strategy.svg)
+
+#### Triadic colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/triadicStrategy.html)
+
+```ts tangle:export/triadic-strategy.ts
+import { triadicStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(triadicStrategy("#f60")));
+// [ "#ff6600", "#00bb7e", "#7f88ff" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/triadic-strategy.svg)
+
+#### Tetradic colors
+
+[Documentation](https://docs.thi.ng/umbrella/color/functions/tetradicStrategy.html)
+
+```ts tangle:export/tetradic-strategy.ts
+import { tetradicStrategy, cssColors } from "@thi.ng/color";
+
+console.log(cssColors(tetradicStrategy("#f60")));
+// [ "#ff6600", "#75a800", "#00b6ff", "#7f88ff" ]
+```
+
+![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/tetradic-strategy.svg)
 
 ### Color sorting & distance
 

@@ -11,7 +11,7 @@ export class HTMLRouter<T = any> extends Router<T> {
 	protected useFragment: boolean;
 
 	constructor(config: HTMLRouterOpts) {
-		super({ prefix: config.useFragment ? "#/" : "/", ...config });
+		super({ prefix: config.useFragment !== false ? "#/" : "/", ...config });
 		this.useFragment = config.useFragment !== false;
 	}
 
@@ -51,8 +51,11 @@ export class HTMLRouter<T = any> extends Router<T> {
 		const old = this.current;
 		const route = super.route(src, ctx);
 		if (route && !equiv(route, old)) {
-			this.currentPath =
-				this.format(route) + (this.useFragment ? "" : location.search);
+			// always use correct order of URL parts: path → search → hash
+			// https://www.rfc-editor.org/rfc/rfc3986#section-3
+			this.currentPath = this.useFragment
+				? location.search + this.format(route)
+				: this.format(route) + location.search;
 			if (mode === "push") {
 				history.pushState(this.currentPath, "", this.currentPath);
 			} else if (mode === "replace") {

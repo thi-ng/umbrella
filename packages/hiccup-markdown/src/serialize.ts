@@ -20,7 +20,17 @@ export interface SerializeState {
 	blockquote?: boolean;
 }
 
-export const serialize = (tree: any, ctx: any) =>
+/**
+ * Serializes given hiccup tree to Markdown. The optional provided context `ctx`
+ * arg can be used to provide arbitrary state to components/functions embedded
+ * in the tree. See [thi.ng/hiccup
+ * docs](https://docs.thi.ng/umbrella/hiccup/index.html#user-context-injection)
+ * for details.
+ *
+ * @param tree
+ * @param ctx
+ */
+export const serialize = (tree: any, ctx?: any) =>
 	__serialize(tree, ctx, { indent: 0, sep: "" })
 		.replace(/\n{3,}/g, "\n\n")
 		.trim();

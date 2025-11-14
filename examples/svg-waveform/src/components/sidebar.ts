@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { AppContext } from "../api";
-import * as ev from "../events";
+import type { AppContext } from "../api.js";
+import * as ev from "../events.js";
 import { buttonGroup } from "./button-group.js";
 import { link } from "./link.js";
 import { slider, type SliderOpts } from "./slider.js";

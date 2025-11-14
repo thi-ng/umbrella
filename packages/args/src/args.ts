@@ -185,12 +185,12 @@ export const oneOf = <K extends string, S extends ArgDef | ArgDefRequired<K>>(
  */
 export const oneOfMulti = <
 	K extends string,
-	S extends ArgDef | ArgDefRequired<K>
+	S extends ArgDef | ArgDefRequired<K[]>
 >(
 	spec: S & { opts: readonly K[]; delim?: string }
 ): S & {
 	type: "oneOfMulti";
-	coerce: Fn<string, K>;
+	coerce: Fn<string[], K[]>;
 	desc: string;
 	hint: string;
 	group: string;
@@ -200,7 +200,7 @@ export const oneOfMulti = <
 } => ({
 	...spec,
 	type: "oneOfMulti",
-	coerce: coerceOneOf(spec.opts),
+	coerce: (vals) => vals.map(coerceOneOf(spec.opts)),
 	hint: spec.hint ?? __hint("ID", spec.delim),
 	group: spec.group ?? "main",
 	desc: __desc(spec.opts, spec.desc),

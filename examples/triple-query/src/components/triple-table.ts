@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import { pager } from "@thi.ng/hdom-components";
-import type { AppContext } from "../api";
-import { SET_PAGE, SET_SORT } from "../events";
-import { PAGE_LEN } from "../handlers";
+import type { AppContext } from "../api.js";
+import { SET_PAGE, SET_SORT } from "../events.js";
+import { PAGE_LEN } from "../handlers.js";
 import { button } from "./button.js";
 import { eventLink } from "./event-link.js";
 import { section } from "./section.js";

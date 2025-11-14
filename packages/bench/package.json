@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bench",
-	"version": "3.6.29",
+	"version": "3.6.34",
 	"description": "Benchmarking & profiling utilities w/ various statistics & formatters (CSV, JSON, Markdown etc.)",
 	"type": "module",
 	"module": "./index.js",
@@ -35,17 +35,17 @@
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/timestamp": "^1.1.21"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/timestamp": "^1.1.26"
 	},
 	"devDependencies": {
-		"@types/node": "^24.7.2",
-		"esbuild": "^0.25.10",
+		"@types/node": "^24.9.1",
+		"esbuild": "^0.25.11",
 		"tools": "workspace:^",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"

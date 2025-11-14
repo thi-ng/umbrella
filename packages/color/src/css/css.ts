@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Maybe } from "@thi.ng/api";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import type {
@@ -120,3 +121,15 @@ export const css = (
 			  )
 		: srgbCss(src);
 };
+
+/**
+ * Convenience helper to convert an iterable of colors into an array of CSS
+ * strings (using {@link css}).
+ *
+ * @param colors
+ * @param cssTarget
+ */
+export const cssColors = (
+	colors: Iterable<Exclude<MaybeColor, IParsedColor>>,
+	cssTarget: CSSConversions = CSS_DEFAULT
+) => ensureArray(colors).map((x) => css(x, cssTarget));

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/csp",
-	"version": "3.3.0",
+	"version": "3.3.6",
 	"description": "Primitives & operators for Communicating Sequential Processes based on async/await and async iterables",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"testasync": "tsc -p test && node build/test/async.js",
 		"testfile": "tsc -p test && node build/test/file.js",
@@ -43,14 +43,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/arrays": "^2.13.11",
-		"@thi.ng/buffers": "^1.0.21",
-		"@thi.ng/checks": "^3.7.18",
-		"@thi.ng/errors": "^2.5.42"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.14.0",
+		"@thi.ng/buffers": "^1.0.26",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/errors": "^2.5.47"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

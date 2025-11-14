@@ -38,12 +38,13 @@ import {
 	defQuadModel,
 	defShader,
 	glCanvas,
+	LOGGER,
 	type GLMat4,
 } from "@thi.ng/webgl";
 import type { AppCtx } from "./api.js";
 import { OpNode } from "./opnode.js";
 
-// LOGGER.set(new ConsoleLogger());
+LOGGER.set(new ConsoleLogger());
 
 const { canvas, gl } = glCanvas({
 	width: 1280,

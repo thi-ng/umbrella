@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/grid-iterators",
-	"version": "4.0.135",
+	"version": "4.0.141",
 	"description": "2D grid and shape iterators w/ multiple orderings",
 	"type": "module",
 	"module": "./index.js",
@@ -35,23 +35,23 @@
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:assets": "bun tools/build-assets.ts",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/arrays": "^2.13.11",
-		"@thi.ng/binary": "^3.4.60",
-		"@thi.ng/bitfield": "^2.4.13",
-		"@thi.ng/errors": "^2.5.42",
-		"@thi.ng/morton": "^3.1.124",
-		"@thi.ng/random": "^4.1.27",
-		"@thi.ng/transducers": "^9.6.10"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/arrays": "^2.14.0",
+		"@thi.ng/binary": "^3.4.65",
+		"@thi.ng/bitfield": "^2.4.19",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/morton": "^3.1.129",
+		"@thi.ng/random": "^4.1.32",
+		"@thi.ng/transducers": "^9.6.16"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

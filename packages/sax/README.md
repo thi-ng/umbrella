@@ -35,7 +35,7 @@
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)-based,
 [SAX](https://en.wikipedia.org/wiki/Simple_API_for_XML)-like,
 non-validating, [configurable](#parser-options), speedy & tiny XML
-parser (~1.8KB gzipped).
+parser (~1.4KB brotli).
 
 Unlike the classic event-driven approach of SAX, this parser is
 implemented as a transducer function, transforming an XML input into a
@@ -88,7 +88,7 @@ For Node.js REPL:
 const sax = await import("@thi.ng/sax");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.41 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.65 KB
 
 ## Dependencies
 
@@ -132,11 +132,11 @@ src=`<?xml version="1.0" encoding="utf-8"?>
     <b2 foo="bar" />
 </a>`
 
-// sax.parse() returns a transducer
-doc = [...tx.iterator(sax.parse(), src)]
-
-// ...or returns iterator if input is given
+// sax.parse() returns iterator if input is given
 doc = [...sax.parse(src)]
+
+// ...or returns a transducer to be used with thi.ng/transducers
+doc = [...tx.iterator(sax.parse(), src)]
 
 // (see description of `type` values and parse options further below)
 
@@ -188,11 +188,8 @@ first `<g>` element is complete. This is because the `matchFirst()`
 transducer will cause early termination once that element has been
 processed.
 
-```ts
-import { parse, Type } from "@thi.ng/sax";
-import * as tx from "@thi.ng/transducers";
-
-svg=`
+```ts id:svgdoc
+const svg = `
 <?xml version="1.0"?>
 <svg version="1.1" height="300" width="300" xmlns="http://www.w3.org/2000/svg">
     <g fill="yellow">
@@ -206,27 +203,37 @@ svg=`
         <circle cx="150.00" cy="150.00" r="25.00" />
     </g>
 </svg>`;
+```
 
-[...tx.iterator(
-    tx.comp(
-        // transform into parse events (see parser options below)
-        parse({ children: true }),
-        // match 1st group end
-        tx.matchFirst((e) => e.type == Type.ELEM_END && e.tag == "g"),
-        // extract group's children
-        tx.mapcat((e) => e.children),
-        // select circles only
-        tx.filter((e) => e.tag == "circle"),
-        // transform attributes
-        tx.map((e)=> [e.tag, {
-            ...e.attribs,
-            cx: parseFloat(e.attribs.cx),
-            cy: parseFloat(e.attribs.cy),
-            r:  parseFloat(e.attribs.r),
-        }])
-    ),
-    svg
-)]
+```ts tangle:export/readme-parse-svg.ts
+import { parse, Type } from "@thi.ng/sax";
+import * as tx from "@thi.ng/transducers";
+
+// using the SVG example doc defined above
+<<svgdoc>>
+
+console.log(
+    [...tx.iterator(
+        tx.comp(
+            // transform into parse events (see parser options below)
+            parse({ children: true }),
+            // match 1st group end
+            tx.matchFirst((e) => e.type == Type.ELEM_END && e.tag == "g"),
+            // extract group's children
+            tx.mapcat((e) => e.children),
+            // select circles only
+            tx.filter((e) => e.tag == "circle"),
+            // transform attributes
+            tx.map((e)=> [e.tag, {
+                ...e.attribs,
+                cx: parseFloat(e.attribs.cx),
+                cy: parseFloat(e.attribs.cy),
+                r:  parseFloat(e.attribs.r),
+            }])
+        ),
+        svg
+    )]
+);
 // [ [ 'circle', { cx: 50, cy: 150, r: 50 } ],
 //   [ 'circle', { cx: 250, cy: 150, r: 50 } ],
 //   [ 'circle', { cx: 150, cy: 150, fill: 'rgba(0,255,255,0.25)', r: 100, stroke: '#ff0000' } ] ]
@@ -238,22 +245,25 @@ This example shows how SVG can be parsed into
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 format.
 
-```ts
+```ts tangle:export/readme-parse-elements.ts
 import { defmulti, DEFAULT } from "@thi.ng/defmulti";
-import { parse } from "@thi.ng/sax";
+import { parse, type ParseElement } from "@thi.ng/sax";
 import * as tx from "@thi.ng/transducers";
+
+// using the SVG example doc defined above
+<<svgdoc>>
 
 // coerces given attribute IDs into numeric values and
 // keeps all other attribs
-const numericAttribs = (e, ...ids: string[]) =>
+const numericAttribs = (e: ParseElement, ...ids: string[]) =>
     ids.reduce(
         (acc, id) => (acc[id] = parseFloat(e.attribs[id]), acc),
-        { ...e.attribs }
+        <Record<string,any>>{ ...e.attribs }
     );
 
 // returns iterator of parsed & filtered children of given element
 // (iterator is used to avoid extraneous copying at call sites)
-const parsedChildren = (e) =>
+const parsedChildren = (e: ParseElement) =>
     tx.iterator(
         tx.comp(
             tx.map(parseElement),
@@ -281,11 +291,13 @@ parseElement.add("svg", (e) =>
 // implementation for unhandled elements
 parseElement.add(DEFAULT, () => null);
 
-// using the same SVG source as in previous example:
+// finally parse & transform results:
 // the `last()` reducer just returns the ultimate value
 // which in this case is the SVG root element's ELEM_END parse event
 // this also contains all children (by default)
-parseElement(tx.transduce(parse(), tx.last(), svg));
+console.log(
+    parseElement(tx.transduce(parse(), tx.last(), svg))
+);
 
 // ["svg",
 //     {
@@ -327,14 +339,14 @@ If the parser encounters a syntax error, an error event value incl. a
 description and input position will be produced (but no JS error will be
 thrown) and the entire transducer pipeline stopped.
 
-```ts
+```ts tangle:export/readme-error-handling.ts
 import { parse } from "@thi.ng/sax";
 import { iterator } from "@thi.ng/transducers";
 
-[...iterator(parse(), `a`)]
+console.log([...iterator(parse(), `a`)]);
 // [ { type: 7, body: 'unexpected char: \'a\' @ pos 1' } ]
 
-[...iterator(parse(), `<a><b></c></a>`)]
+console.log([...iterator(parse(), `<a><b></c></a>`)]);
 // [ { type: 4, tag: 'a', attribs: {} },
 //   { type: 4, tag: 'b', attribs: {} },
 //   { type: 7, body: 'unmatched tag: c @ pos 7' } ]

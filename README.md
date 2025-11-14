@@ -312,13 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-10-07
+As of: 2025-11-13
 
-| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
-|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/csp`](./packages/csp)                         | [![version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)                         | [changelog](./packages/csp/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/logger`](./packages/logger)                   | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                   | [changelog](./packages/logger/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy) | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy) | [changelog](./packages/webgl-shadertoy/CHANGELOG.md) |
+| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
+|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays) | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays) | [changelog](./packages/arrays/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hex`](./packages/hex)       | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)       | [changelog](./packages/hex/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sax`](./packages/sax)       | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)       | [changelog](./packages/sax/CHANGELOG.md)    |
 
 ### Algorithms & data structures
 

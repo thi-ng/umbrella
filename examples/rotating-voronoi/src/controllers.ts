@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { ISubscription } from "@thi.ng/rstream";
+
 export const slider = (
-	value: number,
-	onChange: (n: number) => void,
+	value: ISubscription<number, number>,
 	min: number,
 	max: number,
 	step: number,
@@ -14,22 +15,18 @@ export const slider = (
 			"input.w-100",
 			{
 				type: "range",
-				value,
 				min,
 				max,
 				step,
+				value,
 				oninput: (e: Event) =>
-					onChange(+(<HTMLInputElement>e.target).value),
+					value.next(+(<HTMLInputElement>e.target).value),
 			},
 		],
 	];
 };
 
-export const checkbox = (
-	value: boolean,
-	onChange: (n: boolean) => void,
-	label: string
-) => {
+export const checkbox = (value: ISubscription<boolean, any>, label: string) => {
 	return [
 		"div.pv2",
 		[
@@ -39,7 +36,7 @@ export const checkbox = (
 				type: "checkbox",
 				checked: value,
 				oninput: (e: Event) =>
-					onChange((<HTMLInputElement>e.target).checked),
+					value.next((<HTMLInputElement>e.target).checked),
 			},
 		],
 		["label", { for: label }, label],

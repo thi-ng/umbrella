@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-canvas",
-	"version": "4.1.221",
+	"version": "4.1.228",
 	"description": "@thi.ng/hdom component wrapper for declarative canvas scenegraphs",
 	"type": "module",
 	"module": "./index.js",
@@ -37,20 +37,20 @@
 		"clean": "bun ../../tools/src/clean-package.ts draw",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
+		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/checks": "^3.7.18",
-		"@thi.ng/diff": "^5.1.103",
-		"@thi.ng/errors": "^2.5.42",
-		"@thi.ng/hdom": "^9.4.87",
-		"@thi.ng/hiccup-canvas": "^3.1.77"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/diff": "^5.1.108",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/hdom": "^9.4.93",
+		"@thi.ng/hiccup-canvas": "^3.1.84"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.10",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

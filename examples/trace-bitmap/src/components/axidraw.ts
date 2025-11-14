@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import { div, inputNumber } from "@thi.ng/hiccup-html";
 import { fromView } from "@thi.ng/rstream";
-import { PAPER_SIZES } from "../api";
-import { DB } from "../state/atom";
+import { PAPER_SIZES } from "../api.js";
+import { DB } from "../state/atom.js";
 import { dropdown, title } from "./common.js";
 
 export const axidrawControls = div(

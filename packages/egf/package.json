@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.191",
+	"version": "0.6.197",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -34,26 +34,26 @@
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
-		"pub": "yarn npm publish --access public",
-		"pub:wip": "yarn npm publish --access public --no-git-tag-version",
+		"pub": "npm publish --access public",
+		"pub:wip": "npm publish --access public --no-git-tag-version",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.2",
-		"@thi.ng/checks": "^3.7.18",
-		"@thi.ng/dot": "^2.1.115",
-		"@thi.ng/errors": "^2.5.42",
-		"@thi.ng/logger": "^3.2.1",
-		"@thi.ng/prefixes": "^2.3.53",
-		"@thi.ng/strings": "^3.9.22",
-		"@thi.ng/transducers-binary": "^2.1.181",
-		"@thi.ng/trie": "^2.0.1"
+		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/checks": "^3.7.23",
+		"@thi.ng/dot": "^2.1.120",
+		"@thi.ng/errors": "^2.5.47",
+		"@thi.ng/logger": "^3.2.6",
+		"@thi.ng/prefixes": "^2.3.58",
+		"@thi.ng/strings": "^3.9.28",
+		"@thi.ng/transducers-binary": "^2.1.187",
+		"@thi.ng/trie": "^2.0.6"
 	},
 	"devDependencies": {
-		"@thi.ng/equiv": "^2.1.92",
-		"@types/node": "^24.7.2",
-		"esbuild": "^0.25.10",
+		"@thi.ng/equiv": "^2.1.97",
+		"@types/node": "^24.9.1",
+		"esbuild": "^0.25.11",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

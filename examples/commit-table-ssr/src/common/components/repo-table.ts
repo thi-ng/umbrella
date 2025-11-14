@@ -7,7 +7,7 @@ import {
 	partitionBy,
 	repeat,
 } from "@thi.ng/transducers";
-import type { AppContext, Commit } from "../api";
+import type { AppContext, Commit } from "../api.js";
 import { commitLink } from "./commit-link.js";
 import { table } from "./table.js";
 

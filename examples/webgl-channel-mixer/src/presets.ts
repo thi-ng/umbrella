@@ -16,6 +16,36 @@ export const PRESETS: Record<string, Controls> = {
 		b: DEFAULT_B,
 		exposure: [0, 0],
 	},
+	"RGB → RBG": {
+		r: DEFAULT_R,
+		g: DEFAULT_B,
+		b: DEFAULT_G,
+		exposure: [0, 0],
+	},
+	"RGB → GBR": {
+		r: DEFAULT_G,
+		g: DEFAULT_B,
+		b: DEFAULT_R,
+		exposure: [0, 0],
+	},
+	"RGB → GRB": {
+		r: DEFAULT_G,
+		g: DEFAULT_R,
+		b: DEFAULT_B,
+		exposure: [0, 0],
+	},
+	"RGB → BRG": {
+		r: DEFAULT_B,
+		g: DEFAULT_R,
+		b: DEFAULT_G,
+		exposure: [0, 0],
+	},
+	"RGB → BGR": {
+		r: DEFAULT_B,
+		g: DEFAULT_G,
+		b: DEFAULT_R,
+		exposure: [0, 0],
+	},
 	Dolomites: {
 		r: [1, 0.26, -0.14, 0.11],
 		g: [0.16, 1, 0, 0.02],
