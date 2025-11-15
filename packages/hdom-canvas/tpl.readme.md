@@ -154,6 +154,8 @@ import { canvas } from "@thi.ng/hdom-components";
 ]
 ```
 
+For custom scaling of the drawing context, set the `dpr` attrib.
+
 ## SVG conversion
 
 Even though the element names & syntax are *very similar* to SVG

@@ -55,7 +55,7 @@ export const canvas = {
 		const cattribs = { ...attribs };
 		delete cattribs.__diff;
 		delete cattribs.__normalize;
-		const dpr = window.devicePixelRatio || 1;
+		const dpr = cattribs.dpr || window.devicePixelRatio || 1;
 		if (dpr !== 1) {
 			!cattribs.style && (cattribs.style = {});
 			cattribs.style.width = `${cattribs.width}px`;
