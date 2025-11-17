@@ -13,6 +13,7 @@ import type {
 	HSBLSpec,
 	ICCSpec,
 	ImgLayer,
+	MaxSizeSpec,
 	NestSpec,
 	OutputSpec,
 	ProcSpec,
@@ -114,6 +115,11 @@ export const hsbl = defSpec<HSBLSpec>("hsbl");
  * Creates a new {@link ICCSpec} with given opts.
  */
 export const icc = defSpec<ICCSpec>("icc");
+
+/**
+ * Creates a new {@link MaxSizeSpec} with given opts.
+ */
+export const maxsize = defSpec<MaxSizeSpec>("maxsize");
 
 /**
  * Creates a new {@link NestSpec} with given opts.

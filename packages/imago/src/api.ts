@@ -358,6 +358,15 @@ export interface ICCSpec extends ProcSpec {
 	path?: string;
 }
 
+export interface MaxSizeSpec extends Omit<ResizeSpec, "op" | "size" | "unit"> {
+	op: "maxsize";
+	/**
+	 * Max. image size in pixels. If given as number, the longest side will be
+	 * used.
+	 */
+	maxSize: Size;
+}
+
 export interface NestSpec extends ProcSpec {
 	op: "nest";
 	/**

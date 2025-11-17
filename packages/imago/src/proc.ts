@@ -22,6 +22,7 @@ import { gammaProc } from "./ops/gamma.js";
 import { grayscaleProc } from "./ops/grayscale.js";
 import { hsblProc } from "./ops/hsbl.js";
 import { iccProc } from "./ops/icc.js";
+import { maxsizeProc } from "./ops/maxsize.js";
 import { nestProc } from "./ops/nest.js";
 import { outputProc } from "./ops/output.js";
 import { resizeProc } from "./ops/resize.js";
@@ -166,6 +167,7 @@ export const processor = defmulti<
 		gray: grayscaleProc,
 		hsbl: hsblProc,
 		icc: iccProc,
+		maxsize: maxsizeProc,
 		nest: nestProc,
 		output: outputProc,
 		resize: resizeProc,
