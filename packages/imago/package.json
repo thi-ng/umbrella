@@ -160,6 +160,9 @@
 		"./ops/icc": {
 			"default": "./ops/icc.js"
 		},
+		"./ops/maxsize": {
+			"default": "./ops/maxsize.js"
+		},
 		"./ops/nest": {
 			"default": "./ops/nest.js"
 		},
