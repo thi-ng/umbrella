@@ -33,6 +33,7 @@
   - [grayscale](#grayscale)
   - [hsbl](#hsbl)
   - [icc](#icc)
+  - [maxsize](#maxsize)
   - [nest](#nest)
   - [output](#output)
     - [Templated output paths](#templated-output-paths)
@@ -234,6 +235,11 @@ Assign ICC profile (from preset: `p3`, `srgb`, `cmyk` or from file). Can only be
 given directly prior to [output](#output), overrides input ICC (if any) and only
 used if output format actually supports it.
 
+### maxsize
+
+Conditional version of [resize](#resize) operator, only applied if one of the
+sides exceeds the configured size limit.
+
 ### nest
 
 Performing nested branches/pipelines of operations with no effect on image state
@@ -375,7 +381,7 @@ For Node.js REPL:
 const imago = await import("@thi.ng/imago");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.20 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.31 KB
 
 ## Dependencies
 
