@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/imago",
-	"version": "1.4.15",
+	"version": "1.5.0",
 	"description": "JSON & API-based declarative and extensible image processing trees/pipelines",
 	"type": "module",
 	"module": "./index.js",

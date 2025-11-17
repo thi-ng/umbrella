@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-11-17T16:39:48Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.5.0) (2025-11-17)
+
+#### 🚀 Features
+
+- add `maxsize()` operator ([d8484ff](https://github.com/thi-ng/umbrella/commit/d8484ff))
 
 ## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imago@1.4.0) (2025-07-25)
 
