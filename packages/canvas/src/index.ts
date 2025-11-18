@@ -159,6 +159,9 @@ export const imageCanvas = (
  * Returns given `dpr` (presumably the window's `devicePixelRatio` or 1.0, if
  * not available).
  *
+ * Since v1.1.0 the given `dpr` and uncompensated `width`/`height` are also
+ * stored as `data-dpr`, `data-orig-width` & `data-orig-height` attributes.
+ *
  * @param canvas -
  * @param width - uncompensated pixel width
  * @param height - uncompensated pixel height
@@ -174,6 +177,9 @@ export const adaptDPI = (
 		canvas.style.width = `${width}px`;
 		canvas.style.height = `${height}px`;
 	}
+	canvas.dataset.origWidth = String(width);
+	canvas.dataset.origHeight = String(height);
+	canvas.dataset.dpr = String(dpr);
 	canvas.width = width * dpr;
 	canvas.height = height * dpr;
 	return dpr;
