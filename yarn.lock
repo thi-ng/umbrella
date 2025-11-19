@@ -5188,6 +5188,7 @@ __metadata:
   resolution: "@thi.ng/hdom-canvas@workspace:packages/hdom-canvas"
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
+    "@thi.ng/canvas": "npm:^1.0.28"
     "@thi.ng/checks": "npm:^3.7.23"
     "@thi.ng/diff": "npm:^5.1.108"
     "@thi.ng/errors": "npm:^2.5.47"
@@ -6121,6 +6122,7 @@ __metadata:
   resolution: "@thi.ng/rdom-canvas@workspace:packages/rdom-canvas"
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
+    "@thi.ng/canvas": "npm:^1.0.28"
     "@thi.ng/checks": "npm:^3.7.23"
     "@thi.ng/hiccup-canvas": "npm:^3.1.84"
     "@thi.ng/object-utils": "npm:^1.2.15"

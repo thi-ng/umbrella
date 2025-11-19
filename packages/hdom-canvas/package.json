@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.7",
+		"@thi.ng/canvas": "^1.0.28",
 		"@thi.ng/checks": "^3.7.23",
 		"@thi.ng/diff": "^5.1.108",
 		"@thi.ng/errors": "^2.5.47",
