@@ -312,14 +312,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-11-17
+As of: 2025-11-19
 
-| Status                                        | Package                               | Version                                                                                                     | Changelog                                   |
-|:----------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays) | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays) | [changelog](./packages/arrays/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hex`](./packages/hex)       | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)       | [changelog](./packages/hex/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/imago`](./packages/imago)   | [![version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)   | [changelog](./packages/imago/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/sax`](./packages/sax)       | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)       | [changelog](./packages/sax/CHANGELOG.md)    |
+| Status                                           | Package                                             | Version                                                                                                                   | Changelog                                          |
+|:-------------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/canvas`](./packages/canvas)               | [![version](https://img.shields.io/npm/v/@thi.ng/canvas.svg)](https://www.npmjs.com/package/@thi.ng/canvas)               | [changelog](./packages/canvas/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/hdom`](./packages/hdom)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)                   | [changelog](./packages/hdom/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdom-canvas`](./packages/hdom-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)     | [changelog](./packages/hdom-canvas/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas) | [changelog](./packages/hiccup-canvas/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-canvas`](./packages/rdom-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)     | [changelog](./packages/rdom-canvas/CHANGELOG.md)   |
 
 ### Algorithms & data structures
 
