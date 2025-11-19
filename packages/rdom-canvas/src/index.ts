@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, Fn3, IToHiccup } from "@thi.ng/api";
+import { adaptDPI } from "@thi.ng/canvas";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { draw } from "@thi.ng/hiccup-canvas/draw";
@@ -112,8 +113,7 @@ export class $Canvas
 
 	resize(size: number[]) {
 		if (this.el) {
-			this.el!.width = size[0];
-			this.el!.height = size[1];
+			adaptDPI(this.el!, size[0], size[1], 1);
 			this.attribs.onresize &&
 				this.attribs.onresize(this.el, this.ctx!, size);
 		}
