@@ -82,7 +82,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 821 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 776 bytes
 
 ## Dependencies
 
@@ -218,23 +218,31 @@ import { canvas } from "@thi.ng/hdom-components";
 
 ### HDPI support
 
-The canvas component automatically adjusts its size for HDPI displays by
-adding CSS `width` & `height` properties and pre-scaling the drawing
-context accordingly before any shapes are processed. For fullscreen
-canvases simply set the `width` & `height` attribs to:
+By default, the canvas component automatically adjusts its size for HDPI
+displays by adding CSS `width` & `height` properties and pre-scaling the drawing
+context accordingly before any shapes are processed. Since v4.2.0 the density
+can also be directly controlled via the `__dpr` control attribute. For
+fullscreen canvases simply set the `width` & `height` attribs to:
 
 ```ts
 import { canvas } from "@thi.ng/hdom-components";
 
 [canvas,
     {
+        // fullscreen canvas (assuming no borders)
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
+        // force fixed pixel density (else defaults to window.devicePixelRatio)
+        __dpr: 1
     },
     // shapes
     ...
 ]
 ```
+
+See [thi.ng/hiccup-canvas
+readme](https://docs.thi.ng/umbrella/hiccup-canvas/#device-pixel-ratio) for
+further details.
 
 ## SVG conversion
 

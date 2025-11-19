@@ -54,6 +54,7 @@
   - [Special attributes](#special-attributes)
     - [Background fill](#background-fill)
     - [Background clear](#background-clear)
+    - [Device pixel ratio](#device-pixel-ratio)
 - [Authors](#authors)
 - [License](#license)
 
@@ -105,11 +106,12 @@ For Node.js REPL:
 const hc = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.65 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-arc)
@@ -574,6 +576,16 @@ The special `__clear` boolean attribute is used to force clearing of the canvas
 before drawing. This attrib takes priority over `__background` and it too only
 should be attached to the root group/shape. By default the canvas is **not**
 being cleared.
+
+#### Device pixel ratio
+
+The special `__dpr` numeric attribute can be used (only in the root group!) to
+dynamically adjust the pixel density of the canvas before drawing. If `__dpr` is
+present, the canvas _pixel dimensions_ (and the drawing context transform) will
+be scaled by that value with corresponding CSS properties to keep the _apparent_
+canvas size, thereby adjusting the canvas display density. See [thi.ng/canvas
+`adaptDPI()`](https://docs.thi.ng/umbrella/canvas/functions/adaptDPI.html) (the
+function used internally) for further details.
 
 ## Authors
 

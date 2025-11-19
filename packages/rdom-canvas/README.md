@@ -86,6 +86,8 @@ The root shape/group support the following special attributes:
 - `__background`: background color. If given, fills the canvas will given color
   before drawing
 - `__clear`: clear background flag. If true clears the canvas before drawing
+- `__dpr`: device pixel ratio aka pixel density override (else defaults to
+  `window.devicePixelRatio`)
 
 Also see relevant section in the [thi.ng/hiccup-canvas
 README](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-canvas/README.md#special-attributes)...
@@ -123,12 +125,11 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 689 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 707 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 - [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)

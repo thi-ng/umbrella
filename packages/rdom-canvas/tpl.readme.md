@@ -62,6 +62,8 @@ The root shape/group support the following special attributes:
 - `__background`: background color. If given, fills the canvas will given color
   before drawing
 - `__clear`: clear background flag. If true clears the canvas before drawing
+- `__dpr`: device pixel ratio aka pixel density override (else defaults to
+  `window.devicePixelRatio`)
 
 Also see relevant section in the [thi.ng/hiccup-canvas
 README](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-canvas/README.md#special-attributes)...
