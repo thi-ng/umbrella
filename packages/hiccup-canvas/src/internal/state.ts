@@ -69,12 +69,14 @@ export const __mergeState = (
 ) => {
 	let res: Maybe<DrawState>;
 	if (!attribs) return;
+	const canvas = ctx.canvas;
 	const dpr = attribs.__dpr;
-	if (dpr && dpr != ctx.canvas.dataset.dpr) {
+	// don't use !== due to data attrib always string
+	if (dpr && dpr != canvas.dataset.dpr) {
 		adaptDPI(
-			ctx.canvas,
-			+(ctx.canvas.dataset.origWidth ?? ctx.canvas.width),
-			+(ctx.canvas.dataset.origHeight ?? ctx.canvas.height),
+			canvas,
+			+(canvas.dataset.origWidth ?? canvas.width),
+			+(canvas.dataset.origHeight ?? canvas.height),
 			dpr
 		);
 		ctx.scale(dpr, dpr);
@@ -85,7 +87,7 @@ export const __mergeState = (
 	if (attribs.__background || attribs.__clear) {
 		ctx.save();
 		ctx.resetTransform();
-		const { width, height } = ctx.canvas;
+		const { width, height } = canvas;
 		if (attribs.__clear) {
 			ctx.clearRect(0, 0, width, height);
 		} else {
