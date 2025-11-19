@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
+import { deref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isString } from "@thi.ng/checks/is-string";
 import { ATTRIB_JOIN_DELIMS, SVG_TAGS } from "@thi.ng/hiccup/api";
-import { css } from "@thi.ng/hiccup/css";
 import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG } from "@thi.ng/prefixes/xml";
 import type { HDOMImplementation, HDOMOpts } from "./api.js";
@@ -327,9 +328,15 @@ export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
 	}
 };
 
-export const setStyle = (el: Element, styles: any) => (
-	el.setAttribute("style", css(styles)), el
-);
+export const setStyle = (el: Element, rules: any) => {
+	let v: any;
+	for (let r in rules) {
+		v = deref(rules[r]);
+		if (isFunction(v)) v = v(rules);
+		if (v != null) (<HTMLElement>el).style.setProperty(r, v);
+	}
+	return el;
+};
 
 /**
  * Adds event listener (possibly with options).
