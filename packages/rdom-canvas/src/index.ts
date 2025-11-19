@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, Fn3, IToHiccup } from "@thi.ng/api";
-import { adaptDPI } from "@thi.ng/canvas";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArray } from "@thi.ng/checks/is-array";
 import { draw } from "@thi.ng/hiccup-canvas/draw";
 import { withoutKeysObj } from "@thi.ng/object-utils/without-keys";
 import type { IComponent, IMountWithState, NumOrElement } from "@thi.ng/rdom";
@@ -112,7 +112,8 @@ export class $Canvas
 
 	resize(size: number[]) {
 		if (this.el) {
-			adaptDPI(this.el!, size[0], size[1]);
+			this.el!.width = size[0];
+			this.el!.height = size[1];
 			this.attribs.onresize &&
 				this.attribs.onresize(this.el, this.ctx!, size);
 		}
@@ -120,12 +121,12 @@ export class $Canvas
 
 	update(tree: any[] | IToHiccup) {
 		if (tree == null) return;
-		const shapes = implementsFunction(tree, "toHiccup")
+		let shapes = implementsFunction(tree, "toHiccup")
 			? tree.toHiccup()
 			: tree;
-		const scale = window.devicePixelRatio || 1;
-		this.ctx!.resetTransform();
-		this.ctx!.scale(scale, scale);
+		if (!(isArray(shapes) && shapes[1]?.__dpr)) {
+			shapes = ["g", { __dpr: window.devicePixelRatio ?? 1 }, shapes];
+		}
 		draw(this.ctx!, shapes);
 	}
 }
