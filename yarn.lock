@@ -5275,6 +5275,7 @@ __metadata:
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
     "@thi.ng/api": "npm:^8.12.7"
+    "@thi.ng/canvas": "npm:^1.0.28"
     "@thi.ng/checks": "npm:^3.7.23"
     "@thi.ng/color": "npm:^5.8.2"
     "@thi.ng/geom-arc": "npm:^2.1.201"

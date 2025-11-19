@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe } from "@thi.ng/api";
+import { adaptDPI } from "@thi.ng/canvas";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import type { DrawState } from "../api.js";
 import { resolveGradientOrColor } from "../color.js";
@@ -68,8 +69,30 @@ export const __mergeState = (
 ) => {
 	let res: Maybe<DrawState>;
 	if (!attribs) return;
+	const dpr = attribs.__dpr;
+	if (dpr && dpr != ctx.canvas.dataset.dpr) {
+		adaptDPI(
+			ctx.canvas,
+			+(ctx.canvas.dataset.origWidth ?? ctx.canvas.width),
+			+(ctx.canvas.dataset.origHeight ?? ctx.canvas.height),
+			dpr
+		);
+		ctx.scale(dpr, dpr);
+	}
 	if (__applyTransform(ctx, attribs)) {
 		res = __newState(state, true);
+	}
+	if (attribs.__background || attribs.__clear) {
+		ctx.save();
+		ctx.resetTransform();
+		const { width, height } = ctx.canvas;
+		if (attribs.__clear) {
+			ctx.clearRect(0, 0, width, height);
+		} else {
+			ctx.fillStyle = resolveGradientOrColor(state, attribs.__background);
+			ctx.fillRect(0, 0, width, height);
+		}
+		ctx.restore();
 	}
 	for (let id in attribs) {
 		const k = CTX_ATTRIBS[id];
@@ -81,17 +104,6 @@ export const __mergeState = (
 				res.edits!.push(id);
 				__setAttrib(ctx, state, id, k, v);
 			}
-		} else if (id === "__background" || id === "__clear") {
-			ctx.save();
-			ctx.resetTransform();
-			if (id === "__clear") {
-				attribs[id] &&
-					ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-			} else {
-				ctx.fillStyle = resolveGradientOrColor(state, attribs[id]);
-				ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-			}
-			ctx.restore();
 		}
 	}
 	return res;
