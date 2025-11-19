@@ -82,11 +82,12 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 776 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 826 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
