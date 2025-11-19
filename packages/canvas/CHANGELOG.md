@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-11-19T12:01:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/canvas@1.1.0) (2025-11-19)
+
+#### 🚀 Features
+
+- update `adaptDPI()` ([2afd602](https://github.com/thi-ng/umbrella/commit/2afd602))
+  - store orig size & DPR in data attributes
+  - update docstring
 
 ### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/canvas@1.0.2) (2025-01-14)
 

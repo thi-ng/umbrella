@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-11-19T12:01:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@4.2.0) (2025-11-19)
+
+#### 🚀 Features
+
+- [#554](https://github.com/thi-ng/umbrella/issues/554), add support for `__dpr` control attrib ([9939f13](https://github.com/thi-ng/umbrella/commit/9939f13))
+  - remove obsolete DPR handling in this pkg,
+    now dealt with directly by [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup-canvas)
+
+#### 🩹 Bug fixes
+
+- update `__dpr` logic to accommodate resizing ([4244160](https://github.com/thi-ng/umbrella/commit/4244160))
 
 ### [4.1.174](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@4.1.174) (2025-01-14)
 

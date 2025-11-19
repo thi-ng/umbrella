@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-11-19T12:01:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [9.4.94](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.4.94) (2025-11-19)
+
+#### ♻️ Refactoring
+
+- update setStyle() ([0cfae02](https://github.com/thi-ng/umbrella/commit/0cfae02))
+  - directly set referenced CSS properties, not combined CSS string (which might override others)
 
 ### [9.4.56](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.4.56) (2025-01-14)
 
