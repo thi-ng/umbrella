@@ -55,14 +55,7 @@ export const canvas = {
 		const cattribs = { ...attribs };
 		delete cattribs.__diff;
 		delete cattribs.__normalize;
-		const dpr = window.devicePixelRatio || 1;
-		if (dpr !== 1) {
-			!cattribs.style && (cattribs.style = {});
-			cattribs.style.width = `${cattribs.width}px`;
-			cattribs.style.height = `${cattribs.height}px`;
-			cattribs.width *= dpr;
-			cattribs.height *= dpr;
-		}
+		delete cattribs.__dpr;
 		return [
 			"canvas",
 			cattribs,
@@ -75,7 +68,7 @@ export const canvas = {
 					__release: attribs.__release === true,
 					__serialize: false,
 					__clear: attribs.__clear,
-					scale: dpr !== 1 ? dpr : null,
+					__dpr: attribs.__dpr ?? window.devicePixelRatio,
 				},
 				...body,
 			],
