@@ -14,4 +14,7 @@ test("renameTransformedKeys", () => {
 		)
 	).toEqual({ aa: 1, bb: 21 });
 	expect(renameTransformedKeys(null, { a: "aa" })).toEqual({});
+	expect(renameTransformedKeys({ a: 1 }, { a: ["A", () => null] })).toEqual(
+		{}
+	);
 });
