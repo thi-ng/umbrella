@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/buffers",
-	"version": "1.0.26",
+	"version": "1.0.27",
 	"description": "General purpose and generic read/write buffer implementations with different behaviors/orderings",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.7",
-		"@thi.ng/errors": "^2.5.47"
+		"@thi.ng/api": "^8.12.8",
+		"@thi.ng/errors": "^2.5.48"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

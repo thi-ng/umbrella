@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-10-25T22:30:00Z
+- **Last updated**: 2025-11-21T15:55:41Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/object-utils@1.3.0) (2025-11-21)
+
+#### 🚀 Features
+
+- update `renameTransformedKeys()` ([337a2d2](https://github.com/thi-ng/umbrella/commit/337a2d2))
+  - add test
 
 ## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/object-utils@1.2.0) (2025-07-02)
 

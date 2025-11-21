@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom",
-	"version": "9.4.94",
+	"version": "9.4.95",
 	"description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
 	"type": "module",
 	"module": "./index.js",
@@ -42,17 +42,17 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.7",
-		"@thi.ng/checks": "^3.7.23",
-		"@thi.ng/diff": "^5.1.108",
-		"@thi.ng/equiv": "^2.1.97",
-		"@thi.ng/errors": "^2.5.47",
-		"@thi.ng/hiccup": "^5.3.30",
-		"@thi.ng/logger": "^3.2.6",
-		"@thi.ng/prefixes": "^2.3.58"
+		"@thi.ng/api": "^8.12.8",
+		"@thi.ng/checks": "^3.7.24",
+		"@thi.ng/diff": "^5.1.109",
+		"@thi.ng/equiv": "^2.1.98",
+		"@thi.ng/errors": "^2.5.48",
+		"@thi.ng/hiccup": "^5.3.31",
+		"@thi.ng/logger": "^3.2.7",
+		"@thi.ng/prefixes": "^2.3.59"
 	},
 	"devDependencies": {
-		"@thi.ng/atom": "^5.3.48",
+		"@thi.ng/atom": "^5.3.49",
 		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"

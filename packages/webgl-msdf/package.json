@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/webgl-msdf",
-	"version": "2.1.230",
+	"version": "2.1.231",
 	"description": "Multi-channel SDF font rendering & basic text layout for WebGL",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.7",
-		"@thi.ng/shader-ast": "^1.1.29",
-		"@thi.ng/transducers": "^9.6.16",
-		"@thi.ng/vector-pools": "^3.2.77",
-		"@thi.ng/vectors": "^8.6.12",
-		"@thi.ng/webgl": "^6.9.86"
+		"@thi.ng/api": "^8.12.8",
+		"@thi.ng/shader-ast": "^1.1.30",
+		"@thi.ng/transducers": "^9.6.17",
+		"@thi.ng/vector-pools": "^3.2.78",
+		"@thi.ng/vectors": "^8.6.13",
+		"@thi.ng/webgl": "^6.9.87"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",
