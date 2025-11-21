@@ -312,7 +312,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-11-19
+As of: 2025-11-21
 
 | Status                                           | Package                                             | Version                                                                                                                   | Changelog                                          |
 |:-------------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
@@ -320,6 +320,7 @@ As of: 2025-11-19
 | ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/hdom`](./packages/hdom)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)                   | [changelog](./packages/hdom/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdom-canvas`](./packages/hdom-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)     | [changelog](./packages/hdom-canvas/CHANGELOG.md)   |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas) | [changelog](./packages/hiccup-canvas/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/object-utils`](./packages/object-utils)   | [![version](https://img.shields.io/npm/v/@thi.ng/object-utils.svg)](https://www.npmjs.com/package/@thi.ng/object-utils)   | [changelog](./packages/object-utils/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom-canvas`](./packages/rdom-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)     | [changelog](./packages/rdom-canvas/CHANGELOG.md)   |
 
 ### Algorithms & data structures
