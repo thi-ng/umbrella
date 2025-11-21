@@ -28,7 +28,7 @@
 	},
 	"devDependencies": {
 		"typescript": "^5.9.3",
-		"vite": "^7.1.12"
+		"vite": "^7.2.4"
 	},
 	"keywords": [
 		"2d",

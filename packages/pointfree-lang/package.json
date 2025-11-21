@@ -52,8 +52,8 @@
 		"@thi.ng/pointfree": "^3.1.127"
 	},
 	"devDependencies": {
-		"@types/node": "^24.9.1",
-		"esbuild": "^0.25.11",
+		"@types/node": "^24.10.1",
+		"esbuild": "^0.27.0",
 		"pegjs": "0.11.0-master.f69239d",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"

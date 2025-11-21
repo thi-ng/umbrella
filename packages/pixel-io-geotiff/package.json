@@ -41,10 +41,10 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.7",
 		"@thi.ng/pixel": "^7.5.16",
-		"geotiff": "2.1.4-beta.0"
+		"geotiff": "2.1.4-beta.1"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.11",
+		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

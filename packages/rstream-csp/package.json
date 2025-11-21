@@ -43,7 +43,7 @@
 		"@thi.ng/rstream": "^9.3.5"
 	},
 	"devDependencies": {
-		"esbuild": "^0.25.11",
+		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},

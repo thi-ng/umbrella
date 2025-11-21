@@ -45,7 +45,7 @@
 	},
 	"devDependencies": {
 		"@thi.ng/wasm-api-bindgen": "^1.2.54",
-		"esbuild": "^0.25.11",
+		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
 	},
