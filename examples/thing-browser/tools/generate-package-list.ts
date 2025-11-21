@@ -1,14 +1,21 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { IObjectOf } from "@thi.ng/api";
 import { files, readJSON, writeJSON } from "@thi.ng/file-io";
 import {
-	transduce,
-	concat,
-	map,
-	filter,
-	push,
 	comp,
+	concat,
+	filter,
+	map,
+	push,
+	transduce,
 } from "@thi.ng/transducers";
 import type { Item } from "../src/api.js";
+
+const ALIASES: IObjectOf<string> = {
+	edges: "edge",
+	editlog: "edit",
+	interaction: "interactive",
+};
 
 const pkgs = transduce(
 	comp(
@@ -17,7 +24,11 @@ const pkgs = transduce(
 			return {
 				id: p.name,
 				desc: p.description,
-				tags: p.keywords,
+				tags: [
+					...new Set<string>(
+						p.keywords?.map((x: string) => ALIASES[x] ?? x)
+					),
+				],
 				img: p["thi.ng"]?.screenshot,
 			};
 		}),
