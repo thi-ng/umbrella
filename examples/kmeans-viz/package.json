@@ -43,6 +43,7 @@
 		"color",
 		"example",
 		"geometry",
+		"k-means",
 		"transducer",
 		"vector"
 	]

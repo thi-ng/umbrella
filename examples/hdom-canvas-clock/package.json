@@ -39,9 +39,12 @@
 		"vite": "^7.1.12"
 	},
 	"keywords": [
+		"animation",
 		"browser",
 		"canvas",
 		"example",
+		"hiccup",
+		"time",
 		"transducer",
 		"ui",
 		"vector"

@@ -43,10 +43,12 @@
 		"vite": "^7.1.12"
 	},
 	"keywords": [
+		"animation",
 		"browser",
 		"canvas",
 		"example",
 		"geometry",
+		"particles",
 		"transducer",
 		"ui",
 		"vector"
