@@ -37,18 +37,21 @@ const INCLUDE = new Set<string>([
 	"text/vnd.graphviz",
 ]);
 
-const LO_PRIORITIES: IObjectOf<string> = {
-	js: "application/javascript",
-	mjs: "application/javascript",
-	"3gpp": "audio/3gpp",
-	jpm: "video/jpm",
-	markdown: "text/markdown",
-	mp3: "audio/mp3",
-	rtf: "text/rtf",
-	wav: "audio/wave",
-	x3db: "model/x3d+binary",
-	x3dv: "model/x3d+vrml",
-	xml: "text/xml",
+const LO_PRIORITIES: IObjectOf<string[]> = {
+	js: ["application/javascript"],
+	mjs: ["application/javascript"],
+	"3gpp": ["audio/3gpp"],
+	jpm: ["video/jpm"],
+	markdown: ["text/markdown"],
+	mp3: ["audio/mp3"],
+	m4a: ["audio/x-m4a"],
+	qt: ["video/quicktime"],
+	rtf: ["text/rtf"],
+	ts: ["application/typescript", "video/mp2t"],
+	wav: ["audio/wave", "audio/x-wav"],
+	x3db: ["model/x3d+binary"],
+	x3dv: ["model/x3d+vrml"],
+	xml: ["text/xml"],
 };
 
 // Source: https://raw.githubusercontent.com/jshttp/mime-db/master/db.json
@@ -58,6 +61,7 @@ const src = readJSON("tools/mime-db.json");
 const dest: IObjectOf<IObjectOf<string>> = {
 	// see: https://www.rfc-editor.org/rfc/rfc4288#section-3.2
 	application: {
+		typescript: "1ts",
 		"vnd.sidefx.houdini-project": "hip,hipnc,hiplc",
 		"vnd.sidefx.houdini-asset": "hda",
 	},
@@ -80,6 +84,9 @@ const dest: IObjectOf<IObjectOf<string>> = {
 		"vnd.sidefx.houdini": "geo",
 		"vnd.sidefx.houdini+binary": "bgeo",
 	},
+	text: {
+		typescript: "1ts",
+	},
 };
 
 // build index
@@ -96,7 +103,9 @@ for (let type in src) {
 	const $ext =
 		group[suffix] ??
 		ext
-			.map((e: string) => (LO_PRIORITIES[e] === type ? "*" : "") + e)
+			.map(
+				(e: string) => (LO_PRIORITIES[e]?.includes(type) ? "*" : "") + e
+			)
 			.join(",");
 	group[suffix] = compress ? compress + $ext : $ext;
 }
