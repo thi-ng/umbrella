@@ -61,7 +61,7 @@ const src = readJSON("tools/mime-db.json");
 const dest: IObjectOf<IObjectOf<string>> = {
 	// see: https://www.rfc-editor.org/rfc/rfc4288#section-3.2
 	application: {
-		typescript: "1ts",
+		typescript: "1*ts",
 		"vnd.sidefx.houdini-project": "hip,hipnc,hiplc",
 		"vnd.sidefx.houdini-asset": "hda",
 	},

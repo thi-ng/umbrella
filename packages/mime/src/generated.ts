@@ -1,7 +1,6 @@
-// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 /**
- * generated @ 2024-03-06T07:29:07.234Z - DO NOT EDIT!
+ * generated @ 2025-11-22T10:11:58.291Z - DO NOT EDIT!
  *
  * @internal
  */
@@ -168,6 +167,7 @@ export const DB: Record<string, Record<string, string>> = {
 		toml: "1toml",
 		trig: "trig",
 		"ttml+xml": "1ttml",
+		typescript: "1*ts",
 		ubjson: "ubj",
 		"urc-ressheet+xml": "1rsheet",
 		"urc-targetdesc+xml": "1td",
@@ -373,7 +373,7 @@ export const DB: Record<string, Record<string, string>> = {
 		"x-aiff": "aif,aiff,aifc",
 		"x-caf": "caf",
 		"x-flac": "flac",
-		"x-m4a": "m4a",
+		"x-m4a": "*m4a",
 		"x-matroska": "mka",
 		"x-mpegurl": "m3u",
 		"x-ms-wax": "wax",
@@ -381,7 +381,7 @@ export const DB: Record<string, Record<string, string>> = {
 		"x-pn-realaudio": "ram,ra",
 		"x-pn-realaudio-plugin": "rmp",
 		"x-realaudio": "ra",
-		"x-wav": "wav",
+		"x-wav": "*wav",
 		xm: "xm",
 	},
 	chemical: {
@@ -534,6 +534,7 @@ export const DB: Record<string, Record<string, string>> = {
 		"tab-separated-values": "1tsv",
 		troff: "t,tr,roff,man,me,ms",
 		turtle: "ttl",
+		typescript: "1ts",
 		"uri-list": "1uri,uris,urls",
 		vcard: "1vcard",
 		"vnd.graphviz": "gv",
@@ -573,11 +574,11 @@ export const DB: Record<string, Record<string, string>> = {
 		jpeg: "jpgv",
 		jpm: "*jpm,jpgm",
 		mj2: "mj2,mjp2",
-		mp2t: "ts",
+		mp2t: "*ts",
 		mp4: "mp4,mp4v,mpg4",
 		mpeg: "mpeg,mpg,mpe,m1v,m2v",
 		ogg: "ogv",
-		quicktime: "qt,mov",
+		quicktime: "*qt,mov",
 		webm: "webm",
 		"x-f4v": "f4v",
 		"x-fli": "fli",
