@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import { meldDeepObj } from "@thi.ng/object-utils";
 import { colorFromRange, srgb } from "@thi.ng/color";
 import {
 	TESSELLATE_TRI_FAN,
@@ -16,6 +15,7 @@ import {
 import { asWebGlModel, generateUVBounds2 } from "@thi.ng/geom-webgl";
 import { fract } from "@thi.ng/math";
 import { scale22 } from "@thi.ng/matrices";
+import { meldDeepObj } from "@thi.ng/object-utils";
 import { SYSTEM } from "@thi.ng/random";
 import { AttribPool } from "@thi.ng/vector-pools";
 import { add2, normalize2, type Vec } from "@thi.ng/vectors";
@@ -254,7 +254,7 @@ for (let col of charModel.attribPool!.attribValues<Float32Array>("color")) {
 console.log(models);
 
 // big moment: compile all model specs, actually creating the WebGL buffers & shaders
-const $models = models.map((m) => compileModel(gl, <UncompiledModelSpec>m));
+const $models = compileModel(gl, <UncompiledModelSpec[]>models);
 
 // store a direct handles to the disc & cursor instance positions attrib buffers
 // (note: we can only reference these _after_ compiling the model specs, since
