@@ -4017,6 +4017,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/arcball@workspace:^, @thi.ng/arcball@workspace:packages/arcball":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/arcball@workspace:packages/arcball"
+  dependencies:
+    "@thi.ng/api": "npm:^8.12.8"
+    "@thi.ng/matrices": "npm:^3.0.28"
+    "@thi.ng/vectors": "npm:^8.6.13"
+    esbuild: "npm:^0.27.0"
+    typedoc: "npm:^0.28.14"
+    typescript: "npm:^5.9.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/args@npm:^3.2.3, @thi.ng/args@workspace:^, @thi.ng/args@workspace:packages/args":
   version: 0.0.0-use.local
   resolution: "@thi.ng/args@workspace:packages/args"
