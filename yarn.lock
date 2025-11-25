@@ -4234,7 +4234,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.5.48"
     "@thi.ng/file-io": "npm:^2.2.18"
     "@thi.ng/logger": "npm:^3.2.7"
-    "@thi.ng/mime": "npm:^2.7.24"
+    "@thi.ng/mime": "npm:^2.8.0"
     "@thi.ng/random": "npm:^4.1.33"
     "@thi.ng/strings": "npm:^3.9.29"
     "@types/node": "npm:^24.10.1"
@@ -4591,7 +4591,7 @@ __metadata:
   resolution: "@thi.ng/dl-asset@workspace:packages/dl-asset"
   dependencies:
     "@thi.ng/checks": "npm:^3.7.24"
-    "@thi.ng/mime": "npm:^2.7.24"
+    "@thi.ng/mime": "npm:^2.8.0"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
@@ -5137,7 +5137,7 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.6.17"
     "@thi.ng/vector-pools": "npm:^3.2.78"
     "@thi.ng/vectors": "npm:^8.6.13"
-    "@thi.ng/webgl": "npm:^6.9.87"
+    "@thi.ng/webgl": "npm:^6.9.88"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
@@ -5772,7 +5772,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/mime@npm:^2.7.24, @thi.ng/mime@workspace:^, @thi.ng/mime@workspace:packages/mime":
+"@thi.ng/mime@npm:^2.8.0, @thi.ng/mime@workspace:^, @thi.ng/mime@workspace:packages/mime":
   version: 0.0.0-use.local
   resolution: "@thi.ng/mime@workspace:packages/mime"
   dependencies:
@@ -6453,7 +6453,7 @@ __metadata:
     "@thi.ng/file-io": "npm:^2.2.18"
     "@thi.ng/leaky-bucket": "npm:^0.2.20"
     "@thi.ng/logger": "npm:^3.2.7"
-    "@thi.ng/mime": "npm:^2.7.24"
+    "@thi.ng/mime": "npm:^2.8.0"
     "@thi.ng/paths": "npm:^5.2.27"
     "@thi.ng/router": "npm:^4.1.49"
     "@thi.ng/strings": "npm:^3.9.29"
@@ -7102,7 +7102,7 @@ __metadata:
     "@thi.ng/wasm-api": "npm:^2.4.10"
     "@thi.ng/wasm-api-bindgen": "npm:^1.2.55"
     "@thi.ng/wasm-api-dom": "npm:^2.0.11"
-    "@thi.ng/webgl": "npm:^6.9.87"
+    "@thi.ng/webgl": "npm:^6.9.88"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
@@ -7135,7 +7135,7 @@ __metadata:
     "@thi.ng/transducers": "npm:^9.6.17"
     "@thi.ng/vector-pools": "npm:^3.2.78"
     "@thi.ng/vectors": "npm:^8.6.13"
-    "@thi.ng/webgl": "npm:^6.9.87"
+    "@thi.ng/webgl": "npm:^6.9.88"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
@@ -7149,14 +7149,14 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.8"
     "@thi.ng/shader-ast": "npm:^1.1.30"
     "@thi.ng/shader-ast-glsl": "npm:^1.0.49"
-    "@thi.ng/webgl": "npm:^6.9.87"
+    "@thi.ng/webgl": "npm:^6.9.88"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@npm:^6.9.87, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@npm:^6.9.88, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:

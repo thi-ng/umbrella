@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/arcball",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "3D arcball controller for intuitive click & drag gesture-based camera view rotations. Quaternion-based.",
 	"type": "module",
 	"module": "./index.js",
