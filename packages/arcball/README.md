@@ -37,7 +37,7 @@ https://www.talisman.org/~erlkonig/misc/shoemake92-arcball.pdf
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Barcball%5D+in%3Atitle)
 
@@ -83,9 +83,9 @@ One project in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                           | Description                                                       | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-arcball.png" width="240"/> | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-arcball) |
+| Screenshot                                                                                                        | Description                                                       | Live demo                                           | Source                                                                           |
+|:------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/> | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-arcball) |
 
 ## API
 

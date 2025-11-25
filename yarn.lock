@@ -3053,6 +3053,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/webgl-arcball@workspace:examples/webgl-arcball":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-arcball@workspace:examples/webgl-arcball"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/arcball": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/soa": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: "npm:^5.9.3"
+    vite: "npm:^7.2.4"
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer":
   version: 0.0.0-use.local
   resolution: "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer"
