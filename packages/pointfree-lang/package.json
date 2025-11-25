@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pointfree-lang",
-	"version": "2.3.49",
+	"version": "2.3.50",
 	"description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
 	"type": "module",
 	"module": "./index.js",
@@ -43,13 +43,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.8",
-		"@thi.ng/args": "^3.2.3",
-		"@thi.ng/bench": "^3.6.35",
-		"@thi.ng/errors": "^2.5.48",
-		"@thi.ng/file-io": "^2.2.18",
-		"@thi.ng/logger": "^3.2.7",
-		"@thi.ng/pointfree": "^3.1.128"
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/args": "^3.2.4",
+		"@thi.ng/bench": "^3.6.36",
+		"@thi.ng/errors": "^2.5.49",
+		"@thi.ng/file-io": "^2.2.19",
+		"@thi.ng/logger": "^3.2.8",
+		"@thi.ng/pointfree": "^3.1.129"
 	},
 	"devDependencies": {
 		"@types/node": "^24.10.1",

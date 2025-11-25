@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-dominant-colors",
-	"version": "2.0.22",
+	"version": "2.0.23",
 	"description": "k-means based dominant color extraction from images/pixel buffers",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.8",
-		"@thi.ng/k-means": "^2.0.21",
-		"@thi.ng/pixel": "^7.5.17",
-		"@thi.ng/vectors": "^8.6.13"
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/k-means": "^2.0.22",
+		"@thi.ng/pixel": "^7.5.18",
+		"@thi.ng/vectors": "^8.6.14"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

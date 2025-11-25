@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/k-means",
-	"version": "2.0.21",
+	"version": "2.0.22",
 	"description": "k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.8",
-		"@thi.ng/distance": "^3.0.23",
-		"@thi.ng/errors": "^2.5.48",
-		"@thi.ng/random": "^4.1.33",
-		"@thi.ng/vectors": "^8.6.13"
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/distance": "^3.0.24",
+		"@thi.ng/errors": "^2.5.49",
+		"@thi.ng/random": "^4.1.34",
+		"@thi.ng/vectors": "^8.6.14"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

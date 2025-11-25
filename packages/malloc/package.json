@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/malloc",
-	"version": "6.1.129",
+	"version": "6.1.130",
 	"description": "ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc",
 	"type": "module",
 	"module": "./index.js",
@@ -42,10 +42,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.8",
-		"@thi.ng/binary": "^3.4.66",
-		"@thi.ng/checks": "^3.7.24",
-		"@thi.ng/errors": "^2.5.48"
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/binary": "^3.4.67",
+		"@thi.ng/checks": "^3.7.25",
+		"@thi.ng/errors": "^2.5.49"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

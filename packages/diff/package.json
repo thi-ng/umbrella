@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/diff",
-	"version": "5.1.109",
+	"version": "5.1.110",
 	"description": "Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.8",
-		"@thi.ng/equiv": "^2.1.98"
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/equiv": "^2.1.99"
 	},
 	"devDependencies": {
 		"typedoc": "^0.28.14",

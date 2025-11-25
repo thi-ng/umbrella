@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-log",
-	"version": "5.1.97",
+	"version": "5.1.98",
 	"description": "Structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.8",
-		"@thi.ng/checks": "^3.7.24",
-		"@thi.ng/logger": "^3.2.7",
-		"@thi.ng/rstream": "^9.3.6",
-		"@thi.ng/strings": "^3.9.29",
-		"@thi.ng/transducers": "^9.6.17"
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/checks": "^3.7.25",
+		"@thi.ng/logger": "^3.2.8",
+		"@thi.ng/rstream": "^9.3.7",
+		"@thi.ng/strings": "^3.9.30",
+		"@thi.ng/transducers": "^9.6.18"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

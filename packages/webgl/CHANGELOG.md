@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-11-25T12:16:28Z
+- **Last updated**: 2025-11-25T12:20:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [6.9.88](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.9.88) (2025-11-25)
+### [6.9.89](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.9.89) (2025-11-25)
 
 #### ♻️ Refactoring
 
