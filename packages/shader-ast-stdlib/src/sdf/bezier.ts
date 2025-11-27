@@ -60,7 +60,7 @@ export const sdfQuadratic2 = defn(
 		return [
 			(a = sym(sub(B, A))),
 			(b = sym(add(madd(B, -2, A), C))),
-			(c = sym(mul(a, 2))),
+			(c = sym(mul(a, FLOAT2))),
 			(d = sym(sub(A, pos))),
 			(kk = sym(div(FLOAT1, dot(b, b)))),
 			(kx = sym(mul(kk, dot(a, b)))),
@@ -90,7 +90,7 @@ export const sdfQuadratic2 = defn(
 						div(acos(div(q, mul(mul(p, z), FLOAT2))), float(3))
 					)),
 					(m = sym(cos(v))),
-					(n = sym(mul(sin(v), 1.732050808))),
+					(n = sym(mul(sin(v), Math.sqrt(3)))),
 					(uv = sym(
 						clamp01(
 							sub(mul(vec2(add(m, m), sub(neg(n), m)), z), kx)
@@ -104,11 +104,17 @@ export const sdfQuadratic2 = defn(
 						lt(m, n),
 						[
 							assign(res, m),
-							assign(sgn, cross2(madd(b, mul($x(uv), 2), c), x)),
+							assign(
+								sgn,
+								cross2(madd(b, mul($x(uv), FLOAT2), c), x)
+							),
 						],
 						[
 							assign(res, n),
-							assign(sgn, cross2(madd(b, mul($y(uv), 2), c), y)),
+							assign(
+								sgn,
+								cross2(madd(b, mul($y(uv), FLOAT2), c), y)
+							),
 						]
 					),
 				]
