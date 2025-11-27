@@ -109,7 +109,7 @@ export const removeLayer = (id: string) => {
 
 export const removeAllLayers = () =>
 	DB.swap((state) => {
-		for (let id of state.order) {
+		for (const id of state.order) {
 			const proc = state.layers[id].proc;
 			main.remove(proc);
 			proc.done!();

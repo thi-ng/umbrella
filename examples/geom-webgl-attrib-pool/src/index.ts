@@ -244,7 +244,7 @@ meldDeepObj(cursorModel, <Partial<UncompiledModelSpec>>{
 // references:
 // - https://docs.thi.ng/umbrella/vector-pools/ (readme examples)
 // - https://docs.thi.ng/umbrella/vector-pools/classes/AttribPool.html
-for (let col of charModel.attribPool!.attribValues<Float32Array>("color")) {
+for (const col of charModel.attribPool!.attribValues<Float32Array>("color")) {
 	// pick random color for each vertex
 	// see: https://docs.thi.ng/umbrella/color/#md:color-theme-generation
 	col.set(srgb(colorFromRange("bright")));

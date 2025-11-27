@@ -103,7 +103,7 @@ export const main = sync({
 		let numLines = 0;
 		let numPoints = 0;
 		// process all layers in given order
-		for (let id of job.__order) {
+		for (const id of job.__order) {
 			const layer: LayerParams = (<any>job)[id];
 			const mode = TRACE_MODES[layer.mode];
 			// vectorize image with layer's config

@@ -88,7 +88,7 @@ const updateGUI = () => {
 	let inner = grid.nest(PRESETS.length);
 	// create button for each volume preset
 	// and update state if a button was pressed
-	for (let preset of PRESETS) {
+	for (const preset of PRESETS) {
 		res = buttonH({
 			gui,
 			layout: inner,

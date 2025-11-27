@@ -59,7 +59,7 @@ export class App {
 	 */
 	addViews(specs: IObjectOf<ViewSpec>) {
 		const views: any = this.ctx.views;
-		for (let id in specs) {
+		for (const id in specs) {
 			const spec = specs[id];
 			views[id] = isArray(spec)
 				? defViewUnsafe(this.state, spec[0], <Fn<any, any>>spec[1])

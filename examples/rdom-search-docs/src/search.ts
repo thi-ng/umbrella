@@ -31,7 +31,7 @@ const suffixes = (
 	prefix: string,
 	acc: [string, number][] = []
 ) => {
-	for (let k in node[0]) {
+	for (const k in node[0]) {
 		acc = suffixes(node[0][k], prefix + k, acc);
 	}
 	if (node[1]) return acc.concat(node[1].map((i) => [prefix, i]));

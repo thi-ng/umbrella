@@ -44,7 +44,7 @@ export class App {
 	 */
 	addViews(specs: IObjectOf<ViewSpec>) {
 		const views: any = this.ctx.views;
-		for (let id in specs) {
+		for (const id in specs) {
 			const spec = specs[id];
 			views[id] = isArray(spec)
 				? defViewUnsafe(this.state, spec[0], <Fn<any, any>>spec[1])
@@ -92,7 +92,7 @@ export class App {
 		conf.countries.forEach((x) =>
 			this.ctx.bus.dispatch([ev.ADD_COUNTRY, x])
 		);
-		for (let q in conf.queries) {
+		for (const q in conf.queries) {
 			store.addQueryFromSpec(conf.queries[q]).subscribe({
 				next: (res) =>
 					this.ctx.bus.dispatch([

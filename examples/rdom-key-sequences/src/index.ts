@@ -94,7 +94,7 @@ const commands = keys.transform(
 			// default FSM state: checks all possible next keys according to
 			// current command trie branch
 			seq: (fsmState, keys) => {
-				for (let k in fsmState.choices) {
+				for (const k in fsmState.choices) {
 					if (!keys[k]) continue;
 					const next = fsmState.choices[k];
 					// found a command?

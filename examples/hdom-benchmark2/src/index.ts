@@ -106,13 +106,13 @@ const grid = <any>{
 		);
 		let mergedCells = new Set(changed);
 		if (this.prevChanged) {
-			for (let x of this.prevChanged) {
+			for (const x of this.prevChanged) {
 				mergedCells.add(x);
 			}
 		}
 		const mergedRows = new Set(changedRows);
 		if (this.prevChangedRows) {
-			for (let x of this.prevChangedRows) {
+			for (const x of this.prevChangedRows) {
 				mergedRows.add(x);
 			}
 		}

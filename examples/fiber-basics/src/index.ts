@@ -20,7 +20,7 @@ const SNAP = 16;
 const cellAnim = (scene: Group, delay: number) =>
 	function* main(ctx: Fiber) {
 		// infinite loop over [0..5) interval
-		for (let x of cycle(range(NUM))) {
+		for (const x of cycle(range(NUM))) {
 			// each cell as its own child process
 			ctx.fork(
 				cell(scene, x * W, 0, W, SIZE, SYSTEM.probability(0.5), 0.05)
@@ -53,7 +53,7 @@ const cell = (
 			true
 		).take(alpha.length >> 1);
 		// loop to grow/shrink and fade out rect
-		for (let [a, hh] of zip(alpha, symmetric(height))) {
+		for (const [a, hh] of zip(alpha, symmetric(height))) {
 			// add cell rect to scene
 			const attribs = { fill: setAlpha(null, col, a) };
 			scene.add(

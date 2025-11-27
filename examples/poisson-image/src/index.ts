@@ -42,7 +42,7 @@ const points = timed(() =>
 );
 
 // set pixels in result image
-for (let p of points) res.setAtUnsafe(p[0], p[1], 0);
+for (const p of points) res.setAtUnsafe(p[0], p[1], 0);
 
 // create canvas from pixel buffer and attach to DOM
 canvasFromPixelBuffer(res, document.body);

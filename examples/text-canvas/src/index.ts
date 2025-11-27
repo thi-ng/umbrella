@@ -124,13 +124,13 @@ requestAnimationFrame(function update() {
 	// combined model-view-projection matrix
 	const mvp = concat([], proj, view, model);
 	// draw cube instances
-	for (let pos of instances) {
+	for (const pos of instances) {
 		// project 3D points to 2D viewport (canvas coords)
 		const pts = cube.map(
 			(p) => project3([], mvp, viewp, add3([], p, pos))!
 		);
 		// draw cube edges
-		for (let e of edges) {
+		for (const e of edges) {
 			const a = pts[e[0]];
 			const b = pts[e[1]];
 			line(

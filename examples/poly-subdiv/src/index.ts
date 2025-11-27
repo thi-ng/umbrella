@@ -147,7 +147,7 @@ function* update() {
 	// polygon splitting variance (should be in [0..0.1] range, YMMV)
 	const eps = 0;
 	// cycle(...) creates an infinitely repeating sequence of values
-	for (let base of cycle(range(0.01, 1, 0.01))) {
+	for (const base of cycle(range(0.01, 1, 0.01))) {
 		// pointfree dataflow pipeline to iteratively subdivide a seed polygon
 		// and transform the result shapes. the given operations are executed in
 		// sequence, with each result being threaded (as last arg) to the

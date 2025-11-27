@@ -105,7 +105,7 @@ const scene = fromRAF({ timestamp: true }).map((t) => {
 				// find distance to closest neighbor
 				let closest: Nullable<Boid>;
 				let minD = MAX_RADIUS ** 2;
-				for (let n of neighbors) {
+				for (const n of neighbors) {
 					if (n === boid) continue;
 					const d = distSq2(pos, n.pos.value);
 					if (d < minD) {

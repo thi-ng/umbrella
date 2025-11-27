@@ -32,7 +32,7 @@ const themePart = (
 	});
 
 export const randomizeThemeParts = () => {
-	for (let part of Object.values(parts)) {
+	for (const part of Object.values(parts)) {
 		part.next({
 			range: RANGE_IDs[SYSTEM.int() % RANGE_IDs.length],
 			base: lch.random(),

@@ -57,7 +57,7 @@ class Font {
 		// build index of character pairs & their kern values
 		// e.g. { L: { Y: -2 } } for a Y following an L will be shifted left
 		this.rows = rows.slice(0, height);
-		for (let pair of rows.slice(height)) {
+		for (const pair of rows.slice(height)) {
 			if (!pair.length) continue;
 			const [[a, b], k] = pair.split(" ");
 			this.kerning = setIn(this.kerning, [a, b], parseInt(k));
@@ -112,7 +112,7 @@ class Font {
 	getText([first, ...rest]: string, spacing = 0, kern = true) {
 		let res = this.getChar(first, spacing);
 		let prev = first;
-		for (let c of rest) {
+		for (const c of rest) {
 			res = this.kernPair(res, prev, c, spacing, kern);
 			prev = c;
 		}

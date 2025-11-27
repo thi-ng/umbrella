@@ -71,7 +71,7 @@ class TodoHandlers implements IWasmAPI<WasmApp> {
 					true
 				);
 				let currAddr = addr;
-				for (let task of tasks) {
+				for (const task of tasks) {
 					let inst = this.$Task.instance(currAddr);
 					inst.body.setAlloc(task.body);
 					inst.state = TaskState.OPEN;
