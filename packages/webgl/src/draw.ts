@@ -76,7 +76,7 @@ const __drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
 	const sattribs = spec.shader.attribs;
 	const iattribs = spec.instances!.attribs;
 	spec.shader.bindAttribs(iattribs);
-	for (let id in iattribs) {
+	for (const id in iattribs) {
 		const attr = sattribs[id];
 		if (attr) {
 			let div = iattribs[id].divisor;
@@ -125,7 +125,7 @@ const __drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
 			  );
 	}
 	// reset attrib divisors to allow non-instanced draws later on
-	for (let id in iattribs) {
+	for (const id in iattribs) {
 		const attr = sattribs[id];
 		attr &&
 			(isGL2

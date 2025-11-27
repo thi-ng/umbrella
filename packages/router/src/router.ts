@@ -77,7 +77,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 	}
 
 	addRoutes(routes: Route[]) {
-		for (let r of routes) {
+		for (const r of routes) {
 			try {
 				const route = this.augmentRoute(r);
 				this.routes.set(route.match, route);
@@ -243,7 +243,7 @@ export class Router<T = any> implements INotify<RouterEventType> {
 		params: any,
 		validators: IObjectOf<Partial<RouteParamValidator>>
 	) {
-		for (let id in validators) {
+		for (const id in validators) {
 			if (params[id] !== undefined) {
 				const val = validators[id];
 				if (val.coerce) {

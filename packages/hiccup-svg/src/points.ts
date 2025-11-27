@@ -30,7 +30,7 @@ export const points = (
 		...body,
 	];
 	const href = __buildSymbol(group, shape, size);
-	for (let p of pts) {
+	for (const p of pts) {
 		// TODO replace w/ SVG2 `href` once Safari supports it
 		group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
 	}

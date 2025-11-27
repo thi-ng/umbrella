@@ -125,7 +125,7 @@ export class PubSub<T> implements IWriteable<T>, IClosable {
 			topic && (await topic.write(x));
 			x = null;
 		}
-		for (let t of Object.values(this.topics)) {
+		for (const t of Object.values(this.topics)) {
 			t.close();
 		}
 		this.topics = {};

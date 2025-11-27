@@ -42,7 +42,7 @@ export function* processedPoints(
 ): IterableIterator<any> {
 	const mapper = __valueMapper(xaxis, yaxis, project);
 	const [dmin, dmax] = xaxis.domain;
-	for (let p of __resolveData(data, xaxis.domain)) {
+	for (const p of __resolveData(data, xaxis.domain)) {
 		if (!inRange(p[0], dmin, dmax)) continue;
 		yield pointOnly ? mapper(p) : [mapper(p), p];
 	}

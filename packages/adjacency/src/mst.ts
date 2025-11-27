@@ -66,7 +66,7 @@ export const mst = <T>(
 ) => {
 	const graph = new DisjointSet(maxID + 1);
 	const res: T[] = [];
-	for (let e of sortByCachedKey(edges, cost)) {
+	for (const e of sortByCachedKey(edges, cost)) {
 		const v = verts(e);
 		if (!graph.unified(v[0], v[1])) {
 			graph.union(v[0], v[1]);

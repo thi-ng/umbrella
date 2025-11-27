@@ -124,7 +124,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 
 	forEach(fn: FnO2<GroupTuple<SPEC, K>, number, void>, ...args: any[]) {
 		let i = 0;
-		for (let id of this.ids) {
+		for (const id of this.ids) {
 			fn(this.getEntityUnsafe(id), i++, ...args);
 		}
 	}
@@ -134,7 +134,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 	}
 
 	isValidID(id: number) {
-		for (let comp of this.components) {
+		for (const comp of this.components) {
 			if (!comp.has(id)) return false;
 		}
 		return true;
@@ -163,7 +163,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 			intersectionR(),
 			this.components
 		);
-		for (let id of existing) {
+		for (const id of existing) {
 			this.addID(id, false);
 		}
 	}
@@ -204,7 +204,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 	}
 
 	protected *nonOwnedValues() {
-		for (let id of this.ids) {
+		for (const id of this.ids) {
 			yield this.getEntityUnsafe(id);
 		}
 	}

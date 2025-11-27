@@ -218,7 +218,7 @@ export function* withIndentation(
 	level = 0
 ) {
 	const stack: string[] = new Array(level).fill(indent);
-	for (let l of lines) {
+	for (const l of lines) {
 		scopeEnd.test(l) && stack.pop();
 		const curr = stack.length ? stack[stack.length - 1] : "";
 		yield curr + l;

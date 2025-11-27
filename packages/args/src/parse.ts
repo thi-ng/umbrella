@@ -135,7 +135,7 @@ const __processResults = <T extends IObjectOf<any>>(
 	acc: IObjectOf<any>
 ) => {
 	let spec: Nullable<ArgSpecExt>;
-	for (let id in specs) {
+	for (const id in specs) {
 		spec = specs[id];
 		if (acc[id] === undefined) {
 			if (spec.default !== undefined) {

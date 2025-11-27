@@ -81,7 +81,7 @@ export class Path
 	}
 
 	addSegments(...segments: PathSegment2[]) {
-		for (let s of segments) {
+		for (const s of segments) {
 			this.closed && illegalState("path already closed");
 			this.segments.push(s);
 		}
@@ -111,7 +111,7 @@ export class Path
 		if (this.segments.length > 1) {
 			$hiccupSegments(this.segments);
 		}
-		for (let p of this.subPaths) $hiccupSegments(p);
+		for (const p of this.subPaths) $hiccupSegments(p);
 		return ["path", this.attribs || {}, acc];
 	}
 }

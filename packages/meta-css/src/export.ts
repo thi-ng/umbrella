@@ -96,7 +96,7 @@ export const serializeSpecs = (
 	const rules: any[] = __suffixed("", specs);
 	if (media) {
 		const mediaIDs = media[0] === "ALL" ? Object.keys(specs.media) : media;
-		for (let id of mediaIDs) {
+		for (const id of mediaIDs) {
 			const query = specs.media[id];
 			if (query) {
 				rules.push(

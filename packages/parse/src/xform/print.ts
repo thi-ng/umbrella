@@ -25,7 +25,7 @@ export const xfPrint = (fn: Fn<string, void> = console.log) => {
 		const info = state ? ` (${state.l}:${state.c})` : "";
 		fn(`${prefix}${scope.id}${info}: ${JSON.stringify(scope.result)}`);
 		if (scope.children) {
-			for (let c of scope.children) {
+			for (const c of scope.children) {
 				$print(c, _, level + 1);
 			}
 		}

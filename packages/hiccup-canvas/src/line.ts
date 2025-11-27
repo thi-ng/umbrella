@@ -22,7 +22,7 @@ export const lines = (
 ) => {
 	if (attribs.stroke === "none") return;
 	ctx.beginPath();
-	for (let { 0: a, 1: b } of pairs) {
+	for (const { 0: a, 1: b } of pairs) {
 		ctx.moveTo(a[0], a[1]);
 		ctx.lineTo(b[0], b[1]);
 	}

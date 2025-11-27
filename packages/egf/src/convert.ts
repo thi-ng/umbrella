@@ -18,11 +18,11 @@ export const toEGF = (
 ) => {
 	const prefixID = defPrefixer(prefixes);
 	const res: string[] = [];
-	for (let id in prefixes) {
+	for (const id in prefixes) {
 		res.push(`@prefix ${id}: ${prefixes[id]}`);
 	}
 	res.push("");
-	for (let node of nodes) {
+	for (const node of nodes) {
 		res.push(toEGFNode(node, prefixID, propFn), "");
 	}
 	return res.join("\n");
@@ -48,12 +48,12 @@ export const toEGFNode = (
 					: propFn(p, v))
 		);
 
-	for (let p in node) {
+	for (const p in node) {
 		if (p === "$id") continue;
 		const pid = prefix(p) || p;
 		const val = node[p];
 		if (isArray(val)) {
-			for (let v of val) {
+			for (const v of val) {
 				$prop(p, pid, v);
 			}
 		} else {

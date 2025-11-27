@@ -13,7 +13,7 @@ export const add: NodeFactory<number> = node(
 	map((ports: IObjectOf<number>) => {
 		let acc = 0;
 		let v;
-		for (let p in ports) {
+		for (const p in ports) {
 			if ((v = ports[p]) == null) return;
 			acc += v;
 		}
@@ -30,7 +30,7 @@ export const mul: NodeFactory<number> = node(
 	map((ports: IObjectOf<number>) => {
 		let acc = 1;
 		let v;
-		for (let p in ports) {
+		for (const p in ports) {
 			if ((v = ports[p]) == null) return;
 			acc *= v;
 		}

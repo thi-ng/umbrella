@@ -55,7 +55,7 @@ export class Node3D
 				mulM44(this.mat, this.parent.mat, this.mat);
 			}
 			invert44(this.invMat, this.mat);
-			for (let c of this.children) {
+			for (const c of this.children) {
 				c.update();
 			}
 		}

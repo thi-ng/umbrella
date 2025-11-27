@@ -79,7 +79,7 @@ export class SOA<K extends string> implements ILength {
 		const stride = this.specs[id].stride!;
 		const end = this.length * stride;
 		let i = from * stride;
-		for (let v of vals) {
+		for (const v of vals) {
 			buf.set(v, i);
 			i += stride;
 			if (i >= end) break;
@@ -104,7 +104,7 @@ export class SOA<K extends string> implements ILength {
 				res[id] = this.attribValueUnsafe(id, i);
 			}
 		} else {
-			for (let id in this.specs) {
+			for (const id in this.specs) {
 				res[id] = this.attribValueUnsafe(id, i);
 			}
 		}
@@ -113,21 +113,21 @@ export class SOA<K extends string> implements ILength {
 
 	setIndex(i: number, vals: Partial<SOATuple<K, ReadonlyVec>>) {
 		ensureIndex(i, 0, this.length);
-		for (let id in vals) {
+		for (const id in vals) {
 			this.setAttribValue(id, i, <any>vals[id]!);
 		}
 		return this;
 	}
 
 	setIndexUnsafe(i: number, vals: Partial<SOATuple<K, ReadonlyVec>>) {
-		for (let id in vals) {
+		for (const id in vals) {
 			this.setAttribValueUnsafe(id, i, <any>vals[id]!);
 		}
 		return this;
 	}
 
 	setValues(vals: Partial<SOATuple<K, Iterable<ReadonlyVec>>>, from = 0) {
-		for (let id in vals) {
+		for (const id in vals) {
 			this.setAttribValues(id, vals[id]!, from);
 		}
 		return this;
@@ -157,7 +157,7 @@ export class SOA<K extends string> implements ILength {
 
 	addSpecs(specs: SOASpecs<K>) {
 		const num = this.length;
-		for (let id in specs) {
+		for (const id in specs) {
 			assert(!this.specs[id], `attrib ${id} already exists`);
 			const spec = prepareSpec(specs[id]);
 			this.validateSpec(id, spec);

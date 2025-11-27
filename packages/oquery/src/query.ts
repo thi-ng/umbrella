@@ -176,11 +176,11 @@ const __collectSO = (
 	opts: QueryOpts
 ) => {
 	if (opts.partial) {
-		for (let p in sval) {
+		for (const p in sval) {
 			__collect(res, s, p, o, sval[p], opts);
 		}
 	} else {
-		for (let p in sval) {
+		for (const p in sval) {
 			if (__match(o, sval[p], opts)) {
 				__collectFull(res, s, sval);
 				return;
@@ -273,11 +273,11 @@ const __queryFN: QueryImpl = (res, db: any, s, _, o, opts) => {
 /** @internal */
 const __queryNL: QueryImpl = (res, db: any, _, p, o, opts) => {
 	if (opts.partial) {
-		for (let s in db) {
+		for (const s in db) {
 			__collect(res, s, p, o, db[s][<string>p], opts);
 		}
 	} else {
-		for (let s in db) {
+		for (const s in db) {
 			const sval = db[s];
 			__match(o, sval[<string>p], opts) && __collectFull(res, s, sval);
 		}
@@ -286,21 +286,21 @@ const __queryNL: QueryImpl = (res, db: any, _, p, o, opts) => {
 
 /** @internal */
 const __queryNF: QueryImpl = (res, db: any, _, p, o, opts) => {
-	for (let s in db) {
+	for (const s in db) {
 		__collectSP(res, db[s], s, p, o, opts);
 	}
 };
 
 /** @internal */
 const __queryNN: QueryImpl = (res, db: any, _, __, o, opts) => {
-	for (let s in db) {
+	for (const s in db) {
 		__collectSO(res, db[s], s, o, opts);
 	}
 };
 
 /** @internal */
 const __queryNLNPartial: QueryImpl = (res, db: any, _, p) => {
-	for (let s in db) {
+	for (const s in db) {
 		const val = db[s][<string>p];
 		val != null && __addTriple(res, s, p, val);
 	}
@@ -308,7 +308,7 @@ const __queryNLNPartial: QueryImpl = (res, db: any, _, p) => {
 
 /** @internal */
 const __queryNLN: QueryImpl = (res, db: any, _, p) => {
-	for (let s in db) {
+	for (const s in db) {
 		const sval = db[s];
 		const val = sval[<string>p];
 		val != null && __collectFull(res, s, sval);
@@ -318,14 +318,14 @@ const __queryNLN: QueryImpl = (res, db: any, _, p) => {
 /** @internal */
 const __querySP: QueryImpl = (res, sval: any, s, p, _, opts) => {
 	if (opts.partial) {
-		for (let q in sval) {
+		for (const q in sval) {
 			if ((<FTerm>p)(q)) {
 				const val = sval[q];
 				val != null && __addTriple(res, s, q, val);
 			}
 		}
 	} else {
-		for (let q in sval) {
+		for (const q in sval) {
 			if ((<FTerm>p)(q)) {
 				__collectFull(res, s, sval);
 				return;
@@ -389,7 +389,7 @@ const IMPLS = <QueryImpls>{
 	nfl: __queryNF,
 	nff: __queryNF,
 	nfn: (res, db: any, _, p, __, opts) => {
-		for (let s in db) {
+		for (const s in db) {
 			__querySP(res, db[s], s, p, null, opts);
 		}
 	},
@@ -512,7 +512,7 @@ export const defKeyQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
 			const res = __objQuery(src, $opts, args.slice(0, 3));
 			const out = args[3];
 			if (!out) return new Set<string>(Object.keys(res));
-			for (let k in res) out.add(k);
+			for (const k in res) out.add(k);
 			return out;
 		}
 	});
@@ -539,7 +539,7 @@ export const query = <T extends QueryObj = QueryObj>(
 	terms: Nullable<QueryTerm<T>>[],
 	opts: Partial<MultiQueryOpts<T>> = {}
 ) => {
-	for (let term of terms) {
+	for (const term of terms) {
 		if (!term) continue;
 		db = <T[]>(
 			(<ArrayQueryFn<T[]>>defQuery<T[]>(term.opts))(

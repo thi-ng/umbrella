@@ -94,7 +94,7 @@ const __resolveNode = (node: ASTNode, ctx: pf.StackContext): any => {
  */
 const __resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
 	const res = [];
-	for (let n of node.body) {
+	for (const n of node.body) {
 		res.push(__resolveNode(n, ctx));
 	}
 	return res;
@@ -110,7 +110,7 @@ const __resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
  */
 const __resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
 	const res: any = {};
-	for (let [k, v] of node.body) {
+	for (const [k, v] of node.body) {
 		res[k.type === "sym" ? k.id : __resolveNode(k, ctx)] = __resolveNode(
 			v,
 			ctx
@@ -339,7 +339,7 @@ const __visitWord = (
 	state.word = { name: id, loc: node.loc };
 	const locals = node.locals;
 	__pushLocals(__beginvar, wctx, locals);
-	for (let n of node.body) {
+	for (const n of node.body) {
 		wctx = __visit(n, wctx, state);
 	}
 	__pushLocals(__endvar, wctx, locals);
@@ -454,7 +454,7 @@ const __ensureEnv = (env?: pf.StackEnv) => {
 		env.__vars = {};
 	}
 	const vars = env.__vars;
-	for (let k in env) {
+	for (const k in env) {
 		if (k !== "__words" && k !== "__vars") {
 			vars[k] = [env[k]];
 		}
@@ -474,7 +474,7 @@ const __finalizeEnv = (ctx: pf.StackContext) => {
 	const env = ctx[2];
 	const vars = env.__vars;
 	delete env.__vars;
-	for (let k in vars) {
+	for (const k in vars) {
 		const v = vars[k];
 		if (v.length !== 1) {
 			illegalState(`dangling or missing scopes for var: ${k}`);
@@ -499,7 +499,7 @@ export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
 	let ctx = pf.ctx(stack, __ensureEnv(env));
 	const state = {};
 	try {
-		for (let node of parse(src)) {
+		for (const node of parse(src)) {
 			ctx = __visit(node, ctx, state);
 		}
 		return __finalizeEnv(ctx);

@@ -30,7 +30,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 	 */
 	async init() {
 		this.graph = new DGraph<Keys<T>>();
-		for (let id in this.specs) {
+		for (const id in this.specs) {
 			const deps = this.specs[id].deps;
 			deps
 				? this.graph.addDependencies(<Keys<T>>id, deps)
@@ -38,7 +38,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle<T> {
 		}
 		this.topology = this.graph.sort();
 		this.components = <any>{};
-		for (let id of this.topology) {
+		for (const id of this.topology) {
 			this.components[id] = <any>(
 				await this.specs[id].factory(this.components)
 			);

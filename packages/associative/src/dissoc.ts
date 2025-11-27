@@ -7,7 +7,7 @@
 export function dissoc<K, V>(coll: Map<K, V>, keys: Iterable<K>): Map<K, V>;
 export function dissoc<T>(coll: Set<T>, keys: Iterable<T>): Set<T>;
 export function dissoc(coll: Map<any, any> | Set<any>, keys: Iterable<any>) {
-	for (let k of keys) {
+	for (const k of keys) {
 		coll.delete(k);
 	}
 	return coll;

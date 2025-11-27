@@ -87,7 +87,7 @@ export const closestPoint: MultiFn2O<
 			out = closestPointPolyline(p, $.boundary.points, true, out);
 			let minD = distSq2(p, out!);
 			let tmp: Vec = [];
-			for (let child of $.children) {
+			for (const child of $.children) {
 				closestPointPolyline(p, child.points, true, tmp);
 				const d = distSq2(p, tmp);
 				if (d < minD) {
@@ -114,7 +114,7 @@ export const closestPoint: MultiFn2O<
 		path: ($: Path, p, out) => {
 			let minD = Infinity;
 			const $closestPSegment = (segments: PathSegment[]) => {
-				for (let s of segments) {
+				for (const s of segments) {
 					if (!s.geo) continue;
 					const q = closestPoint(s.geo, p)!;
 					if (!q) continue;
@@ -126,7 +126,7 @@ export const closestPoint: MultiFn2O<
 				}
 			};
 			$closestPSegment($.segments);
-			for (let sub of $.subPaths) $closestPSegment(sub);
+			for (const sub of $.subPaths) $closestPSegment(sub);
 			return out;
 		},
 

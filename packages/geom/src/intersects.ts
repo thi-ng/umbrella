@@ -158,7 +158,7 @@ export const intersects: MultiFn2O<
 			const points: Vec[] = [];
 			const all = opts?.all;
 			let inside = false;
-			for (let child of children) {
+			for (const child of children) {
 				let $res = intersects(ray, child, opts);
 				if ($res.type !== IntersectionType.INTERSECT) continue;
 				if ($res.inside) inside = true;

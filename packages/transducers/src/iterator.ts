@@ -21,7 +21,7 @@ export function* iterator<A, B>(
 	const rfn = <Reducer<A, B[]>>ensureTransducer(xform)(push());
 	const complete = rfn[1];
 	const reduce = rfn[2];
-	for (let x of src) {
+	for (const x of src) {
 		const y = reduce([], x);
 		if (isReduced(y)) {
 			yield* unreduced(complete(y.deref()));
@@ -51,7 +51,7 @@ export function* iterator1<A, B>(
 	const reduce = (<Reducer<A, B>>(
 		ensureTransducer(xform)([NO_OP, NO_OP, (_, x) => x])
 	))[2];
-	for (let x of src) {
+	for (const x of src) {
 		let y = reduce(<any>SEMAPHORE, x);
 		if (isReduced(y)) {
 			y = unreduced(y.deref());

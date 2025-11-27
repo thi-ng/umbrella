@@ -92,7 +92,7 @@ export const multiColorGradientBuffer = <T extends TypedColor<any>>(
 	cstride = 1,
 	estride = 4
 ) => {
-	for (let col of __gradient(opts)) {
+	for (const col of __gradient(opts)) {
 		setS4(buffer, col, offset, 0, cstride);
 		offset += estride;
 	}

@@ -44,15 +44,15 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	}
 
 	*entries(): IterableIterator<Readonly<[K, CacheEntry<K, V>]>> {
-		for (let e of this.items) yield <[K, CacheEntry<K, V>]>[e.k, e];
+		for (const e of this.items) yield <[K, CacheEntry<K, V>]>[e.k, e];
 	}
 
 	*keys(): IterableIterator<Readonly<K>> {
-		for (let e of this.items) yield e.k;
+		for (const e of this.items) yield e.k;
 	}
 
 	*values(): IterableIterator<Readonly<V>> {
-		for (let e of this.items) yield e.v;
+		for (const e of this.items) yield e.v;
 	}
 
 	copy(): ICache<K, V> {
@@ -107,7 +107,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
 	}
 
 	into(pairs: Iterable<[K, V]>) {
-		for (let p of pairs) {
+		for (const p of pairs) {
 			this.set(p[0], p[1]);
 		}
 		return this;

@@ -16,7 +16,7 @@ import { implementsFunction } from "@thi.ng/checks/implements-function";
 export const derefContext = (ctx: any, keys?: Maybe<PropertyKey[]>) => {
 	if (ctx == null || !keys || !keys.length) return ctx;
 	const res = { ...ctx };
-	for (let k of keys) {
+	for (const k of keys) {
 		const v = res[k];
 		if (implementsFunction(v, "deref")) res[k] = v.deref();
 	}

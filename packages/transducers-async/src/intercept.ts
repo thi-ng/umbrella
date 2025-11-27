@@ -88,7 +88,7 @@ export function intercept<T>(
 	if (src) return iterator1(intercept(interceptors), src);
 	const xform = (rfn: AsyncReducer<T, any>) =>
 		compR<T, T, any>(rfn, async (acc, x) => {
-			for (let fn of interceptors) {
+			for (const fn of interceptors) {
 				const res = await fn(x);
 				if (res == null) return acc;
 				x = res;

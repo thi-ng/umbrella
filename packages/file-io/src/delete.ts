@@ -48,7 +48,7 @@ export const deleteFiles = (
 	logger?: ILogger,
 	dryRun = false
 ) => {
-	for (let path of paths) {
+	for (const path of paths) {
 		try {
 			deleteFile(path, logger, dryRun);
 		} catch (e) {
@@ -66,7 +66,7 @@ export const deleteFilesAsync = async (
 	dryRun = false
 ) => {
 	const promises: Promise<void>[] = [];
-	for (let path of paths) {
+	for (const path of paths) {
 		promises.push(deleteFileAsync(path, logger, dryRun));
 	}
 	await Promise.allSettled(promises);

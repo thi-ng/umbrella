@@ -65,7 +65,7 @@ export const threadLastAsync = async (
 	...fns: (FnAnyA<any> | [FnAnyA<any>, ...any[]])[]
 ) => {
 	let res = await init;
-	for (let expr of fns) {
+	for (const expr of fns) {
 		res = await (typeof expr === "function"
 			? expr(res)
 			: expr[0](...expr.slice(1), res));

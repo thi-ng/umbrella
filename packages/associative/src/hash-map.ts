@@ -97,19 +97,19 @@ export class HashMap<K, V>
 	[Symbol.dispose]() {}
 
 	*entries(): MapIterator<Pair<K, V>> {
-		for (let p of this.#bins) {
+		for (const p of this.#bins) {
 			if (p) yield [p[0], p[1]];
 		}
 	}
 
 	*keys(): MapIterator<K> {
-		for (let p of this.#bins) {
+		for (const p of this.#bins) {
 			if (p) yield p[0];
 		}
 	}
 
 	*values(): MapIterator<V> {
-		for (let p of this.#bins) {
+		for (const p of this.#bins) {
 			if (p) yield p[1];
 		}
 	}
@@ -123,7 +123,7 @@ export class HashMap<K, V>
 	 * @param thisArg -
 	 */
 	forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
-		for (let pair of this.#bins) {
+		for (const pair of this.#bins) {
 			fn.call(thisArg, pair[1], pair[0], this);
 		}
 	}
@@ -237,7 +237,7 @@ export class HashMap<K, V>
 		this.#bins = new Array(cap);
 		this.#mask = cap - 1;
 		this.#size = 0;
-		for (let p of src) {
+		for (const p of src) {
 			if (p) this.set(p[0], p[1]);
 		}
 	}

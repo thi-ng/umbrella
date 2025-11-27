@@ -163,7 +163,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 					const id = this.elements.add(el);
 					this.initElement(id, el, opts, nestedParent);
 					if (opts.children.length > 0) {
-						for (let child of opts.children) {
+						for (const child of opts.children) {
 							create(child, id);
 						}
 					}
@@ -185,7 +185,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 						this.elements.delete(elementID, false);
 						const elementListeners = (<WasmElement>el)[__listeners];
 						if (elementListeners) {
-							for (let listenerID of elementListeners) {
+							for (const listenerID of elementListeners) {
 								this.removeListener(el, listenerID);
 								// WASM side cleanup
 								this.parent.exports._dom_removeListener(
@@ -196,7 +196,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 					}
 					el.parentNode?.removeChild(el);
 					/* eslint-disable-next-line no-useless-spread -- shallow copy required here */
-					for (let child of [...el.children]) remove(child);
+					for (const child of [...el.children]) remove(child);
 				};
 				remove(el);
 			},
@@ -447,7 +447,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 			(<HTMLElement>el).innerText = opts.text.deref();
 		}
 		if (attribs?.length) {
-			for (let attr of attribs) {
+			for (const attr of attribs) {
 				const name = attr.name.deref();
 				if (attr.kind === AttribType.EVENT) {
 					const listenerAddr = attr.value.event.__base;

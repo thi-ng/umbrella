@@ -110,7 +110,7 @@ export class PairingHeap<T>
 	}
 
 	into(vals: Iterable<T>) {
-		for (let i of vals) {
+		for (const i of vals) {
 			this.push(i);
 		}
 		return this;

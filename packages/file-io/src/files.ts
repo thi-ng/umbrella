@@ -42,7 +42,7 @@ function* __files(
 ): IterableIterator<string> {
 	if (depth >= maxDepth) return;
 	const pred = __ensurePred(match);
-	for (let f of readdirSync(dir).sort()) {
+	for (const f of readdirSync(dir).sort()) {
 		const curr = dir + sep + f;
 		try {
 			if (isDirectory(curr)) {
@@ -86,7 +86,7 @@ function* __dirs(
 ): IterableIterator<string> {
 	if (depth >= maxDepth) return;
 	const pred = __ensurePred(match);
-	for (let f of readdirSync(dir).sort()) {
+	for (const f of readdirSync(dir).sort()) {
 		const curr = dir + sep + f;
 		try {
 			if (isDirectory(curr)) {

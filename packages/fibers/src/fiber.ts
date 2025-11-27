@@ -320,7 +320,7 @@ export class Fiber<T = any>
 	cancel() {
 		if (!this.isActive()) return;
 		this.logger?.debug("cancel", this.id);
-		for (let child of this.children) child.cancel();
+		for (const child of this.children) child.cancel();
 		this.deinit();
 		this.state = STATE_CANCELED;
 		this.idgen?.free(this.id);
@@ -341,7 +341,7 @@ export class Fiber<T = any>
 		if (!this.isActive()) return;
 		this.logger?.debug("done", this.id, value);
 		this.value = value;
-		for (let child of this.children) child.done();
+		for (const child of this.children) child.done();
 		this.deinit();
 		this.state = STATE_DONE;
 		this.idgen?.free(this.id);
@@ -365,7 +365,7 @@ export class Fiber<T = any>
 		this.logger
 			? this.logger.severe(`error ${this.id}:`, err)
 			: console.warn(`error ${this.id}:`, err);
-		for (let child of this.children) child.cancel();
+		for (const child of this.children) child.cancel();
 		this.state = STATE_ERROR;
 		this.error = err;
 		this.deinit();

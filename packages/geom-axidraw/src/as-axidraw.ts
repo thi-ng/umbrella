@@ -158,7 +158,7 @@ function* __group(
 	const children = skip ? [...takeNth(skip + 1, $.children)] : $.children;
 	function* emitChunk(chunk: IHiccupShape2[]) {
 		const iter = sort ? (<ShapeOrdering>sort)(chunk) : chunk;
-		for (let child of iter) {
+		for (const child of iter) {
 			const shape = applyTransforms(child);
 			shape.attribs = {
 				...$.attribs,
@@ -200,7 +200,7 @@ function* __points(
 	}
 	function* emitChunk($pts: ReadonlyVec[]): IterableIterator<DrawCommand> {
 		if (down != undefined) yield ["pen", down];
-		for (let p of sort ? (<PointOrdering>sort)($pts) : $pts) {
+		for (const p of sort ? (<PointOrdering>sort)($pts) : $pts) {
 			yield MOVE(p, speed);
 			yield DOWN(delayDown);
 			yield UP(delayUp);
@@ -224,7 +224,7 @@ function* __polyline(
 	const clipPts = clip || opts?.clip;
 	const chunks = clipPts ? clipPolylinePoly(pts, clipPts) : [pts];
 	if (!chunks.length) return;
-	for (let chunk of chunks) {
+	for (const chunk of chunks) {
 		yield* polyline(chunk, { down, delayDown, delayUp, speed });
 	}
 }

@@ -6,7 +6,7 @@ import type { IncomingMessage } from "node:http";
 
 export const parseSearchParams = (params: URLSearchParams) => {
 	const acc: Record<string, any> = {};
-	for (let [k, v] of params) {
+	for (const [k, v] of params) {
 		if (k.includes("[")) return parseObjectVal(acc, k, v);
 		if (!isProtoPath(k)) acc[k] = v;
 	}

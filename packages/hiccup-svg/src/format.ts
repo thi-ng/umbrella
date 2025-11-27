@@ -45,7 +45,7 @@ const DEFAULT_NUMERIC_IDS = [
  */
 const __numericAttribs = (attribs: Attribs, ids: string[]) => {
 	let v: any;
-	for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
+	for (const id of DEFAULT_NUMERIC_IDS.concat(ids)) {
 		typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
 	}
 	return attribs;
@@ -180,7 +180,7 @@ export const withoutKeys = (
 	keys: Set<PropertyKey>
 ) => {
 	const dest: any = {};
-	for (let k in src) {
+	for (const k in src) {
 		src.hasOwnProperty(k) && !keys.has(k) && (dest[k] = src[<any>k]);
 	}
 	return dest;

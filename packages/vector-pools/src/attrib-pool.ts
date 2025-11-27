@@ -181,7 +181,7 @@ export class AttribPool implements IRelease {
 			Partial<{ data: ReadonlyVec | ReadonlyVec[]; index: number }>
 		>
 	) {
-		for (let id in specs) {
+		for (const id in specs) {
 			const spec = specs[id];
 			spec.data && this.setAttribValues(id, spec.data, spec.index || 0);
 		}
@@ -205,7 +205,7 @@ export class AttribPool implements IRelease {
 			newCapacity * this.byteStride
 		);
 		assert(newAddr > 0, `out of memory`);
-		for (let id in this.specs) {
+		for (const id in this.specs) {
 			const a = this.specs[id];
 			const buf = typedArray(
 				a.type,
@@ -226,7 +226,7 @@ export class AttribPool implements IRelease {
 	protected computeStride(specs: IObjectOf<AttribSpec>, inclExisting = true) {
 		let maxStride = inclExisting ? this.byteStride : 1;
 		let maxSize = inclExisting ? this.maxAttribSize : 1;
-		for (let id in specs) {
+		for (const id in specs) {
 			const a = specs[id];
 			const size = sizeOf(a.type);
 			maxSize = Math.max(maxSize, size);
@@ -239,7 +239,7 @@ export class AttribPool implements IRelease {
 		specs: IObjectOf<AttribSpec>,
 		stride = this.byteStride
 	) {
-		for (let id in specs) {
+		for (const id in specs) {
 			assert(!this.attribs[id], `attrib: ${id} already exists`);
 			const a = specs[id];
 			assert(a.size > 0, `attrib ${id}: illegal or missing size`);
@@ -273,7 +273,7 @@ export class AttribPool implements IRelease {
 		start = 0,
 		end = this.capacity
 	) {
-		for (let id in specs) {
+		for (const id in specs) {
 			const a = specs[id];
 			this.attribs[id] = typedArray(
 				a.type,
@@ -290,7 +290,7 @@ export class AttribPool implements IRelease {
 		start = 0,
 		end = this.capacity
 	) {
-		for (let id in specs) {
+		for (const id in specs) {
 			const a = specs[id];
 			if (a.default == null) continue;
 			const buf = this.attribs[id];
@@ -339,7 +339,7 @@ export class AttribPool implements IRelease {
 		// process in opposite directions based on new stride size and
 		// in offset order to avoid successor attrib vals getting
 		// overwritten...
-		for (let i of newByteStride < this.byteStride
+		for (const i of newByteStride < this.byteStride
 			? range(num + 1)
 			: range(num, -1, -1)) {
 			__moveAttribs(
@@ -354,7 +354,7 @@ export class AttribPool implements IRelease {
 		}
 		this.addr = newAddr;
 		this.byteStride = newByteStride;
-		for (let id in newAttribs) {
+		for (const id in newAttribs) {
 			const a = newAttribs[id];
 			attribs[id] = a[0];
 			specs[id].stride = a[1];
@@ -371,7 +371,7 @@ const __resizeAttribs = (
 	num: number
 ) => {
 	const newAttribs: IObjectOf<[TypedArray, number]> = {};
-	for (let id in specs) {
+	for (const id in specs) {
 		const a = specs[id];
 		const dStride = stride / sizeOf(a.type);
 		newAttribs[id] = [
@@ -397,7 +397,7 @@ const __moveAttribs = (
 	sameBlock: boolean,
 	grow: boolean
 ) => {
-	for (let id of order) {
+	for (const id of order) {
 		const a = specs[id];
 		const sStride = a.stride!;
 		const src = attribs[id];

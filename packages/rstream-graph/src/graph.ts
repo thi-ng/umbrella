@@ -41,7 +41,7 @@ import type {
  */
 export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
 	const res: IObjectOf<Node | NodeResolver> = {};
-	for (let id in spec) {
+	for (const id in spec) {
 		const n = spec[id];
 		res[id] = __isNodeSpec(n) ? nodeFromSpec(state, n, id) : n;
 	}
@@ -114,7 +114,7 @@ const __prepareNodeInputs = (
 ) => {
 	const res: NodeInputs = {};
 	if (!ins) return res;
-	for (let id in ins) {
+	for (const id in ins) {
 		const i = ins[id];
 		const src = __getNodeInput(i, id, state, resolve);
 		res[id] = i.xform ? src.transform(i.xform, { id }) : src;
@@ -150,7 +150,7 @@ const __prepareNodeOutputs = (
 ) => {
 	const res: NodeOutputs = {};
 	if (!outs) return res;
-	for (let id in outs) {
+	for (const id in outs) {
 		const out: NodeOutputSpec = outs[id];
 		res[id] = isFunction(out)
 			? out(node, id)
@@ -229,7 +229,7 @@ export const removeNode = (graph: Graph, id: string) => {
 	const node = graph[id];
 	if (node) {
 		node.node.unsubscribe();
-		for (let id in node.outs) {
+		for (const id in node.outs) {
 			node.outs[id].unsubscribe();
 		}
 		delete graph[id];
@@ -245,7 +245,7 @@ export const removeNode = (graph: Graph, id: string) => {
  * @param graph -
  */
 export const stop = (graph: Graph) => {
-	for (let id in graph) {
+	for (const id in graph) {
 		graph[id].node.unsubscribe();
 	}
 };
@@ -331,7 +331,7 @@ export const ensureInputs = (
 ) => {
 	if (inputIDs) {
 		const missing: string[] = [];
-		for (let i of inputIDs) {
+		for (const i of inputIDs) {
 			!src[i] && missing.push(i);
 		}
 		missing.length &&

@@ -103,7 +103,7 @@ const $treeTag = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 };
 
 const $treeIter = (tree: any, parent: ParentNode) => {
-	for (let t of tree) {
+	for (const t of tree) {
 		$tree(t, parent);
 	}
 	return null;
@@ -308,7 +308,7 @@ export const $html = (
  * @param attribs -
  */
 export const $attribs = (el: Element, attribs: any) => {
-	for (let id in attribs) {
+	for (const id in attribs) {
 		__setAttrib(el, id, attribs[id], attribs);
 	}
 	return el;
@@ -448,7 +448,7 @@ const __updateValueAttrib = (el: HTMLInputElement, value: any) => {
 /** @internal */
 const __updateDataAttribs = (el: HTMLOrSVGElement, attribs: any) => {
 	const data = el.dataset;
-	for (let id in attribs) {
+	for (const id in attribs) {
 		const v = deref(attribs[id]);
 		data[id] = isFunction(v) ? v(attribs) : v;
 	}
@@ -473,7 +473,7 @@ export const $style = (el: Element, rules: string | any) => {
 		el.setAttribute("style", rules);
 	} else {
 		const style = (<HTMLElement>el).style;
-		for (let id in rules) {
+		for (const id in rules) {
 			let v = deref(rules[id]);
 			isFunction(v) && (v = v(rules));
 			style.setProperty(id, v != null ? v : "");
@@ -490,7 +490,7 @@ export const $style = (el: Element, rules: string | any) => {
  */
 export const $toggleClasses = (el: Element, ...classes: string[]) => {
 	const list = el.classList;
-	for (let c of classes) {
+	for (const c of classes) {
 		list.contains(c) ? list.remove(c) : list.add(c);
 	}
 };

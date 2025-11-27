@@ -93,7 +93,7 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
 	into(keys: Iterable<K>, eps = EPS) {
 		let ok = true;
 		const tree = this.tree;
-		for (let k of keys) {
+		for (const k of keys) {
 			ok = tree.set(k, k, eps) && ok;
 		}
 		return ok;

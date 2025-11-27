@@ -103,7 +103,7 @@ export const asUnit = (id: string): Unit => {
 				: illegalArgs(`unknown unit: ${id}`);
 		}
 	}
-	for (let u in UNITS) {
+	for (const u in UNITS) {
 		if (UNITS[u].name === id) return UNITS[u];
 	}
 	illegalArgs(`unknown unit: ${id}`);

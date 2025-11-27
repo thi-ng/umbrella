@@ -233,7 +233,7 @@ export const ENV: Env = {
 		return x;
 	},
 	or: (...args: any[]) => {
-		for (let x of args) {
+		for (const x of args) {
 			if (x) return x;
 		}
 		return false;

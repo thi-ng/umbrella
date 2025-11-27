@@ -25,7 +25,7 @@ export class Diag extends ASparseMatrix {
 	}
 
 	*nzEntries() {
-		for (let e of this.data.nzEntries()) {
+		for (const e of this.data.nzEntries()) {
 			yield <NzEntry>[e[0], e[0], e[2]];
 		}
 	}

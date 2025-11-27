@@ -112,11 +112,11 @@ export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
 					key,
 					(values: any) => {
 						const $values = valueFn ? valueFn(values) : <V[]>values;
-						for (let x of excludes) {
+						for (const x of excludes) {
 							if ($values.includes(x)) return false;
 						}
 						let match = false;
-						for (let x of includes) {
+						for (const x of includes) {
 							if ($values.includes(x)) {
 								match = true;
 								if (union) break;

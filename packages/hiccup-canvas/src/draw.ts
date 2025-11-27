@@ -31,7 +31,7 @@ export const draw = (
 		return;
 	}
 	if (isArray(shape[0])) {
-		for (let s of shape) {
+		for (const s of shape) {
 			draw(ctx, s, pstate);
 		}
 		return;

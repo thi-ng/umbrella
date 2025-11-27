@@ -86,7 +86,7 @@ const __reduceIterable = <A, B>(
 	acc: B,
 	src: Iterable<A>
 ) => {
-	for (let x of src) {
+	for (const x of src) {
 		acc = <any>rfn(acc, x);
 		if (isReduced(acc)) {
 			acc = (<any>acc).deref();

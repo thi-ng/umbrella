@@ -41,7 +41,7 @@ export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
 					if (isString(x[0])) {
 						acc = edit(acc, x);
 					} else {
-						for (let e of <PatchObjOp[]>x) {
+						for (const e of <PatchObjOp[]>x) {
 							acc = edit(acc, e);
 						}
 					}

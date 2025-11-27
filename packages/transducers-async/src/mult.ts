@@ -72,12 +72,12 @@ export class Mult<T> {
 			this.isActive = true;
 			(async () => {
 				for await (let val of this.src) {
-					for (let s of this.subs) s.resolve(val);
+					for (const s of this.subs) s.resolve(val);
 					if (val === undefined) this.subs.length = 0;
 					if (!this.subs.length) break;
 					await Promise.all(this.subs.map((x) => x.notifyP));
 				}
-				for (let s of this.subs) s.resolve(undefined);
+				for (const s of this.subs) s.resolve(undefined);
 				this.subs.length = 0;
 				this.isActive = false;
 			})();

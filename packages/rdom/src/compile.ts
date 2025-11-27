@@ -128,7 +128,7 @@ const __complexComponent = (tree: any[]): CompiledComponent => ({
 	},
 	async unmount() {
 		if (this.children) {
-			for (let c of this.children) {
+			for (const c of this.children) {
 				await c.unmount();
 			}
 		}

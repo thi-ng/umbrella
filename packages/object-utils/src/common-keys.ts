@@ -11,7 +11,7 @@ export const commonKeysMap = <K>(
 	b: Map<K, any>,
 	out: K[] = []
 ) => {
-	for (let k of a.keys()) {
+	for (const k of a.keys()) {
 		b.has(k) && out.push(k);
 	}
 	return out;
@@ -40,7 +40,7 @@ export const commonKeysObj = <A extends object, B extends object>(
 	b: B,
 	out: string[] = []
 ): (keyof A & keyof B)[] => {
-	for (let k in a) {
+	for (const k in a) {
 		b.hasOwnProperty(k) && out.push(k);
 	}
 	return <any>out;

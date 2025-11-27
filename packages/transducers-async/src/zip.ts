@@ -59,7 +59,7 @@ export async function* zip(
 	);
 	while (true) {
 		const tuple = [];
-		for (let i of iters) {
+		for (const i of iters) {
 			let v = await i.next();
 			if (v.done) return;
 			tuple.push(v.value);

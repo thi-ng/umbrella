@@ -210,7 +210,7 @@ const __transformScope = defmulti<
 			if (opts.doctype && children?.[0]) {
 				acc.push(["!DOCTYPE", children[0].result]);
 			}
-			for (let x of children![1].children!)
+			for (const x of children![1].children!)
 				__transformScope(x, opts, acc);
 		},
 
@@ -230,7 +230,7 @@ const __transformScope = defmulti<
 			const attribs: any = {};
 			const el: Element = [name.result, attribs];
 			if ($attribs) {
-				for (let a of $attribs) {
+				for (const a of $attribs) {
 					const name: string = a.children![0].result;
 					if (opts.dataAttribs === false && name.startsWith("data-"))
 						continue;
@@ -247,7 +247,8 @@ const __transformScope = defmulti<
 				if (body.result) {
 					el.push(body.result.trim());
 				} else if (body.children) {
-					for (let x of body.children!) __transformScope(x, opts, el);
+					for (const x of body.children!)
+						__transformScope(x, opts, el);
 				}
 			}
 			const result = opts.tx ? opts.tx(el) : el;

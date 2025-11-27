@@ -18,7 +18,7 @@ export function* clipped(
 	right: number,
 	bottom: number
 ) {
-	for (let p of src) {
+	for (const p of src) {
 		if (p[0] >= left && p[0] < right && p[1] >= top && p[1] < bottom)
 			yield p;
 	}

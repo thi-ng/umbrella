@@ -151,7 +151,7 @@ export class LeakyBucketMap<K> implements IRelease {
 	 */
 	leak(now = Date.now()) {
 		if (now - this.lastLeak < this.leakInterval) return;
-		for (let [key, bucket] of this.buckets) {
+		for (const [key, bucket] of this.buckets) {
 			if (bucket.leak(now) === false) {
 				this.opts.onEmpty?.(key);
 				this.buckets.delete(key);

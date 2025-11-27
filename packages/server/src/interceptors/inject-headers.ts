@@ -10,7 +10,7 @@ export const injectHeaders = (
 	headers: Record<string, string | string[]>
 ): Interceptor => ({
 	pre: (ctx) => {
-		for (let header of Object.entries(headers)) {
+		for (const header of Object.entries(headers)) {
 			ctx.res.appendHeader(...header);
 		}
 		return true;

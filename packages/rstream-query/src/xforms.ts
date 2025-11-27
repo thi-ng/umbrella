@@ -36,7 +36,7 @@ export const indexSel =
 export const resultTriples = (graph: TripleStore) =>
 	map<TripleIds, Set<Triple>>((ids) => {
 		const res = new Set<Triple>();
-		for (let id of ids) res.add(graph.triples[id]);
+		for (const id of ids) res.add(graph.triples[id]);
 		return res;
 	});
 
@@ -53,7 +53,7 @@ export const filterSolutions = (qvars: Iterable<string>) => {
 	const filterVars = keySelector([...qvars]);
 	return map((sol: Solutions) => {
 		const res: Solutions = new Set();
-		for (let s of sol) {
+		for (const s of sol) {
 			res.add(filterVars(s));
 		}
 		return res;
@@ -67,7 +67,7 @@ export const limitSolutions = (n: number) =>
 		}
 		const res: Solutions = new Set();
 		let m = n;
-		for (let s of sol) {
+		for (const s of sol) {
 			res.add(s);
 			if (--m <= 0) break;
 		}
@@ -80,7 +80,7 @@ export const bindVars = (bindings: IObjectOf<BindFn>) =>
 		for (let s of sol) {
 			s = { ...s };
 			res.add(s);
-			for (let b in bindings) {
+			for (const b in bindings) {
 				s[b] = bindings[b](s);
 			}
 		}

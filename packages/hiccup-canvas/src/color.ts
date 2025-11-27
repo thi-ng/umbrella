@@ -18,7 +18,7 @@ export const defLinearGradient = (
 	stops: any[][]
 ) => {
 	const g = ctx.createLinearGradient(from[0], from[1], to[0], to[1]);
-	for (let s of stops) {
+	for (const s of stops) {
 		g.addColorStop(s[0], resolveColor(s[1]));
 	}
 	return g;
@@ -30,7 +30,7 @@ export const defRadialGradient = (
 	stops: any[][]
 ) => {
 	const g = ctx.createRadialGradient(from[0], from[1], r1, to[0], to[1], r2);
-	for (let s of stops) {
+	for (const s of stops) {
 		g.addColorStop(s[0], resolveColor(s[1]));
 	}
 	return g;

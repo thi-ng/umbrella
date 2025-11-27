@@ -30,7 +30,7 @@
 export function* cycle<T>(input: Iterable<T>, num = Infinity) {
 	if (num < 1) return;
 	let cache: T[] = [];
-	for (let i of input) {
+	for (const i of input) {
 		cache.push(i);
 		yield i;
 	}

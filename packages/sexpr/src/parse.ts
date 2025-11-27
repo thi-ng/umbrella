@@ -40,7 +40,7 @@ export const parse = (
 	const scopeClose = scopes.map((x) => x[1]);
 	const tree: ASTNode[] = [{ type: "root", children: [] }];
 	let currScope = -1;
-	for (let token of isString(src) ? tokenize(src, opts) : src) {
+	for (const token of isString(src) ? tokenize(src, opts) : src) {
 		const t = token.value;
 		let tmp: number;
 		if ((tmp = scopeOpen.indexOf(t)) !== -1) {

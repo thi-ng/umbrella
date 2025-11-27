@@ -29,7 +29,7 @@ export const cacheControl = (
 	opts: Partial<CacheControlOpts> = {}
 ): Interceptor => {
 	const acc: string[] = [];
-	for (let [k, v] of Object.entries(opts)) {
+	for (const [k, v] of Object.entries(opts)) {
 		switch (k) {
 			case "maxAge":
 				acc.push("max-age=" + v);

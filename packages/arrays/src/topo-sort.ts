@@ -53,11 +53,11 @@ export const topoSort = <T>(
 		cycles[id] = true;
 		const nodeDeps = deps(nodes[id], id);
 		if (nodeDeps) {
-			for (let d of nodeDeps) sort(d, [...path, d]);
+			for (const d of nodeDeps) sort(d, [...path, d]);
 		}
 		cycles[id] = false;
 		if (!topology.includes(id)) topology.push(id);
 	};
-	for (let id in nodes) sort(id, [id]);
+	for (const id in nodes) sort(id, [id]);
 	return topology;
 };

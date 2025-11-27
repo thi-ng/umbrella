@@ -45,7 +45,7 @@ export function normFrequenciesAuto<A, B>(...args: any[]): any {
 		init,
 		(acc) => {
 			acc = complete(acc);
-			for (let p of acc) {
+			for (const p of acc) {
 				acc.set(p[0], p[1] / norm);
 			}
 			return acc;

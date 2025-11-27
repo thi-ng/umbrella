@@ -16,7 +16,7 @@ export const copy = (x: any, ctor: Function) =>
  */
 export const copyObj = (src: any) => {
 	const res: any = {};
-	for (let k in src) {
+	for (const k in src) {
 		!isIllegalKey(k) && (res[k] = src[k]);
 	}
 	return res;

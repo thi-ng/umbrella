@@ -53,7 +53,7 @@ export const textLines = (
 	lines: string[],
 	format = canvas.format
 ) => {
-	for (let line of lines) {
+	for (const line of lines) {
 		textLine(canvas, x, y, line, format);
 		y++;
 	}
@@ -86,7 +86,7 @@ export const textColumn = (
 	y |= 0;
 	width |= 0;
 	const height = canvas.height;
-	for (let line of wordWrapLines(txt, { width, hard })) {
+	for (const line of wordWrapLines(txt, { width, hard })) {
 		textLine(canvas, x, y, line.toString(), format);
 		y++;
 		if (y >= height) break;

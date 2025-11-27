@@ -33,7 +33,7 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
 	const { width, height } = opts.img;
 	const lines: VecPair[] = [];
 	const points: Vec[] = [];
-	for (let d of opts.dir || ["h", "v", "d1", "d2", "p"]) {
+	for (const d of opts.dir || ["h", "v", "d1", "d2", "p"]) {
 		if (typeof d !== "string") {
 			traceLines(
 				opts,
@@ -115,9 +115,9 @@ export const traceLines = (
 	let prevBorder = false;
 	const $record = () => {
 		acc.push([curr[0], curr[curr.length - 1]]);
-		for (let q of curr) img.setAtUnsafe(q[0], q[1], clear);
+		for (const q of curr) img.setAtUnsafe(q[0], q[1], clear);
 	};
-	for (let p of order({ cols: img.width, rows: img.height, tx })) {
+	for (const p of order({ cols: img.width, rows: img.height, tx })) {
 		const c = select(img.getAtUnsafe(p[0], p[1]), p);
 		const isBorder = border(p);
 		const n = curr.length;

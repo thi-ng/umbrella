@@ -5,8 +5,8 @@ import { charRange } from "./range.js";
 /** @internal */
 const __defGroup = (...ranges: Iterable<string>[]) => {
 	const acc: IObjectOf<boolean> = {};
-	for (let range of ranges) {
-		for (let c of range) {
+	for (const range of ranges) {
+		for (const c of range) {
 			acc[c] = true;
 		}
 	}

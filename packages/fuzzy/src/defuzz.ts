@@ -42,7 +42,7 @@ export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
 ) => {
 	const ruleTerms = rules.map((r) => {
 		let alpha: number | null = null;
-		for (let id in vals) {
+		for (const id in vals) {
 			if (r.if[id]) {
 				const v = ins[id].terms[<string>r.if[id]](vals[id]!);
 				alpha = alpha !== null ? r.op(alpha, v) : v;
@@ -51,7 +51,7 @@ export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
 		const terms: IObjectOf<FuzzyFn> = {};
 		if (alpha) {
 			const aterm = constant(alpha);
-			for (let id in r.then) {
+			for (const id in r.then) {
 				if (outs[id]) {
 					const oterm = outs[id].terms[<string>r.then[id]];
 					terms[id] = intersect(
@@ -66,7 +66,7 @@ export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
 	});
 
 	const res: Partial<Record<keyof O, number>> = {};
-	for (let id in outs) {
+	for (const id in outs) {
 		res[id] = strategy(
 			union(combine, ...ruleTerms.map((r) => r[id]).filter((f) => !!f)),
 			outs[id].domain

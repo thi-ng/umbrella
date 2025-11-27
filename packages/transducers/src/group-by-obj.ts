@@ -73,7 +73,7 @@ export function groupByObj<SRC, GROUP>(...args: any[]): any {
 	return <Reducer<SRC, IObjectOf<GROUP>>>[
 		() => ({}),
 		(acc) => {
-			for (let k in acc) {
+			for (const k in acc) {
 				acc[k] = complete(acc[k]);
 			}
 			return acc;

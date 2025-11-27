@@ -266,7 +266,7 @@ const __requiredInputs = (
 	curr: Set<PropertyKey>
 ) => {
 	if (curr.size < required.size) return false;
-	for (let id of required) {
+	for (const id of required) {
 		if (!curr.has(id)) return false;
 	}
 	return true;
@@ -278,7 +278,7 @@ const __collect = <T>(
 	currKeys: Set<PropertyKey>
 ) => {
 	const curr: IObjectOf<T> = {};
-	for (let id of currKeys) {
+	for (const id of currKeys) {
 		const slot = cache.get(id)!;
 		curr[<any>id] = slot.shift()!;
 		!slot.length && currKeys.delete(id);

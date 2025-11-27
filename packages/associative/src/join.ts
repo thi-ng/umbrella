@@ -55,10 +55,10 @@ export const join = <A, B>(
 		}
 		const idx = indexed(aa, ks);
 		const res: Set<any> = empty(a, Set);
-		for (let x of bb) {
+		for (const x of bb) {
 			const found = idx.get(selectKeysObj(x, ks));
 			if (found) {
-				for (let f of found) {
+				for (const f of found) {
 					res.add(mergeObj({ ...f }, x));
 				}
 			}
@@ -121,10 +121,10 @@ export const joinWith = <A, B>(
 		const idx = indexed(aa, Object.values(k));
 		const ks = Object.keys(k);
 		const res: Set<any> = empty(a, Set);
-		for (let x of bb) {
+		for (const x of bb) {
 			const found = idx.get(renameKeysObj(<any>selectKeysObj(x, ks), k));
 			if (found) {
-				for (let f of found) {
+				for (const f of found) {
 					res.add(mergeObj({ ...f }, x));
 				}
 			}

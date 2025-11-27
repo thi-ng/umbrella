@@ -100,7 +100,7 @@ const __sizeOf = defmulti<
 		struct: (type, coll, align, opts) => {
 			if (type.__size) return type.__size;
 			let offset = 0;
-			for (let f of (<Struct>type).fields) {
+			for (const f of (<Struct>type).fields) {
 				offset = align.offset(offset, f.__align!);
 				f.__offset = offset;
 				offset += __sizeOf(f, coll, align, opts);
@@ -111,7 +111,7 @@ const __sizeOf = defmulti<
 		union: (type, coll, align, opts) => {
 			if (type.__size) return type.__size;
 			let maxSize = 0;
-			for (let f of (<Union>type).fields) {
+			for (const f of (<Union>type).fields) {
 				f.__offset = 0;
 				maxSize = Math.max(maxSize, __sizeOf(f, coll, align, opts));
 			}
@@ -173,7 +173,7 @@ const __alignOf = defmulti<
 
 		struct: (type, coll, align, opts) => {
 			let maxAlign = 1;
-			for (let f of (<Struct>type).fields) {
+			for (const f of (<Struct>type).fields) {
 				maxAlign = Math.max(maxAlign, __alignOf(f, coll, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);
@@ -181,7 +181,7 @@ const __alignOf = defmulti<
 
 		union: (type, coll, align, opts) => {
 			let maxAlign = 1;
-			for (let f of (<Union>type).fields) {
+			for (const f of (<Union>type).fields) {
 				maxAlign = Math.max(maxAlign, __alignOf(f, coll, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);
@@ -193,7 +193,7 @@ const __alignOf = defmulti<
 			if (ptr.rtype !== "void") {
 				__sizeOf(<Field>ptr.rtype, coll, align, opts);
 			}
-			for (let a of ptr.args) {
+			for (const a of ptr.args) {
 				__alignOf(a, coll, align, opts);
 			}
 			return (type.__align = align.align(<Field>{
@@ -233,7 +233,7 @@ const __prepareType = defmulti<
 					compareByKey("__align", <any>compareNumDesc)
 				);
 			}
-			for (let f of struct.fields) {
+			for (const f of struct.fields) {
 				const type = coll[f.type];
 				if (type) {
 					__prepareType(type, coll, selectAlignment(type), opts);
@@ -257,7 +257,7 @@ const __prepareType = defmulti<
  * @internal
  */
 export const prepareTypes = (coll: TypeColl, opts: CodeGenOpts) => {
-	for (let id in coll) {
+	for (const id in coll) {
 		__prepareType(coll[id], coll, selectAlignment(coll[id]), opts);
 	}
 	return coll;
@@ -306,7 +306,7 @@ export const generateTypes = (
 		pre && res.push(pre, "");
 	}
 	$opts.pre && res.push(...ensureStringArray($opts.pre), "");
-	for (let id in coll) {
+	for (const id in coll) {
 		const type = coll[id];
 		if (type.skip?.includes(codegen.id)) continue;
 		type.doc && codegen.doc(type.doc, res, $opts);

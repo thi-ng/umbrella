@@ -74,11 +74,11 @@ export class PubSub<K, V> {
 			const topic = this.topicFn(val);
 			const subs = this.topics.get(topic);
 			if (!subs?.length) continue;
-			for (let s of subs) s.resolve(val);
+			for (const s of subs) s.resolve(val);
 			await Promise.all(subs.map((x) => x.notifyP));
 		}
-		for (let subs of this.topics.values()) {
-			for (let s of subs) s.resolve(undefined);
+		for (const subs of this.topics.values()) {
+			for (const s of subs) s.resolve(undefined);
 		}
 		this.topics.clear();
 		this.isActive = false;

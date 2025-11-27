@@ -18,11 +18,11 @@ const __group = (mime: string) => {
 
 export const MIME_TYPES = ((defs: any) => {
 	const res: Record<string, string[]> = {};
-	for (let groupID in defs) {
+	for (const groupID in defs) {
 		const group = defs[groupID];
-		for (let type in group) {
+		for (const type in group) {
 			const mime = groupID + "/" + type;
-			for (let e of __ext(group[type])) {
+			for (const e of __ext(group[type])) {
 				const isLowPri = e[0] === "*";
 				const ext = isLowPri ? e.substring(1) : e;
 				let coll = res[ext];

@@ -27,7 +27,7 @@ export interface RandomOpts2D extends GridIterOpts2D {
 export function* random2d(opts: RandomOpts2D) {
 	const { cols, rows, tx } = __opts(opts);
 	const rnd = opts.rnd || SYSTEM;
-	for (let i of shuffle([...range(cols * rows)], undefined, rnd)) {
+	for (const i of shuffle([...range(cols * rows)], undefined, rnd)) {
 		yield tx(i % cols, (i / cols) | 0);
 	}
 }

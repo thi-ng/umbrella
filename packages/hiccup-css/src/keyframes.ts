@@ -68,7 +68,7 @@ export function at_keyframes(id: string, ...args: Keyframe[]): RuleFn {
 		opts.depth++;
 		const inner = indent(opts);
 		acc.push(`${outer}@keyframes ${id}${opts.format.declStart}`);
-		for (let s in stops) {
+		for (const s in stops) {
 			if (stops.hasOwnProperty(s)) {
 				acc.push(
 					[

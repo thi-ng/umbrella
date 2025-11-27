@@ -42,10 +42,10 @@ const CMD: Command<CLIOpts, CLIOpts> = {
 			},
 		};
 
-		for (let file of inputs) {
+		for (const file of inputs) {
 			ctx = tangleFile(file, ctx);
 		}
-		for (let out in ctx.outputs!) {
+		for (const out in ctx.outputs!) {
 			writeText(out, ctx.outputs![out], ctx.logger, opts.dryRun);
 		}
 	},

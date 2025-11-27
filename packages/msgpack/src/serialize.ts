@@ -192,13 +192,13 @@ export const serialize = (src: any, opts: Partial<EncodeOpts> = {}) => {
 
 			case "object":
 				n = 0;
-				for (let k in x) {
+				for (const k in x) {
 					if (x[k] !== undefined) n++;
 				}
 				if (n < 0x10) add8(0x80 | n);
 				else if (n < 0x1_0000) add16id(0xde, n);
 				else add32id(0xdf, n);
-				for (let k in x) {
+				for (const k in x) {
 					const v = x[k];
 					if (v !== undefined) {
 						encode(k);

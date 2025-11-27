@@ -21,7 +21,7 @@ const __formatGraphAttribs = (
 	attribs: Partial<GraphAttribs>,
 	acc: string[]
 ) => {
-	for (let a in attribs) {
+	for (const a in attribs) {
 		let v = attribs[a];
 		switch (a) {
 			case "bgcolor":
@@ -80,7 +80,7 @@ const __formatAttribs = (attribs: Partial<Node | Edge>) => {
 /** @internal */
 const __formatPorts = (ports: IObjectOf<string>) => {
 	const acc: string[] = [];
-	for (let i in ports) {
+	for (const i in ports) {
 		acc.push(`<${i}> ${__escape(ports[i])}`);
 	}
 	return `{ ${acc.join(" | ")} }`;
@@ -123,14 +123,14 @@ export const serializeGraph = (graph: Graph, isSub = false) => {
 	if (graph.attribs) {
 		__formatGraphAttribs(graph.attribs, acc);
 	}
-	for (let id in graph.nodes) {
+	for (const id in graph.nodes) {
 		acc.push(serializeNode(id, graph.nodes[id]));
 	}
-	for (let e of graph.edges) {
+	for (const e of graph.edges) {
 		acc.push(serializeEdge(e, directed));
 	}
 	if (graph.sub) {
-		for (let sub of graph.sub) {
+		for (const sub of graph.sub) {
 			acc.push(serializeGraph(sub, true));
 		}
 	}

@@ -25,7 +25,7 @@ export function range(
 ): AsyncIterableIterator<number>;
 export async function* range(...args: number[]) {
 	const delay = args.pop()!;
-	for (let x of new Range(...(<[number]>args))) {
+	for (const x of new Range(...(<[number]>args))) {
 		yield x;
 		await wait(delay);
 	}

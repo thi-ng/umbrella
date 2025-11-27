@@ -27,14 +27,14 @@ const __drawPoints = (
 ) => {
 	const s: number = opts?.size || 1;
 	if (opts.shape === "circle") {
-		for (let p of pts) {
+		for (const p of pts) {
 			ctx.beginPath();
 			ctx.arc(p[0], p[1], s, 0, TAU);
 			ctx[cmd]();
 		}
 	} else {
 		const r = s / 2;
-		for (let p of pts) {
+		for (const p of pts) {
 			ctx[cmdR](p[0] - r, p[1] - r, s, s);
 		}
 	}

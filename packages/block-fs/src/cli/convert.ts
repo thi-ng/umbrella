@@ -70,7 +70,7 @@ export const CONVERT: Command<ConvertOpts, CLIOpts, AppCtx<ConvertOpts>> = {
 		logger.info("first data block:", bfs.dataStartBlockID);
 		logger.info("block data size:", bfs.blockDataSize);
 
-		for (let f of collected.files) {
+		for (const f of collected.files) {
 			const data = readBinary(f.src, logger);
 			logger.info("writing file:", f.dest, "size:", data.length);
 			await bfs.writeFile(f.dest, data);
@@ -113,7 +113,7 @@ const collectFiles = ({
 	const $include = include?.map((x) => new RegExp(x));
 	const $exclude = exclude?.map((x) => new RegExp(x));
 	let total = 0;
-	for (let f of files(root)) {
+	for (const f of files(root)) {
 		const stats = statSync(f);
 		if ($exclude && $exclude.some((x) => x.test(f))) continue;
 		if ($include && !$include.some((x) => x.test(f))) continue;
@@ -125,7 +125,7 @@ const collectFiles = ({
 			ctime: stats.ctimeMs,
 			mtime: stats.mtimeMs,
 		});
-		for (let d of pathsForFile(dest)) dirs.add(d);
+		for (const d of pathsForFile(dest)) dirs.add(d);
 		total += stats.size;
 	}
 	return { files: filtered, dirs: [...dirs], size: total };
@@ -149,7 +149,7 @@ const computeBlockCount = (
 	logger.info("num entries:", numEntries);
 	logger.info("num entry blocks:", numEntryBlocks);
 	blocks += numEntryBlocks;
-	for (let f of collected.files) {
+	for (const f of collected.files) {
 		const size = ceil(f.size / blockDataSize);
 		logger.debug("file:", f.src, "blocks:", size);
 		blocks += size;

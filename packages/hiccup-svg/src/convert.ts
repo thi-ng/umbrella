@@ -210,7 +210,7 @@ const __convertAttribs = (attribs: any) => {
 	const res: any = {};
 	if (!attribs) return res;
 	// convertTransforms(res, attribs);
-	for (let id in attribs) {
+	for (const id in attribs) {
 		const v = attribs[id];
 		const aid = ATTRIB_ALIASES[id];
 		if (aid) {

@@ -13,7 +13,7 @@ import type { ParseScope } from "../context.js";
 export const xfJoin = <T>(scope: Nullable<ParseScope<T>>) => {
 	if (!scope || !scope.children) return null;
 	const res = [];
-	for (let c of scope.children) {
+	for (const c of scope.children) {
 		xfJoin(c);
 		if (c.result) res.push(c.result);
 	}

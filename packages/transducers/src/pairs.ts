@@ -26,7 +26,7 @@ import type { IObjectOf } from "@thi.ng/api";
  * @param x -
  */
 export function* pairs<T>(x: IObjectOf<T>): IterableIterator<[string, T]> {
-	for (let k in x) {
+	for (const k in x) {
 		if (x.hasOwnProperty(k)) {
 			yield [k, x[k]];
 		}

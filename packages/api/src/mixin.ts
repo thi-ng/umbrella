@@ -19,7 +19,7 @@ export const mixin = (behaviour: any, sharedBehaviour: any = {}) => {
 	const typeTag = Symbol("isa");
 
 	function _mixin(clazz: any) {
-		for (let key of instanceKeys) {
+		for (const key of instanceKeys) {
 			const existing = Object.getOwnPropertyDescriptor(
 				clazz.prototype,
 				key
@@ -37,7 +37,7 @@ export const mixin = (behaviour: any, sharedBehaviour: any = {}) => {
 		return clazz;
 	}
 
-	for (let key of sharedKeys) {
+	for (const key of sharedKeys) {
 		Object.defineProperty(_mixin, key, {
 			value: sharedBehaviour[key],
 			enumerable: sharedBehaviour.propertyIsEnumerable(key),

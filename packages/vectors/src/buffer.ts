@@ -72,7 +72,7 @@ export const intoBuffer = <T extends Type>(
 	const size = SIZEOF[type];
 	byteOffset /= size;
 	byteStride /= size;
-	for (let x of src) {
+	for (const x of src) {
 		view.set(x, byteOffset);
 		byteOffset += byteStride;
 	}
@@ -102,7 +102,7 @@ export const intoStridedBuffer = (
 	cstride: number,
 	estride: number
 ) => {
-	for (let v of src) {
+	for (const v of src) {
 		set(buf, v, start, 0, cstride, 1);
 		start += estride;
 	}

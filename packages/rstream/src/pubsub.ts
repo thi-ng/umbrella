@@ -148,7 +148,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 
 	unsubscribe(sub?: ISubscription<B, any>) {
 		if (!sub) {
-			for (let t of this.topics.values()) {
+			for (const t of this.topics.values()) {
 				t.unsubscribe();
 			}
 			this.topics.clear();
@@ -159,7 +159,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 	}
 
 	done() {
-		for (let t of this.topics.values()) {
+		for (const t of this.topics.values()) {
 			t.done();
 		}
 		super.done();

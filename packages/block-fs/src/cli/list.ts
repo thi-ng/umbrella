@@ -93,7 +93,7 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 				maxWidths[i] = Math.max(maxWidths[i], row[i].length);
 			}
 		}
-		for (let row of rows) {
+		for (const row of rows) {
 			console.log(row.map((x, i) => x.padEnd(maxWidths[i])).join("  "));
 		}
 	},

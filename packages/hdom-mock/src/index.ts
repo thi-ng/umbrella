@@ -38,7 +38,7 @@ export class HDOMNode {
 
 	get textContent() {
 		const res = [];
-		for (let c of this._children) {
+		for (const c of this._children) {
 			if (c.isText()) {
 				res.push(c.body);
 			}
@@ -193,7 +193,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
 	}
 
 	setAttribs(el: HDOMNode, attribs: any) {
-		for (let k in attribs) {
+		for (const k in attribs) {
 			this.setAttrib(el, k, attribs[k], attribs);
 		}
 		return el;
@@ -253,7 +253,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
 	}
 
 	setStyle(el: HDOMNode, rules: IObjectOf<any>) {
-		for (let r in rules) {
+		for (const r in rules) {
 			let v = rules[r];
 			isFunction(v) && (v = v(rules));
 			v != null && ((el.style || (el.style = {}))[r] = v);

@@ -5,7 +5,7 @@ export const dissocObj = <T>(
 	obj: IObjectOf<T>,
 	keys: Iterable<string | number>
 ) => {
-	for (let k of keys) {
+	for (const k of keys) {
 		delete obj[k];
 	}
 	return obj;

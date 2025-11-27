@@ -216,6 +216,6 @@ export function* filteredThemes<T extends Theme>(
 			if (pred(theme)) yield idOnly ? i : theme;
 		}
 	} else {
-		for (let id of <number[]>preds) yield idOnly ? id : themes[id];
+		for (const id of <number[]>preds) yield idOnly ? id : themes[id];
 	}
 }

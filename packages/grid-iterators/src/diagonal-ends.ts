@@ -20,7 +20,7 @@ export function* diagonalEnds2d(opts: GridIterOpts2D & { all?: boolean }) {
 	const maxY = rows - 1;
 	const check = opts.all ? (i: number) => i > 0 && i < num : () => true;
 	let i = 0;
-	for (let p of diagonal2d({ cols, rows })) {
+	for (const p of diagonal2d({ cols, rows })) {
 		if (check(i)) {
 			const [x, y] = p;
 			if (x === 0 || x === maxX || y === 0 || y === maxY) yield tx(x, y);

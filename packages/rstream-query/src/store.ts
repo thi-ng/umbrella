@@ -84,7 +84,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	}
 
 	*[Symbol.iterator](): IterableIterator<Triple> {
-		for (let t of this.triples) {
+		for (const t of this.triples) {
 			if (t) {
 				yield t;
 			}
@@ -128,7 +128,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 
 	into(triples: Iterable<Triple>) {
 		let ok = true;
-		for (let f of triples) {
+		for (const f of triples) {
 			ok = this.add(f) && ok;
 		}
 		return ok;
@@ -275,7 +275,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 		return query.transform(
 			map((triples: Triples) => {
 				const res = new Set<any>();
-				for (let f of triples) {
+				for (const f of triples) {
 					res.add(resolve!(f));
 				}
 				return res;
@@ -362,7 +362,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	addQueryFromSpec(spec: QuerySpec): QuerySolution {
 		let query: Maybe<QuerySolution>;
 		let curr: Maybe<QuerySolution>;
-		for (let q of spec.q) {
+		for (const q of spec.q) {
 			if (__isWhereQuery(q)) {
 				curr = this.addMultiJoin(this.addParamQueries(q.where));
 			} else if (__isPathQuery(q)) {
@@ -415,7 +415,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 		if (s && p && o) {
 			const triples = this.triples;
 			const index = [s, p, o][min3id(s.size, p.size, o.size)];
-			for (let id of index) {
+			for (const id of index) {
 				if (equiv(triples[id], f)) {
 					return id;
 				}

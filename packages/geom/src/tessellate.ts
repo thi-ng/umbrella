@@ -108,7 +108,7 @@ export const tessellate: MultiFn2O<
 		group: ($, fns, tess) => {
 			fns = ensureArray(fns);
 			tess = tess || new BasicTessellation();
-			for (let child of (<Group>$).children) {
+			for (const child of (<Group>$).children) {
 				tess = tessellate(child, fns, tess);
 			}
 			return tess!;

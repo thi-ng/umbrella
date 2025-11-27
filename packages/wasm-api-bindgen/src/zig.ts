@@ -55,7 +55,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				`const std = @import("std");`,
 				`const bindgen = @import("wasm-api-bindgen");`,
 			];
-			for (let type of sliceTypes(coll)) {
+			for (const type of sliceTypes(coll)) {
 				if (type !== "string" && type !== "opaque") {
 					const name = capitalize(type!);
 					res.push(
@@ -90,7 +90,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 		enum: (e, _, acc, opts) => {
 			const lines: string[] = [];
 			lines.push(`pub const ${e.name} = enum(${e.tag}) {`);
-			for (let v of e.values) {
+			for (const v of e.values) {
 				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, lines, opts);
@@ -164,7 +164,7 @@ const __generateFields = (
 	const ftypes: Record<string, string> = {};
 	const name = parent.name;
 	let padID = 0;
-	for (let f of parent.fields) {
+	for (const f of parent.fields) {
 		// autolabel explicit padding fields
 		if (isPadding(f)) {
 			res.push(`__pad${padID}: [${f.pad}]u8,`);
@@ -191,7 +191,7 @@ const __generateFields = (
 		fn("align", `@alignOf(${name})`);
 		fn("size", `@sizeOf(${name})`);
 
-		for (let f of parent.fields) {
+		for (const f of parent.fields) {
 			if (isPadding(f)) continue;
 			fn(f.name + "_align", `@alignOf(${ftypes[f.name]})`);
 			!isUnion(parent) &&

@@ -9,7 +9,7 @@ const __ensureSet = <T>(x: Iterable<T>) =>
 export const withoutKeysMap = <K, V>(src: Map<K, V>, keys: Iterable<K>) => {
 	const ks = __ensureSet(keys);
 	const dest = empty(src, Map);
-	for (let p of src.entries()) {
+	for (const p of src.entries()) {
 		const k = p[0];
 		!ks.has(k) && dest.set(k, p[1]);
 	}
@@ -22,7 +22,7 @@ export const withoutKeysObj = <T extends object>(
 ) => {
 	const ks = __ensureSet(keys);
 	const dest: Partial<T> = {};
-	for (let k in src) {
+	for (const k in src) {
 		src.hasOwnProperty(k) &&
 			!ks.has(<Keys<T>>k) &&
 			(dest[<Keys<T>>k] = src[<Keys<T>>k]);

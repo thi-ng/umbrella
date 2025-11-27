@@ -100,7 +100,7 @@ export function patchArray<T>(...args: any[]) {
 					if (isString(x[0])) {
 						acc = edit(acc, x);
 					} else {
-						for (let e of <PatchArrayOp<T>[]>x) {
+						for (const e of <PatchArrayOp<T>[]>x) {
 							acc = edit(acc, e);
 						}
 					}

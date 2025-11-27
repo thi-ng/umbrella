@@ -73,7 +73,7 @@ export function rechunk(...args: any[]) {
 				const res = buf.split(re);
 				if (res.length > 1) {
 					buf = res.pop()!;
-					for (let l of res) {
+					for (const l of res) {
 						acc = reduce(acc, l);
 						if (isReduced(acc)) {
 							buf = "";

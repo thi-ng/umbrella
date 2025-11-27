@@ -10,7 +10,7 @@ export const path = (
 	...body: any[]
 ): any[] => {
 	let res = [];
-	for (let seg of segments) {
+	for (const seg of segments) {
 		res.push(seg[0]);
 		switch (seg[0].toLowerCase()) {
 			case "a":

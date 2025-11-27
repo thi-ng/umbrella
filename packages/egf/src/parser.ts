@@ -199,7 +199,7 @@ const __parseRef = (id: string, ctx: ParseContext) => {
 
 /** @internal */
 const __pruneNodes = ({ nodes, logger }: ParseContext) => {
-	for (let id in nodes) {
+	for (const id in nodes) {
 		const keys = Object.keys(nodes[id]);
 		if (keys.length === 1 && keys[0] === "$id") {
 			logger.debug("pruning node:", id);

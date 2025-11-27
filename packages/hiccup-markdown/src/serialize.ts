@@ -87,7 +87,7 @@ const __serializeIter = (
 ) => {
 	if (!iter) return "";
 	const res = [];
-	for (let i of iter) {
+	for (const i of iter) {
 		res.push(__serialize(i, ctx, state));
 	}
 	return res.join(state.sep);

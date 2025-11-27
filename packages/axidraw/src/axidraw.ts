@@ -113,7 +113,7 @@ export class AxiDraw implements IReset {
 	 */
 	async connect(path: string | RegExp = "/dev/tty.usbmodem") {
 		const isStr = isString(path);
-		for (let port of await this.opts.serial.list(path.toString())) {
+		for (const port of await this.opts.serial.list(path.toString())) {
 			if (
 				(isStr && port.path.startsWith(path)) ||
 				(!isStr && path.test(port.path))

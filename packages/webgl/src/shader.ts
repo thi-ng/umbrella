@@ -110,7 +110,7 @@ export class Shader implements IShader {
 
 	unbind() {
 		let shaderAttrib: ShaderAttrib;
-		for (let id in this.attribs) {
+		for (const id in this.attribs) {
 			if ((shaderAttrib = this.attribs[id])) {
 				this.gl.disableVertexAttribArray(shaderAttrib.loc);
 			}
@@ -131,7 +131,7 @@ export class Shader implements IShader {
 	bindAttribs(specAttribs: ModelAttributeSpecs) {
 		const gl = this.gl;
 		let shaderAttrib;
-		for (let id in specAttribs) {
+		for (const id in specAttribs) {
 			if ((shaderAttrib = this.attribs[id])) {
 				const attr = specAttribs[id];
 				attr.buffer!.bind();
@@ -152,7 +152,7 @@ export class Shader implements IShader {
 
 	bindUniforms(specUnis: UniformValues = {}) {
 		const shaderUnis = this.uniforms;
-		for (let id in specUnis) {
+		for (const id in specUnis) {
 			const u = shaderUnis[id];
 			if (u) {
 				let val = specUnis[id];
@@ -163,7 +163,7 @@ export class Shader implements IShader {
 			}
 		}
 		// apply defaults for non-specified uniforms in user spec
-		for (let id in shaderUnis) {
+		for (const id in shaderUnis) {
 			if (
 				shaderUnis.hasOwnProperty(id) &&
 				(!specUnis || !existsAndNotNull(specUnis[id]))
@@ -259,7 +259,7 @@ const __compileVars = (
 	prefixes: GLSLDeclPrefixes
 ) => {
 	let decls: string[] = [];
-	for (let id in attribs) {
+	for (const id in attribs) {
 		if (attribs.hasOwnProperty(id)) {
 			decls.push(syntax(id, attribs[id], prefixes));
 		}
@@ -292,7 +292,7 @@ const __initShaderExtensions = (
 	gl: WebGLRenderingContext,
 	exts: ExtensionBehaviors
 ) => {
-	for (let id in exts) {
+	for (const id in exts) {
 		const state = exts[<ExtensionName>id];
 		if (state === true || state === "require") {
 			getExtensions(gl, <any>[id], state === "require");
@@ -308,7 +308,7 @@ const __compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
 			: spec.pre + "\n" + GLSL_HEADER
 		: GLSL_HEADER;
 	if (spec.ext) {
-		for (let id in spec.ext) {
+		for (const id in spec.ext) {
 			prelude += __compileExtensionPragma(
 				id,
 				spec.ext[<ExtensionName>id]!,
@@ -325,7 +325,7 @@ const __compileIODecls = <T extends ShaderAttribSpec | ShaderOutputSpec>(
 	src: IObjectOf<T>,
 	dest: IObjectOf<Sym<any>>
 ) => {
-	for (let id in src) {
+	for (const id in src) {
 		const a = src[id];
 		dest[id] = isArray(a)
 			? decl(a[0], id, { loc: a[1] })
@@ -348,7 +348,7 @@ const __compileVaryingDecls = (
 	decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
 	acc: IObjectOf<Sym<any>>
 ) => {
-	for (let id in spec.varying) {
+	for (const id in spec.varying) {
 		const [vtype, opts] = __varyingOpts(spec.varying[id]);
 		acc[id] = decl(vtype, id, opts);
 	}
@@ -356,7 +356,7 @@ const __compileVaryingDecls = (
 
 /** @internal */
 const __compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
-	for (let id in spec.uniforms) {
+	for (const id in spec.uniforms) {
 		const u = spec.uniforms[id];
 		acc[id] = isArray(u)
 			? uniform(
@@ -389,7 +389,7 @@ export const shaderSourceFromAST = (
 		if (version >= GLSLVersion.GLES_300) {
 			__compileIODecls(output, outs, outputs);
 		} else {
-			for (let id in outs) {
+			for (const id in outs) {
 				const o = outs[id];
 				if (isArray(o) && o[0] === "vec4") {
 					prelude += `#define ${id} gl_FragData[${o[1]}]\n`;
@@ -490,7 +490,7 @@ const __initAttributes = (
 	attribs: ShaderAttribSpecs
 ) => {
 	const res = <IObjectOf<ShaderAttrib>>{};
-	for (let id in attribs) {
+	for (const id in attribs) {
 		const val = attribs[id];
 		const [type, loc] = isArray(val) ? val : [val, null];
 		const aid = id;
@@ -514,7 +514,7 @@ const __initUniforms = (
 	uniforms: ShaderUniformSpecs = {}
 ) => {
 	const res = <IObjectOf<ShaderUniform>>{};
-	for (let id in uniforms) {
+	for (const id in uniforms) {
 		const val = uniforms[id];
 		let type: GLSL;
 		let t1, t2, defaultVal, defaultFn;

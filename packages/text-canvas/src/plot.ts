@@ -31,7 +31,7 @@ export const plotBarChartV = (
 ) => {
 	const channel = canv.empty();
 	const blend = opts.blend || blendBarsVAdd;
-	for (let plot of plots) {
+	for (const plot of plots) {
 		channel.clear();
 		textLines(
 			channel,

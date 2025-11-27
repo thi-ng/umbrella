@@ -112,7 +112,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 	}
 
 	addAll(src: Iterable<ISubscribable<A>>) {
-		for (let s of src) {
+		for (const s of src) {
 			this.add(s);
 		}
 	}
@@ -128,7 +128,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 	}
 
 	removeID(id: string) {
-		for (let s of this.sources) {
+		for (const s of this.sources) {
 			if (s[0].id === id) {
 				return this.remove(s[0]);
 			}
@@ -138,7 +138,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
 	removeAll(src: Iterable<ISubscribable<A>>) {
 		let ok = true;
-		for (let s of src) {
+		for (const s of src) {
 			ok = this.remove(s) && ok;
 		}
 		return ok;
@@ -150,7 +150,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
 	unsubscribe(sub?: ISubscription<B, any>) {
 		if (!sub) {
-			for (let s of this.sources.values()) {
+			for (const s of this.sources.values()) {
 				s.unsubscribe();
 			}
 			this.state = State.DONE;

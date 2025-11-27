@@ -47,7 +47,7 @@ export class ObjectIndex<T> {
 	}
 
 	*values() {
-		for (let id of this.idgen) {
+		for (const id of this.idgen) {
 			yield this.items[id];
 		}
 	}
@@ -135,7 +135,7 @@ export class ObjectIndex<T> {
 	 * @param ensure
 	 */
 	find(pred: Predicate<T>, ensure = true) {
-		for (let id of this.idgen) {
+		for (const id of this.idgen) {
 			if (pred(this.items[id])) return id;
 		}
 		assert(!ensure, `given predicate matched no ${this.name}`);

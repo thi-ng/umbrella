@@ -19,7 +19,7 @@ export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 		return out || empty(a, Set);
 	}
 	out = out ? into(out, a) : copy(a, Set);
-	for (let i of b) {
+	for (const i of b) {
 		out!.delete(i);
 	}
 	return out!;

@@ -52,13 +52,13 @@ export class ECS<SPEC> implements INotify<ECSEventType> {
 		if (comps) {
 			if (isArray(comps)) {
 				if (!comps.length) return id!;
-				for (let cid of comps) {
+				for (const cid of comps) {
 					const comp = isString(cid) ? this.components.get(cid) : cid;
 					assert(!!comp, `unknown component ID: ${cid}`);
 					comp!.add(id!);
 				}
 			} else {
-				for (let cid in comps) {
+				for (const cid in comps) {
 					const comp = this.components.get(cid);
 					assert(!!comp, `unknown component ID: ${cid}`);
 					comp!.add(id!, <any>comps[cid]);
@@ -118,7 +118,7 @@ export class ECS<SPEC> implements INotify<ECSEventType> {
 	deleteID(id: number) {
 		if (this.idgen.free(id)) {
 			this.notify({ id: EVENT_PRE_DELETE, target: this, value: id });
-			for (let c of this.componentsForID(id)) {
+			for (const c of this.componentsForID(id)) {
 				c.delete(id);
 			}
 			return true;
@@ -137,7 +137,7 @@ export class ECS<SPEC> implements INotify<ECSEventType> {
 	setCapacity(newCap: number) {
 		this.idgen.capacity = newCap;
 		const pool = this.pool;
-		for (let comp of this.components.values()) {
+		for (const comp of this.components.values()) {
 			comp.resize(pool, newCap);
 		}
 	}

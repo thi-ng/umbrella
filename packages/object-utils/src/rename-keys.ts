@@ -20,7 +20,7 @@ export const renameKeysMap = <K, V>(
 	out?: Map<K, V>
 ) => {
 	out = out || empty(src, Map);
-	for (let [k, v] of src) {
+	for (const [k, v] of src) {
 		out!.set(km.has(k) ? km.get(k)! : k, v);
 	}
 	return out;
@@ -49,7 +49,7 @@ export const renameKeysObj = <T>(
 	km: { [id in keyof T]?: PropertyKey },
 	out: any = {}
 ) => {
-	for (let k in src) {
+	for (const k in src) {
 		out[km.hasOwnProperty(k) ? km[k] : k] = src[k];
 	}
 	return out;

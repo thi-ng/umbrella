@@ -121,7 +121,7 @@ export class EquivMap<K, V>
 	 * @param thisArg -
 	 */
 	forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
-		for (let pair of this.#map) {
+		for (const pair of this.#map) {
 			fn.call(thisArg, pair[1], pair[0], this);
 		}
 	}

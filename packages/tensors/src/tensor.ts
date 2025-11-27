@@ -416,7 +416,7 @@ export class Tensor1<T = number> extends ATensor<T> {
 
 	toString() {
 		const res = [];
-		for (let x of this) res.push(format(x));
+		for (const x of this) res.push(format(x));
 		return res.join(" ");
 	}
 }

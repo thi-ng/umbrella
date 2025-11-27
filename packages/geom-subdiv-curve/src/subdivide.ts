@@ -28,7 +28,7 @@ export function subdivide(
 	kernels: SubdivKernel[],
 	closed = false
 ): ReadonlyVec[] {
-	for (let { fn, pre, size } of kernels) {
+	for (const { fn, pre, size } of kernels) {
 		const nump = points.length;
 		points = transduce<ReadonlyVec, ReadonlyVec, Vec[]>(
 			comp(

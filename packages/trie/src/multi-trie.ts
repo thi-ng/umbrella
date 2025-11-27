@@ -120,7 +120,7 @@ export class MultiTrie<K, V> {
 	}
 
 	into(pairs: Iterable<[K[], V]>) {
-		for (let [k, v] of pairs) {
+		for (const [k, v] of pairs) {
 			this.add(k, v);
 		}
 	}
@@ -216,9 +216,9 @@ export const defMultiTrieFromJSON = <V>(
 	while (queue.length) {
 		const [key, node] = queue.pop()!;
 		if (node.vals) {
-			for (let v of node.vals) res.add(key, v);
+			for (const v of node.vals) res.add(key, v);
 		}
-		for (let [k, child] of Object.entries(node.next)) {
+		for (const [k, child] of Object.entries(node.next)) {
 			queue.push([[...key, k], child]);
 		}
 	}

@@ -77,7 +77,7 @@ export const equivObject = (a: any, b: any, _equiv = equiv) => {
 	if (Object.keys(a).length !== Object.keys(b).length) {
 		return false;
 	}
-	for (let k in a) {
+	for (const k in a) {
 		if (!b.hasOwnProperty(k) || !_equiv(a[k], b[k])) {
 			return false;
 		}

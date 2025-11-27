@@ -114,7 +114,7 @@ export const formatDecls = (rules: any, opts: CSSOpts) => {
 	const prefixes = <Set<string>>(opts.autoprefix || EMPTY);
 	const space = indent(opts, opts.depth + 1);
 	const acc = [];
-	for (let r in rules) {
+	for (const r in rules) {
 		if (rules.hasOwnProperty(r)) {
 			let val = rules[r];
 			if (isFunction(val)) {
@@ -126,7 +126,7 @@ export const formatDecls = (rules: any, opts: CSSOpts) => {
 					.join(f.ruleSep);
 			}
 			if (prefixes.has(r)) {
-				for (let v of opts.vendors) {
+				for (const v of opts.vendors) {
 					acc.push(`${space}${v}${r}:${f.valSep}${val};`);
 				}
 			}

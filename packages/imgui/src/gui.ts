@@ -328,7 +328,7 @@ export class IMGUI implements IClear, IToHiccup {
 	 */
 	gc() {
 		const { currIDs, prevIDs } = this;
-		for (let id of prevIDs) {
+		for (const id of prevIDs) {
 			if (!currIDs.has(id)) {
 				this.resources.delete(id);
 				this.sizes.delete(id);

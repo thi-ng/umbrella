@@ -16,7 +16,7 @@ export const partitionKeysMap = <K, V>(
 ): [Map<K, V>, Map<K, V>] => {
 	const destA = empty(src, Map);
 	const destB = empty(src, Map);
-	for (let k of ks) {
+	for (const k of ks) {
 		(src.has(k) ? destA : destB).set(k, src.get(k));
 	}
 	return [destA, destB];

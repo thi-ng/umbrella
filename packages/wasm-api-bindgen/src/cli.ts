@@ -96,7 +96,7 @@ const addTypeSpec = (
 	if (spec.body) {
 		if (!isPlainObject(spec.body))
 			invalidSpec(path, `${spec.name}.body must be an object`);
-		for (let lang in spec.body) {
+		for (const lang in spec.body) {
 			const src = spec.body[lang];
 			if (isString(src) && src[0] === "@") {
 				spec.body[lang] = readText(src.substring(1), ctx.logger);
@@ -109,9 +109,9 @@ const addTypeSpec = (
 };
 
 const validateTypeRefs = (coll: TypeColl) => {
-	for (let spec of Object.values(coll)) {
+	for (const spec of Object.values(coll)) {
 		if (!["funcptr", "struct", "union"].includes(spec.type)) continue;
-		for (let f of (<Struct>spec).fields || (<FuncPointer>spec).args) {
+		for (const f of (<Struct>spec).fields || (<FuncPointer>spec).args) {
 			if (
 				!(
 					isPadding(f) ||
@@ -134,11 +134,11 @@ const validateTypeRefs = (coll: TypeColl) => {
 
 const parseTypeSpecs = (ctx: Ctx, inputs: string[]) => {
 	const coll: TypeColl = {};
-	for (let path of inputs) {
+	for (const path of inputs) {
 		try {
 			const spec = readJSON(resolve(path), ctx.logger);
 			if (isArray(spec)) {
-				for (let s of spec) addTypeSpec(ctx, path, coll, s);
+				for (const s of spec) addTypeSpec(ctx, path, coll, s);
 			} else if (isPlainObject(spec)) {
 				addTypeSpec(ctx, path, coll, <TopLevelType>spec);
 			} else {
@@ -208,7 +208,7 @@ const CMD: Command<CLIOpts, CLIOpts> = {
 		if (opts.config) {
 			opts.config = resolve(opts.config);
 			ctx.config = readJSON(opts.config, ctx.logger);
-			for (let id in ctx.config) {
+			for (const id in ctx.config) {
 				const conf = ctx.config[<keyof GenConfig>id]!;
 				resolveUserCode(ctx, conf, "pre");
 				resolveUserCode(ctx, conf, "post");

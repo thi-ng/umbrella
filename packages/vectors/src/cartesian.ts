@@ -68,6 +68,6 @@ export const cartesian3 = cartesian.add(3, (out, v, offset = ZERO3) => {
  */
 export const cartesian2FromAngles = (angles: ReadonlyVec, n?: number) => {
 	const polar: Vec[] = [];
-	for (let x of angles) polar.push(cossin(x, n));
+	for (const x of angles) polar.push(cossin(x, n));
 	return polar;
 };

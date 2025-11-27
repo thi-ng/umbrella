@@ -55,7 +55,7 @@ export const cat =
 		const r = rfn[2];
 		return compR(rfn, (acc, x) => {
 			if (x) {
-				for (let y of unreduced(x) || []) {
+				for (const y of unreduced(x) || []) {
 					acc = r(acc, y);
 					if (isReduced(acc)) {
 						break;

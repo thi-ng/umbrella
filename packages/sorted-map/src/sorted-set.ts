@@ -151,7 +151,7 @@ export class SortedSet<T>
 		fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>,
 		thisArg?: any
 	): void {
-		for (let p of this) {
+		for (const p of this) {
 			fn.call(thisArg, p, p, this);
 		}
 	}

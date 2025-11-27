@@ -96,7 +96,7 @@ export const __mergeState = (
 		}
 		ctx.restore();
 	}
-	for (let id in attribs) {
+	for (const id in attribs) {
 		const k = CTX_ATTRIBS[id];
 		if (k) {
 			const v = attribs[id];

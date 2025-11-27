@@ -21,7 +21,7 @@ export const ditherWith = (
 	const { format, width, height } = img;
 	const { ox, oy, weights, shift } = kernel;
 	let p: number, err: number;
-	for (let cid of channels || __range(format.channels.length)) {
+	for (const cid of channels || __range(format.channels.length)) {
 		const cimg = img.getChannel(cid);
 		const chan = format.channels[cid];
 		const $thresh = chan.num * threshold;

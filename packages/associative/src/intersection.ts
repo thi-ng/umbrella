@@ -22,7 +22,7 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 	if (b.size < a.size) {
 		return intersection(b, a, out);
 	}
-	for (let i of b) {
+	for (const i of b) {
 		if (a.has(i)) {
 			out!.add(i);
 		}

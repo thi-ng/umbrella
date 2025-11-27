@@ -412,11 +412,11 @@ export class DCons<T>
 		}
 		if (insert) {
 			if (cell) {
-				for (let i of insert) {
+				for (const i of insert) {
 					this.insertBefore(cell, i);
 				}
 			} else {
-				for (let i of insert) {
+				for (const i of insert) {
 					this.push(i);
 				}
 			}

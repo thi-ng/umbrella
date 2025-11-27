@@ -28,11 +28,11 @@ export const __drawSolid2D = <T extends any[] | TypedArray, P>(
 			offset,
 			stride: [sx, sy],
 		} = grid;
-		for (let p of pts) {
+		for (const p of pts) {
 			data[offset + p[0] * sx + p[1] * sy] = val;
 		}
 	} else {
-		for (let p of pts) {
+		for (const p of pts) {
 			grid.setAtUnsafe(p[0], p[1], val);
 		}
 	}
@@ -52,11 +52,11 @@ export const __drawShader2D = <T extends any[] | TypedArray, P>(
 			offset,
 			stride: [sx, sy],
 		} = grid;
-		for (let { 0: x, 1: y } of pts) {
+		for (const { 0: x, 1: y } of pts) {
 			data[offset + x * sx + y * sy] = shader(grid, x, y);
 		}
 	} else {
-		for (let { 0: x, 1: y } of pts) {
+		for (const { 0: x, 1: y } of pts) {
 			grid.setAtUnsafe(x, y, shader(grid, x, y));
 		}
 	}

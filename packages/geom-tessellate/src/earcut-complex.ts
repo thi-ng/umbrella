@@ -110,7 +110,7 @@ export const earCutComplexPrepare = (
 ) => {
 	let points = boundary;
 	const holeIDs: number[] = [];
-	for (let hole of holes) {
+	for (const hole of holes) {
 		holeIDs.push(points.length);
 		points = points.concat(hole);
 	}

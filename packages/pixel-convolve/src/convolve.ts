@@ -53,7 +53,8 @@ export const convolveImage = (
 ) => {
 	const state = __initConvolve(src, opts);
 	const dest = new FloatBuffer(state.dwidth, state.dheight, src.format);
-	for (let channel of opts.channels || __range(src.format.channels.length)) {
+	for (const channel of opts.channels ||
+		__range(src.format.channels.length)) {
 		dest.setChannel(channel, __convolve({ ...state, channel }));
 	}
 	return dest;

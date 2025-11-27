@@ -116,14 +116,14 @@ export class DVMesh<T> {
 	}
 
 	addKeys(pts: Iterable<ReadonlyVec>, eps?: number) {
-		for (let p of pts) {
+		for (const p of pts) {
 			this.add(p, undefined, eps, false);
 		}
 		this.computeDual();
 	}
 
 	addAll(pairs: Iterable<Pair<ReadonlyVec, T>>, eps?: number) {
-		for (let p of pairs) {
+		for (const p of pairs) {
 			this.add(p[0], p[1], eps, false);
 		}
 		this.computeDual();

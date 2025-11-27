@@ -153,13 +153,13 @@ const __generateFramework = async (
 		decls: [],
 	};
 	setPrecision(opts.prec);
-	for (let input of inputs) {
+	for (const input of inputs) {
 		const config: GeneratorConfig = JSON.parse(input);
 		Object.assign(result.info, config.info);
 		Object.assign(result.media, config.media);
 		if (config.decls) result.decls.push(...config.decls);
 		if (config.specs) {
-			for (let spec of config.specs) {
+			for (const spec of config.specs) {
 				try {
 					expandSpec(config, spec, result.classes, logger);
 				} catch (e) {
@@ -172,7 +172,7 @@ const __generateFramework = async (
 			}
 		}
 		if (config.templates) {
-			for (let spec of config.templates) {
+			for (const spec of config.templates) {
 				expandTemplateSpec(config, spec, result.templates, logger);
 			}
 		}
@@ -197,10 +197,10 @@ export const expandSpec = (
 	const props = isString(spec.props) ? { [spec.props]: "<v>" } : spec.props!;
 	const values = __items(spec, config);
 	const ownNames = new Set<string>();
-	for (let currVarID of variationIDs) {
+	for (const currVarID of variationIDs) {
 		const variations = config.vars?.[currVarID] || VARIATIONS[currVarID];
 		if (!variations) illegalArgs(`unknown variation ID: ${currVarID}`);
-		for (let [varValue, currKey] of permutations(
+		for (const [varValue, currKey] of permutations(
 			variations,
 			Object.keys(values)
 		)) {
@@ -242,7 +242,7 @@ export const expandSpec = (
 			}
 			ownNames.add(name);
 			let maxArity = -1;
-			for (let [k, v] of Object.entries(props)) {
+			for (const [k, v] of Object.entries(props)) {
 				const prop = __withVariations(
 					k,
 					currVarID,

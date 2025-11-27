@@ -61,7 +61,7 @@ export const getExtensions = <K extends keyof WebGLExtensionMap>(
 ): Pick<WebGLExtensionMap, K> => {
 	const ext: any = {};
 	if (ids) {
-		for (let id of ids) {
+		for (const id of ids) {
 			ext[id] = gl.getExtension(id);
 			required && !ext[id] && error(`extension ${id} not available`);
 		}

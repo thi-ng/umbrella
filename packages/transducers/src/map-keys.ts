@@ -52,7 +52,7 @@ export function mapKeys(...args: any[]): any {
 	const copy = args[1] !== false;
 	return map((x: any) => {
 		const res: any = copy ? Object.assign({}, x) : x;
-		for (let k in keys) {
+		for (const k in keys) {
 			res[k] = keys[k](x[k], x);
 		}
 		return res;

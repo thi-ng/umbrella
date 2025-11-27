@@ -41,7 +41,7 @@ export function* tokenize(
 		line: tokenLine,
 		col: tokenCol,
 	});
-	for (let c of src) {
+	for (const c of src) {
 		if (c === "\n") {
 			line++;
 			col = -1;

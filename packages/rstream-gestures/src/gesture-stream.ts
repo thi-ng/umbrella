@@ -115,7 +115,7 @@ export const gestureStream = (
 		isTouch: boolean
 	) => {
 		const isStart = etype === "mousedown" || etype === "touchstart";
-		for (let t of events) {
+		for (const t of events) {
 			const id = (<Touch>t).identifier || 0;
 			const pos = __getPos(t, bounds, opts.local, opts.scale);
 			let touch = active.find((t) => t.id === id);
@@ -145,7 +145,7 @@ export const gestureStream = (
 	};
 
 	const gestureEnd = (events: Array<Touch | MouseEvent | WheelEvent>) => {
-		for (let t of events) {
+		for (const t of events) {
 			const id = (<Touch>t).identifier || 0;
 			const idx = active.findIndex((t) => t.id === id);
 			if (idx !== -1) {

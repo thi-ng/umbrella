@@ -110,7 +110,7 @@ export class Mult<T> implements IWriteable<T>, IClosable {
 	 */
 	unsubscribeAll(close = true) {
 		if (close) {
-			for (let t of this.taps) t.close();
+			for (const t of this.taps) t.close();
 		}
 		this.taps.length = 0;
 	}
@@ -118,7 +118,7 @@ export class Mult<T> implements IWriteable<T>, IClosable {
 	protected async process() {
 		let x;
 		while ((x = await this.src.read()) !== undefined) {
-			for (let t of this.taps) {
+			for (const t of this.taps) {
 				if (!(await t.write(x))) {
 					this.unsubscribe(t);
 				}

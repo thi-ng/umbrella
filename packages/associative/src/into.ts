@@ -15,11 +15,11 @@ export function into<K, V>(
 export function into<T>(coll: Set<T>, src: Iterable<T>): Set<T>;
 export function into(coll: Map<any, any> | Set<any>, src: Iterable<any>) {
 	if (isMap(coll)) {
-		for (let x of src) {
+		for (const x of src) {
 			coll.set(x[0], x[1]);
 		}
 	} else {
-		for (let x of src) {
+		for (const x of src) {
 			coll.add(x);
 		}
 	}

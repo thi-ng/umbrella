@@ -141,7 +141,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 	}
 
 	*entries(): SetIterator<Pair<T, T>> {
-		for (let v of this.#vals) {
+		for (const v of this.#vals) {
 			yield [v, v];
 		}
 	}

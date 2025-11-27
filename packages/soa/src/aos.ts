@@ -52,7 +52,7 @@ export const aos = <K extends string>(
 	let maxSize = 0;
 	const offsets = <Record<K, number>>{};
 	const soaSpecs = <SOASpecs<K>>{};
-	for (let id in specs) {
+	for (const id in specs) {
 		const spec = prepareSpec(specs[id]);
 		const tsize = SIZEOF[spec.type!];
 		maxSize = Math.max(maxSize, tsize);
@@ -65,7 +65,7 @@ export const aos = <K extends string>(
 	// align total struct size to largest type
 	total = align(total, <Pow2>maxSize);
 	buf = buf || new ArrayBuffer(total * num + byteOffset);
-	for (let id in soaSpecs) {
+	for (const id in soaSpecs) {
 		const spec = soaSpecs[id];
 		const tsize = SIZEOF[spec.type!];
 		spec.stride = total / tsize;

@@ -46,7 +46,7 @@ export function* extendSides<T>(
 	numRight = numLeft
 ): IterableIterator<T> {
 	let prev: T | typeof SEMAPHORE = SEMAPHORE;
-	for (let x of src) {
+	for (const x of src) {
 		if (numLeft > 0 && prev === SEMAPHORE) {
 			yield* repeat(x, numLeft);
 			numLeft = 0;

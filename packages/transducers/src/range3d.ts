@@ -49,9 +49,9 @@ export function* range3d(
 	}
 	const rx = range(fromX, toX, stepX);
 	const ry = range(fromY, toY, stepY);
-	for (let z of range(fromZ, toZ, stepZ)) {
-		for (let y of ry) {
-			for (let x of rx) {
+	for (const z of range(fromZ, toZ, stepZ)) {
+		for (const y of ry) {
+			for (const x of rx) {
 				yield [x, y, z];
 			}
 		}

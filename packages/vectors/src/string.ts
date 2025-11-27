@@ -45,7 +45,7 @@ export const defFormat = (
 	const fmt = width ? floatFixedWidth(width, prec) : float(prec);
 	return (src) => {
 		let res: string[] = [];
-		for (let x of src) res.push(fmt(x));
+		for (const x of src) res.push(fmt(x));
 		return `${wrap[0]}${res.join(delim)}${wrap[1]}`;
 	};
 };

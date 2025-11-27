@@ -63,11 +63,11 @@ export abstract class AVecList<T extends StridedVec> {
 	indices(res: Vec = [], i = 0, local = true) {
 		const { start, estride } = this;
 		if (local) {
-			for (let v of this) {
+			for (const v of this) {
 				res[i++] = (v.offset - start) / estride;
 			}
 		} else {
-			for (let v of this) {
+			for (const v of this) {
 				res[i++] = v.offset;
 			}
 		}

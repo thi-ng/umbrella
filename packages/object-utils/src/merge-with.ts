@@ -9,9 +9,9 @@ export const mergeMapWith = <K, V>(
 	...maps: Nullable<Map<K, V>>[]
 ) => {
 	const res: Map<K, V> = copy(dest, Map);
-	for (let x of maps) {
+	for (const x of maps) {
 		if (x != null) {
-			for (let [k, v] of x) {
+			for (const [k, v] of x) {
 				res.set(k, res.has(k) ? f(res.get(k)!, v) : v);
 			}
 		}
@@ -55,9 +55,9 @@ export const meldObjWith = <T>(
 	dest: IObjectOf<T>,
 	...objects: Nullable<IObjectOf<T>>[]
 ) => {
-	for (let x of objects) {
+	for (const x of objects) {
 		if (x != null) {
-			for (let k in x) {
+			for (const k in x) {
 				if (isIllegalKey(k)) continue;
 				const v = x[k];
 				dest[k] = dest.hasOwnProperty(k) ? f(dest[k], v) : v;

@@ -36,7 +36,7 @@ export class Directory implements IDirectory {
 				entries.push(entry);
 			}
 			entries.sort(cmp);
-			for (let entry of entries) {
+			for (const entry of entries) {
 				yield entry;
 				if (entry.isDirectory()) yield* entry.directory.tree(cmp);
 			}

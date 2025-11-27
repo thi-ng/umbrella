@@ -129,7 +129,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param max
 	 */
 	*keys(key?: K, max = false): MapIterator<K> {
-		for (let p of this.entries(key, max)) {
+		for (const p of this.entries(key, max)) {
 			yield p[0];
 		}
 	}
@@ -141,7 +141,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param max
 	 */
 	*values(key?: K, max = false): MapIterator<V> {
-		for (let p of this.entries(key, max)) {
+		for (const p of this.entries(key, max)) {
 			yield p[1];
 		}
 	}
@@ -284,7 +284,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 	 * @param thisArg -
 	 */
 	forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
-		for (let p of this) {
+		for (const p of this) {
 			fn.call(thisArg, p[1], p[0], this);
 		}
 	}

@@ -51,7 +51,7 @@ const __pathFromCubics = <P extends IPath<any>, S extends P["segments"][0]>(
 		curr = [<S>{ type: "m", point: c.points[0] }];
 		subPaths.push(curr);
 	};
-	for (let c of cubics) {
+	for (const c of cubics) {
 		if (!(lastP && equals(lastP, c.points[0]))) $beginPath(c);
 		curr!.push(<S>{ type: "c", geo: c });
 		lastP = c.points[3];

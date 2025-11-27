@@ -91,7 +91,7 @@ export abstract class AList<L extends AList<any, T>, T>
 
 	concat(...slices: Iterable<T>[]) {
 		const res = this.copy();
-		for (let slice of slices) {
+		for (const slice of slices) {
 			res.into(slice);
 		}
 		return res;
@@ -156,7 +156,7 @@ export abstract class AList<L extends AList<any, T>, T>
 	}
 
 	into(src: Iterable<T>): L {
-		for (let x of src) {
+		for (const x of src) {
 			this.append(x);
 		}
 		return <any>this;

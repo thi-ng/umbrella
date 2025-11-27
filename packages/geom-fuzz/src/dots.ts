@@ -30,7 +30,7 @@ export const defDots = (opts: Partial<DotFillOpts> = {}): FillFn => {
 		const rows = ~~(h / opts.space!);
 		const maxg = [cols - 1, rows - 1];
 		const acc: Vec[] = [];
-		for (let p of range2d(cols, rows)) {
+		for (const p of range2d(cols, rows)) {
 			if (p[1] & 1) p[0] += 0.5;
 			unmapPoint(box, div2(null, p, maxg), p);
 			jitter(p, p, opts.jitter);

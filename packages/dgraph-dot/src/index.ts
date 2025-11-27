@@ -49,10 +49,10 @@ export const toDot = <T>(src: DGraph<T>, opts: DGraphDotOpts<T>) => {
 	const edges: Edge[] = [];
 	const label = opts.label || opts.id;
 	const spec = opts.spec;
-	for (let n of src.nodes()) {
+	for (const n of src.nodes()) {
 		const id = opts.id(n);
 		nodes[id] = spec ? spec(n) : { label: label(n) };
-		for (let d of src.immediateDependencies(n)) {
+		for (const d of src.immediateDependencies(n)) {
 			edges.push({ src: id, dest: opts.id(d) });
 		}
 	}

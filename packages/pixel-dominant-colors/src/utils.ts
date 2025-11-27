@@ -9,7 +9,7 @@ export const filterSamples = (
 ) => {
 	const samples: ReadonlyVec[] = [];
 	let i = 0;
-	for (let p of img) {
+	for (const p of img) {
 		if (pred(p, i)) samples.push(p);
 		i++;
 	}

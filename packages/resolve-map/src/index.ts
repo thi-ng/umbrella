@@ -178,7 +178,7 @@ const __resolveMap = <T>(
 	stack: string[] = []
 ) => {
 	root = root || obj;
-	for (let k in obj) {
+	for (const k in obj) {
 		__resolve(root, [...path, k], resolved, stack, opts);
 	}
 	return !opts.unwrap || path.length
@@ -384,7 +384,7 @@ const __markObjResolved = (
 	resolved: IObjectOf<boolean>
 ) => {
 	let v, p;
-	for (let k in obj) {
+	for (const k in obj) {
 		v = obj[k];
 		p = path + "/" + k;
 		__markResolved(v, p, resolved);
@@ -492,7 +492,7 @@ const __getInUnsafe = (obj: any, path: LookupPath) => {
  * @internal
  */
 const __unwrapResolved = <T>(root: T, resolved: IObjectOf<boolean>) => {
-	for (let path in resolved) {
+	for (const path in resolved) {
 		const $path = path.split("/");
 		const val = __getInUnsafe(root, $path);
 		val[1] && mutInUnsafe(root, $path, val[0]);

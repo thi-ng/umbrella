@@ -64,7 +64,7 @@ export class Watcher implements IClear, INotify {
 	}
 
 	addAll(paths: (string | [string, Partial<PathWatchOpts>])[]) {
-		for (let p of paths) {
+		for (const p of paths) {
 			isString(p) ? this.add(p) : this.add(...p);
 		}
 	}
@@ -118,7 +118,7 @@ export class Watcher implements IClear, INotify {
 	}
 
 	removeAll(paths: Iterable<string>) {
-		for (let p of paths) {
+		for (const p of paths) {
 			this.remove(p);
 		}
 	}

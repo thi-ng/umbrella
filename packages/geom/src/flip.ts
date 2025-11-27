@@ -88,7 +88,7 @@ export const flip = <FlipFn>defmulti<any, IShape>(
 
 		complexpoly: ($: ComplexPolygon) => {
 			flip($.boundary);
-			for (let c of $.children) flip(c);
+			for (const c of $.children) flip(c);
 			return $;
 		},
 

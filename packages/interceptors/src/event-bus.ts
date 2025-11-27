@@ -246,7 +246,7 @@ export class StatelessEventBus implements IDispatch {
 	}
 
 	addHandlers(specs: IObjectOf<EventDef>) {
-		for (let id in specs) {
+		for (const id in specs) {
 			this.addHandler(id, specs[id]);
 		}
 	}
@@ -269,7 +269,7 @@ export class StatelessEventBus implements IDispatch {
 	}
 
 	addEffects(specs: IObjectOf<EffectDef>) {
-		for (let id in specs) {
+		for (const id in specs) {
 			const fx = specs[id];
 			if (isArray(fx)) {
 				this.addEffect(id, fx[0], fx[1]);
@@ -290,7 +290,7 @@ export class StatelessEventBus implements IDispatch {
 	instrumentWith(inject: (Interceptor | InterceptorFn)[], ids?: string[]) {
 		const iceps = inject.map(__asInterceptor);
 		const handlers = this.handlers;
-		for (let id of ids || Object.keys(handlers)) {
+		for (const id of ids || Object.keys(handlers)) {
 			const h = handlers[id];
 			if (h) {
 				handlers[id] = iceps.concat(h);
@@ -303,7 +303,7 @@ export class StatelessEventBus implements IDispatch {
 	}
 
 	removeHandlers(ids: string[]) {
-		for (let id of ids) {
+		for (const id of ids) {
 			this.removeHandler(id);
 		}
 	}
@@ -320,7 +320,7 @@ export class StatelessEventBus implements IDispatch {
 	}
 
 	removeEffects(ids: string[]) {
-		for (let id of ids) {
+		for (const id of ids) {
 			this.removeEffect(id);
 		}
 	}
@@ -400,7 +400,7 @@ export class StatelessEventBus implements IDispatch {
 			this.currQueue = [...this.eventQueue];
 			this.eventQueue.length = 0;
 			ctx = this.currCtx = ctx || {};
-			for (let e of this.currQueue) {
+			for (const e of this.currQueue) {
 				this.processEvent(ctx, e);
 			}
 			this.currQueue = this.currCtx = undefined;
@@ -486,7 +486,7 @@ export class StatelessEventBus implements IDispatch {
 	 */
 	protected processEffects(ctx: InterceptorContext) {
 		const effects = this.effects;
-		for (let p of this.priorities) {
+		for (const p of this.priorities) {
 			const id = p[0];
 			const val = ctx[id];
 			val !== undefined && this.processEffect(ctx, effects, id, val);
@@ -501,7 +501,7 @@ export class StatelessEventBus implements IDispatch {
 	) {
 		const fn = effects[id];
 		if (id !== FX_STATE) {
-			for (let v of val) {
+			for (const v of val) {
 				fn(v, this, ctx);
 			}
 		} else {
@@ -556,7 +556,7 @@ export class StatelessEventBus implements IDispatch {
 		if (!ret) {
 			return;
 		}
-		for (let k in ret) {
+		for (const k in ret) {
 			const v = ret[k];
 			if (v == null) {
 				continue;
@@ -565,7 +565,7 @@ export class StatelessEventBus implements IDispatch {
 				ctx[k] = v;
 			} else if (k === FX_DISPATCH_NOW) {
 				if (isArray(v[0])) {
-					for (let e of v) {
+					for (const e of v) {
 						e && this.dispatchNow(e);
 					}
 				} else {
@@ -574,7 +574,7 @@ export class StatelessEventBus implements IDispatch {
 			} else {
 				ctx[k] || (ctx[k] = []);
 				if (isArray(v[0])) {
-					for (let e of v) {
+					for (const e of v) {
 						e !== undefined && ctx[k].push(e);
 					}
 				} else {
@@ -775,7 +775,7 @@ export class EventBus
 			this.currQueue = [...this.eventQueue];
 			this.eventQueue.length = 0;
 			ctx = this.currCtx = { ...ctx, [FX_STATE]: prev };
-			for (let e of this.currQueue) {
+			for (const e of this.currQueue) {
 				this.processEvent(ctx, e);
 			}
 			this.currQueue = this.currCtx = undefined;

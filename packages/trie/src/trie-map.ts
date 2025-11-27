@@ -96,7 +96,7 @@ export class TrieMap<T> {
 	}
 
 	into(pairs: Iterable<Pair<string, T>>) {
-		for (let [k, v] of pairs) {
+		for (const [k, v] of pairs) {
 			this.set(k, v);
 		}
 	}
@@ -165,7 +165,7 @@ export const defTrieMapFromJSON = <V>(src: SerializedTrieMap<V>) => {
 	while (queue.length) {
 		const [key, node] = queue.pop()!;
 		if (node.val) res.set(key, node.val);
-		for (let [k, child] of Object.entries(node.next)) {
+		for (const [k, child] of Object.entries(node.next)) {
 			queue.push([key + k, child]);
 		}
 	}

@@ -66,7 +66,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
 
 	draw<T>(ctx: T) {
 		if (this.display) {
-			for (let c of this.children) {
+			for (const c of this.children) {
 				c.draw(ctx);
 			}
 		}

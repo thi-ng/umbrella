@@ -23,7 +23,7 @@ const __formatCond = (cond: any) => {
 		return cond;
 	}
 	const acc = [];
-	for (let c in cond) {
+	for (const c in cond) {
 		if (cond.hasOwnProperty(c)) {
 			let v = cond[c];
 			if (v === true) {

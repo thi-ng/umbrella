@@ -189,7 +189,7 @@ function* __themes<T extends Theme>(
 			if (pred(theme)) yield idOnly ? i : theme;
 		}
 	} else if (preds.length) {
-		for (let id of <number[]>preds) yield idOnly ? id : fn(id);
+		for (const id of <number[]>preds) yield idOnly ? id : fn(id);
 	} else {
 		for (let i = 0; i < NUM_THEMES; i++) yield idOnly ? i : fn(i);
 	}

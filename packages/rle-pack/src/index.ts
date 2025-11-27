@@ -53,7 +53,7 @@ export const encode = (
 		out.writeWords(chunk, wordSize);
 		chunk.length = 0;
 	};
-	for (let x of src) {
+	for (const x of src) {
 		if (val === undefined) {
 			val = x;
 		} else if (x !== val) {

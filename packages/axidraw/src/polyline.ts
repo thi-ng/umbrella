@@ -22,7 +22,7 @@ export function* polyline(
 	if (!pts.length) return;
 	const { speed = 1, onlyGeo = false, delayDown, delayUp, down } = opts;
 	if (onlyGeo) {
-		for (let p of pts) yield MOVE(p, speed);
+		for (const p of pts) yield MOVE(p, speed);
 		return;
 	}
 	yield MOVE(pts[0]);

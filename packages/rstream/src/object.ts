@@ -176,7 +176,7 @@ export class StreamObj<
 						...opts,
 				  }
 				: opts;
-		for (let k of this.keys) {
+		for (const k of this.keys) {
 			this.streams[<K>k] = subscription(undefined, {
 				..._opts,
 				id: `${this.id}-${k}`,
@@ -198,7 +198,7 @@ export class StreamObj<
 	 */
 	next(x: T) {
 		this.cacheLast && (this.last = x);
-		for (let k of this.keys) {
+		for (const k of this.keys) {
 			const val = x[<K>k];
 			this.streams[<K>k].next(
 				this.defaults && val === undefined
@@ -210,7 +210,7 @@ export class StreamObj<
 	}
 
 	done() {
-		for (let k of this.keys) {
+		for (const k of this.keys) {
 			this.streams[<K>k].done?.();
 		}
 		super.done();
@@ -218,7 +218,7 @@ export class StreamObj<
 
 	unsubscribe(sub?: ISubscription<T, any> | undefined) {
 		if (!sub) {
-			for (let k of this.keys) {
+			for (const k of this.keys) {
 				this.streams[<K>k].unsubscribe();
 			}
 		}

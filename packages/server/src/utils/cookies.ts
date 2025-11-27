@@ -18,7 +18,7 @@ export const parseCoookies = (
 	const res: Record<string, string> = {};
 	let currK: Nullable<string>;
 	let currV: Nullable<string>;
-	for (let part of rawCookies.split(";")) {
+	for (const part of rawCookies.split(";")) {
 		let [name, value] = part.split("=").map((x) => x.trim());
 		value = decodeURIComponent(value);
 		switch (name.toLowerCase()) {

@@ -59,7 +59,7 @@ export const traverse = (
 ) => {
 	opts || (opts = {});
 	state || (state = { id: 0, subs: new Map(), rels: [] });
-	for (let sub of subs) {
+	for (const sub of subs) {
 		if (state.subs.get(sub)) return state;
 		const id = state.id;
 		const desc: Node = {
@@ -74,7 +74,7 @@ export const traverse = (
 		const children = __getChildren(sub);
 		if (children.length) {
 			traverse(children, opts, state);
-			for (let c of children) {
+			for (const c of children) {
 				const childNode = state.subs.get(c);
 				childNode && state.rels.push([desc, childNode]);
 			}

@@ -59,7 +59,7 @@ export class ComplexPolygon implements IHiccupShape2<ComplexPolygon> {
 			segments.push(["z"]);
 		};
 		$hiccupSegments(this.boundary);
-		for (let c of this.children) $hiccupSegments(c);
+		for (const c of this.children) $hiccupSegments(c);
 		return ["path", this.attribs, segments];
 	}
 }

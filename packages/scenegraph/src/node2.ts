@@ -55,7 +55,7 @@ export class Node2D
 				mulM23(this.mat, this.parent.mat, this.mat);
 			}
 			invert23(this.invMat, this.mat);
-			for (let c of this.children) {
+			for (const c of this.children) {
 				c.update();
 			}
 		}

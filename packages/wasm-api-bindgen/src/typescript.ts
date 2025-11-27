@@ -127,7 +127,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 		enum: (e, _, acc, opts) => {
 			const res: string[] = [];
 			res.push(`export enum ${e.name} {`);
-			for (let v of e.values) {
+			for (const v of e.values) {
 				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, res, opts);
@@ -154,7 +154,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			lines.push(
 				`export interface ${struct.name} extends WasmTypeBase {`
 			);
-			for (let f of fields) {
+			for (const f of fields) {
 				const doc = __docType(f.field, struct, coll, opts);
 				doc && gen.doc(doc, lines, opts);
 				const decl = `${f.field.name}: ${f.type};`;
@@ -189,7 +189,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 				`return {`
 			);
 
-			for (let f of fields) {
+			for (const f of fields) {
 				if (!f) continue;
 				if (f.getter) {
 					lines.push(

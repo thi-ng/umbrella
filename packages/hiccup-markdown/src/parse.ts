@@ -533,7 +533,7 @@ export const transformScope: Fn3<
 				[children[0].id === "ulitem" ? "ul" : "ol"],
 			];
 			const levels = [0];
-			for (let item of children) {
+			for (const item of children) {
 				const currLevel = item.children![0].result;
 				if (currLevel > peek(levels)) {
 					const sublist = [item.id === "ulitem" ? "ul" : "ol"];
@@ -692,7 +692,7 @@ export const withMeta = (target: any, meta?: any) => {
  * @param acc
  */
 export const extractBody = (body: any[], acc: Primitive[] = []) => {
-	for (let x of isPlainObject(body[1]) ? body.slice(2) : body) {
+	for (const x of isPlainObject(body[1]) ? body.slice(2) : body) {
 		if (isPrimitive(x)) acc.push(x);
 		else if (isArray(x)) extractBody(x, acc);
 	}
@@ -715,7 +715,7 @@ const __children = (
 	children: ParseScope<string>[],
 	acc: any[] = []
 ) => {
-	for (let c of children!) transformScope(c, ctx, acc);
+	for (const c of children!) transformScope(c, ctx, acc);
 	return acc;
 };
 
@@ -745,7 +745,7 @@ const __trimBody = (body: any[]) => {
 /** @internal */
 const __columnAlignments = (children: ParseScope<string>[]) => {
 	const align: ColumnAlign[] = [];
-	for (let c of children) {
+	for (const c of children) {
 		const raw = <string>c.children![0].children![0].result.trim();
 		const isLeft = raw.startsWith(":-") ? 1 : 0;
 		const isRight = raw.endsWith("-:") ? 2 : 0;

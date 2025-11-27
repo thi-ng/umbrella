@@ -24,7 +24,7 @@ export const defConversions = (
 	mode: ColorMode,
 	spec: ColorSpec<any, any>["from"]
 ) => {
-	for (let id in spec) {
+	for (const id in spec) {
 		const val = spec[<ColorMode>id];
 		if (isArray(val)) {
 			const [a, b, c, d] = val;

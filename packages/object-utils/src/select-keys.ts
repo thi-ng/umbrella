@@ -14,7 +14,7 @@ export const selectKeysMap = <K, V>(
 	ks: Iterable<K>
 ): Map<K, V> => {
 	const dest = empty(src, Map);
-	for (let k of ks) {
+	for (const k of ks) {
 		src.has(k) && dest.set(k, src.get(k));
 	}
 	return dest;
@@ -32,7 +32,7 @@ export const selectDefinedKeysMap = <K, V>(
 	ks: Iterable<K>
 ): Map<K, V> => {
 	const dest = empty(src, Map);
-	for (let k of ks) {
+	for (const k of ks) {
 		const val = src.get(k);
 		if (val != null) dest.set(k, val);
 	}
@@ -51,7 +51,7 @@ export const selectKeysObj = <T extends object>(
 	ks: Iterable<Keys<T>>
 ): Partial<T> => {
 	const dest: Partial<T> = {};
-	for (let k of ks) {
+	for (const k of ks) {
 		src.hasOwnProperty(k) && (dest[k] = src[k]);
 	}
 	return dest;
@@ -69,7 +69,7 @@ export const selectDefinedKeysObj = <T extends object, K extends keyof T>(
 	ks: Iterable<K>
 ) => {
 	const res: Partial<T> = {};
-	for (let k of ks) {
+	for (const k of ks) {
 		const val = src[k];
 		if (val != null) res[k] = val;
 	}

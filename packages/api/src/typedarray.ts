@@ -392,7 +392,7 @@ export function typedArrayOfVec<T extends Type | GLType | BigType>(
  */
 export const typedArrayType = (x: NumericArray) => {
 	if (Array.isArray(x)) return "f64";
-	for (let id in TYPEDARRAY_CTORS) {
+	for (const id in TYPEDARRAY_CTORS) {
 		if (x instanceof (<any>TYPEDARRAY_CTORS)[id]) return <Type>id;
 	}
 	return "f64";

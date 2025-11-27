@@ -134,7 +134,7 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
 		return normalizeTree(opts, tree.deref());
 	} else if (isNotStringAndIterable(tree)) {
 		const res = [];
-		for (let t of tree) {
+		for (const t of tree) {
 			const n = normalizeTree(opts, t);
 			n != null && res.push(n);
 		}

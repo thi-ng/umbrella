@@ -24,11 +24,11 @@ const __diffObjectDist = (
 	if (!a) a = {};
 	if (!b) b = {};
 	let d = 0;
-	for (let k in a) {
+	for (const k in a) {
 		const vb = b[k];
 		(vb === undefined || !_equiv(a[k], vb)) && d++;
 	}
-	for (let k in b) {
+	for (const k in b) {
 		!(k in a) && d++;
 	}
 	return { distance: d };
@@ -46,7 +46,7 @@ const __diffObjectFull = (
 	const adds = [];
 	const dels = [];
 	const edits = [];
-	for (let k in a) {
+	for (const k in a) {
 		const vb = b[k];
 		if (vb === undefined) {
 			dels.push(k);
@@ -56,7 +56,7 @@ const __diffObjectFull = (
 			d++;
 		}
 	}
-	for (let k in b) {
+	for (const k in b) {
 		if (!(k in a)) {
 			adds.push(k);
 			d++;

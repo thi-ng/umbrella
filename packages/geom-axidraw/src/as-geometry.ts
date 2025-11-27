@@ -78,7 +78,7 @@ export const asGeometry = (
 		}
 		currPos = newPos;
 	};
-	for (let cmd of src) {
+	for (const cmd of src) {
 		switch (cmd[0]) {
 			// absolute
 			case "M":

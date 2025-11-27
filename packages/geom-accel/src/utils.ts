@@ -35,7 +35,7 @@ export const __into = <K, V>(
 	eps: number
 ) => {
 	let ok = true;
-	for (let p of pairs) {
+	for (const p of pairs) {
 		ok = map.set(p[0], p[1], eps) && ok;
 	}
 	return ok;

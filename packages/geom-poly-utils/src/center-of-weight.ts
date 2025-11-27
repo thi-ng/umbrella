@@ -56,7 +56,7 @@ export const complexCenterOfWeight2 = (
 	let innerArea = 0;
 	let innerCentroid = [0, 0];
 	let tmp: Vec = [];
-	for (let child of children) {
+	for (const child of children) {
 		const a = Math.abs(polyArea2(child));
 		innerArea += a;
 		maddN2(innerCentroid, centerOfWeight2(child, tmp), a, innerCentroid);

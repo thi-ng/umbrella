@@ -77,7 +77,7 @@ export const deepTransform = (spec: TransformSpec): ((x: any) => any) => {
 	);
 	return (x) => {
 		const res = { ...x };
-		for (let k in mapfns) {
+		for (const k in mapfns) {
 			res[k] = mapfns[k](res[k]);
 		}
 		return spec[0](res);

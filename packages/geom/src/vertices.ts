@@ -156,7 +156,7 @@ export const vertices: MultiFn1O<
 
 		complexpoly: ($: ComplexPolygon, opts) => {
 			const pts = vertices($.boundary, opts);
-			for (let child of $.children) pts.push(...vertices(child, opts));
+			for (const child of $.children) pts.push(...vertices(child, opts));
 			return pts;
 		},
 
@@ -208,7 +208,7 @@ export const vertices: MultiFn1O<
 				}
 			};
 			$segmentVerts($.segments);
-			for (let sub of $.subPaths) $segmentVerts(sub);
+			for (const sub of $.subPaths) $segmentVerts(sub);
 			return verts;
 		},
 

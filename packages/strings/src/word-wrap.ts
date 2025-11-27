@@ -143,7 +143,7 @@ export const wordWrapLine = (
 		splitter: SPLIT_PLAIN,
 		...opts,
 	};
-	for (let word of split(line, opts.delimWord || /\s/g)) {
+	for (const word of split(line, opts.delimWord || /\s/g)) {
 		const curr = acc[acc.length - 1];
 		__wrapWord(word, $opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
 	}
@@ -162,7 +162,7 @@ export const wordWrapLine = (
  */
 export const wordWrapLines = (lines: string, opts: Partial<WordWrapOpts>) => {
 	let acc: Line[] = [];
-	for (let line of split(lines, opts.delimLine)) {
+	for (const line of split(lines, opts.delimLine)) {
 		acc = acc.concat(wordWrapLine(line, opts));
 	}
 	return acc;

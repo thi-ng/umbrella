@@ -20,7 +20,7 @@ export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
 	return <Reducer<SRC, Map<KEY, GROUP>>>[
 		() => new Map(),
 		(acc) => {
-			for (let k of acc.keys()) {
+			for (const k of acc.keys()) {
 				acc.set(k, complete(acc.get(k)!));
 			}
 			return acc;

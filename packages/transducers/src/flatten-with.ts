@@ -60,7 +60,7 @@ export function flattenWith<A>(
 				const flatten = (acc: any, x: any) => {
 					const xx = fn(x);
 					if (xx) {
-						for (let y of xx) {
+						for (const y of xx) {
 							acc = flatten(acc, y);
 							if (isReduced(acc)) {
 								break;

@@ -40,7 +40,7 @@ export class FloydWarshall {
 		const numV = (this.numV = graph.numVertices());
 		const dist = (this.dist = new Float32Array(numV * numV).fill(Infinity));
 		const next = (this.next = new Int32Array(numV * numV).fill(-1));
-		for (let [u, v] of graph.edges()) {
+		for (const [u, v] of graph.edges()) {
 			const idx = u * numV + v;
 			dist[idx] = cost(u, v);
 			next[idx] = v;

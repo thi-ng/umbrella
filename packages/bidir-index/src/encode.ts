@@ -42,7 +42,7 @@ export const encodeObject = <V, K extends string = string>(
 	const keys = <K[]>Object.keys(obj);
 	const ids = indexKeys ? index.addAll(keys) : index.getAll(keys);
 	const res = new Array<V>(index.size).fill(defaultValue);
-	for (let id of ids) {
+	for (const id of ids) {
 		const val = obj[index.getID(id)!];
 		if (val != null) res[id] = val;
 	}
@@ -84,9 +84,9 @@ export const encodeObjectIterator = function* <V, K extends string = string>(
 	indexKeys = true
 ) {
 	if (indexKeys) {
-		for (let o of objects) index.addAll(<K[]>Object.keys(o));
+		for (const o of objects) index.addAll(<K[]>Object.keys(o));
 	}
-	for (let o of objects) {
+	for (const o of objects) {
 		yield* encodeObject(index, o, defaultValue, false);
 	}
 };
@@ -132,7 +132,7 @@ export const decodeObject = <V, K extends string = string>(
 	defaults?: Partial<Record<K, V>>
 ) => {
 	const res: Partial<Record<K, V>> = {};
-	for (let [k, id] of index) {
+	for (const [k, id] of index) {
 		const val = values[id] ?? defaults?.[k];
 		if (val != null) res[k] = val;
 	}

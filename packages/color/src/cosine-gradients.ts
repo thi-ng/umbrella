@@ -229,7 +229,7 @@ export const cosineGradientBuffer = (
 	cstride = 1,
 	estride = 4
 ) => {
-	for (let t of normRange(n - 1)) {
+	for (const t of normRange(n - 1)) {
 		setS4(buffer, cosineColor(spec, t), offset, 0, cstride);
 		offset += estride;
 	}

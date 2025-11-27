@@ -157,7 +157,7 @@ const __transformScope = defmulti<
 		// handler for processing the root node (just traverses children)
 		root: async ({ children }, ctx, acc) => {
 			if (!children) return;
-			for (let x of children![0].children!)
+			for (const x of children![0].children!)
 				await __transformScope(x, ctx, acc);
 		},
 
@@ -206,7 +206,7 @@ const __transformScope = defmulti<
 const __resolveVarName = (name: string, ctx: GeneratorContext) => {
 	if (name.indexOf(".") == -1) return name;
 	let resolved = "";
-	for (let x of name.split(".")) {
+	for (const x of name.split(".")) {
 		const $name = resolved + "." + x;
 		const $var = resolved ? ctx.vars[$name] : ctx.vars[x];
 		if ($var)
@@ -254,7 +254,7 @@ const __expandVar = async (
 	// apply modifiers in sequence, if any...
 	let value = result.result;
 	if (children![1].children) {
-		for (let mod of children![1].children) {
+		for (const mod of children![1].children) {
 			const modFn = ctx.mods[mod.result];
 			if (modFn) value = await modFn(value);
 			else throw new UnknownModifierError(mod.result);

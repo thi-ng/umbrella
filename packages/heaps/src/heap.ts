@@ -134,7 +134,7 @@ export class Heap<T>
 	}
 
 	into(vals: Iterable<T>) {
-		for (let v of vals) {
+		for (const v of vals) {
 			this.push(v);
 		}
 		return this;
@@ -149,7 +149,7 @@ export class Heap<T>
 	 */
 	pushPopAll(vals: Iterable<T>): Maybe<T> {
 		let res: any;
-		for (let v of vals) {
+		for (const v of vals) {
 			res = this.pushPop(v);
 		}
 		return <T>res;

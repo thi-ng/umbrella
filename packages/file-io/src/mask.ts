@@ -49,7 +49,7 @@ export const setPathMasks = (masks: [RegExp, string][]) => (MASKS = masks);
  * @param path
  */
 export const maskedPath = (path: string) => {
-	for (let [re, mask] of MASKS) {
+	for (const [re, mask] of MASKS) {
 		path = path.replace(re, mask);
 	}
 	return path;

@@ -129,7 +129,7 @@ export const absSkew: FnU2<VClock, number> = (a, b) =>
 export const compare: Comparator<VClock> = (a, b) => {
 	let ah = false;
 	let al = false;
-	for (let id of __uniqueIDs(a, b)) {
+	for (const id of __uniqueIDs(a, b)) {
 		const delta = (a[id] || 0) - (b[id] || 0);
 		ah ||= delta > 0;
 		al ||= delta < 0;
@@ -170,7 +170,7 @@ export const isAfter: Predicate2<VClock> = (a, b) => compare(a, b) > 0;
  * @param b -
  */
 export const equiv: Predicate2<VClock> = (a, b) => {
-	for (let id of __uniqueIDs(a, b)) {
+	for (const id of __uniqueIDs(a, b)) {
 		const va = a[id];
 		const vb = b[id];
 		if (va === undefined || vb === undefined || va !== vb) return false;

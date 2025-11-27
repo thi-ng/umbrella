@@ -29,7 +29,7 @@ export const IWatchMixin = mixin(<IWatch<any>>{
 	notifyWatches(this: _IWatch, oldState: any, newState: any) {
 		if (!this._watches) return;
 		const w = this._watches;
-		for (let id in w) {
+		for (const id in w) {
 			w[id](id, oldState, newState);
 		}
 	},

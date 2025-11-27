@@ -217,10 +217,10 @@ export class StreamSync<
 
 	addAll(src: Partial<A>) {
 		// pre-add all source ids for partitionSync
-		for (let id in src) {
+		for (const id in src) {
 			this.psync.add(id);
 		}
-		for (let id in src) {
+		for (const id in src) {
 			this.add((<any>src)[id], id);
 		}
 	}
@@ -248,11 +248,11 @@ export class StreamSync<
 
 	removeAll(src: Iterable<ISubscribable<any>>) {
 		// pre-remove all source ids for partitionSync
-		for (let s of src) {
+		for (const s of src) {
 			this.psync.delete(this.invRealSourceIDs.get(s.id)!);
 		}
 		let ok = true;
-		for (let s of src) {
+		for (const s of src) {
 			ok = this.remove(s) && ok;
 		}
 		return ok;
@@ -268,7 +268,7 @@ export class StreamSync<
 
 	getSources() {
 		const res: any = {};
-		for (let [id, src] of this.idSources) {
+		for (const [id, src] of this.idSources) {
 			res[this.invRealSourceIDs.get(id)!] = src;
 		}
 		return <A>res;
@@ -277,7 +277,7 @@ export class StreamSync<
 	unsubscribe(sub?: ISubscription<B, any>) {
 		if (!sub) {
 			LOGGER.debug(this.id, "unsub sources");
-			for (let s of this.sources.values()) {
+			for (const s of this.sources.values()) {
 				s.unsubscribe();
 			}
 			this.sources.clear();

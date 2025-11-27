@@ -28,7 +28,7 @@ export const traceLine = (
 ) => {
 	const pts = lineClipped(x1, y1, x2, y2, 0, 0, grid.size[0], grid.size[1]);
 	if (pts) {
-		for (let p of pts) fn(p);
+		for (const p of pts) fn(p);
 	}
 	return grid;
 };

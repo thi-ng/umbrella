@@ -49,9 +49,9 @@ export const tessellateFaces = (
 	faces: number[][],
 	tessellators: Iterable<Tessellator>
 ) => {
-	for (let fn of tessellators) {
+	for (const fn of tessellators) {
 		let newFaces: number[][] = [];
-		for (let face of faces) {
+		for (const face of faces) {
 			fn(tessel, newFaces, face);
 		}
 		faces = newFaces;

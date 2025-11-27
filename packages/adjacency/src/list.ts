@@ -33,7 +33,7 @@ export class AdjacencyList implements IGraph<number> {
 		for (let i = 0, n = adjacency.length; i < n; i++) {
 			const vertex = adjacency[i];
 			if (!vertex) continue;
-			for (let j of vertex) yield <Edge>[i, j];
+			for (const j of vertex) yield <Edge>[i, j];
 		}
 	}
 
@@ -146,7 +146,7 @@ export const adjListFromAdjacency = (src: Nullable<number[]>[]) => {
 	for (let i = 0, n = src.length; i < n; i++) {
 		const v = src[i];
 		if (!v) continue;
-		for (let w of v) res.addEdge(i, w);
+		for (const w of v) res.addEdge(i, w);
 	}
 	return res;
 };

@@ -126,7 +126,7 @@ const __resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 
 /** @internal */
 const __resolveBlocks = (ref: TangleRef, ctx: TangleCtx) => {
-	for (let id in ref.blocks) {
+	for (const id in ref.blocks) {
 		__resolveBlock(ref.blocks[id], ref, ctx);
 	}
 	return ref;
@@ -136,7 +136,7 @@ const __resolveBlocks = (ref: TangleRef, ctx: TangleCtx) => {
 const __parseFileMeta = (src: string): Record<string, string> => {
 	if (!src.startsWith("---\n")) return {};
 	const res: Record<string, string> = {};
-	for (let line of split(src.substring(4))) {
+	for (const line of split(src.substring(4))) {
 		if (line === "---") break;
 		const [key, val] = line.split(/:\s+/g);
 		res[key.trim()] = val.trim();
@@ -214,7 +214,7 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 	const sorted = Object.values(blocks).sort(compareByKey("start"));
 	let prev = 0;
 	let res: string[] = [];
-	for (let block of sorted) {
+	for (const block of sorted) {
 		if (meta.publish) {
 			res.push(src.substring(prev, Math.max(prev, block.matchStart)));
 			if (block.publish !== "no") {

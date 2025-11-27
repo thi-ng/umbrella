@@ -104,7 +104,7 @@ export const clipConvex = <ClipConvexFn>(
 				);
 				if (!clipped.length) return undefined;
 				const res: Polygon[] = [new Polygon(clipped)];
-				for (let child of $.children) {
+				for (const child of $.children) {
 					clipped = sutherlandHodgeman(child.points, boundary, c);
 					if (clipped.length) res.push(new Polygon(clipped));
 				}
@@ -122,7 +122,7 @@ export const clipConvex = <ClipConvexFn>(
 			group: ({ children, attribs }: Group, boundary) => {
 				boundary = ensureVertices(boundary);
 				const clipped: IHiccupShape2[] = [];
-				for (let c of children) {
+				for (const c of children) {
 					const res = clipConvex(c, boundary);
 					if (res) clipped.push(...(<IHiccupShape2[]>res));
 				}
@@ -159,7 +159,7 @@ export const clipConvex = <ClipConvexFn>(
 					[],
 					__copyAttribs($.attribs)
 				);
-				for (let sub of $.subPaths) {
+				for (const sub of $.subPaths) {
 					clipped = __clipVertices(
 						new Path(sub, [], __copyAttribs($.attribs)),
 						boundary

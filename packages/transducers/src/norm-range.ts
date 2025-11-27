@@ -63,7 +63,7 @@ export function* normRange2d(
 	includeLastY = true
 ) {
 	const rx = [...normRange(nx, includeLastX)];
-	for (let y of normRange(ny, includeLastY)) {
+	for (const y of normRange(ny, includeLastY)) {
 		yield* map((x) => [x, y], rx);
 	}
 }
@@ -86,7 +86,7 @@ export function* normRange3d(
 	includeLastZ = true
 ) {
 	const sliceXY = [...normRange2d(nx, ny, includeLastX, includeLastY)];
-	for (let z of normRange(nz, includeLastZ)) {
+	for (const z of normRange(nz, includeLastZ)) {
 		yield* map((xy) => [...xy, z], sliceXY);
 	}
 }

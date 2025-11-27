@@ -83,7 +83,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 			];
 			// pre-declare any primitive slice types used (e.g. `U8Slice`)
 			const slices = sliceTypes(coll);
-			for (let id of slices) {
+			for (const id of slices) {
 				const prim = PRIM_ALIASES[<WasmPrim>id];
 				if (!prim) continue;
 				res.push(
@@ -91,7 +91,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 				);
 			}
 			// ...then pre-declare any custom types in dependency order
-			for (let id of __declOrder(coll)) {
+			for (const id of __declOrder(coll)) {
 				const type = coll[id];
 				const name = __prefixedName(typePrefix, type.name, coll);
 				if (type.type == "funcptr") {
@@ -142,7 +142,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 			const name = typePrefix + e.name;
 			const lines: string[] = [];
 			lines.push(`enum ${name} {`);
-			for (let v of e.values) {
+			for (const v of e.values) {
 				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, lines, opts);
@@ -225,7 +225,7 @@ const __generateFields = (
 	const isUnion = parent.type === "union";
 	const name = typePrefix + parent.name;
 	let padID = 0;
-	for (let f of parent.fields) {
+	for (const f of parent.fields) {
 		// autolabel explicit padding fields
 		if (isPadding(f)) {
 			res.push(`uint8_t __pad${padID++}[${f.pad}];`);
@@ -258,7 +258,7 @@ const __generateFields = (
 		fn("align", `alignof(${name})`);
 		fn("size", `sizeof(${name})`);
 
-		for (let f of parent.fields) {
+		for (const f of parent.fields) {
 			if (isPadding(f)) continue;
 			fn(f.name + "_align", `alignof(${ftypes[f.name]})`);
 			!isUnion && fn(f.name + "_offset", `offsetof(${name}, ${f.name})`);

@@ -12,7 +12,7 @@
  * @param x -
  */
 export function* keys(x: any): IterableIterator<string> {
-	for (let k in x) {
+	for (const k in x) {
 		if (x.hasOwnProperty(k)) {
 			yield k;
 		}

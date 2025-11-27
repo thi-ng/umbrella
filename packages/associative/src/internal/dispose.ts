@@ -11,7 +11,7 @@ import { mixin } from "@thi.ng/api/mixin";
 export const __disposableValues = mixin({
 	[Symbol.dispose]() {
 		console.log("disposing... %s", this);
-		for (let x of this.values()) {
+		for (const x of this.values()) {
 			x[Symbol.dispose]?.();
 		}
 	},
@@ -26,7 +26,7 @@ export const __disposableValues = mixin({
 export const __disposableEntries = mixin({
 	[Symbol.dispose]() {
 		console.log("disposing... %s", this);
-		for (let [k, v] of this.entries()) {
+		for (const [k, v] of this.entries()) {
 			k[Symbol.dispose]?.();
 			v[Symbol.dispose]?.();
 		}

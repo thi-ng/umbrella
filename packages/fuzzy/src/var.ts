@@ -64,7 +64,7 @@ export const classify = <K extends string>(
 ) => {
 	let max = threshold;
 	let maxID: Maybe<K>;
-	for (let id in terms) {
+	for (const id in terms) {
 		const t = terms[id](x);
 		if (t >= max) {
 			max = t;
@@ -99,7 +99,7 @@ export const classify = <K extends string>(
  */
 export const evaluate = <K extends string>({ terms }: LVar<K>, x: number) => {
 	const res = <Record<K, number>>{};
-	for (let id in terms) {
+	for (const id in terms) {
 		res[id] = terms[id](x);
 	}
 	return res;

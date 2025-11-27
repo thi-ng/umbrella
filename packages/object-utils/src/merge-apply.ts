@@ -15,7 +15,7 @@ export const mergeApplyMap = <K, V>(
 	xforms: Map<K, V | Fn<V, V>>
 ): Map<K, V> => {
 	const res: Map<K, any> = copy(src, Map);
-	for (let [k, v] of xforms) {
+	for (const [k, v] of xforms) {
 		res.set(k, isFunction(v) ? v(res.get(k)) : v);
 	}
 	return res;
@@ -73,7 +73,7 @@ export const meldApplyObj = <V>(
 	src: IObjectOf<V>,
 	xforms: IObjectOf<V | Fn<V, V>>
 ) => {
-	for (let k in xforms) {
+	for (const k in xforms) {
 		if (isIllegalKey(k)) continue;
 		const v = xforms[k];
 		src[k] = isFunction(v) ? v(src[k]) : v;

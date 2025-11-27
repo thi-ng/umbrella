@@ -142,7 +142,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 			createShader: (ctxID, addr) => {
 				const buildAttribs = (spec: ShaderSpec) => {
 					const attribs: ShaderAttribSpecs = {};
-					for (let att of spec.attribs) {
+					for (const att of spec.attribs) {
 						attribs[att.name.deref()] = <ShaderAttribSpec>(
 							ShaderAttribType[att.type]
 						);
@@ -152,7 +152,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 
 				const buildVarying = (spec: ShaderSpec) => {
 					const varyings: ShaderVaryingSpecs = {};
-					for (let v of spec.varying) {
+					for (const v of spec.varying) {
 						varyings[v.name.deref()] = <ShaderVaryingSpec>(
 							ShaderAttribType[v.type]
 						);
@@ -162,7 +162,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 
 				const buildUniforms = (spec: ShaderSpec) => {
 					const uniforms: ShaderUniformSpecs = {};
-					for (let uni of spec.uniforms) {
+					for (const uni of spec.uniforms) {
 						uniforms[uni.name.deref()] = <UniformDecl>[
 							UniformType[uni.type],
 							(<any>uni.default)[UniformType[uni.type]],
@@ -189,7 +189,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 			createModel: (ctxID, addr) => {
 				const buildAttribs = (specs: ModelAttribSpec[]) => {
 					const attribs: WEBGL_ModelAttributeSpecs = {};
-					for (let att of specs) {
+					for (const att of specs) {
 						attribs[att.name.deref()] = <ModelAttributeSpec>{
 							type: att.type,
 							size: att.size,
@@ -207,7 +207,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 
 				const buildUniforms = (specs: ModelUniform[]) => {
 					const uniforms: WEBGL_UniformValues = {};
-					for (let uni of specs) {
+					for (const uni of specs) {
 						uniforms[uni.name.deref()] = <WEBGL_UniformValue>(
 							(<any>uni.value)[UniformType[uni.type]]
 						);

@@ -94,7 +94,7 @@ export const processImage = async (
 
 	try {
 		let bake: boolean;
-		for (let spec of specs) {
+		for (const spec of specs) {
 			ctx.logger.debug("processing spec:", spec);
 			[img, bake] = await processor(spec, img, ctx);
 			if (!bake) {

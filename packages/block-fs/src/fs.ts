@@ -529,11 +529,11 @@ export class BlockFS {
 		const { blockIndex, storage, tmp } = this;
 		const blockSize = storage.blockSize;
 		const updatedBlocks = new Set<number>();
-		for (let id of ids) {
+		for (const id of ids) {
 			blockIndex.setAt(id, state);
 			updatedBlocks.add(((id >>> 3) / blockSize) | 0);
 		}
-		for (let id of updatedBlocks) {
+		for (const id of updatedBlocks) {
 			this.opts.logger.debug("update block index", id);
 			const chunk = blockIndex.data.subarray(
 				id * blockSize,

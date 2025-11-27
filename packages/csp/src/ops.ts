@@ -11,10 +11,10 @@ export const broadcast = async <T>(
 	close = true
 ) => {
 	for await (let x of src) {
-		for (let chan of dest) chan.write(x);
+		for (const chan of dest) chan.write(x);
 	}
 	if (close) {
-		for (let chan of dest) chan.close();
+		for (const chan of dest) chan.close();
 	}
 };
 
@@ -24,7 +24,7 @@ export const concat = async <T>(
 	close = true
 ) => {
 	return (async () => {
-		for (let c of chans) {
+		for (const c of chans) {
 			await consumeWith(c, (x: T) => dest.write(x));
 		}
 		close && dest.close();
@@ -191,7 +191,7 @@ export const select = async <T>(
 ): Promise<[Maybe<T>, Channel<T>]> => {
 	const inputs = shuffle([input, ...rest]);
 	const sel = await Promise.race(inputs.map((x) => x.race()));
-	for (let chan of inputs) {
+	for (const chan of inputs) {
 		if (chan !== sel) chan.races.shift();
 	}
 	if (sel.writes.readable()) {

@@ -50,7 +50,7 @@ export const sequence = (
 	opts?: Partial<FiberOpts>
 ) =>
 	fiber(function* (ctx) {
-		for (let fiber of fibers) {
+		for (const fiber of fibers) {
 			const $fiber = ctx.fork(fiber);
 			while ($fiber.isActive()) yield;
 			if ($fiber.state === STATE_ERROR) throw $fiber.error;
@@ -91,7 +91,7 @@ export const first = (
 	fiber<Fiber>(function* (ctx) {
 		const $fibers = [...fibers].map((f) => ctx.fork(f));
 		while (true) {
-			for (let f of $fibers) {
+			for (const f of $fibers) {
 				if (!f.isActive()) return f;
 			}
 			yield;

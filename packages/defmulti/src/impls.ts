@@ -78,8 +78,8 @@ export const implementations = (
 	impls.length & 1 &&
 		illegalArgs("expected an even number of implementation items");
 	if (rels) {
-		for (let parent in rels) {
-			for (let fn of rels[parent]) {
+		for (const parent in rels) {
+			for (const fn of rels[parent]) {
 				fn.isa(id, parent);
 			}
 		}

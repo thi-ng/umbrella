@@ -61,7 +61,7 @@ export const fromIterableSync = <T>(
 	opts?: Partial<CommonOpts>
 ) =>
 	stream<T>((stream) => {
-		for (let s of src) {
+		for (const s of src) {
 			stream.next(s);
 		}
 		stream.closeIn !== "never" && stream.done();

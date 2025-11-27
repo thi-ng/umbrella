@@ -26,7 +26,7 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 		this.dependencies = new EquivMap<T, ArraySet<T>>();
 		this.dependents = new EquivMap<T, ArraySet<T>>();
 		if (edges) {
-			for (let [a, b] of edges) {
+			for (const [a, b] of edges) {
 				b != null ? this.addDependency(a, b) : this.addNode(a);
 			}
 		}
@@ -42,10 +42,10 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 
 	copy() {
 		const g = new DGraph<T>();
-		for (let e of this.dependencies) {
+		for (const e of this.dependencies) {
 			g.dependencies.set(e[0], e[1].copy());
 		}
-		for (let e of this.dependents) {
+		for (const e of this.dependents) {
 			g.dependents.set(e[0], e[1].copy());
 		}
 		return g;
@@ -69,7 +69,7 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 	}
 
 	addDependencies(node: T, deps: Iterable<T>) {
-		for (let d of deps) {
+		for (const d of deps) {
 			this.addDependency(node, d);
 		}
 	}
@@ -149,7 +149,7 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
 			const node = queue.first()!;
 			queue.delete(node);
 			/* eslint-disable-next-line no-useless-spread -- shallow copy required here */
-			for (let d of [...g.immediateDependencies(node)]) {
+			for (const d of [...g.immediateDependencies(node)]) {
 				g.removeEdge(node, d);
 				if (g.isLeaf(d)) {
 					queue.add(d);

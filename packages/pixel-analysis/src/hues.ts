@@ -36,7 +36,7 @@ export function* selectHueRange(
 	minSat: number
 ) {
 	const pred = __hueSelector(minHue, maxHue);
-	for (let col of colors) {
+	for (const col of colors) {
 		if (col[1] >= minSat && pred(col[0])) yield col;
 	}
 }
@@ -61,7 +61,7 @@ export function* selectHueRangeIDs(
 ) {
 	const pred = __hueSelector(minHue, maxHue);
 	let id = 0;
-	for (let col of colors) {
+	for (const col of colors) {
 		if (col[1] >= minSat && pred(col[0])) yield id;
 		id++;
 	}
@@ -88,7 +88,7 @@ export const countHueRange = (
 ) => {
 	const pred = __hueSelector(minHue, maxHue);
 	let count = 0;
-	for (let col of colors) {
+	for (const col of colors) {
 		if (col[1] >= minSat && pred(col[0])) count++;
 	}
 	return count;

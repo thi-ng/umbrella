@@ -40,8 +40,8 @@ export function* range2d(
 			illegalArity(args.length);
 	}
 	const rx = range(fromX, toX, stepX);
-	for (let y of range(fromY, toY, stepY)) {
-		for (let x of rx) {
+	for (const y of range(fromY, toY, stepY)) {
+		for (const x of rx) {
 			yield [x, y];
 		}
 	}

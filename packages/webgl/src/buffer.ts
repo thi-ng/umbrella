@@ -191,7 +191,7 @@ const __compileAttribs = (
 	mode: GLenum
 ) => {
 	if (attribs) {
-		for (let id in attribs) {
+		for (const id in attribs) {
 			__initBuffer(gl, attribs[id], gl.ARRAY_BUFFER, mode);
 		}
 	}
@@ -247,7 +247,7 @@ export const compileAttribPool = (
 ) => {
 	const buf = defBuffer(gl, pool.bytes(), target, mode, true);
 	const spec = <ModelAttributeSpecs>{};
-	for (let id of ids || Object.keys(pool.specs)) {
+	for (const id of ids || Object.keys(pool.specs)) {
 		const attr = pool.specs[id];
 		spec[id] = {
 			buffer: buf,

@@ -60,7 +60,7 @@ export class KdTreeSet<K extends ReadonlyVec>
 
 	into(ks: Iterable<K>, eps?: number) {
 		let ok = true;
-		for (let k of ks) {
+		for (const k of ks) {
 			ok = this.tree.set(k, k, eps) && ok;
 		}
 		return ok;

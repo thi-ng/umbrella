@@ -136,7 +136,7 @@ export const snormEinstein: FnN2 = (x, y) => (x + y) / (1 + x * y);
 export const ordinalSum =
 	(specs: { domain: Range; tnorm: FnN2 }[]): FnN2 =>
 	(x, y) => {
-		for (let s of specs) {
+		for (const s of specs) {
 			const [a, b] = s.domain;
 			if (x >= a && x <= b && y >= a && y <= b) {
 				return a + (b - a) * s.tnorm(norm(x, a, b), norm(y, a, b));

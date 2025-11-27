@@ -257,7 +257,7 @@ export const interpret = <T extends object>(
 	syms: Iterable<LSysSymbol>
 ) => {
 	const defaultImpl = impls[<any>DEFAULT];
-	for (let s of syms) {
+	for (const s of syms) {
 		(impls[s] || defaultImpl)?.(ctx, s);
 	}
 	return ctx;

@@ -34,7 +34,7 @@ interface Cell<T> {
  */
 export function* symmetric<T>(src: Iterable<T>): IterableIterator<T> {
 	let head: Maybe<Cell<T>> = undefined;
-	for (let x of src) {
+	for (const x of src) {
 		head = { x, n: head };
 		yield x;
 	}

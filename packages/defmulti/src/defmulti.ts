@@ -192,7 +192,7 @@ export function defmulti<T>(
 	};
 	fn.addAll = (_impls: IObjectOf<Implementation<T>>) => {
 		let ok = true;
-		for (let id in _impls) {
+		for (const id in _impls) {
 			ok = fn.add(id, _impls[id]) && ok;
 		}
 		DEFAULT in _impls && fn.setDefault(_impls[<any>DEFAULT]);
@@ -219,10 +219,10 @@ export function defmulti<T>(
 	};
 	fn.impls = () => {
 		const res = new Map<PropertyKey, any>();
-		for (let id in impls) {
+		for (const id in impls) {
 			res.set(id, impls[id]);
 		}
-		for (let id in rels) {
+		for (const id in rels) {
 			const impl = __findImpl(impls, rels, id);
 			if (impl) res.set(id, impl);
 		}
@@ -240,10 +240,10 @@ export function defmulti<T>(
 	fn.dependencies = function* (): IterableIterator<
 		Pair<PropertyKey, Maybe<PropertyKey>>
 	> {
-		for (let a in rels) {
-			for (let b of rels[a]) yield [a, b];
+		for (const a in rels) {
+			for (const b of rels[a]) yield [a, b];
 		}
-		for (let id in impls) {
+		for (const id in impls) {
 			!rels[id] && (yield [id, undefined]);
 		}
 	};
@@ -260,7 +260,7 @@ const __findImpl = (
 ) => {
 	const parents = rels[<any>id];
 	if (!parents) return;
-	for (let p of parents) {
+	for (const p of parents) {
 		let impl: Implementation<any> =
 			impls[<any>p] || __findImpl(impls, rels, p);
 		if (impl) return impl;
@@ -275,7 +275,7 @@ const __findAncestors = (
 ) => {
 	const parents = rels[<any>id];
 	if (parents) {
-		for (let p of parents) {
+		for (const p of parents) {
 			acc.push(p);
 			__findAncestors(acc, rels, p);
 		}
@@ -286,7 +286,7 @@ const __findAncestors = (
 /** @internal */
 const __makeRels = (spec: AncestorDefs) => {
 	const rels: IObjectOf<Set<PropertyKey>> = {};
-	for (let k in spec) {
+	for (const k in spec) {
 		const val = spec[k];
 		rels[k] =
 			val instanceof Set

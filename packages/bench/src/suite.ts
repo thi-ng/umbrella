@@ -12,7 +12,7 @@ export const suite = (
 	};
 	_opts.output && outputString(_opts.format.prefix());
 	const results: BenchmarkResult[] = [];
-	for (let c of cases) {
+	for (const c of cases) {
 		results.push(benchmark(c.fn, { ..._opts, ...c.opts, title: c.title }));
 	}
 	_opts.output && outputString(_opts.format.total(results));

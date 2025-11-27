@@ -22,7 +22,7 @@ export class DFS {
 	search(id: number) {
 		const { edges, marked } = this;
 		marked.setAt(id);
-		for (let n of this.graph.neighbors(id)) {
+		for (const n of this.graph.neighbors(id)) {
 			if (!marked.at(n)) {
 				edges[n] = id;
 				this.search(n);

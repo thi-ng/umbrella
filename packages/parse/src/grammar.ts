@@ -164,7 +164,7 @@ const __hasDynRuleRefs = (
 ): boolean => {
 	let res = term.id === "ref" && !builtins.has(__first(term).result);
 	if (term.children) {
-		for (let x of term.children) {
+		for (const x of term.children) {
 			res ||= __hasDynRuleRefs(x, builtins);
 		}
 	}
@@ -193,7 +193,7 @@ const __compile: MultiFn4<
 			const staticRules = new Set<ParseScope<string>>();
 			// dynamic rules = incl. refs to other rules
 			const dynamicRules = new Set<ParseScope<string>>();
-			for (let r of rules) {
+			for (const r of rules) {
 				if (__hasDynRuleRefs(r, builtins)) {
 					lang.rules[__first(r).result] = dynamic();
 					dynamicRules.add(r);
@@ -201,7 +201,7 @@ const __compile: MultiFn4<
 					staticRules.add(r);
 				}
 			}
-			for (let r of [...staticRules, ...dynamicRules]) {
+			for (const r of [...staticRules, ...dynamicRules]) {
 				const id = __first(r).result;
 				const parser = __compile(r, lang, opts, flags);
 				if (dynamicRules.has(r)) {
@@ -216,7 +216,7 @@ const __compile: MultiFn4<
 			const [id, body, xf] = $.children!;
 			opts.debug && console.log(`rule: ${id.result}`, xf);
 			const acc: Parser<string>[] = [];
-			for (let b of body.children!) {
+			for (const b of body.children!) {
 				const c = __compile(b, lang, opts, flags);
 				c && acc.push(c);
 			}
@@ -277,7 +277,7 @@ const __compile: MultiFn4<
 				$.children!;
 			const acc: Parser<string>[] = [__compile(term0, lang, opts, flags)];
 			if (terms) {
-				for (let c of terms) {
+				for (const c of terms) {
 					acc.push(__compile(__first(c), lang, opts, flags));
 				}
 			}

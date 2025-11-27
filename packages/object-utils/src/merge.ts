@@ -12,9 +12,9 @@ export const mergeMap = <K, V>(
 	dest: Map<K, V>,
 	...maps: Nullable<Map<K, V>>[]
 ) => {
-	for (let x of maps) {
+	for (const x of maps) {
 		if (x != null) {
-			for (let pair of x) {
+			for (const pair of x) {
 				dest.set(pair[0], pair[1]);
 			}
 		}

@@ -99,7 +99,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 				this.logger.debug(() => `0x${U64BIG(x)}`),
 			printHexdump: (addr: number, len: number) => {
 				this.ensureMemory();
-				for (let line of hexdumpLines(this.u8, addr, len)) {
+				for (const line of hexdumpLines(this.u8, addr, len)) {
 					this.logger.debug(line);
 				}
 			},
@@ -159,7 +159,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			const mod = queue.shift()!;
 			unique.add(mod);
 			if (!mod.deps) continue;
-			for (let d of mod.deps) {
+			for (const d of mod.deps) {
 				if (!unique.has(d)) queue.push(d);
 			}
 		}
@@ -219,7 +219,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	async init(exports: T) {
 		this.exports = exports;
 		this.ensureMemory(false);
-		for (let id of this.order) {
+		for (const id of this.order) {
 			this.logger.debug(`initializing API module: ${id}`);
 			const status = await this.modules[id].init(this);
 			if (!status) return false;
@@ -296,7 +296,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	getImports(): WebAssembly.Imports {
 		if (!this.imports) {
 			this.imports = { [this.id]: this.api };
-			for (let id in this.modules) {
+			for (const id in this.modules) {
 				this.imports[id] = this.modules[id].getImports();
 			}
 		}

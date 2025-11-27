@@ -225,7 +225,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 			return isPhaseUsed ? fns : undefined;
 		};
 		const result: CompiledServerRoute<CTX> = { ...route, handlers: {} };
-		for (let method in route.handlers) {
+		for (const method in route.handlers) {
 			const handler = route.handlers[<Method>method]!;
 			result.handlers[<Method>method] = {
 				fn: isFunction(handler) ? handler : handler.fn,
@@ -237,7 +237,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 	}
 
 	addRoutes(routes: ServerRoute<CTX>[]) {
-		for (let r of routes) {
+		for (const r of routes) {
 			this.logger.debug("registering route:", r.id, r.match);
 		}
 		this.router.addRoutes(routes.map(this.compileRoute.bind(this)));

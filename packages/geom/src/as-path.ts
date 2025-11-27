@@ -93,7 +93,7 @@ export const asPath = <AsPathFn>(
 					);
 				}
 				const res = pathFromCubics(asCubic(boundary, opts), attribs);
-				for (let child of children) {
+				for (const child of children) {
 					res.addSubPaths(
 						pathFromCubics(asCubic(child, opts)).segments
 					);

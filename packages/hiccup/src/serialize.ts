@@ -277,7 +277,7 @@ const __serializeTag = (tree: any[], opts: SerializeOpts, path: any[]) => {
 /** @internal */
 const __serializeAttribs = (attribs: any, opts: SerializeOpts) => {
 	let res = "";
-	for (let a in attribs) {
+	for (const a in attribs) {
 		if (a.startsWith("__")) continue;
 		const v = __serializeAttrib(attribs, a, deref(attribs[a]), opts);
 		v != null && (res += v);
@@ -321,7 +321,7 @@ const __attribPair = (a: string, v: any, opts: SerializeOpts) => {
 /** @internal */
 const __serializeDataAttribs = (data: any, opts: SerializeOpts) => {
 	let res = "";
-	for (let id in data) {
+	for (const id in data) {
 		let v = deref(data[id]);
 		isFunction(v) && (v = v(data));
 		v != null && (res += ` data-${id}="${__escape(v, opts)}"`);
@@ -373,7 +373,7 @@ const __serializeIter = (
 	const res: any[] = [];
 	const p = path.slice(0, path.length - 1);
 	let k = 0;
-	for (let i of iter) {
+	for (const i of iter) {
 		res.push(__serialize(i, opts, [...p, k++]));
 	}
 	return res.join("");

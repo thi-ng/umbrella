@@ -58,7 +58,7 @@ const __replaceNode = (node: any, next: any) => {
 		LOGGER.debug("\told: " + JSON.stringify(node));
 		LOGGER.debug("\tnew: " + JSON.stringify(next));
 	}
-	for (let k in node) {
+	for (const k in node) {
 		!next.hasOwnProperty(k) && delete node[k];
 	}
 	Object.assign(node, next);

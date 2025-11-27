@@ -46,12 +46,12 @@ export const defHatch = (opts: Partial<HatchOpts> = {}): FillFn => {
 					? { x: flipX, y: flipY, xy: flipXY }[opts.flip]
 					: ident),
 		});
-		for (let [a, b] of partition(2, grid)) {
+		for (const [a, b] of partition(2, grid)) {
 			unmapPoint(box, div2(null, a, maxg), a);
 			unmapPoint(box, div2(null, b, maxg), b);
 			const segments = clipLinePoly(a, b, shape.points);
 			if (segments) {
-				for (let s of segments) {
+				for (const s of segments) {
 					acc.children.push(line(s[0], s[1], false));
 				}
 			}

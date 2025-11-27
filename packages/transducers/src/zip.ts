@@ -82,7 +82,7 @@ export function* zip(...src: Iterable<any>[]): IterableIterator<any[]> {
 	const iters = src.map((s) => s[Symbol.iterator]());
 	while (true) {
 		const tuple = [];
-		for (let i of iters) {
+		for (const i of iters) {
 			let v = i.next();
 			if (v.done) {
 				return;

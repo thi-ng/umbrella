@@ -54,7 +54,7 @@ export const mergeClasses = (
 	if (isArray(val)) val = val.join(" ");
 	if (isString(val)) return $existing ? $existing + " " + val : val;
 	const classes = new Set($existing ? $existing.split(" ") : undefined);
-	for (let id in val) {
+	for (const id in val) {
 		deref(val[id]) ? classes.add(id) : classes.delete(id);
 	}
 	return [...classes].join(" ");

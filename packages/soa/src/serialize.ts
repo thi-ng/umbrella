@@ -66,14 +66,14 @@ export const serializer = <T extends SerializerSpecs>(
 ): Serializer<T> => ({
 	decode(tuple) {
 		const res = <SerializedTuple<T>>{};
-		for (let id in tuple) {
+		for (const id in tuple) {
 			res[id] = specs[id].decode(tuple[id]);
 		}
 		return res;
 	},
 	encode: (tuple) => {
 		const res = <Partial<Record<keyof T, Vec>>>{};
-		for (let id in tuple) {
+		for (const id in tuple) {
 			res[id] = specs[id].encode(tuple[id]);
 		}
 		return res;

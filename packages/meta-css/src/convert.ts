@@ -301,7 +301,7 @@ export const processMediaQueries = (
 	result: string[],
 	{ css: opts, logger, mediaQueryRules, specs }: ProcessOpts
 ) => {
-	for (let queryID in mediaQueryRules) {
+	for (const queryID in mediaQueryRules) {
 		const rules = __buildDecls(mediaQueryRules[queryID], specs);
 		logger.debug("mediaquery rules", queryID, rules);
 		result.push(
@@ -336,7 +336,7 @@ export const processForceIncludes = (
 			...split(readText(resolve(classes[0].substring(1)), logger)),
 		];
 	}
-	for (let id of classes) {
+	for (const id of classes) {
 		if (!id || id.startsWith("//")) continue;
 		const { token, query } = __parseMediaQueryToken(id, mediaQueryIDs);
 		let matches: string[];
@@ -351,7 +351,7 @@ export const processForceIncludes = (
 				continue;
 			}
 		}
-		for (let match of matches) {
+		for (const match of matches) {
 			logger.debug("including class:", match);
 			query
 				? __addMediaQueryDef(mediaQueryRules, query, `.${match}`, match)
@@ -374,9 +374,9 @@ export const processSpec = (
 	};
 
 	// process line by line, skip comment lines
-	for (let line of split(src)) {
+	for (const line of split(src)) {
 		if (!line || /^\s*\/\//.test(line)) continue;
-		for (let token of splitLine(line)) {
+		for (const token of splitLine(line)) {
 			if (!token) continue;
 			let $scope = ctx.curr;
 			switch ($scope.state) {

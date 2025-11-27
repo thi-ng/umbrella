@@ -133,7 +133,7 @@ export class Profiler
 		const res: IObjectOf<ProfileResult> = {};
 		const sessionTotal =
 			asMillis(_session.total) - _session.calls * _overhead;
-		for (let id in _profiles) {
+		for (const id in _profiles) {
 			const profile = _profiles[id];
 			const total = asMillis(profile.total) - profile.calls * _overhead;
 			const totalPercent = (total / sessionTotal) * 100;
@@ -346,7 +346,7 @@ export class Profiler
 			`"id","total (ms)","time/call (ms)","total (%)","calls","calls (%)","max depth"`,
 		];
 		const stats = this.deref();
-		for (let id of Object.keys(stats).sort()) {
+		for (const id of Object.keys(stats).sort()) {
 			const {
 				total,
 				timePerCall,

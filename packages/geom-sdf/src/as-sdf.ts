@@ -220,7 +220,7 @@ const __selectCombineOp = (
 	op: Fn<SDFn[], SDFn>,
 	paramOps: ParametricOps
 ) => {
-	for (let k of OPS) {
+	for (const k of OPS) {
 		if (attribs[k]) {
 			return paramOps[k](<any>attribs[k], children);
 		}

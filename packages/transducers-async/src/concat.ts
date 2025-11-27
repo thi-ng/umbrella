@@ -35,7 +35,7 @@ import { ensureIterable } from "./ensure.js";
 export async function* concat<T>(
 	...sources: Nullable<MaybeAsyncIterable<T>>[]
 ): AsyncIterableIterator<T> {
-	for (let src of sources) {
+	for (const src of sources) {
 		src != null && (yield* ensureIterable(src));
 	}
 }
