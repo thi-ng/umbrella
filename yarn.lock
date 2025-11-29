@@ -4179,6 +4179,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/bidir-index@workspace:packages/bidir-index"
   dependencies:
+    "@thi.ng/api": "npm:^8.12.9"
+    "@thi.ng/checks": "npm:^3.7.25"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"

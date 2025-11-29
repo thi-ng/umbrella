@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { IClear, ICopy, IEmpty } from "@thi.ng/api";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import type { BidirIndexOpts, SerializedBidirIndex } from "./api.js";
 
 /**
  * Bi-directional index to map arbitrary keys to numeric IDs and vice versa.
  */
-export class BidirIndex<T> {
+export class BidirIndex<T>
+	implements IClear, ICopy<BidirIndex<T>>, IEmpty<BidirIndex<T>>
+{
 	fwd: Map<T, number>;
 	rev: Map<number, T>;
 	nextID: number;
@@ -28,6 +32,30 @@ export class BidirIndex<T> {
 	 */
 	[Symbol.iterator]() {
 		return this.entries();
+	}
+
+	clear() {
+		this.fwd.clear();
+		this.rev.clear();
+		this.nextID = 0;
+	}
+
+	copy() {
+		const result = new BidirIndex<T>();
+		result.fwd = implementsFunction(this.fwd, "copy")
+			? this.fwd.copy()
+			: new Map(this.fwd);
+		result.rev = new Map(this.rev);
+		result.nextID = this.nextID;
+		return result;
+	}
+
+	empty() {
+		const result = new BidirIndex<T>();
+		if (implementsFunction(this.fwd, "empty")) {
+			result.fwd = this.fwd.empty();
+		}
+		return result;
 	}
 
 	/**

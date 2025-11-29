@@ -38,6 +38,10 @@
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
+	"dependencies": {
+		"@thi.ng/api": "^8.12.9",
+		"@thi.ng/checks": "^3.7.25"
+	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
@@ -53,6 +57,7 @@
 		"iterator",
 		"keys",
 		"map",
+		"number",
 		"typescript"
 	],
 	"publishConfig": {
