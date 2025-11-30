@@ -155,3 +155,64 @@ export const solveTridiagonal = (
 
 	return d;
 };
+
+/**
+ * Takes an augmented matrix (in column-major order) and uses Gaussian
+ * elimination to compute solution coefficients for its system of linear
+ * equations `Ax = b`.
+ *
+ * @remarks
+ * References:
+ * - https://en.wikipedia.org/wiki/Gaussian_elimination
+ * - https://www.geeksforgeeks.org/dsa/gaussian-elimination/
+ *
+ * @example
+ * ```ts tangle:../export/gaussian-elimination.ts
+ * import { gaussianElimination } from "@thi.ng/math";
+ *
+ * // in column-major order
+ * const matrix = [
+ *   [3, 2, 5],
+ *   [2, 3, -3],
+ *   [-4, 3, 1],
+ *   [3, 15, 14]
+ * ];
+ *
+ * console.log(gaussianElimination(matrix, 1));
+ * // [3, 1, 2] (rounded)
+ * ```
+ *
+ * @param mat
+ * @param degree
+ */
+export const gaussianElimination = (mat: number[][], degree: number) => {
+	const n = mat.length - 1;
+	const coeffs = [degree];
+	for (let i = 0; i < n; i++) {
+		let max = i;
+		const col = mat[i];
+		for (let j = i + 1; j < n; j++) {
+			if (Math.abs(col[j]) > Math.abs(col[max])) max = j;
+		}
+		for (let k = i; k <= n; k++) {
+			const col = mat[k];
+			const tmp = col[i];
+			col[i] = col[max];
+			col[max] = tmp;
+		}
+		for (let j = i + 1; j < n; j++) {
+			for (let k = n; k >= i; k--) {
+				mat[k][j] -= (mat[k][i] * mat[i][j]) / mat[i][i];
+			}
+		}
+	}
+	for (let j = n; j-- > 0; ) {
+		const d = mat[j][j];
+		let sum = 0;
+		for (let k = j + 1; k < n; k++) {
+			sum += mat[k][j] * coeffs[k];
+		}
+		coeffs[j] = (mat[n][j] - sum) / d;
+	}
+	return coeffs;
+};
