@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-11-25T12:20:38Z
+- **Last updated**: 2025-12-03T22:43:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bidir-index@1.4.0) (2025-12-03)
+
+#### 🚀 Features
+
+- add IClear, ICopy, IEmpty support, update deps ([5288572](https://github.com/thi-ng/umbrella/commit/5288572))
+
+#### ♻️ Refactoring
+
+- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bidir-index@1.3.0) (2025-06-09)
 

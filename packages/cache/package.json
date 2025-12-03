@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/cache",
-	"version": "2.3.58",
+	"version": "2.3.59",
 	"description": "In-memory cache implementations with ES6 Map-like API and different eviction strategies",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.9",
-		"@thi.ng/dcons": "^3.2.177"
+		"@thi.ng/api": "^8.12.10",
+		"@thi.ng/dcons": "^3.2.178"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

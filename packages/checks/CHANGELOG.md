@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-11-25T12:20:38Z
+- **Last updated**: 2025-12-03T22:43:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.8.0) (2025-12-03)
+
+#### 🚀 Features
+
+- add integer predicates ([ea6f8f8](https://github.com/thi-ng/umbrella/commit/ea6f8f8))
+  - add `isNegativeInt()` / `isNonPositiveInt()`
+  - add `isPositiveInt()` / `isNonNegativeInt()`
+- add more granular typed array checks ([43388f3](https://github.com/thi-ng/umbrella/commit/43388f3))
+  - add `isIntArray()`, `isUintArray()`, `isFloatArray()`
 
 ### [3.7.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.7.16) (2025-08-07)
 

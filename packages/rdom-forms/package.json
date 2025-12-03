@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-forms",
-	"version": "1.0.52",
+	"version": "1.0.53",
 	"description": "Data-driven declarative & extensible HTML form generation",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.9",
-		"@thi.ng/checks": "^3.7.25",
-		"@thi.ng/defmulti": "^3.0.85",
-		"@thi.ng/hiccup-html": "^2.7.41",
-		"@thi.ng/rdom": "^1.7.68",
-		"@thi.ng/rstream": "^9.3.7"
+		"@thi.ng/api": "^8.12.10",
+		"@thi.ng/checks": "^3.8.0",
+		"@thi.ng/defmulti": "^3.0.86",
+		"@thi.ng/hiccup-html": "^2.7.42",
+		"@thi.ng/rdom": "^1.7.69",
+		"@thi.ng/rstream": "^9.3.8"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",
