@@ -122,6 +122,9 @@
 		"./permutations": {
 			"default": "./permutations.js"
 		},
+		"./polynomial": {
+			"default": "./polynomial.js"
+		},
 		"./prec": {
 			"default": "./prec.js"
 		},
