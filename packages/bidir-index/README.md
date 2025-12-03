@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 210 standalone projects, maintained as part
+> This is one of 211 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -67,11 +67,14 @@ For Node.js REPL:
 const bi = await import("@thi.ng/bidir-index");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 884 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 999 bytes
 
 ## Dependencies
 
-None
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+
+Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## API
 

@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 210 standalone projects, maintained as part
+> This is one of 211 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -138,7 +138,7 @@ For Node.js REPL:
 const opt = await import("@thi.ng/shader-ast-optimize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.26 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.27 KB
 
 ## Dependencies
 
