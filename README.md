@@ -312,13 +312,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-11-25
+As of: 2025-12-03
 
-| Status                                           | Package                                 | Version                                                                                                       | Changelog                                    |
-|:-------------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/arcball`](./packages/arcball) | [![version](https://img.shields.io/npm/v/@thi.ng/arcball.svg)](https://www.npmjs.com/package/@thi.ng/arcball) | [changelog](./packages/arcball/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/mime`](./packages/mime)       | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)       | [changelog](./packages/mime/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/webgl`](./packages/webgl)     | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)     | [changelog](./packages/webgl/CHANGELOG.md)   |
+| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
+|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bidir-index`](./packages/bidir-index) | [![version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index) | [changelog](./packages/bidir-index/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)           | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)           | [changelog](./packages/checks/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/math`](./packages/math)               | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)               | [changelog](./packages/math/CHANGELOG.md)        |
 
 ### Algorithms & data structures
 
