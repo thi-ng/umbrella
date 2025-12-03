@@ -81,6 +81,12 @@ fn onToggleFullscreen(_: *const dom.types.Event, raw: ?*anyopaque) callconv(.c) 
     }
 }
 
+// mouse wheel event listener, for debug purposes only
+fn onWheel(e: *const dom.types.Event, _: ?*anyopaque) callconv(.c) void {
+    wasm.printFmt("wheel: {d}", .{e.body.wheel.deltaY});
+    dom.events.preventDefault();
+}
+
 fn resizeCanvas() void {
     const window = &STATE.window;
     dom.getWindowInfo(window);
@@ -162,6 +168,7 @@ fn initApp() !void {
             dom.types.Attrib.event("touchstart", startStroke, &STATE),
             dom.types.Attrib.event("touchmove", updateStroke, &STATE),
             dom.types.Attrib.event("touchend", endStroke, &STATE),
+            dom.types.Attrib.event("wheel", onWheel, &STATE),
         }),
     });
     resizeCanvas();
