@@ -81,7 +81,7 @@ const EVENT_MAP: [
 	],
 	[/^scroll$/, "scroll", EventType.SCROLL],
 	[/^touch(cancel|end|move|start)$/, "touch", EventType.TOUCH],
-	[/^wheel$/, "touch", EventType.WHEEL],
+	[/^wheel$/, "wheel", EventType.WHEEL],
 ];
 
 /** @internal */
