@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/colored-noise",
-	"version": "1.0.118",
+	"version": "1.0.119",
 	"description": "Customizable O(1) ES6 generators for colored noise",
 	"type": "module",
 	"module": "./index.js",
@@ -39,16 +39,16 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/binary": "^3.4.68",
+		"@thi.ng/binary": "^3.5.0",
 		"@thi.ng/random": "^4.1.35"
 	},
 	"devDependencies": {
 		"@thi.ng/api": "^8.12.10",
 		"@thi.ng/dsp": "^4.7.98",
-		"@thi.ng/dsp-io-wav": "^2.1.190",
-		"@thi.ng/text-canvas": "^3.0.101",
+		"@thi.ng/dsp-io-wav": "^2.1.191",
+		"@thi.ng/text-canvas": "^3.0.102",
 		"@thi.ng/transducers": "^9.6.19",
-		"@thi.ng/vectors": "^8.6.15",
+		"@thi.ng/vectors": "^8.6.16",
 		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"

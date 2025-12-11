@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/block-fs",
-	"version": "0.6.32",
+	"version": "0.6.33",
 	"description": "Customizable block-based storage, adapters & file system layer",
 	"type": "module",
 	"module": "./index.js",
@@ -44,8 +44,8 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.10",
 		"@thi.ng/args": "^3.2.5",
-		"@thi.ng/binary": "^3.4.68",
-		"@thi.ng/bitfield": "^2.4.22",
+		"@thi.ng/binary": "^3.5.0",
+		"@thi.ng/bitfield": "^2.4.23",
 		"@thi.ng/checks": "^3.8.0",
 		"@thi.ng/compare": "^2.4.36",
 		"@thi.ng/errors": "^2.5.50",

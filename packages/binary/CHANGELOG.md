@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-12-03T22:43:13Z
+- **Last updated**: 2025-12-11T14:18:22Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.5.0) (2025-12-11)
+
+#### 🚀 Features
+
+- add `DATAVIEW` and `IDataView` ([a54ca91](https://github.com/thi-ng/umbrella/commit/a54ca91))
+
+#### ♻️ Refactoring
+
+- internal update float<>int conversions, migrate `IS_LE` flag ([21646af](https://github.com/thi-ng/umbrella/commit/21646af))
+  - update to re-use LE/BE buffers
+  - migrate `IS_LE` to endianess.ts
 
 ### [3.4.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.26) (2024-06-21)
 
