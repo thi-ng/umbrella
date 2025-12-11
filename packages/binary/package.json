@@ -97,6 +97,9 @@
 		"./edit": {
 			"default": "./edit.js"
 		},
+		"./endianess": {
+			"default": "./endianess.js"
+		},
 		"./float": {
 			"default": "./float.js"
 		},
