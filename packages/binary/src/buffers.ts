@@ -1,0 +1,9 @@
+// thing:no-export
+export const F64 = new Float64Array(1);
+export const F32 = new Float32Array(F64.buffer);
+export const I8 = new Uint8Array(F64.buffer);
+export const U8 = new Uint8Array(F64.buffer);
+export const U16 = new Uint16Array(F64.buffer);
+export const U32 = new Uint32Array(F64.buffer);
+export const I16 = new Int32Array(F64.buffer);
+export const I32 = new Int32Array(F64.buffer);

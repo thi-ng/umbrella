@@ -5,6 +5,7 @@ export * from "./bytes.js";
 export * from "./constants.js";
 export * from "./count.js";
 export * from "./edit.js";
+export * from "./endianess.js";
 export * from "./float.js";
 export * from "./gray.js";
 export * from "./int.js";
