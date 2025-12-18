@@ -104,6 +104,9 @@
 		"./fit": {
 			"default": "./fit.js"
 		},
+		"./fraction": {
+			"default": "./fraction.js"
+		},
 		"./int": {
 			"default": "./int.js"
 		},
