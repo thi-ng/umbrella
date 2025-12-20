@@ -4,7 +4,7 @@ import {
 	type NumericArray,
 	type UIntArray,
 } from "@thi.ng/api/typedarray";
-import { DATAVIEW as DV } from "@thi.ng/binary/endianess";
+import { DATAVIEW as DV, type IDataView } from "@thi.ng/binary/endianess";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupportedFeature as unsupported } from "@thi.ng/errors/unsupported";
 import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
@@ -231,24 +231,17 @@ const __readEntry = (
 		case 3:
 		case 8: {
 			const offset = num < 3 ? addr + 8 : DV.getU32(buf, addr + 8, isLE);
-			const val: number[] = [];
 			const read = type === 3 ? DV.getU16 : DV.getI16;
-			for (let i = 0; i < num; i++)
-				val.push(read(buf, offset + i * 2, isLE));
-			return val;
+			return __readValues(read, num, 2, buf, offset, isLE);
 		}
 		// u32 (4) / i32 (9) / f32 (11)
 		case 4:
 		case 9:
 		case 11: {
 			const offset = num < 2 ? addr + 8 : DV.getU32(buf, addr + 8, isLE);
-			const val: number[] = [];
 			const read =
 				type === 4 ? DV.getU32 : type === 9 ? DV.getI32 : DV.getF32;
-			num *= 4;
-			for (let i = 0; i < num; i += 4)
-				val.push(read(buf, offset + i, isLE));
-			return val;
+			return __readValues(read, num, 4, buf, offset, isLE);
 		}
 		// rational
 		case 5:
@@ -268,15 +261,37 @@ const __readEntry = (
 		// f64
 		case 12: {
 			const offset = DV.getU32(buf, addr + 8, isLE);
-			const val: number[] = [];
-			num *= 8;
-			for (let i = 0; i < num; i += 8)
-				val.push(DV.getF64(buf, offset + i, isLE));
-			return val;
+			return __readValues(DV.getF64, num, 8, buf, offset, isLE);
 		}
 		default:
 			console.log("ignoring IFD entry w/ type:", type);
 	}
+};
+
+/**
+ * Reads array of values for a single IFD entry.
+ *
+ * @param read
+ * @param num
+ * @param size
+ * @param buf
+ * @param offset
+ * @param isLE
+ *
+ * @internal
+ */
+const __readValues = (
+	read: IDataView["getU32"],
+	num: number,
+	size: number,
+	buf: Uint8Array,
+	offset: number,
+	isLE: boolean
+) => {
+	num *= size;
+	const value: number[] = [];
+	for (let i = 0; i < num; i += size) value.push(read(buf, offset + i, isLE));
+	return value;
 };
 
 /**
@@ -454,6 +469,9 @@ const __readDeflate = async (buf: Uint8Array<ArrayBuffer>, bpp: number) => {
 
 /**
  * Applies predictor=2 differencing to decode given image chunk.
+ *
+ * Reference:
+ * - TIFF Rev.6 Section 14: Differencing Predictor
  *
  * @internal
  */
