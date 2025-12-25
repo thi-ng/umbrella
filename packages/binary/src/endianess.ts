@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { NumericArray, TypedArray } from "@thi.ng/api";
 import { F32, F64, I16, I32, I64, I8, U16, U32, U64, U8 } from "./buffers.js";
 

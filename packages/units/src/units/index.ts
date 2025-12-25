@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./accel.js";
 export * from "./angle.js";
 export * from "./area.js";

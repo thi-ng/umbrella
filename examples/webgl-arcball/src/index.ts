@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { defArcBall } from "@thi.ng/arcball";
 import { perspective } from "@thi.ng/matrices";
 import { gestureStream } from "@thi.ng/rstream-gestures";

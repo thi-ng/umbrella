@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 // thing:no-export
 export const F64 = new Float64Array(1);
 export const F32 = new Float32Array(F64.buffer);
