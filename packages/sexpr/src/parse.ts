@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
+import { isFloatString } from "@thi.ng/checks/is-float-string";
 import { isString } from "@thi.ng/checks/is-string";
 import { unescape } from "@thi.ng/strings/escape";
 import {
@@ -65,7 +66,7 @@ export const parse = (
 			} else if (
 				(t.startsWith("0x") &&
 					!isNaN((value = parseInt(t.substring(2), 16)))) ||
-				!isNaN((value = parseFloat(t)))
+				(isFloatString(t) && !isNaN((value = parseFloat(t))))
 			) {
 				node = { type: "num", value };
 			} else {
