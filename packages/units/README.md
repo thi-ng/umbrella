@@ -43,6 +43,7 @@
   - [Unit conversions](#unit-conversions)
   - [Quantities](#quantities)
     - [Constants](#constants)
+- [Domain-specific language](#domain-specific-language)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -52,7 +53,7 @@
 
 ## About
 
-Extensible SI unit creation, conversions, quantities & calculations (incl. ~170 predefined units & constants).
+Extensible SI unit creation, conversions, quantities & calculations (incl. List-like DSL and ~170 predefined units & constants).
 
 All unit definitions, quantities & conversions are based on the SI unit system &
 concepts described here:
@@ -618,6 +619,42 @@ Densities of selected materials:
 | `WATER`      | `kg/m3` |
 | `WOOD`       | `kg/m3` |
 
+## Domain-specific language
+
+The package includes a minimal Lisp-like formula expression language to compute,
+combine or convert quantities in a more concise style than the default JS API
+provided by this package.
+
+The minimal domain specific language defined here only includes the following
+functions (all following basic Lisp syntax, also see examples below):
+
+- Math operators: `+`, `-`, `*`, `/` to combine two or more quantities (all quantities MUST be compatible)
+- `area`: Computes the area of a given 2D quantity (e.g. `(area DIN_A4)` computes the area of a sheet of paper)
+- `volume`: Computes the volume of a given 3D quantity
+- `width`: Returns the 1st dimension quantity of a 2D/3D quantity (e.g. `(width DIN_A4)` = 210mm)
+- `height`: Returns the 2nd dimension quantity of a 2D/3D quantity
+- `depth`: Returns the 3rd dimension quantity of a 3D quantity
+
+Any other symbol is interpreted as quantity or pre-defined registered unit or
+constant (see readme). Quantities always have to be given without whitespace,
+i.e. `100mm` vs. `100 mm`.
+
+ ```ts
+import { $eval } from "@thi.ng/units";
+
+// compute weight in grams of A4 paper with 320 grams per square meter
+console.log($eval(`(g (* (area din_a4) 320gsm))`));
+// 19.9584
+
+// compute weight in kg of 1/2 inch thick 200x300mm glass plate
+console.log($eval(`(kg (* 200mm 300mm 0.5in 2500kg/m3))`));
+// 1.905
+
+// same as previous but using the `glass` density preset
+console.log($eval(`(kg (* 200mm 300mm 0.5in glass))`));
+// 1.905
+```
+
 ## Status
 
 **BETA** - possibly breaking changes forthcoming
@@ -650,7 +687,7 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.79 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.65 KB
 
 ## Dependencies
 
@@ -658,6 +695,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.79 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/sexpr](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
