@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2025-12-25T15:58:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,14 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.104](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log-file@2.1.104) (2024-02-22)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-tiff@0.1.0) (2025-12-25)
+
+#### 🚀 Features
+
+- import as new pkg ([fd2ca03](https://github.com/thi-ng/umbrella/commit/fd2ca03))
 
 #### ♻️ Refactoring
 
-- update all `node:*` imports ([c71a526](https://github.com/thi-ng/umbrella/commit/c71a526))
-
-### [2.1.80](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log-file@2.1.80) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- internal update __readEntry() ([becb91d](https://github.com/thi-ng/umbrella/commit/becb91d))
+  - extract __readValues() to dedupe logic

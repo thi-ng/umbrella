@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/grid-iterators",
-	"version": "4.0.145",
+	"version": "4.0.146",
 	"description": "2D grid and shape iterators w/ multiple orderings",
 	"type": "module",
 	"module": "./index.js",
@@ -41,14 +41,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.10",
-		"@thi.ng/arrays": "^2.14.3",
-		"@thi.ng/binary": "^3.5.0",
-		"@thi.ng/bitfield": "^2.4.23",
-		"@thi.ng/errors": "^2.5.50",
-		"@thi.ng/morton": "^3.1.133",
-		"@thi.ng/random": "^4.1.35",
-		"@thi.ng/transducers": "^9.6.19"
+		"@thi.ng/api": "^8.12.11",
+		"@thi.ng/arrays": "^2.14.4",
+		"@thi.ng/binary": "^3.6.0",
+		"@thi.ng/bitfield": "^2.4.24",
+		"@thi.ng/errors": "^2.6.0",
+		"@thi.ng/morton": "^3.1.134",
+		"@thi.ng/random": "^4.1.36",
+		"@thi.ng/transducers": "^9.6.20"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

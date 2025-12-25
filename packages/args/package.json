@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/args",
-	"version": "3.2.5",
+	"version": "3.2.6",
 	"description": "Declarative, functional CLI argument/options parser, app framework, arg value coercions, multi/sub-commands, usage generation, error handling etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.10",
-		"@thi.ng/checks": "^3.8.0",
-		"@thi.ng/errors": "^2.5.50",
-		"@thi.ng/logger": "^3.2.9",
-		"@thi.ng/strings": "^3.9.31",
-		"@thi.ng/text-format": "^2.2.50"
+		"@thi.ng/api": "^8.12.11",
+		"@thi.ng/checks": "^3.8.1",
+		"@thi.ng/errors": "^2.6.0",
+		"@thi.ng/logger": "^3.2.10",
+		"@thi.ng/strings": "^3.9.32",
+		"@thi.ng/text-format": "^2.2.51"
 	},
 	"devDependencies": {
 		"@types/node": "^24.10.1",

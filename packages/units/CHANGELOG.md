@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-12-03T22:43:13Z
+- **Last updated**: 2025-12-25T15:58:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/units@1.1.0) (2025-12-25)
+
+#### 🚀 Features
+
+- add `add()`/`sub()` ops for quantities ([0428a32](https://github.com/thi-ng/umbrella/commit/0428a32))
+- add Lisp-like formula DSL for more friendly unit calculations ([26c6628](https://github.com/thi-ng/umbrella/commit/26c6628))
+  - add `$eval()` function to execute DSL source code
+- add `gsm`/`g_m2` presets ([8900f8b](https://github.com/thi-ng/umbrella/commit/8900f8b))
+
+#### ♻️ Refactoring
+
+- add/update pkg exports ([7c7921e](https://github.com/thi-ng/umbrella/commit/7c7921e))
 
 ### [1.0.34](https://github.com/thi-ng/umbrella/tree/@thi.ng/units@1.0.34) (2025-12-03)
 

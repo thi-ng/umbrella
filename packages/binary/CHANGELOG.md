@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2025-12-11T14:18:22Z
+- **Last updated**: 2025-12-25T15:58:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.6.0) (2025-12-25)
+
+#### 🚀 Features
+
+- add IDataView I64/U64 support, add/update tests ([63b90f7](https://github.com/thi-ng/umbrella/commit/63b90f7))
 
 ## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.5.0) (2025-12-11)
 
