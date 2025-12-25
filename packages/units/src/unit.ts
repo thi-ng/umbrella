@@ -218,6 +218,96 @@ export const quantity = <T extends number | number[]>(
 	);
 
 /**
+ * Polymorphic function to sum to compatible quantities. Throws an error if `a`
+ * and `b` are incompatible.
+ *
+ * @example
+ * ```ts tangle:../export/add.ts
+ * import { add, convert, quantity } from "@thi.ng/units";
+ *
+ * const a = quantity(10, "mm");
+ * const b = quantity(1, "in");
+ *
+ * console.log(convert(add(a, b), "mm"));
+ * // 35.4
+ * ```
+ *
+ * @param a
+ * @param b
+ */
+export function add(a: Quantity<number>, b: Quantity<number>): Quantity<number>;
+export function add(
+	a: Quantity<number>,
+	b: Quantity<number[]>
+): Quantity<number[]>;
+export function add(
+	a: Quantity<number[]>,
+	b: Quantity<number>
+): Quantity<number[]>;
+export function add(
+	a: Quantity<number[]>,
+	b: Quantity<number[]>
+): Quantity<number[]>;
+export function add(a: Quantity<any>, b: Quantity<any>): any {
+	const $unit = unit(__qunit(a).dim, 1, 0, true);
+	const valA = convert(a, $unit);
+	const valB = convert(b, $unit);
+	const val = isArray(valA)
+		? isArray(valB)
+			? valA.map((x, i) => x + valB[i])
+			: valA.map((x) => x + valB)
+		: isArray(valB)
+		? valB.map((x) => x + valA)
+		: valA + valB;
+	return quantity(val, $unit);
+}
+
+/**
+ * Polymorphic function to subtract to compatible quantities. Throws an error if
+ * `a` and `b` are incompatible.
+ *
+ * @example
+ * ```ts tangle:../export/sub.ts
+ * import { sub, convert, quantity } from "@thi.ng/units";
+ *
+ * const a = quantity(10, "mm");
+ * const b = quantity(1, "in");
+ *
+ * console.log(convert(sub(a, b), "mm"));
+ * // -15.4
+ * ```
+ *
+ * @param a
+ * @param b
+ */
+export function sub(a: Quantity<number>, b: Quantity<number>): Quantity<number>;
+export function sub(
+	a: Quantity<number>,
+	b: Quantity<number[]>
+): Quantity<number[]>;
+export function sub(
+	a: Quantity<number[]>,
+	b: Quantity<number>
+): Quantity<number[]>;
+export function sub(
+	a: Quantity<number[]>,
+	b: Quantity<number[]>
+): Quantity<number[]>;
+export function sub(a: Quantity<any>, b: Quantity<any>): any {
+	const $unit = unit(__qunit(a).dim, 1, 0, true);
+	const valA = convert(a, $unit);
+	const valB = convert(b, $unit);
+	const val = isArray(valA)
+		? isArray(valB)
+			? valA.map((x, i) => x - valB[i])
+			: valA.map((x) => x - valB)
+		: isArray(valB)
+		? valB.map((x) => x - valA)
+		: valA - valB;
+	return quantity(val, $unit);
+}
+
+/**
  * Polymorphic function. Derives a new quantity or unit as the product of the
  * given quantities/units.
  *
@@ -481,7 +571,7 @@ const __ensureUnit = (x: MaybeUnit) => (isString(x) ? asUnit(x) : x);
 
 /** @internal */
 const __oneHot = (x: number) => {
-	const dims = <Dimensions>new Array<number>(7).fill(0);
+	const dims = <Dimensions>[0, 0, 0, 0, 0, 0, 0];
 	dims[x] = 1;
 	return dims;
 };
