@@ -82,7 +82,7 @@ For Node.js REPL:
 const sexpr = await import("@thi.ng/sexpr");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 876 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 905 bytes
 
 ## Dependencies
 
