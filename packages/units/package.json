@@ -42,7 +42,8 @@
 		"@thi.ng/api": "^8.12.10",
 		"@thi.ng/checks": "^3.8.0",
 		"@thi.ng/equiv": "^2.1.100",
-		"@thi.ng/errors": "^2.5.50"
+		"@thi.ng/errors": "^2.5.50",
+		"@thi.ng/sexpr": "^1.1.17"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",
@@ -112,6 +113,9 @@
 		},
 		"./constants/velocities": {
 			"default": "./constants/velocities.js"
+		},
+		"./dsl": {
+			"default": "./dsl.js"
 		},
 		"./unit": {
 			"default": "./unit.js"
