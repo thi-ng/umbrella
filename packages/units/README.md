@@ -53,7 +53,7 @@
 
 ## About
 
-Extensible SI unit creation, conversions, quantities & calculations (incl. List-like DSL and ~170 predefined units & constants).
+Extensible SI unit creation, conversions, quantities & calculations (incl. Lisp-like DSL and ~170 predefined units & constants).
 
 All unit definitions, quantities & conversions are based on the SI unit system &
 concepts described here:
