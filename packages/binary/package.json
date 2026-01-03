@@ -47,10 +47,15 @@
 		"typescript": "^5.9.3"
 	},
 	"keywords": [
+		"8bit",
+		"16bit",
+		"32bit",
+		"64bit",
 		"align",
 		"binary",
 		"conversion",
 		"count",
+		"dataview",
 		"float",
 		"graycode",
 		"integer",
