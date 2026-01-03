@@ -740,7 +740,7 @@ tasks:
 
 ## License
 
-&copy; 2015 - 2025 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2026 Karsten Schmidt // Apache Software License 2.0
 
 ## Contributors ✨
 
