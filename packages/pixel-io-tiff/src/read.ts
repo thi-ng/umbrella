@@ -323,9 +323,8 @@ const __readTiles = async (pixels: UIntArray, buf: Uint8Array, ifd: IFD) => {
 	for (let y = 0, i = 0; y < rows; y++) {
 		for (let x = 0; x < cols; x++, i++) {
 			const offset = <number>offsets[i];
-			const count = <number>counts[i];
 			const tile = await __readChunk(
-				buf.subarray(offset, offset + count),
+				buf.subarray(offset, offset + counts[i]),
 				meta,
 				compression,
 				predictor,
@@ -395,10 +394,9 @@ const __readStrips = async (pixels: UIntArray, buf: Uint8Array, ifd: IFD) => {
 	const mask = (1 << meta.bpp) - 1;
 	let destOffset = 0;
 	for (let i = 0; i < offsets.length; i++) {
-		const offset = <number>offsets[i];
-		const count = <number>counts[i];
+		const offset = offsets[i];
 		const stripe = await __readChunk(
-			buf.subarray(offset, offset + count),
+			buf.subarray(offset, offset + counts[i]),
 			meta,
 			compression,
 			predictor,
@@ -434,7 +432,7 @@ const __readChunk = async (
 	let stripe: UIntArray;
 	switch (compression) {
 		case Compression.Uncompressed:
-			stripe = await __readUncompressed(chunk, meta.bpp);
+			stripe = __readUncompressed(chunk, meta.bpp);
 			break;
 		case Compression.Deflate:
 			stripe = await __readDeflate(chunk.slice(), meta.bpp);
@@ -446,13 +444,13 @@ const __readChunk = async (
 		__horizontalDifferencing(stripe, meta.width, meta.spp, mask);
 	}
 	if (photoMode === PhotoMode.WhiteIsZero) {
-		for (let i = 0; i < stripe.length; i++) stripe[i] ^= mask;
+		for (let i = 0, n = stripe.length; i < n; i++) stripe[i] ^= mask;
 	}
 	return stripe;
 };
 
 /** @internal */
-const __readUncompressed = async (buf: Uint8Array, bpp: number) =>
+const __readUncompressed = (buf: Uint8Array, bpp: number) =>
 	typedArray(
 		bpp == 16 ? "u16" : "u8",
 		buf.buffer,
