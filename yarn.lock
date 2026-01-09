@@ -5947,6 +5947,7 @@ __metadata:
   resolution: "@thi.ng/pixel-io-geotiff@workspace:packages/pixel-io-geotiff"
   dependencies:
     "@thi.ng/api": "npm:^8.12.11"
+    "@thi.ng/math": "npm:^5.15.0"
     "@thi.ng/pixel": "npm:^7.5.20"
     esbuild: "npm:^0.27.0"
     geotiff: "npm:2.1.4-beta.1"

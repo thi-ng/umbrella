@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { typedArrayType, type TypedArray } from "@thi.ng/api";
+import { clamp } from "@thi.ng/math/interval";
 import { FLOAT_GRAY_RANGE, floatBuffer, type FloatBuffer } from "@thi.ng/pixel";
 import { Pool, fromArrayBuffer, type GeoTIFFImage } from "geotiff";
 
@@ -11,10 +12,16 @@ export interface GeoTiffOpts {
 	 */
 	channel: number;
 	/**
-	 * Min/max elevation range to configure image pixel format. If omitted, the
-	 * range will be auto-computed.
+	 * `[min,max]` elevation range to configure image pixel format. If omitted,
+	 * the range will be auto-computed. Also see {@link GeoTiffOpts.clamp}.
 	 */
 	range: [number, number];
+	/**
+	 * If given, elevations will be pre-clamped to given `[min,max]` range, and
+	 * {@link GeoTiffOpts.range} will be auto-computed (if enabled) using these
+	 * clamped values.
+	 */
+	clamp: [number, number];
 	/**
 	 * Optionally enable geotiff.js worker pool to speed up processing. Disabled
 	 * by default.
@@ -40,11 +47,16 @@ export const readGeoTiff = async (
 		opts.pool instanceof Pool
 			? opts.pool
 			: opts.pool
-			? new Pool()
+			? new Pool(typeof opts.pool === "number" ? opts.pool : undefined)
 			: undefined;
 	const data = <TypedArray>(
 		(await tiffImg.readRasters({ pool, samples: [opts.channel || 0] }))![0]
 	);
+	if (opts.clamp) {
+		const [min, max] = opts.clamp;
+		for (let i = 0, n = data.length; i < n; i++)
+			data[i] = clamp(data[i], min, max);
+	}
 	const type = typedArrayType(data);
 	const [min, max] = opts.range
 		? opts.range
