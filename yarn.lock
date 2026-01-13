@@ -5469,7 +5469,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/imago@workspace:packages/imago":
+"@thi.ng/imago@npm:^1.5.5, @thi.ng/imago@workspace:packages/imago":
   version: 0.0.0-use.local
   resolution: "@thi.ng/imago@workspace:packages/imago"
   dependencies:
@@ -6745,6 +6745,17 @@ __metadata:
     "@thi.ng/strings": "npm:^3.9.32"
     "@thi.ng/text-format": "npm:^2.2.51"
     "@thi.ng/transducers": "npm:^9.6.20"
+    esbuild: "npm:^0.27.0"
+    typedoc: "npm:^0.28.14"
+    typescript: "npm:^5.9.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/text-format-image@workspace:packages/text-format-image":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/text-format-image@workspace:packages/text-format-image"
+  dependencies:
+    "@thi.ng/imago": "npm:^1.5.5"
     esbuild: "npm:^0.27.0"
     typedoc: "npm:^0.28.14"
     typescript: "npm:^5.9.3"
