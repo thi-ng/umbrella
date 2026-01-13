@@ -64,12 +64,12 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"engines": {
-		"node": ">=18"
-	},
 	"browser": {
 		"process": false,
 		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
 	},
 	"files": [
 		"./*.js",
@@ -78,6 +78,9 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./iterm": {
+			"default": "./iterm.js"
 		}
 	},
 	"thi.ng": {

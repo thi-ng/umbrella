@@ -1,4 +1,5 @@
-import type { BufferLike, IntBufferLike } from "@thi.ng/imago";
+// SPDX-License-Identifier: Apache-2.0
+import type { IntBufferLike } from "@thi.ng/imago";
 import { output } from "@thi.ng/imago/ops";
 import { processImage } from "@thi.ng/imago/proc";
 
@@ -21,12 +22,22 @@ export interface ITermImageBufferOpts extends ITermImageBaseOpts {
 	quality: number;
 }
 
+/**
+ * Converts given integer pixel buffer (thi.ng/pixel compatible) to an iTerm
+ * image string using given options.
+ *
+ * @remarks
+ * Also see {@link iTermImageStringFromBinary}.
+ *
+ * @param src
+ * @param opts
+ */
 export const iTermImageStringFromIntBuffer = async (
 	src: IntBufferLike,
 	opts?: Partial<ITermImageBufferOpts>
 ) =>
-	iTermImageStringFromFile(
-		<BufferLike>(
+	iTermImageStringFromBinary(
+		<Buffer>(
 			await processImage(src, [
 				output({
 					id: "main",
@@ -37,8 +48,29 @@ export const iTermImageStringFromIntBuffer = async (
 		opts
 	);
 
-export const iTermImageStringFromFile = (
-	src: BufferLike,
+/**
+ * Converts given binary blob (representing the full contents of a supported
+ * image file format, e.g. JPG/PNG) to an iTerm image string using given
+ * options.
+ *
+ * @example
+ * ```ts tangle:../export/iterm-image-string.ts
+ * import { iTermImageStringFromBinary } from "@thi.ng/text-format-image";
+ * import { readFileSync } from "node:fs";
+ *
+ * // read JPG as binary blob
+ * const src = readFileSync("assets/examples/zig-cellular.jpg");
+ *
+ * // convert to image string to show image at 200px width
+ * // example will only work in terminals supporting the iTerm image format
+ * console.log(iTermImageStringFromBinary(src, { width: "400px" }));
+ * ```
+ *
+ * @param src
+ * @param opts
+ */
+export const iTermImageStringFromBinary = (
+	src: Uint8Array | Buffer,
 	{
 		mime = "image/jpg",
 		uniform = true,
