@@ -19,9 +19,9 @@ export class GridLayout implements IGridLayout<GridLayout> {
 	readonly gapX: number;
 	readonly gapY: number;
 
-	protected currCol: number;
-	protected currRow: number;
-	protected rows: number;
+	protected _currCol = 0;
+	protected _currRow = 0;
+	protected _rows = 0;
 
 	constructor(
 		parent: GridLayout | null,
@@ -44,13 +44,26 @@ export class GridLayout implements IGridLayout<GridLayout> {
 		this.cellHG = rowH + gapY;
 		this.gapX = gapX;
 		this.gapY = gapY;
-		this.currCol = 0;
-		this.currRow = 0;
-		this.rows = 0;
+	}
+
+	get currX() {
+		return this.x + this._currCol * this.cellWG;
+	}
+
+	get currY() {
+		return this.y + this._currRow * this.cellHG;
+	}
+
+	get currCol() {
+		return this._currCol;
+	}
+
+	get currRow() {
+		return this._currRow;
 	}
 
 	get height() {
-		return this.y + this.rows * this.cellHG;
+		return this.y + this._rows * this.cellHG;
 	}
 
 	colsForWidth(w: number) {
@@ -72,18 +85,18 @@ export class GridLayout implements IGridLayout<GridLayout> {
 		const { cellWG, cellHG, gapX, gapY, cols } = this;
 		const cspan = Math.min(spans[0], cols);
 		const rspan = spans[1];
-		if (this.currCol > 0) {
-			if (this.currCol + cspan > cols) {
-				this.currCol = 0;
-				this.currRow = this.rows;
+		if (this._currCol > 0) {
+			if (this._currCol + cspan > cols) {
+				this._currCol = 0;
+				this._currRow = this._rows;
 			}
 		} else {
-			this.currRow = this.rows;
+			this._currRow = this._rows;
 		}
 		const h = rspan * cellHG - gapY;
 		const cell = layoutBox(
-			this.x + this.currCol * cellWG,
-			this.y + this.currRow * cellHG,
+			this.x + this._currCol * cellWG,
+			this.y + this._currRow * cellHG,
 			cspan * cellWG - gapX,
 			h,
 			this.cellW,
@@ -93,7 +106,7 @@ export class GridLayout implements IGridLayout<GridLayout> {
 			[cspan, rspan]
 		);
 		this.propagateSize(rspan);
-		this.currCol = Math.min(this.currCol + cspan, cols) % cols;
+		this._currCol = Math.min(this._currCol + cspan, cols) % cols;
 		return cell;
 	}
 
@@ -120,8 +133,8 @@ export class GridLayout implements IGridLayout<GridLayout> {
 	 * @param rspan -
 	 */
 	propagateSize(rspan: number) {
-		this.rows = Math.max(this.rows, this.currRow + rspan);
-		this.parent?.propagateSize(this.rows);
+		this._rows = Math.max(this._rows, this._currRow + rspan);
+		this.parent?.propagateSize(this._rows);
 	}
 }
 
