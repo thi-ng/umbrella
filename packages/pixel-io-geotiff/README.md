@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 212 standalone projects, maintained as part
+> This is one of 213 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -66,11 +66,12 @@ For Node.js REPL:
 const geo = await import("@thi.ng/pixel-io-geotiff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 399 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 474 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [geotiff](https://github.com/geotiffjs/geotiff.js)
 

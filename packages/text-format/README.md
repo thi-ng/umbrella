@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 212 standalone projects, maintained as part
+> This is one of 213 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -25,6 +25,7 @@
     - [16bit color ANSI & HTML formats](#16bit-color-ansi--html-formats)
   - [Ad-hoc formatting of strings](#ad-hoc-formatting-of-strings)
 - [Status](#status)
+- [Support packages](#support-packages)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -199,6 +200,10 @@ const html = defFormatPresets(FMT_HTML_TACHYONS);
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btext-format%5D+in%3Atitle)
+
+## Support packages
+
+- [@thi.ng/text-format-image](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format-image) - Bitmap image formatting for CLI/Terminal
 
 ## Related packages
 
