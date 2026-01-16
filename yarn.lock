@@ -492,6 +492,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/calibration-sheet@workspace:examples/calibration-sheet":
+  version: 0.0.0-use.local
+  resolution: "@example/calibration-sheet@workspace:examples/calibration-sheet"
+  dependencies:
+    "@thi.ng/canvas": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/layout": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.9.3"
+    vite: "npm:^7.2.4"
+  languageName: unknown
+  linkType: soft
+
 "@example/canvas-dial@workspace:examples/canvas-dial":
   version: 0.0.0-use.local
   resolution: "@example/canvas-dial@workspace:examples/canvas-dial"
