@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -65,15 +65,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - regenerate types ([e619174](https://github.com/thi-ng/umbrella/commit/e619174))
-
-### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-canvas@0.1.1) (2022-12-22)
-
-#### 🩹 Bug fixes
-
-- fix imports ([32ae411](https://github.com/thi-ng/umbrella/commit/32ae411))
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-canvas@0.1.0) (2022-12-20)
-
-#### 🚀 Features
-
-- import as new pkg ([748460e](https://github.com/thi-ng/umbrella/commit/748460e))

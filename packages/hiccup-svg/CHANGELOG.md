@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -101,22 +101,3 @@ and/or version bumps of transitive dependencies.
 #### 🩹 Bug fixes
 
 - update ff() to always return string ([ae1d844](https://github.com/thi-ng/umbrella/commit/ae1d844))
-
-## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@4.3.0) (2022-06-20)
-
-#### 🚀 Features
-
-- update default precision to .001 ([4e62c9d](https://github.com/thi-ng/umbrella/commit/4e62c9d))
-
-### [4.2.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@4.2.13) (2022-06-09)
-
-#### 🩹 Bug fixes
-
-- fix [#351](https://github.com/thi-ng/umbrella/issues/351) convertTree() ([8dc0e86](https://github.com/thi-ng/umbrella/commit/8dc0e86))
-  - update gradientTreansform handling
-
-### [4.2.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@4.2.9) (2022-04-07)
-
-#### ♻️ Refactoring
-
-- replace deprecated .substr() w/ .substring() ([0710509](https://github.com/thi-ng/umbrella/commit/0710509))

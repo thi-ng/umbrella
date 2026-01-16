@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -36,18 +36,3 @@ and/or version bumps of transitive dependencies.
 - update BitField ctor, BitMatrix.row() ([e1c2f73](https://github.com/thi-ng/umbrella/commit/e1c2f73))
   - add opt BitField ctor arg for pre-existing backing buffer
   - update BitMatrix.row() to add `viewOnly` arg allowing to re-use storage
-
-### [2.2.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@2.2.9) (2022-10-26)
-
-#### ♻️ Refactoring
-
-- update backing array types from u32 -> u8 ([aaa0ecb](https://github.com/thi-ng/umbrella/commit/aaa0ecb))
-  - update BitField & BitMatrix to use Uint8Array
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@2.2.0) (2022-07-19)
-
-#### 🚀 Features
-
-- add BitField iterators ([3d415ef](https://github.com/thi-ng/umbrella/commit/3d415ef))
-- add ILength impl, add .density() ([2f6e654](https://github.com/thi-ng/umbrella/commit/2f6e654))
-  - refactor popCount() impls to use fn from [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/main/packages/binary) pkg

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/interceptors",
-	"version": "3.2.113",
+	"version": "3.2.114",
 	"description": "Interceptor based event bus, side effect & immutable state handling",
 	"type": "module",
 	"module": "./index.js",
@@ -42,12 +42,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.11",
-		"@thi.ng/atom": "^5.3.52",
-		"@thi.ng/checks": "^3.8.1",
-		"@thi.ng/errors": "^2.6.0",
-		"@thi.ng/logger": "^3.2.10",
-		"@thi.ng/paths": "^5.2.30"
+		"@thi.ng/api": "^8.12.12",
+		"@thi.ng/atom": "^5.3.53",
+		"@thi.ng/checks": "^3.8.2",
+		"@thi.ng/errors": "^2.6.1",
+		"@thi.ng/logger": "^3.2.11",
+		"@thi.ng/paths": "^5.2.31"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

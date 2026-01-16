@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -89,10 +89,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add AHashGrid and HashGrid2/3 impls ([493358a](https://github.com/thi-ng/umbrella/commit/493358a))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.2.0) (2022-05-02)
-
-#### 🚀 Features
-
-- add custom dist fn for NdQuadtreeMap/Set too ([5fccbd3](https://github.com/thi-ng/umbrella/commit/5fccbd3))
-  - minor refactor KdTreeMap dist fn handling

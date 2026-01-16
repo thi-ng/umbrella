@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -34,9 +34,3 @@ and/or version bumps of transitive dependencies.
 - return optimized blend fns ([1c408c7](https://github.com/thi-ng/umbrella/commit/1c408c7))
   - add PD coefficient checks in porterDuff()/porterDuffInt()
   - return optimized blend fns if one or both coeffs are zero
-
-### [2.1.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/porter-duff@2.1.13) (2022-09-27)
-
-#### ♻️ Refactoring
-
-- add BlendFn types ([a8ff0aa](https://github.com/thi-ng/umbrella/commit/a8ff0aa))

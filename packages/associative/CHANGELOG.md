@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -132,15 +132,3 @@ and/or version bumps of transitive dependencies.
     (e.g. for reproducible behavior/branching)
   - update tests
   - update deps (add [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random))
-
-## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.0) (2022-07-19)
-
-#### 🚀 Features
-
-- add BidirIndex & tests ([26f749f](https://github.com/thi-ng/umbrella/commit/26f749f))
-
-### [6.1.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.1.9) (2022-06-09)
-
-#### ♻️ Refactoring
-
-- various (minor) TS4.7 related updates/fixes ([9d9ecae](https://github.com/thi-ng/umbrella/commit/9d9ecae))

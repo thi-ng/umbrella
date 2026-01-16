@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -135,30 +135,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
-
-## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.5.0) (2022-12-29)
-
-#### 🚀 Features
-
-- add Floyd-Rivest impl, update readme ([7773d59](https://github.com/thi-ng/umbrella/commit/7773d59))
-
-## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.4.0) (2022-10-31)
-
-#### 🚀 Features
-
-- add topoSort() ([f7f2e20](https://github.com/thi-ng/umbrella/commit/f7f2e20))
-  - add topoSort() as lightweight alt for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/main/packages/dgraph)
-  - add tests
-  - update readme
-
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.3.0) (2022-07-08)
-
-#### 🚀 Features
-
-- add blit1d/2d() functions ([56e8373](https://github.com/thi-ng/umbrella/commit/56e8373))
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.2.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add argSort() ([4b65c36](https://github.com/thi-ng/umbrella/commit/4b65c36))

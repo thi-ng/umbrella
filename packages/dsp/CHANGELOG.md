@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -73,19 +73,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add FilterFeedbackDelay ([d69b3bc](https://github.com/thi-ng/umbrella/commit/d69b3bc))
-
-### [4.2.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.2.17) (2022-10-17)
-
-#### 🩹 Bug fixes
-
-- add missing opt args for modOsc() ([e67c110](https://github.com/thi-ng/umbrella/commit/e67c110))
-
-## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.2.0) (2022-04-07)
-
-#### 🚀 Features
-
-- add opt Osc() ctor phase arg, fix [#340](https://github.com/thi-ng/umbrella/issues/340) ([f798c9d](https://github.com/thi-ng/umbrella/commit/f798c9d))
-  - update osc() factory fn
-  - update Osc.setFreq() signatures
-  - add tests
-  - add/update docs

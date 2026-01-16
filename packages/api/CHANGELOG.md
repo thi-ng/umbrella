@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -64,31 +64,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add narrow/widenType() fns ([5ce9938](https://github.com/thi-ng/umbrella/commit/5ce9938))
-
-## [8.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.6.0) (2022-12-16)
-
-#### 🚀 Features
-
-- add SomeRequired type alias ([ff28e71](https://github.com/thi-ng/umbrella/commit/ff28e71))
-
-## [8.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.5.0) (2022-11-28)
-
-#### 🚀 Features
-
-- add boolean result for INotifiy.notify(), update mixin ([f4cb33a](https://github.com/thi-ng/umbrella/commit/f4cb33a))
-
-### [8.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.4.5) (2022-11-01)
-
-#### 🩹 Bug fixes
-
-- off-by-one error for BIT_SHIFTS LUT (f64) ([dae2279](https://github.com/thi-ng/umbrella/commit/dae2279))
-
-## [8.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.4.0) (2022-08-15)
-
-#### 🚀 Features
-
-- add i64/u64 support for typed arrays ([0bb5277](https://github.com/thi-ng/umbrella/commit/0bb5277))
-  - add various 64bit bigint related types & lookups
-  - add BIT_SHIFTS LUT
-  - update sizeOf()
-  - update typedArray()

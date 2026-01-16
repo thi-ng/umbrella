@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -93,24 +93,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add altS() combinator ([52c76ca](https://github.com/thi-ng/umbrella/commit/52c76ca))
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.2.0) (2022-06-15)
-
-#### 🚀 Features
-
-- add new transformers (json, numbers) ([2087131](https://github.com/thi-ng/umbrella/commit/2087131))
-  - add xfJson(), json() transform
-  - add int(), hexInt(), float() transform syntax sugar
-  - add `json` as built-in tx for grammar
-
-### [2.1.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.1.8) (2022-06-09)
-
-#### ♻️ Refactoring
-
-- various (minor) TS4.7 related updates/fixes ([9d9ecae](https://github.com/thi-ng/umbrella/commit/9d9ecae))
-
-### [2.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.1.5) (2022-03-11)
-
-#### ♻️ Refactoring
-
-- add type hint (TS4.6) ([6cd42e8](https://github.com/thi-ng/umbrella/commit/6cd42e8))

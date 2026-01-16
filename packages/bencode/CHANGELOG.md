@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -39,11 +39,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [2.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@2.1.6) (2022-04-07)
-
-#### 🩹 Bug fixes
-
-- fix [#342](https://github.com/thi-ng/umbrella/issues/342), support signed ints ([66615be](https://github.com/thi-ng/umbrella/commit/66615be))
-  - add inf/NaN checks
-  - add tests

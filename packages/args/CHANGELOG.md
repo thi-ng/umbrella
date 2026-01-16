@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -180,22 +180,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
-
-### [2.2.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.2.15) (2022-12-29)
-
-#### ♻️ Refactoring
-
-- update "no-browser" pkg handling ([0e84f1b](https://github.com/thi-ng/umbrella/commit/0e84f1b))
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.2.0) (2022-08-15)
-
-#### 🚀 Features
-
-- add ParseError, update parse() err handling ([c854a13](https://github.com/thi-ng/umbrella/commit/c854a13))
-  - update parse() to re-throw any caught error wrapped as ParseError
-
-### [2.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.1.6) (2022-04-07)
-
-#### ♻️ Refactoring
-
-- replace deprecated .substr() w/ .substring() ([0710509](https://github.com/thi-ng/umbrella/commit/0710509))

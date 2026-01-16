@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/markdown-table",
-	"version": "1.0.45",
+	"version": "1.0.46",
 	"description": "Markdown table formatter/generator with support for column alignments",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.11",
-		"@thi.ng/checks": "^3.8.1",
-		"@thi.ng/compose": "^3.0.48",
-		"@thi.ng/errors": "^2.6.0",
-		"@thi.ng/strings": "^3.9.32",
-		"@thi.ng/transducers": "^9.6.20"
+		"@thi.ng/api": "^8.12.12",
+		"@thi.ng/checks": "^3.8.2",
+		"@thi.ng/compose": "^3.0.49",
+		"@thi.ng/errors": "^2.6.1",
+		"@thi.ng/strings": "^3.9.33",
+		"@thi.ng/transducers": "^9.6.21"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -75,15 +75,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-
-### [2.1.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.1.12) (2022-07-19)
-
-#### ♻️ Refactoring
-
-- update deprecated DCons call sites ([2bbacf7](https://github.com/thi-ng/umbrella/commit/2bbacf7))
-
-### [2.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.1.5) (2022-03-11)
-
-#### ♻️ Refactoring
-
-- update ConsCell refs/imports ([a883993](https://github.com/thi-ng/umbrella/commit/a883993))

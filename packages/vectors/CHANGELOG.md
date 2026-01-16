@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -279,42 +279,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add hash2/3 fns ([30383fe](https://github.com/thi-ng/umbrella/commit/30383fe))
-
-### [7.5.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.24) (2022-11-23)
-
-#### 🩹 Bug fixes
-
-- update randNormDistrib() args/types ([7b419c0](https://github.com/thi-ng/umbrella/commit/7b419c0))
-  - add VecOpFNO/VecOpNFO fn type aliases
-  - update all randNormDistrib() versions
-    - swap 2nd & 3rd args and make both optional
-
-### [7.5.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.11) (2022-08-06)
-
-#### ⏱ Performance improvements
-
-- add normalize2/3/4 fixed versions ([acd4a14](https://github.com/thi-ng/umbrella/commit/acd4a14))
-- add direction2/3, update callsites ([f3dcda8](https://github.com/thi-ng/umbrella/commit/f3dcda8))
-
-### [7.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.2) (2022-05-03)
-
-#### 🩹 Bug fixes
-
-- fix clamp01/11 signatures ([10bc32e](https://github.com/thi-ng/umbrella/commit/10bc32e))
-
-### [7.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.1) (2022-04-07)
-
-#### ⏱ Performance improvements
-
-- update cartesian2 impl ([03722d9](https://github.com/thi-ng/umbrella/commit/03722d9))
-  - avoid extraneous multiplies
-
-## [7.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add select() fn ([b7f9df1](https://github.com/thi-ng/umbrella/commit/b7f9df1))
-
-#### 🩹 Bug fixes
-
-- centered handling in standardize() ([8a5a81f](https://github.com/thi-ng/umbrella/commit/8a5a81f))

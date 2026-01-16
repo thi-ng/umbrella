@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -80,34 +80,3 @@ and/or version bumps of transitive dependencies.
 - extract DiagonalSlopeOpts ([e08857d](https://github.com/thi-ng/umbrella/commit/e08857d))
 - update diagonalEnds2d() opts ([d14458a](https://github.com/thi-ng/umbrella/commit/d14458a))
   - make `all` optional
-
-### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.0.1) (2022-12-29)
-
-#### 🩹 Bug fixes
-
-- add missing type exports ([879c11c](https://github.com/thi-ng/umbrella/commit/879c11c))
-
-#### ♻️ Refactoring
-
-- add GridIterator2D/3D type aliases ([610ad0e](https://github.com/thi-ng/umbrella/commit/610ad0e))
-
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.0.0) (2022-12-22)
-
-#### 🛑 Breaking changes
-
-- add point transforms & global options ([1861154](https://github.com/thi-ng/umbrella/commit/1861154))
-- BREAKING CHANGE: update function signatures, switch to using options object as arg
-  - add `GridIterOpts` interface
-  - add `PointTransform` and implementations:
-  - add flipX/Y/XY, swapXY transforms
-  - update most iterators to use new options
-
-#### 🩹 Bug fixes
-
-- fix imports ([d4cede6](https://github.com/thi-ng/umbrella/commit/d4cede6))
-
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@2.3.0) (2022-04-07)
-
-#### 🚀 Features
-
-- add diamondSquare() ([4fabaad](https://github.com/thi-ng/umbrella/commit/4fabaad))

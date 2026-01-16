@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -79,28 +79,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update remaining type imports (TS5.0) in various pkgs ([e0edf26](https://github.com/thi-ng/umbrella/commit/e0edf26))
-
-## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.4.0) (2022-07-08)
-
-#### 🚀 Features
-
-- add blitMask() & docs ([a6cf74a](https://github.com/thi-ng/umbrella/commit/a6cf74a))
-- add clearFormat() ([83f04cc](https://github.com/thi-ng/umbrella/commit/83f04cc))
-- add canvasFromText(), update Canvas ([e8baa0b](https://github.com/thi-ng/umbrella/commit/e8baa0b))
-  - update deps
-  - add canvasFromText() factory fn
-  - add ICopy impl for Canvas
-
-### [2.3.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.3.8) (2022-06-28)
-
-#### ♻️ Refactoring
-
-- update/simplify formatCanvas() ([e2f3ab9](https://github.com/thi-ng/umbrella/commit/e2f3ab9))
-  - re-use new single-line formatting fns from [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/main/packages/text-format)
-
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.3.0) (2022-04-07)
-
-#### 🚀 Features
-
-- update Canvas.setAt() ([7df033f](https://github.com/thi-ng/umbrella/commit/7df033f))
-  - allow pixel value to be number or string

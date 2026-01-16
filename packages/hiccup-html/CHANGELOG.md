@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -77,9 +77,3 @@ and/or version bumps of transitive dependencies.
 
 - update height handling in metaViewport() ([f142348](https://github.com/thi-ng/umbrella/commit/f142348))
   - add ViewportOpts docstrings
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.2.0) (2022-11-30)
-
-#### 🚀 Features
-
-- add comment(), related to [#367](https://github.com/thi-ng/umbrella/issues/367) ([fe952d5](https://github.com/thi-ng/umbrella/commit/fe952d5))

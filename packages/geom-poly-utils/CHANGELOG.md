@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -71,29 +71,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-
-### [2.3.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@2.3.6) (2022-08-06)
-
-#### ⏱ Performance improvements
-
-- update vector fns ([1ac507f](https://github.com/thi-ng/umbrella/commit/1ac507f))
-
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@2.3.0) (2022-06-23)
-
-#### 🚀 Features
-
-- add boundingCircle/Sphere() ([2f9ff9a](https://github.com/thi-ng/umbrella/commit/2f9ff9a))
-
-#### ⏱ Performance improvements
-
-- avoid destructuring in boundingCircle/Sphere() ([c46836c](https://github.com/thi-ng/umbrella/commit/c46836c))
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@2.2.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add bounds2/3() fns ([2385eb0](https://github.com/thi-ng/umbrella/commit/2385eb0))
-
-#### 🩹 Bug fixes
-
-- fix equilateralTriangle2() ([c37c27e](https://github.com/thi-ng/umbrella/commit/c37c27e))

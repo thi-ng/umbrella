@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -25,18 +25,3 @@ and/or version bumps of transitive dependencies.
   - also check for `import.meta.env.UMBRELLA_GLOBALS` for non-ViteJS tooling
   - btw. this is **not** a fix for the esbuild issue in [#425](https://github.com/thi-ng/umbrella/issues/425)
   (but part of its solution posted in comments)
-
-### [1.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.1.15) (2022-10-29)
-
-#### 🩹 Bug fixes
-
-- fix env var check ([#361](https://github.com/thi-ng/umbrella/issues/361)) ([ac45723](https://github.com/thi-ng/umbrella/commit/ac45723))
-  - apply same fix as in [1d3a805f8](https://github.com/thi-ng/umbrella/commit/1d3a805f8)
-
-### [1.1.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.1.13) (2022-10-04)
-
-#### 🩹 Bug fixes
-
-- update expose switch logic ([9a98c3e](https://github.com/thi-ng/umbrella/commit/9a98c3e))
-  - remove support for obsolete (& broken) snowpack setup
-  - add support for Vite's env var handling

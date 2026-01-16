@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -497,89 +497,3 @@ and/or version bumps of transitive dependencies.
   - add SamplingOpts support for groups
   - migrate internal helpers
   - update export maps
-
-## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.1.0) (2022-12-22)
-
-#### 🚀 Features
-
-- add SVG default attribs & setter ([3cb07a6](https://github.com/thi-ng/umbrella/commit/3cb07a6))
-  - set defaults to no fill & black stroke
-  - add setSvgDefaultAttribs()
-
-# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.0.0) (2022-12-10)
-
-#### 🛑 Breaking changes
-
-- unify function naming ([980f625](https://github.com/thi-ng/umbrella/commit/980f625))
-- BREAKING CHANGE: rename rect & aabb ctor fns
-  - rename rectFromCentroid => rectWithCentroid
-  - rename rectFromCentroidWithMargin => rectWithCentroidAndMargin
-  - same for aabb versions
-
-#### 🚀 Features
-
-- add AABB.toHiccup() impl ([2c419cc](https://github.com/thi-ng/umbrella/commit/2c419cc))
-- add startWithCentroid(), add docs ([6b4df6a](https://github.com/thi-ng/umbrella/commit/6b4df6a))
-- update vertices(), config via attribs ([b5a53ba](https://github.com/thi-ng/umbrella/commit/b5a53ba))
-  - add support for per-shape config overrides via `__samples` attrib object
-  - add docs
-
-#### 🩹 Bug fixes
-
-- correct withAttribs() return type ([867c302](https://github.com/thi-ng/umbrella/commit/867c302))
-- update applyTransforms() ([b6262c2](https://github.com/thi-ng/umbrella/commit/b6262c2))
-  - always remove all spatial transform attribs
-
-### [3.4.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.4.6) (2022-08-06)
-
-#### ⏱ Performance improvements
-
-- update vector fns ([d8726c9](https://github.com/thi-ng/umbrella/commit/d8726c9))
-
-## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.4.0) (2022-06-28)
-
-#### 🚀 Features
-
-- add IAttributed impls for all shape types ([ccb40f1](https://github.com/thi-ng/umbrella/commit/ccb40f1))
-- add new transform ops & helpers ([cd8217c](https://github.com/thi-ng/umbrella/commit/cd8217c))
-  - add applyTransforms(), rotate(), scale()
-  - add internal helpers
-  - update transform() rect coercion (now => Quad, previous Polygon)
-- update edges(), support more types ([3e1b340](https://github.com/thi-ng/umbrella/commit/3e1b340))
-- update warpPoints() args, add docs ([50cb467](https://github.com/thi-ng/umbrella/commit/50cb467))
-- add AABB support for intersects() ([768dddd](https://github.com/thi-ng/umbrella/commit/768dddd))
-
-#### 🩹 Bug fixes
-
-- update AABB/Rect.offset(), clamp size to zero ([620121d](https://github.com/thi-ng/umbrella/commit/620121d))
-
-### [3.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.3.1) (2022-06-23)
-
-#### ♻️ Refactoring
-
-- update size handling in various ctors ([ab4b93d](https://github.com/thi-ng/umbrella/commit/ab4b93d))
-
-## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.3.0) (2022-06-20)
-
-#### 🚀 Features
-
-- update rect/aabb, add new factory fns ([f74e377](https://github.com/thi-ng/umbrella/commit/f74e377))
-  - add ...WithMargin() factory fns
-  - add AABBLike.offset() impls
-- update bounds() to support opt. margin ([8cdc372](https://github.com/thi-ng/umbrella/commit/8cdc372))
-
-### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.2.1) (2022-04-07)
-
-#### 🩹 Bug fixes
-
-- fix [#336](https://github.com/thi-ng/umbrella/issues/336), update attrib ctor arg handling ([cb8e52a](https://github.com/thi-ng/umbrella/commit/cb8e52a))
-  - update internal __argAttribs() helper
-  - add tests
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.2.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add opt. bleed attrib for `svgDoc()` ([fb3ed1e](https://github.com/thi-ng/umbrella/commit/fb3ed1e))
-- add BPatch type, ctors and warp fn ([ea81cb5](https://github.com/thi-ng/umbrella/commit/ea81cb5))
-- update/refactor various shape ops ([0e3b99a](https://github.com/thi-ng/umbrella/commit/0e3b99a))

@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -28,9 +28,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update INotify impl ([63af221](https://github.com/thi-ng/umbrella/commit/63af221))
-
-### [2.1.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@2.1.19) (2022-11-28)
-
-#### ♻️ Refactoring
-
-- update INotify.notify() signature ([b70eebe](https://github.com/thi-ng/umbrella/commit/b70eebe))

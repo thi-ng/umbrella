@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -52,32 +52,3 @@ and/or version bumps of transitive dependencies.
   - add AdjacencyBitMatrix.similarity() to select related nodes (based on shared connections)
   - simplify AdjacencyBitMatrix.neighbors()
   - fix iteration bug in AdjacencyBitMatrix.edges()
-
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.3.0) (2022-12-22)
-
-#### 🚀 Features
-
-- add FloydWarshall shortest-path impl ([26fa3ac](https://github.com/thi-ng/umbrella/commit/26fa3ac))
-- update BFS distance array to Float32Array ([3997923](https://github.com/thi-ng/umbrella/commit/3997923))
-
-### [2.2.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.2.12) (2022-10-26)
-
-#### ♻️ Refactoring
-
-- update AdjacencyBitMatrix & tests ([a86b6ee](https://github.com/thi-ng/umbrella/commit/a86b6ee))
-  - update .neighbors() impl to adjust to new u8 backing array
-    (see [aaa0ecb1d](https://github.com/thi-ng/umbrella/commit/aaa0ecb1d))
-  - add/update test cases
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.2.0) (2022-07-19)
-
-#### 🚀 Features
-
-- update AdjacencyList ([5d85d87](https://github.com/thi-ng/umbrella/commit/5d85d87))
-  - add vertices() iterator
-  - rename old `.vertices` field => `.adjacency`
-  - add adjListFromAdjacency() factory fn
-
-#### ♻️ Refactoring
-
-- update DCons call sites ([2dfec21](https://github.com/thi-ng/umbrella/commit/2dfec21))

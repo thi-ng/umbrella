@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-optimize",
-	"version": "1.0.53",
+	"version": "1.0.54",
 	"description": "Shader AST code/tree optimization passes/strategies",
 	"type": "module",
 	"module": "./index.js",
@@ -39,12 +39,12 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.11",
-		"@thi.ng/defmulti": "^3.0.87",
-		"@thi.ng/errors": "^2.6.0",
-		"@thi.ng/logger": "^3.2.10",
-		"@thi.ng/math": "^5.15.0",
-		"@thi.ng/shader-ast": "^1.1.34"
+		"@thi.ng/api": "^8.12.12",
+		"@thi.ng/defmulti": "^3.0.88",
+		"@thi.ng/errors": "^2.6.1",
+		"@thi.ng/logger": "^3.2.11",
+		"@thi.ng/math": "^5.15.1",
+		"@thi.ng/shader-ast": "^1.1.35"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -43,25 +43,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add ensureXXX() functions ([be70868](https://github.com/thi-ng/umbrella/commit/be70868))
-
-### [2.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/errors@2.2.3) (2022-10-28)
-
-#### 🩹 Bug fixes
-
-- potential fix regression of env var check ([#361](https://github.com/thi-ng/umbrella/issues/361)) ([1d3a805](https://github.com/thi-ng/umbrella/commit/1d3a805))
-
-### [2.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/errors@2.2.2) (2022-10-04)
-
-#### 🩹 Bug fixes
-
-- update assertion switch logic ([781470d](https://github.com/thi-ng/umbrella/commit/781470d))
-  - remove support for obsolete (& broken) snowpack setup
-  - add support for Vite's env var handling
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/errors@2.2.0) (2022-09-21)
-
-#### 🚀 Features
-
-- add I/O error types & factories ([898584b](https://github.com/thi-ng/umbrella/commit/898584b))
-  - add IOError
-  - add FileNotFoundError

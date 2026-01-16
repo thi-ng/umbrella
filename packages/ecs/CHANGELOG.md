@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -54,21 +54,3 @@ and/or version bumps of transitive dependencies.
 - update INotify impls ([a870653](https://github.com/thi-ng/umbrella/commit/a870653))
   - update ECS & AComponent classes
 - update INotify impls ([cbdc527](https://github.com/thi-ng/umbrella/commit/cbdc527))
-
-### [0.7.31](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.7.31) (2022-11-28)
-
-#### ♻️ Refactoring
-
-- update INotify.notify() signature ([34dca38](https://github.com/thi-ng/umbrella/commit/34dca38))
-
-### [0.7.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.7.12) (2022-07-19)
-
-#### ♻️ Refactoring
-
-- update deprecated DCons call sites ([2bbacf7](https://github.com/thi-ng/umbrella/commit/2bbacf7))
-
-### [0.7.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.7.5) (2022-03-11)
-
-#### ♻️ Refactoring
-
-- update ConsCell refs/imports ([a883993](https://github.com/thi-ng/umbrella/commit/a883993))

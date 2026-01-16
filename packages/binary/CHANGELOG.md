@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -63,22 +63,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update little endian check (`IS_LE` const) ([ee47a7f](https://github.com/thi-ng/umbrella/commit/ee47a7f))
-
-### [3.3.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.7) (2022-10-26)
-
-#### ♻️ Refactoring
-
-- update popCountArray() args ([e56eded](https://github.com/thi-ng/umbrella/commit/e56eded))
-  - allow any int/uint typed array as input
-
-## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.0) (2022-07-19)
-
-#### 🚀 Features
-
-- add popCountArray() ([d59e0c4](https://github.com/thi-ng/umbrella/commit/d59e0c4))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.2.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add shiftRL() ([804565e](https://github.com/thi-ng/umbrella/commit/804565e))

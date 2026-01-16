@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -51,15 +51,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update .probability() call sites in various pkgs ([c8c8141](https://github.com/thi-ng/umbrella/commit/c8c8141))
-
-### [3.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.2.7) (2022-07-19)
-
-#### ♻️ Refactoring
-
-- update DCons call sites ([09ce729](https://github.com/thi-ng/umbrella/commit/09ce729))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.2.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add DRing, extract AList, major refactor ([3f4e8de](https://github.com/thi-ng/umbrella/commit/3f4e8de))

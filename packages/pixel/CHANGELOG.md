@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -199,21 +199,3 @@ and/or version bumps of transitive dependencies.
   - include pre/postmultiply() fns
   - add docs
   - add FloatBuffer.isPremultiplied()
-
-# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.0.0) (2022-09-27)
-
-#### 🛑 Breaking changes
-
-- update .blitCanvas(), .toImageData() ([85e4e38](https://github.com/thi-ng/umbrella/commit/85e4e38))
-- BREAKING CHANGE: add BlitCanvasOpts for optional .blitCanvas() args
-  - update .blitCanvas() impls
-  - update .toImageData() impls to accept pre-existing ImageData instance
-  - add ensureImageData() check
-
-## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.4.0) (2022-04-07)
-
-#### 🚀 Features
-
-- buffer method additions, internal checks ([a70b3c1](https://github.com/thi-ng/umbrella/commit/a70b3c1))
-  - add FloatBuffer.premultiply/postmultiply()
-  - add Int/FloatBuffer.fill()

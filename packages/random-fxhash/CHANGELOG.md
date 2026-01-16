@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -40,16 +40,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add pickUnique() ([89f0209](https://github.com/thi-ng/umbrella/commit/89f0209))
-
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.2.0) (2022-05-25)
-
-#### 🚀 Features
-
-- extract/export seedFromHash() ([d68ec97](https://github.com/thi-ng/umbrella/commit/d68ec97))
-  - update readme
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.1.0) (2022-05-22)
-
-#### 🚀 Features
-
-- import as new pkg ([9e23031](https://github.com/thi-ng/umbrella/commit/9e23031))

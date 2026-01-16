@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -200,28 +200,3 @@ and/or version bumps of transitive dependencies.
 - add null check for $remove() ([db9d2a1](https://github.com/thi-ng/umbrella/commit/db9d2a1))
 - add stream IDs for $list/$klist/$Sub/$SubA ([bfd4058](https://github.com/thi-ng/umbrella/commit/bfd4058))
 - add $subWithID(), add IDs for various constructs ([404eacb](https://github.com/thi-ng/umbrella/commit/404eacb))
-
-## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.10.0) (2022-11-30)
-
-#### 🚀 Features
-
-- add DOM comment support ([#367](https://github.com/thi-ng/umbrella/issues/367)), other refactorings ([3fd5f8e](https://github.com/thi-ng/umbrella/commit/3fd5f8e))
-  - add $comment(), isComment()
-  - add Component.$comment() syntax sugar
-  - add comment check/branch in $tree()
-  - update args for $addChild(), $remove(), $moveTo()
-  - update $text(), $html() to support SVG elements
-  - add doc strings
-
-## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.9.0) (2022-07-12)
-
-#### 🚀 Features
-
-- update $input() generics ([6be320a](https://github.com/thi-ng/umbrella/commit/6be320a))
-  - allow any string-derived stream types
-
-### [0.8.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.8.7) (2022-04-07)
-
-#### ♻️ Refactoring
-
-- replace deprecated .substr() w/ .substring() ([0710509](https://github.com/thi-ng/umbrella/commit/0710509))

@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -176,47 +176,3 @@ and/or version bumps of transitive dependencies.
 #### 🩹 Bug fixes
 
 - fix invert() for HSL ([84d0640](https://github.com/thi-ng/umbrella/commit/84d0640))
-
-## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.2.0) (2022-09-21)
-
-#### 🚀 Features
-
-- add WCAG2 contrast() fn ([a132107](https://github.com/thi-ng/umbrella/commit/a132107))
-
-## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.1.0) (2022-06-09)
-
-#### 🚀 Features
-
-- update multiColorGradient() ([f47a59d](https://github.com/thi-ng/umbrella/commit/f47a59d))
-  - add support for automatic conversion to packed ARGB/ABGR ints
-    (for use with indexed color models in [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/main/packages/pixel))
-
-# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.0.0) (2022-03-11)
-
-#### 🛑 Breaking changes
-
-- rename color matrix fns ([00fdc31](https://github.com/thi-ng/umbrella/commit/00fdc31))
-- BREAKING CHANGE: rename color matrix fns
-  - add `Mat` suffix, e.g. `grayscale()` => `grayscaleMat()`
-
-#### 🚀 Features
-
-- update ChannelSpec and hue-based modes ([01d93dc](https://github.com/thi-ng/umbrella/commit/01d93dc))
-  - add `hue` flag for channel spec
-  - update `.clamp()` impl to wrap hue in [0..1] interval
-  - add/update LCH conversion paths
-- add/update color ops ([33cb4a1](https://github.com/thi-ng/umbrella/commit/33cb4a1))
-  - add `invert()`, `isRgbGamut()`, `lighten()`, `rotate()` ops
-  - add `tint()`, `tone()`, `shade()` ops
-  - update impls for `isBlack/Gray/White()`
-  - add/re-use internal multimethod dispatch fns
-- add max chroma LCH fns ([ab4e67a](https://github.com/thi-ng/umbrella/commit/ab4e67a))
-- add variations() generator ([91d760f](https://github.com/thi-ng/umbrella/commit/91d760f))
-- add color theme strategies ([22057e5](https://github.com/thi-ng/umbrella/commit/22057e5))
-  - add strategy fns:
-    - `complementaryStrategy()`
-    - `splitComplementaryStrategy()`
-    - `monochromeStrategy()`
-    - `triadicStrategy()`
-    - `tetradicStrategy()`
-    - `squareStrategy()`

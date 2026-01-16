@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -40,9 +40,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.0) (2022-12-16)
-
-#### 🚀 Features
-
-- fix [#358](https://github.com/thi-ng/umbrella/issues/358) add "completed" project status, update pkgs/readmes ([d35fa52](https://github.com/thi-ng/umbrella/commit/d35fa52))

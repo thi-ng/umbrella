@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -125,28 +125,3 @@ and/or version bumps of transitive dependencies.
 
 - update INotify impl ([d36aca6](https://github.com/thi-ng/umbrella/commit/d36aca6))
 - update INotify impls ([cbdc527](https://github.com/thi-ng/umbrella/commit/cbdc527))
-
-### [3.2.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.2.14) (2022-11-28)
-
-#### ♻️ Refactoring
-
-- update INotify.notify() signature ([066bae5](https://github.com/thi-ng/umbrella/commit/066bae5))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.2.0) (2022-06-17)
-
-#### 🚀 Features
-
-- add trailing slash option, optimize routeForID() ([c003dc2](https://github.com/thi-ng/umbrella/commit/c003dc2))
-  - update BasicRouter default config init
-  - pre-build `routeIndex` in ctor
-  - optimize `routeForID()` to use new `routeIndex`
-- update format(), hash/prefix handling ([724b3ad](https://github.com/thi-ng/umbrella/commit/724b3ad))
-  - update HTMLRouter default prefix to "#/" if `useFragment` is true
-  - remove obsolete `HTMLRouter.format()` (now the same as BasicRouter)
-  - update BasicRouter.format() to throw error for missing route param value
-
-### [3.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.1.5) (2022-04-07)
-
-#### ♻️ Refactoring
-
-- replace deprecated .substr() w/ .substring() ([0710509](https://github.com/thi-ng/umbrella/commit/0710509))

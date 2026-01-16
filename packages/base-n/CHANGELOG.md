@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -60,15 +60,3 @@ and/or version bumps of transitive dependencies.
   - update IBase encode method signatures
   - update BaseN encode impls
   - add tests
-
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.3.0) (2022-05-22)
-
-#### 🚀 Features
-
-- add BASE58_LC alt version ([755a2a7](https://github.com/thi-ng/umbrella/commit/755a2a7))
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.2.0) (2022-03-11)
-
-#### 🚀 Features
-
-- add octal support, export char strings ([0c0dac6](https://github.com/thi-ng/umbrella/commit/0c0dac6))

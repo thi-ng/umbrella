@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -63,27 +63,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add isGenerator() ([af8ffb3](https://github.com/thi-ng/umbrella/commit/af8ffb3))
-
-### [3.3.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.3.5) (2022-12-16)
-
-#### ♻️ Refactoring
-
-- add generics for isFunction() ([2850048](https://github.com/thi-ng/umbrella/commit/2850048))
-
-## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.3.0) (2022-10-17)
-
-#### 🚀 Features
-
-- add isTouchEvent() ([7ef2acc](https://github.com/thi-ng/umbrella/commit/7ef2acc))
-
-### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.2.1) (2022-06-11)
-
-#### 🩹 Bug fixes
-
-- update export map (add missing isBigInt()) ([9270de0](https://github.com/thi-ng/umbrella/commit/9270de0))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.2.0) (2022-06-09)
-
-#### 🚀 Features
-
-- add isBigInt(), update pkg/readme ([bb6d833](https://github.com/thi-ng/umbrella/commit/bb6d833))

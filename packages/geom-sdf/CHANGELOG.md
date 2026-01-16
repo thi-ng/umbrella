@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:05Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -66,38 +66,3 @@ and/or version bumps of transitive dependencies.
 #### 🩹 Bug fixes
 
 - internal __sdfAttribs handling ([a86c25e](https://github.com/thi-ng/umbrella/commit/a86c25e))
-
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@0.2.0) (2022-06-23)
-
-#### 🚀 Features
-
-- add bounds pre-checks, update SDFAttribs, ops ([ddf0a6e](https://github.com/thi-ng/umbrella/commit/ddf0a6e))
-  - update `SDFn` signature, add opt. min dist param
-  - add `withBoundingCircle/Rect()` SDF wrappers
-  - update shape fns (points2, polygon2, polyline2)
-  - update SDF combinators (union, isec, diff etc.)
-  - update `asSDF()` group impl
-  - update `SDFAttribs`, allow `round` & `smooth` opts to be field based
-  - add docstrings
-- major update: combinators, modifiers, shape support ([4ffbc86](https://github.com/thi-ng/umbrella/commit/4ffbc86))
-  - support more shapes (and conversions) in asSDF()
-  - update/extend SDFAttribs
-  - add new SDF combinators (chamfer, round, step)
-  - add higher order combinators defOp(), defParamOp()
-  - add support for combinator params to be spatial
-  - update asSDF() to support more shape types and auto-convert to poly/line
-  - add domain modifiers, update `sample2d()` to support domain mods
-  - update various distance functions (incl. uniform arg order, minimize allocs)
-  - add docstrings
-
-### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@0.1.1) (2022-06-20)
-
-#### 🩹 Bug fixes
-
-- fix rect size handling ([cc72bab](https://github.com/thi-ng/umbrella/commit/cc72bab))
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-sdf@0.1.0) (2022-06-20)
-
-#### 🚀 Features
-
-- import as new pkg ([06dcca2](https://github.com/thi-ng/umbrella/commit/06dcca2))

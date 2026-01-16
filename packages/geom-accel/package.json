@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-accel",
-	"version": "4.1.73",
+	"version": "4.1.74",
 	"description": "n-D spatial indexing data structures with a shared ES6 Map/Set-like API",
 	"type": "module",
 	"module": "./index.js",
@@ -40,17 +40,17 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.11",
-		"@thi.ng/arrays": "^2.14.4",
-		"@thi.ng/checks": "^3.8.1",
-		"@thi.ng/distance": "^3.0.27",
-		"@thi.ng/equiv": "^2.1.101",
-		"@thi.ng/errors": "^2.6.0",
-		"@thi.ng/geom-isec": "^4.0.73",
-		"@thi.ng/heaps": "^2.1.117",
-		"@thi.ng/math": "^5.15.0",
-		"@thi.ng/transducers": "^9.6.20",
-		"@thi.ng/vectors": "^8.6.17"
+		"@thi.ng/api": "^8.12.12",
+		"@thi.ng/arrays": "^2.14.5",
+		"@thi.ng/checks": "^3.8.2",
+		"@thi.ng/distance": "^3.0.28",
+		"@thi.ng/equiv": "^2.1.102",
+		"@thi.ng/errors": "^2.6.1",
+		"@thi.ng/geom-isec": "^4.0.74",
+		"@thi.ng/heaps": "^2.1.118",
+		"@thi.ng/math": "^5.15.1",
+		"@thi.ng/transducers": "^9.6.21",
+		"@thi.ng/vectors": "^8.6.18"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.0",

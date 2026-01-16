@@ -11,8 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.1.38](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@3.1.38) (2023-11-09)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-format-image@0.1.0) (2026-01-16)
+
+#### 🚀 Features
+
+- add as new pkg ([4721263](https://github.com/thi-ng/umbrella/commit/4721263))
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- rename fn, add docs & code example ([968cb38](https://github.com/thi-ng/umbrella/commit/968cb38))

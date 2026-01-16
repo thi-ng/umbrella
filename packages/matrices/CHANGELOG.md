@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -63,15 +63,3 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add fit23 & fit44() matrix ops ([e2040e1](https://github.com/thi-ng/umbrella/commit/e2040e1))
-
-### [2.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.1.22) (2022-08-16)
-
-#### 🩹 Bug fixes
-
-- fix [#352](https://github.com/thi-ng/umbrella/issues/352), update set() return var ([d32026c](https://github.com/thi-ng/umbrella/commit/d32026c))
-
-### [2.1.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.1.19) (2022-08-06)
-
-#### ⏱ Performance improvements
-
-- update vector fns ([39565cb](https://github.com/thi-ng/umbrella/commit/39565cb))

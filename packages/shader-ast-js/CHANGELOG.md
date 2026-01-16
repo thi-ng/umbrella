@@ -1,10 +1,10 @@
 # Change Log
 
-- **Last updated**: 2025-12-25T15:58:06Z
+- **Last updated**: 2026-01-16T11:40:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
-Only versions published since **2022-01-01** are listed here.
+Only versions published since **2023-01-01** are listed here.
 Please consult the Git history for older version information.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
@@ -77,15 +77,3 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update remaining type imports (TS5.0) in various pkgs ([e0edf26](https://github.com/thi-ng/umbrella/commit/e0edf26))
-
-### [0.7.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.7.26) (2022-09-27)
-
-#### ⏱ Performance improvements
-
-- pre-cache ImageData in canvasRenderer() ([ff0018f](https://github.com/thi-ng/umbrella/commit/ff0018f))
-
-### [0.7.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.7.20) (2022-08-06)
-
-#### ⏱ Performance improvements
-
-- update vector fns ([45699e1](https://github.com/thi-ng/umbrella/commit/45699e1))

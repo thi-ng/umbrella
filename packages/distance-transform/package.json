@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/distance-transform",
-	"version": "1.0.30",
+	"version": "1.0.31",
 	"description": "Binary image to Distance Field transformation",
 	"type": "module",
 	"module": "./index.js",
@@ -39,10 +39,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.11"
+		"@thi.ng/api": "^8.12.12"
 	},
 	"devDependencies": {
-		"@thi.ng/pixel": "^7.5.20",
+		"@thi.ng/pixel": "^7.5.21",
 		"esbuild": "^0.27.0",
 		"typedoc": "^0.28.14",
 		"typescript": "^5.9.3"
