@@ -312,16 +312,16 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2025-12-25
+### Latest updates
 
-| Status                                        | Package                                             | Version                                                                                                                   | Changelog                                          |
-|:----------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/binary`](./packages/binary)               | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)               | [changelog](./packages/binary/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/errors`](./packages/errors)               | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)               | [changelog](./packages/errors/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/math`](./packages/math)                   | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                   | [changelog](./packages/math/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel-io-tiff`](./packages/pixel-io-tiff) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-tiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-tiff) | [changelog](./packages/pixel-io-tiff/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/sexpr`](./packages/sexpr)                 | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                 | [changelog](./packages/sexpr/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)                 | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)                 | [changelog](./packages/units/CHANGELOG.md)         |
+As of: 2026-01-16
+
+| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/layout`](./packages/layout)                       | [![version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)                       | [changelog](./packages/layout/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)   | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pixel-io-tiff`](./packages/pixel-io-tiff)         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-tiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-tiff)         | [changelog](./packages/pixel-io-tiff/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/text-format-image`](./packages/text-format-image) | [![version](https://img.shields.io/npm/v/@thi.ng/text-format-image.svg)](https://www.npmjs.com/package/@thi.ng/text-format-image) | [changelog](./packages/text-format-image/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
