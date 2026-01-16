@@ -487,13 +487,14 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-39 projects in this repo's
+40 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
 | Screenshot                                                                                                                    | Description                                                                      | Live demo                                                    | Source                                                                                    |
 |:------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/boid-basics.png" width="240"/>            | Basic 2D boid simulation and spatial indexing neighbor lookups                   | [Demo](https://demo.thi.ng/umbrella/boid-basics/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/boid-basics)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/calibration-sheet.avif" width="240"/>     | Parametrically design calibration sheet for B&W photography                      | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/calibration-sheet)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>        | Self-modifying, animated typographic grid with emergent complex patterns         | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>           | Fiber-based cooperative multitasking basics                                      | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-classify-point.png" width="240"/>    | Polygon point classification (inside/boundary/outside)                           | [Demo](https://demo.thi.ng/umbrella/geom-classify-point/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-classify-point)    |

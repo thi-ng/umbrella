@@ -168,7 +168,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-74 projects in this repo's
+75 projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
@@ -178,6 +178,7 @@ directory are using this package:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>                | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/big-font.png" width="240"/>                      | Large ASCII font text generator using @thi.ng/rdom                                                      | [Demo](https://demo.thi.ng/umbrella/big-font/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/big-font)             |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>                   | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)          |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/calibration-sheet.avif" width="240"/>            | Parametrically design calibration sheet for B&W photography                                             | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/calibration-sheet)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                                                   | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)       |

@@ -74,7 +74,7 @@ For Node.js REPL:
 const l = await import("@thi.ng/layout");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.22 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
 
 ## Dependencies
 
@@ -86,16 +86,17 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Four projects in this repo's
+Five projects in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                            | Description                                            | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>      | Interactive inverse FFT toy synth                      | [Demo](https://demo.thi.ng/umbrella/fft-synth/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>         | Canvas based Immediate Mode GUI components             | [Demo](https://demo.thi.ng/umbrella/imgui/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/>   | Minimal IMGUI usage example                            | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/layout-gridgen.png" width="240"/> | Randomized space-filling, nested grid layout generator | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/layout-gridgen) |
+| Screenshot                                                                                                                | Description                                                 | Live demo                                               | Source                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/calibration-sheet.avif" width="240"/> | Parametrically design calibration sheet for B&W photography | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/calibration-sheet) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>          | Interactive inverse FFT toy synth                           | [Demo](https://demo.thi.ng/umbrella/fft-synth/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>             | Canvas based Immediate Mode GUI components                  | [Demo](https://demo.thi.ng/umbrella/imgui/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)             |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/>       | Minimal IMGUI usage example                                 | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/layout-gridgen.png" width="240"/>     | Randomized space-filling, nested grid layout generator      | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/layout-gridgen)    |
 
 ## API
 
