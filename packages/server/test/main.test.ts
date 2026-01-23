@@ -14,6 +14,7 @@ import {
 	normalizeIPv6Address,
 	parseCoookies,
 	parseQuerystring,
+	parseSearchParams,
 	referrerPolicy,
 	Server,
 	sessionInterceptor,
@@ -194,6 +195,17 @@ test("parseQueryString", () => {
 	expect(parseQuerystring("?__proto__=1")).toEqual({});
 	expect(() => parseQuerystring("?[0]=1")).toThrow();
 	expect(() => parseQuerystring("?a[=1")).toThrow();
+});
+
+test("parseSearchParams", () => {
+	expect(
+		parseSearchParams(
+			new URL("http://foo?a[]=1&a[]=2&b[abc]=3").searchParams
+		)
+	).toEqual({
+		a: ["1", "2"],
+		b: { abc: "3" },
+	});
 });
 
 test("normalizeIPv6Address", () => {

@@ -3,17 +3,24 @@ import { isArray, isProtoPath } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import type { IncomingMessage } from "node:http";
+import type { ParsedFormData } from "../api.js";
 
 export const parseSearchParams = (params: URLSearchParams) => {
-	const acc: Record<string, any> = {};
+	let acc: ParsedFormData = {};
 	for (const [k, v] of params) {
-		if (k.includes("[")) return parseObjectVal(acc, k, v);
-		if (!isProtoPath(k)) acc[k] = v;
+		if (k.includes("[")) acc = parseObjectVal(acc, k, v);
+		else if (!isProtoPath(k)) acc[k] = v;
 	}
 	return acc;
 };
 
-export const parseQuerystring = (url: string): Record<string, any> => {
+/**
+ * Parses given URL's query string {@link parseFormData}. Any prefix
+ * before/including the first `?` will be ignored.
+ *
+ * @param url
+ */
+export const parseQuerystring = (url: string): ParsedFormData => {
 	const idx = url.indexOf("?");
 	return idx >= 0 ? parseFormData(url.substring(idx + 1)) : {};
 };
@@ -24,6 +31,26 @@ export const parseRequestFormData = async (req: IncomingMessage) => {
 	return parseFormData(body);
 };
 
+/**
+ * Parses given URI-encoded string of key-value pairs into a
+ * {@link ParsedFormData} object. Throws an error if there're syntax/nesting
+ * errors.
+ *
+ * @remarks
+ * Supports the following syntax:
+ *
+ * - `key=value`
+ * - `key[]=value`: append value to `key` array
+ * - `key[a]=value`: set value `a` in object `key`
+ * - `key[a][b]=value`: set nested value in object `key`
+ * - `key[a][]=value`: append value to nested array in object `key`
+ *
+ * Ignores attempts to manipulate a JS prototype chain (via
+ * [`isProtoPath()`](https://docs.thi.ng/umbrella/checks/functions/isProtoPath.html)),
+ * i.e. `foo[__proto__][bar]=42` will be skipped.
+ *
+ * @param body
+ */
 export const parseFormData = (body: string) =>
 	body.split("&").reduce((acc, x) => {
 		x = decodeURIComponent(x.replace(/\+/g, " "));
@@ -34,9 +61,13 @@ export const parseFormData = (body: string) =>
 		if (k.includes("[")) return parseObjectVal(acc, k, v);
 		if (!isProtoPath(k)) acc[k] = v;
 		return acc;
-	}, <Record<string, any>>{});
+	}, <ParsedFormData>{});
 
-const parseObjectVal = (acc: Record<string, any>, key: string, val: string) => {
+const parseObjectVal = (
+	acc: ParsedFormData,
+	key: string,
+	val: string
+): ParsedFormData => {
 	const parts = key.split("[");
 	if (!parts[0]) __illegal(key);
 	const path: string[] = [parts[0]];

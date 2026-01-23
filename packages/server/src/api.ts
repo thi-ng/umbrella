@@ -159,7 +159,7 @@ export interface RequestCtx {
 	/**
 	 * Parsed query string params (aka URL search params).
 	 */
-	query: Record<string, any>;
+	query: ParsedFormData;
 	/**
 	 * Parsed cookies, if any.
 	 */
@@ -169,6 +169,10 @@ export interface RequestCtx {
 	 */
 	session?: ServerSession;
 }
+
+export type ParsedFormData = {
+	[id: string]: string | string[] | ParsedFormData;
+};
 
 export type HandlerResult = MaybePromise<void>;
 
