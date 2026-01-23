@@ -312,16 +312,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-### Latest updates
+As of: 2026-01-23
 
-As of: 2026-01-16
-
-| Status                                           | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:-------------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/layout`](./packages/layout)                       | [![version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)                       | [changelog](./packages/layout/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)   | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/pixel-io-tiff`](./packages/pixel-io-tiff)         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-tiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-tiff)         | [changelog](./packages/pixel-io-tiff/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/text-format-image`](./packages/text-format-image) | [![version](https://img.shields.io/npm/v/@thi.ng/text-format-image.svg)](https://www.npmjs.com/package/@thi.ng/text-format-image) | [changelog](./packages/text-format-image/CHANGELOG.md) |
+| Status                                           | Package                               | Version                                                                                                     | Changelog                                   |
+|:-------------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
