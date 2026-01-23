@@ -7,11 +7,11 @@
 		"tools"
 	],
 	"devDependencies": {
-		"bun-types": "1.3.2",
-		"esbuild": "^0.27.0",
+		"bun-types": "1.3.6",
+		"esbuild": "^0.27.2",
 		"html-minifier-terser": "^7.2.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.28.14",
+		"typedoc": "^0.28.16",
 		"typescript": "^5.9.3"
 	},
 	"scripts": {
@@ -39,5 +39,5 @@
 		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn doc:readme && yarn tool:searchindex && yarn tool:deps",
 		"tool:tangle": "yarn @thi.ng run tool:tangle"
 	},
-	"packageManager": "yarn@4.11.0"
+	"packageManager": "yarn@4.12.0"
 }

@@ -44,10 +44,10 @@
 		"@thi.ng/timestamp": "^1.1.31"
 	},
 	"devDependencies": {
-		"@types/node": "^24.10.1",
-		"esbuild": "^0.27.0",
+		"@types/node": "^24.10.9",
+		"esbuild": "^0.27.2",
 		"tools": "workspace:^",
-		"typedoc": "^0.28.14",
+		"typedoc": "^0.28.16",
 		"typescript": "^5.9.3"
 	},
 	"keywords": [
