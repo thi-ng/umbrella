@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { IObjectOf, Maybe, Pair } from "@thi.ng/api";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	AncestorDefs,
 	DispatchFn,
@@ -181,7 +181,7 @@ export function defmulti<T>(
 			impls[id] || __findImpl(impls, rels, id) || impls[<any>DEFAULT];
 		return g
 			? g(...args)
-			: unsupported(`missing implementation for: "${id.toString()}"`);
+			: unsupportedOp(`missing implementation for: "${id.toString()}"`);
 	};
 	fn.add = (id: PropertyKey, _impl: Implementation<T>) => {
 		if (impls[<any>id]) {

@@ -8,7 +8,7 @@ import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	ATTRIB_JOIN_DELIMS,
 	NO_SPANS,
@@ -81,7 +81,7 @@ const $treeElem = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 		isFunction(tag)
 		? $tree(tag.apply(null, tree.slice(1)), parent)
 		: // unsupported
-		  unsupported(`tag: ${tag}`);
+		  illegalArgs(`tag: ${tag}`);
 };
 
 const $treeTag = (tree: any, parent: ParentNode, idx: NumOrElement) => {

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { hasWASM } from "@thi.ng/checks/has-wasm";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { BINARY } from "./binary.js";
 
 interface LEB128 {
@@ -38,7 +38,7 @@ if (hasWASM()) {
 }
 
 /** @internal */
-const __ensureWASM = () => !wasm && unsupported("WASM module unavailable");
+const __ensureWASM = () => !wasm && unsupportedOp("WASM module unavailable");
 
 /** @internal */
 const __encode =

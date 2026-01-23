@@ -3,7 +3,7 @@ import type { Fn } from "@thi.ng/api";
 import type { MultiFn4 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	DynamicParser,
 	GrammarOpts,
@@ -184,8 +184,7 @@ const __compile: MultiFn4<
 		unicode: "char",
 	},
 	{
-		[DEFAULT]: ($: ParseScope<string>) =>
-			unsupported(`unknown op: ${$.id}`),
+		[DEFAULT]: ($: ParseScope<string>) => unsupportedOp($.id),
 		root: ($, lang: Language, opts, flags) => {
 			const rules = __first($).children!;
 			const builtins = new Set(Object.keys(lang.rules));

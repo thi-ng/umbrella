@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import type { Term } from "./api/nodes.js";
 import type { TargetImpl } from "./api/target.js";
 
@@ -20,7 +20,7 @@ export const defTarget = <T>(impls: TargetImpl<T>): Fn<Term<any>, T> =>
 		{},
 		{
 			[DEFAULT]: (t: Term<any>) =>
-				unsupported(`no impl for AST node type: '${t.tag}'`),
+				unsupportedFeature(`no impl for AST node type: '${t.tag}'`),
 			...(<any>impls),
 		}
 	);

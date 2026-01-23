@@ -5,7 +5,7 @@ import { interleave4_12_24, interleave4_16_32 } from "@thi.ng/binary/splat";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { TAU } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
@@ -117,7 +117,7 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
 				__alpha(d),
 			]);
 		default:
-			unsupported(`color mode: ${mode}`);
+			unsupportedOp(`color mode: ${mode}`);
 	}
 };
 

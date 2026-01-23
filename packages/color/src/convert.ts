@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { assert } from "@thi.ng/errors/assert";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	Color,
 	ColorMode,
@@ -61,5 +61,5 @@ export const convert = <T extends Color>(
 		? <T>$convert(res, src)
 		: CONVERSIONS.rgb![srcMode]
 		? <T>spec!.rgb(res, CONVERSIONS.rgb![srcMode]!([], src))
-		: unsupported(`can't convert: ${srcMode} -> ${destMode}`);
+		: unsupportedOp(`can't convert: ${srcMode} -> ${destMode}`);
 };

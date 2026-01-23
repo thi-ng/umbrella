@@ -7,7 +7,7 @@ import {
 } from "@thi.ng/api/typedarray";
 import { DATAVIEW as DV, type IDataView } from "@thi.ng/binary/endianess";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { unsupportedFeature as unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
 import { GRAY_ALPHA16 } from "@thi.ng/pixel/format/gray-alpha16";
 import { GRAY_ALPHA8 } from "@thi.ng/pixel/format/gray-alpha8";
@@ -33,10 +33,11 @@ export const readTIFF = async (buf: Uint8Array, ifd?: IFD) => {
 	const photoMode = <number>ifd[Tag.PhotometricInterpretation]?.[0] ?? 1;
 	const planarConf = <number>ifd[Tag.PlanarConfiguration]?.[0] ?? 1;
 	if (photoMode >= 3)
-		unsupported(`photometric interpretation mode ${photoMode}`);
-	if (planarConf >= 2) unsupported(`planar configuration ${planarConf}`);
+		unsupportedFeature(`photometric interpretation mode ${photoMode}`);
+	if (planarConf >= 2)
+		unsupportedFeature(`planar configuration ${planarConf}`);
 	if (![Compression.Uncompressed, Compression.Deflate].includes(compression))
-		unsupported(`compression mode ${compression}`);
+		unsupportedFeature(`compression mode ${compression}`);
 	const { width, height, spp, bpp } = __imageMeta(ifd);
 	const pixels: UIntArray = typedArray(
 		bpp === 16 ? "u16" : "u8",
@@ -136,7 +137,7 @@ export const intBufferFromTIFF = ({
 			);
 		}
 		default:
-			unsupported(`samples per pixel: ${spp}`);
+			unsupportedFeature(`samples per pixel: ${spp}`);
 	}
 };
 
@@ -438,7 +439,7 @@ const __readChunk = async (
 			stripe = await __readDeflate(chunk.slice(), meta.bpp);
 			break;
 		default:
-			unsupported(`compression mode ${compression}`);
+			unsupportedFeature(`compression mode ${compression}`);
 	}
 	if (predictor == 2) {
 		__horizontalDifferencing(stripe, meta.width, meta.spp, mask);

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { GLType } from "@thi.ng/api/typedarray";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	IWasmAPI,
 	MemoryViewType,
@@ -135,7 +135,7 @@ export class WasmWebGL implements IWasmAPI<WasmWebGLExports> {
 					preserveDrawingBuffer: !!opts.preserveDrawingBuffer,
 					stencil: !!opts.stencil,
 				});
-				if (!ctx) unsupported("WebGL2 not supported");
+				if (!ctx) unsupportedOp("WebGL2 not supported");
 				return this.contexts.addUnique(<WebGL2RenderingContext>ctx);
 			},
 

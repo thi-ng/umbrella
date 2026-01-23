@@ -2,7 +2,8 @@
 import type { Fn } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import type {
 	FnCall,
 	FuncArg,
@@ -78,7 +79,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 						uni: "uniform",
 					})[opts.type];
 					!type &&
-						unsupported(
+						unsupportedFeature(
 							"GLSL 100 doesn't support fragment shader output variables"
 						);
 				}
@@ -108,7 +109,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 		array_init: (t) =>
 			_opts.version >= GLSLVersion.GLES_300
 				? `${t.type}(${$list(t.init)})`
-				: unsupported(
+				: unsupportedFeature(
 						`array initializers not available in GLSL ${_opts.version}`
 				  ),
 
@@ -158,7 +159,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 					if (isVec(t) || isMat(t)) {
 						return `${t.type}(${$list(v)})`;
 					}
-					return unsupported(`unknown type: ${t.type}`);
+					return illegalArgs(`unknown type: ${t.type}`);
 				}
 			}
 		},

@@ -3,7 +3,7 @@ import type { Fn, Fn2, Maybe } from "@thi.ng/api";
 import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { assert } from "@thi.ng/errors/assert";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	Attribs,
 	Circle,
@@ -101,7 +101,7 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 		tri: "poly",
 	},
 	{
-		[DEFAULT]: ($: IShape) => unsupported(`shape type: ${$.type}`),
+		[DEFAULT]: ($: IShape) => unsupportedOp(`shape type: ${$.type}`),
 
 		circle: ($: Circle) => circle2($.pos, $.r, __sdfAttribs($.attribs)),
 

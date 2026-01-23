@@ -2,7 +2,7 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul, mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
@@ -209,7 +209,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 						$.r * delta,
 						__copyAttribs($.attribs)
 				  )
-				: unsupported("can't non-uniformly scale sphere"),
+				: unsupportedOp("can't non-uniformly scale sphere"),
 
 		text: ($: Text, delta) =>
 			new Text(

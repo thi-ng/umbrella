@@ -2,7 +2,7 @@
 import type { Maybe } from "@thi.ng/api";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	Attribs,
 	CubicOpts,
@@ -258,7 +258,7 @@ const __polyCubic = <T extends Cubic | Cubic3>(
 ) => {
 	opts = { mode: "default", uniform: false, scale: 1 / 3, ...opts };
 	const fn = conversions[opts.mode!];
-	if (!fn) unsupported(`conversion mode: ${opts.mode}`);
+	if (!fn) unsupportedOp(`conversion mode: ${opts.mode}`);
 	return fn(points, opts.scale, opts.uniform).map(
 		(pts) => new ctor(pts, __attribs(opts, attribs))
 	);

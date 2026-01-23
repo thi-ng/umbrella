@@ -6,7 +6,7 @@ import {
 	bytesF32,
 	bytesF64,
 } from "@thi.ng/binary/bytes";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { mapcat } from "@thi.ng/transducers/mapcat";
@@ -145,7 +145,7 @@ export function asBytes(src?: Iterable<BinStructItem>): any {
 					case "str":
 						return utf8Encode(<string>x[1]);
 					default:
-						unsupported(`invalid struct item: ${x[0]}`);
+						illegalArgs(`invalid struct item: ${x[0]}`);
 				}
 		  });
 }

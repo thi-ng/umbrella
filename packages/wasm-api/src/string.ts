@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { isNumber } from "@thi.ng/checks/is-number";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	IWasmMemoryAccess,
 	MemorySlice,
@@ -73,7 +73,7 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	set(str: string | WasmStringSlice) {
 		this.mem.ensureMemory();
 		if (typeof str === "string") {
-			if (this.isConst) unsupported("can't mutate const string");
+			if (this.isConst) unsupportedOp("can't mutate const string");
 			this.mem.u32[(this.base + 4) >>> 2] = this.mem.setString(
 				str,
 				this.addr,
@@ -222,9 +222,9 @@ export class WasmStringPtr implements ReadonlyWasmString {
 	 */
 	set(str: string | WasmStringPtr) {
 		const addr = this.addr;
-		if (!addr) unsupported("can't mutate null pointer");
+		if (!addr) unsupportedOp("can't mutate null pointer");
 		if (typeof str === "string") {
-			if (this.isConst) unsupported("can't mutate const string");
+			if (this.isConst) unsupportedOp("can't mutate const string");
 			this.mem.ensureMemory();
 			this.mem.setString(str, addr, this.mem.u8.byteLength - addr, true);
 		} else {

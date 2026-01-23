@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { IReset } from "@thi.ng/api";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { PI, SQRT2, SQRT2_2 } from "@thi.ng/math/api";
 import { clamp05 } from "@thi.ng/math/interval";
 import type { BiquadType, FilterConfig, IFilter } from "./api.js";
@@ -220,7 +220,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
 			}
 
 			default:
-				unsupported(`invalid filter type: ${this._type}`);
+				unsupportedOp(`invalid filter type: ${this._type}`);
 		}
 	}
 }

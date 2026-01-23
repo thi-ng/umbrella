@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Predicate } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import { GRAY16 } from "@thi.ng/pixel/format/gray16";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";
 import { RGB888 } from "@thi.ng/pixel/format/rgb888";
@@ -106,7 +106,7 @@ export const read = (src: Uint8Array) => {
 		case "P6":
 			return readPPM(src, start, width, height, max);
 		default:
-			unsupported(`PBM type: ${type}`);
+			unsupportedFeature(`PBM type: ${type}`);
 	}
 };
 

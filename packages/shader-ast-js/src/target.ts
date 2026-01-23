@@ -2,7 +2,7 @@
 import type { Fn } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type {
 	Func,
 	Lit,
@@ -236,7 +236,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 				case "mat4":
 					return $vec(t);
 				default:
-					return unsupported(`unknown type: ${t.type}`);
+					return illegalArgs(`unknown type: ${t.type}`);
 			}
 		},
 

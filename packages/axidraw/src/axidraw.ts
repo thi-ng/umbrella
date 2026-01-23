@@ -5,7 +5,7 @@ import { delayed } from "@thi.ng/compose/delayed";
 import { formatDuration } from "@thi.ng/date/format";
 import { assert } from "@thi.ng/errors/assert";
 import { ioerror } from "@thi.ng/errors/io";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import { DIN_A3_LANDSCAPE } from "@thi.ng/units/constants/paper-sizes";
 import { convert, div, Quantity } from "@thi.ng/units/unit";
@@ -274,7 +274,7 @@ export class AxiDraw implements IReset {
 					logger.info(`comment: ${a}`);
 					break;
 				default:
-					unsupported(`unknown command: ${$cmd}`);
+					unsupportedOp(`unknown command: ${$cmd}`);
 			}
 			if (wait > 0) {
 				wait = Math.max(0, wait - preDelay);

@@ -12,7 +12,7 @@ import {
 	FMT_yyyy,
 	FMT_yyyyMMdd_ALT,
 } from "@thi.ng/date";
-import { illegalArgs as unsupported } from "@thi.ng/errors";
+import { unsupportedFeature } from "@thi.ng/errors";
 import { createHash } from "node:crypto";
 import { basename, isAbsolute, join, resolve } from "node:path";
 import type { ImgProcCtx, OutputSpec } from "./api.js";
@@ -68,7 +68,7 @@ export const formatPath = (
 		switch (id) {
 			case "name": {
 				!path &&
-					unsupported(
+					unsupportedFeature(
 						"cannot format `{name}`, image has no file source"
 					);
 				const name = basename(ctx.path!);

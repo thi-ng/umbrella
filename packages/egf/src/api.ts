@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn3, IDeref, IEquiv, IObjectOf, Maybe } from "@thi.ng/api";
 import { isNode } from "@thi.ng/checks/is-node";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type { ILogger } from "@thi.ng/logger";
 
 export interface Node {
@@ -96,4 +96,4 @@ export interface ParseContext {
 
 export const IS_NODE = isNode();
 
-export const NODE_ONLY = () => unsupported("only available in NodeJS");
+export const NODE_ONLY = () => unsupportedOp("only available in NodeJS");

@@ -8,7 +8,7 @@ import {
 	type Type,
 } from "@thi.ng/api/typedarray";
 import { isString } from "@thi.ng/checks/is-string";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -511,7 +511,7 @@ const __generateField = (
 			// skip codegen for padding fields and multi pointers since
 			return;
 		default:
-			unsupported(`TODO: ${classifier} - please report as issue`);
+			unsupportedFeature(`TODO: ${classifier} - please report as issue`);
 	}
 	return {
 		field,

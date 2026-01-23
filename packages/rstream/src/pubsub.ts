@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type { Transducer } from "@thi.ng/transducers";
 import type {
 	ISubscriber,
@@ -90,14 +90,14 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 	 * Unsupported. Use {@link PubSub.subscribeTopic} instead.
 	 */
 	subscribe(): Subscription<B, any> {
-		return unsupported(`use subscribeTopic() instead`);
+		return unsupportedOp(`use subscribeTopic() instead`);
 	}
 
 	/**
 	 * Unsupported. Use {@link PubSub.subscribeTopic} instead.
 	 */
 	transform(): Subscription<B, any> {
-		return unsupported(`use subscribeTopic() instead`);
+		return unsupportedOp(`use subscribeTopic() instead`);
 	}
 
 	subscribeTopic<C>(
@@ -155,7 +155,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 			return super.unsubscribe();
 		}
 		// only the PubSub itself can be unsubscribed
-		return unsupported();
+		return unsupportedOp();
 	}
 
 	done() {

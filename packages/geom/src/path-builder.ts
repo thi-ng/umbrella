@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Always } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
@@ -200,7 +200,7 @@ export class PathBuilder<P extends IPath<any>, S extends P["segments"][0]> {
 		clockwise: boolean,
 		relative = false
 	) {
-		if (!this.ctors.a) unsupported("arcs");
+		if (!this.ctors.a) unsupportedOp("arcs");
 		if (eqDelta(r[0], 0) || eqDelta(r[1], 0)) {
 			return this.lineTo(p, relative);
 		}

@@ -6,7 +6,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { utf8Length } from "@thi.ng/strings/utf8";
 import type { BinStructItem } from "@thi.ng/transducers-binary";
 import { bytes, str, u8, u8array } from "@thi.ng/transducers-binary/bytes";
@@ -69,7 +69,7 @@ const __encodeBin = (x: any) =>
 			? "d"
 			: isArrayLike(x)
 			? "l"
-			: unsupported(`unsupported data type: ${x}`)
+			: illegalArgs(`unsupported data type: ${x}`)
 	](x);
 
 /** @internal */

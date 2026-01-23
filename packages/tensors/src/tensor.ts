@@ -5,7 +5,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { equiv, equivArrayLike } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { dot2, dot3, dot4 } from "@thi.ng/vectors/dot";
 import { eqDeltaS as _eqDelta } from "@thi.ng/vectors/eqdelta";
 import { product, product2, product3, product4 } from "@thi.ng/vectors/product";
@@ -321,7 +321,7 @@ export class Tensor0<T = number> extends ATensor<T> {
 	}
 
 	transpose(_: number[]): this {
-		return unsupported();
+		return unsupportedOp();
 	}
 
 	toString() {
@@ -411,7 +411,7 @@ export class Tensor1<T = number> extends ATensor<T> {
 	}
 
 	transpose(_: number[]): this {
-		return unsupported();
+		return unsupportedOp();
 	}
 
 	toString() {
@@ -730,7 +730,7 @@ export function tensor(...args: any[]): ITensor<any> {
 	const ctor = TENSOR_IMPLS[dim];
 	return ctor
 		? new ctor(type, storage, data, shape, stride, offset)
-		: unsupported(`unsupported dimension: ${dim}`);
+		: illegalArgs(`unsupported dimension: ${dim}`);
 }
 
 /** @internal */

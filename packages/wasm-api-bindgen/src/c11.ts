@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { topoSort } from "@thi.ng/arrays/topo-sort";
 import { isString } from "@thi.ng/checks/is-string";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { capitalize } from "@thi.ng/strings/case";
 import type {
 	CodeGenOpts,
@@ -135,7 +135,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 
 		enum: (e, _, acc, opts) => {
 			if (!(e.tag === "i32" || e.tag === "u32")) {
-				unsupported(
+				unsupportedOp(
 					`enum ${e.name} must be a i32/u32 in C, but got '${e.tag}'`
 				);
 			}
@@ -362,7 +362,7 @@ const __fieldType = (
 				}
 				break;
 			case "vec":
-				unsupported("C doesn't support vector");
+				unsupportedOp("C doesn't support vector");
 			default:
 				decl = `${type} ${f.name}`;
 		}

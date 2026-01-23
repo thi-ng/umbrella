@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe } from "@thi.ng/api";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type { MultiTensorOpImpl } from "./api.js";
 
 /**
@@ -21,7 +21,7 @@ export const top = <T extends Function>(
 		const g = impls[args[dispatch].dim] || fallback;
 		return g
 			? g(...args)
-			: unsupported(`no impl for dimension ${args[dispatch].dim}`);
+			: unsupportedOp(`no impl for dimension ${args[dispatch].dim}`);
 	};
 	fn.add = (dim: number, fn: T) => (impls[dim] = fn);
 	fn.default = (fn: T) => (fallback = fn);

@@ -6,7 +6,7 @@ import { existsAndNotNull } from "@thi.ng/checks/exists-not-null";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isFunction } from "@thi.ng/checks/is-function";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import { doOnce } from "@thi.ng/memoize/do-once";
 import type { Sym, SymOpts, Type } from "@thi.ng/shader-ast";
 import { GLSLVersion } from "@thi.ng/shader-ast-glsl/api";
@@ -395,7 +395,9 @@ export const shaderSourceFromAST = (
 					prelude += `#define ${id} gl_FragData[${o[1]}]\n`;
 					outputAliases[id] = sym("vec4", id);
 				} else {
-					unsupported(`GLSL ${version} doesn't support output vars`);
+					unsupportedFeature(
+						`GLSL ${version} doesn't support output vars`
+					);
 				}
 			}
 		}
