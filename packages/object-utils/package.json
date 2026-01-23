@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/object-utils",
-	"version": "1.3.4",
+	"version": "1.3.5",
 	"description": "Utilities for manipulating plain JS objects & maps",
 	"type": "module",
 	"module": "./index.js",
@@ -39,8 +39,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.12",
-		"@thi.ng/checks": "^3.8.2"
+		"@thi.ng/api": "^8.12.13",
+		"@thi.ng/checks": "^3.8.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

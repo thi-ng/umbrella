@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-analysis",
-	"version": "0.4.31",
+	"version": "0.4.32",
 	"description": "Text tokenization, transformation & analysis transducers, utilities, stop words, porter stemming, vector encodings, similarities",
 	"type": "module",
 	"module": "./index.js",
@@ -39,15 +39,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.12",
-		"@thi.ng/arrays": "^2.14.5",
-		"@thi.ng/bidir-index": "^1.4.2",
-		"@thi.ng/checks": "^3.8.2",
-		"@thi.ng/distance": "^3.0.28",
-		"@thi.ng/k-means": "^2.0.26",
-		"@thi.ng/strings": "^3.9.33",
-		"@thi.ng/transducers": "^9.6.21",
-		"@thi.ng/vectors": "^8.6.18"
+		"@thi.ng/api": "^8.12.13",
+		"@thi.ng/arrays": "^2.14.6",
+		"@thi.ng/bidir-index": "^1.4.3",
+		"@thi.ng/checks": "^3.8.3",
+		"@thi.ng/distance": "^3.0.29",
+		"@thi.ng/k-means": "^2.0.27",
+		"@thi.ng/strings": "^3.9.34",
+		"@thi.ng/transducers": "^9.6.22",
+		"@thi.ng/vectors": "^8.6.19"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",
