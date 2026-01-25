@@ -8,6 +8,7 @@ import { $canvas } from "@thi.ng/rdom-canvas";
 import { fromRAF, reactive, sync } from "@thi.ng/rstream";
 import { splice } from "@thi.ng/strings";
 import { evalSketch } from "./lang.js";
+import { parseURLState, updateURLState } from "./state.js";
 
 // canvas size
 const W = Math.min(~~(window.innerWidth * 0.6), window.innerHeight - 40);
@@ -53,50 +54,11 @@ const downloadSvg = () =>
 // interpreter result...)
 // lines prefixed with `//` are comments, for the rest of the syntax, please
 // consult the detailed thi.ng/pointfree and thi.ng/pointfree-lang readme's!
-const src = reactive(`
-// Forth-like DSL for 2D geometry generation
-// please consult the detailed readme's for:
-// https://thi.ng/pointfree & https://thi.ng/pointfree-lang
+const src = reactive(await parseURLState());
 
-// line comments can be toggled via ctrl+/ or cmd+/
-
-// math helpers
-: fract ( x -- y ) 1 mod ;
-: normf ( f x -- y ) * fract ;
-: normtau ( f x -- rad ) normf tau * ;
-: madd ( a b c -- a+b*c ) * +;
-
-// stateless sine oscillator
-: osc-sin ( dc amp freq x -- y ) normtau sin madd ;
-
-// timebased vertex distortion/rotation
-: wave ^{ pos amp freq }
-    0 @amp time cos * @freq @pos .y osc-sin
-    0 @amp time sin * @freq @pos .x osc-sin
-    vec2
-    translate-tx ;
-
-// timebased shape scaling effect
-: squares ^{ pos amp freq }
-    0.5 @amp @freq @pos .x time 100 madd osc-sin
-    0.5 @amp @freq @pos .y time 100 madd osc-sin * ;
-
-// hex grid generation
-6 npoly [ hex 60 regular ] 16 16 grid
-// scale shapes individually (to create spacing)
-// 0.9 scale-center
-
-// timebased shape tessellation (insetting)
-0.5 0.5 0.2 time osc-sin inset
-// additional tessellators
-// trifan
-// quadfan
-
-// apply global wave deformation
-// [ 50 0.0025 wave ] transform-points
-// apply global shape scaling
-// [ 0.45 0.002 squares ] scale-center
-`);
+// reactive transform to update URL hash with compressed version of current
+// source code
+src.map(updateURLState);
 
 // reactive stream combinator: combines the source code with a throwaway
 // requestAnimationFrame()-based counter, then passes source code to the DSL
