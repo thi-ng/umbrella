@@ -13,11 +13,12 @@ export class BitmapIndex {
 		if (!bitmap) return;
 		for (let i = 0, n = bitmap.length; i < n; i++) {
 			let bits = bitmap[i];
-			while (bits > 0) {
+			while (bits) {
 				const lsb = bits & -bits;
 				const bit = Math.clz32(lsb) ^ 31;
 				const x = (i << 5) + bit;
-				if (x < max) yield x;
+				if (x >= max) return;
+				yield x;
 				bits ^= lsb;
 			}
 		}
