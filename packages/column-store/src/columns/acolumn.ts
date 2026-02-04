@@ -14,6 +14,14 @@ export class AColumn {
 		}
 	}
 
+	encode(value: any) {
+		return value;
+	}
+
+	decode(value: any) {
+		return value;
+	}
+
 	protected loadDict(serialized: SerializedIndex): void {
 		const { dict } = this;
 		if (!dict) return;

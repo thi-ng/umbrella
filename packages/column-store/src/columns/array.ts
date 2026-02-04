@@ -5,6 +5,8 @@ import { AColumn } from "./acolumn.js";
 export class ArrayColumn extends AColumn implements IColumn {
 	values: Nullable<number[]>[] = [];
 
+	readonly isArray = true;
+
 	load(spec: SerializedColumn): void {
 		this.values = spec.values;
 		this.reindex();

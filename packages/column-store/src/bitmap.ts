@@ -38,9 +38,9 @@ export class BitmapIndex {
 	}
 
 	/**
-	 * Removes given bit position in _all_ indices by clearing it and shifting
-	 * all successive bits 1 bit to the right (towards the start). Essentially
-	 * similar to `Array.splice()`.
+	 * Removes bit at given position in _all_ indices by clearing it and
+	 * shifting all successive bits 1 bit to the right (towards the start).
+	 * Essentially similar to `Array.splice()`.
 	 *
 	 * @param id
 	 */

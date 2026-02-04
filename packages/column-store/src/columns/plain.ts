@@ -4,6 +4,8 @@ import { AColumn } from "./acolumn.js";
 export class PlainColumn extends AColumn implements IColumn {
 	values: any[] = [];
 
+	readonly isArray = false;
+
 	load(spec: SerializedColumn): void {
 		this.values = spec.values;
 		this.reindex();

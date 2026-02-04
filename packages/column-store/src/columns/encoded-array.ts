@@ -8,6 +8,8 @@ export class EncodedArrayColumn extends AColumn implements IColumn {
 	values: Nullable<number[]>[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 
+	readonly isArray = true;
+
 	load({ dict, values }: SerializedColumn): void {
 		this.values = values;
 		this.reindex();
@@ -16,6 +18,14 @@ export class EncodedArrayColumn extends AColumn implements IColumn {
 
 	reindex(): void {
 		super.updateBitmap(this.values);
+	}
+
+	encode(value: any) {
+		return this.dict.getAll(value, false, true);
+	}
+
+	decode(value: any[]) {
+		return this.dict.getAllIDs(value, false, true);
 	}
 
 	setRow(i: number, value: any[]) {

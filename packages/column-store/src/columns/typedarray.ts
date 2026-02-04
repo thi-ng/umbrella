@@ -21,10 +21,12 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	values: TypedArray;
 	type: NumericType;
 
+	readonly isArray = false;
+
 	constructor(id: string, table: Table) {
 		super(id, table);
 		this.type = <NumericType>table.schema[id].type;
-		this.values = typedArray(this.type, 16);
+		this.values = typedArray(this.type, 8);
 	}
 
 	load(spec: SerializedColumn): void {

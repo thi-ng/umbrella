@@ -26,6 +26,8 @@ export const FLAG_UNIQUE = 1 << 2;
 export interface IColumn {
 	bitmap?: BitmapIndex;
 
+	readonly isArray: boolean;
+
 	load(spec: SerializedColumn): void;
 
 	reindex(): void;
@@ -35,6 +37,10 @@ export interface IColumn {
 	setRow(i: number, row: any[]): void;
 
 	removeRow(i: number): void;
+
+	encode(value: any): any;
+
+	decode(value: any): any;
 }
 
 export interface SerializedTable {
