@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/column-store",
 	"version": "0.0.1",
-	"description": "In-memory column store database with indexing (WIP)",
+	"description": "Extensible in-memory column store database with extensible query engine, optional bitmap indexing for query acceleration, optimized column types",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -50,6 +50,18 @@
 		"typescript": "^5.9.3"
 	},
 	"keywords": [
+		"acceleration",
+		"column",
+		"binary",
+		"bitmap",
+		"database",
+		"indexed",
+		"json",
+		"memory",
+		"predicate",
+		"query",
+		"set",
+		"typedarray",
 		"typescript"
 	],
 	"publishConfig": {
@@ -93,6 +105,9 @@
 		},
 		"./columns/typedarray": {
 			"default": "./columns/typedarray.js"
+		},
+		"./query": {
+			"default": "./query.js"
 		},
 		"./table": {
 			"default": "./table.js"
