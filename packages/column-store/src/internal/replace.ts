@@ -1,5 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Maybe, TypedArray } from "@thi.ng/api";
-import type { BitmapIndex } from "../bitmap";
+import type { BitmapIndex } from "../bitmap.js";
 
 /** @internal */
 export const __replaceValue = (

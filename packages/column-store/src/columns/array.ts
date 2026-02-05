@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";

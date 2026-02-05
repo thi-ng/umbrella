@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks";
 import { FLAG_BITMAP, type ColumnSpec, type SerializedIndex } from "../api.js";

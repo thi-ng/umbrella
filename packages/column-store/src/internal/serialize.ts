@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { BidirIndex } from "@thi.ng/bidir-index";
 
 /** @internal */

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export class BitmapIndex {
 	index: Map<any, Bitfield> = new Map();
 

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { IColumn, SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
 import { __replaceValue } from "../internal/replace.js";
