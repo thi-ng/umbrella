@@ -17,10 +17,11 @@
 - [About](#about)
 - [Column storage](#column-storage)
   - [Column types](#column-types)
+  - [Custom column types](#custom-column-types)
   - [Cardinality](#cardinality)
   - [Flags](#flags)
     - [FLAG_BITMAP](#flag_bitmap)
-    - [FLAG_INDEXED](#flag_indexed)
+    - [FLAG_ENUM](#flag_enum)
     - [FLAG_UNIQUE](#flag_unique)
 - [Query engine](#query-engine)
   - [Built-in operators](#built-in-operators)
@@ -28,11 +29,14 @@
     - [AND](#and)
     - [Negation](#negation)
     - [Predicate-based matchers](#predicate-based-matchers)
-    - [Custom operators](#custom-operators)
+  - [Custom operators](#custom-operators)
+  - [Result aggregation](#result-aggregation)
+  - [Query ranges](#query-ranges)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Basic usage](#basic-usage)
 - [Authors](#authors)
 - [License](#license)
 
@@ -48,7 +52,7 @@ Currently, only numeric or string values are supported, though we plan to extend
 this to other JSON-serializable types. For better memory utilization, numeric
 data can (and should) be stored in typed arrays.
 
-Note: `BigInt`s are currently unsupported, but planned.
+Note: `BigInt`s are still unsupported, but planned.
 
 | **Column type** | **Description**     |
 |-----------------|---------------------|
@@ -62,6 +66,14 @@ Note: `BigInt`s are currently unsupported, but planned.
 | `i32`           | 32bit signed int    |
 | `f32`           | 32bit float         |
 | `f64`           | 64bit float         |
+
+### Custom column types
+
+The system already supports custom column type implementations via the `IColumn`
+interface. When using custom column types, supply your own column factory
+function via `TableOpts.columnFactory`. In this factory function use your custom
+`ColumnSpec.flags` to choose a suitable implementation, or if not applicable,
+then delegate to the default factory (aka `defaultColumnFactory`) as fallback.
 
 ### Cardinality
 
@@ -88,11 +100,12 @@ stored in the column. These bitfields record which values are stored in which
 rows and are utilized by the [query engine](#query-engine) to massively
 accelerate complex searches.
 
-#### FLAG_INDEXED
+#### FLAG_ENUM
 
-Recommended for string data with predictable values. Instead of storing strings
-directly, each string value will be indexed and only numeric IDs will be stored
-(essentially like an enum).
+Recommended for string data with a relatively small (though not necessarily
+fixed) set of possible values. Instead of storing strings directly, each string
+value will be indexed and only numeric IDs will be stored (essentially like an
+enum).
 
 #### FLAG_UNIQUE
 
@@ -101,13 +114,16 @@ i.e. values of each tuple will be deduplicated (e.g. for tagging).
 
 ## Query engine
 
+The query engine is highly extensible and can be used for executing arbitrarily
+complex queries.
+
 TODO see code examples below
 
 ### Built-in operators
 
-The query engine works by applying a number of query terms in series, with each
-step working with the results of the previous step, narrowing down the result
-set.
+The query engine works by applying a number of sub-query terms in series, with
+each step intersecting its results with the results of the previous step(s),
+thereby narrowing down the result set.
 
 Query terms can be supplied either as array given to the `Query` constructor,
 via the fluent API of the `Query` class and/or via `.addTerm()`.
@@ -137,9 +153,17 @@ behavior is:
 - `matchRow`: apply predicate to full row
 - `matchPartialRow`: apply predicate to partial row (only selected columns)
 
-#### Custom operators
+### Custom operators
 
 Custom query operators can be registered via `registerQueryOp()`.
+
+### Result aggregation
+
+TODO
+
+### Query ranges
+
+TODO
 
 ## Status
 
@@ -173,7 +197,7 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.75 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.77 KB
 
 ## Dependencies
 
@@ -187,6 +211,8 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/column-store/)
+
+### Basic usage
 
 ```ts tangle:export/readme-1.ts
 import {
@@ -278,7 +304,6 @@ Serialized table (can be loaded again via `Table.load()`):
     },
     "length": 5
 }
-
 ```
 
 ## Authors
