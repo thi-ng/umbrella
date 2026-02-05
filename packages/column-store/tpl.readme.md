@@ -6,6 +6,107 @@
 
 {{pkg.description}}
 
+## Column storage
+
+### Column types
+
+Currently, only numeric or string values are supported, though we plan to extend
+this to other JSON-serializable types. For better memory utilization, numeric
+data can (and should) be stored in typed arrays.
+
+Note: `BigInt`s are currently unsupported, but planned.
+
+| **Column type** | **Description**     |
+|-----------------|---------------------|
+| `num`           | JS numbers          |
+| `str`           | JS strings (UTF-16) |
+| `u8`            | 8bit unsigned int   |
+| `i8`            | 8bit signed int     |
+| `u16`           | 16bit unsigned int  |
+| `i16`           | 16bit signed int    |
+| `u32`           | 32bit unsigned int  |
+| `i32`           | 32bit signed int    |
+| `f32`           | 32bit float         |
+| `f64`           | 64bit float         |
+
+### Cardinality
+
+Columns can store zero, one or tuples of multiple values per row. Acceptable
+min/max ranges can be defined via the `cardinality` key of the column spec. The
+following presets are provided:
+
+| **Preset**  | **Value**        | **Description**                             |
+|-------------|------------------|---------------------------------------------|
+| `REQUIRED`  | `[1, 1]`         | Required single value (default)             |
+| `OPTIONAL`  | `[0, 1]`         | Optional single value (present or not)      |
+| `ONE_PLUS`  | `[1, (2**32)-1]` | One or more values (always expects tuples)  |
+| `ZERO_PLUS` | `[0, (2**32)-1]` | Zero or more values (always expects tuples) |
+
+### Flags
+
+(Almost) independent from chosen column type, the following flags can be
+combined to customize the storage & indexing behavior.
+
+#### FLAG_BITMAP
+
+The column will construct & maintain additional bitfields for each unique value
+stored in the column. These bitfields record which values are stored in which
+rows and are utilized by the [query engine](#query-engine) to massively
+accelerate complex searches.
+
+#### FLAG_INDEXED
+
+Recommended for string data with predictable values. Instead of storing strings
+directly, each string value will be indexed and only numeric IDs will be stored
+(essentially like an enum).
+
+#### FLAG_UNIQUE
+
+Only applicable for tuple-based columns to enforce Set-like semantics (per row),
+i.e. values of each tuple will be deduplicated (e.g. for tagging).
+
+## Query engine
+
+TODO see code examples below
+
+### Built-in operators
+
+The query engine works by applying a number of query terms in series, with each
+step working with the results of the previous step, narrowing down the result
+set.
+
+Query terms can be supplied either as array given to the `Query` constructor,
+via the fluent API of the `Query` class and/or via `.addTerm()`.
+
+#### OR
+
+Optionally optimized via `FLAG_BITMAP` presence. One or more values can be
+provided.
+
+#### AND
+
+Optionally optimized via `FLAG_BITMAP` presence. One or more values can be
+provided.
+
+#### Negation
+
+Optionally optimized via `FLAG_BITMAP` presence. Negation is available via
+`nand` & `nor`. For negation of single values either can be used, otherwise the
+behavior is:
+
+- `nand`: select rows same as `and`, then negate results
+- `nor`: select rows same as `or`, then negate results
+
+#### Predicate-based matchers
+
+- `matchColumn`: apply predicate to column value
+- `matchRow`: apply predicate to full row
+- `matchPartialRow`: apply predicate to partial row (only selected columns)
+
+#### Custom operators
+
+Custom query operators can be registered via `registerQueryOp()`.
+
 {{meta.status}}
 
 {{repo.supportPackages}}
