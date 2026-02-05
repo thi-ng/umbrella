@@ -50,6 +50,25 @@ export class ArrayColumn extends AColumn implements IColumn {
 		this.bitmap?.removeBit(i);
 	}
 
+	replaceValue(currValue: any, newValue: any) {
+		const { values, bitmap } = this;
+		const isUnique = this.spec.flags & FLAG_UNIQUE;
+		bitmap?.index.delete(currValue);
+
+		let result = false;
+		for (let i = 0; i < values.length; i++) {
+			const row = values[i];
+			if (row?.includes(currValue)) {
+				let $values = row.map((x) => (x === currValue ? newValue : x));
+				if (isUnique) $values = [...new Set($values)];
+				values[i] = $values;
+				bitmap?.setBit(newValue, i); // TODO avoid repeated index lookups
+				result = true;
+			}
+		}
+		return result;
+	}
+
 	toJSON() {
 		return { values: this.values };
 	}

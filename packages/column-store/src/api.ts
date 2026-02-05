@@ -52,6 +52,8 @@ export interface IColumn {
 	encode(value: any): any;
 
 	decode(value: any): any;
+
+	replaceValue(currValue: any, newValue: any): boolean;
 }
 
 export interface SerializedTable {

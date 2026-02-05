@@ -2,6 +2,7 @@ import { typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IColumn, NumericType, SerializedColumn } from "../api.js";
+import { __replaceValue } from "../internal/replace.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
 
@@ -77,6 +78,10 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 		this.values.copyWithin(i, i + 1, this.table.length);
 		this.values[this.table.length - 1] = 0;
 		this.bitmap?.removeBit(i);
+	}
+
+	replaceValue(currValue: any, newValue: any) {
+		return __replaceValue(this.bitmap, this.values, currValue, newValue);
 	}
 
 	toJSON() {

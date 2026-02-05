@@ -1,5 +1,6 @@
 import type { IColumn, SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
+import { __replaceValue } from "../internal/replace.js";
 import { AColumn } from "./acolumn.js";
 
 export class PlainColumn extends AColumn implements IColumn {
@@ -37,6 +38,10 @@ export class PlainColumn extends AColumn implements IColumn {
 	removeRow(i: number): void {
 		this.values.splice(i, 1);
 		this.bitmap?.removeBit(i);
+	}
+
+	replaceValue(currValue: any, newValue: any) {
+		return __replaceValue(this.bitmap, this.values, currValue, newValue);
 	}
 
 	toJSON() {

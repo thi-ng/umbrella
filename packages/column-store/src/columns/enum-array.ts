@@ -65,6 +65,29 @@ export class EnumArrayColumn extends AColumn implements IColumn {
 		this.bitmap?.removeBit(i);
 	}
 
+	replaceValue(currValue: any, newValue: any) {
+		const { dict, values, bitmap } = this;
+		const res = dict.renameKey(currValue, newValue);
+		if (res === "ok") return true;
+		if (res === "missing") return false;
+		// conflict
+		const currID = dict.get(currValue)!;
+		const newID = dict.get(newValue)!;
+		const isUnique = this.spec.flags & FLAG_UNIQUE;
+		bitmap?.index.delete(currID);
+
+		for (let i = 0; i < values.length; i++) {
+			const row = values[i];
+			if (row?.includes(currID)) {
+				let $values = row.map((x) => (x === currID ? newID : x));
+				if (isUnique) $values = [...new Set($values)];
+				values[i] = $values;
+				bitmap?.setBit(newID, i); // TODO avoid repeated index lookups
+			}
+		}
+		return true;
+	}
+
 	toJSON() {
 		return { dict: __serializeDict(this.dict), values: this.values };
 	}
