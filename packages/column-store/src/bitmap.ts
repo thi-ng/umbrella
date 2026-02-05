@@ -2,16 +2,15 @@ export class BitmapIndex {
 	index: Map<any, Bitfield> = new Map();
 
 	/**
-	 * Returns iterator of row IDs (i.e. bit positions) which have been indexed
-	 * for given `key`. If `max` is given, only positions < `max` are considered.
+	 * Returns iterator of row IDs (i.e. bit positions) which have been marked
+	 * as used by given `key`. If `max` is given, only positions < `max` are
+	 * considered.
 	 *
 	 * @param key
 	 * @param max
 	 */
-	*rowIDs(key: any, max = Infinity) {
-		let bitmap = this.index.get(key);
-		if (!bitmap) return;
-		yield* bitmap.ones(max);
+	rowIDs(key: any, max = Infinity) {
+		return this.index.get(key)?.ones(max) ?? (function* () {})();
 	}
 
 	clear() {
@@ -53,7 +52,7 @@ export class BitmapIndex {
 }
 
 export class Bitfield {
-	buffer?: Uint32Array;
+	constructor(public buffer?: Uint32Array) {}
 
 	*ones(max = Infinity) {
 		const buf = this.buffer;

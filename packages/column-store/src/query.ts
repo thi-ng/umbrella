@@ -8,10 +8,12 @@ import type {
 	QueryTermOp,
 	QueryTermOpSpec,
 } from "./api.js";
+import { Bitfield } from "./bitmap.js";
 import type { Table } from "./table.js";
 
 // TODO add options:
 // - paging / range queries only applied to certain row range
+// - track min/max indices of set bits in combined mask in active ctx
 
 export class Query {
 	terms: QueryTerm[] = [];
@@ -88,19 +90,8 @@ export class Query {
 			op.fn(ctx, term, column);
 		}
 		if (ctx.bitmap) {
-			const n = ctx.size;
-			const max = table.length;
-			// TODO track min/max indices of set bits in combined mask in active ctx
-			for (let i = 0; i < n; i++) {
-				let bits = ctx.bitmap[i];
-				while (bits) {
-					const lsb = bits & -bits;
-					const x = (i << 5) + (Math.clz32(lsb) ^ 31);
-					if (x >= max) return;
-					yield table.getRow(x);
-					bits ^= lsb;
-				}
-			}
+			for (let i of new Bitfield(ctx.bitmap).ones(table.length))
+				yield table.getRow(i);
 		}
 	}
 }
@@ -316,7 +307,17 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 	},
 };
 
-export const registerQueryOp = (id: string, spec: QueryTermOpSpec) => {
-	if (QUERY_OPS[id]) illegalArgs(`query op ${id} already registered`);
-	QUERY_OPS[id] = spec;
+/**
+ * Registers a custom query term operator for given `type` and later use with
+ * {@link Query}. Throws an error if `type` is already registered.
+ *
+ * @remarks
+ * See {@link QueryTerm} & {@link QueryTermOp} for further details.
+ *
+ * @param type
+ * @param spec
+ */
+export const registerQueryOp = (type: string, spec: QueryTermOpSpec) => {
+	if (QUERY_OPS[type]) illegalArgs(`query op ${type} already registered`);
+	QUERY_OPS[type] = spec;
 };
