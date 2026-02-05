@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 213 standalone projects, maintained as part
+> This is one of 214 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -800,7 +800,7 @@ For Node.js REPL:
 const color = await import("@thi.ng/color");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 15.84 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.79 KB
 
 ## Dependencies
 

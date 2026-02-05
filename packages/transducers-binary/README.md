@@ -7,7 +7,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 213 standalone projects, maintained as part
+> This is one of 214 standalone projects, maintained as part
 > of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
 > and anti-framework.
 >
@@ -78,7 +78,7 @@ For Node.js REPL:
 const txb = await import("@thi.ng/transducers-binary");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.51 KB
 
 ## Dependencies
 
