@@ -135,7 +135,7 @@ Custom query operators can be registered via `registerQueryOp()`.
 import {
 	Table,
 	FLAG_BITMAP,
-	FLAG_INDEXED,
+	FLAG_ENUM,
 	FLAG_UNIQUE,
 } from "@thi.ng/column-store";
 
@@ -143,7 +143,7 @@ const table = new Table({
 	// ID column stores 8bit ints (typed array)
 	id: { type: "u8" },
 	// Type column stores indexed strings
-	type: { type: "str", flags: FLAG_INDEXED },
+	type: { type: "str", flags: FLAG_ENUM },
 	// Tags column stores array of strings (max. 10) with set-semantics
 	// and bitmap optimized for query acceleration
 	tags: {
@@ -151,7 +151,7 @@ const table = new Table({
 		// min/max number of values per row (default is: [1,1])
 		cardinality: [0, 10],
 		// flag to define column behavior (flags explained above)
-		flags: FLAG_INDEXED | FLAG_UNIQUE | FLAG_BITMAP,
+		flags: FLAG_ENUM | FLAG_UNIQUE | FLAG_BITMAP,
 		// default value(s) assigned if missing when row is added
 		default: ["unsorted"],
 	},
