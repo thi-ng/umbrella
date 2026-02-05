@@ -1,4 +1,5 @@
 import { typedArray, type TypedArray } from "@thi.ng/api/typedarray";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IColumn, NumericType, SerializedColumn } from "../api.js";
 import type { Table } from "../table.js";
@@ -36,6 +37,10 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 
 	reindex(): void {
 		super.updateBitmap(this.values.subarray(0, this.table.length));
+	}
+
+	validate(value: any) {
+		return isNumber(value);
 	}
 
 	setRow(i: number, value: any) {

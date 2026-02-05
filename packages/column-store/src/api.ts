@@ -41,6 +41,8 @@ export interface IColumn {
 
 	reindex(): void;
 
+	validate(value: any): boolean;
+
 	getRow(i: number): any;
 
 	setRow(i: number, row: any[]): void;

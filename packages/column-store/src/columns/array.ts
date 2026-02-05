@@ -1,6 +1,7 @@
 import type { Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
+import { __validateArrayValue } from "../internal/checks.js";
 import { AColumn } from "./acolumn.js";
 
 export class ArrayColumn extends AColumn implements IColumn {
@@ -19,6 +20,10 @@ export class ArrayColumn extends AColumn implements IColumn {
 
 	encode(value: any) {
 		return isArray(value) ? value : [value];
+	}
+
+	validate(value: any) {
+		return __validateArrayValue(this.spec, value);
 	}
 
 	setRow(i: number, value: any[]) {

@@ -1,4 +1,5 @@
 import type { IColumn, SerializedColumn } from "../api.js";
+import { __validateValue } from "../internal/checks.js";
 import { AColumn } from "./acolumn.js";
 
 export class PlainColumn extends AColumn implements IColumn {
@@ -13,6 +14,10 @@ export class PlainColumn extends AColumn implements IColumn {
 
 	reindex(): void {
 		super.updateBitmap(this.values);
+	}
+
+	validate(value: any) {
+		return __validateValue(this.spec, value);
 	}
 
 	setRow(i: number, value: any) {

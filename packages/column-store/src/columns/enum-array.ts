@@ -2,6 +2,7 @@ import type { Nullable } from "@thi.ng/api";
 import { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
+import { __validateArrayValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
@@ -33,6 +34,10 @@ export class EnumArrayColumn extends AColumn implements IColumn {
 
 	decode(value: any[]) {
 		return this.dict.getAllIDs(value, false, true);
+	}
+
+	validate(value: any) {
+		return __validateArrayValue(this.spec, value);
 	}
 
 	setRow(i: number, value: any[]) {

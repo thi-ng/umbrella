@@ -1,7 +1,5 @@
-import { type Maybe } from "@thi.ng/api";
+import type { Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
-import { isNumber } from "@thi.ng/checks/is-number";
-import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	FLAG_BITMAP,
@@ -159,38 +157,10 @@ export class Table {
 	}
 
 	validateRow(row: Row) {
-		for (let id in this.schema) {
-			const spec = this.schema[id];
-			const [min, max] = spec.cardinality;
-			const value = row[id];
-			if (value == null) {
-				if (min === 0) continue;
-				illegalArgs(`missing value for column: ${id}`);
-			}
-			if (min >= 0 && max > 1) {
-				if (!isArray(value))
-					illegalArgs(`expected array for column: ${id}`);
-				if (value.length < min)
-					illegalArgs(
-						`too few values for column: ${id} (got ${value.length}, but expected at least ${min})`
-					);
-				if (value.length > max)
-					illegalArgs(
-						`too many values for column: ${id} (got ${value.length}, but max. allowed ${max})`
-					);
-				if (spec.type === "num" && !value.every(isNumber))
-					illegalArgs(`expected number array for column: ${id}`);
-				if (spec.type === "str" && !value.every(isString))
-					illegalArgs(`expected string array for column: ${id}`);
-			} else {
-				if (
-					(spec.type === "num" || NUMERIC_TYPES.has(spec.type)) &&
-					!isNumber(value)
-				)
-					illegalArgs(`expected number for column: ${id}`);
-				if (spec.type === "str" && !isString(value))
-					illegalArgs(`expected string for column: ${id}`);
-			}
+		const { columns } = this;
+		for (let id in columns) {
+			if (!columns[id].validate(row[id]))
+				illegalArgs(`invalid value for column: ${id}`);
 		}
 	}
 }

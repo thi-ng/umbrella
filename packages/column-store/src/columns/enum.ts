@@ -1,6 +1,7 @@
 import type { Nullable } from "@thi.ng/api";
 import { BidirIndex } from "@thi.ng/bidir-index";
 import type { IColumn, SerializedColumn } from "../api.js";
+import { __validateValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
@@ -32,6 +33,10 @@ export class EnumColumn extends AColumn implements IColumn {
 
 	decode(value: any) {
 		return this.dict.getID(value);
+	}
+
+	validate(value: any) {
+		return __validateValue(this.spec, value);
 	}
 
 	setRow(i: number, value: any) {

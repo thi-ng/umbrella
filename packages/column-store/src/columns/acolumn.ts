@@ -1,14 +1,16 @@
 import type { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks";
-import { FLAG_BITMAP, type SerializedIndex } from "../api.js";
+import { FLAG_BITMAP, type ColumnSpec, type SerializedIndex } from "../api.js";
 import { BitmapIndex } from "../bitmap.js";
 import type { Table } from "../table.js";
 
-export class AColumn {
+export abstract class AColumn {
+	spec: ColumnSpec;
 	bitmap?: BitmapIndex;
 	dict?: BidirIndex<any>;
 
 	constructor(public readonly id: string, public table: Table) {
+		this.spec = table.schema[id];
 		if (table.schema[id].flags & FLAG_BITMAP) {
 			this.bitmap = new BitmapIndex();
 		}
