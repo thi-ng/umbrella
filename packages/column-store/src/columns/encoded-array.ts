@@ -1,5 +1,6 @@
 import type { Nullable } from "@thi.ng/api";
 import { BidirIndex } from "@thi.ng/bidir-index";
+import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
@@ -21,7 +22,7 @@ export class EncodedArrayColumn extends AColumn implements IColumn {
 	}
 
 	encode(value: any) {
-		return this.dict.getAll(value, false, true);
+		return this.dict.getAll(isArray(value) ? value : [value], false, true);
 	}
 
 	decode(value: any[]) {

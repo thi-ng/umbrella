@@ -1,4 +1,5 @@
 import type { Nullable } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
 import { AColumn } from "./acolumn.js";
 
@@ -14,6 +15,10 @@ export class ArrayColumn extends AColumn implements IColumn {
 
 	reindex(): void {
 		super.updateBitmap(this.values);
+	}
+
+	encode(value: any) {
+		return isArray(value) ? value : [value];
 	}
 
 	setRow(i: number, value: any[]) {
