@@ -9,7 +9,8 @@
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
+		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"directory": "packages/ksuid"
 	},
 	"homepage": "https://thi.ng/ksuid",
 	"funding": [

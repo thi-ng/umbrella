@@ -11,7 +11,8 @@
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
+		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"directory": "packages/block-fs"
 	},
 	"homepage": "https://thi.ng/block-fs",
 	"funding": [

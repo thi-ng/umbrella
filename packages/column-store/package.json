@@ -1,14 +1,15 @@
 {
 	"name": "@thi.ng/column-store",
 	"version": "0.0.1",
-	"description": "Extensible in-memory column store database with extensible query engine, optional bitmap indexing for query acceleration, optimized column types",
+	"description": "In-memory column store database with extensible query engine, customizable/optimized column types, bitfield indexing for query acceleration",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
+		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"directory": "packages/column-store"
 	},
 	"homepage": "https://thi.ng/column-store",
 	"funding": [

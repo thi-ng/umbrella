@@ -68,7 +68,8 @@ cat << EOF > "$MODULE"/package.json
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
+		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"directory": "packages/$1"
 	},
 	"homepage": "https://thi.ng/$1",
 	"funding": [
@@ -130,7 +131,7 @@ cat << EOF > "$MODULE"/package.json
 	},
 	"thi.ng": {
 		"status": "alpha",
-		"year": 2025
+		"year": 2026
 	}
 }
 EOF
