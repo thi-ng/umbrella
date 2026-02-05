@@ -70,10 +70,12 @@ export class EnumArrayColumn extends AColumn implements IColumn {
 		const res = dict.renameKey(currValue, newValue);
 		if (res === "ok") return true;
 		if (res === "missing") return false;
+
 		// conflict
 		const currID = dict.get(currValue)!;
 		const newID = dict.get(newValue)!;
 		const isUnique = this.spec.flags & FLAG_UNIQUE;
+		const bits = bitmap?.ensure(newID);
 		bitmap?.index.delete(currID);
 
 		for (let i = 0; i < values.length; i++) {
@@ -82,7 +84,7 @@ export class EnumArrayColumn extends AColumn implements IColumn {
 				let $values = row.map((x) => (x === currID ? newID : x));
 				if (isUnique) $values = [...new Set($values)];
 				values[i] = $values;
-				bitmap?.setBit(newID, i); // TODO avoid repeated index lookups
+				bits?.setBit(i);
 			}
 		}
 		return true;

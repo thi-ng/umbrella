@@ -65,14 +65,17 @@ export class EnumColumn extends AColumn implements IColumn {
 		const res = dict.renameKey(currValue, newValue);
 		if (res === "ok") return true;
 		if (res === "missing") return false;
+
 		// conflict
 		const currID = dict.get(currValue);
 		const newID = dict.get(newValue);
+		const bits = bitmap?.ensure(newID);
 		bitmap?.index.delete(currID);
+
 		for (let i = 0; i < values.length; i++) {
 			if (values[i] === currID) {
 				values[i] = newID;
-				bitmap?.setBit(newID, i); // TODO avoid repeated index lookups
+				bits?.setBit(i);
 			}
 		}
 		return true;

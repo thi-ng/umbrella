@@ -53,6 +53,7 @@ export class ArrayColumn extends AColumn implements IColumn {
 	replaceValue(currValue: any, newValue: any) {
 		const { values, bitmap } = this;
 		const isUnique = this.spec.flags & FLAG_UNIQUE;
+		const bits = bitmap?.ensure(newValue);
 		bitmap?.index.delete(currValue);
 
 		let result = false;
@@ -62,7 +63,7 @@ export class ArrayColumn extends AColumn implements IColumn {
 				let $values = row.map((x) => (x === currValue ? newValue : x));
 				if (isUnique) $values = [...new Set($values)];
 				values[i] = $values;
-				bitmap?.setBit(newValue, i); // TODO avoid repeated index lookups
+				bits?.setBit(i);
 				result = true;
 			}
 		}

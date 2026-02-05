@@ -8,12 +8,13 @@ export const __replaceValue = (
 	currVal: any,
 	newVal: any
 ) => {
+	const bits = bitmap?.ensure(newVal);
 	bitmap?.index.delete(currVal);
 	let result = false;
 	for (let i = 0; i < values.length; i++) {
 		if (values[i] === currVal) {
 			values[i] = newVal;
-			bitmap?.setBit(newVal, i); // TODO avoid repeated index lookups
+			bits?.setBit(i);
 			result = true;
 		}
 	}

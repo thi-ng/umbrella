@@ -140,7 +140,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 	let mask: Maybe<Uint32Array>;
 	if (isArray(value)) {
 		for (let v of value) {
-			const b = bitmap.index.get(v);
+			const b = bitmap.index.get(v)?.buffer;
 			if (!b) continue;
 			// compute union bitmaps
 			if (mask) {
@@ -148,7 +148,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 			} else mask = ctx.makeMask(b);
 		}
 	} else {
-		const b = bitmap.index.get(value);
+		const b = bitmap.index.get(value)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
 	if (mask) {
@@ -195,7 +195,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 		// pre-lookup bitmaps and bail out early
 		const colBitmaps: Uint32Array[] = [];
 		for (let v of value) {
-			const b = bitmap.index.get(v);
+			const b = bitmap.index.get(v)?.buffer;
 			if (!b) {
 				if (term.type === "and") ctx.bitmap = undefined;
 				return;
@@ -210,7 +210,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 			} else mask = ctx.makeMask(b);
 		}
 	} else {
-		const b = bitmap.index.get(value);
+		const b = bitmap.index.get(value)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
 	if (mask) {
