@@ -252,6 +252,25 @@ export class BidirIndex<T>
 	}
 
 	/**
+	 * Attempts to rename `currKey` into `newKey` without changing its ID
+	 * mapping. Returns `ok` if successful, otherwise `missing` if `currKey` is
+	 * unknown or `conflict` if `newKey` already exists.
+	 *
+	 * @param currKey
+	 * @param newKey
+	 */
+	renameKey(currKey: T, newKey: T) {
+		const id1 = this.fwd.get(currKey);
+		if (id1 == null) return "missing";
+		const id2 = this.fwd.get(newKey);
+		if (id2 != null) return "conflict";
+		this.fwd.delete(currKey);
+		this.fwd.set(newKey, id1);
+		this.rev.set(id1, newKey);
+		return "ok";
+	}
+
+	/**
 	 * Returns a compact JSON serializable version of the index. Use
 	 * {@link bidirIndexFromJSON} to instantiate an index from such a JSON
 	 * serialization.

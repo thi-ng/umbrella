@@ -44,3 +44,12 @@ test("deleteAll", () => {
 		])
 	);
 });
+
+test("rename", () => {
+	const idx = defBidirIndex("ab");
+	expect(idx.renameKey("a", "b")).toBe("conflict");
+	expect(idx.renameKey("c", "b")).toBe("missing");
+	expect(idx.renameKey("a", "c")).toBe("ok");
+	expect(idx.get("a")).toBeUndefined();
+	expect(idx.get("c")).toBe(0);
+});
