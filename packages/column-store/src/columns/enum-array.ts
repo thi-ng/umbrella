@@ -13,13 +13,18 @@ export class EnumArrayColumn extends AColumn implements IColumn {
 
 	load({ dict, values }: SerializedColumn): void {
 		this.values = values;
-		this.reindex();
 		super.loadDict(dict!);
+		super.updateBitmap(this.values);
 	}
 
 	reindex(): void {
+		const dict = this.dict;
+		const newDict = new BidirIndex();
+		this.values = this.values.map((ids) =>
+			ids ? newDict.addAll(dict.getAllIDs(ids)) : null
+		);
+		this.dict = newDict;
 		super.updateBitmap(this.values);
-		// TODO rebuild dict and row values
 	}
 
 	encode(value: any) {
