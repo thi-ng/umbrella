@@ -31,16 +31,22 @@ Note: `BigInt`s are still unsupported, but planned.
 
 ### Custom column types
 
-The system already supports custom column type implementations via the `IColumn`
+The system already supports custom column type implementations via the
+[`IColumn`](https://docs.thi.ng/umbrella/column-store/interfaces/IColumn.html)
 interface. When using custom column types, supply your own column factory
-function via `TableOpts.columnFactory`. In this factory function use your custom
-`ColumnSpec.flags` to choose a suitable implementation, or if not applicable,
-then delegate to the default factory (aka `defaultColumnFactory`) as fallback.
+function via
+[`TableOpts.columnFactory`](https://docs.thi.ng/umbrella/column-store/interfaces/TableOpts.html#columnfactory).
+In this factory function use your custom
+[`ColumnSpec.flags`](https://docs.thi.ng/umbrella/column-store/interfaces/ColumnSpec.html#flags)
+to choose a suitable implementation, or if not applicable, then delegate to the
+[default
+factory](https://docs.thi.ng/umbrella/column-store/functions/defaultColumnFactory.html)
+as fallback.
 
 ### Cardinality
 
 Columns can store zero, one or tuples of multiple values per row. Acceptable
-min/max ranges can be defined via the `cardinality` key of the column spec. The
+min/max ranges can be defined via the [`cardinality`](https://docs.thi.ng/umbrella/column-store/interfaces/ColumnSpec.html#cardinality) key of the column spec. The
 following presets are provided:
 
 | **Preset**  | **Value**        | **Description**                             |
@@ -79,45 +85,83 @@ i.e. values of each tuple will be deduplicated (e.g. for tagging).
 The query engine is highly extensible and can be used for executing arbitrarily
 complex queries.
 
+The system allows predefining queries, which are then only evaluated and produce
+up-to-date results via the standard JS iterable mechanism (i.e. queries
+implement `[Symbol.iterator]`).
+
+```ts
+// predefine query
+const query = table.query().or("name", ["alice", "bob"]);
+
+// actually (re)execute query
+for(let result of query) { ... }
+
+// ..or using slice operator
+const results = [...query];
+```
+
 TODO see code examples below
 
 ### Built-in operators
 
-The query engine works by applying a number of sub-query terms in series, with
-each step intersecting its results with the results of the previous step(s),
-thereby narrowing down the result set.
+The query engine works by applying a number of [query
+terms](https://docs.thi.ng/umbrella/column-store/interfaces/QueryTerm.html) in
+series, with each step intersecting its results with the results of the previous
+step(s), thereby narrowing down the result set.
 
-Query terms can be supplied either as array given to the `Query` constructor,
-via the fluent API of the `Query` class and/or via `.addTerm()`.
+By default, individual query terms operate on a single column, but can also can
+also apply to multiple. Terms are supplied either as array given to the
+[`Query`](https://docs.thi.ng/umbrella/column-store/classes/Query.html)
+constructor, via the fluent API of the `Query` class and/or via
+[`.addTerm()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#addterm).
 
 #### OR
 
-Optionally optimized via `FLAG_BITMAP` presence. One or more values can be
-provided.
+Optionally optimized via [`FLAG_BITMAP`](#flag_bitmap) presence on column. One
+or more values can be provided.
+
+```ts
+query.or("column-name", "option");
+
+query.or("column-name", ["option1", "option2",...]);
+```
 
 #### AND
 
-Optionally optimized via `FLAG_BITMAP` presence. One or more values can be
-provided.
+Optionally optimized via [`FLAG_BITMAP`](#flag_bitmap) presence on column. One
+or more values can be provided.
+
+```ts
+query.and("column-name", "option");
+
+query.and("column-name", ["option1", "option2",...]);
+```
+
 
 #### Negation
 
-Optionally optimized via `FLAG_BITMAP` presence. Negation is available via
-`nand` & `nor`. For negation of single values either can be used, otherwise the
-behavior is:
+Optionally optimized via [`FLAG_BITMAP`](#flag_bitmap) presence on column.
+Negation is available via `nand` & `nor`. For negation of single values either
+can be used, otherwise the behavior is:
 
-- `nand`: select rows same as `and`, then negate results
-- `nor`: select rows same as `or`, then negate results
+- [`nand`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#nand):
+  select rows same as [`and`](#and), then negate results
+- [`nor`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#nor):
+  select rows same as [`or`](#or), then negate results
 
 #### Predicate-based matchers
 
-- `matchColumn`: apply predicate to column value
-- `matchRow`: apply predicate to full row
-- `matchPartialRow`: apply predicate to partial row (only selected columns)
+- [`matchColumn`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchcolumn):
+  apply predicate to column value
+- [`matchRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchrow):
+  apply predicate to full row
+- [`matchPartialRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchpartialrow):
+  apply predicate to partial row (only selected columns)
 
 ### Custom operators
 
-Custom query operators can be registered via `registerQueryOp()`.
+Custom query operators can be registered via
+[`registerQueryOp()`](https://docs.thi.ng/umbrella/column-store/functions/registerQueryOp.html).
 
 ### Result aggregation
 
