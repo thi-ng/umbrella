@@ -70,7 +70,7 @@ export class Query {
 		return this;
 	}
 
-	*execute() {
+	*[Symbol.iterator]() {
 		const { table } = this;
 		const ctx = new QueryCtx(this);
 		for (let term of this.terms) {
