@@ -27,7 +27,7 @@ export const OPTIONAL: Cardinality = [0, 1];
 export const ONE_PLUS: Cardinality = [1, -1 >>> 0];
 export const ZERO_PLUS: Cardinality = [0, -1 >>> 0];
 
-export const FLAG_INDEXED = 1 << 0;
+export const FLAG_ENUM = 1 << 0;
 export const FLAG_BITMAP = 1 << 1;
 export const FLAG_UNIQUE = 1 << 2;
 

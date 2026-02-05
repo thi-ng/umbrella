@@ -5,7 +5,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	FLAG_BITMAP,
-	FLAG_INDEXED,
+	FLAG_ENUM,
 	type ColumnSchema,
 	type ColumnSpec,
 	type IColumn,
@@ -14,8 +14,8 @@ import {
 	type SerializedTable,
 } from "./api.js";
 import { ArrayColumn } from "./columns/array.js";
-import { EncodedArrayColumn } from "./columns/encoded-array.js";
-import { EncodedColumn } from "./columns/encoded.js";
+import { EnumArrayColumn } from "./columns/enum-array.js";
+import { EnumColumn } from "./columns/enum.js";
 import { PlainColumn } from "./columns/plain.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
 import { Query } from "./query.js";
@@ -91,13 +91,13 @@ export class Table {
 			column = new TypedArrayColumn(id, this);
 		} else if (max > 1) {
 			column =
-				$spec.flags & FLAG_INDEXED
-					? new EncodedArrayColumn(id, this)
+				$spec.flags & FLAG_ENUM
+					? new EnumArrayColumn(id, this)
 					: new ArrayColumn(id, this);
 		} else {
 			column =
-				$spec.flags & FLAG_INDEXED
-					? new EncodedColumn(id, this)
+				$spec.flags & FLAG_ENUM
+					? new EnumColumn(id, this)
 					: new PlainColumn(id, this);
 		}
 		this.columns[id] = column;

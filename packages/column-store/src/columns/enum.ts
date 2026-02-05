@@ -4,7 +4,7 @@ import type { IColumn, SerializedColumn } from "../api.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
-export class EncodedColumn extends AColumn implements IColumn {
+export class EnumColumn extends AColumn implements IColumn {
 	values: Nullable<number>[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 
@@ -18,6 +18,7 @@ export class EncodedColumn extends AColumn implements IColumn {
 
 	reindex(): void {
 		super.updateBitmap(this.values);
+		// TODO rebuild dict and row values
 	}
 
 	encode(value: any) {

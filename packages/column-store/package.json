@@ -94,11 +94,11 @@
 		"./columns/array": {
 			"default": "./columns/array.js"
 		},
-		"./columns/encoded-array": {
-			"default": "./columns/encoded-array.js"
+		"./columns/enum-array": {
+			"default": "./columns/enum-array.js"
 		},
-		"./columns/encoded": {
-			"default": "./columns/encoded.js"
+		"./columns/enum": {
+			"default": "./columns/enum.js"
 		},
 		"./columns/plain": {
 			"default": "./columns/plain.js"
