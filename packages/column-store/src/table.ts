@@ -9,6 +9,7 @@ import {
 	type ColumnSchema,
 	type ColumnSpec,
 	type IColumn,
+	type QueryTerm,
 	type Row,
 	type SerializedTable,
 } from "./api.js";
@@ -17,6 +18,7 @@ import { EncodedArrayColumn } from "./columns/encoded-array.js";
 import { EncodedColumn } from "./columns/encoded.js";
 import { PlainColumn } from "./columns/plain.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
+import { Query } from "./query.js";
 
 /** @internal */
 const NUMERIC_TYPES = new Set([
@@ -35,11 +37,11 @@ export class Table {
 	schema: ColumnSchema = {};
 	columns: Record<string, IColumn> = {};
 
-	protected _length = 0;
+	length = 0;
 
 	static load(serialized: SerializedTable) {
 		const table = new Table(serialized.schema);
-		table._length = serialized.length;
+		table.length = serialized.length;
 		for (let id in table.columns) {
 			table.columns[id].load(serialized.columns[id]);
 		}
@@ -57,8 +59,8 @@ export class Table {
 		}
 	}
 
-	get length() {
-		return this._length;
+	query(terms?: QueryTerm[]) {
+		return new Query(this, terms);
 	}
 
 	addColumn(
@@ -102,7 +104,7 @@ export class Table {
 	}
 
 	*[Symbol.iterator]() {
-		for (let i = 0; i < this._length; i++) yield this.getRow(i);
+		for (let i = 0; i < this.length; i++) yield this.getRow(i);
 	}
 
 	reindex() {
@@ -111,15 +113,19 @@ export class Table {
 
 	addRow(row: Row) {
 		this.validateRow(row);
-		const rowID = this._length;
+		const rowID = this.length;
 		for (let id in this.columns) {
 			this.columns[id].setRow(rowID, row[id] ?? this.schema[id].default);
 		}
-		this._length++;
+		this.length++;
+	}
+
+	addRows(rows: Iterable<Row>) {
+		for (let row of rows) this.addRow(row);
 	}
 
 	updateRow(i: number, row: Row) {
-		if (i < 0 || i >= this._length) illegalArgs(`row ID: ${i}`);
+		if (i < 0 || i >= this.length) illegalArgs(`row ID: ${i}`);
 		this.validateRow(row);
 		for (let id in this.columns) {
 			this.columns[id].setRow(i, row[id] ?? this.schema[id].default);
@@ -127,15 +133,15 @@ export class Table {
 	}
 
 	removeRow(i: number) {
-		if (i < 0 || i >= this._length) illegalArgs(`invalid row ID: ${i}`);
+		if (i < 0 || i >= this.length) illegalArgs(`invalid row ID: ${i}`);
 		for (let id in this.columns) {
 			this.columns[id].removeRow(i);
 		}
-		this._length--;
+		this.length--;
 	}
 
 	getRow(i: number, safe = true) {
-		if (safe && (i < 0 || i >= this._length)) return;
+		if (safe && (i < 0 || i >= this.length)) return;
 		const row: Row = {};
 		for (let id in this.columns) {
 			row[id] = this.columns[id].getRow(i);
@@ -144,7 +150,7 @@ export class Table {
 	}
 
 	getPartialRow(i: number, columns: string[], safe = true) {
-		if (safe && (i < 0 || i >= this._length)) return;
+		if (safe && (i < 0 || i >= this.length)) return;
 		const row: Row = {};
 		for (let id of columns) {
 			row[id] = this.columns[id]?.getRow(i);
@@ -189,6 +195,7 @@ export class Table {
 	}
 }
 
+/** @internal */
 const __columnDefault = ({
 	type,
 	cardinality: [min, max] = [1, 1],
