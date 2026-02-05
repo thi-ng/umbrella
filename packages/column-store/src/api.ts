@@ -1,5 +1,13 @@
-import type { FloatType, IntType, TypedArray, UintType } from "@thi.ng/api";
+import type {
+	FloatType,
+	Fn3,
+	IntType,
+	Maybe,
+	TypedArray,
+	UintType,
+} from "@thi.ng/api";
 import type { BitmapIndex } from "./bitmap.js";
+import type { QueryCtx } from "./query.js";
 
 export type ColumnSchema = Record<string, ColumnSpec>;
 
@@ -61,3 +69,24 @@ export interface SerializedIndex {
 }
 
 export type Row = Record<string, any>;
+
+export interface QueryTerm {
+	type: string;
+	column?: string;
+	value: any;
+	params?: any;
+}
+
+export type QueryTermOp = Fn3<QueryCtx, QueryTerm, Maybe<IColumn>, void>;
+
+export interface QueryTermOpSpec {
+	/**
+	 * Default mode is: "col";
+	 */
+	mode?: "col" | "row";
+	/**
+	 * Query op implementation. Unless {@link QueryTermOpSpec.mode} is `row`,
+	 * the provided `column` arg is guaranteed to be defined.
+	 */
+	fn: QueryTermOp;
+}

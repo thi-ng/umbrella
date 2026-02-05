@@ -118,11 +118,11 @@ export class Table {
 		this._length++;
 	}
 
-	updateRow(rowID: number, row: Row) {
-		if (rowID < 0 || rowID >= this._length) illegalArgs(`row ID: ${rowID}`);
+	updateRow(i: number, row: Row) {
+		if (i < 0 || i >= this._length) illegalArgs(`row ID: ${i}`);
 		this.validateRow(row);
 		for (let id in this.columns) {
-			this.columns[id].setRow(rowID, row[id] ?? this.schema[id].default);
+			this.columns[id].setRow(i, row[id] ?? this.schema[id].default);
 		}
 	}
 
@@ -134,11 +134,20 @@ export class Table {
 		this._length--;
 	}
 
-	getRow(i: number) {
-		if (i >= this._length) return;
+	getRow(i: number, safe = true) {
+		if (safe && (i < 0 || i >= this._length)) return;
 		const row: Row = {};
 		for (let id in this.columns) {
 			row[id] = this.columns[id].getRow(i);
+		}
+		return row;
+	}
+
+	getPartialRow(i: number, columns: string[], safe = true) {
+		if (safe && (i < 0 || i >= this._length)) return;
+		const row: Row = {};
+		for (let id of columns) {
+			row[id] = this.columns[id]?.getRow(i);
 		}
 		return row;
 	}

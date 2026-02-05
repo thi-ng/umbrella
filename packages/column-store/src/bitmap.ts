@@ -15,8 +15,7 @@ export class BitmapIndex {
 			let bits = bitmap[i];
 			while (bits) {
 				const lsb = bits & -bits;
-				const bit = Math.clz32(lsb) ^ 31;
-				const x = (i << 5) + bit;
+				const x = (i << 5) + (Math.clz32(lsb) ^ 31);
 				if (x >= max) return;
 				yield x;
 				bits ^= lsb;
