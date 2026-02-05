@@ -1,4 +1,4 @@
-import type { FloatType, IntType, UintType } from "@thi.ng/api";
+import type { FloatType, IntType, TypedArray, UintType } from "@thi.ng/api";
 import type { BitmapIndex } from "./bitmap.js";
 
 export type ColumnSchema = Record<string, ColumnSpec>;
@@ -24,6 +24,7 @@ export const FLAG_BITMAP = 1 << 1;
 export const FLAG_UNIQUE = 1 << 2;
 
 export interface IColumn {
+	values: any[] | TypedArray;
 	bitmap?: BitmapIndex;
 
 	readonly isArray: boolean;
