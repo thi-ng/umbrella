@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { compressBytes, decompressBytes } from "./compress.js";
 import { DEMO } from "./demo.js";
 

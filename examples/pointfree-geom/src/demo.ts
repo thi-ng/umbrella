@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export const DEMO = `
 // Forth-like DSL for 2D geometry generation
 // please consult the detailed readme's for:
