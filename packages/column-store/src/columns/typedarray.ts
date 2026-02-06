@@ -42,7 +42,7 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	}
 
 	validate(value: any) {
-		return isNumber(value);
+		return isNumber(value) || (value == null && this.spec.default != null);
 	}
 
 	setRow(i: number, value: any) {
