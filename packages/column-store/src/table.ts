@@ -3,7 +3,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	FLAG_BITMAP,
-	FLAG_ENUM,
+	FLAG_DICT,
 	FLAG_UNIQUE,
 	type ColumnSchema,
 	type ColumnSpec,
@@ -176,13 +176,13 @@ const $typed: ColumnTypeSpec = {
 const $untyped: ColumnTypeSpec = {
 	impl: (table, id, spec) =>
 		spec.cardinality[1] > 1
-			? spec.flags & FLAG_ENUM
+			? spec.flags & FLAG_DICT
 				? new EnumArrayColumn(id, table)
 				: new ArrayColumn(id, table)
-			: spec.flags & FLAG_ENUM
+			: spec.flags & FLAG_DICT
 			? new EnumColumn(id, table)
 			: new PlainColumn(id, table),
-	flags: FLAG_BITMAP | FLAG_ENUM | FLAG_UNIQUE,
+	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE,
 	cardinality: [0, -1 >>> 0],
 };
 

@@ -58,6 +58,6 @@ export abstract class AColumn {
 			: this.spec.cardinality[0] > 0
 			? this.spec.default ??
 			  illegalArgs(`missing value for column: ${this.id}`)
-			: null;
+			: this.spec.default ?? null;
 	}
 }
