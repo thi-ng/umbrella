@@ -3,6 +3,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import type { ColumnSpec } from "../api.js";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 /** @internal */
 export const __validateValue = (spec: ColumnSpec, x: any) =>
@@ -20,3 +21,7 @@ export const __validateArrayValue = (spec: ColumnSpec, x: any) => {
 			x.every(spec.type === "str" ? isString : isNumber))
 	);
 };
+
+/** @internal */
+export const __columnError = (id: string, msg: string) =>
+	illegalArgs(msg + ` (column: ${id})`);

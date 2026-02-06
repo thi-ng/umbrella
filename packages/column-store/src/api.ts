@@ -9,6 +9,7 @@ import type {
 } from "@thi.ng/api";
 import type { BitmapIndex } from "./bitmap.js";
 import type { QueryCtx } from "./query.js";
+import type { Table } from "./table.js";
 
 export type ColumnSchema = Record<string, ColumnSpec>;
 
@@ -17,10 +18,34 @@ export type NumericType = IntType | UintType | FloatType;
 export type Cardinality = [number, number];
 
 export interface ColumnSpec {
-	type: NumericType | "num" | "str";
+	type: NumericType | "num" | "str" | string;
 	cardinality: Cardinality;
 	flags: number;
 	default?: any;
+}
+
+export interface ColumnTypeSpec {
+	/**
+	 * Factory function to instantiate a colum type for given table, column name
+	 * & spec.
+	 */
+	impl: Fn3<Table, string, ColumnSpec, IColumn>;
+	/**
+	 * Bit mask of supported flags (default: 0, i.e. none allowed). During
+	 * column validation, the (inverted) mask will be applied to the user
+	 * defined flags assigned to a column and will throw an error if the result
+	 * is non-zero.
+	 */
+	flags?: number;
+	/**
+	 * Supported `[min, max]` number of values per row.
+	 */
+	cardinality: Cardinality;
+	/**
+	 * Only used if min cardinality of this column type is zero, and the type
+	 * requires at least a (non-null) default value.
+	 */
+	required?: boolean;
 }
 
 export const REQUIRED: Cardinality = [1, 1];

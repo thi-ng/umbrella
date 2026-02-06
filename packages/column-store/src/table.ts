@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn3 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	FLAG_BITMAP,
 	FLAG_ENUM,
+	FLAG_UNIQUE,
 	type ColumnSchema,
 	type ColumnSpec,
+	type ColumnTypeSpec,
 	type IColumn,
 	type QueryTerm,
 	type Row,
@@ -17,28 +18,13 @@ import { EnumArrayColumn } from "./columns/enum-array.js";
 import { EnumColumn } from "./columns/enum.js";
 import { PlainColumn } from "./columns/plain.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
+import { __columnError } from "./internal/checks.js";
 import { Query } from "./query.js";
 
-/** @internal */
-const NUMERIC_TYPES = new Set([
-	"u8",
-	"u8c",
-	"u16",
-	"u32",
-	"i8",
-	"i16",
-	"i32",
-	"f32",
-	"f64",
-]);
-
-export interface TableOpts {
-	/**
-	 * Customizable function to select and instantiate a {@link IColumn}
-	 * implementation. Default: {@link defaultColumnFactory}
-	 */
-	columnFactory: Fn3<Table, string, ColumnSpec, IColumn>;
-}
+/**
+ * Placeholder only. Unused so far.
+ */
+export interface TableOpts {}
 
 export class Table {
 	opts: TableOpts;
@@ -63,13 +49,8 @@ export class Table {
 		>,
 		opts?: Partial<TableOpts>
 	) {
-		this.opts = {
-			columnFactory: defaultColumnFactory,
-			...opts,
-		};
-		for (let id in schema) {
-			this.addColumn(id, schema[id]);
-		}
+		this.opts = { ...opts };
+		for (let id in schema) this.addColumn(id, schema[id]);
 	}
 
 	query(terms?: QueryTerm[]) {
@@ -85,15 +66,9 @@ export class Table {
 			flags: 0,
 			...spec,
 		};
-		const [min, max] = $spec.cardinality;
-		if (max < min)
-			illegalArgs(`cardinality for column ${id}: ${$spec.cardinality}`);
-		if ($spec.default != null) {
-			if (max > 1 !== isArray($spec.default))
-				illegalArgs(`default value for column: ${id}`);
-		}
+		this.validateColumnSpec(id, $spec);
 		this.schema[id] = $spec;
-		this.columns[id] = this.opts.columnFactory(this, id, $spec);
+		this.columns[id] = COLUMN_TYPES[spec.type].impl(this, id, $spec);
 	}
 
 	*[Symbol.iterator]() {
@@ -155,42 +130,88 @@ export class Table {
 		const { columns } = this;
 		for (let id in columns) {
 			if (!columns[id].validate(row[id]))
-				illegalArgs(`invalid value for column: ${id}`);
+				__columnError(id, `invalid value`);
 		}
+	}
+
+	validateColumnSpec(id: string, spec: ColumnSpec) {
+		const def = COLUMN_TYPES[spec.type];
+		if (!def) __columnError(id, `unknown type: ${spec.type}`);
+		if (spec.flags & ~(def.flags ?? 0))
+			__columnError(
+				id,
+				`unsupported flags for column type: ${spec.type}`
+			);
+		const [min, max] = spec.cardinality;
+		if (max < min)
+			__columnError(id, `wrong cardinality: ${spec.cardinality}`);
+		if (min < def.cardinality[0] || max > def.cardinality[1])
+			__columnError(id, `wrong cardimality`);
+		if (def.required && min === 0 && spec.default == null)
+			__columnError(id, `missing default value`);
+		if (spec.default != null) {
+			if (max > 1 !== isArray(spec.default))
+				__columnError(id, `default value`);
+		}
+	}
+
+	toJSON() {
+		return {
+			schema: this.schema,
+			columns: this.columns,
+			length: this.length,
+		};
 	}
 }
 
+/** @internal */
+const $typed: ColumnTypeSpec = {
+	impl: (table, id) => new TypedArrayColumn(id, table),
+	flags: FLAG_BITMAP,
+	cardinality: [0, 1],
+	required: true,
+};
+
+/** @internal */
+const $untyped: ColumnTypeSpec = {
+	impl: (table, id, spec) =>
+		spec.cardinality[1] > 1
+			? spec.flags & FLAG_ENUM
+				? new EnumArrayColumn(id, table)
+				: new ArrayColumn(id, table)
+			: spec.flags & FLAG_ENUM
+			? new EnumColumn(id, table)
+			: new PlainColumn(id, table),
+	flags: FLAG_BITMAP | FLAG_ENUM | FLAG_UNIQUE,
+	cardinality: [0, -1 >>> 0],
+};
+
 /**
- * Default column type factory function to choose and instantiate an
- * {@link IColumn} implementation from built-in column types.
+ * Registry of column type definitions and their factory functions. See
+ * {@link registerColumnType}.
+ */
+export const COLUMN_TYPES: Record<string, ColumnTypeSpec> = {
+	u8: $typed,
+	i8: $typed,
+	u16: $typed,
+	i16: $typed,
+	u32: $typed,
+	i32: $typed,
+	f32: $typed,
+	f64: $typed,
+	num: $untyped,
+	str: $untyped,
+};
+
+/**
+ * Registers a custom column type for given `type` ID. Throws an error if `type`
+ * is already registered.
  *
- * @remarks
- * When using custom column types, supply your own factory via
- * {@link TableOpts.columnFactory}, then use custom {@link ColumnSpec.flags} to
- * determine a custom implementation, of if not applicable to this column, then
- * delegate to this function here as fallback.
- *
- * @param table
- * @param id
+ * @param type
  * @param spec
  */
-export const defaultColumnFactory = (
-	table: Table,
-	id: string,
-	{ type, flags, cardinality: [min, max] }: ColumnSpec
-): IColumn => {
-	if (NUMERIC_TYPES.has(type)) {
-		if (flags & ~FLAG_BITMAP)
-			illegalArgs(`unsupported flags for column type: ${type}`);
-		if (min < 1 || max > 1)
-			illegalArgs(`typedarray columns must have cardinality [1,1]`);
-		return new TypedArrayColumn(id, table);
-	} else if (max > 1) {
-		return flags & FLAG_ENUM
-			? new EnumArrayColumn(id, table)
-			: new ArrayColumn(id, table);
-	}
-	return flags & FLAG_ENUM
-		? new EnumColumn(id, table)
-		: new PlainColumn(id, table);
+export const registerColumnType = (type: string, spec: ColumnTypeSpec) => {
+	if (COLUMN_TYPES[type])
+		illegalArgs(`column type ${type} already registered`);
+	COLUMN_TYPES[type] = spec;
 };
