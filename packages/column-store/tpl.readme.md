@@ -301,9 +301,9 @@ Serialized table (can be loaded again via `Table.load()`):
 ```json
 {
 	"schema": {
-		"id": { "cardinality": [1, 1], "flags": 0, "default": 0, "type": "u8" },
-		"type": { "cardinality": [1, 1], "flags": 1, "default": "", "type": "str" },
-		"tags": { "cardinality": [0, 10], "flags": 7, "default": ["unsorted"], "type": "str" }
+		"id": { "cardinality": [1, 1], "flags": 0, "type": "u8" },
+		"type": { "cardinality": [1, 1], "flags": 1, "type": "str" },
+		"tags": { "cardinality": [0, 10], "flags": 7, "type": "str", "default": ["unsorted"] }
 	},
 	"columns": {
 		"id": {
