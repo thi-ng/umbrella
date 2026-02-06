@@ -227,7 +227,7 @@ export class BidirIndex<T>
 	 * @param fail
 	 */
 	getAllUnique(keys: Iterable<T>, fail = false) {
-		return new Set(__iterate(this.fwd, keys, fail));
+		return new Set(<number[]>__iterate(this.fwd, keys, fail));
 	}
 
 	/**
@@ -293,6 +293,7 @@ const __delete = <A, B>(fwd: Map<A, B>, rev: Map<B, A>, key: A) => {
 	return false;
 };
 
+/** @internal */
 function __iterate<A, B>(
 	index: Map<A, B>,
 	keys: Iterable<A>,
