@@ -28,6 +28,7 @@ export class ArrayColumn extends AColumn implements IColumn {
 	}
 
 	setRow(i: number, value: any[]) {
+		value = this.ensureValue(value);
 		const { values, bitmap } = this;
 		const old = values[i];
 		const row = (values[i] =

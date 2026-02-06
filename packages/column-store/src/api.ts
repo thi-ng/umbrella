@@ -20,7 +20,7 @@ export interface ColumnSpec {
 	type: NumericType | "num" | "str";
 	cardinality: Cardinality;
 	flags: number;
-	default: any;
+	default?: any;
 }
 
 export const REQUIRED: Cardinality = [1, 1];
@@ -46,7 +46,17 @@ export interface IColumn {
 
 	getRow(i: number): any;
 
-	setRow(i: number, row: any[]): void;
+	/**
+	 * Sets the column's value at given row index. Assumes the value has been
+	 * pre-validated (via {@link IColumn.validate}). If value is null-ish and
+	 * the column has a configured default, it will be replaced with said value,
+	 * otherwise an error will be thrown (if the column requires a value, but
+	 * has no default).
+	 *
+	 * @param i
+	 * @param value
+	 */
+	setRow(i: number, value: any): void;
 
 	removeRow(i: number): void;
 

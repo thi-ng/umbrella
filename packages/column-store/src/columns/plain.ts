@@ -25,7 +25,7 @@ export class PlainColumn extends AColumn implements IColumn {
 	setRow(i: number, value: any) {
 		const { values, bitmap } = this;
 		const old = values[i];
-		values[i] = value;
+		values[i] = this.ensureValue(value);
 		if (bitmap) {
 			if (old != null) bitmap.clearBit(old, i);
 			if (value != null) bitmap.setBit(value, i);

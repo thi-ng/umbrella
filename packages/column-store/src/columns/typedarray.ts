@@ -46,6 +46,7 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	}
 
 	setRow(i: number, value: any) {
+		value = this.ensureValue(value);
 		const limit = LIMITS[this.type];
 		if (value < limit[0] || value > limit[1])
 			illegalArgs(

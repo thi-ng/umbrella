@@ -83,7 +83,6 @@ export class Table {
 		const $spec: ColumnSpec = {
 			cardinality: [1, 1],
 			flags: 0,
-			default: __columnDefault(spec),
 			...spec,
 		};
 		const [min, max] = $spec.cardinality;
@@ -107,9 +106,9 @@ export class Table {
 
 	addRow(row: Row) {
 		this.validateRow(row);
-		const rowID = this.length;
-		for (let id in this.columns) {
-			this.columns[id].setRow(rowID, row[id] ?? this.schema[id].default);
+		const { columns, length: rowID } = this;
+		for (let id in columns) {
+			columns[id].setRow(rowID, row[id]);
 		}
 		this.length++;
 	}
@@ -122,7 +121,7 @@ export class Table {
 		if (i < 0 || i >= this.length) illegalArgs(`row ID: ${i}`);
 		this.validateRow(row);
 		for (let id in this.columns) {
-			this.columns[id].setRow(i, row[id] ?? this.schema[id].default);
+			this.columns[id].setRow(i, row[id]);
 		}
 	}
 
@@ -195,20 +194,3 @@ export const defaultColumnFactory = (
 		? new EnumColumn(id, table)
 		: new PlainColumn(id, table);
 };
-
-/** @internal */
-const __columnDefault = ({
-	type,
-	cardinality: [min, max] = [1, 1],
-}: Partial<ColumnSpec> & { type: ColumnSpec["type"] }) =>
-	min === 0
-		? null
-		: type === "str"
-		? max > 1
-			? new Array(min).fill("")
-			: ""
-		: type === "num"
-		? max > 1
-			? new Array(min).fill(0)
-			: 0
-		: 0;
