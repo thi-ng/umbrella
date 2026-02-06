@@ -19,10 +19,12 @@
   - [Column types](#column-types)
   - [Custom column types](#custom-column-types)
   - [Cardinality](#cardinality)
+  - [Default values](#default-values)
   - [Flags](#flags)
     - [FLAG_BITMAP](#flag_bitmap)
-    - [FLAG_ENUM](#flag_enum)
+    - [FLAG_DICT](#flag_dict)
     - [FLAG_UNIQUE](#flag_unique)
+    - [Custom flags](#custom-flags)
 - [Query engine](#query-engine)
   - [Built-in operators](#built-in-operators)
     - [OR](#or)
@@ -42,50 +44,51 @@
 
 ## About
 
-Extensible in-memory column store database with extensible query engine, optional bitmap indexing for query acceleration, optimized column types.
+In-memory column store database with customizable column types, extensible query engine, bitfield indexing for query acceleration, JSON serialization.
 
 ## Column storage
 
 ### Column types
 
-Currently, only numeric or string values are supported, though we plan to extend
-this to other JSON-serializable types. For better memory utilization, numeric
-data can (and should) be stored in typed arrays.
+The current built-in column types only support numeric or string values, though
+support for other JSON-serializable types is planned. For better memory
+utilization, numeric data can (and should) be stored in typed array columns.
 
-Note: `BigInt`s are still unsupported, but planned.
+Some column types support storing multiple values per row as tuples. See
+[cardinality section](#cardinality) below for further detail.
 
-| **Column type** | **Description**     |
-|-----------------|---------------------|
-| `num`           | JS numbers          |
-| `str`           | JS strings (UTF-16) |
-| `u8`            | 8bit unsigned int   |
-| `i8`            | 8bit signed int     |
-| `u16`           | 16bit unsigned int  |
-| `i16`           | 16bit signed int    |
-| `u32`           | 32bit unsigned int  |
-| `i32`           | 32bit signed int    |
-| `f32`           | 32bit float         |
-| `f64`           | 64bit float         |
+Note: Booleans and `BigInt`s are still unsupported, but being worked on...
+
+| **Column type** | **Description**     | **Tuples supported** |
+|-----------------|---------------------|----------------------|
+| `num`           | JS numbers          | ✅                    |
+| `str`           | JS strings (UTF-16) | ✅                    |
+| `u8`            | 8bit unsigned int   | ❌                    |
+| `i8`            | 8bit signed int     | ❌                    |
+| `u16`           | 16bit unsigned int  | ❌                    |
+| `i16`           | 16bit signed int    | ❌                    |
+| `u32`           | 32bit unsigned int  | ❌                    |
+| `i32`           | 32bit signed int    | ❌                    |
+| `f32`           | 32bit float         | ❌                    |
+| `f64`           | 64bit float         | ❌                    |
 
 ### Custom column types
 
 The system already supports custom column type implementations via the
 [`IColumn`](https://docs.thi.ng/umbrella/column-store/interfaces/IColumn.html)
-interface. When using custom column types, supply your own column factory
-function via
-[`TableOpts.columnFactory`](https://docs.thi.ng/umbrella/column-store/interfaces/TableOpts.html#columnfactory).
-In this factory function use your custom
-[`ColumnSpec.flags`](https://docs.thi.ng/umbrella/column-store/interfaces/ColumnSpec.html#flags)
-to choose a suitable implementation, or if not applicable, then delegate to the
-[default
-factory](https://docs.thi.ng/umbrella/column-store/functions/defaultColumnFactory.html)
-as fallback.
+and
+[`ColumnTypeSpec`](https://docs.thi.ng/umbrella/column-store/interfaces/ColumnTypeSpec.html)
+interfaces.
+
+Custom column types and their implementations can be registered via
+[`registerColumnType()`](https://docs.thi.ng/umbrella/column-store/functions/registerColumnType.html).
 
 ### Cardinality
 
 Columns can store zero, one or tuples of multiple values per row. Acceptable
-min/max ranges can be defined via the [`cardinality`](https://docs.thi.ng/umbrella/column-store/interfaces/ColumnSpec.html#cardinality) key of the column spec. The
-following presets are provided:
+min/max ranges can be defined via the
+[`cardinality`](https://docs.thi.ng/umbrella/column-store/interfaces/ColumnSpec.html#cardinality)
+key of the column spec. The following presets are provided:
 
 | **Preset**  | **Value**        | **Description**                             |
 |-------------|------------------|---------------------------------------------|
@@ -94,29 +97,67 @@ following presets are provided:
 | `ONE_PLUS`  | `[1, (2**32)-1]` | One or more values (always expects tuples)  |
 | `ZERO_PLUS` | `[0, (2**32)-1]` | Zero or more values (always expects tuples) |
 
+### Default values
+
+Default values can be specified for columns with a minimum cardinality of 1 or
+more (aka required values). When a row is added or updated, any `null`ish values
+for such columns in the row record will then be replaced with their default
+values. If a column with required values has no configured default value, an
+error will be thrown when attempting to add/update an incomplete record.
+
+```ts
+// example column spec with default value
+{
+    type: "str",
+    cardinality: [1, 1],
+    default: "todo",
+}
+```
+
+**Note:** Typed array backed columns **do no** support optional values and
+therefore require either a cardinality of `[1,1]` or `[0,1]` with a default.
+
 ### Flags
 
-(Almost) independent from chosen column type, the following flags can be
-combined to customize the storage & indexing behavior.
+Generally applicable to all column types, the following numeric flags can be
+assigned and combined (into bitmasks) to customize the storage & indexing
+behavior.
 
 #### FLAG_BITMAP
+
+(Value: 0x01)
 
 The column will construct & maintain additional bitfields for each unique value
 stored in the column. These bitfields record which values are stored in which
 rows and are utilized by the [query engine](#query-engine) to massively
 accelerate complex searches.
 
-#### FLAG_ENUM
+#### FLAG_DICT
 
-Recommended for string data with a relatively small (though not necessarily
-fixed) set of possible values. Instead of storing strings directly, each string
-value will be indexed and only numeric IDs will be stored (essentially like an
-enum).
+(Value: 0x02)
+
+Dictionary encoded storage. Recommended for (non-numeric) data with a relatively
+small (though not necessarily fixed) set of possible values. Instead of storing
+values directly, only numeric IDs will be stored. The original (de-duplicated)
+values are stored in a dictionary alongside the column data.
+
+Note: Not supported by typedarray-backed column types.
 
 #### FLAG_UNIQUE
 
+(Value: 0x04)
+
 Only applicable for tuple-based columns to enforce Set-like semantics (per row),
 i.e. values of each tuple will be deduplicated (e.g. for tagging).
+
+Note: Not supported by typedarray-backed column types.
+
+#### Custom flags
+
+The lower 16bit of the 32bit `flags` integer are reserved for built-ins and
+future extension of this package. However, the upper 16 bits can be freely used
+for custom flags, i.e. in conjunction with [custom column
+types](#custom-column-types).
 
 ## Query engine
 
@@ -240,7 +281,7 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.77 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.91 KB
 
 ## Dependencies
 
@@ -261,7 +302,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 import {
     Table,
     FLAG_BITMAP,
-    FLAG_ENUM,
+    FLAG_DICT,
     FLAG_UNIQUE,
 } from "@thi.ng/column-store";
 
@@ -269,7 +310,7 @@ const table = new Table({
     // ID column stores 8bit ints (typed array)
     id: { type: "u8" },
     // Type column stores indexed strings
-    type: { type: "str", flags: FLAG_ENUM },
+    type: { type: "str", flags: FLAG_DICT },
     // Tags column stores array of strings (max. 10) with set-semantics
     // and bitmap optimized for query acceleration
     tags: {
@@ -277,7 +318,7 @@ const table = new Table({
         // min/max number of values per row (default is: [1,1])
         cardinality: [0, 10],
         // flag to define column behavior (flags explained above)
-        flags: FLAG_ENUM | FLAG_UNIQUE | FLAG_BITMAP,
+        flags: FLAG_DICT | FLAG_UNIQUE | FLAG_BITMAP,
         // default value(s) assigned if missing when row is added
         default: ["unsorted"],
     },
