@@ -174,6 +174,9 @@ const $typed: ColumnTypeSpec = {
 };
 
 /** @internal */
+const $float: ColumnTypeSpec = { ...$typed, flags: FLAG_BITMAP };
+
+/** @internal */
 const $untyped: ColumnTypeSpec = {
 	impl: (table, id, { flags, cardinality: [min, max], default: d }) => {
 		const isDict = flags & FLAG_DICT;
@@ -205,8 +208,8 @@ export const COLUMN_TYPES: Record<string, ColumnTypeSpec> = {
 	i16: $typed,
 	u32: $typed,
 	i32: $typed,
-	f32: $typed,
-	f64: $typed,
+	f32: $float,
+	f64: $float,
 	num: $untyped,
 	str: $untyped,
 };
