@@ -312,11 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-01-23
+As of: 2026-02-07
 
-| Status                                           | Package                               | Version                                                                                                     | Changelog                                   |
-|:-------------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/server`](./packages/server) | [![version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server) | [changelog](./packages/server/CHANGELOG.md) |
+| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
+|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bidir-index`](./packages/bidir-index)   | [![version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index)   | [changelog](./packages/bidir-index/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/column-store`](./packages/column-store) | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store) | [changelog](./packages/column-store/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
@@ -331,6 +332,7 @@ As of: 2026-01-23
 | [`@thi.ng/buffers`](./packages/buffers)             | [![version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)             | [changelog](./packages/buffers/CHANGELOG.md)       | Generic read/write buffers w/ diff. behaviors         |
 | [`@thi.ng/cache`](./packages/cache)                 | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)                 | [changelog](./packages/cache/CHANGELOG.md)         | In-memory caches / strategies                         |
 | [`@thi.ng/cellular`](./packages/cellular)           | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)           | [changelog](./packages/cellular/CHANGELOG.md)      | Highly configurable 1D Cellular automata              |
+| [`@thi.ng/column-store`](./packages/column-store)   | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store)   | [changelog](./packages/column-store/CHANGELOG.md)  | Extensible in-memory column store database            |
 | [`@thi.ng/dcons`](./packages/dcons)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)                 | [changelog](./packages/dcons/CHANGELOG.md)         | Doubly-linked list                                    |
 | [`@thi.ng/diff`](./packages/diff)                   | [![version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)                   | [changelog](./packages/diff/CHANGELOG.md)          | Array & object diffing                                |
 | [`@thi.ng/disjoint-set`](./packages/disjoint-set)   | [![version](https://img.shields.io/npm/v/@thi.ng/disjoint-set.svg)](https://www.npmjs.com/package/@thi.ng/disjoint-set)   | [changelog](./packages/disjoint-set/CHANGELOG.md)  | Disjoint Set data structure                           |
