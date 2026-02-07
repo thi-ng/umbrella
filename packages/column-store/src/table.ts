@@ -62,6 +62,7 @@ export class Table {
 		id: string,
 		spec: Partial<ColumnSpec> & { type: ColumnSpec["type"] }
 	) {
+		if (this.columns[id]) __columnError(id, "already exists");
 		const $spec: ColumnSpec = {
 			cardinality: [1, 1],
 			flags: 0,
@@ -70,6 +71,13 @@ export class Table {
 		this.validateColumnSpec(id, $spec);
 		this.schema[id] = $spec;
 		this.columns[id] = COLUMN_TYPES[spec.type].impl(this, id, $spec);
+	}
+
+	removeColumn(id: string) {
+		if (this.columns[id]) return false;
+		delete this.columns[id];
+		delete this.schema[id];
+		return true;
 	}
 
 	*[Symbol.iterator]() {
@@ -102,7 +110,7 @@ export class Table {
 	}
 
 	removeRow(i: number) {
-		if (i < 0 || i >= this.length) illegalArgs(`invalid row ID: ${i}`);
+		if (i < 0 || i >= this.length) illegalArgs(`row ID: ${i}`);
 		for (let id in this.columns) {
 			this.columns[id].removeRow(i);
 		}
@@ -186,12 +194,8 @@ const $untyped: ColumnTypeSpec = {
 			}
 		}
 		return max > 1
-			? isDict
-				? new DictArrayColumn(id, table)
-				: new ArrayColumn(id, table)
-			: isDict
-			? new DictColumn(id, table)
-			: new PlainColumn(id, table);
+			? new (isDict ? DictArrayColumn : ArrayColumn)(id, table)
+			: new (isDict ? DictColumn : PlainColumn)(id, table);
 	},
 	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE | FLAG_RLE,
 	cardinality: [0, -1 >>> 0],
