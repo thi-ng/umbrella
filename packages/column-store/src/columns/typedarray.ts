@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
 import {
 	FLAG_RLE,
@@ -29,12 +28,14 @@ const LIMITS: Record<NumericType, [number, number]> = {
 export class TypedArrayColumn extends AColumn implements IColumn {
 	values: TypedArray;
 	type: NumericType;
+	limit: [number, number];
 
 	readonly isArray = false;
 
 	constructor(id: string, table: Table) {
 		super(id, table);
 		this.type = <NumericType>table.schema[id].type;
+		this.limit = LIMITS[this.type];
 		this.values = typedArray(this.type, 8);
 	}
 
@@ -53,20 +54,16 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	}
 
 	validate(value: any) {
-		return isNumber(value) || (value == null && this.spec.default != null);
+		return (
+			(isNumber(value) &&
+				value >= this.limit[0] &&
+				value <= this.limit[1]) ||
+			(value == null && this.spec.default != null)
+		);
 	}
 
 	setRow(i: number, value: any) {
 		value = this.ensureValue(value);
-		const limit = LIMITS[this.type];
-		if (value < limit[0] || value > limit[1])
-			illegalArgs(
-				`column ${
-					this.id
-				} value out of bounds (got ${value}, but range is ${JSON.stringify(
-					limit
-				)}`
-			);
 		let len = this.values.length;
 		if (i >= len) {
 			while (i >= len) len <<= 1;
