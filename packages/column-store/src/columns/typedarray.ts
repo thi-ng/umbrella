@@ -1,8 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
-import { typedArray, type TypedArray } from "@thi.ng/api/typedarray";
+import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { IColumn, NumericType, SerializedColumn } from "../api.js";
+import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
+import {
+	FLAG_RLE,
+	type IColumn,
+	type NumericType,
+	type SerializedColumn,
+} from "../api.js";
 import { __replaceValue } from "../internal/replace.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
@@ -33,7 +39,12 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	}
 
 	load(spec: SerializedColumn): void {
-		this.values = typedArray(this.type, spec.values);
+		if (this.spec.flags & FLAG_RLE) {
+			const values = decodeRLE(<any>spec.values);
+			this.values = typedArray(this.type, values.buffer);
+		} else {
+			this.values = typedArray(this.type, spec.values);
+		}
 		this.reindex();
 	}
 
@@ -87,8 +98,10 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	}
 
 	toJSON() {
-		return {
-			values: Array.from(this.values.subarray(0, this.table.length)),
-		};
+		let values = this.values.subarray(0, this.table.length);
+		if (this.spec.flags & FLAG_RLE) {
+			values = encodeRLE(values, values.length, SIZEOF[this.type] * 8);
+		}
+		return { values: Array.from(values) };
 	}
 }

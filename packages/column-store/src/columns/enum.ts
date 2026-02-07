@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { BidirIndex } from "@thi.ng/bidir-index";
-import type { IColumn, SerializedColumn } from "../api.js";
+import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
+import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
@@ -13,7 +14,10 @@ export class EnumColumn extends AColumn implements IColumn {
 	readonly isArray = false;
 
 	load({ dict, values }: SerializedColumn): void {
-		this.values = values;
+		this.values =
+			this.spec.flags & FLAG_RLE
+				? Array.from(decodeRLE(<any>values))
+				: values;
 		super.loadDict(dict!);
 		super.updateBitmap(this.values);
 	}
@@ -84,6 +88,13 @@ export class EnumColumn extends AColumn implements IColumn {
 	}
 
 	toJSON() {
-		return { dict: __serializeDict(this.dict), values: this.values };
+		let values = this.values;
+		if (this.spec.flags & FLAG_RLE) {
+			const numBits = Math.max(1, Math.ceil(Math.log2(this.dict.size)));
+			values = Array.from(
+				encodeRLE(<number[]>values, values.length, numBits)
+			);
+		}
+		return { dict: __serializeDict(this.dict), values };
 	}
 }

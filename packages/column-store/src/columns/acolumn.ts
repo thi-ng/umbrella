@@ -13,9 +13,7 @@ export abstract class AColumn {
 
 	constructor(public readonly id: string, public table: Table) {
 		this.spec = table.schema[id];
-		if (table.schema[id].flags & FLAG_BITMAP) {
-			this.bitmap = new BitmapIndex();
-		}
+		this.ensureBitmap();
 	}
 
 	encode(value: any) {
@@ -41,6 +39,7 @@ export abstract class AColumn {
 	}
 
 	protected updateBitmap(rows: ArrayLike<any>) {
+		this.ensureBitmap();
 		const { bitmap } = this;
 		if (!bitmap) return;
 		bitmap.clear();
@@ -59,5 +58,9 @@ export abstract class AColumn {
 			? this.spec.default ??
 			  illegalArgs(`missing value for column: ${this.id}`)
 			: this.spec.default ?? null;
+	}
+
+	protected ensureBitmap() {
+		if (this.spec.flags & FLAG_BITMAP) this.bitmap = new BitmapIndex();
 	}
 }

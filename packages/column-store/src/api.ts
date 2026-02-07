@@ -56,6 +56,7 @@ export const ZERO_PLUS: Cardinality = [0, -1 >>> 0];
 export const FLAG_DICT = 1 << 0;
 export const FLAG_BITMAP = 1 << 1;
 export const FLAG_UNIQUE = 1 << 2;
+export const FLAG_RLE = 1 << 3;
 
 export interface IColumn {
 	values: any[] | TypedArray;

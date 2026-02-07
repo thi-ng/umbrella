@@ -4,6 +4,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	FLAG_BITMAP,
 	FLAG_DICT,
+	FLAG_RLE,
 	FLAG_UNIQUE,
 	type ColumnSchema,
 	type ColumnSpec,
@@ -167,22 +168,29 @@ export class Table {
 /** @internal */
 const $typed: ColumnTypeSpec = {
 	impl: (table, id) => new TypedArrayColumn(id, table),
-	flags: FLAG_BITMAP,
+	flags: FLAG_BITMAP | FLAG_RLE,
 	cardinality: [0, 1],
 	required: true,
 };
 
 /** @internal */
 const $untyped: ColumnTypeSpec = {
-	impl: (table, id, spec) =>
-		spec.cardinality[1] > 1
-			? spec.flags & FLAG_DICT
+	impl: (table, id, { flags, cardinality: [min, max], default: d }) => {
+		const isDict = flags & FLAG_DICT;
+		if (flags & FLAG_RLE) {
+			if (!isDict || max > 1 || (min === 0 && d == null)) {
+				__columnError(id, `RLE encoding not supported`);
+			}
+		}
+		return max > 1
+			? isDict
 				? new EnumArrayColumn(id, table)
 				: new ArrayColumn(id, table)
-			: spec.flags & FLAG_DICT
+			: isDict
 			? new EnumColumn(id, table)
-			: new PlainColumn(id, table),
-	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE,
+			: new PlainColumn(id, table);
+	},
+	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE | FLAG_RLE,
 	cardinality: [0, -1 >>> 0],
 };
 
