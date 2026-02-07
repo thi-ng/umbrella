@@ -19,18 +19,20 @@ Some column types support storing multiple values per row as tuples. See
 
 Note: Booleans and `BigInt`s are still unsupported, but being worked on...
 
-| **Column type** | **Description**     | **Tuples supported** |
-|-----------------|---------------------|----------------------|
-| `num`           | JS numbers          | ✅                    |
-| `str`           | JS strings (UTF-16) | ✅                    |
-| `u8`            | 8bit unsigned int   | ❌                    |
-| `i8`            | 8bit signed int     | ❌                    |
-| `u16`           | 16bit unsigned int  | ❌                    |
-| `i16`           | 16bit signed int    | ❌                    |
-| `u32`           | 32bit unsigned int  | ❌                    |
-| `i32`           | 32bit signed int    | ❌                    |
-| `f32`           | 32bit float         | ❌                    |
-| `f64`           | 64bit float         | ❌                    |
+| **Column type** | **Description**     | **Tuples supported** | **RLE serialization** |
+|-----------------|---------------------|----------------------|-----------------------|
+| `num`           | JS numbers          | ✅                    | ✅ <sup>(1)</sup>       |
+| `str`           | JS strings (UTF-16) | ✅                    | ✅ <sup>(1)</sup>       |
+| `u8`            | 8bit unsigned int   | ❌                    | ✅                     |
+| `i8`            | 8bit signed int     | ❌                    | ✅                     |
+| `u16`           | 16bit unsigned int  | ❌                    | ✅                     |
+| `i16`           | 16bit signed int    | ❌                    | ✅                     |
+| `u32`           | 32bit unsigned int  | ❌                    | ✅                     |
+| `i32`           | 32bit signed int    | ❌                    | ✅                     |
+| `f32`           | 32bit float         | ❌                    | ❌                     |
+| `f64`           | 64bit float         | ❌                    | ❌                     |
+
+- <sup>(1)</sup> only if `FLAG_DICT` is enabled, [further information](#flag_rle)
 
 ### Custom column types
 
@@ -111,6 +113,20 @@ Only applicable for tuple-based columns to enforce Set-like semantics (per row),
 i.e. values of each tuple will be deduplicated (e.g. for tagging).
 
 Note: Not supported by typedarray-backed column types.
+
+#### FLAG_RLE
+
+(Value: 0x08)
+
+This flag enables bitwise [Run-length encoding](https://thi.ng/rle-pack) in the
+JSON serialization of a column, potentially leading to dramatic file size
+savings, esp. for dictionary-based data.
+
+Only applicable to these column types & configurations:
+
+- typedarray-based integer columns (see [table](#column-types))
+- dictionary-based single value columns (if the min. cardinality is zero, a
+  default value **must** be supplied)
 
 #### Custom flags
 
