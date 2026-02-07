@@ -15,8 +15,8 @@ import {
 	type SerializedTable,
 } from "./api.js";
 import { ArrayColumn } from "./columns/array.js";
-import { EnumArrayColumn } from "./columns/enum-array.js";
-import { EnumColumn } from "./columns/enum.js";
+import { DictArrayColumn } from "./columns/dict-array.js";
+import { DictColumn } from "./columns/dict.js";
 import { PlainColumn } from "./columns/plain.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
 import { __columnError } from "./internal/checks.js";
@@ -184,10 +184,10 @@ const $untyped: ColumnTypeSpec = {
 		}
 		return max > 1
 			? isDict
-				? new EnumArrayColumn(id, table)
+				? new DictArrayColumn(id, table)
 				: new ArrayColumn(id, table)
 			: isDict
-			? new EnumColumn(id, table)
+			? new DictColumn(id, table)
 			: new PlainColumn(id, table);
 	},
 	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE | FLAG_RLE,

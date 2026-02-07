@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Nullable } from "@thi.ng/api";
 import { BidirIndex } from "@thi.ng/bidir-index";
 import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
 import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
@@ -7,8 +6,8 @@ import { __validateValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
-export class EnumColumn extends AColumn implements IColumn {
-	values: Nullable<number>[] = [];
+export class DictColumn extends AColumn implements IColumn {
+	values: (number | null)[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 
 	readonly isArray = false;
@@ -73,8 +72,8 @@ export class EnumColumn extends AColumn implements IColumn {
 		if (res === "missing") return false;
 
 		// conflict
-		const currID = dict.get(currValue);
-		const newID = dict.get(newValue);
+		const currID = dict.get(currValue)!;
+		const newID = dict.get(newValue)!;
 		const bits = bitmap?.ensure(newID);
 		bitmap?.index.delete(currID);
 

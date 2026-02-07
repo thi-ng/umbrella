@@ -80,10 +80,10 @@ export class Bitfield {
 		this.ensure(w)[w] &= ~(1 << (id & 31));
 	}
 
-	ensure(wordID: number) {
+	ensure(size: number) {
 		const b = this.buffer;
-		if (!b || wordID >= b.length) {
-			const tmp = new Uint32Array(wordID + 1);
+		if (!b || size >= b.length) {
+			const tmp = new Uint32Array(size + 1);
 			if (b) tmp.set(b);
 			return (this.buffer = tmp);
 		}

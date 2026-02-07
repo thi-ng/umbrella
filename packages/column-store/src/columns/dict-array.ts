@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Nullable } from "@thi.ng/api";
 import { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
@@ -7,8 +6,8 @@ import { __validateArrayValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
-export class EnumArrayColumn extends AColumn implements IColumn {
-	values: Nullable<number[]>[] = [];
+export class DictArrayColumn extends AColumn implements IColumn {
+	values: (number[] | null)[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 
 	readonly isArray = true;
