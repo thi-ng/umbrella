@@ -20,10 +20,11 @@ export class Query {
 	terms: QueryTerm[] = [];
 
 	constructor(public table: Table, terms: QueryTerm[] = []) {
-		this.terms = terms;
+		for (let term of terms) this.addTerm(term);
 	}
 
 	addTerm(term: QueryTerm) {
+		if (!QUERY_OPS[term.type]) unsupportedOp(`query type: ${term.type}`);
 		this.terms.push(term);
 		return this;
 	}
@@ -78,7 +79,6 @@ export class Query {
 		const ctx = new QueryCtx(this);
 		for (let term of this.terms) {
 			const op = QUERY_OPS[term.type];
-			if (!op) unsupportedOp(`query type: ${term.type}`);
 			let column: Maybe<IColumn>;
 			if (term.column) {
 				column = ctx.table.columns[term.column];
