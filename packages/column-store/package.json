@@ -100,11 +100,11 @@
 		"./columns/array": {
 			"default": "./columns/array.js"
 		},
-		"./columns/enum-array": {
-			"default": "./columns/enum-array.js"
+		"./columns/dict-array": {
+			"default": "./columns/dict-array.js"
 		},
-		"./columns/enum": {
-			"default": "./columns/enum.js"
+		"./columns/dict": {
+			"default": "./columns/dict.js"
 		},
 		"./columns/plain": {
 			"default": "./columns/plain.js"
