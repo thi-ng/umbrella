@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/leb128",
-	"version": "3.1.78",
+	"version": "3.1.79",
 	"description": "WASM based LEB128 encoder / decoder (signed & unsigned)",
 	"type": "module",
 	"module": "./index.js",
@@ -44,8 +44,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.8.3",
-		"@thi.ng/errors": "^2.6.2"
+		"@thi.ng/checks": "^3.8.4",
+		"@thi.ng/errors": "^2.6.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

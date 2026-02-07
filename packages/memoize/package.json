@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/memoize",
-	"version": "4.0.37",
+	"version": "4.0.38",
 	"description": "Function memoization with configurable caching and support for async functions",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.13"
+		"@thi.ng/api": "^8.12.14"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

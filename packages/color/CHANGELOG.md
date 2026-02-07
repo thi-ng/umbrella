@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-01-23T13:09:44Z
+- **Last updated**: 2026-02-07T14:15:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.8.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.8.10) (2026-02-07)
+
+#### ♻️ Refactoring
+
+- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://github.com/thi-ng/umbrella/commit/3abbddf))
 
 ### [5.8.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.8.5) (2025-12-03)
 

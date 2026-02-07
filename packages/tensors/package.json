@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/tensors",
-	"version": "0.10.13",
+	"version": "0.10.14",
 	"description": "0D/1D/2D/3D/4D tensors with extensible polymorphic operations and customizable storage",
 	"type": "module",
 	"module": "./index.js",
@@ -40,15 +40,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.13",
-		"@thi.ng/arrays": "^2.14.6",
-		"@thi.ng/checks": "^3.8.3",
-		"@thi.ng/equiv": "^2.1.103",
-		"@thi.ng/errors": "^2.6.2",
-		"@thi.ng/math": "^5.15.2",
-		"@thi.ng/random": "^4.1.38",
-		"@thi.ng/strings": "^3.9.34",
-		"@thi.ng/vectors": "^8.6.19"
+		"@thi.ng/api": "^8.12.14",
+		"@thi.ng/arrays": "^2.14.7",
+		"@thi.ng/checks": "^3.8.4",
+		"@thi.ng/equiv": "^2.1.104",
+		"@thi.ng/errors": "^2.6.3",
+		"@thi.ng/math": "^5.15.3",
+		"@thi.ng/random": "^4.1.39",
+		"@thi.ng/strings": "^3.9.35",
+		"@thi.ng/vectors": "^8.6.20"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

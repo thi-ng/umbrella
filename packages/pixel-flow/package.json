@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-flow",
-	"version": "1.0.21",
+	"version": "1.0.22",
 	"description": "Naive, lightweight CPU-based dense optical flow implementation",
 	"type": "module",
 	"module": "./index.js",
@@ -40,8 +40,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.13",
-		"@thi.ng/pixel": "^7.5.22"
+		"@thi.ng/api": "^8.12.14",
+		"@thi.ng/pixel": "^7.5.23"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",
