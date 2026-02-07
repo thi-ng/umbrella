@@ -113,6 +113,13 @@ export class QueryCtx {
 		return mask;
 	}
 
+	/**
+	 * Combines the `mask` with the context's mask (combined using bitwise AND).
+	 * If the context mask is still undefined, assigns `mask` as the initial
+	 * context mask.
+	 *
+	 * @param mask
+	 */
 	mergeMask(mask: Uint32Array) {
 		if (this.bitmap) {
 			for (let i = 0, n = this.size; i < n; i++)
@@ -120,6 +127,25 @@ export class QueryCtx {
 		} else this.bitmap = mask;
 	}
 
+	/**
+	 * Combines the bitwise inverted `mask` with the context's mask (combined
+	 * using bitwise AND). If the context mask is still undefined, first inverts
+	 * `mask` in place and uses result as the initial context mask.
+	 *
+	 * @param mask
+	 */
+	mergeInvMask(mask: Uint32Array) {
+		if (this.bitmap) {
+			for (let i = 0, n = this.size; i < n; i++)
+				this.bitmap![i] &= mask[i] ^ -1;
+		} else this.bitmap = this.invertMask(mask);
+	}
+
+	/**
+	 * Bitwise inverts `mask` in place and then returns it.
+	 *
+	 * @param mask
+	 */
 	invertMask(mask: Uint32Array) {
 		for (let i = 0, n = this.size; i < n; i++) mask[i] ^= -1;
 		return mask;
@@ -144,8 +170,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 		if (b) mask = ctx.makeMask(b);
 	}
 	if (mask) {
-		if (term.type === "nor") ctx.invertMask(mask);
-		ctx.mergeMask(mask);
+		term.type === "nor" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
 	}
 };
 
@@ -166,8 +191,7 @@ const execOr: QueryTermOp = (ctx, term, column) => {
 		}
 	}
 	if (mask) {
-		if (term.type === "nor") ctx.invertMask(mask);
-		ctx.mergeMask(mask);
+		term.type === "nor" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
 	}
 };
 
@@ -206,8 +230,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 		if (b) mask = ctx.makeMask(b);
 	}
 	if (mask) {
-		if (term.type === "nand") ctx.invertMask(mask);
-		ctx.mergeMask(mask);
+		term.type === "nand" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
 	} else {
 		ctx.bitmap = undefined;
 	}
@@ -239,8 +262,7 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 		}
 	}
 	if (mask) {
-		if (term.type === "nand") ctx.invertMask(mask);
-		ctx.mergeMask(mask);
+		term.type === "nand" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
 	}
 };
 
