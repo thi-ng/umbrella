@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-07T15:44:23Z
+- **Last updated**: 2026-02-08T20:39:22Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.1.2) (2026-02-08)
+
+#### 🩹 Bug fixes
+
+- update `.updateBitmap()` ([a71b5e1](https://github.com/thi-ng/umbrella/commit/a71b5e1))
+
+#### ⏱ Performance improvements
+
+- optimize query negation ops (NAND/NOR) ([bc83a8a](https://github.com/thi-ng/umbrella/commit/bc83a8a))
+  - add `QueryCtx.mergeInvMask()` to merge inverted bitmask,
+    avoiding extraneous iteration via `.invertMask()` if possible
+  - update query ops
+
+#### ♻️ Refactoring
+
+- move query term pre-check to `Query.addTerm()` ([ce06c59](https://github.com/thi-ng/umbrella/commit/ce06c59))
+- rename tuple-based column types ([5111f88](https://github.com/thi-ng/umbrella/commit/5111f88))
+  - rename `ArrayColumn` => `TupleColumn`
+  - rename `DictArrayColumn` => `DictTupleColumn`
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.1.0) (2026-02-07)
 
