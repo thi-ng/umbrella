@@ -97,17 +97,17 @@
 		"./columns/acolumn": {
 			"default": "./columns/acolumn.js"
 		},
-		"./columns/array": {
-			"default": "./columns/array.js"
-		},
-		"./columns/dict-array": {
-			"default": "./columns/dict-array.js"
+		"./columns/dict-tuple": {
+			"default": "./columns/dict-tuple.js"
 		},
 		"./columns/dict": {
 			"default": "./columns/dict.js"
 		},
 		"./columns/plain": {
 			"default": "./columns/plain.js"
+		},
+		"./columns/tuple": {
+			"default": "./columns/tuple.js"
 		},
 		"./columns/typedarray": {
 			"default": "./columns/typedarray.js"
