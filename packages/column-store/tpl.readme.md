@@ -8,6 +8,60 @@
 
 ## Column storage
 
+As the name indicates, data is stored in different columns, where each column
+manages its own schema, value validation, backing storage, indexing,
+serialization etc.
+
+From a user's POV, columns are not (usually) used directly, but via table, which
+acts as facade to the various configured columns. Data items are added as JS
+objects to a table, which then pulls out related values, validates them and the
+delegates them to the columns.
+
+An example table definition looks like this (explanation of column types in next
+section below):
+
+```ts
+import { Table, FLAG_DICT, FLAG_UNIQUE } from "@thi.ng/column-store";
+
+// define a table with the given columns
+const table = new Table({
+
+	// column of single numeric values
+	// (default cardinality makes values required)
+	id: { type: "num" },
+
+	// column of required string values
+	name: { type: "str" },
+
+	// optional tuples of max. 3 string values
+	// (if no value is given, the column stores null)
+	aliases: { type: "str", cardinality: [0, 3] },
+
+	// required fixed size tuples (aka vectors) of numbers
+	latlon: { type: "num", cardinality: [2, 2] },
+
+	// optional tuples of max. 10 strings, with default
+	// the given flags (explained further below) are triggering:
+	// - dictionary-based encoding
+	// - unique values (per tuple)
+	tags: {
+		type: "str",
+		cardinality: [0, 10],
+		default: ["todo"],
+		flags: FLAG_DICT | FLAG_UNIQUE
+	}
+});
+
+// add data
+table.addRow({
+	id: 1,
+	name: "karsten",
+	aliases: ["toxi"],
+	latlon: [47.421, 10.984],
+	tags: ["person", "opensource"],
+});
+```
+
 ### Column types
 
 The current built-in column types only support numeric or string values, though
@@ -21,8 +75,8 @@ Note: Booleans and `BigInt`s are still unsupported, but being worked on...
 
 | **Column type** | **Description**     | **Tuples supported** | **RLE serialization** |
 |-----------------|---------------------|----------------------|-----------------------|
-| `num`           | JS numbers          | ✅                    | ✅ <sup>(1)</sup>       |
-| `str`           | JS strings (UTF-16) | ✅                    | ✅ <sup>(1)</sup>       |
+| `num`           | JS numbers          | ✅                    | ✅ <sup>(1)</sup>      |
+| `str`           | JS strings (UTF-16) | ✅                    | ✅ <sup>(1)</sup>      |
 | `u8`            | 8bit unsigned int   | ❌                    | ✅                     |
 | `i8`            | 8bit signed int     | ❌                    | ✅                     |
 | `u16`           | 16bit unsigned int  | ❌                    | ✅                     |
