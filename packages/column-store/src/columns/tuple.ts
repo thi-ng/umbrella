@@ -5,7 +5,7 @@ import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
 import { __validateArrayValue } from "../internal/checks.js";
 import { AColumn } from "./acolumn.js";
 
-export class ArrayColumn extends AColumn implements IColumn {
+export class TupleColumn extends AColumn implements IColumn {
 	values: Nullable<number[]>[] = [];
 
 	readonly isArray = true;

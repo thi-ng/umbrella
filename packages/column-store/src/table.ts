@@ -14,10 +14,10 @@ import {
 	type Row,
 	type SerializedTable,
 } from "./api.js";
-import { ArrayColumn } from "./columns/array.js";
-import { DictArrayColumn } from "./columns/dict-array.js";
+import { DictTupleColumn } from "./columns/dict-tuple.js";
 import { DictColumn } from "./columns/dict.js";
 import { PlainColumn } from "./columns/plain.js";
+import { TupleColumn } from "./columns/tuple.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
 import { __columnError } from "./internal/checks.js";
 import { Query } from "./query.js";
@@ -194,7 +194,7 @@ const $untyped: ColumnTypeSpec = {
 			}
 		}
 		return max > 1
-			? new (isDict ? DictArrayColumn : ArrayColumn)(id, table)
+			? new (isDict ? DictTupleColumn : TupleColumn)(id, table)
 			: new (isDict ? DictColumn : PlainColumn)(id, table);
 	},
 	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE | FLAG_RLE,

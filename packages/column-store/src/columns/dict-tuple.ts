@@ -6,7 +6,7 @@ import { __validateArrayValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
-export class DictArrayColumn extends AColumn implements IColumn {
+export class DictTupleColumn extends AColumn implements IColumn {
 	values: (number[] | null)[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 
