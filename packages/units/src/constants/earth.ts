@@ -18,13 +18,22 @@ export const EARTH_RADIUS = quantity(6371000, m);
 export const EARTH_CIRCUMFERENCE = quantity(40075017, m);
 
 /**
- * Using equatorial mean as alternative to {@link g0}.
+ * Using equatorial mean as alternative to {@link G0}.
  *
  * @remarks
  * Reference:
  * https://en.wikipedia.org/wiki/Gravity_of_Earth
  */
 export const EARTH_GRAVITY = quantity(9.78033, m_s2);
+
+/**
+ * Standard gravity
+ *
+ * @remarks
+ * Reference:
+ * https://en.wikipedia.org/wiki/Standard_gravity
+ */
+export const G0 = quantity(9.80665, m_s2);
 
 /**
  * https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html

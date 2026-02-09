@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
+import { defUnit, div, pow } from "../unit.js";
 import { rad } from "./angle.js";
 import { ft, m } from "./length.js";
 import { s } from "./time.js";
-import { defUnit, div, mul, pow } from "../unit.js";
 
 const s2 = pow(s, 2);
 
@@ -15,5 +15,3 @@ export const rad_s2 = defUnit(
 	"radian per second squared",
 	div(rad, s2)
 );
-
-export const g0 = defUnit("g0", "standard gravity", mul(m_s2, 9.80665));
