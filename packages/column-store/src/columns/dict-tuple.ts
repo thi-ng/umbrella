@@ -15,7 +15,7 @@ export class DictTupleColumn extends AColumn implements IColumn {
 	load({ dict, values }: SerializedColumn): void {
 		this.values = values;
 		super.loadDict(dict!);
-		super.updateBitmap(this.values);
+		super.updateBitmap();
 	}
 
 	reindex(): void {
@@ -25,7 +25,7 @@ export class DictTupleColumn extends AColumn implements IColumn {
 			ids ? newDict.addAll(dict.getAllIDs(ids)) : null
 		);
 		this.dict = newDict;
-		super.updateBitmap(this.values);
+		super.updateBitmap();
 	}
 
 	encode(value: any) {
@@ -59,6 +59,14 @@ export class DictTupleColumn extends AColumn implements IColumn {
 	getRow(i: number) {
 		const values = this.values[i];
 		return values != null ? this.dict.getAllIDs(values) : null;
+	}
+
+	getRowKey(i: number) {
+		return this.values[i];
+	}
+
+	valueKey(value: any) {
+		return this.encode(value);
 	}
 
 	removeRow(i: number): void {

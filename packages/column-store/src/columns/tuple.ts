@@ -15,10 +15,6 @@ export class TupleColumn extends AColumn implements IColumn {
 		this.reindex();
 	}
 
-	reindex(): void {
-		super.updateBitmap(this.values);
-	}
-
 	encode(value: any) {
 		return isArray(value) ? value : [value];
 	}
@@ -45,6 +41,14 @@ export class TupleColumn extends AColumn implements IColumn {
 
 	getRow(i: number) {
 		return this.values[i];
+	}
+
+	getRowKey(i: number) {
+		return this.values[i];
+	}
+
+	valueKey(value: any) {
+		return this.encode(value);
 	}
 
 	removeRow(i: number): void {

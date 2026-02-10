@@ -14,10 +14,6 @@ export class PlainColumn extends AColumn implements IColumn {
 		this.reindex();
 	}
 
-	reindex(): void {
-		super.updateBitmap(this.values);
-	}
-
 	validate(value: any) {
 		return __validateValue(this.spec, value);
 	}
@@ -34,6 +30,14 @@ export class PlainColumn extends AColumn implements IColumn {
 
 	getRow(i: number) {
 		return this.values[i];
+	}
+
+	getRowKey(i: number) {
+		return this.values[i];
+	}
+
+	valueKey(x: any) {
+		return x;
 	}
 
 	removeRow(i: number): void {

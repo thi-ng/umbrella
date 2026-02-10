@@ -18,7 +18,7 @@ export class DictColumn extends AColumn implements IColumn {
 				? Array.from(decodeRLE(<any>values))
 				: values;
 		super.loadDict(dict!);
-		super.updateBitmap(this.values);
+		super.updateBitmap();
 	}
 
 	reindex(): void {
@@ -28,7 +28,7 @@ export class DictColumn extends AColumn implements IColumn {
 			x != null ? newDict.add(dict.getID(x)) : null
 		);
 		this.dict = newDict;
-		super.updateBitmap(this.values);
+		super.updateBitmap();
 	}
 
 	encode(value: any) {
@@ -58,6 +58,14 @@ export class DictColumn extends AColumn implements IColumn {
 	getRow(i: number) {
 		const value = this.values[i];
 		return value != null ? this.dict.getID(value) : null;
+	}
+
+	getRowKey(i: number) {
+		return this.values[i];
+	}
+
+	valueKey(value: any) {
+		return this.dict.get(value);
 	}
 
 	removeRow(i: number): void {

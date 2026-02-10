@@ -19,6 +19,7 @@ import { DictColumn } from "./columns/dict.js";
 import { PlainColumn } from "./columns/plain.js";
 import { TupleColumn } from "./columns/tuple.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
+import { VectorColumn } from "./columns/vector.js";
 import { __columnError } from "./internal/checks.js";
 import { Query } from "./query.js";
 
@@ -201,6 +202,19 @@ const $untyped: ColumnTypeSpec = {
 	cardinality: [0, -1 >>> 0],
 };
 
+const $vec: ColumnTypeSpec = {
+	impl: (table, id, { cardinality: [min, max] }) => {
+		if (min > 0 && min !== max)
+			__columnError(id, `only fixed size vectors supported`);
+		return new VectorColumn(id, table);
+	},
+	flags: FLAG_BITMAP | FLAG_RLE,
+	cardinality: [0, -1 >>> 0],
+	required: true,
+};
+
+const $fvec: ColumnTypeSpec = { ...$vec, flags: FLAG_BITMAP };
+
 /**
  * Registry of column type definitions and their factory functions. See
  * {@link registerColumnType}.
@@ -216,6 +230,10 @@ export const COLUMN_TYPES: Record<string, ColumnTypeSpec> = {
 	f64: $float,
 	num: $untyped,
 	str: $untyped,
+	u8vec: $vec,
+	u16vec: $vec,
+	u32vec: $vec,
+	f32vec: $fvec,
 };
 
 /**

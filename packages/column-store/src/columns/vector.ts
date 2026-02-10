@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
 import {
 	FLAG_RLE,
@@ -8,9 +10,9 @@ import {
 	type NumericType,
 	type SerializedColumn,
 } from "../api.js";
-import { __replaceValue } from "../internal/replace.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
+import { isArray } from "@thi.ng/checks/is-array";
 
 /** @internal */
 const LIMITS: Record<NumericType, [number, number]> = {
@@ -25,9 +27,10 @@ const LIMITS: Record<NumericType, [number, number]> = {
 	f64: [-Infinity, Infinity],
 };
 
-export class TypedArrayColumn extends AColumn implements IColumn {
+export class VectorColumn extends AColumn implements IColumn {
 	values: TypedArray;
 	type: NumericType;
+	size: number;
 	limit: [number, number];
 	protected tmp: TypedArray;
 
@@ -35,10 +38,11 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 
 	constructor(id: string, table: Table) {
 		super(id, table);
-		this.type = <NumericType>table.schema[id].type;
+		this.type = <NumericType>this.spec.type.split("v")[0];
+		this.size = this.spec.cardinality[1];
 		this.limit = LIMITS[this.type];
-		this.values = typedArray(this.type, 8);
-		this.tmp = typedArray(this.type, 1);
+		this.values = typedArray(this.type, 8 * this.size);
+		this.tmp = typedArray(this.type, this.size);
 	}
 
 	load(spec: SerializedColumn): void {
@@ -53,59 +57,74 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 
 	validate(value: any) {
 		return (
-			(isNumber(value) &&
-				value >= this.limit[0] &&
-				value <= this.limit[1]) ||
+			(isArrayLike(value) && value.length == this.size) ||
 			(value == null && this.spec.default != null)
 		);
 	}
 
 	setRow(i: number, value: any) {
 		value = this.ensureValue(value);
+		const j = i * this.size;
 		let len = this.values.length;
-		if (i >= len) {
-			while (i >= len) len <<= 1;
+		if (j >= len) {
+			while (j >= len) len <<= 1;
 			const tmp = typedArray(this.type, len);
 			tmp.set(this.values);
 			this.values = tmp;
 		}
 		const { values, bitmap } = this;
-		const old = values[i];
-		values[i] = value;
 		if (bitmap) {
-			bitmap.clearBit(old, i);
-			bitmap.setBit(value, i);
+			bitmap.clearBit(this.getRowKey(i), i);
+			bitmap.setBit(this.valueKey(value), i);
 		}
+		values.set(value, j);
 	}
 
 	getRow(i: number) {
-		return this.values[i];
+		const { size } = this;
+		i *= size;
+		return this.values.subarray(i, i + size);
 	}
 
 	getRowKey(i: number) {
-		return this.values[i];
+		return this.getRow(i).join("|");
 	}
 
-	valueKey(x: any) {
-		this.tmp[0] = x;
-		return this.tmp[0];
+	valueKey(value: any) {
+		const { tmp } = this;
+		if (isArray(value) && !isNumber(value[0])) {
+			return value.map((x) => {
+				tmp.set(x);
+				return tmp.join("|");
+			});
+		} else {
+			tmp.set(value);
+			return tmp.join("|");
+		}
 	}
 
 	removeRow(i: number): void {
-		this.values.copyWithin(i, i + 1, this.table.length);
-		this.values[this.table.length - 1] = 0;
+		const {
+			size,
+			table: { length },
+		} = this;
+		this.values.copyWithin(i, i + size, length * size);
+		this.values.fill(0, (length - 1) * size);
 		this.bitmap?.removeBit(i);
 	}
 
-	replaceValue(currValue: any, newValue: any) {
-		return __replaceValue(this.bitmap, this.values, currValue, newValue);
+	replaceValue(): boolean {
+		unsupportedOp("TODO");
 	}
 
 	toJSON() {
-		let values = this.values.subarray(0, this.table.length);
+		let $values = this.values.subarray(0, this.table.length * this.size);
 		if (this.spec.flags & FLAG_RLE) {
-			values = encodeRLE(values, values.length, SIZEOF[this.type] * 8);
+			$values = encodeRLE($values, $values.length, SIZEOF[this.type] * 8);
 		}
-		return { values: Array.from(values) };
+		let values: any[] = Array.from($values);
+		const prec = this.spec.opts?.prec;
+		if (prec != null) values = values.map((x) => +x.toFixed(prec));
+		return { values };
 	}
 }
