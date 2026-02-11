@@ -6329,6 +6329,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/rle-pack@workspace:packages/rle-pack"
   dependencies:
+    "@thi.ng/api": "npm:^8.12.14"
     "@thi.ng/bitstream": "npm:^2.4.40"
     "@thi.ng/errors": "npm:^2.6.3"
     esbuild: "npm:^0.27.2"
