@@ -312,12 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-02-07
+As of: 2026-02-12
 
 | Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
 |:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bidir-index`](./packages/bidir-index)   | [![version](https://img.shields.io/npm/v/@thi.ng/bidir-index.svg)](https://www.npmjs.com/package/@thi.ng/bidir-index)   | [changelog](./packages/bidir-index/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/column-store`](./packages/column-store) | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store) | [changelog](./packages/column-store/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rle-pack`](./packages/rle-pack)         | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)         | [changelog](./packages/rle-pack/CHANGELOG.md)     |
 
 ### Algorithms & data structures
 
