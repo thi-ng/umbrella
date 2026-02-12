@@ -91,6 +91,19 @@ export const FLAG_BITMAP = 1 << 1;
 export const FLAG_UNIQUE = 1 << 2;
 export const FLAG_RLE = 1 << 3;
 
+/** @internal */
+export const LIMITS: Record<NumericType, [number, number]> = {
+	u8: [0, 0xff],
+	u8c: [0, 0xff],
+	u16: [0, 0xffff],
+	u32: [0, 0xffff_ffff],
+	i8: [-0x80, 0x7f],
+	i16: [-0x8000, 0x7fff],
+	i32: [-0x8000_0000, 0x7fff_ffff],
+	f32: [-Infinity, Infinity],
+	f64: [-Infinity, Infinity],
+};
+
 export interface IColumn {
 	bitmap?: BitmapIndex;
 

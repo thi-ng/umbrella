@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
+import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
 import {
 	FLAG_RLE,
+	LIMITS,
 	type IColumn,
 	type NumericType,
 	type SerializedColumn,
@@ -11,19 +12,7 @@ import {
 import { __replaceValue } from "../internal/replace.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
-
-/** @internal */
-const LIMITS: Record<NumericType, [number, number]> = {
-	u8: [0, 0xff],
-	u8c: [0, 0xff],
-	u16: [0, 0xffff],
-	u32: [0, 0xffff_ffff],
-	i8: [-0x80, 0x7f],
-	i16: [-0x8000, 0x7fff],
-	i32: [-0x8000_0000, 0x7fff_ffff],
-	f32: [-Infinity, Infinity],
-	f64: [-Infinity, Infinity],
-};
+import { isArray } from "@thi.ng/checks/is-array";
 
 export class TypedArrayColumn extends AColumn implements IColumn {
 	values: TypedArray;
@@ -43,7 +32,7 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 
 	load(spec: SerializedColumn): void {
 		if (this.spec.flags & FLAG_RLE) {
-			const values = decodeRLE(<any>spec.values);
+			const values = decodeBinary(<any>spec.values);
 			this.values = typedArray(this.type, values.buffer);
 		} else {
 			this.values = typedArray(this.type, spec.values);
@@ -104,7 +93,7 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 	toJSON() {
 		let values = this.values.subarray(0, this.table.length);
 		if (this.spec.flags & FLAG_RLE) {
-			values = encodeRLE(values, values.length, SIZEOF[this.type] * 8);
+			values = encodeBinary(values, values.length, SIZEOF[this.type] * 8);
 		}
 		return { values: Array.from(values) };
 	}
