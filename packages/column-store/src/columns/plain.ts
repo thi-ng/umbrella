@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { IColumn, SerializedColumn } from "../api.js";
+import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
+import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
 import { __replaceValue } from "../internal/replace.js";
 import { AColumn } from "./acolumn.js";
@@ -9,8 +10,11 @@ export class PlainColumn extends AColumn implements IColumn {
 
 	readonly isArray = false;
 
-	load(spec: SerializedColumn): void {
-		this.values = spec.values;
+	load({ values }: SerializedColumn): void {
+		this.values =
+			this.spec.flags & FLAG_RLE
+				? Array.from(decodeSimple(<any>values))
+				: values;
 		this.reindex();
 	}
 
@@ -50,6 +54,11 @@ export class PlainColumn extends AColumn implements IColumn {
 	}
 
 	toJSON() {
-		return { values: this.values };
+		return {
+			values:
+				this.spec.flags & FLAG_RLE
+					? encodeSimple(this.values)
+					: this.values,
+		};
 	}
 }

@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 import { BidirIndex } from "@thi.ng/bidir-index";
-import { decode as decodeRLE, encode as encodeRLE } from "@thi.ng/rle-pack";
+import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
+import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
 import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
+import { isArray } from "@thi.ng/checks/is-array";
 
 export class DictColumn extends AColumn implements IColumn {
 	values: (number | null)[] = [];
@@ -15,7 +17,9 @@ export class DictColumn extends AColumn implements IColumn {
 	load({ dict, values }: SerializedColumn): void {
 		this.values =
 			this.spec.flags & FLAG_RLE
-				? Array.from(decodeRLE(<any>values))
+				? this.spec.cardinality[0] === 0 && this.spec.default == null
+					? decodeSimple(values)
+					: Array.from(decodeBinary(<any>values))
 				: values;
 		super.loadDict(dict!);
 		super.updateBitmap();
@@ -65,7 +69,7 @@ export class DictColumn extends AColumn implements IColumn {
 	}
 
 	valueKey(value: any) {
-		return this.dict.get(value);
+		return isArray(value) ? this.dict.getAll(value) : this.dict.get(value);
 	}
 
 	removeRow(i: number): void {
@@ -95,12 +99,19 @@ export class DictColumn extends AColumn implements IColumn {
 	}
 
 	toJSON() {
-		let values = this.values;
-		if (this.spec.flags & FLAG_RLE) {
-			const numBits = Math.max(1, Math.ceil(Math.log2(this.dict.size)));
-			values = Array.from(
-				encodeRLE(<number[]>values, values.length, numBits)
-			);
+		let { values, spec } = this;
+		if (spec.flags & FLAG_RLE) {
+			if (spec.cardinality[0] == 0 && spec.default == null) {
+				values = encodeSimple(values);
+			} else {
+				const numBits = Math.max(
+					1,
+					Math.ceil(Math.log2(this.dict.size))
+				);
+				values = Array.from(
+					encodeBinary(<number[]>values, values.length, numBits)
+				);
+			}
 		}
 		return { dict: __serializeDict(this.dict), values };
 	}

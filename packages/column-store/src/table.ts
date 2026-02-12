@@ -187,13 +187,9 @@ const $float: ColumnTypeSpec = { ...$typed, flags: FLAG_BITMAP };
 
 /** @internal */
 const $untyped: ColumnTypeSpec = {
-	impl: (table, id, { flags, cardinality: [min, max], default: d }) => {
+	impl: (table, id, { flags, cardinality: [_, max] }) => {
 		const isDict = flags & FLAG_DICT;
-		if (flags & FLAG_RLE) {
-			if (!isDict || max > 1 || (min === 0 && d == null)) {
-				__columnError(id, `RLE encoding not supported`);
-			}
-		}
+		if (flags & FLAG_RLE && max > 1) __columnError(id, `RLE not supported`);
 		return max > 1
 			? new (isDict ? DictTupleColumn : TupleColumn)(id, table)
 			: new (isDict ? DictColumn : PlainColumn)(id, table);
