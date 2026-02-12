@@ -164,7 +164,13 @@ const table = new Table({
 
 table.addRow({ vec: [1.11111, 22.22222, 333.33333]});
 
-console.log(JSON.stringify(table, null, 4));
+console.log(JSON.stringify(table));
+// {
+//   "schema":{"vec":{"cardinality":[3,3],"flags":0,"type":"f32vec","opts":{"prec":2}}},
+//   "columns":{"vec":{"values":[1.11,22.22,333.33]}},
+//   "length":1
+// }
+
 ```
 
 ### Custom column types
