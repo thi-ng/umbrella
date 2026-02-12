@@ -19,6 +19,7 @@ import { DictColumn } from "./columns/dict.js";
 import { PlainColumn } from "./columns/plain.js";
 import { TupleColumn } from "./columns/tuple.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
+import { VectorColumn } from "./columns/vector.js";
 import { __columnError } from "./internal/checks.js";
 import { Query } from "./query.js";
 
@@ -186,13 +187,9 @@ const $float: ColumnTypeSpec = { ...$typed, flags: FLAG_BITMAP };
 
 /** @internal */
 const $untyped: ColumnTypeSpec = {
-	impl: (table, id, { flags, cardinality: [min, max], default: d }) => {
+	impl: (table, id, { flags, cardinality: [_, max] }) => {
 		const isDict = flags & FLAG_DICT;
-		if (flags & FLAG_RLE) {
-			if (!isDict || max > 1 || (min === 0 && d == null)) {
-				__columnError(id, `RLE encoding not supported`);
-			}
-		}
+		if (flags & FLAG_RLE && max > 1) __columnError(id, `RLE not supported`);
 		return max > 1
 			? new (isDict ? DictTupleColumn : TupleColumn)(id, table)
 			: new (isDict ? DictColumn : PlainColumn)(id, table);
@@ -200,6 +197,19 @@ const $untyped: ColumnTypeSpec = {
 	flags: FLAG_BITMAP | FLAG_DICT | FLAG_UNIQUE | FLAG_RLE,
 	cardinality: [0, -1 >>> 0],
 };
+
+const $vec: ColumnTypeSpec = {
+	impl: (table, id, { cardinality: [min, max] }) => {
+		if (min > 0 && min !== max)
+			__columnError(id, `only fixed size vectors supported`);
+		return new VectorColumn(id, table);
+	},
+	flags: FLAG_BITMAP | FLAG_RLE,
+	cardinality: [0, -1 >>> 0],
+	required: true,
+};
+
+const $fvec: ColumnTypeSpec = { ...$vec, flags: FLAG_BITMAP };
 
 /**
  * Registry of column type definitions and their factory functions. See
@@ -216,6 +226,10 @@ export const COLUMN_TYPES: Record<string, ColumnTypeSpec> = {
 	f64: $float,
 	num: $untyped,
 	str: $untyped,
+	u8vec: $vec,
+	u16vec: $vec,
+	u32vec: $vec,
+	f32vec: $fvec,
 };
 
 /**

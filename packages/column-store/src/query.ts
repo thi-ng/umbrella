@@ -154,11 +154,11 @@ export class QueryCtx {
 
 const execBitOr: QueryTermOp = (ctx, term, column) => {
 	const bitmap = column!.bitmap!;
-	const value = column!.encode(term.value);
+	const key = column!.valueKey(term.value);
 	let mask: Maybe<Uint32Array>;
-	if (isArray(value)) {
-		for (let v of value) {
-			const b = bitmap.index.get(v)?.buffer;
+	if (isArray(key)) {
+		for (let k of key) {
+			const b = bitmap.index.get(k)?.buffer;
 			if (!b) continue;
 			// compute union bitmaps
 			if (mask) {
@@ -166,7 +166,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 			} else mask = ctx.makeMask(b);
 		}
 	} else {
-		const b = bitmap.index.get(value)?.buffer;
+		const b = bitmap.index.get(key)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
 	if (mask) {
@@ -176,15 +176,14 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 
 const execOr: QueryTermOp = (ctx, term, column) => {
 	const n = ctx.table.length;
-	const encoded = column!.encode(term.value);
-	const values = column!.values;
+	const key = column!.valueKey(term.value);
 	const pred: Predicate2<any> = column!.isArray
-		? (row: any[], v) => row.includes(v)
-		: (row, v) => row === v;
+		? (row: any[], k) => row.includes(k)
+		: (row, k) => row === k;
 	let mask: Maybe<Uint32Array>;
-	for (let v of isArray(encoded) ? encoded : [encoded]) {
+	for (let k of isArray(key) ? key : [key]) {
 		for (let i = 0; i < n; i++) {
-			if (pred(values[i], v)) {
+			if (pred(column!.getRowKey(i), k)) {
 				if (!mask) mask = ctx.makeMask();
 				mask[i >>> 5] |= 1 << (i & 31);
 			}
@@ -205,13 +204,13 @@ const delegateOr: QueryTermOp = (ctx, term, column) => {
 
 const execBitAnd: QueryTermOp = (ctx, term, column) => {
 	const bitmap = column!.bitmap!;
-	const value = column!.encode(term.value);
+	const key = column!.valueKey(term.value);
 	let mask: Maybe<Uint32Array>;
-	if (isArray(value)) {
+	if (isArray(key)) {
 		// pre-lookup bitmaps and bail out early
 		const colBitmaps: Uint32Array[] = [];
-		for (let v of value) {
-			const b = bitmap.index.get(v)?.buffer;
+		for (let k of key) {
+			const b = bitmap.index.get(k)?.buffer;
 			if (!b) {
 				if (term.type === "and") ctx.bitmap = undefined;
 				return;
@@ -226,7 +225,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 			} else mask = ctx.makeMask(b);
 		}
 	} else {
-		const b = bitmap.index.get(value)?.buffer;
+		const b = bitmap.index.get(key)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
 	if (mask) {
@@ -238,16 +237,15 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 
 const execAnd: QueryTermOp = (ctx, term, column) => {
 	const n = ctx.table.length;
-	const encoded = column!.encode(term.value) ?? null;
-	const values = column!.values;
+	const key = column!.valueKey(term.value) ?? null;
 	const pred: Predicate2<any> = column!.isArray
 		? (row: any[], v) => row.includes(v)
 		: (row, v) => row === v;
 	let mask: Maybe<Uint32Array>;
-	for (let v of isArray(encoded) ? encoded : [encoded]) {
+	for (let k of isArray(key) ? key : [key]) {
 		let m: Maybe<Uint32Array>;
 		for (let i = 0; i < n; i++) {
-			if (pred(values[i], v)) {
+			if (pred(column!.getRowKey(i), k)) {
 				if (!m) m = ctx.makeMask();
 				m[i >>> 5] |= 1 << (i & 31);
 			}
@@ -283,11 +281,10 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 
 	matchCol: {
 		fn: (ctx, term, column) => {
-			const values = column!.values;
 			const pred: Predicate<any> = term.value;
 			let mask: Maybe<Uint32Array>;
 			for (let i = 0, n = ctx.table.length; i < n; i++) {
-				if (pred(column!.decode(values[i]))) {
+				if (pred(column!.getRow(i))) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
 				}

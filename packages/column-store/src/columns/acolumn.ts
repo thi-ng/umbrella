@@ -1,11 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { BidirIndex } from "@thi.ng/bidir-index";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { FLAG_BITMAP, type ColumnSpec, type SerializedIndex } from "../api.js";
+import {
+	FLAG_BITMAP,
+	type ColumnSpec,
+	type IColumn,
+	type SerializedColumn,
+	type SerializedIndex,
+} from "../api.js";
 import { BitmapIndex } from "../bitmap.js";
 import type { Table } from "../table.js";
 
-export abstract class AColumn {
+export abstract class AColumn implements IColumn {
 	spec: ColumnSpec;
 	bitmap?: BitmapIndex;
 	dict?: BidirIndex<any>;
@@ -16,6 +22,26 @@ export abstract class AColumn {
 		this.spec = table.schema[id];
 		this.ensureBitmap();
 	}
+
+	abstract load(spec: SerializedColumn): void;
+
+	reindex() {
+		this.updateBitmap();
+	}
+
+	abstract validate(value: any): boolean;
+
+	abstract setRow(i: number, value: any): void;
+
+	abstract removeRow(i: number): void;
+
+	abstract replaceValue(currValue: any, newValue: any): boolean;
+
+	abstract valueKey(x: any): any;
+
+	abstract getRow(i: number): any;
+
+	abstract getRowKey(i: number): any;
 
 	encode(value: any) {
 		return value;
@@ -39,17 +65,17 @@ export abstract class AColumn {
 		dict.nextID = serialized!.next;
 	}
 
-	protected updateBitmap(rows: ArrayLike<any>) {
+	protected updateBitmap() {
 		this.ensureBitmap();
 		const { bitmap, isArray } = this;
 		if (!bitmap) return;
 		bitmap.clear();
-		for (let i = 0; i < rows.length; i++) {
-			const value = rows[i];
+		for (let i = 0, n = this.table.length; i < n; i++) {
+			const value = this.getRow(i);
 			if (value == null) continue;
 			if (isArray) {
 				for (let x of value) bitmap.setBit(x, i);
-			} else bitmap.setBit(value, i);
+			} else bitmap.setBit(this.getRowKey(i), i);
 		}
 	}
 

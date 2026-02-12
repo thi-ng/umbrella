@@ -1,12 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type {
-	FloatType,
-	Fn3,
-	IntType,
-	Maybe,
-	TypedArray,
-	UintType,
-} from "@thi.ng/api";
+import type { FloatType, Fn3, IntType, Maybe, UintType } from "@thi.ng/api";
 import type { BitmapIndex } from "./bitmap.js";
 import type { QueryCtx } from "./query.js";
 import type { Table } from "./table.js";
@@ -15,13 +8,53 @@ export type ColumnSchema = Record<string, ColumnSpec>;
 
 export type NumericType = IntType | UintType | FloatType;
 
+export type VectorType = `${NumericType}vec`;
+
 export type Cardinality = [number, number];
 
 export interface ColumnSpec {
-	type: NumericType | "num" | "str" | string;
+	/**
+	 * Column type ID (see readme for overview)
+	 */
+	type: NumericType | VectorType | "num" | "str" | string;
+	/**
+	 * `[min,max]` number of allowed values per row. The following cardinality
+	 * presets are available in general (but not for all column types, see
+	 * readme for overview):
+	 *
+	 * - {@link REQUIRED}: [1,1] (default) — value is required
+	 * - {@link OPTIONAL}: [0,1] — value is optional
+	 * - {@link ZERO_PLUS}: [0, (2**32)-1] — zero or more values
+	 * - {@link ONE_PLUS}: [1, (2**32)-1] — one or more values
+	 *
+	 * Note: Some column types always require a value. So when using
+	 * {@link OPTIONAL}, you might also need to provide a
+	 * {@link ColumnSpec.default} value.
+	 */
 	cardinality: Cardinality;
+	/**
+	 * Bit mask to control column behavior/encoding. The lowest 16 bits are
+	 * reserved for built-in column types and internal use. The upper 16 bits
+	 * are freely usable for custom purposes.
+	 *
+	 * @remarks
+	 * The following built-in flags are available in general (but not for all
+	 * column types, see readme for overview):
+	 *
+	 * - {@link FLAG_BITMAP}: Enable bitmap indexing
+	 * - {@link FLAG_DICT}: Enable dictionary encoding of values
+	 * - {@link FLAG_UNIQUE}: Enable Set-semantics, i.e. unique values per tuple
+	 * - {@link FLAG_RLE}: Enable run-length encoding in serialization
+	 */
 	flags: number;
+	/**
+	 * Default value
+	 */
 	default?: any;
+	/**
+	 * Columntype specific options (e.g. for serialization)
+	 */
+	opts?: Record<string, any>;
 }
 
 export interface ColumnTypeSpec {
@@ -58,8 +91,20 @@ export const FLAG_BITMAP = 1 << 1;
 export const FLAG_UNIQUE = 1 << 2;
 export const FLAG_RLE = 1 << 3;
 
+/** @internal */
+export const LIMITS: Record<NumericType, [number, number]> = {
+	u8: [0, 0xff],
+	u8c: [0, 0xff],
+	u16: [0, 0xffff],
+	u32: [0, 0xffff_ffff],
+	i8: [-0x80, 0x7f],
+	i16: [-0x8000, 0x7fff],
+	i32: [-0x8000_0000, 0x7fff_ffff],
+	f32: [-Infinity, Infinity],
+	f64: [-Infinity, Infinity],
+};
+
 export interface IColumn {
-	values: any[] | TypedArray;
 	bitmap?: BitmapIndex;
 
 	readonly isArray: boolean;
@@ -91,6 +136,10 @@ export interface IColumn {
 	decode(value: any): any;
 
 	replaceValue(currValue: any, newValue: any): boolean;
+
+	getRowKey(i: number): any;
+
+	valueKey(value: any): any;
 }
 
 export interface SerializedTable {
