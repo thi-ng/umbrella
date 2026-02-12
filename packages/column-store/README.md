@@ -17,6 +17,8 @@
 - [About](#about)
 - [Column storage](#column-storage)
   - [Column types](#column-types)
+  - [Vector column types](#vector-column-types)
+  - [Serialization options](#serialization-options)
   - [Custom column types](#custom-column-types)
   - [Cardinality](#cardinality)
   - [Default values](#default-values)
@@ -127,7 +129,43 @@ Note: Booleans and `BigInt`s are still unsupported, but being worked on...
 | `f32`           | 32bit float         | ❌                    | ❌                     |
 | `f64`           | 64bit float         | ❌                    | ❌                     |
 
-- <sup>(1)</sup> only if `FLAG_DICT` is enabled, [further information](#flag_rle)
+- <sup>(1)</sup> only if max. cardinality is 1, [further information](#flag_rle)
+
+### Vector column types
+
+Columns storing fixed size n-dimensional vectors can be created vis the `vec`
+suffix for any of the typedarray based column types, i.e. `u8vec`, `i16vec`,
+`f32vec` etc.
+
+The `cardinality` column config (in the form `[min,max]`) is interpreted as follows:
+
+- if `min` is zero, the value is optional, but a `default` value MUST be defined
+  for the column. Otherwise the `min` value MUST be the same as `max`.
+- `max` defines the actual vector size
+
+Therefore, using a 3D vector as example, the only two possible `cardinality`
+configs are: `[0,3]` (with default given) or `[3,3]`.
+
+When [querying](#query-engine) vector columns, always the entire vector is
+matched (by value).
+
+### Serialization options
+
+For `f32`, `f64`, `f32vec` and `f64vec` column types, the optional `prec` column
+option can be provided to specify the number of fractional digits used in
+the JSON serialization:
+
+```ts tangle:export/readme-serialize-prec.ts
+import { Table } from "@thi.ng/column-store";
+
+const table = new Table({
+    vec: { type: "f32vec", cardinality: [3, 3], opts: { prec: 2 } }
+});
+
+table.addRow({ vec: [1.11111, 22.22222, 333.33333]});
+
+console.log(JSON.stringify(table, null, 4));
+```
 
 ### Custom column types
 
@@ -213,15 +251,18 @@ Note: Not supported by typedarray-backed column types.
 
 (Value: 0x08)
 
-This flag enables bitwise [Run-length encoding](https://thi.ng/rle-pack) in the
+This flag enables [Run-length encoding](https://thi.ng/rle-pack) in the
 JSON serialization of a column, potentially leading to dramatic file size
 savings, esp. for dictionary-based data.
 
-Only applicable to these column types & configurations:
+Two modes of RLE compression are supported, depending on column type:
 
-- typedarray-based integer columns (see [table](#column-types))
-- dictionary-based single value columns (if the min. cardinality is zero, a
-  default value **must** be supplied)
+- Simple RLE merely stores arrays in `[value1, count1, value2, count2...]` form
+- Binary RLE uses more advanced bitwise encoding, but is only available for
+  typedarray and vector columns
+
+Tuple-based columns do not support RLE and will throw an error at creation time
+when trying to use this flag.
 
 #### Custom flags
 
@@ -352,7 +393,7 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.65 KB
 
 ## Dependencies
 
