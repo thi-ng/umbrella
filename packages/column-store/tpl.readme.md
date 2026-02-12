@@ -103,8 +103,15 @@ The `cardinality` column config (in the form `[min,max]`) is interpreted as foll
 Therefore, using a 3D vector as example, the only two possible `cardinality`
 configs are: `[0,3]` (with default given) or `[3,3]`.
 
-When [querying](#query-engine) vector columns, always the entire vector is
-matched (by value).
+When [querying](#query-engine) vector columns using the standard
+`(n)or`/`(n)and` operators, always the entire vector is matched (by value).
+
+> [!IMPORTANT] For performance reasons, rows retrieved from vector columns
+> contain mutable data views of the underlying column storage. That means when
+> manipulating data in these views, the underlying data in the column would be
+> changed too. To avoid index corruption, always edit only copies of this vector
+> data and then use `table.updateRow()` to properly update the column storage
+> (incl. any internal indexes).
 
 ### Serialization options
 
