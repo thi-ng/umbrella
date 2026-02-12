@@ -112,6 +112,9 @@
 		"./columns/typedarray": {
 			"default": "./columns/typedarray.js"
 		},
+		"./columns/vector": {
+			"default": "./columns/vector.js"
+		},
 		"./query": {
 			"default": "./query.js"
 		},
