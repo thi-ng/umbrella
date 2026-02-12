@@ -75,9 +75,17 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 		return this.values[i];
 	}
 
-	valueKey(x: any) {
-		this.tmp[0] = x;
-		return this.tmp[0];
+	valueKey(value: any) {
+		const { tmp } = this;
+		if (isArray(value)) {
+			return value.map((x) => {
+				tmp[0] = x;
+				return tmp[0];
+			});
+		} else {
+			tmp[0] = value;
+			return tmp[0];
+		}
 	}
 
 	removeRow(i: number): void {
