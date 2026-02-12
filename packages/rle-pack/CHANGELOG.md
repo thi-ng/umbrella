@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-07T14:15:11Z
+- **Last updated**: 2026-02-12T17:02:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rle-pack@3.2.0) (2026-02-12)
+
+#### 🚀 Features
+
+- add simple encoder/decoder, rename binary versions ([0be6673](https://github.com/thi-ng/umbrella/commit/0be6673))
+  - add `encodeSimple()` / `decodeSimple()`
+  - rename `encode()` => `encodeBinary()`
+  - rename `decode()` => `decodeBinary()`
+  - deprecate old fn names
 
 ### [3.1.114](https://github.com/thi-ng/umbrella/tree/@thi.ng/rle-pack@3.1.114) (2025-12-03)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/units",
-	"version": "1.1.3",
+	"version": "1.1.4",
 	"description": "Extensible SI unit creation, conversions, quantities & calculations (incl. Lisp-like DSL and ~170 predefined units & constants)",
 	"type": "module",
 	"module": "./index.js",
