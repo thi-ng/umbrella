@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-12T17:02:51Z
+- **Last updated**: 2026-02-13T00:12:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.3.0) (2026-02-13)
+
+#### 🚀 Features
+
+- add missing vec column types, dedupe & update serialization ([203f302](https://github.com/thi-ng/umbrella/commit/203f302))
+- include `__row` ID in all query results, update `Table.getRow()` ([d3abdd6](https://github.com/thi-ng/umbrella/commit/d3abdd6))
+  - update `Table.getRow()`/`Table.getPartialRow()` to optionally include `__row` ID
+  - update query results to include `__row` ID
+  - update tests
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.2.0) (2026-02-12)
 

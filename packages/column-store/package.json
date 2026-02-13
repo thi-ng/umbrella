@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/column-store",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "In-memory column store database with customizable column types, extensible query engine, bitfield indexing for query acceleration, JSON serialization with optional RLE compression",
 	"type": "module",
 	"module": "./index.js",
