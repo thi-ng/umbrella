@@ -101,7 +101,7 @@ export class VectorColumn extends AColumn implements IColumn {
 		end = Math.min(end, this.table.length);
 		if (bitmap) {
 			return (
-				bitmap.index.get(this.getRowKey(value))?.first(start, end) ?? -1
+				bitmap.index.get(this.valueKey(value))?.first(start, end) ?? -1
 			);
 		}
 		end *= size;

@@ -5,12 +5,13 @@ import { FLAG_BITMAP, FLAG_DICT, Table } from "../src/index.js";
 const checkSingle = (type: string, flags = 0) => {
 	const a = new Table({ a: { type, flags } });
 	a.addRows([{ a: 100 }, { a: 101 }, { a: 102 }, { a: 100 }]);
-	expect(a.columns.a.indexOf(100)).toBe(0);
-	expect(a.columns.a.indexOf(101)).toBe(1);
-	expect(a.columns.a.indexOf(102)).toBe(2);
-	expect(a.columns.a.indexOf(100, 1)).toBe(3);
-	expect(a.columns.a.indexOf(103)).toBe(-1);
-	expect(a.columns.a.indexOf(102, 0, 2)).toBe(-1);
+	expect(a.indexOf("a", 100)).toBe(0);
+	expect(a.indexOf("a", 101)).toBe(1);
+	expect(a.indexOf("a", 102)).toBe(2);
+	expect(a.indexOf("a", 100, 1)).toBe(3);
+	expect(a.indexOf("a", 103)).toBe(-1);
+	expect(a.indexOf("a", 102, 0, 2)).toBe(-1);
+	expect(a.indexOf("b", 100)).toBe(-1);
 };
 
 const checkTuple = (type: string, flags = 0) => {
@@ -21,12 +22,13 @@ const checkTuple = (type: string, flags = 0) => {
 		{ a: [102, 102] },
 		{ a: [100, 100] },
 	]);
-	expect(a.columns.a.indexOf([100, 100])).toBe(0);
-	expect(a.columns.a.indexOf([101, 101])).toBe(1);
-	expect(a.columns.a.indexOf([102, 102])).toBe(2);
-	expect(a.columns.a.indexOf([100, 100], 1)).toBe(3);
-	expect(a.columns.a.indexOf([103, 103])).toBe(-1);
-	expect(a.columns.a.indexOf([102, 102], 0, 2)).toBe(-1);
+	expect(a.indexOf("a", [100, 100])).toBe(0);
+	expect(a.indexOf("a", [101, 101])).toBe(1);
+	expect(a.indexOf("a", [102, 102])).toBe(2);
+	expect(a.indexOf("a", [100, 100], 1)).toBe(3);
+	expect(a.indexOf("a", [103, 103])).toBe(-1);
+	expect(a.indexOf("a", [102, 102], 0, 2)).toBe(-1);
+	expect(a.indexOf("b", [100, 100])).toBe(-1);
 };
 
 describe("indexOf", () => {
@@ -39,4 +41,5 @@ describe("indexOf", () => {
 	test("tuple", () => checkTuple("num"));
 	test("dict tuple", () => checkTuple("num", FLAG_DICT));
 	test("vec", () => checkTuple("u8vec"));
+	test("vec bitmap", () => checkTuple("u8vec", FLAG_BITMAP));
 });

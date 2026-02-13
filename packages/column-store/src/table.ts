@@ -141,6 +141,10 @@ export class Table {
 		return row;
 	}
 
+	indexOf(id: string, value: any, start?: number, end?: number) {
+		return this.columns[id]?.indexOf(value, start, end) ?? -1;
+	}
+
 	validateRow(row: Row) {
 		const { columns } = this;
 		for (let id in columns) {
