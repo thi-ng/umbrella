@@ -56,10 +56,10 @@ export class Bitfield {
 	constructor(public buffer?: Uint32Array) {}
 
 	*ones(max = Infinity) {
-		const buf = this.buffer;
-		if (!buf) return;
-		for (let i = 0, n = buf.length; i < n; i++) {
-			let bits = buf[i];
+		const { buffer } = this;
+		if (!buffer) return;
+		for (let i = 0, n = buffer.length; i < n; i++) {
+			let bits = buffer[i];
 			while (bits) {
 				const lsb = bits & -bits;
 				const x = (i << 5) + (Math.clz32(lsb) ^ 31);
@@ -68,6 +68,26 @@ export class Bitfield {
 				bits ^= lsb;
 			}
 		}
+	}
+
+	first(start = 0, end = (this.buffer?.length ?? -1) * 32) {
+		const { buffer } = this;
+		if (!buffer || start >= end) return -1;
+		for (
+			let i = start >>> 5,
+				n = Math.min(Math.ceil(end / 32), buffer.length);
+			i < n;
+			i++
+		) {
+			let bits = buffer[i];
+			while (bits) {
+				const lsb = bits & -bits;
+				const x = (i << 5) + (Math.clz32(lsb) ^ 31);
+				if (x >= start && x < end) return x;
+				bits ^= lsb;
+			}
+		}
+		return -1;
 	}
 
 	setBit(id: number) {
