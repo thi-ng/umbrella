@@ -162,15 +162,18 @@ export class Table {
 				`unsupported flags for column type: ${spec.type}`
 			);
 		const [min, max] = spec.cardinality;
-		if (max < min)
+		if (
+			max < min ||
+			min < def.cardinality[0] ||
+			max > def.cardinality[1] ||
+			max < 1
+		)
 			__columnError(id, `wrong cardinality: ${spec.cardinality}`);
-		if (min < def.cardinality[0] || max > def.cardinality[1])
-			__columnError(id, `wrong cardimality`);
 		if (def.required && min === 0 && spec.default == null)
 			__columnError(id, `missing default value`);
 		if (spec.default != null) {
 			if (max > 1 !== isArray(spec.default))
-				__columnError(id, `default value`);
+				__columnError(id, `wrong default value`);
 		}
 	}
 
