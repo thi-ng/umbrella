@@ -118,18 +118,23 @@ export class Table {
 		this.length--;
 	}
 
-	getRow(i: number, safe = true) {
+	getRow(i: number, safe = true, includeID = false) {
 		if (safe && (i < 0 || i >= this.length)) return;
-		const row: Row = {};
+		const row: Row = includeID ? { __row: i } : {};
 		for (let id in this.columns) {
 			row[id] = this.columns[id].getRow(i);
 		}
 		return row;
 	}
 
-	getPartialRow(i: number, columns: string[], safe = true) {
+	getPartialRow(
+		i: number,
+		columns: string[],
+		safe = true,
+		includeID = false
+	) {
 		if (safe && (i < 0 || i >= this.length)) return;
-		const row: Row = {};
+		const row: Row = includeID ? { __row: i } : {};
 		for (let id of columns) {
 			row[id] = this.columns[id]?.getRow(i);
 		}

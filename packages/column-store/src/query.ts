@@ -92,7 +92,7 @@ export class Query {
 		}
 		if (ctx.bitmap) {
 			for (let i of new Bitfield(ctx.bitmap).ones(table.length))
-				yield table.getRow(i);
+				yield table.getRow(i, false, true);
 		}
 	}
 }
