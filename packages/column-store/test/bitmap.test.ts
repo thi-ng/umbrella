@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 import { expect, test, describe } from "bun:test";
-import { FLAG_BITMAP, Table, type SerializedTable } from "../src/index.js";
+import {
+	Bitfield,
+	FLAG_BITMAP,
+	Table,
+	type SerializedTable,
+} from "../src/index.js";
 
 const SRC: SerializedTable = {
 	schema: { a: { cardinality: [0, 1], flags: FLAG_BITMAP, type: "num" } },
@@ -64,5 +69,20 @@ describe("bitmap index", () => {
 		]) {
 			expect(colA.bitmap!.index.get(k)?.buffer![0]).toEqual(v);
 		}
+	});
+
+	test("first", () => {
+		const field = new Bitfield();
+		expect(field.first()).toBe(-1);
+		field.setBit(9);
+		field.setBit(29);
+		field.setBit(66);
+		expect(field.first()).toBe(9);
+		expect(field.first(9)).toBe(9);
+		expect(field.first(10)).toBe(29);
+		expect(field.first(32)).toBe(66);
+		expect(field.first(67)).toBe(-1);
+		expect(field.first(67, 1000)).toBe(-1);
+		expect(field.first(30, 64)).toBe(-1);
 	});
 });
