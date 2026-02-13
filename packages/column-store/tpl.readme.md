@@ -20,7 +20,7 @@ delegates them to the columns.
 An example table definition looks like this (explanation of column types in next
 section below):
 
-```ts
+```ts tangle:export/readme-types.ts
 import { Table, FLAG_DICT, FLAG_UNIQUE } from "@thi.ng/column-store";
 
 // define a table with the given columns
@@ -38,7 +38,7 @@ const table = new Table({
 	aliases: { type: "str", cardinality: [0, 3] },
 
 	// required fixed size tuples (aka vectors) of numbers
-	latlon: { type: "num", cardinality: [2, 2] },
+	latlon: { type: "f32vec", cardinality: [2, 2] },
 
 	// optional tuples of max. 10 strings, with default
 	// the given flags (explained further below) are triggering:
@@ -61,6 +61,11 @@ table.addRow({
 	tags: ["person", "opensource"],
 });
 ```
+
+> [!IMPORTANT]
+> Columns can be named freely, with the exception that the `__` name prefix is
+> reserved for internal use. For example, `foo` is allowed, but `__foo` is a
+> reserved name.
 
 ### Column types
 
@@ -268,8 +273,8 @@ TODO see code examples below
 
 The query engine works by applying a number of [query
 terms](https://docs.thi.ng/umbrella/column-store/interfaces/QueryTerm.html) in
-series, with each step intersecting its results with the results of the previous
-step(s), thereby narrowing down the result set.
+series, with each step intersecting (aka logical AND) its results with the
+results of the previous step(s), thereby narrowing down the result set.
 
 By default, individual query terms operate on a single column, but can also can
 also apply to multiple. Terms are supplied either as array given to the
@@ -298,7 +303,6 @@ query.and("column-name", "option");
 
 query.and("column-name", ["option1", "option2",...]);
 ```
-
 
 #### Negation
 
@@ -400,19 +404,20 @@ table.addRows([
 const unsortedImages = table.query().where("type", "img").and("tags", "unsorted");
 
 // queries are iterables and only execute when the iterator is consumed
+// each query result includes a `__row` ID
 console.log([...unsortedImages]);
-// [ { id: 102, type: "img", tags: [ "unsorted" ] } ]
+// [ { id: 102, type: "img", tags: [ "unsorted" ], __row: 2 } ]
 
 // select items with `a` OR `b` tags, intersect with those which have `c` AND `d` tags
 const complexTagQuery = table.query().or("tags", ["a", "b"]).and("tags", ["c", "d"]);
 console.log([...complexTagQuery]);
-// [ { id: 104, type: "img", tags: [ "b", "c", "d" ] } ]
+// [ { id: 104, type: "img", tags: [ "b", "c", "d" ], __row: 4 } ]
 
 // query using custom predicates
 console.log([...table.query().matchColumn("id", (id) => id > 102)]);
 // [
-//    { id: 103, type: "img", tags: [ "unsorted" ] },
-//    { id: 104, type: "img", tags: [ "b", "c", "d" ] }
+//    { id: 103, type: "img", tags: [ "unsorted" ], __row: 3 },
+//    { id: 104, type: "img", tags: [ "b", "c", "d" ], __row: 4 }
 // ]
 
 // serialize table to JSON
