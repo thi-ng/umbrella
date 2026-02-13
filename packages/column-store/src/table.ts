@@ -183,9 +183,6 @@ const $typed: ColumnTypeSpec = {
 };
 
 /** @internal */
-const $float: ColumnTypeSpec = { ...$typed, flags: FLAG_BITMAP };
-
-/** @internal */
 const $untyped: ColumnTypeSpec = {
 	impl: (table, id, { flags, cardinality: [_, max] }) => {
 		const isDict = flags & FLAG_DICT;
@@ -209,8 +206,6 @@ const $vec: ColumnTypeSpec = {
 	required: true,
 };
 
-const $fvec: ColumnTypeSpec = { ...$vec, flags: FLAG_BITMAP };
-
 /**
  * Registry of column type definitions and their factory functions. See
  * {@link registerColumnType}.
@@ -222,14 +217,18 @@ export const COLUMN_TYPES: Record<string, ColumnTypeSpec> = {
 	i16: $typed,
 	u32: $typed,
 	i32: $typed,
-	f32: $float,
-	f64: $float,
+	f32: $typed,
+	f64: $typed,
 	num: $untyped,
 	str: $untyped,
 	u8vec: $vec,
 	u16vec: $vec,
 	u32vec: $vec,
-	f32vec: $fvec,
+	i8vec: $vec,
+	i16vec: $vec,
+	i32vec: $vec,
+	f32vec: $vec,
+	f64vec: $vec,
 };
 
 /**

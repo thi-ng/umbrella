@@ -1,19 +1,18 @@
 // SPDX-License-Identifier: Apache-2.0
-import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
+import { typedArray, type TypedArray } from "@thi.ng/api/typedarray";
+import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { unsupportedOp } from "@thi.ng/errors/unsupported";
-import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
 import {
-	FLAG_RLE,
 	LIMITS,
 	type IColumn,
 	type NumericType,
 	type SerializedColumn,
 } from "../api.js";
+import { __deserializeTyped, __serializeTyped } from "../internal/serialize.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
-import { isArray } from "@thi.ng/checks/is-array";
 
 export class VectorColumn extends AColumn implements IColumn {
 	values: TypedArray;
@@ -33,13 +32,8 @@ export class VectorColumn extends AColumn implements IColumn {
 		this.tmp = typedArray(this.type, this.size);
 	}
 
-	load(spec: SerializedColumn): void {
-		if (this.spec.flags & FLAG_RLE) {
-			const values = decodeBinary(<any>spec.values);
-			this.values = typedArray(this.type, values.buffer);
-		} else {
-			this.values = typedArray(this.type, spec.values);
-		}
+	load({ values }: SerializedColumn): void {
+		this.values = __deserializeTyped(this.type, this.spec.flags, values);
 		this.reindex();
 	}
 
@@ -106,17 +100,10 @@ export class VectorColumn extends AColumn implements IColumn {
 	}
 
 	toJSON() {
-		let $values = this.values.subarray(0, this.table.length * this.size);
-		if (this.spec.flags & FLAG_RLE) {
-			$values = encodeBinary(
-				$values,
-				$values.length,
-				SIZEOF[this.type] * 8
-			);
-		}
-		let values: any[] = Array.from($values);
-		const prec = this.spec.opts?.prec;
-		if (prec != null) values = values.map((x) => +x.toFixed(prec));
-		return { values };
+		return __serializeTyped(
+			this.values.subarray(0, this.table.length * this.size),
+			this.spec,
+			this.type
+		);
 	}
 }
