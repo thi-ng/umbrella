@@ -43,6 +43,8 @@ export abstract class AColumn implements IColumn {
 
 	abstract getRowKey(i: number): any;
 
+	abstract indexOf(value: any, start?: number, end?: number): number;
+
 	encode(value: any) {
 		return value;
 	}

@@ -95,6 +95,26 @@ export class VectorColumn extends AColumn implements IColumn {
 		this.bitmap?.removeBit(i);
 	}
 
+	indexOf(value: any, start = 0, end = this.table.length) {
+		const { values, bitmap, size } = this;
+		start = Math.max(start, 0);
+		end = Math.min(end, this.table.length);
+		if (bitmap) {
+			return (
+				bitmap.index.get(this.getRowKey(value))?.first(start, end) ?? -1
+			);
+		}
+		end *= size;
+		let i: number, j: number;
+		outer: for (i = start * size; i < end; i += size) {
+			for (j = 0; j < size; j++) {
+				if (values[i + j] !== value[j]) continue outer;
+			}
+			return i / size;
+		}
+		return -1;
+	}
+
 	replaceValue(): boolean {
 		unsupportedOp("TODO");
 	}

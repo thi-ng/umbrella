@@ -3,6 +3,7 @@ import { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
 import { __validateArrayValue } from "../internal/checks.js";
+import { __indexOfTuple } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
@@ -72,6 +73,16 @@ export class DictTupleColumn extends AColumn implements IColumn {
 	removeRow(i: number): void {
 		this.values.splice(i, 1);
 		this.bitmap?.removeBit(i);
+	}
+
+	indexOf(value: any, start = 0, end = this.table.length) {
+		return __indexOfTuple(
+			value != null ? this.encode(value) : null,
+			this.values,
+			this.table.length,
+			start,
+			end
+		);
 	}
 
 	replaceValue(currValue: any, newValue: any) {

@@ -115,6 +115,22 @@ export interface IColumn {
 
 	validate(value: any): boolean;
 
+	/**
+	 * Searches for `value` in the column data, optionally constrained to given
+	 * `start`/`end` range. If found, returns row ID of first occurrence,
+	 * otherwise -1.
+	 *
+	 * @param value
+	 * @param start
+	 * @param end
+	 */
+	indexOf(value: any, start?: number, end?: number): number;
+
+	/**
+	 * Returns value at given row.
+	 *
+	 * @param i
+	 */
 	getRow(i: number): any;
 
 	/**

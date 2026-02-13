@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import { BidirIndex } from "@thi.ng/bidir-index";
+import { isArray } from "@thi.ng/checks/is-array";
 import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
 import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
 import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
+import { __indexOfSingle } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
-import { isArray } from "@thi.ng/checks/is-array";
 
 export class DictColumn extends AColumn implements IColumn {
 	values: (number | null)[] = [];
@@ -36,7 +37,7 @@ export class DictColumn extends AColumn implements IColumn {
 	}
 
 	encode(value: any) {
-		return this.dict.get(value);
+		return this.dict.get(value) ?? null;
 	}
 
 	decode(value: any) {
@@ -75,6 +76,17 @@ export class DictColumn extends AColumn implements IColumn {
 	removeRow(i: number): void {
 		this.values.splice(i, 1);
 		this.bitmap?.removeBit(i);
+	}
+
+	indexOf(value: any, start = 0, end = this.table.length) {
+		return __indexOfSingle(
+			this.encode(value),
+			this.values,
+			this.bitmap,
+			this.table.length,
+			start,
+			end
+		);
 	}
 
 	replaceValue(currValue: any, newValue: any) {

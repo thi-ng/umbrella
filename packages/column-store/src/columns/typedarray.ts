@@ -8,6 +8,7 @@ import {
 	type NumericType,
 	type SerializedColumn,
 } from "../api.js";
+import { __indexOfSingle } from "../internal/indexof.js";
 import { __replaceValue } from "../internal/replace.js";
 import { __deserializeTyped, __serializeTyped } from "../internal/serialize.js";
 import type { Table } from "../table.js";
@@ -86,6 +87,17 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 		this.values.copyWithin(i, i + 1, this.table.length);
 		this.values[this.table.length - 1] = 0;
 		this.bitmap?.removeBit(i);
+	}
+
+	indexOf(value: any, start = 0, end = this.table.length) {
+		return __indexOfSingle(
+			value,
+			this.values,
+			this.bitmap,
+			this.table.length,
+			start,
+			end
+		);
 	}
 
 	replaceValue(currValue: any, newValue: any) {
