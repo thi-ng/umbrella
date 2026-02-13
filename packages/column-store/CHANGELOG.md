@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-13T00:12:38Z
+- **Last updated**: 2026-02-13T17:34:41Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.4.0) (2026-02-13)
+
+#### 🚀 Features
+
+- add `Bitfield.first()` ([790cb3c](https://github.com/thi-ng/umbrella/commit/790cb3c))
+- add `IColumn.indexOf()`, add impls for all column types ([3901eec](https://github.com/thi-ng/umbrella/commit/3901eec))
+- add `Table.indexOf()`, fix vector impl, update tests ([164c67e](https://github.com/thi-ng/umbrella/commit/164c67e))
+- update `validateColumnSpec()` ([8aa82bf](https://github.com/thi-ng/umbrella/commit/8aa82bf))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.3.0) (2026-02-13)
 
