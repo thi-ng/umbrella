@@ -4,4 +4,5 @@ import { defOpT } from "./defopt.js";
 
 const $op = defOpT<any>((x) => x);
 
-export const set = <T>(out: ITensor<T>, src: ITensor<T>) => $op(out, src);
+export const set = <T>(out: ITensor<T>, src: ITensor<T>) =>
+	$op(<any>out, <any>src);

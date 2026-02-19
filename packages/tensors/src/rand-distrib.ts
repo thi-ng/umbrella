@@ -1,11 +1,17 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn0 } from "@thi.ng/api";
 import { normal as op } from "@thi.ng/random/distributions/normal";
-import type { ITensor } from "./api.js";
-import type { Tensor0, Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type {
+	ITensor,
+	ITensor0,
+	ITensor1,
+	ITensor2,
+	ITensor3,
+	ITensor4,
+} from "./api.js";
 import { top } from "./top.js";
 
-export const randDistrib0 = (a: Tensor0, rnd = op(), n = 1) => {
+export const randDistrib0 = (a: ITensor0, rnd = op(), n = 1) => {
 	a.data[a.offset] = rnd() * n;
 	return a;
 };
@@ -17,7 +23,7 @@ export const randDistrib0 = (a: Tensor0, rnd = op(), n = 1) => {
  * @param rnd
  * @param n
  */
-export const randDistrib1 = (a: Tensor1, rnd = op(), n = 1) => {
+export const randDistrib1 = (a: ITensor1, rnd = op(), n = 1) => {
 	const {
 		data,
 		offset,
@@ -35,7 +41,7 @@ export const randDistrib1 = (a: Tensor1, rnd = op(), n = 1) => {
  * @param rnd
  * @param n
  */
-export const randDistrib2 = (a: Tensor2, rnd = op(), n = 1) => {
+export const randDistrib2 = (a: ITensor2, rnd = op(), n = 1) => {
 	const {
 		data,
 		offset,
@@ -59,7 +65,7 @@ export const randDistrib2 = (a: Tensor2, rnd = op(), n = 1) => {
  * @param rnd
  * @param n
  */
-export const randDistrib3 = (a: Tensor3, rnd = op(), n = 1) => {
+export const randDistrib3 = (a: ITensor3, rnd = op(), n = 1) => {
 	const {
 		data,
 		offset,
@@ -86,7 +92,7 @@ export const randDistrib3 = (a: Tensor3, rnd = op(), n = 1) => {
  * @param rnd
  * @param n
  */
-export const randDistrib4 = (a: Tensor4, rnd = op(), n = 1) => {
+export const randDistrib4 = (a: ITensor4, rnd = op(), n = 1) => {
 	const {
 		data,
 		offset,

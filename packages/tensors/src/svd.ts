@@ -3,7 +3,8 @@ import type { FnN2, NumericArray } from "@thi.ng/api";
 import { swap } from "@thi.ng/arrays/swap";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import { zeroes, type Tensor2 } from "./tensor.js";
+import type { ITensor2 } from "./api.js";
+import { zeroes } from "./tensor.js";
 
 const { abs, sqrt } = Math;
 
@@ -33,7 +34,7 @@ const { abs, sqrt } = Math;
  * @param mat
  * @param maxIter
  */
-export const svd = (mat: Tensor2, maxIter = 50) => {
+export const svd = (mat: ITensor2, maxIter = 50) => {
 	const [M, N] = mat.shape;
 	if (M < N) illegalArgs("need more rows than columns");
 

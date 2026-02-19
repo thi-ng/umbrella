@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { ITensor } from "./api.js";
+import type { TensorOpTNO } from "./api.js";
 import { magSq } from "./magsq.js";
 import { mulN } from "./muln.js";
 import { set } from "./set.js";
@@ -12,8 +12,12 @@ import { set } from "./set.js";
  * @param a
  * @param n
  */
-export const normalize = (out: ITensor | null, a: ITensor, n = 1) => {
+export const normalize: TensorOpTNO = (out, a, n = 1): any => {
 	!out && (out = a);
 	const m = Math.sqrt(magSq(a));
-	return m >= 1e-6 ? mulN(out || a, a, n / m) : out !== a ? set(out, a) : out;
+	return m >= 1e-6
+		? mulN(<any>out, <any>a, n / m)
+		: out !== a
+		? set(out, a)
+		: out;
 };

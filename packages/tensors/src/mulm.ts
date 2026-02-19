@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { assert } from "@thi.ng/errors/assert";
-import { tensor, type Tensor2 } from "./tensor.js";
+import type { ITensor2 } from "./api.js";
+import { tensor } from "./tensor.js";
 
 /**
  * Matrix-matrix multiplication between matrix `a` (MxN) and matrix `b` (PxQ).
@@ -11,7 +12,7 @@ import { tensor, type Tensor2 } from "./tensor.js";
  * @param a
  * @param b
  */
-export const mulM = (out: Tensor2 | null, a: Tensor2, b: Tensor2) => {
+export const mulM = (out: ITensor2 | null, a: ITensor2, b: ITensor2) => {
 	const {
 		data: adata,
 		offset: oa,
@@ -29,7 +30,7 @@ export const mulM = (out: Tensor2 | null, a: Tensor2, b: Tensor2) => {
 		`incompatible matrix shapes, matrix b requires ${sya} rows`
 	);
 	if (out == null) {
-		out = <Tensor2>tensor(a.type, [sxa, syb], { storage: a.storage });
+		out = <ITensor2>tensor(a.type, [sxa, syb], { storage: a.storage });
 	}
 	const {
 		data: odata,

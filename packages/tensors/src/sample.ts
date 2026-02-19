@@ -4,14 +4,14 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
 import { PI } from "@thi.ng/math/api";
 import { clamp } from "@thi.ng/math/interval";
-import type { ITensor } from "./api.js";
-import { tensor, type Tensor1 } from "./tensor.js";
+import type { ITensor1, ITensor2, ITensor3, ITensor4 } from "./api.js";
+import { tensor } from "./tensor.js";
 
 type BoundaryFn = FnN2;
-type Sampler1 = Fn2<ITensor, number, number>;
-type Sampler2 = Fn3<ITensor, number, number, number>;
-type Sampler3 = Fn4<ITensor, number, number, number, number>;
-type Sampler4 = Fn5<ITensor, number, number, number, number, number>;
+type Sampler1 = Fn2<ITensor1, number, number>;
+type Sampler2 = Fn3<ITensor2, number, number, number>;
+type Sampler3 = Fn4<ITensor3, number, number, number, number>;
+type Sampler4 = Fn5<ITensor4, number, number, number, number, number>;
 
 type BoundaryType = "clamp" | "mirror" | "wrap" | "zero";
 
@@ -330,7 +330,7 @@ const __resolveBoundary = (mode: Maybe<BoundaryFn | BoundaryType>) =>
 const __resolveKernel = (kernel: SamplerKernel | SamplerType) =>
 	isString(kernel) ? SAMPLER_TYPES[kernel] : kernel;
 
-export const resample1 = (out: Tensor1, a: Tensor1, sampler: Sampler1) => {
+export const resample1 = (out: ITensor1, a: ITensor1, sampler: Sampler1) => {
 	const {
 		data: odata,
 		shape: [sxo],
@@ -350,8 +350,8 @@ export const resample1 = (out: Tensor1, a: Tensor1, sampler: Sampler1) => {
 };
 
 export const resample2 = (
-	out: ITensor,
-	a: ITensor,
+	out: ITensor2,
+	a: ITensor2,
 	[samplerX, samplerY]: Sampler1[]
 ) => {
 	const {
@@ -362,17 +362,25 @@ export const resample2 = (
 	} = a;
 	const tmp = tensor("num", [sxa, syo]);
 	for (let x = 0; x < sxa; x++) {
-		resample1(tmp.pick([x, -1]), a.pick([x, -1]), samplerX);
+		resample1(
+			<ITensor1>tmp.pick([x, -1]),
+			<ITensor1>a.pick([x, -1]),
+			samplerX
+		);
 	}
 	for (let y = 0; y < syo; y++) {
-		resample1(out.pick([-1, y]), tmp.pick([-1, y]), samplerY);
+		resample1(
+			<ITensor1>out.pick([-1, y]),
+			<ITensor1>tmp.pick([-1, y]),
+			samplerY
+		);
 	}
 	return out;
 };
 
 export const resample3 = (
-	out: ITensor,
-	a: ITensor,
+	out: ITensor3,
+	a: ITensor3,
 	[samplerX, samplerY, samplerZ]: Sampler1[]
 ) => {
 	const {
@@ -387,7 +395,11 @@ export const resample3 = (
 		const src = a.pick([i]);
 		const dest = tmpX.pick([i]);
 		for (let j = 0; j < sya; j++) {
-			resample1(dest.pick([j]), src.pick([j]), samplerX);
+			resample1(
+				<ITensor1>dest.pick([j]),
+				<ITensor1>src.pick([j]),
+				samplerX
+			);
 		}
 	}
 	// sample columns per slice
@@ -396,13 +408,21 @@ export const resample3 = (
 		const src = tmpX.pick([i]);
 		const dest = tmpY.pick([i]);
 		for (let j = 0; j < szo; j++) {
-			resample1(dest.pick([-1, j]), src.pick([-1, j]), samplerY);
+			resample1(
+				<ITensor1>dest.pick([-1, j]),
+				<ITensor1>src.pick([-1, j]),
+				samplerY
+			);
 		}
 	}
 	// interpolate slices
 	for (let i = 0; i < syo; i++) {
 		for (let j = 0; j < szo; j++) {
-			resample1(out.pick([-1, i, j]), tmpY.pick([-1, i, j]), samplerZ);
+			resample1(
+				<ITensor1>out.pick([-1, i, j]),
+				<ITensor1>tmpY.pick([-1, i, j]),
+				samplerZ
+			);
 		}
 	}
 	return out;

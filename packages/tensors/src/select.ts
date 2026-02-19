@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import { identity } from "@thi.ng/api/fn";
-import type { ITensor } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3, Tensor4 } from "./tensor.js";
+import type { ITensor, ITensor1, ITensor2, ITensor3, ITensor4 } from "./api.js";
 import { top } from "./top.js";
 
 /**
@@ -19,7 +18,7 @@ export type SelectResult<T> = { arg: number[]; value: T };
  * @param initial
  */
 export const select1 = <A, B>(
-	a: Tensor1<A>,
+	a: ITensor1<A>,
 	xform: Fn<A, B>,
 	pred: Predicate2<B>,
 	initial: B
@@ -52,7 +51,7 @@ export const select1 = <A, B>(
  * @param initial
  */
 export const select2 = <A, B>(
-	a: Tensor2<A>,
+	a: ITensor2<A>,
 	xform: Fn<A, B>,
 	pred: Predicate2<B>,
 	initial: B
@@ -90,7 +89,7 @@ export const select2 = <A, B>(
  * @param initial
  */
 export const select3 = <A, B>(
-	a: Tensor3<A>,
+	a: ITensor3<A>,
 	xform: Fn<A, B>,
 	pred: Predicate2<B>,
 	initial: B
@@ -132,7 +131,7 @@ export const select3 = <A, B>(
  * @param initial
  */
 export const select4 = <A, B>(
-	a: Tensor4<A>,
+	a: ITensor4<A>,
 	xform: Fn<A, B>,
 	pred: Predicate2<B>,
 	initial: B

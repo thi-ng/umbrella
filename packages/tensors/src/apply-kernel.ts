@@ -1,11 +1,16 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { KernelSpec, ITensor } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type {
+	KernelSpec,
+	ITensor,
+	ITensor1,
+	ITensor2,
+	ITensor3,
+} from "./api.js";
 import { top } from "./top.js";
 
 const applyKernel1 = (
-	out: Tensor1 | null,
-	a: Tensor1,
+	out: ITensor1 | null,
+	a: ITensor1,
 	{ init, reduce, complete, shape: [sxk] }: KernelSpec,
 	pad: true | number = true
 ) => {
@@ -43,8 +48,8 @@ const applyKernel1 = (
 };
 
 const applyKernel2 = (
-	out: Tensor2 | null,
-	a: Tensor2,
+	out: ITensor2 | null,
+	a: ITensor2,
 	{ init, reduce, complete, shape: [sxk, syk] }: KernelSpec,
 	pad: true | number = true
 ) => {
@@ -113,8 +118,8 @@ const applyKernel2 = (
 };
 
 const applyKernel3 = (
-	out: Tensor3 | null,
-	a: Tensor3,
+	out: ITensor3 | null,
+	a: ITensor3,
 	{ init, reduce, complete, shape: [sxk, syk, szk] }: KernelSpec,
 	pad: true | number = true
 ) => {

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
-import type { ITensor } from "./api.js";
+import type { ITensor, ITensor1 } from "./api.js";
 import { ensureShape } from "./errors.js";
-import { Tensor1 } from "./tensor.js";
 import { sum } from "./sum.js";
+import { Tensor1 } from "./tensor.js";
 
 /**
  * Integrates given tensor along innermost dimension and writes result to 1D
@@ -35,10 +35,10 @@ import { sum } from "./sum.js";
  * @param fn
  */
 export const integrate = (
-	out: Tensor1 | null,
+	out: ITensor1 | null,
 	a: ITensor,
 	fn: Fn<ITensor, number> = sum
-): Tensor1 => {
+): ITensor1 => {
 	const { shape, dim } = a;
 	const odim = shape[shape.length - 1];
 	if (!out) {

@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { ITensor } from "./api.js";
-import type { Tensor1, Tensor2, Tensor3 } from "./tensor.js";
+import type { ITensor, ITensor1, ITensor2, ITensor3 } from "./api.js";
 import { top } from "./top.js";
 
-const convolve1 = (out: Tensor1 | null, a: Tensor1, k: Tensor1) => {
+const convolve1 = (out: ITensor1 | null, a: ITensor1, k: ITensor1) => {
 	!out && (out = a.empty());
 	const {
 		data: odata,
@@ -37,7 +36,7 @@ const convolve1 = (out: Tensor1 | null, a: Tensor1, k: Tensor1) => {
 	return out;
 };
 
-const convolve2 = (out: Tensor2 | null, a: Tensor2, k: Tensor2) => {
+const convolve2 = (out: ITensor2 | null, a: ITensor2, k: ITensor2) => {
 	!out && (out = a.empty());
 	const {
 		data: odata,
@@ -92,7 +91,7 @@ const convolve2 = (out: Tensor2 | null, a: Tensor2, k: Tensor2) => {
 	return out;
 };
 
-const convolve3 = (out: Tensor3 | null, a: Tensor3, k: Tensor3) => {
+const convolve3 = (out: ITensor3 | null, a: ITensor3, k: ITensor3) => {
 	!out && (out = a.empty());
 	const {
 		data: odata,

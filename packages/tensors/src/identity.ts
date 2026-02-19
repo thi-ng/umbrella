@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { TensorOpts, Type } from "./api.js";
+import type { ITensor2, TensorOpts, Type } from "./api.js";
 import { STORAGE } from "./storage.js";
 import { Tensor2 } from "./tensor.js";
 
@@ -14,7 +14,7 @@ export const identity = <T extends Exclude<Type, "str">>(
 	type: T,
 	size: number,
 	opts?: Pick<TensorOpts<any, any>, "storage">
-) => {
+): ITensor2 => {
 	const n = size * size;
 	const storage = opts?.storage || STORAGE[type];
 	const data = storage.alloc(n);

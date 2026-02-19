@@ -11,6 +11,11 @@ import { eqDeltaS as _eqDelta } from "@thi.ng/vectors/eqdelta";
 import { product, product2, product3, product4 } from "@thi.ng/vectors/product";
 import type {
 	ITensor,
+	ITensor0,
+	ITensor1,
+	ITensor2,
+	ITensor3,
+	ITensor4,
 	ITensorStorage,
 	Nested,
 	NestedTensor,
@@ -40,6 +45,8 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		public offset = 0
 	) {}
 
+	protected _n!: number;
+
 	abstract get dim(): number;
 	abstract get length(): number;
 
@@ -55,7 +62,10 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		return swizzle(this.order)(this.stride);
 	}
 
-	abstract [Symbol.iterator](): IterableIterator<T>;
+	*[Symbol.iterator](): IterableIterator<T> {
+		const { data } = this;
+		for (let i of this.indices()) yield data[i];
+	}
 
 	broadcast<S extends Shape>(shape: S, stride: S): ShapeTensor<S, T> {
 		return <any>(
@@ -119,7 +129,15 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 		);
 	}
 
+	fill(value: T) {
+		const { data } = this;
+		for (let i of this.indices()) data[i] = value;
+		return this;
+	}
+
 	abstract index(pos: NumericArray): number;
+
+	abstract indices(): IterableIterator<number>;
 
 	position(index: number): number[] {
 		const { order, stride } = this;
@@ -258,12 +276,8 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 	}
 }
 
-export class Tensor0<T = number> extends ATensor<T> {
-	*[Symbol.iterator](): IterableIterator<T> {
-		yield this.data[this.offset];
-	}
-
-	get dim() {
+export class Tensor0<T = number> extends ATensor<T> implements ITensor0<T> {
+	get dim(): 0 {
 		return 0;
 	}
 
@@ -275,8 +289,17 @@ export class Tensor0<T = number> extends ATensor<T> {
 		return 1;
 	}
 
+	fill(x: T) {
+		this.data[this.offset] = x;
+		return this;
+	}
+
 	index() {
 		return this.offset;
+	}
+
+	*indices() {
+		yield this.offset;
 	}
 
 	position(): number[] {
@@ -329,18 +352,8 @@ export class Tensor0<T = number> extends ATensor<T> {
 	}
 }
 
-export class Tensor1<T = number> extends ATensor<T> {
-	*[Symbol.iterator](): IterableIterator<T> {
-		let {
-			data,
-			shape: [sx],
-			stride: [tx],
-			offset,
-		} = this;
-		for (; sx-- > 0; offset += tx) yield data[offset];
-	}
-
-	get dim() {
+export class Tensor1<T = number> extends ATensor<T> implements ITensor1<T> {
+	get dim(): 1 {
 		return 1;
 	}
 
@@ -354,6 +367,15 @@ export class Tensor1<T = number> extends ATensor<T> {
 
 	index([x]: NumericArray) {
 		return this.offset + x * this.stride[0];
+	}
+
+	*indices() {
+		let {
+			shape: [sx],
+			stride: [tx],
+			offset,
+		} = this;
+		for (; sx-- > 0; offset += tx) yield offset;
 	}
 
 	position(index: number): number[] {
@@ -421,28 +443,12 @@ export class Tensor1<T = number> extends ATensor<T> {
 	}
 }
 
-export class Tensor2<T = number> extends ATensor<T> {
-	protected _n!: number;
-
-	*[Symbol.iterator]() {
-		const {
-			data,
-			shape: [sx, sy],
-			stride: [tx, ty],
-		} = this;
-		let ox: number, x: number, y: number;
-		for (ox = this.offset, x = 0; x < sx; x++, ox += tx) {
-			for (y = 0; y < sy; y++) {
-				yield data[ox + y * ty];
-			}
-		}
-	}
-
+export class Tensor2<T = number> extends ATensor<T> implements ITensor2<T> {
 	get length() {
-		return this._n || (this._n = product2(this.shape));
+		return this._n ?? (this._n = product2(this.shape));
 	}
 
-	get dim() {
+	get dim(): 2 {
 		return 2;
 	}
 
@@ -452,6 +458,19 @@ export class Tensor2<T = number> extends ATensor<T> {
 
 	index(pos: NumericArray) {
 		return this.offset + dot2(pos, this.stride);
+	}
+
+	*indices() {
+		const {
+			shape: [sx, sy],
+			stride: [tx, ty],
+		} = this;
+		let ox: number, x: number, y: number;
+		for (ox = this.offset, x = 0; x < sx; x++, ox += tx) {
+			for (y = 0; y < sy; y++) {
+				yield ox + y * ty;
+			}
+		}
 	}
 
 	get(pos: NumericArray) {
@@ -499,12 +518,21 @@ export class Tensor2<T = number> extends ATensor<T> {
 	}
 }
 
-export class Tensor3<T = number> extends ATensor<T> {
-	protected _n!: number;
+export class Tensor3<T = number> extends ATensor<T> implements ITensor3<T> {
+	get length() {
+		return this._n ?? (this._n = product3(this.shape));
+	}
 
-	*[Symbol.iterator]() {
+	get dim(): 3 {
+		return 3;
+	}
+
+	index(pos: NumericArray) {
+		return this.offset + dot3(pos, this.stride);
+	}
+
+	*indices() {
 		const {
-			data,
 			shape: [sx, sy, sz],
 			stride: [tx, ty, tz],
 		} = this;
@@ -512,22 +540,10 @@ export class Tensor3<T = number> extends ATensor<T> {
 		for (ox = this.offset, x = 0; x < sx; x++, ox += tx) {
 			for (oy = ox, y = 0; y < sy; y++, oy += ty) {
 				for (z = 0; z < sz; z++) {
-					yield data[oy + z * tz];
+					yield oy + z * tz;
 				}
 			}
 		}
-	}
-
-	get length() {
-		return this._n || (this._n = product3(this.shape));
-	}
-
-	get dim() {
-		return 3;
-	}
-
-	index(pos: NumericArray) {
-		return this.offset + dot3(pos, this.stride);
 	}
 
 	get(pos: NumericArray) {
@@ -577,12 +593,21 @@ export class Tensor3<T = number> extends ATensor<T> {
 	}
 }
 
-export class Tensor4<T = number> extends ATensor<T> {
-	protected _n!: number;
+export class Tensor4<T = number> extends ATensor<T> implements ITensor4<T> {
+	get length() {
+		return this._n ?? (this._n = product4(this.shape));
+	}
 
-	*[Symbol.iterator]() {
+	get dim(): 4 {
+		return 4;
+	}
+
+	index(pos: NumericArray) {
+		return this.offset + dot4(pos, this.stride);
+	}
+
+	*indices() {
 		const {
-			data,
 			shape: [sx, sy, sz, sw],
 			stride: [tx, ty, tz, tw],
 			offset,
@@ -598,23 +623,11 @@ export class Tensor4<T = number> extends ATensor<T> {
 			for (oy = ox, y = 0; y < sy; y++, oy += ty) {
 				for (oz = oy, z = 0; z < sz; z++, oz += tz) {
 					for (w = 0; w < sw; w++) {
-						yield data[oz + w * tw];
+						yield oz + w * tw;
 					}
 				}
 			}
 		}
-	}
-
-	get length() {
-		return this._n || (this._n = product4(this.shape));
-	}
-
-	get dim() {
-		return 4;
-	}
-
-	index(pos: NumericArray) {
-		return this.offset + dot4(pos, this.stride);
 	}
 
 	get(pos: NumericArray) {

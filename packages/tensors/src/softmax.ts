@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { ITensor } from "./api.js";
+import type { TensorOpTNO } from "./api.js";
 import { divN } from "./divn.js";
 import { exp } from "./exp.js";
 import { sum } from "./sum.js";
@@ -28,14 +28,10 @@ import { sum } from "./sum.js";
  * @param src -
  * @param temperature -
  */
-export const softMax = (
-	out: ITensor | null,
-	src: ITensor,
-	temperature?: number
-) => {
+export const softMax: TensorOpTNO = (out, src, temperature?): any => {
 	const e =
 		temperature !== undefined
-			? exp(null, divN(src.empty(), src, temperature))
-			: exp(src.empty(), src);
-	return divN(out || src, e, sum(e));
+			? exp(null, divN(<any>src.empty(), <any>src, temperature))
+			: exp(<any>src.empty(), <any>src);
+	return divN(<any>out || src, e, sum(e));
 };

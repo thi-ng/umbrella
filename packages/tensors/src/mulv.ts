@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { ITensor1, ITensor2 } from "./api.js";
 import { illegalShape } from "./errors.js";
-import { tensor, type Tensor1, type Tensor2 } from "./tensor.js";
+import { tensor } from "./tensor.js";
 
 /**
  * Matrix-vector multiplication. If `out` is null, a new 1D tensor will be
@@ -10,7 +11,7 @@ import { tensor, type Tensor1, type Tensor2 } from "./tensor.js";
  * @param a
  * @param b
  */
-export const mulV = (out: Tensor1 | null, a: Tensor2, b: Tensor1) => {
+export const mulV = (out: ITensor1 | null, a: ITensor2, b: ITensor1) => {
 	const {
 		data: adata,
 		offset: oa,
@@ -25,7 +26,7 @@ export const mulV = (out: Tensor1 | null, a: Tensor2, b: Tensor1) => {
 	} = b;
 	if (sya !== sxb) illegalShape(b.shape);
 	if (out == null) {
-		out = <Tensor1>tensor(b.type, [sxa], { storage: b.storage });
+		out = <ITensor1>tensor(b.type, [sxa], { storage: b.storage });
 	}
 	const {
 		data: odata,
