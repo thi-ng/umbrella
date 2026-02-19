@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { Range1_24 } from "@thi.ng/api";
 import type { ITensor, ITensor1 } from "./api.js";
 import { cdf } from "./cdf.js";
