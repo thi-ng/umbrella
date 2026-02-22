@@ -62,9 +62,9 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 210 individual
+Not including deprecations, this mono-repository is home to 214 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
-usage, currently totalling ~244k SLOC and ~4300 source files... Some of the
+usage, currently totalling ~250k SLOC and ~4350 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
 current form since January 2018.
 
@@ -312,12 +312,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-02-12
+As of: 2026-02-22
 
-| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
-|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/column-store`](./packages/column-store) | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store) | [changelog](./packages/column-store/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rle-pack`](./packages/rle-pack)         | [![version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)         | [changelog](./packages/rle-pack/CHANGELOG.md)     |
+| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
+|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors) | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors) | [changelog](./packages/tensors/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
