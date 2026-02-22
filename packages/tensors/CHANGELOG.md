@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-07T14:15:11Z
+- **Last updated**: 2026-02-22T17:45:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.11.0) (2026-02-22)
+
+#### 🚀 Features
+
+- add histogram functions, add cdf(), add findIndex() ([50f4ca0](https://github.com/thi-ng/umbrella/commit/50f4ca0))
+
+#### ♻️ Refactoring
+
+- add ITensor0/1/2/3/4, update ITensor, update all ops signatures ([0be6c13](https://github.com/thi-ng/umbrella/commit/0be6c13))
 
 ### [0.10.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/tensors@0.10.14) (2026-02-07)
 
