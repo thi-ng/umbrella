@@ -23,8 +23,17 @@ section below):
 ```ts tangle:export/readme-types.ts
 import { Table, FLAG_DICT, FLAG_UNIQUE } from "@thi.ng/column-store";
 
+// schema for a single row item
+interface Item {
+	id: number;
+	name: string;
+	aliases?: string[];
+	latlon: number[] | Float32Array;
+	tags: string[];
+}
+
 // define a table with the given columns
-const table = new Table({
+const table = new Table<Item>({
 
 	// column of single numeric values
 	// (default cardinality makes values required)
@@ -371,7 +380,13 @@ import {
 	FLAG_UNIQUE,
 } from "@thi.ng/column-store";
 
-const table = new Table({
+interface Item {
+	id: number;
+	type: string;
+	tags: string[];
+}
+
+const table = new Table<Item>({
 	// ID column stores 8bit ints (typed array)
 	id: { type: "u8" },
 	// Type column stores indexed strings
