@@ -122,16 +122,6 @@ const syncPackage = (ctx: DocCtx, id: string, root: string) => {
 	}
 };
 
-// const invalidatePaths = (paths: string) => {
-// 	LOGGER.info("invalidating CDN paths:", paths);
-// 	execFileSync(
-// 		"aws",
-// 		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${paths} ${AWS_PROFILE}`.split(
-// 			" "
-// 		)
-// 	);
-// };
-
 const processPackage = (ctx: DocCtx, id: string) => {
 	LOGGER.info("processing package", ctx.base, id);
 	const root = `${ctx.base}/${id}/doc`;
@@ -197,11 +187,6 @@ cliApp<CLIOpts, CLICtx>({
 				for (let id of packages) {
 					id = id.replace(docCtx.base + "/", "");
 					processPackage(docCtx, id);
-					// if (!doAll) {
-					// 	const destID = docCtx.aliases[id] || id;
-					// 	LOGGER.debug("adding invalidation", destID);
-					// 	invalidations.push(`${docCtx.s3Prefix}/${destID}/*`);
-					// }
 				}
 				if (!docCtx.noToc) {
 					execFileSync("bun", ["tools/src/doc-table.ts"]);
@@ -211,9 +196,6 @@ cliApp<CLIOpts, CLICtx>({
 						);
 					}
 				}
-				// if (!docCtx.dryRun) {
-				// 	invalidatePaths(`/index.html ${invalidations.join(" ")}`);
-				// }
 			},
 			opts: {},
 		},

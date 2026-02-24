@@ -18,7 +18,6 @@ interface UploadOpts {
 }
 
 interface CLIOpts {
-	// noInvalidate: boolean;
 	base: string;
 	dest: string;
 	rename?: string;
@@ -79,14 +78,6 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 	uploadAssets("", { ext: ".js", depth: 1 });
 	uploadAssets("", { ext: ".json", depth: 1 });
 	uploadAssets("", { ext: ".html" });
-
-	// if (!opts.noInvalidate) {
-	// 	logger.info("invaliding", DEST_DIR);
-	// 	execAWS(
-	// 		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths ${DEST_DIR}/* ${AWS_PROFILE}`,
-	// 		logger
-	// 	);
-	// }
 };
 
 cliApp<CLIOpts, CLICtx>({
@@ -106,10 +97,6 @@ cliApp<CLIOpts, CLICtx>({
 			desc: "New name on S3 (only for single uploads)",
 			required: false,
 		}),
-		// noInvalidate: flag({
-		// 	alias: "n",
-		// 	desc: "Don't create a CDN invalidation for the example(s)",
-		// }),
 	},
 	commands: {
 		default: {
@@ -119,7 +106,6 @@ cliApp<CLIOpts, CLICtx>({
 				let isAll = !inputs.length;
 				if (isAll) {
 					inputs = [...map(basename, dirs(ctx.opts.base, "", 1))];
-					// ctx.opts.noInvalidate = true;
 				}
 				for (let name of inputs) {
 					ctx.logger.info("--------------------------------");
@@ -134,13 +120,6 @@ cliApp<CLIOpts, CLICtx>({
 						);
 					}
 				}
-				// if (isAll) {
-				// 	ctx.logger.info("invaliding all");
-				// 	execAWS(
-				// 		`cloudfront create-invalidation --distribution-id ${CF_DISTRO_EXAMPLES} --paths /${ctx.opts.dest}/* ${AWS_PROFILE}`,
-				// 		ctx.logger
-				// 	);
-				// }
 				ctx.logger.info("done");
 			},
 			opts: {},

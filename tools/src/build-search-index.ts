@@ -123,7 +123,3 @@ console.log(
 		`s3 cp assets/search.bin.br ${S3_BUCKET_DOCS}/umbrella/search-index-latest.bin ${S3_COMPRESS_OPTS}`
 	)
 );
-
-// execAWS(
-// 	`cloudfront create-invalidation --distribution-id ${CF_DISTRO_DOCS} --paths ${S3_PREFIX}/search-index-latest.bin ${AWS_PROFILE}`
-// );
