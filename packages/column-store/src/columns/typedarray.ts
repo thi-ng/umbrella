@@ -4,8 +4,9 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import {
 	LIMITS,
-	type IColumn,
+	type ColumnID,
 	type NumericType,
+	type Row,
 	type SerializedColumn,
 } from "../api.js";
 import { __indexOfSingle } from "../internal/indexof.js";
@@ -14,7 +15,7 @@ import { __deserializeTyped, __serializeTyped } from "../internal/serialize.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
 
-export class TypedArrayColumn extends AColumn implements IColumn {
+export class TypedArrayColumn<T extends Row = Row> extends AColumn<T> {
 	values: TypedArray;
 	type: NumericType;
 	limit: [number, number];
@@ -22,7 +23,7 @@ export class TypedArrayColumn extends AColumn implements IColumn {
 
 	readonly isArray = false;
 
-	constructor(id: string, table: Table) {
+	constructor(id: ColumnID<T>, table: Table<T>) {
 		super(id, table);
 		this.type = <NumericType>table.schema[id].type;
 		this.limit = LIMITS[this.type];

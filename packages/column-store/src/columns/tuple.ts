@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
-import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
+import { FLAG_UNIQUE, type Row, type SerializedColumn } from "../api.js";
 import { __validateArrayValue } from "../internal/checks.js";
 import { __indexOfTuple } from "../internal/indexof.js";
 import { AColumn } from "./acolumn.js";
 
-export class TupleColumn extends AColumn implements IColumn {
+export class TupleColumn<T extends Row = Row> extends AColumn<T> {
 	values: Nullable<number[]>[] = [];
 
 	readonly isArray = true;

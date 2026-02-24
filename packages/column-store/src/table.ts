@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
@@ -6,12 +7,14 @@ import {
 	FLAG_DICT,
 	FLAG_RLE,
 	FLAG_UNIQUE,
+	type ColumnID,
 	type ColumnSchema,
 	type ColumnSpec,
 	type ColumnTypeSpec,
 	type IColumn,
 	type QueryTerm,
 	type Row,
+	type RowWithMeta,
 	type SerializedTable,
 } from "./api.js";
 import { DictTupleColumn } from "./columns/dict-tuple.js";
@@ -28,15 +31,18 @@ import { Query } from "./query.js";
  */
 export interface TableOpts {}
 
-export class Table {
+export class Table<T extends Row> {
 	opts: TableOpts;
-	schema: ColumnSchema = {};
-	columns: Record<string, IColumn> = {};
+	schema = <ColumnSchema<T>>{};
+	columns = <Record<ColumnID<T>, IColumn>>{};
 
 	length = 0;
 
-	static load(serialized: SerializedTable, opts?: Partial<TableOpts>) {
-		const table = new Table(serialized.schema, opts);
+	static load<T extends Row>(
+		serialized: SerializedTable<T>,
+		opts?: Partial<TableOpts>
+	) {
+		const table = new Table<T>(serialized.schema, opts);
 		table.length = serialized.length;
 		for (let id in table.columns) {
 			table.columns[id].load(serialized.columns[id]);
@@ -46,21 +52,21 @@ export class Table {
 
 	constructor(
 		schema: Record<
-			string,
+			ColumnID<T>,
 			Partial<ColumnSpec> & { type: ColumnSpec["type"] }
 		>,
 		opts?: Partial<TableOpts>
 	) {
 		this.opts = { ...opts };
-		for (let id in schema) this.addColumn(id, schema[id]);
+		for (let id in schema) this.addColumn(<ColumnID<T>>id, schema[id]);
 	}
 
-	query(terms?: QueryTerm[]) {
-		return new Query(this, terms);
+	query(terms?: QueryTerm<T>[]) {
+		return new Query<T>(this, terms);
 	}
 
 	addColumn(
-		id: string,
+		id: ColumnID<T>,
 		spec: Partial<ColumnSpec> & { type: ColumnSpec["type"] }
 	) {
 		if (this.columns[id]) __columnError(id, "already exists");
@@ -71,10 +77,14 @@ export class Table {
 		};
 		this.validateColumnSpec(id, $spec);
 		this.schema[id] = $spec;
-		this.columns[id] = COLUMN_TYPES[spec.type].impl(this, id, $spec);
+		this.columns[id] = COLUMN_TYPES[spec.type].impl(
+			this,
+			String(id),
+			$spec
+		);
 	}
 
-	removeColumn(id: string) {
+	removeColumn(id: ColumnID<T>) {
 		if (this.columns[id]) return false;
 		delete this.columns[id];
 		delete this.schema[id];
@@ -89,7 +99,7 @@ export class Table {
 		for (let id in this.columns) this.columns[id].reindex();
 	}
 
-	addRow(row: Row) {
+	addRow(row: Partial<T>) {
 		this.validateRow(row);
 		const { columns, length: rowID } = this;
 		for (let id in columns) {
@@ -98,11 +108,11 @@ export class Table {
 		this.length++;
 	}
 
-	addRows(rows: Iterable<Row>) {
+	addRows(rows: Iterable<Partial<T>>) {
 		for (let row of rows) this.addRow(row);
 	}
 
-	updateRow(i: number, row: Row) {
+	updateRow(i: number, row: T) {
 		if (i < 0 || i >= this.length) illegalArgs(`row ID: ${i}`);
 		this.validateRow(row);
 		for (let id in this.columns) {
@@ -118,6 +128,9 @@ export class Table {
 		this.length--;
 	}
 
+	getRow(i: number, safe?: boolean): Maybe<T>;
+	getRow(i: number, safe?: boolean, includeID?: false): Maybe<T>;
+	getRow(i: number, safe?: boolean, includeID?: true): Maybe<RowWithMeta<T>>;
 	getRow(i: number, safe = true, includeID = false) {
 		if (safe && (i < 0 || i >= this.length)) return;
 		const row: Row = includeID ? { __row: i } : {};
@@ -127,25 +140,42 @@ export class Table {
 		return row;
 	}
 
-	getPartialRow(
+	getPartialRow<K extends ColumnID<T>>(
 		i: number,
-		columns: string[],
+		columns: K[],
+		safe?: boolean
+	): Maybe<Pick<T, K>>;
+	getPartialRow<K extends ColumnID<T>>(
+		i: number,
+		columns: K[],
+		safe?: boolean,
+		includeID?: false
+	): Maybe<Pick<T, K>>;
+	getPartialRow<K extends ColumnID<T>>(
+		i: number,
+		columns: K[],
+		safe?: boolean,
+		includeID?: true
+	): Maybe<RowWithMeta<Pick<T, K>>>;
+	getPartialRow<K extends ColumnID<T>>(
+		i: number,
+		columns: K[],
 		safe = true,
 		includeID = false
 	) {
 		if (safe && (i < 0 || i >= this.length)) return;
 		const row: Row = includeID ? { __row: i } : {};
 		for (let id of columns) {
-			row[id] = this.columns[id]?.getRow(i);
+			row[<string>id] = this.columns[id]?.getRow(i);
 		}
 		return row;
 	}
 
-	indexOf(id: string, value: any, start?: number, end?: number) {
+	indexOf(id: ColumnID<T>, value: any, start?: number, end?: number) {
 		return this.columns[id]?.indexOf(value, start, end) ?? -1;
 	}
 
-	validateRow(row: Row) {
+	validateRow(row: Partial<T>) {
 		const { columns } = this;
 		for (let id in columns) {
 			if (!columns[id].validate(row[id]))
@@ -153,7 +183,7 @@ export class Table {
 		}
 	}
 
-	validateColumnSpec(id: string, spec: ColumnSpec) {
+	validateColumnSpec(id: ColumnID<T>, spec: ColumnSpec) {
 		const def = COLUMN_TYPES[spec.type];
 		if (!def) __columnError(id, `unknown type: ${spec.type}`);
 		if (spec.flags & ~(def.flags ?? 0))

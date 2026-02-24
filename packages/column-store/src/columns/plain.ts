@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
-import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
+import { FLAG_RLE, type Row, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
 import { __indexOfSingle } from "../internal/indexof.js";
 import { __replaceValue } from "../internal/replace.js";
 import { AColumn } from "./acolumn.js";
 
-export class PlainColumn extends AColumn implements IColumn {
+export class PlainColumn<T extends Row = Row> extends AColumn<T> {
 	values: any[] = [];
 
 	readonly isArray = false;

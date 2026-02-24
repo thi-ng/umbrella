@@ -6,15 +6,16 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import {
 	LIMITS,
-	type IColumn,
+	type ColumnID,
 	type NumericType,
+	type Row,
 	type SerializedColumn,
 } from "../api.js";
 import { __deserializeTyped, __serializeTyped } from "../internal/serialize.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
 
-export class VectorColumn extends AColumn implements IColumn {
+export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 	values: TypedArray;
 	type: NumericType;
 	size: number;
@@ -23,7 +24,7 @@ export class VectorColumn extends AColumn implements IColumn {
 
 	readonly isArray = false;
 
-	constructor(id: string, table: Table) {
+	constructor(id: ColumnID<T>, table: Table<T>) {
 		super(id, table);
 		this.type = <NumericType>this.spec.type.split("v")[0];
 		this.size = this.spec.cardinality[1];

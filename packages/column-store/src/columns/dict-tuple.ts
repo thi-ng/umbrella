@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
 import { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks/is-array";
-import { FLAG_UNIQUE, type IColumn, type SerializedColumn } from "../api.js";
+import { FLAG_UNIQUE, type Row, type SerializedColumn } from "../api.js";
 import { __validateArrayValue } from "../internal/checks.js";
 import { __indexOfTuple } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
-export class DictTupleColumn extends AColumn implements IColumn {
+export class DictTupleColumn<T extends Row = Row> extends AColumn<T> {
 	values: (number[] | null)[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 

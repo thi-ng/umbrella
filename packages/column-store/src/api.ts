@@ -4,7 +4,9 @@ import type { BitmapIndex } from "./bitmap.js";
 import type { QueryCtx } from "./query.js";
 import type { Table } from "./table.js";
 
-export type ColumnSchema = Record<string, ColumnSpec>;
+export type ColumnID<T extends Row> = Exclude<keyof T, number | symbol>;
+
+export type ColumnSchema<T extends Row> = Record<ColumnID<T>, ColumnSpec>;
 
 export type NumericType = IntType | UintType | FloatType;
 
@@ -62,7 +64,7 @@ export interface ColumnTypeSpec {
 	 * Factory function to instantiate a colum type for given table, column name
 	 * & spec.
 	 */
-	impl: Fn3<Table, string, ColumnSpec, IColumn>;
+	impl: Fn3<Table<any>, string, ColumnSpec, IColumn>;
 	/**
 	 * Bit mask of supported flags (default: 0, i.e. none allowed). During
 	 * column validation, the (inverted) mask will be applied to the user
@@ -158,9 +160,9 @@ export interface IColumn {
 	valueKey(value: any): any;
 }
 
-export interface SerializedTable {
-	schema: ColumnSchema;
-	columns: Record<string, SerializedColumn>;
+export interface SerializedTable<T extends Row> {
+	schema: ColumnSchema<T>;
+	columns: Record<ColumnID<T>, SerializedColumn>;
 	length: number;
 }
 
@@ -175,15 +177,21 @@ export interface SerializedIndex {
 }
 
 export type Row = Record<string, any>;
+export type RowWithMeta<T extends Row> = T & { __row: number };
 
-export interface QueryTerm {
+export interface QueryTerm<T extends Row> {
 	type: string;
-	column?: string;
+	column?: ColumnID<T>;
 	value: any;
 	params?: any;
 }
 
-export type QueryTermOp = Fn3<QueryCtx, QueryTerm, Maybe<IColumn>, void>;
+export type QueryTermOp = Fn3<
+	QueryCtx<any>,
+	QueryTerm<any>,
+	Maybe<IColumn>,
+	void
+>;
 
 export interface QueryTermOpSpec {
 	/**

@@ -1,24 +1,26 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { BidirIndex } from "@thi.ng/bidir-index";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	FLAG_BITMAP,
+	type ColumnID,
 	type ColumnSpec,
 	type IColumn,
+	type Row,
 	type SerializedColumn,
 	type SerializedIndex,
 } from "../api.js";
 import { BitmapIndex } from "../bitmap.js";
+import { __columnError } from "../internal/checks.js";
 import type { Table } from "../table.js";
 
-export abstract class AColumn implements IColumn {
+export abstract class AColumn<T extends Row = Row> implements IColumn {
 	spec: ColumnSpec;
 	bitmap?: BitmapIndex;
 	dict?: BidirIndex<any>;
 
 	abstract isArray: boolean;
 
-	constructor(public readonly id: string, public table: Table) {
+	constructor(public readonly id: ColumnID<T>, public table: Table<T>) {
 		this.spec = table.schema[id];
 		this.ensureBitmap();
 	}
@@ -85,8 +87,7 @@ export abstract class AColumn implements IColumn {
 		return val != null
 			? val
 			: this.spec.cardinality[0] > 0
-			? this.spec.default ??
-			  illegalArgs(`missing value for column: ${this.id}`)
+			? this.spec.default ?? __columnError(this.id, `missing value`)
 			: this.spec.default ?? null;
 	}
 

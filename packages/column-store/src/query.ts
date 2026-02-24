@@ -4,10 +4,12 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
+	ColumnID,
 	IColumn,
 	QueryTerm,
 	QueryTermOp,
 	QueryTermOpSpec,
+	Row,
 } from "./api.js";
 import { Bitfield } from "./bitmap.js";
 import type { Table } from "./table.js";
@@ -16,51 +18,54 @@ import type { Table } from "./table.js";
 // - paging / range queries only applied to certain row range
 // - track min/max indices of set bits in combined mask in active ctx
 
-export class Query {
-	terms: QueryTerm[] = [];
+export class Query<T extends Row> {
+	terms: QueryTerm<T>[] = [];
 
-	constructor(public table: Table, terms: QueryTerm[] = []) {
+	constructor(public readonly table: Table<T>, terms: QueryTerm<T>[] = []) {
 		for (let term of terms) this.addTerm(term);
 	}
 
-	addTerm(term: QueryTerm) {
+	addTerm(term: QueryTerm<T>) {
 		if (!QUERY_OPS[term.type]) unsupportedOp(`query type: ${term.type}`);
 		this.terms.push(term);
 		return this;
 	}
 
 	/** Alias for {@link Query.or} */
-	where = (column: string, value: any) => this.or(column, value);
+	where = (column: ColumnID<T>, value: any) => this.or(column, value);
 
 	/** Alias for {@link Query.nor} */
-	whereNot = (column: string, value: any) => this.nor(column, value);
+	whereNot = (column: ColumnID<T>, value: any) => this.nor(column, value);
 
-	or(column: string, value: any) {
+	or(column: ColumnID<T>, value: any) {
 		this.terms.push({ type: "or", column, value });
 		return this;
 	}
 
-	nor(column: string, value: any) {
+	nor(column: ColumnID<T>, value: any) {
 		this.terms.push({ type: "nor", column, value });
 		return this;
 	}
 
-	and(column: string, value: any) {
+	and(column: ColumnID<T>, value: any) {
 		this.terms.push({ type: "and", column, value });
 		return this;
 	}
 
-	nand(column: string, value: any) {
+	nand(column: ColumnID<T>, value: any) {
 		this.terms.push({ type: "nand", column, value });
 		return this;
 	}
 
-	matchColumn(column: string, pred: Predicate<any>) {
+	matchColumn(column: ColumnID<T>, pred: Predicate<any>) {
 		this.terms.push({ type: "matchCol", column, value: pred });
 		return this;
 	}
 
-	matchPartialRow(columns: string[], pred: Predicate<Record<string, any>>) {
+	matchPartialRow<K extends ColumnID<T>>(
+		columns: K[],
+		pred: Predicate<Pick<T, K>>
+	) {
 		this.terms.push({
 			type: "matchPartialRow",
 			params: columns,
@@ -69,7 +74,7 @@ export class Query {
 		return this;
 	}
 
-	matchRow(pred: Predicate<Record<string, any>>) {
+	matchRow(pred: Predicate<T>) {
 		this.terms.push({ type: "matchRow", value: pred });
 		return this;
 	}
@@ -82,7 +87,7 @@ export class Query {
 			let column: Maybe<IColumn>;
 			if (term.column) {
 				column = ctx.table.columns[term.column];
-				if (!column) illegalArgs(`column: ${term.column}`);
+				if (!column) illegalArgs(`column: ${String(term.column)}`);
 			} else if (QUERY_OPS[term.type].mode !== "row") {
 				illegalArgs(
 					`query op: ${term.type} requires a column name given`
@@ -92,17 +97,17 @@ export class Query {
 		}
 		if (ctx.bitmap) {
 			for (let i of new Bitfield(ctx.bitmap).ones(table.length))
-				yield table.getRow(i, false, true);
+				yield table.getRow(i, false, true)!;
 		}
 	}
 }
 
-export class QueryCtx {
-	readonly table: Table;
+export class QueryCtx<T extends Row> {
+	readonly table: Table<T>;
 	readonly size: number;
 	bitmap?: Uint32Array;
 
-	constructor(public readonly query: Query) {
+	constructor(public readonly query: Query<T>) {
 		this.table = query.table;
 		this.size = Math.ceil(this.table.length / 32);
 	}
@@ -300,7 +305,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const columns = term.params!;
 			const pred: Predicate<Record<string, any>> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (let i = 0, n = ctx.table.length; i < n; i++) {
+			for (let i = 0, n = table.length; i < n; i++) {
 				if (pred(table.getPartialRow(i, columns, false)!)) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
@@ -316,7 +321,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const table = ctx.table;
 			const pred: Predicate<Record<string, any>> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (let i = 0, n = ctx.table.length; i < n; i++) {
+			for (let i = 0, n = table.length; i < n; i++) {
 				if (pred(table.getRow(i, false)!)) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);

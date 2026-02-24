@@ -3,13 +3,13 @@ import { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks/is-array";
 import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
 import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
-import { FLAG_RLE, type IColumn, type SerializedColumn } from "../api.js";
+import { FLAG_RLE, type Row, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
 import { __indexOfSingle } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
-export class DictColumn extends AColumn implements IColumn {
+export class DictColumn<T extends Row = Row> extends AColumn<T> {
 	values: (number | null)[] = [];
 	dict: BidirIndex<any> = new BidirIndex();
 
