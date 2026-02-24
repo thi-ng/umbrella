@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { typedArray, type TypedArray } from "@thi.ng/api";
+import { typedArray, type NumericArray, type TypedArray } from "@thi.ng/api";
 import { describe, expect, test } from "bun:test";
 import type { VectorColumn } from "../src/columns/vector.js";
 import {
@@ -16,7 +16,7 @@ const checkSingle = (
 	json: string,
 	defaultVal: any = 0
 ) => {
-	const table = new Table({ a: spec });
+	const table = new Table<any>({ a: spec });
 	table.addRow({ a: defaultVal });
 	table.addRow({ a: defaultVal });
 	table.addRow({ a: defaultVal });
@@ -40,7 +40,7 @@ const checkVec = (
 	json: string,
 	defaultVal: TypedArray = new Uint8Array([0, 0])
 ) => {
-	const table = new Table({ a: spec });
+	const table = new Table<{ a: NumericArray }>({ a: spec });
 	table.addRow({ a: defaultVal });
 	table.addRow({ a: defaultVal });
 	table.addRow({ a: defaultVal });

@@ -3,7 +3,7 @@ import { describe, expect, test } from "bun:test";
 import { FLAG_BITMAP, FLAG_DICT, Table } from "../src/index.js";
 
 const checkSingle = (type: string, flags = 0) => {
-	const a = new Table({ a: { type, flags } });
+	const a = new Table<any>({ a: { type, flags } });
 	a.addRows([{ a: 100 }, { a: 101 }, { a: 102 }, { a: 100 }]);
 	expect(a.indexOf("a", 100)).toBe(0);
 	expect(a.indexOf("a", 101)).toBe(1);
@@ -15,7 +15,7 @@ const checkSingle = (type: string, flags = 0) => {
 };
 
 const checkTuple = (type: string, flags = 0) => {
-	const a = new Table({ a: { type, flags, cardinality: [2, 2] } });
+	const a = new Table<any>({ a: { type, flags, cardinality: [2, 2] } });
 	a.addRows([
 		{ a: [100, 100] },
 		{ a: [101, 101] },

@@ -2,9 +2,10 @@
 import { describe, expect, test } from "bun:test";
 import { equiv } from "@thi.ng/equiv";
 import { FLAG_BITMAP, FLAG_DICT, Table, ZERO_PLUS } from "../src/index.js";
+import type { NumericArray } from "@thi.ng/api";
 
 const checkSingle = (type: string, flags = 0) => {
-	const table = new Table({ a: { type, flags } });
+	const table = new Table<{ a: number }>({ a: { type, flags } });
 	table.addRows([{ a: 100 }, { a: 101 }, { a: 102 }, { a: 103 }]);
 	expect([...table.query().or("a", 101)]).toEqual([{ a: 101, __row: 1 }]);
 	expect([...table.query().or("a", [101, 102])]).toEqual([
@@ -46,7 +47,7 @@ const checkSingle = (type: string, flags = 0) => {
 };
 
 const checkTuple = (flags = 0) => {
-	const table = new Table({
+	const table = new Table<{ a: string[] }>({
 		a: {
 			type: "str",
 			cardinality: ZERO_PLUS,
@@ -120,7 +121,7 @@ const checkTuple = (flags = 0) => {
 };
 
 const checkVec = (flags = 0) => {
-	const table = new Table({
+	const table = new Table<{ a: NumericArray }>({
 		a: {
 			type: "f32vec",
 			cardinality: [2, 2],

@@ -7,7 +7,7 @@ import {
 	type SerializedTable,
 } from "../src/index.js";
 
-const SRC: SerializedTable = {
+const SRC: SerializedTable<{ a: number }> = {
 	schema: { a: { cardinality: [0, 1], flags: FLAG_BITMAP, type: "num" } },
 	columns: { a: { values: [null, 0, 1, 2, null] } },
 	length: 5,
