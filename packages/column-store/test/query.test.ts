@@ -217,4 +217,26 @@ describe("query", () => {
 		checkVec();
 		checkVec(FLAG_BITMAP);
 	});
+
+	test("rowRange", () => {
+		const table = new Table<{ a: number }>({ a: { type: "num" } });
+		table.addRows([
+			{ a: 100 },
+			{ a: 101 },
+			{ a: 102 },
+			{ a: 103 },
+			{ a: 110 },
+		]);
+		expect([...table.query().rowRange(0, 2)]).toEqual([
+			{ a: 100, __row: 0 },
+			{ a: 101, __row: 1 },
+		]);
+		expect([...table.query().rowRange(2, 3)]).toEqual([
+			{ a: 102, __row: 2 },
+		]);
+		expect([...table.query().rowRange(3)]).toEqual([
+			{ a: 103, __row: 3 },
+			{ a: 110, __row: 4 },
+		]);
+	});
 });

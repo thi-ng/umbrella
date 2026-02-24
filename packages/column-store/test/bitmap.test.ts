@@ -85,4 +85,38 @@ describe("bitmap index", () => {
 		expect(field.first(67, 1000)).toBe(-1);
 		expect(field.first(30, 64)).toBe(-1);
 	});
+
+	test("fill", () => {
+		expect(new Bitfield().fill(1, 4, 30).buffer).toEqual(
+			new Uint32Array([0b00111111_11111111_11111111_11110000])
+		);
+		expect(
+			new Bitfield(new Uint32Array([-1])).fill(0, 4, 30).buffer
+		).toEqual(new Uint32Array([0b11_000000_00000000_00000000_0000_1111]));
+		expect(new Bitfield().fill(1, 28, 32).buffer).toEqual(
+			new Uint32Array([0b11110000_00000000_00000000_00000000, 0])
+		);
+		expect(new Bitfield().fill(1, 28, 34).buffer).toEqual(
+			new Uint32Array([0b11110000_00000000_00000000_00000000, 0b11])
+		);
+		expect(
+			new Bitfield(new Uint32Array([-1, -1])).fill(0, 28, 34).buffer
+		).toEqual(
+			new Uint32Array([
+				0b0000_1111_11111111_11111111_11111111,
+				0b11111111_11111111_11111111_11111100,
+			])
+		);
+		expect(new Bitfield().fill(1, 28, 66).buffer).toEqual(
+			new Uint32Array([0b11110000_00000000_00000000_00000000, -1, 0b11])
+		);
+		expect(
+			new Bitfield(new Uint32Array([-1, -1, -1])).fill(0, 28, 66).buffer
+		).toEqual(
+			new Uint32Array([
+				0b0000_1111_11111111_11111111_11111111, 0,
+				0b11111111_11111111_11111111_11111100,
+			])
+		);
+	});
 });

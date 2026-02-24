@@ -79,6 +79,11 @@ export class Query<T extends Row> {
 		return this;
 	}
 
+	rowRange(start = 0, end?: number) {
+		this.terms.push({ type: "rowRange", value: { start, end } });
+		return this;
+	}
+
 	*[Symbol.iterator]() {
 		const { table } = this;
 		const ctx = new QueryCtx(this);
@@ -110,6 +115,10 @@ export class QueryCtx<T extends Row> {
 	constructor(public readonly query: Query<T>) {
 		this.table = query.table;
 		this.size = Math.ceil(this.table.length / 32);
+	}
+
+	clear() {
+		this.bitmap = undefined;
 	}
 
 	makeMask(seed?: Uint32Array) {
@@ -217,7 +226,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 		for (let k of key) {
 			const b = bitmap.index.get(k)?.buffer;
 			if (!b) {
-				if (term.type === "and") ctx.bitmap = undefined;
+				if (term.type === "and") ctx.clear();
 				return;
 			}
 			colBitmaps.push(b);
@@ -235,9 +244,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 	}
 	if (mask) {
 		term.type === "nand" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
-	} else {
-		ctx.bitmap = undefined;
-	}
+	} else ctx.clear();
 };
 
 const execAnd: QueryTermOp = (ctx, term, column) => {
@@ -260,7 +267,7 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 				for (let i = 0; i < n; i++) mask[i] &= m[i];
 			} else mask = m;
 		} else {
-			if (term.type === "and") ctx.bitmap = undefined;
+			if (term.type === "and") ctx.clear();
 			return;
 		}
 	}
@@ -330,7 +337,27 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			if (mask) ctx.mergeMask(mask);
 		},
 	},
+
+	rowRange: {
+		mode: "row",
+		fn: (ctx, term) => {
+			const max = ctx.table.length;
+			let { start = 0, end = max } = term.value;
+			start = __clamp(start, 0, max);
+			end = __clamp(end, 0, max);
+			if (start >= 0 && end >= 0) {
+				const mask = ctx.makeMask();
+				const bitmap = new Bitfield(mask);
+				bitmap.fill(1, start, end);
+				ctx.mergeMask(mask);
+			} else ctx.clear();
+		},
+	},
 };
+
+/** @internal */
+const __clamp = (x: number, a: number, b: number) =>
+	x < a ? a : x > b ? b : x;
 
 /**
  * Registers a custom query term operator for given `type` and later use with

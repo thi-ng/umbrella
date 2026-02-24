@@ -100,6 +100,23 @@ export class Bitfield {
 		this.ensure(w)[w] &= ~(1 << (id & 31));
 	}
 
+	fill(x: 0 | 1, start: number, end: number) {
+		const i = start >>> 5;
+		const j = end >>> 5;
+		let m = ~((1 << (start & 31)) - 1);
+		const buf = this.ensure(j);
+		if (i === j) {
+			m &= (1 << (end & 31)) - 1;
+			buf[i] = x ? buf[i] | m : buf[i] & ~m;
+		} else {
+			buf[i] = x ? buf[i] | m : buf[i] & ~m;
+			buf.fill(x ? -1 : 0, i + 1, j);
+			m = (1 << (end & 31)) - 1;
+			buf[j] = x ? buf[j] | m : buf[j] & ~m;
+		}
+		return this;
+	}
+
 	ensure(size: number) {
 		const b = this.buffer;
 		if (!b || size >= b.length) {
