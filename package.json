@@ -40,7 +40,8 @@
 		"tool:prune": "bun tools/src/prune-changelogs.ts",
 		"tool:browser": "(cd examples/thing-browser && yarn tool:packages && yarn build) && bun tools/src/deploy-example.ts thing-browser",
 		"tool:searchindex": "bun tools/src/build-search-index.ts",
-		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn doc:readme && yarn tool:searchindex && yarn tool:deps",
+		"tool:spdx": "bun tools/src/add-spdx.ts",
+		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn tool:spdx && yarn doc:readme && yarn tool:searchindex && yarn tool:deps && yarn tool:browser",
 		"tool:tangle": "yarn @thi.ng run tool:tangle"
 	},
 	"packageManager": "yarn@4.12.0"
