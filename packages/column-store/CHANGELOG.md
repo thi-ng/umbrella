@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-25T12:58:14Z
+- **Last updated**: 2026-02-25T15:52:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.6.1) (2026-02-25)
+
+#### 🩹 Bug fixes
+
+- internal update `updateBitmap()`, use currect row keys for index ([f8a1c21](https://github.com/thi-ng/umbrella/commit/f8a1c21))
+  - add `Table.load()` tests (which are using this function)
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.6.0) (2026-02-25)
 
