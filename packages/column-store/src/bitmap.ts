@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
+import { __clamp } from "./internal/indexof.js";
+
 export class BitmapIndex {
 	index: Map<any, Bitfield> = new Map();
 
@@ -70,9 +72,13 @@ export class Bitfield {
 		}
 	}
 
-	first(start = 0, end = (this.buffer?.length ?? -1) * 32) {
+	first(start = 0, end?: number) {
 		const { buffer } = this;
-		if (!buffer || start >= end) return -1;
+		if (!buffer) return -1;
+		const max = buffer.length << 5;
+		start = __clamp(start, 0, max);
+		end = __clamp(end ?? max, 0, max);
+		if (start >= end) return -1;
 		for (
 			let i = start >>> 5,
 				n = Math.min(Math.ceil(end / 32), buffer.length);

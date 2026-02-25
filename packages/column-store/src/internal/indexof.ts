@@ -11,8 +11,8 @@ export const __indexOfSingle = (
 	start: number,
 	end = max
 ) => {
-	start = Math.max(start, 0);
-	end = Math.min(end, max);
+	start = __clamp(start, 0, max);
+	end = __clamp(end, 0, max);
 	if (bitmap) return bitmap.index.get(needle)?.first(start, end) ?? -1;
 	for (let i = start; i < end; i++) {
 		if (values[i] === needle) return i;
@@ -20,6 +20,7 @@ export const __indexOfSingle = (
 	return -1;
 };
 
+/** @internal */
 export const __indexOfTuple = (
 	needle: ArrayLike<any> | null,
 	values: ArrayLike<any>,
@@ -27,12 +28,13 @@ export const __indexOfTuple = (
 	start: number,
 	end = max
 ) => {
-	start = Math.max(start, 0);
-	end = Math.min(end, max);
+	start = __clamp(start, 0, max);
+	end = __clamp(end, 0, max);
 	if (needle == null) {
 		for (let i = start; i < end; i++) {
 			if (!values[i]) return i;
 		}
+		return -1;
 	}
 	const n = needle!.length;
 	let i: number, j: number, row: number[] | null;
@@ -47,3 +49,7 @@ export const __indexOfTuple = (
 	}
 	return -1;
 };
+
+/** @internal */
+export const __clamp = (x: number, a: number, b: number) =>
+	x < a ? a : x > b ? b : x;

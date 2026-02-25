@@ -1,5 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { FloatType, Fn3, IntType, Maybe, UintType } from "@thi.ng/api";
+import type {
+	FloatType,
+	Fn3,
+	IntType,
+	Maybe,
+	Predicate,
+	UintType,
+} from "@thi.ng/api";
 import type { BitmapIndex } from "./bitmap.js";
 import type { QueryCtx } from "./query.js";
 import type { Table } from "./table.js";
@@ -127,6 +134,10 @@ export interface IColumn {
 	 * @param end
 	 */
 	indexOf(value: any, start?: number, end?: number): number;
+
+	findIndex(pred: Predicate<any>, start?: number, end?: number): number;
+
+	findLastIndex(pred: Predicate<any>, start?: number, end?: number): number;
 
 	/**
 	 * Returns value at given row.

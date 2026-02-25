@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
+import type { Predicate } from "@thi.ng/api";
 import type { BidirIndex } from "@thi.ng/bidir-index";
 import {
 	FLAG_BITMAP,
@@ -11,6 +12,7 @@ import {
 } from "../api.js";
 import { BitmapIndex } from "../bitmap.js";
 import { __columnError } from "../internal/checks.js";
+import { __clamp } from "../internal/indexof.js";
 import type { Table } from "../table.js";
 
 export abstract class AColumn<T extends Row = Row> implements IColumn {
@@ -46,6 +48,26 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 	abstract getRowKey(i: number): any;
 
 	abstract indexOf(value: any, start?: number, end?: number): number;
+
+	findIndex(pred: Predicate<any>, start = 0, end?: number) {
+		const max = this.table.length - 1;
+		start = __clamp(start, 0, max);
+		end = __clamp(end ?? max, 0, max);
+		for (let i = start; i <= end; i++) {
+			if (pred(this.getRow(i))) return i;
+		}
+		return -1;
+	}
+
+	findLastIndex(pred: Predicate<any>, start = 0, end?: number) {
+		const max = this.table.length - 1;
+		start = __clamp(start, 0, max);
+		end = __clamp(end ?? max, 0, max);
+		for (let i = end; i >= start; i--) {
+			if (pred(this.getRow(i))) return i;
+		}
+		return -1;
+	}
 
 	encode(value: any) {
 		return value;

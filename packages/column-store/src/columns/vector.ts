@@ -97,6 +97,7 @@ export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 	}
 
 	indexOf(value: any, start = 0, end = this.table.length) {
+		if (value == null) return -1;
 		const { values, bitmap, size } = this;
 		start = Math.max(start, 0);
 		end = Math.min(end, this.table.length);

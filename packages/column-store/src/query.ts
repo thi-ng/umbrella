@@ -12,6 +12,7 @@ import type {
 	Row,
 } from "./api.js";
 import { Bitfield } from "./bitmap.js";
+import { __clamp } from "./internal/indexof.js";
 import type { Table } from "./table.js";
 
 // TODO add options:
@@ -76,6 +77,11 @@ export class Query<T extends Row> {
 
 	matchRow(pred: Predicate<T>) {
 		this.terms.push({ type: "matchRow", value: pred });
+		return this;
+	}
+
+	valueRange(column: ColumnID<T>, start: any, end?: any) {
+		this.terms.push({ type: "valueRange", column, value: { start, end } });
 		return this;
 	}
 
@@ -338,6 +344,28 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 		},
 	},
 
+	valueRange: {
+		fn: (ctx, term, column) => {
+			const max = ctx.table.length;
+			const { start, end } = term.value;
+			let $start = 0;
+			let $end = max;
+			if (start != null) $start = column!.findIndex((x) => x >= start);
+			if (end != null)
+				$end = column!.findLastIndex((x) => x <= end, $start);
+			if ($start >= 0 && $end >= 0) {
+				const mask = ctx.makeMask();
+				const bitmap = new Bitfield(mask);
+				bitmap.fill(
+					1,
+					$start >= 0 ? $start : 0,
+					$end >= 0 ? $end + 1 : max
+				);
+				ctx.mergeMask(mask);
+			} else ctx.clear();
+		},
+	},
+
 	rowRange: {
 		mode: "row",
 		fn: (ctx, term) => {
@@ -354,10 +382,6 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 		},
 	},
 };
-
-/** @internal */
-const __clamp = (x: number, a: number, b: number) =>
-	x < a ? a : x > b ? b : x;
 
 /**
  * Registers a custom query term operator for given `type` and later use with
