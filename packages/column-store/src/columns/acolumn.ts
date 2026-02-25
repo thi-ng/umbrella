@@ -95,11 +95,11 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 		if (!bitmap) return;
 		bitmap.clear();
 		for (let i = 0, n = this.table.length; i < n; i++) {
-			const value = this.getRow(i);
+			const value = this.getRowKey(i);
 			if (value == null) continue;
 			if (isArray) {
 				for (let x of value) bitmap.setBit(x, i);
-			} else bitmap.setBit(this.getRowKey(i), i);
+			} else bitmap.setBit(value, i);
 		}
 	}
 
