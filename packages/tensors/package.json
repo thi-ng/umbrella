@@ -131,6 +131,9 @@
 		"./broadcast": {
 			"default": "./broadcast.js"
 		},
+		"./cdf": {
+			"default": "./cdf.js"
+		},
 		"./clamp": {
 			"default": "./clamp.js"
 		},
@@ -194,8 +197,14 @@
 		"./filtered-indices": {
 			"default": "./filtered-indices.js"
 		},
+		"./find": {
+			"default": "./find.js"
+		},
 		"./format": {
 			"default": "./format.js"
+		},
+		"./histogram": {
+			"default": "./histogram.js"
 		},
 		"./identity": {
 			"default": "./identity.js"
