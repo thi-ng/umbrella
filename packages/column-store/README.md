@@ -34,6 +34,8 @@
     - [AND](#and)
     - [Negation](#negation)
     - [Predicate-based matchers](#predicate-based-matchers)
+    - [Row ranges](#row-ranges)
+    - [Value ranges](#value-ranges)
   - [Custom operators](#custom-operators)
   - [Result aggregation](#result-aggregation)
   - [Query ranges](#query-ranges)
@@ -376,6 +378,30 @@ can be used, otherwise the behavior is:
 - [`matchPartialRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchpartialrow):
   apply predicate to partial row (only selected columns)
 
+#### Row ranges
+
+The
+[`rowRange`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#rowrange)
+operator selects the given `start` (inclusive) .. `end` (exclusive) range of row
+indices.
+
+```ts
+// select first ten rows
+query.rowRange(0, 10);
+```
+
+#### Value ranges
+
+The
+[`valueRange`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#valuerange)
+operator selects rows based on a given column's `start` .. `end` vaulue range
+(both inclusive) of row indices.
+
+```ts
+// select rows where ID is in closed [100,109] interval
+query.valueRange("id", 100, 109);
+```
+
 ### Custom operators
 
 Custom query operators can be registered via
@@ -421,7 +447,7 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.35 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.37 KB
 
 ## Dependencies
 

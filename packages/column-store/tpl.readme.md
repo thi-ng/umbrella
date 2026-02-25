@@ -333,6 +333,30 @@ can be used, otherwise the behavior is:
 - [`matchPartialRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchpartialrow):
   apply predicate to partial row (only selected columns)
 
+#### Row ranges
+
+The
+[`rowRange`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#rowrange)
+operator selects the given `start` (inclusive) .. `end` (exclusive) range of row
+indices.
+
+```ts
+// select first ten rows
+query.rowRange(0, 10);
+```
+
+#### Value ranges
+
+The
+[`valueRange`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#valuerange)
+operator selects rows based on a given column's `start` .. `end` vaulue range
+(both inclusive) of row indices.
+
+```ts
+// select rows where ID is in closed [100,109] interval
+query.valueRange("id", 100, 109);
+```
+
 ### Custom operators
 
 Custom query operators can be registered via
