@@ -312,11 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-02-22
+As of: 2026-02-25
 
-| Status                                        | Package                                 | Version                                                                                                       | Changelog                                    |
-|:----------------------------------------------|:----------------------------------------|:--------------------------------------------------------------------------------------------------------------|:---------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors) | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors) | [changelog](./packages/tensors/CHANGELOG.md) |
+| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
+|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/column-store`](./packages/column-store) | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store) | [changelog](./packages/column-store/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors)           | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)           | [changelog](./packages/tensors/CHANGELOG.md)      |
 
 ### Algorithms & data structures
 
