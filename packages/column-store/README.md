@@ -57,10 +57,11 @@ As the name indicates, data is stored in different columns, where each column
 manages its own schema, value validation, backing storage, indexing,
 serialization etc.
 
-From a user's POV, columns are not (usually) used directly, but via table, which
-acts as facade to the various configured columns. Data items are added as JS
-objects to a table, which then pulls out related values, validates them and the
-delegates them to the columns.
+From a user's POV, columns are not (usually) used directly, but accessed via a
+table, which provides row-based access to compound data records and acts as
+facade to the various configured columns. Data records are added as JS objects
+to a table, which then pulls out related values, validates them and the
+delegates them to the individual columns for encoding & storage.
 
 An example table definition looks like this (explanation of column types in next
 section below):
