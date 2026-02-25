@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-22T17:45:47Z
+- **Last updated**: 2026-02-25T09:37:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.5.0) (2026-02-25)
+
+#### 🚀 Features
+
+- add table generics (column schema) and supporting types ([a10abba](https://github.com/thi-ng/umbrella/commit/a10abba))
+  - add generics for `Table`, `SerializedTable`, `Query`, `ColumnSchema`, all column types
+  - update signatures for `.getRow()`, `.getPartialRow()`
+- add `rowRange()` query operator, add`BitField.fill()` ([03e6633](https://github.com/thi-ng/umbrella/commit/03e6633))
+- add `valueRange()` query operator ([1c4320e](https://github.com/thi-ng/umbrella/commit/1c4320e))
+  - add `IColumn.findIndex()` / `.findLastIndex()`
+    - implement in for `AColumn`
+  - fix null handling in `__indexOfTuple()`
+  - add range clamping in various `indexOf` fns and `Bitfield.first()`
+  - add/update tests
+- add column type check for `valueRange()` op ([58f235f](https://github.com/thi-ng/umbrella/commit/58f235f))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.4.0) (2026-02-13)
 
