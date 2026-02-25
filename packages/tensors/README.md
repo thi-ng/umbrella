@@ -68,6 +68,7 @@ conventions are closely aligned to the ones used by the
 - [addN](https://docs.thi.ng/umbrella/tensors/variables/addN.html): Tensor-scalar addition
 - [argMax](https://docs.thi.ng/umbrella/tensors/functions/argMax.html): Maximum component index/value
 - [argMin](https://docs.thi.ng/umbrella/tensors/functions/argMin.html): Minimum component index/value
+- [cdf](https://docs.thi.ng/umbrella/tensors/variables/cdf.html): Cumulative distribution of 1D tensor
 - [clamp](https://docs.thi.ng/umbrella/tensors/variables/clamp.html): Tensor-tensor interval clamping
 - [clampN](https://docs.thi.ng/umbrella/tensors/variables/clampN.html): Tensor-scalar interval clamping
 - [convolve](https://docs.thi.ng/umbrella/tensors/variables/convolve.html): Tensor convolution (1D/2D/3D only)
@@ -76,8 +77,10 @@ conventions are closely aligned to the ones used by the
 - [div](https://docs.thi.ng/umbrella/tensors/variables/div.html): Tensor-tensor division
 - [divN](https://docs.thi.ng/umbrella/tensors/variables/divN.html): Tensor-scalar division
 - [dot](https://docs.thi.ng/umbrella/tensors/variables/dot.html): Dot product
+- [equalizeHistogram](https://docs.thi.ng/umbrella/tensors/functions/equalizeHistogram.html): histogram equalization
 - [exp](https://docs.thi.ng/umbrella/tensors/variables/exp.html): Componentwise `Math.exp`
 - [exp2](https://docs.thi.ng/umbrella/tensors/variables/exp2.html): Componentwise `2^x`
+- [histogramUint](https://docs.thi.ng/umbrella/tensors/functions/histogramUint.html): histogram of uint-based tensor
 - [identity](https://docs.thi.ng/umbrella/tensors/functions/identity.html): Square identity matrix tensor
 - [integrate](https://docs.thi.ng/umbrella/tensors/functions/integrate.html): Integrate tensor along innermost dimension
 - [log](https://docs.thi.ng/umbrella/tensors/variables/log.html): Componentwise `Math.log`
