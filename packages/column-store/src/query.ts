@@ -12,6 +12,7 @@ import type {
 	Row,
 } from "./api.js";
 import { Bitfield } from "./bitmap.js";
+import { __columnError } from "./internal/checks.js";
 import { __clamp } from "./internal/indexof.js";
 import type { Table } from "./table.js";
 
@@ -81,6 +82,11 @@ export class Query<T extends Row> {
 	}
 
 	valueRange(column: ColumnID<T>, start: any, end?: any) {
+		if (this.table.columns[column].isArray)
+			__columnError(
+				column,
+				`operator not supported with this column type`
+			);
 		this.terms.push({ type: "valueRange", column, value: { start, end } });
 		return this;
 	}
