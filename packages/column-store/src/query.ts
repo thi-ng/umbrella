@@ -13,7 +13,7 @@ import type {
 } from "./api.js";
 import { Bitfield } from "./bitmap.js";
 import { __columnError } from "./internal/checks.js";
-import { __clamp } from "./internal/indexof.js";
+import { __clampRange } from "./internal/indexof.js";
 import type { Table } from "./table.js";
 
 // TODO add options:
@@ -359,16 +359,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			if (start != null) $start = column!.findIndex((x) => x >= start);
 			if (end != null)
 				$end = column!.findLastIndex((x) => x <= end, $start);
-			if ($start >= 0 && $end >= 0) {
-				const mask = ctx.makeMask();
-				const bitmap = new Bitfield(mask);
-				bitmap.fill(
-					1,
-					$start >= 0 ? $start : 0,
-					$end >= 0 ? $end + 1 : max
-				);
-				ctx.mergeMask(mask);
-			} else ctx.clear();
+			__fillMask(ctx, $start, $end >= 0 ? $end + 1 : $end);
 		},
 	},
 
@@ -377,16 +368,24 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 		fn: (ctx, term) => {
 			const max = ctx.table.length;
 			let { start = 0, end = max } = term.value;
-			start = __clamp(start, 0, max);
-			end = __clamp(end, 0, max);
-			if (start >= 0 && end >= 0) {
-				const mask = ctx.makeMask();
-				const bitmap = new Bitfield(mask);
-				bitmap.fill(1, start, end);
-				ctx.mergeMask(mask);
-			} else ctx.clear();
+			[start, end] = __clampRange(max, start, end);
+			__fillMask(ctx, start, end);
 		},
 	},
+};
+
+const __fillMask = (
+	ctx: QueryCtx<any>,
+	start: number,
+	end: number,
+	fill: 0 | 1 = 1
+) => {
+	if (start >= 0 && end >= 0) {
+		const mask = ctx.makeMask();
+		const bitmap = new Bitfield(mask);
+		bitmap.fill(fill, start, end);
+		ctx.mergeMask(mask);
+	} else ctx.clear();
 };
 
 /**

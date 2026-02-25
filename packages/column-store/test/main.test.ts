@@ -12,6 +12,11 @@ const checkSingle = (type: string, flags = 0) => {
 	expect(a.indexOf("a", 103)).toBe(-1);
 	expect(a.indexOf("a", 102, 0, 2)).toBe(-1);
 	expect(a.indexOf("b", 100)).toBe(-1);
+
+	expect(a.lastIndexOf("a", 100)).toBe(3);
+	expect(a.lastIndexOf("a", 100, 0, 3)).toBe(0);
+	expect(a.lastIndexOf("a", 100, 1, 3)).toBe(-1);
+	expect(a.lastIndexOf("a", 104)).toBe(-1);
 };
 
 const checkTuple = (type: string, flags = 0) => {
@@ -30,9 +35,13 @@ const checkTuple = (type: string, flags = 0) => {
 	expect(a.indexOf("a", [102, 102], 0, 2)).toBe(-1);
 	expect(a.indexOf("b", [100, 100])).toBe(-1);
 	expect(a.indexOf("a", null)).toBe(-1);
+
+	expect(a.lastIndexOf("a", [100, 100])).toBe(3);
+	expect(a.lastIndexOf("a", [100, 100], 0, 3)).toBe(0);
+	expect(a.lastIndexOf("a", [100, 100], 1, 3)).toBe(-1);
 };
 
-describe("indexOf", () => {
+describe("indexOf / lastIndexOf", () => {
 	test("plain", () => checkSingle("num"));
 	test("plain bitmap", () => checkSingle("num", FLAG_BITMAP));
 	test("dict", () => checkSingle("num", FLAG_DICT));

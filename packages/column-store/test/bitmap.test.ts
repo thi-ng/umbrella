@@ -86,6 +86,24 @@ describe("bitmap index", () => {
 		expect(field.first(30, 64)).toBe(-1);
 	});
 
+	test("last", () => {
+		const field = new Bitfield();
+		expect(field.last()).toBe(-1);
+		expect(field.last(0, 100)).toBe(-1);
+		field.setBit(9);
+		field.setBit(29);
+		field.setBit(69);
+		field.setBit(71);
+		expect(field.last()).toBe(71);
+		expect(field.last(0, 71)).toBe(69);
+		expect(field.last(0, 69)).toBe(29);
+		expect(field.last(29, 69)).toBe(29);
+		expect(field.last(30, 69)).toBe(-1);
+		expect(field.last(0, 20)).toBe(9);
+		expect(field.last(0, 9)).toBe(-1);
+		expect(field.last(71)).toBe(71);
+	});
+
 	test("fill", () => {
 		expect(new Bitfield().fill(1, 4, 30).buffer).toEqual(
 			new Uint32Array([0b00111111_11111111_11111111_11110000])

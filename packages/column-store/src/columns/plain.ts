@@ -2,7 +2,7 @@
 import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
 import { FLAG_RLE, type Row, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
-import { __indexOfSingle } from "../internal/indexof.js";
+import { __indexOfSingle, __lastIndexOfSingle } from "../internal/indexof.js";
 import { __replaceValue } from "../internal/replace.js";
 import { AColumn } from "./acolumn.js";
 
@@ -52,6 +52,17 @@ export class PlainColumn<T extends Row = Row> extends AColumn<T> {
 
 	indexOf(value: any, start = 0, end?: number) {
 		return __indexOfSingle(
+			value,
+			this.values,
+			this.bitmap,
+			this.table.length,
+			start,
+			end
+		);
+	}
+
+	lastIndexOf(value: any, start = 0, end?: number) {
+		return __lastIndexOfSingle(
 			value,
 			this.values,
 			this.bitmap,

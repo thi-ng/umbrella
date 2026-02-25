@@ -12,7 +12,7 @@ import {
 } from "../api.js";
 import { BitmapIndex } from "../bitmap.js";
 import { __columnError } from "../internal/checks.js";
-import { __clamp } from "../internal/indexof.js";
+import { __clampRange } from "../internal/indexof.js";
 import type { Table } from "../table.js";
 
 export abstract class AColumn<T extends Row = Row> implements IColumn {
@@ -49,21 +49,19 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 
 	abstract indexOf(value: any, start?: number, end?: number): number;
 
+	abstract lastIndexOf(value: any, start?: number, end?: number): number;
+
 	findIndex(pred: Predicate<any>, start = 0, end?: number) {
-		const max = this.table.length - 1;
-		start = __clamp(start, 0, max);
-		end = __clamp(end ?? max, 0, max);
-		for (let i = start; i <= end; i++) {
+		[start, end] = __clampRange(this.table.length, start, end);
+		for (let i = start; i < end; i++) {
 			if (pred(this.getRow(i))) return i;
 		}
 		return -1;
 	}
 
 	findLastIndex(pred: Predicate<any>, start = 0, end?: number) {
-		const max = this.table.length - 1;
-		start = __clamp(start, 0, max);
-		end = __clamp(end ?? max, 0, max);
-		for (let i = end; i >= start; i--) {
+		[start, end] = __clampRange(this.table.length, start, end);
+		for (let i = end; i-- > start; ) {
 			if (pred(this.getRow(i))) return i;
 		}
 		return -1;

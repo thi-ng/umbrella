@@ -126,8 +126,8 @@ export interface IColumn {
 
 	/**
 	 * Searches for `value` in the column data, optionally constrained to given
-	 * `start`/`end` range. If found, returns row ID of first occurrence,
-	 * otherwise -1.
+	 * `start`/`end` range (end index is exclusive and defaults to current table
+	 * length). If found, returns row ID of first occurrence, otherwise -1.
 	 *
 	 * @param value
 	 * @param start
@@ -135,8 +135,38 @@ export interface IColumn {
 	 */
 	indexOf(value: any, start?: number, end?: number): number;
 
+	/**
+	 * Searches for `value` in the column data in reverse order (from the last
+	 * row), optionally constrained to given `start`/`end` range (end index is
+	 * exclusive and defaults to current table length). If found, returns row ID
+	 * of first occurrence, otherwise -1.
+	 *
+	 * @param value
+	 * @param start
+	 * @param end
+	 */
+	lastIndexOf(value: any, start?: number, end?: number): number;
+
+	/**
+	 * Similar to {@link IColumn.indexOf}, but applies given predicate function
+	 * to each row value. Returns index of first row for which the predicate is
+	 * truthy, otherwise returns -1.
+	 *
+	 * @param pred
+	 * @param start
+	 * @param end
+	 */
 	findIndex(pred: Predicate<any>, start?: number, end?: number): number;
 
+	/**
+	 * Similar to {@link IColumn.lastIndexOf}, but applies given predicate
+	 * function to each row value. Returns index of first row for which the
+	 * predicate is truthy, otherwise returns -1.
+	 *
+	 * @param pred
+	 * @param start
+	 * @param end
+	 */
 	findLastIndex(pred: Predicate<any>, start?: number, end?: number): number;
 
 	/**

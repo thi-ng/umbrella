@@ -9,7 +9,7 @@ import {
 	type Row,
 	type SerializedColumn,
 } from "../api.js";
-import { __indexOfSingle } from "../internal/indexof.js";
+import { __indexOfSingle, __lastIndexOfSingle } from "../internal/indexof.js";
 import { __replaceValue } from "../internal/replace.js";
 import { __deserializeTyped, __serializeTyped } from "../internal/serialize.js";
 import type { Table } from "../table.js";
@@ -92,6 +92,17 @@ export class TypedArrayColumn<T extends Row = Row> extends AColumn<T> {
 
 	indexOf(value: any, start = 0, end = this.table.length) {
 		return __indexOfSingle(
+			value,
+			this.values,
+			this.bitmap,
+			this.table.length,
+			start,
+			end
+		);
+	}
+
+	lastIndexOf(value: any, start = 0, end?: number) {
+		return __lastIndexOfSingle(
 			value,
 			this.values,
 			this.bitmap,

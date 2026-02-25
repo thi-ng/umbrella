@@ -11,6 +11,7 @@ import {
 	type Row,
 	type SerializedColumn,
 } from "../api.js";
+import { __clampRange } from "../internal/indexof.js";
 import { __deserializeTyped, __serializeTyped } from "../internal/serialize.js";
 import type { Table } from "../table.js";
 import { AColumn } from "./acolumn.js";
@@ -96,11 +97,10 @@ export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 		this.bitmap?.removeBit(i);
 	}
 
-	indexOf(value: any, start = 0, end = this.table.length) {
+	indexOf(value: any, start = 0, end?: number) {
 		if (value == null) return -1;
 		const { values, bitmap, size } = this;
-		start = Math.max(start, 0);
-		end = Math.min(end, this.table.length);
+		[start, end] = __clampRange(this.table.length, start, end);
 		if (bitmap) {
 			return (
 				bitmap.index.get(this.valueKey(value))?.first(start, end) ?? -1
@@ -109,6 +109,26 @@ export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 		end *= size;
 		let i: number, j: number;
 		outer: for (i = start * size; i < end; i += size) {
+			for (j = 0; j < size; j++) {
+				if (values[i + j] !== value[j]) continue outer;
+			}
+			return i / size;
+		}
+		return -1;
+	}
+
+	lastIndexOf(value: any, start = 0, end?: number) {
+		if (value == null || value.length !== this.size) return -1;
+		const { values, bitmap, size } = this;
+		[start, end] = __clampRange(this.table.length, start, end);
+		if (bitmap) {
+			return (
+				bitmap.index.get(this.valueKey(value))?.last(start, end) ?? -1
+			);
+		}
+		start *= size;
+		let i: number, j: number;
+		outer: for (i = end * size; (i -= size) >= start; ) {
 			for (j = 0; j < size; j++) {
 				if (values[i + j] !== value[j]) continue outer;
 			}

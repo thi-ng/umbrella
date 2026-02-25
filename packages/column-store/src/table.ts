@@ -175,6 +175,10 @@ export class Table<T extends Row> {
 		return this.columns[id]?.indexOf(value, start, end) ?? -1;
 	}
 
+	lastIndexOf(id: ColumnID<T>, value: any, start?: number, end?: number) {
+		return this.columns[id]?.lastIndexOf(value, start, end) ?? -1;
+	}
+
 	validateRow(row: Partial<T>) {
 		const { columns } = this;
 		for (let id in columns) {

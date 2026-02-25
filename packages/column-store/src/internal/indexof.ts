@@ -11,10 +11,26 @@ export const __indexOfSingle = (
 	start: number,
 	end = max
 ) => {
-	start = __clamp(start, 0, max);
-	end = __clamp(end, 0, max);
+	[start, end] = __clampRange(max, start, end);
 	if (bitmap) return bitmap.index.get(needle)?.first(start, end) ?? -1;
 	for (let i = start; i < end; i++) {
+		if (values[i] === needle) return i;
+	}
+	return -1;
+};
+
+/** @internal */
+export const __lastIndexOfSingle = (
+	needle: any,
+	values: ArrayLike<any>,
+	bitmap: Maybe<BitmapIndex>,
+	max: number,
+	start: number,
+	end = max
+) => {
+	[start, end] = __clampRange(max, start, end);
+	if (bitmap) return bitmap.index.get(needle)?.last(start, end) ?? -1;
+	for (let i = end; i-- > start; ) {
 		if (values[i] === needle) return i;
 	}
 	return -1;
@@ -28,8 +44,7 @@ export const __indexOfTuple = (
 	start: number,
 	end = max
 ) => {
-	start = __clamp(start, 0, max);
-	end = __clamp(end, 0, max);
+	[start, end] = __clampRange(max, start, end);
 	if (needle == null) {
 		for (let i = start; i < end; i++) {
 			if (!values[i]) return i;
@@ -51,5 +66,41 @@ export const __indexOfTuple = (
 };
 
 /** @internal */
+export const __lastIndexOfTuple = (
+	needle: ArrayLike<any> | null,
+	values: ArrayLike<any>,
+	max: number,
+	start: number,
+	end = max
+) => {
+	[start, end] = __clampRange(max, start, end);
+	if (needle == null) {
+		for (let i = end; i-- > start; ) {
+			if (!values[i]) return i;
+		}
+		return -1;
+	}
+	const n = needle!.length;
+	let i: number, j: number, row: number[] | null;
+	outer: for (i = end; i-- > start; ) {
+		row = values[i];
+		if (row?.length === n) {
+			for (j = 0; j < n; j++) {
+				if (row[j] !== needle![j]) continue outer;
+			}
+			return i;
+		}
+	}
+	return -1;
+};
+
+/** @internal */
 export const __clamp = (x: number, a: number, b: number) =>
 	x < a ? a : x > b ? b : x;
+
+/** @internal */
+export const __clampRange = (max: number, start: number, end?: number) => {
+	start = __clamp(start, 0, max);
+	end = __clamp(end ?? max, start, max);
+	return [start, end];
+};

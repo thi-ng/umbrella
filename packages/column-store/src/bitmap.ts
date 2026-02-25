@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { __clamp } from "./internal/indexof.js";
+import { __clampRange } from "./internal/indexof.js";
 
 export class BitmapIndex {
 	index: Map<any, Bitfield> = new Map();
@@ -75,9 +75,7 @@ export class Bitfield {
 	first(start = 0, end?: number) {
 		const { buffer } = this;
 		if (!buffer) return -1;
-		const max = buffer.length << 5;
-		start = __clamp(start, 0, max);
-		end = __clamp(end ?? max, 0, max);
+		[start, end] = __clampRange(buffer.length << 5, start, end);
 		if (start >= end) return -1;
 		for (
 			let i = start >>> 5,
@@ -91,6 +89,23 @@ export class Bitfield {
 				const x = (i << 5) + (Math.clz32(lsb) ^ 31);
 				if (x >= start && x < end) return x;
 				bits ^= lsb;
+			}
+		}
+		return -1;
+	}
+
+	last(start = 0, end?: number) {
+		const { buffer } = this;
+		if (!buffer) return -1;
+		[start, end] = __clampRange(buffer.length << 5, start, end);
+		if (start >= end) return -1;
+		for (let i = end >>> 5, n = start >>> 5; i >= n; i--) {
+			let bits = buffer[i];
+			while (bits) {
+				const msb = Math.clz32(bits) ^ 31;
+				const x = (i << 5) + msb;
+				if (x >= start && x < end) return x;
+				bits ^= 1 << msb;
 			}
 		}
 		return -1;

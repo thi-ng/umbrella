@@ -5,7 +5,7 @@ import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
 import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
 import { FLAG_RLE, type Row, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
-import { __indexOfSingle } from "../internal/indexof.js";
+import { __indexOfSingle, __lastIndexOfSingle } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
 
@@ -80,6 +80,17 @@ export class DictColumn<T extends Row = Row> extends AColumn<T> {
 
 	indexOf(value: any, start = 0, end = this.table.length) {
 		return __indexOfSingle(
+			this.encode(value),
+			this.values,
+			this.bitmap,
+			this.table.length,
+			start,
+			end
+		);
+	}
+
+	lastIndexOf(value: any, start = 0, end?: number) {
+		return __lastIndexOfSingle(
 			this.encode(value),
 			this.values,
 			this.bitmap,
