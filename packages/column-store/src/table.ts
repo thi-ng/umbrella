@@ -77,11 +77,13 @@ export class Table<T extends Row> {
 		};
 		this.validateColumnSpec(id, $spec);
 		this.schema[id] = $spec;
-		this.columns[id] = COLUMN_TYPES[spec.type].impl(
+		const column = (this.columns[id] = COLUMN_TYPES[$spec.type].impl(
 			this,
 			String(id),
 			$spec
-		);
+		));
+		if (this.length) column.ensureRows();
+		return column;
 	}
 
 	removeColumn(id: ColumnID<T>) {
@@ -209,6 +211,8 @@ export class Table<T extends Row> {
 			if (max > 1 !== isArray(spec.default))
 				__columnError(id, `wrong default value`);
 		}
+		if (this.length && spec.default == null && (def.required || min > 0))
+			__columnError(id, `missing default value to fill existing rows`);
 	}
 
 	toJSON() {

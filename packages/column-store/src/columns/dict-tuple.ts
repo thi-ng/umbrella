@@ -41,6 +41,21 @@ export class DictTupleColumn<T extends Row = Row> extends AColumn<T> {
 		return __validateArrayValue(this.spec, value);
 	}
 
+	ensureRows(): void {
+		const {
+			bitmap,
+			spec: { default: value },
+			table: { length: n },
+			values,
+		} = this;
+		const $value = value != null ? this.dict.addAll(value) : null;
+		values.length = n;
+		values.fill($value, 0, n);
+		if (bitmap && $value) {
+			for (let x of $value) bitmap.ensure(x).fill(1, 0, n);
+		}
+	}
+
 	setRow(i: number, value: any[]) {
 		value = this.ensureValue(value);
 		const { values, dict, bitmap } = this;

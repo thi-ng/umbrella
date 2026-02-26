@@ -39,6 +39,8 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 
 	abstract removeRow(i: number): void;
 
+	abstract ensureRows(): void;
+
 	abstract replaceValue(currValue: any, newValue: any): boolean;
 
 	abstract valueKey(x: any): any;

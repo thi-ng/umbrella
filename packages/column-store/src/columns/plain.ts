@@ -19,6 +19,18 @@ export class PlainColumn<T extends Row = Row> extends AColumn<T> {
 		this.reindex();
 	}
 
+	ensureRows(): void {
+		const {
+			bitmap,
+			spec: { default: value },
+			table: { length: n },
+			values,
+		} = this;
+		values.length = n;
+		values.fill(value ?? null, 0, n);
+		if (bitmap && value != null) bitmap.ensure(value).fill(1, 0, n);
+	}
+
 	validate(value: any) {
 		return __validateValue(this.spec, value);
 	}
@@ -26,7 +38,8 @@ export class PlainColumn<T extends Row = Row> extends AColumn<T> {
 	setRow(i: number, value: any) {
 		const { values, bitmap } = this;
 		const old = values[i];
-		values[i] = this.ensureValue(value);
+		value = this.ensureValue(value);
+		values[i] = value;
 		if (bitmap) {
 			if (old != null) bitmap.clearBit(old, i);
 			if (value != null) bitmap.setBit(value, i);

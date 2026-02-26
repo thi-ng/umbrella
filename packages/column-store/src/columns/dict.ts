@@ -48,6 +48,19 @@ export class DictColumn<T extends Row = Row> extends AColumn<T> {
 		return __validateValue(this.spec, value);
 	}
 
+	ensureRows(): void {
+		const {
+			bitmap,
+			spec: { default: value },
+			table: { length: n },
+			values,
+		} = this;
+		const $value = value != null ? this.dict.add(value) : null;
+		values.length = n;
+		values.fill($value, 0, n);
+		if (bitmap && $value != null) bitmap.ensure($value).fill(1, 0, n);
+	}
+
 	setRow(i: number, value: any) {
 		value = this.ensureValue(value);
 		const { values, bitmap } = this;

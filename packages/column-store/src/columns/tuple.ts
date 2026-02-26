@@ -24,6 +24,20 @@ export class TupleColumn<T extends Row = Row> extends AColumn<T> {
 		return __validateArrayValue(this.spec, value);
 	}
 
+	ensureRows(): void {
+		const {
+			bitmap,
+			spec: { default: value },
+			table: { length: n },
+			values,
+		} = this;
+		values.length = n;
+		values.fill(value ?? null, 0, n);
+		if (bitmap && value) {
+			for (let x of value) bitmap.ensure(x).fill(1, 0, n);
+		}
+	}
+
 	setRow(i: number, value: any[]) {
 		value = this.ensureValue(value);
 		const { values, bitmap } = this;

@@ -190,6 +190,9 @@ export interface IColumn {
 
 	removeRow(i: number): void;
 
+	/** @internal */
+	ensureRows(): void;
+
 	encode(value: any): any;
 
 	decode(value: any): any;

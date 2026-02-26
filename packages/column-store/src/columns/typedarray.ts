@@ -45,15 +45,16 @@ export class TypedArrayColumn<T extends Row = Row> extends AColumn<T> {
 		);
 	}
 
+	ensureRows(): void {
+		const n = this.table.length;
+		this.ensureCapacity(n, false);
+		this.values.fill(this.spec.default, 0, n);
+		this.bitmap?.ensure(this.spec.default).fill(1, 0, n);
+	}
+
 	setRow(i: number, value: any) {
 		value = this.ensureValue(value);
-		let len = this.values.length;
-		if (i >= len) {
-			while (i >= len) len <<= 1;
-			const tmp = typedArray(this.type, len);
-			tmp.set(this.values);
-			this.values = tmp;
-		}
+		this.ensureCapacity(i);
 		const { values, bitmap } = this;
 		const old = values[i];
 		values[i] = value;
@@ -122,5 +123,15 @@ export class TypedArrayColumn<T extends Row = Row> extends AColumn<T> {
 			this.spec,
 			this.type
 		);
+	}
+
+	protected ensureCapacity(capacity: number, copy = true) {
+		let len = this.values.length;
+		if (capacity >= len) {
+			while (capacity >= len) len <<= 1;
+			const tmp = typedArray(this.type, len);
+			copy && tmp.set(this.values);
+			this.values = tmp;
+		}
 	}
 }

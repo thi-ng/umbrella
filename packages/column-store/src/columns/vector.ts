@@ -46,22 +46,26 @@ export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 		);
 	}
 
+	ensureRows(): void {
+		const {
+			size,
+			spec: { default: value },
+			table: { length: n },
+		} = this;
+		this.ensureCapacity(n, false);
+		for (let i = 0; i < n; i++) this.values.set(value, i * size);
+		this.bitmap?.ensure(this.valueKey(value)).fill(1, 0, n);
+	}
+
 	setRow(i: number, value: any) {
 		value = this.ensureValue(value);
-		const j = i * this.size;
-		let len = this.values.length;
-		if (j >= len) {
-			while (j >= len) len <<= 1;
-			const tmp = typedArray(this.type, len);
-			tmp.set(this.values);
-			this.values = tmp;
-		}
+		this.ensureCapacity(i);
 		const { values, bitmap } = this;
 		if (bitmap) {
 			bitmap.clearBit(this.getRowKey(i), i);
 			bitmap.setBit(this.valueKey(value), i);
 		}
-		values.set(value, j);
+		values.set(value, i * this.size);
 	}
 
 	getRow(i: number) {
@@ -147,5 +151,16 @@ export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 			this.spec,
 			this.type
 		);
+	}
+
+	protected ensureCapacity(capacity: number, copy = true) {
+		capacity *= this.size;
+		let len = this.values.length;
+		if (capacity >= len) {
+			while (capacity >= len) len <<= 1;
+			const tmp = typedArray(this.type, len);
+			copy && tmp.set(this.values);
+			this.values = tmp;
+		}
 	}
 }
