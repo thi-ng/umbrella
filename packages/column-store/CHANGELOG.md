@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-25T15:52:45Z
+- **Last updated**: 2026-02-26T15:39:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.7.0) (2026-02-26)
+
+#### 🚀 Features
+
+- update `addColumn()` logic to prefill existing rows with defaults ([2fc5887](https://github.com/thi-ng/umbrella/commit/2fc5887))
+  - add `IColumn.ensureRows()`, add all impls
+  - update `Table.addColumn()`
+  - update `Table.validateColumnSpec()`
+  - add tests for all column types
 
 ### [0.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.6.1) (2026-02-25)
 
