@@ -15,8 +15,9 @@
 		"typescript": "^5.9.3"
 	},
 	"resolutions": {
+		"minimatch": "^10.2.1",
 		"node-gyp": "^12.2.0",
-		"tar": "^7.5.7"
+		"tar": "^7.5.8"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
