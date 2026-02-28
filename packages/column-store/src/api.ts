@@ -234,7 +234,7 @@ export type QueryTermOp = Fn3<
 	QueryCtx<any>,
 	QueryTerm<any>,
 	Maybe<IColumn>,
-	void
+	boolean
 >;
 
 export interface QueryTermOpSpec {
