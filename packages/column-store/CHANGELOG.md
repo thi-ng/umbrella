@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-26T15:39:06Z
+- **Last updated**: 2026-02-28T12:21:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.7.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.7.1) (2026-02-28)
+
+#### ⏱ Performance improvements
+
+- update query ops to only iterate already selected rows (if possible) ([9492ead](https://github.com/thi-ng/umbrella/commit/9492ead))
+  - add QueryCtx iterable support, iterate bitfield if available
+  - update all query ops to iterate via ctx/bitfield
+  - add short-circuit to fail query if current op produced no results
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.7.0) (2026-02-26)
 
