@@ -98,10 +98,11 @@ Note: Booleans and `BigInt`s are still unsupported, but being worked on...
 | `i16`           | 16bit signed int    | ❌                    | ✅                     |
 | `u32`           | 32bit unsigned int  | ❌                    | ✅                     |
 | `i32`           | 32bit signed int    | ❌                    | ✅                     |
-| `f32`           | 32bit float         | ❌                    | ❌                     |
-| `f64`           | 64bit float         | ❌                    | ❌                     |
+| `f32`           | 32bit float         | ❌                    | ✅ <sup>(2)</sup>      |
+| `f64`           | 64bit float         | ❌                    | ✅ <sup>(2)</sup>      |
 
 - <sup>(1)</sup> only if max. cardinality is 1, [further information](#flag_rle)
+- <sup>(2)</sup> simple RLE only, [further information](#flag_rle)
 
 ### Vector column types
 
@@ -177,6 +178,14 @@ key of the column spec. The following presets are provided:
 | `OPTIONAL`  | `[0, 1]`         | Optional single value (present or not)      |
 | `ONE_PLUS`  | `[1, (2**32)-1]` | One or more values (always expects tuples)  |
 | `ZERO_PLUS` | `[0, (2**32)-1]` | Zero or more values (always expects tuples) |
+
+#### Differences between tuple and vector column types
+
+| **Feature**                      | **Tuples**            | **Vectors** |
+|----------------------------------|-----------------------|-------------|
+| Optional (without default value) | ✅                     | ❌           |
+| Flexible size                    | ✅                     | ❌           |
+| Query ops match...               | Individual components | Full vector |
 
 ### Default values
 
