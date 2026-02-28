@@ -44,6 +44,37 @@ const checkSingle = (type: string, flags = 0) => {
 		{ a: 102, __row: 2 },
 		{ a: 103, __row: 3 },
 	]);
+	// compound queries
+	expect([
+		...table
+			.query()
+			.matchColumn("a", (x) => x > 101)
+			.matchColumn("a", (x) => x == 103),
+	]).toEqual([{ a: 103, __row: 3 }]);
+	expect([
+		...table
+			.query()
+			.matchColumn("a", (x) => x > 101)
+			.or("a", [103, 104]),
+	]).toEqual([{ a: 103, __row: 3 }]);
+	expect([
+		...table
+			.query()
+			.matchColumn("a", (x) => x > 101)
+			.nor("a", [103, 104]),
+	]).toEqual([{ a: 102, __row: 2 }]);
+	expect([
+		...table
+			.query()
+			.matchColumn("a", (x) => x > 101)
+			.and("a", 103),
+	]).toEqual([{ a: 103, __row: 3 }]);
+	expect([
+		...table
+			.query()
+			.matchColumn("a", (x) => x > 101)
+			.nand("a", 103),
+	]).toEqual([{ a: 102, __row: 2 }]);
 };
 
 const checkTuple = (flags = 0) => {
@@ -265,5 +296,6 @@ describe("query", () => {
 			{ a: 103, __row: 3 },
 			{ a: 110, __row: 4 },
 		]);
+		expect([...table.query().rowRange(5)]).toEqual([]);
 	});
 });
