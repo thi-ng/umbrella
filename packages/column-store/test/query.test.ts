@@ -273,6 +273,13 @@ describe("query", () => {
 			{ a: 100, __row: 0 },
 		]);
 		expect([...table.query().valueRange("a", 90, 99)]).toEqual([]);
+		expect([...table.query().valueRange("a", 90, 120)]).toEqual([
+			{ a: 100, __row: 0 },
+			{ a: 101, __row: 1 },
+			{ a: 102, __row: 2 },
+			{ a: 103, __row: 3 },
+			{ a: 110, __row: 4 },
+		]);
 		expect([...table.query().valueRange("a", 111)]).toEqual([]);
 	});
 
@@ -291,6 +298,13 @@ describe("query", () => {
 		]);
 		expect([...table.query().rowRange(2, 3)]).toEqual([
 			{ a: 102, __row: 2 },
+		]);
+		expect([...table.query().rowRange(-10, 10)]).toEqual([
+			{ a: 100, __row: 0 },
+			{ a: 101, __row: 1 },
+			{ a: 102, __row: 2 },
+			{ a: 103, __row: 3 },
+			{ a: 110, __row: 4 },
 		]);
 		expect([...table.query().rowRange(3)]).toEqual([
 			{ a: 103, __row: 3 },
