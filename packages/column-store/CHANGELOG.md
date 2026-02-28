@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-28T12:21:01Z
+- **Last updated**: 2026-02-28T13:25:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.8.0) (2026-02-28)
+
+#### 🚀 Features
+
+- add iterable support for columns ([6abb059](https://github.com/thi-ng/umbrella/commit/6abb059))
+  - update `IColumn`
+  - add `AColumn` iterator impl
+  - add tests
 
 ### [0.7.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.7.1) (2026-02-28)
 
