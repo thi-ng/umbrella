@@ -27,11 +27,15 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 		this.ensureBitmap();
 	}
 
-	abstract load(spec: SerializedColumn): void;
+	*[Symbol.iterator]() {
+		for (let i = 0, n = this.table.length; i < n; i++) yield this.getRow(i);
+	}
 
 	reindex() {
 		this.updateBitmap();
 	}
+
+	abstract load(spec: SerializedColumn): void;
 
 	abstract validate(value: any): boolean;
 

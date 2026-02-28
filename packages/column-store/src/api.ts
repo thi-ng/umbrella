@@ -113,7 +113,7 @@ export const LIMITS: Record<NumericType, [number, number]> = {
 	f64: [-Infinity, Infinity],
 };
 
-export interface IColumn {
+export interface IColumn extends Iterable<any> {
 	bitmap?: BitmapIndex;
 
 	readonly isArray: boolean;
