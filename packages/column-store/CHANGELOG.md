@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-28T13:25:55Z
+- **Last updated**: 2026-03-01T16:40:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.9.0) (2026-03-01)
+
+#### 🚀 Features
+
+- add query predicates (syntax sugar) ([a9e7b89](https://github.com/thi-ng/umbrella/commit/a9e7b89))
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.8.0) (2026-02-28)
 
