@@ -115,6 +115,9 @@
 		"./columns/vector": {
 			"default": "./columns/vector.js"
 		},
+		"./predicates": {
+			"default": "./predicates.js"
+		},
 		"./query": {
 			"default": "./query.js"
 		},
