@@ -346,13 +346,18 @@ results of the previous step(s), thereby narrowing down the result set.
 For each query term, only the rows already marked (aka pre-selected by
 predecessor query terms) are visited. When a query term does not manage to
 select any rows, the query is terminated. Internally, this selecting and
-intersecting of partial query results is done via bitfields only.
+intersecting of partial query results is done via bitfields only. There's no
+creation of interim result arrays, nor any full decoding/construction of interim
+row records. The latter only happens for the final result rows and/or when using
+the [`matchRow()` or `matchPartialRow()`](#predicate-based-matchers) query
+operators.
 
 When a column has an associated bitfield index (enabled via
 [`FLAG_BITMAP`](#flag_bitmap)), some query operators (see below) are optimized
 even further, entirely avoiding the need to visit any individual rows.
 
-The diagram below illustrates the application of the following 3-operator query:
+The diagram below illustrates the application of the following 3-operator query
+and the resulting stepwise narrowing of the result set:
 
 ```ts
 table.query()
@@ -408,12 +413,18 @@ can be used, otherwise the behavior is:
 
 #### Predicate-based matchers
 
+> [!NOTE]
+> For best performance and to minimize/avoid potential decoding and construction
+> of interim row objects, prefer `matchColumn` or `matchPartialRow` over
+> `matchRow` if at all possible. Oftentimes, query predicates requiring multiple
+> column values can be easily refactored into separate query terms.
+
 - [`matchColumn`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchcolumn):
   apply predicate to column value
-- [`matchRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchrow):
-  apply predicate to full row
 - [`matchPartialRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchpartialrow):
   apply predicate to partial row (only selected columns)
+- [`matchRow`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#matchrow):
+  apply predicate to full row
 
 #### Row ranges
 
