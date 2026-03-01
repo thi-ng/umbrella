@@ -269,7 +269,9 @@ types](#custom-column-types).
 ## Query engine
 
 The query engine is highly extensible and can be used for executing arbitrarily
-complex queries.
+complex queries via chaining of query operators.
+
+### Query execution
 
 The system allows predefining queries, which are then only evaluated and produce
 up-to-date results via the standard JS iterable mechanism (i.e. queries
@@ -282,18 +284,40 @@ const query = table.query().or("name", ["alice", "bob"]);
 // actually (re)execute query
 for(let result of query) { ... }
 
-// ..or using slice operator
+// ..or collect result into an array using slice operator
 const results = [...query];
 ```
 
-TODO see code examples below
-
-### Built-in operators
+#### Optimized row iteration
 
 The query engine works by applying a number of [query
 terms](https://docs.thi.ng/umbrella/column-store/interfaces/QueryTerm.html) in
 series, with each step intersecting (aka logical AND) its results with the
 results of the previous step(s), thereby narrowing down the result set.
+
+For each query term, only the rows already marked (aka pre-selected by
+predecessor query terms) are visited. When a query term does not manage to
+select any rows, the query is terminated. Internally, this selecting and
+intersecting of partial query results is done via bitfields only.
+
+When a column has an associated bitfield index (enabled via
+[`FLAG_BITMAP`](#flag_bitmap)), some query operators (see below) are optimized
+even further, entirely avoiding the need to visit any individual rows.
+
+The diagram below illustrates the application of the following 3-operator query:
+
+```ts
+table.query()
+	.matchColumn("id", inRange(100, 110))
+	.matchColumn("age", inRange(20, 50))
+	.matchColumn("name", startsWith("a"))
+```
+
+![Diagram showing a list of rows with object values and three columns
+illustrating the narrowing effect of query operators with their partial
+results](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/column-store/query-narrowing.png)
+
+### Built-in operators
 
 By default, individual query terms operate on a single column, but can also can
 also apply to multiple. Terms are supplied either as array given to the
