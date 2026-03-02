@@ -35,6 +35,8 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 		this.updateBitmap();
 	}
 
+	abstract clear(): void;
+
 	abstract load(spec: SerializedColumn): void;
 
 	abstract validate(value: any): boolean;

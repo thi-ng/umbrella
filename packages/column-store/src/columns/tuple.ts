@@ -11,6 +11,11 @@ export class TupleColumn<T extends Row = Row> extends AColumn<T> {
 
 	readonly isArray = true;
 
+	clear(): void {
+		this.values = [];
+		this.bitmap?.clear();
+	}
+
 	load(spec: SerializedColumn): void {
 		this.values = spec.values;
 		this.reindex();

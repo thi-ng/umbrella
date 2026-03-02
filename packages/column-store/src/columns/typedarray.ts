@@ -3,6 +3,7 @@ import { typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import {
+	INITIAL_CAPACITY,
 	LIMITS,
 	type ColumnID,
 	type NumericType,
@@ -27,8 +28,13 @@ export class TypedArrayColumn<T extends Row = Row> extends AColumn<T> {
 		super(id, table);
 		this.type = <NumericType>table.schema[id].type;
 		this.limit = LIMITS[this.type];
-		this.values = typedArray(this.type, 8);
+		this.values = typedArray(this.type, INITIAL_CAPACITY);
 		this.tmp = typedArray(this.type, 1);
+	}
+
+	clear(): void {
+		this.values = typedArray(this.type, INITIAL_CAPACITY);
+		this.bitmap?.clear();
 	}
 
 	load({ values }: SerializedColumn): void {

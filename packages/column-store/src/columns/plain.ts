@@ -11,6 +11,11 @@ export class PlainColumn<T extends Row = Row> extends AColumn<T> {
 
 	readonly isArray = false;
 
+	clear(): void {
+		this.values = [];
+		this.bitmap?.clear();
+	}
+
 	load({ values }: SerializedColumn): void {
 		this.values =
 			this.spec.flags & FLAG_RLE

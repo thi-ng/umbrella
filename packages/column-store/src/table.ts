@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Maybe } from "@thi.ng/api";
+import type { IClear, ICopy, IEmpty, Maybe } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
@@ -24,6 +24,7 @@ import { TupleColumn } from "./columns/tuple.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
 import { VectorColumn } from "./columns/vector.js";
 import { __columnError } from "./internal/checks.js";
+import { __clamp } from "./internal/indexof.js";
 import { Query } from "./query.js";
 
 /**
@@ -31,7 +32,9 @@ import { Query } from "./query.js";
  */
 export interface TableOpts {}
 
-export class Table<T extends Row> {
+export class Table<T extends Row>
+	implements IClear, ICopy<Table<T>>, IEmpty<Table<T>>
+{
 	opts: TableOpts;
 	schema = <ColumnSchema<T>>{};
 	columns = <Record<ColumnID<T>, IColumn>>{};
@@ -59,6 +62,22 @@ export class Table<T extends Row> {
 	) {
 		this.opts = { ...opts };
 		for (let id in schema) this.addColumn(<ColumnID<T>>id, schema[id]);
+	}
+
+	clear() {
+		const { columns } = this;
+		for (let id in columns) columns[id].clear();
+		this.length = 0;
+	}
+
+	copy() {
+		const copy = new Table<T>(this.schema, this.opts);
+		copy.addRows(this);
+		return copy;
+	}
+
+	empty() {
+		return new Table<T>(this.schema, this.opts);
 	}
 
 	query(terms?: QueryTerm<T>[]) {
@@ -94,7 +113,7 @@ export class Table<T extends Row> {
 	}
 
 	*[Symbol.iterator]() {
-		for (let i = 0; i < this.length; i++) yield this.getRow(i);
+		for (let i = 0; i < this.length; i++) yield this.getRow(i)!;
 	}
 
 	reindex() {
@@ -171,6 +190,15 @@ export class Table<T extends Row> {
 			row[<string>id] = this.columns[id]?.getRow(i);
 		}
 		return row;
+	}
+
+	slice(start = 0, end?: number) {
+		const max = this.length;
+		start = __clamp(start, 0, max);
+		end = __clamp(end ?? max, start, max);
+		const copy = this.empty();
+		for (let i = start; i < end; i++) copy.addRow(this.getRow(i, true)!);
+		return copy;
 	}
 
 	indexOf(id: ColumnID<T>, value: any, start?: number, end?: number) {

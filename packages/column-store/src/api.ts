@@ -2,6 +2,7 @@
 import type {
 	FloatType,
 	Fn3,
+	IClear,
 	IntType,
 	Maybe,
 	Predicate,
@@ -113,7 +114,7 @@ export const LIMITS: Record<NumericType, [number, number]> = {
 	f64: [-Infinity, Infinity],
 };
 
-export interface IColumn extends Iterable<any> {
+export interface IColumn extends Iterable<any>, IClear {
 	bitmap?: BitmapIndex;
 
 	readonly isArray: boolean;
@@ -248,3 +249,10 @@ export interface QueryTermOpSpec {
 	 */
 	fn: QueryTermOp;
 }
+
+/**
+ * Initial capacity for typedarray and vector columns
+ *
+ * @internal
+ */
+export const INITIAL_CAPACITY = 8;

@@ -13,6 +13,12 @@ export class DictTupleColumn<T extends Row = Row> extends AColumn<T> {
 
 	readonly isArray = true;
 
+	clear(): void {
+		this.values = [];
+		this.dict.clear();
+		this.bitmap?.clear();
+	}
+
 	load({ dict, values }: SerializedColumn): void {
 		this.values = values;
 		super.loadDict(dict!);

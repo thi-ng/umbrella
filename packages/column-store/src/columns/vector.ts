@@ -5,6 +5,7 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import {
+	INITIAL_CAPACITY,
 	LIMITS,
 	type ColumnID,
 	type NumericType,
@@ -30,8 +31,13 @@ export class VectorColumn<T extends Row = Row> extends AColumn<T> {
 		this.type = <NumericType>this.spec.type.split("v")[0];
 		this.size = this.spec.cardinality[1];
 		this.limit = LIMITS[this.type];
-		this.values = typedArray(this.type, 8 * this.size);
+		this.values = typedArray(this.type, INITIAL_CAPACITY * this.size);
 		this.tmp = typedArray(this.type, this.size);
+	}
+
+	clear(): void {
+		this.values = typedArray(this.type, INITIAL_CAPACITY * this.size);
+		this.bitmap?.clear();
 	}
 
 	load({ values }: SerializedColumn): void {

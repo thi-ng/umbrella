@@ -15,6 +15,12 @@ export class DictColumn<T extends Row = Row> extends AColumn<T> {
 
 	readonly isArray = false;
 
+	clear(): void {
+		this.values = [];
+		this.dict.clear();
+		this.bitmap?.clear();
+	}
+
 	load({ dict, values }: SerializedColumn): void {
 		this.values =
 			this.spec.flags & FLAG_RLE
