@@ -312,11 +312,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-02-28
+As of: 2026-03-02
 
 | Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
 |:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/column-store`](./packages/column-store) | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store) | [changelog](./packages/column-store/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)     | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)     | [changelog](./packages/hiccup-svg/CHANGELOG.md)   |
 
 ### Algorithms & data structures
 
