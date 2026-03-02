@@ -82,7 +82,7 @@ export const convertTree = (tree: any): any[] | null => {
 	}
 	let attribs = __convertAttribs(tree[1]);
 	if (attribs.__convert === false) return tree;
-	if (attribs.__prec) {
+	if (attribs.__prec != null) {
 		precisionStack.push(PRECISION);
 		setPrecision(attribs.__prec);
 	}
@@ -199,7 +199,7 @@ export const convertTree = (tree: any): any[] | null => {
 		default:
 			result = tree;
 	}
-	if (attribs.__prec) {
+	if (attribs.__prec != null) {
 		setPrecision(precisionStack.pop()!);
 	}
 	return result;
