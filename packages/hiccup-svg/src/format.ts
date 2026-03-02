@@ -94,7 +94,7 @@ export const fattribs = (attribs: Maybe<Attribs>, ...numericIDs: string[]) => {
 	let v: any;
 	(v = attribs.fill) && (res.fill = fcolor(v));
 	(v = attribs.stroke) && (res.stroke = fcolor(v));
-	return __numericAttribs(attribs, numericIDs);
+	return __numericAttribs(res, numericIDs);
 };
 
 /**
