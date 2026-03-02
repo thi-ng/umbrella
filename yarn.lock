@@ -4874,7 +4874,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.14"
     "@thi.ng/fuzzy": "npm:^2.1.130"
     "@thi.ng/hiccup": "npm:^5.3.37"
-    "@thi.ng/hiccup-svg": "npm:^5.5.25"
+    "@thi.ng/hiccup-svg": "npm:^5.6.0"
     "@thi.ng/math": "npm:^5.15.3"
     "@thi.ng/strings": "npm:^3.9.35"
     "@thi.ng/text-canvas": "npm:^3.0.106"
@@ -4940,7 +4940,7 @@ __metadata:
     "@thi.ng/axidraw": "npm:^1.1.167"
     "@thi.ng/compare": "npm:^2.4.40"
     "@thi.ng/defmulti": "npm:^3.0.90"
-    "@thi.ng/geom": "npm:^8.3.14"
+    "@thi.ng/geom": "npm:^8.3.15"
     "@thi.ng/geom-accel": "npm:^4.1.76"
     "@thi.ng/geom-clip-line": "npm:^2.3.166"
     "@thi.ng/geom-isec": "npm:^4.0.76"
@@ -4998,7 +4998,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.14"
     "@thi.ng/color": "npm:^5.8.10"
-    "@thi.ng/geom": "npm:^8.3.14"
+    "@thi.ng/geom": "npm:^8.3.15"
     "@thi.ng/geom-clip-line": "npm:^2.3.166"
     "@thi.ng/geom-resample": "npm:^3.0.76"
     "@thi.ng/grid-iterators": "npm:^4.0.149"
@@ -5101,7 +5101,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.4"
     "@thi.ng/defmulti": "npm:^3.0.90"
     "@thi.ng/errors": "npm:^2.6.3"
-    "@thi.ng/geom": "npm:^8.3.14"
+    "@thi.ng/geom": "npm:^8.3.15"
     "@thi.ng/geom-isoline": "npm:^2.1.210"
     "@thi.ng/geom-poly-utils": "npm:^3.1.13"
     "@thi.ng/geom-resample": "npm:^3.0.76"
@@ -5205,7 +5205,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.4"
     "@thi.ng/defmulti": "npm:^3.0.90"
     "@thi.ng/errors": "npm:^2.6.3"
-    "@thi.ng/geom": "npm:^8.3.14"
+    "@thi.ng/geom": "npm:^8.3.15"
     "@thi.ng/object-utils": "npm:^1.3.6"
     "@thi.ng/transducers": "npm:^9.6.23"
     "@thi.ng/vector-pools": "npm:^3.2.85"
@@ -5217,7 +5217,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@npm:^8.3.14, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@npm:^8.3.15, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -5240,7 +5240,7 @@ __metadata:
     "@thi.ng/geom-subdiv-curve": "npm:^3.0.83"
     "@thi.ng/geom-tessellate": "npm:^3.0.83"
     "@thi.ng/hiccup": "npm:^5.3.37"
-    "@thi.ng/hiccup-svg": "npm:^5.5.25"
+    "@thi.ng/hiccup-svg": "npm:^5.6.0"
     "@thi.ng/math": "npm:^5.15.3"
     "@thi.ng/matrices": "npm:^3.0.35"
     "@thi.ng/object-utils": "npm:^1.3.6"
@@ -5483,7 +5483,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@npm:^5.5.25, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@npm:^5.6.0, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
@@ -5571,7 +5571,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.14"
     "@thi.ng/checks": "npm:^3.8.4"
-    "@thi.ng/geom": "npm:^8.3.14"
+    "@thi.ng/geom": "npm:^8.3.15"
     "@thi.ng/geom-isec": "npm:^4.0.76"
     "@thi.ng/layout": "npm:^4.1.2"
     "@thi.ng/math": "npm:^5.15.3"

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-02-07T14:15:11Z
+- **Last updated**: 2026-03-02T10:49:03Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.6.0) (2026-03-02)
+
+#### 🚀 Features
+
+- add `__prec` attrib support for `svg()` root element ([fa33c1e](https://github.com/thi-ng/umbrella/commit/fa33c1e))
+  - add tests
+
+#### 🩹 Bug fixes
+
+- update `__prec` attrib checks in `convertTree()` ([c3893b8](https://github.com/thi-ng/umbrella/commit/c3893b8))
+  - check against nullish values to also support `__prec: 0` (i.e. integer coordinates)
 
 ### [5.5.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.5.20) (2025-12-03)
 
