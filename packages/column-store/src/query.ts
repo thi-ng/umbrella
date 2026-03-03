@@ -243,19 +243,16 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 	const isNeg = term.type === "nand";
 	let mask: Maybe<Uint32Array>;
 	if (isArray(key)) {
-		// pre-lookup bitmaps and bail out early
-		const colBitmaps: Uint32Array[] = [];
 		for (let k of key) {
 			const b = bitmap.index.get(k)?.buffer;
 			if (!b) {
 				if (isNeg) {
+					if (mask) mask.fill(0);
+					else mask = ctx.makeMask();
 					continue;
 				} else return false;
 			}
-			colBitmaps.push(b);
-		}
-		// compute bitmap intersection
-		for (let b of colBitmaps) {
+			// compute bitmap intersection
 			if (mask) {
 				const n = b.length;
 				for (let i = 0; i < n; i++) mask[i] &= b[i];
@@ -291,7 +288,8 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 			} else mask = m;
 		} else {
 			if (isNeg) {
-				if (!m) mask = ctx.makeMask();
+				if (mask) mask.fill(0);
+				else mask = ctx.makeMask();
 			} else return false;
 		}
 	}
@@ -315,9 +313,10 @@ const __finalizeMask = (
 		isNeg ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
 		return true;
 	} else if (isNeg) {
-		ctx.mergeMask(ctx.makeMask(-1));
+		if (!ctx.bitmap) ctx.bitmap = ctx.makeMask(-1);
 		return true;
-	} else return false;
+	}
+	return false;
 };
 
 /** @internal */

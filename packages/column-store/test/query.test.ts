@@ -10,14 +10,30 @@ const checkSingle = (type: string, flags = 0) => {
 
 	expect([...table.columns.a]).toEqual([100, 101, 102, 103]);
 
+	const ALL = [
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	];
+
 	expect([...table.query().or("a", 101)]).toEqual([{ a: 101, __row: 1 }]);
 	expect([...table.query().or("a", [101, 102])]).toEqual([
 		{ a: 101, __row: 1 },
 		{ a: 102, __row: 2 },
 	]);
+	expect([...table.query().or("a", 42)]).toEqual([]);
+	expect([...table.query().or("a", [100, 42, 101])]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+	]);
+	expect([...table.query().or("a", [])]).toEqual([]);
 
 	expect([...table.query().and("a", 101)]).toEqual([{ a: 101, __row: 1 }]);
 	expect([...table.query().and("a", [101, 102])]).toEqual([]);
+	expect([...table.query().and("a", 42)]).toEqual([]);
+	expect([...table.query().and("a", [42, 43])]).toEqual([]);
+	expect([...table.query().and("a", [])]).toEqual([]);
 
 	expect([...table.query().nor("a", 101)]).toEqual([
 		{ a: 100, __row: 0 },
@@ -28,64 +44,29 @@ const checkSingle = (type: string, flags = 0) => {
 		{ a: 100, __row: 0 },
 		{ a: 103, __row: 3 },
 	]);
-	expect([...table.query().nor("a", 42)]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
-	expect([...table.query().nor("a", [42, 43])]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
+	expect([...table.query().nor("a", 42)]).toEqual(ALL);
+	expect([...table.query().nor("a", [42, 43])]).toEqual(ALL);
 	expect([...table.query().nor("a", [100, 42, 101])]).toEqual([
 		{ a: 102, __row: 2 },
 		{ a: 103, __row: 3 },
 	]);
-	expect([...table.query().nor("a", [])]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
+	expect([...table.query().nor("a", [])]).toEqual(ALL);
 
 	expect([...table.query().nand("a", 101)]).toEqual([
 		{ a: 100, __row: 0 },
 		{ a: 102, __row: 2 },
 		{ a: 103, __row: 3 },
 	]);
-	expect([...table.query().nand("a", [101, 102])]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
+	expect([...table.query().nand("a", [101, 102])]).toEqual(ALL);
 	expect([...table.query().nand("a", 42)]).toEqual([
 		{ a: 100, __row: 0 },
 		{ a: 101, __row: 1 },
 		{ a: 102, __row: 2 },
 		{ a: 103, __row: 3 },
 	]);
-	expect([...table.query().nand("a", [42, 43])]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
-	expect([...table.query().nand("a", [100, 42, 101])]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
-	expect([...table.query().nand("a", [])]).toEqual([
-		{ a: 100, __row: 0 },
-		{ a: 101, __row: 1 },
-		{ a: 102, __row: 2 },
-		{ a: 103, __row: 3 },
-	]);
+	expect([...table.query().nand("a", [42, 43])]).toEqual(ALL);
+	expect([...table.query().nand("a", [100, 42, 101])]).toEqual(ALL);
+	expect([...table.query().nand("a", [])]).toEqual(ALL);
 
 	expect([...table.query().matchColumn("a", (x) => x == 101)]).toEqual([
 		{ a: 101, __row: 1 },
@@ -135,6 +116,9 @@ const checkSingle = (type: string, flags = 0) => {
 			.matchColumn("a", (x) => x > 101)
 			.nand("a", 103),
 	]).toEqual([{ a: 102, __row: 2 }]);
+
+	expect([...table.query().nor("a", []).nand("a", 111)]).toEqual(ALL);
+	expect([...table.query().nand("a", 111).nor("a", [])]).toEqual(ALL);
 };
 
 const checkTuple = (flags = 0) => {
@@ -153,6 +137,15 @@ const checkTuple = (flags = 0) => {
 		{ a: ["e", "b"] },
 		{ a: ["e"] },
 	]);
+
+	const ALL = [
+		{ a: ["a", "b"], __row: 0 },
+		{ a: ["b", "c"], __row: 1 },
+		{ a: ["a", "c", "d"], __row: 2 },
+		{ a: ["d", "c", "b"], __row: 3 },
+		{ a: ["e", "b"], __row: 4 },
+		{ a: ["e"], __row: 5 },
+	];
 
 	expect([...table.columns.a]).toEqual([
 		["a", "b"],
@@ -174,6 +167,14 @@ const checkTuple = (flags = 0) => {
 		{ a: ["d", "c", "b"], __row: 3 },
 		{ a: ["e", "b"], __row: 4 },
 	]);
+	expect([...table.query().or("a", "x")]).toEqual([]);
+	expect([...table.query().or("a", ["x", "y"])]).toEqual([]);
+	expect([...table.query().or("a", ["c", "x", "d"])]).toEqual([
+		{ a: ["b", "c"], __row: 1 },
+		{ a: ["a", "c", "d"], __row: 2 },
+		{ a: ["d", "c", "b"], __row: 3 },
+	]);
+	expect([...table.query().or("a", [])]).toEqual([]);
 
 	expect([...table.query().and("a", "a")]).toEqual([
 		{ a: ["a", "b"], __row: 0 },
@@ -182,6 +183,10 @@ const checkTuple = (flags = 0) => {
 	expect([...table.query().and("a", ["a", "b"])]).toEqual([
 		{ a: ["a", "b"], __row: 0 },
 	]);
+	expect([...table.query().and("a", "x")]).toEqual([]);
+	expect([...table.query().and("a", ["x", "y"])]).toEqual([]);
+	expect([...table.query().and("a", ["c", "x", "d"])]).toEqual([]);
+	expect([...table.query().and("a", [])]).toEqual([]);
 
 	expect([...table.query().nor("a", "a")]).toEqual([
 		{ a: ["b", "c"], __row: 1 },
@@ -192,6 +197,14 @@ const checkTuple = (flags = 0) => {
 	expect([...table.query().nor("a", ["a", "b"])]).toEqual([
 		{ a: ["e"], __row: 5 },
 	]);
+	expect([...table.query().nor("a", "x")]).toEqual(ALL);
+	expect([...table.query().nor("a", ["x", "y"])]).toEqual(ALL);
+	expect([...table.query().nor("a", ["c", "x", "d"])]).toEqual([
+		{ a: ["a", "b"], __row: 0 },
+		{ a: ["e", "b"], __row: 4 },
+		{ a: ["e"], __row: 5 },
+	]);
+	expect([...table.query().nor("a", [])]).toEqual(ALL);
 
 	expect([...table.query().nand("a", "a")]).toEqual([
 		{ a: ["b", "c"], __row: 1 },
@@ -206,6 +219,12 @@ const checkTuple = (flags = 0) => {
 		{ a: ["e", "b"], __row: 4 },
 		{ a: ["e"], __row: 5 },
 	]);
+	expect([...table.query().nand("a", "x")]).toEqual(ALL);
+	expect([...table.query().nand("a", ["x", "y"])]).toEqual(ALL);
+	expect([...table.query().nand("a", ["x", "c", "d"])]).toEqual(ALL);
+	expect([...table.query().nand("a", ["c", "x", "d"])]).toEqual(ALL);
+	expect([...table.query().nand("a", ["c", "d", "x"])]).toEqual(ALL);
+	expect([...table.query().nand("a", [])]).toEqual(ALL);
 
 	expect([...table.query().matchColumn("a", (x) => x.includes("e"))]).toEqual(
 		[
@@ -225,6 +244,9 @@ const checkTuple = (flags = 0) => {
 		{ a: ["e", "b"], __row: 4 },
 		{ a: ["e"], __row: 5 },
 	]);
+
+	expect([...table.query().nor("a", ["x"]).nand("a", ["y"])]).toEqual(ALL);
+	expect([...table.query().nand("a", ["y"]).nor("a", ["x"])]).toEqual(ALL);
 };
 
 const checkVec = (flags = 0) => {
@@ -236,6 +258,12 @@ const checkVec = (flags = 0) => {
 		},
 	});
 	table.addRows([{ a: [1, 2] }, { a: [10, 20] }, { a: [100, 200] }]);
+
+	const ALL = [
+		{ a: new Float32Array([1, 2]), __row: 0 },
+		{ a: new Float32Array([10, 20]), __row: 1 },
+		{ a: new Float32Array([100, 200]), __row: 2 },
+	];
 
 	expect([...table.columns.a]).toEqual([
 		new Float32Array([1, 2]),
@@ -276,6 +304,21 @@ const checkVec = (flags = 0) => {
 			[100, 200],
 		]),
 	]).toEqual([{ a: new Float32Array([1, 2]), __row: 0 }]);
+	expect([...table.query().nor("a", [-1, -2])]).toEqual(ALL);
+	expect([
+		...table.query().nor("a", [
+			[-1, -2],
+			[-10, -20],
+		]),
+	]).toEqual(ALL);
+	expect([
+		...table.query().nor("a", [
+			[1, 2],
+			[-1, -2],
+			[10, 20],
+		]),
+	]).toEqual([{ a: new Float32Array([100, 200]), __row: 2 }]);
+	expect([...table.query().nor("a", [])]).toEqual(ALL);
 
 	expect([...table.query().nand("a", [10, 20])]).toEqual([
 		{ a: new Float32Array([1, 2]), __row: 0 },
@@ -286,11 +329,22 @@ const checkVec = (flags = 0) => {
 			[10, 20],
 			[100, 200],
 		]),
-	]).toEqual([
-		{ a: new Float32Array([1, 2]), __row: 0 },
-		{ a: new Float32Array([10, 20]), __row: 1 },
-		{ a: new Float32Array([100, 200]), __row: 2 },
-	]);
+	]).toEqual(ALL);
+	expect([...table.query().nand("a", [-1, -2])]).toEqual(ALL);
+	expect([
+		...table.query().nand("a", [
+			[-1, -2],
+			[-10, -20],
+		]),
+	]).toEqual(ALL);
+	expect([
+		...table.query().nand("a", [
+			[1, 2],
+			[-1, -2],
+			[10, 20],
+		]),
+	]).toEqual(ALL);
+	expect([...table.query().nand("a", [])]).toEqual(ALL);
 
 	expect([
 		...table.query().matchColumn("a", (x) => equiv(x, [10, 20])),
