@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe, Predicate, Predicate2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
@@ -145,9 +146,11 @@ export class QueryCtx<T extends Row> {
 		this.bitmap = undefined;
 	}
 
-	makeMask(seed?: Uint32Array) {
+	makeMask(seed?: number | Uint32Array) {
 		const mask = new Uint32Array(this.size);
-		if (seed) mask.set(seed);
+		if (seed) {
+			isNumber(seed) ? mask.fill(seed) : mask.set(seed);
+		}
 		return mask;
 	}
 
@@ -207,11 +210,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 		const b = bitmap.index.get(key)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
-	if (mask) {
-		term.type === "nor" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
-		return true;
-	}
-	return false;
+	return __finalizeMask(ctx, mask, term.type === "nor");
 };
 
 const execOr: QueryTermOp = (ctx, term, column) => {
@@ -228,11 +227,7 @@ const execOr: QueryTermOp = (ctx, term, column) => {
 			}
 		}
 	}
-	if (mask) {
-		term.type === "nor" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
-		return true;
-	}
-	return false;
+	return __finalizeMask(ctx, mask, term.type === "nor");
 };
 
 const delegateOr: QueryTermOp = (ctx, term, column) =>
@@ -245,13 +240,18 @@ const delegateOr: QueryTermOp = (ctx, term, column) =>
 const execBitAnd: QueryTermOp = (ctx, term, column) => {
 	const bitmap = column!.bitmap!;
 	const key = column!.valueKey(term.value);
+	const isNeg = term.type === "nand";
 	let mask: Maybe<Uint32Array>;
 	if (isArray(key)) {
 		// pre-lookup bitmaps and bail out early
 		const colBitmaps: Uint32Array[] = [];
 		for (let k of key) {
 			const b = bitmap.index.get(k)?.buffer;
-			if (!b) return false;
+			if (!b) {
+				if (isNeg) {
+					continue;
+				} else return false;
+			}
 			colBitmaps.push(b);
 		}
 		// compute bitmap intersection
@@ -266,11 +266,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 		const b = bitmap.index.get(key)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
-	if (mask) {
-		term.type === "nand" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
-		return true;
-	}
-	return false;
+	return __finalizeMask(ctx, mask, isNeg);
 };
 
 const execAnd: QueryTermOp = (ctx, term, column) => {
@@ -279,6 +275,7 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 	const pred: Predicate2<any> = column!.isArray
 		? (row: any[], v) => row.includes(v)
 		: (row, v) => row === v;
+	const isNeg = term.type === "nand";
 	let mask: Maybe<Uint32Array>;
 	for (let k of isArray(key) ? key : [key]) {
 		let m: Maybe<Uint32Array>;
@@ -293,14 +290,12 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 				for (let i = 0; i < n; i++) mask[i] &= m[i];
 			} else mask = m;
 		} else {
-			return false;
+			if (isNeg) {
+				if (!m) mask = ctx.makeMask();
+			} else return false;
 		}
 	}
-	if (mask) {
-		term.type === "nand" ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
-		return true;
-	}
-	return false;
+	return __finalizeMask(ctx, mask, isNeg);
 };
 
 const delegateAnd: QueryTermOp = (ctx, term, column) =>
@@ -309,6 +304,21 @@ const delegateAnd: QueryTermOp = (ctx, term, column) =>
 		term,
 		column
 	);
+
+/** @internal */
+const __finalizeMask = (
+	ctx: QueryCtx<any>,
+	mask: Maybe<Uint32Array>,
+	isNeg: boolean
+) => {
+	if (mask) {
+		isNeg ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
+		return true;
+	} else if (isNeg) {
+		ctx.mergeMask(ctx.makeMask(-1));
+		return true;
+	} else return false;
+};
 
 /** @internal */
 const QUERY_OPS: Record<string, QueryTermOpSpec> = {

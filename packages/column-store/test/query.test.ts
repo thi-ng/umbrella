@@ -28,6 +28,28 @@ const checkSingle = (type: string, flags = 0) => {
 		{ a: 100, __row: 0 },
 		{ a: 103, __row: 3 },
 	]);
+	expect([...table.query().nor("a", 42)]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nor("a", [42, 43])]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nor("a", [100, 42, 101])]).toEqual([
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nor("a", [])]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
 
 	expect([...table.query().nand("a", 101)]).toEqual([
 		{ a: 100, __row: 0 },
@@ -35,6 +57,30 @@ const checkSingle = (type: string, flags = 0) => {
 		{ a: 103, __row: 3 },
 	]);
 	expect([...table.query().nand("a", [101, 102])]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nand("a", 42)]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nand("a", [42, 43])]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nand("a", [100, 42, 101])]).toEqual([
+		{ a: 100, __row: 0 },
+		{ a: 101, __row: 1 },
+		{ a: 102, __row: 2 },
+		{ a: 103, __row: 3 },
+	]);
+	expect([...table.query().nand("a", [])]).toEqual([
 		{ a: 100, __row: 0 },
 		{ a: 101, __row: 1 },
 		{ a: 102, __row: 2 },
