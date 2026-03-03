@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-02T20:58:01Z
+- **Last updated**: 2026-03-03T12:18:47Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.10.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.10.1) (2026-03-03)
+
+#### 🩹 Bug fixes
+
+- fix nand/nor query ops for unknown values ([3e60bfa](https://github.com/thi-ng/umbrella/commit/3e60bfa))
+  - add tests
+
+#### ♻️ Refactoring
+
+- update AND query ops, add more tests ([d0e20da](https://github.com/thi-ng/umbrella/commit/d0e20da))
 
 ## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.10.0) (2026-03-02)
 
