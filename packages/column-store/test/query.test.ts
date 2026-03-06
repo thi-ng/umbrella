@@ -455,4 +455,64 @@ describe("query", () => {
 		]);
 		expect([...table.query().rowRange(5)]).toEqual([]);
 	});
+
+	describe("sortBy", () => {
+		test("single", () => {
+			const table = new Table({ a: { type: "num" }, b: { type: "str" } });
+			table.addRows([
+				{ a: 23, b: "xyz" },
+				{ a: 42, b: "abc" },
+				{ a: 66, b: "bbb" },
+			]);
+			expect([...table.query().nor("a", -1).sortBy("a")]).toEqual([
+				{ a: 23, b: "xyz", __row: 0 },
+				{ a: 42, b: "abc", __row: 1 },
+				{ a: 66, b: "bbb", __row: 2 },
+			]);
+			expect([
+				...table.query().nor("a", -1).sortBy(["a", false]),
+			]).toEqual([
+				{ a: 66, b: "bbb", __row: 2 },
+				{ a: 42, b: "abc", __row: 1 },
+				{ a: 23, b: "xyz", __row: 0 },
+			]);
+			expect([...table.query().nor("a", -1).sortBy("b")]).toEqual([
+				{ a: 42, b: "abc", __row: 1 },
+				{ a: 66, b: "bbb", __row: 2 },
+				{ a: 23, b: "xyz", __row: 0 },
+			]);
+			expect([
+				...table.query().nor("a", -1).sortBy(["b", false]),
+			]).toEqual([
+				{ a: 23, b: "xyz", __row: 0 },
+				{ a: 66, b: "bbb", __row: 2 },
+				{ a: 42, b: "abc", __row: 1 },
+			]);
+		});
+
+		test("nested", () => {
+			const table = new Table({ a: { type: "num" }, b: { type: "str" } });
+			table.addRows([
+				{ a: 23, b: "xyz" },
+				{ a: 42, b: "def" },
+				{ a: 42, b: "abc" },
+				{ a: 88, b: "abc" },
+				{ a: 66, b: "bbb" },
+			]);
+			expect([...table.query().nor("a", -1).sortBy("a", "b")]).toEqual([
+				{ a: 23, b: "xyz", __row: 0 },
+				{ a: 42, b: "abc", __row: 2 },
+				{ a: 42, b: "def", __row: 1 },
+				{ a: 66, b: "bbb", __row: 4 },
+				{ a: 88, b: "abc", __row: 3 },
+			]);
+			expect([...table.query().nor("a", -1).sortBy("b", "a")]).toEqual([
+				{ a: 42, b: "abc", __row: 2 },
+				{ a: 88, b: "abc", __row: 3 },
+				{ a: 66, b: "bbb", __row: 4 },
+				{ a: 42, b: "def", __row: 1 },
+				{ a: 23, b: "xyz", __row: 0 },
+			]);
+		});
+	});
 });

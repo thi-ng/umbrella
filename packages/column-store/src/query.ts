@@ -1,7 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Maybe, Predicate, Predicate2 } from "@thi.ng/api";
+import type { Comparator, Maybe, Predicate, Predicate2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { compare } from "@thi.ng/compare/compare";
+import { composeComparators } from "@thi.ng/compare/compose";
+import { compareByKey } from "@thi.ng/compare/keys";
+import { reverse } from "@thi.ng/compare/reverse";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
@@ -11,6 +17,7 @@ import type {
 	QueryTermOp,
 	QueryTermOpSpec,
 	Row,
+	RowWithMeta,
 } from "./api.js";
 import { Bitfield } from "./bitmap.js";
 import { __columnError } from "./internal/checks.js";
@@ -24,6 +31,10 @@ import type { Table } from "./table.js";
 export class Query<T extends Row> {
 	terms: QueryTerm<T>[] = [];
 
+	protected _cmp?: Comparator<any>;
+	protected _limit = Infinity;
+	protected _offset = 0;
+
 	constructor(public readonly table: Table<T>, terms: QueryTerm<T>[] = []) {
 		for (let term of terms) this.addTerm(term);
 	}
@@ -31,6 +42,48 @@ export class Query<T extends Row> {
 	addTerm(term: QueryTerm<T>) {
 		if (!QUERY_OPS[term.type]) unsupportedOp(`query type: ${term.type}`);
 		this.terms.push(term);
+		return this;
+	}
+
+	limit(limit: number, offset = 0) {
+		this._limit = limit;
+		this._offset = offset;
+	}
+
+	/**
+	 * Constructs a comparator for query results based on given sort criteria,
+	 * which are applied in given order. Each criteria can be on of:
+	 *
+	 * - comparator (applied to full rows)
+	 * - columnID
+	 * - tuple of `[columnID, boolean]` (if boolean is true, sorts in ascending order)
+	 * - tuple of `[columnID, comparator]`
+	 *
+	 * @param order
+	 */
+	sortBy(
+		...order: (
+			| ColumnID<T>
+			| Comparator<T>
+			| [ColumnID<T>, boolean | Comparator<any>]
+		)[]
+	) {
+		const fns = order.map(
+			(x): Comparator<any> =>
+				isFunction(x)
+					? x
+					: isString(x)
+					? compareByKey(x)
+					: compareByKey<any, any>(
+							x[0],
+							isFunction(x[1])
+								? x[1]
+								: x[1]
+								? compare
+								: reverse(compare)
+					  )
+		);
+		this._cmp = composeComparators(...(<[Comparator<any>]>fns));
 		return this;
 	}
 
@@ -98,7 +151,7 @@ export class Query<T extends Row> {
 	}
 
 	*[Symbol.iterator]() {
-		const { table } = this;
+		const { table, _limit, _offset } = this;
 		const ctx = new QueryCtx(this);
 		for (let term of this.terms) {
 			const op = QUERY_OPS[term.type];
@@ -113,8 +166,31 @@ export class Query<T extends Row> {
 			}
 			if (!op.fn(ctx, term, column)) return;
 		}
-		if (ctx.bitmap) {
-			for (let i of ctx) yield table.getRow(i, false, true)!;
+		if (!ctx.bitmap) return;
+		if (this._cmp) {
+			const rows: RowWithMeta<T>[] = [];
+			for (let i of ctx) {
+				rows.push(table.getRow(i, false, true)!);
+			}
+			rows.sort(this._cmp);
+			for (
+				let i = this._offset,
+					n = Math.min(rows.length, i + this._limit);
+				i < n;
+				i++
+			) {
+				yield rows[i];
+			}
+			return;
+		}
+		// iterate in normal row order
+		let j = 0;
+		for (let i of ctx) {
+			if (j >= _offset) {
+				if (j >= _limit) return;
+				yield table.getRow(i, false, true)!;
+			}
+			j++;
 		}
 	}
 }

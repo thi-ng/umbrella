@@ -4464,6 +4464,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.14"
     "@thi.ng/bidir-index": "npm:^1.5.0"
     "@thi.ng/checks": "npm:^3.8.4"
+    "@thi.ng/compare": "npm:^2.4.40"
     "@thi.ng/errors": "npm:^2.6.3"
     "@thi.ng/rle-pack": "npm:^3.2.1"
     esbuild: "npm:^0.27.2"
