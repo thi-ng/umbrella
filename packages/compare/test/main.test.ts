@@ -6,6 +6,7 @@ import {
 	compareByKeys3,
 	compareByKeys4,
 	compareLex,
+	composeComparators,
 } from "../src/index.js";
 
 test("compareByKey", () => {
@@ -104,4 +105,15 @@ test("compareLex", () => {
 	expect(
 		["2d", "16-bit", "base-36", "8bit", "1d", "base8"].sort(compareLex)
 	).toEqual(["1d", "2d", "8bit", "16-bit", "base8", "base-36"]);
+});
+
+test("comp", () => {
+	const cmp = composeComparators(
+		compareByKey<any, any>("a"),
+		compareByKey<any, any>("b")
+	);
+	expect(cmp({ a: 1, b: 1 }, { a: 1, b: 2 })).toBe(-1);
+	expect(cmp({ a: 1, b: 1 }, { a: 1, b: 1 })).toBe(0);
+	expect(cmp({ a: 1, b: 2 }, { a: 1, b: 1 })).toBe(1);
+	expect(cmp({ a: 2, b: 1 }, { a: 1, b: 1 })).toBe(1);
 });
