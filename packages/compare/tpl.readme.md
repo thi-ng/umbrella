@@ -14,6 +14,7 @@ interface.
 
 ### Additional comparators
 
+- [`composeComparators()`](https://docs.thi.ng/umbrella/compare/functions/composeComparators.html)
 - [`compareByKey()`](https://docs.thi.ng/umbrella/compare/functions/compareByKey.html)
 - [`compareByKeys2()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys2.html)
 - [`compareByKeys3()`](https://docs.thi.ng/umbrella/compare/functions/compareByKeys3.html)
