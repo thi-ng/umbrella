@@ -57,7 +57,9 @@ export const processImage = async (
 ) => {
 	let img =
 		isString(src) || isArrayBufferView(src)
-			? sharp(<string | BufferLike>src)
+			? sharp(<string | BufferLike>src, {
+					autoOrient: opts.autoOrient !== false,
+			  })
 			: isIntBufferLike(src)
 			? sharp(new Uint8Array(src.data.buffer), {
 					raw: {

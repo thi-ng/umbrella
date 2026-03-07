@@ -517,6 +517,13 @@ export interface ImgProcOpts {
 	 */
 	outDir: string;
 	/**
+	 * Only used when loading images from file or buffer. Auto-orients the image
+	 * based on the EXIF `Orientation` tag, if present.
+	 *
+	 * @defaultValue true
+	 */
+	autoOrient: boolean;
+	/**
 	 * By default all input metadata will be lost in the output(s). If this
 	 * option is enabled, keeps existing EXIF data and attaches it to output
 	 * (also where the output format actually supports it).
