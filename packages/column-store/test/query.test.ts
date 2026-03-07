@@ -514,5 +514,40 @@ describe("query", () => {
 				{ a: 23, b: "xyz", __row: 0 },
 			]);
 		});
+
+		test("tuple", () => {
+			const table = new Table<{ a: string[] }>({
+				a: {
+					type: "str",
+					cardinality: ZERO_PLUS,
+				},
+			});
+			table.addRows([
+				{ a: ["a", "b"] },
+				{ a: ["b", "c"] },
+				{ a: ["a", "c", "d"] },
+				{ a: ["d", "c", "b"] },
+				{ a: ["e", "b"] },
+				{ a: ["e"] },
+			]);
+			expect([...table.query().nor("a", "x").sortBy("a")]).toEqual([
+				{ a: ["a", "b"], __row: 0 },
+				{ a: ["a", "c", "d"], __row: 2 },
+				{ a: ["b", "c"], __row: 1 },
+				{ a: ["d", "c", "b"], __row: 3 },
+				{ a: ["e"], __row: 5 },
+				{ a: ["e", "b"], __row: 4 },
+			]);
+			expect([
+				...table.query().nor("a", "x").sortBy(["a", false]),
+			]).toEqual([
+				{ a: ["e", "b"], __row: 4 },
+				{ a: ["e"], __row: 5 },
+				{ a: ["d", "c", "b"], __row: 3 },
+				{ a: ["b", "c"], __row: 1 },
+				{ a: ["a", "c", "d"], __row: 2 },
+				{ a: ["a", "b"], __row: 0 },
+			]);
+		});
 	});
 });
