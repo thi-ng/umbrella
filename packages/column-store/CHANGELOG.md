@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T09:02:08Z
+- **Last updated**: 2026-03-07T09:11:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.11.0) (2026-03-07)
+### [0.11.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.11.1) (2026-03-07)
 
 #### 🚀 Features
 

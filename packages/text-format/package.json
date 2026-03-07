@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-format",
-	"version": "2.2.54",
+	"version": "2.2.55",
 	"description": "Customizable color text formatting with presets for ANSI & HTML",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.14",
-		"@thi.ng/hex": "^2.4.7",
-		"@thi.ng/memoize": "^4.0.38"
+		"@thi.ng/api": "^8.12.15",
+		"@thi.ng/hex": "^2.4.8",
+		"@thi.ng/memoize": "^4.0.39"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

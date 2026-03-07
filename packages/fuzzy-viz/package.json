@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fuzzy-viz",
-	"version": "2.1.237",
+	"version": "2.1.238",
 	"description": "Visualization, instrumentation & introspection utils for @thi.ng/fuzzy",
 	"type": "module",
 	"module": "./index.js",
@@ -40,13 +40,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.14",
-		"@thi.ng/fuzzy": "^2.1.130",
-		"@thi.ng/hiccup": "^5.3.37",
-		"@thi.ng/hiccup-svg": "^5.6.1",
-		"@thi.ng/math": "^5.15.3",
-		"@thi.ng/strings": "^3.9.35",
-		"@thi.ng/text-canvas": "^3.0.107"
+		"@thi.ng/api": "^8.12.15",
+		"@thi.ng/fuzzy": "^2.1.131",
+		"@thi.ng/hiccup": "^5.3.38",
+		"@thi.ng/hiccup-svg": "^5.6.2",
+		"@thi.ng/math": "^5.15.4",
+		"@thi.ng/strings": "^3.9.36",
+		"@thi.ng/text-canvas": "^3.0.108"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",
