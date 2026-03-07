@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-glsl",
-	"version": "1.0.56",
+	"version": "1.0.57",
 	"description": "Customizable GLSL codegen for @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/api": "^8.12.14",
 		"@thi.ng/checks": "^3.8.4",
 		"@thi.ng/errors": "^2.6.3",
-		"@thi.ng/shader-ast": "^1.1.37"
+		"@thi.ng/shader-ast": "^1.1.38"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

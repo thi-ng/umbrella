@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lsys",
-	"version": "2.3.46",
+	"version": "2.3.47",
 	"description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
 	"type": "module",
 	"module": "./index.js",
@@ -46,7 +46,7 @@
 		"@thi.ng/errors": "^2.6.3",
 		"@thi.ng/math": "^5.15.3",
 		"@thi.ng/random": "^4.1.39",
-		"@thi.ng/transducers": "^9.6.23",
+		"@thi.ng/transducers": "^9.6.24",
 		"@thi.ng/vectors": "^8.6.20"
 	},
 	"devDependencies": {

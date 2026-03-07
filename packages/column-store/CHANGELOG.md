@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-03T12:18:47Z
+- **Last updated**: 2026-03-07T09:02:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.11.0) (2026-03-07)
+
+#### 🚀 Features
+
+- add `Query.limit()` and `Query.sortBy()` support ([75e3842](https://github.com/thi-ng/umbrella/commit/75e3842))
+  - update deps (add [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/main/packages/compare))
+  - add tests
+- add getRows()/getPartialRows(), add tests ([72b4511](https://github.com/thi-ng/umbrella/commit/72b4511))
 
 ### [0.10.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.10.1) (2026-03-03)
 
