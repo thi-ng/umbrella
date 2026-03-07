@@ -48,6 +48,7 @@ export class Query<T extends Row> {
 	limit(limit: number, offset = 0) {
 		this._limit = limit;
 		this._offset = offset;
+		return this;
 	}
 
 	/**
@@ -174,8 +175,7 @@ export class Query<T extends Row> {
 			}
 			rows.sort(this._cmp);
 			for (
-				let i = this._offset,
-					n = Math.min(rows.length, i + this._limit);
+				let i = this._offset, n = Math.min(rows.length, i + _limit);
 				i < n;
 				i++
 			) {
@@ -185,9 +185,10 @@ export class Query<T extends Row> {
 		}
 		// iterate in normal row order
 		let j = 0;
+		const n = _offset + _limit;
 		for (let i of ctx) {
 			if (j >= _offset) {
-				if (j >= _limit) return;
+				if (j >= n) return;
 				yield table.getRow(i, false, true)!;
 			}
 			j++;

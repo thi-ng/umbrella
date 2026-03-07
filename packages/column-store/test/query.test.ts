@@ -456,6 +456,28 @@ describe("query", () => {
 		expect([...table.query().rowRange(5)]).toEqual([]);
 	});
 
+	test("limit", () => {
+		const table = new Table({ a: { type: "num" } });
+		table.addRows([
+			{ a: 100 },
+			{ a: 101 },
+			{ a: 102 },
+			{ a: 103 },
+			{ a: 104 },
+		]);
+		expect([...table.query().nor("a", -1).limit(2)]).toEqual([
+			{ a: 100, __row: 0 },
+			{ a: 101, __row: 1 },
+		]);
+		expect([...table.query().nor("a", -1).limit(2, 2)]).toEqual([
+			{ a: 102, __row: 2 },
+			{ a: 103, __row: 3 },
+		]);
+		expect([...table.query().nor("a", -1).limit(10, 4)]).toEqual([
+			{ a: 104, __row: 4 },
+		]);
+	});
+
 	describe("sortBy", () => {
 		test("single", () => {
 			const table = new Table({ a: { type: "num" }, b: { type: "str" } });
