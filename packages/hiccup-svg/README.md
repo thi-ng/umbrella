@@ -180,7 +180,7 @@ For Node.js REPL:
 const svg = await import("@thi.ng/hiccup-svg");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.53 KB
 
 ## Dependencies
 

@@ -39,6 +39,7 @@
     - [Predicate-based matchers](#predicate-based-matchers)
     - [Row ranges](#row-ranges)
     - [Value ranges](#value-ranges)
+  - [Result order and pagination](#result-order-and-pagination)
   - [Custom operators](#custom-operators)
   - [Result aggregation](#result-aggregation)
   - [Query ranges](#query-ranges)
@@ -450,6 +451,15 @@ operator selects rows based on a given column's `start` .. `end` vaulue range
 query.valueRange("id", 100, 109);
 ```
 
+### Result order and pagination
+
+- [`sortBy()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#sortby)
+  allows query results to be ordered (ascending or descending) via an arbitrary
+  number of sort columns or criteria, applied in the given order.
+- [`limit()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#limit)
+  provides basic pagination of query results by specifying a max. number of
+  results and start offset
+
 ### Custom operators
 
 Custom query operators can be registered via
@@ -495,13 +505,14 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.78 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.28 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/bidir-index](https://github.com/thi-ng/umbrella/tree/develop/packages/bidir-index)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/rle-pack](https://github.com/thi-ng/umbrella/tree/develop/packages/rle-pack)
 

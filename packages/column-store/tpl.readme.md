@@ -402,6 +402,15 @@ operator selects rows based on a given column's `start` .. `end` vaulue range
 query.valueRange("id", 100, 109);
 ```
 
+### Result order and pagination
+
+- [`sortBy()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#sortby)
+  allows query results to be ordered (ascending or descending) via an arbitrary
+  number of sort columns or criteria, applied in the given order.
+- [`limit()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#limit)
+  provides basic pagination of query results by specifying a max. number of
+  results and start offset
+
 ### Custom operators
 
 Custom query operators can be registered via
