@@ -24,7 +24,7 @@ import { TupleColumn } from "./columns/tuple.js";
 import { TypedArrayColumn } from "./columns/typedarray.js";
 import { VectorColumn } from "./columns/vector.js";
 import { __columnError } from "./internal/checks.js";
-import { __clamp } from "./internal/indexof.js";
+import { __clampRange } from "./internal/indexof.js";
 import { Query } from "./query.js";
 
 /**
@@ -192,10 +192,54 @@ export class Table<T extends Row>
 		return row;
 	}
 
+	getRows(
+		start?: number,
+		end?: number,
+		includeID?: false
+	): IterableIterator<T>;
+	getRows(
+		start?: number,
+		end?: number,
+		includeID?: true
+	): IterableIterator<RowWithMeta<T>>;
+	*getRows(start = 0, end?: number, includeID = false) {
+		[start, end] = __clampRange(this.length, start, end);
+		for (let i = start; i < end; i++)
+			yield <any>this.getRow(i, false, <any>includeID);
+	}
+
+	getPartialRows<K extends ColumnID<T>>(
+		columns: K[],
+		start?: number,
+		end?: number,
+		includeID?: false
+	): IterableIterator<Pick<T, K>>;
+	getPartialRows<K extends ColumnID<T>>(
+		columns: K[],
+		start?: number,
+		end?: number,
+		includeID?: true
+	): IterableIterator<RowWithMeta<Pick<T, K>>>;
+	*getPartialRows<K extends ColumnID<T>>(
+		columns: K[],
+		start = 0,
+		end?: number,
+		includeID = false
+	) {
+		[start, end] = __clampRange(this.length, start, end);
+		for (let i = start; i < end; i++)
+			yield <any>this.getPartialRow(i, columns, false, <any>includeID);
+	}
+
+	/**
+	 * Creates a new table with same schema and options, but only containing the
+	 * subset of rows in the `[start,end)` interval.
+	 *
+	 * @param start
+	 * @param end
+	 */
 	slice(start = 0, end?: number) {
-		const max = this.length;
-		start = __clamp(start, 0, max);
-		end = __clamp(end ?? max, start, max);
+		[start, end] = __clampRange(this.length, start, end);
 		const copy = this.empty();
 		for (let i = start; i < end; i++) copy.addRow(this.getRow(i, true)!);
 		return copy;
