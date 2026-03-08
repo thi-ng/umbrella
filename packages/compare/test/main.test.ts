@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { expect, test } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import {
 	compareByKey,
 	compareByKeys2,
@@ -107,13 +107,65 @@ test("compareLex", () => {
 	).toEqual(["1d", "2d", "8bit", "16-bit", "base8", "base-36"]);
 });
 
-test("comp", () => {
-	const cmp = composeComparators(
-		compareByKey<any, any>("a"),
-		compareByKey<any, any>("b")
-	);
-	expect(cmp({ a: 1, b: 1 }, { a: 1, b: 2 })).toBe(-1);
-	expect(cmp({ a: 1, b: 1 }, { a: 1, b: 1 })).toBe(0);
-	expect(cmp({ a: 1, b: 2 }, { a: 1, b: 1 })).toBe(1);
-	expect(cmp({ a: 2, b: 1 }, { a: 1, b: 1 })).toBe(1);
+describe("composeComparators", () => {
+	test("one", () => {
+		const cmp = composeComparators(compareByKey<any, any>("a"));
+		expect(cmp({ a: 1 }, { a: 1 })).toBe(0);
+		expect(cmp({ a: 1 }, { a: 2 })).toBe(-1);
+		expect(cmp({ a: 2 }, { a: 1 })).toBe(1);
+	});
+
+	test("two", () => {
+		const cmp = composeComparators(
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("b")
+		);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 1 })).toBe(0);
+		expect(cmp({ a: 1, b: 1 }, { a: 2, b: 1 })).toBe(-1);
+		expect(cmp({ a: 2, b: 1 }, { a: 1, b: 1 })).toBe(1);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 2 })).toBe(-1);
+		expect(cmp({ a: 1, b: 2 }, { a: 1, b: 1 })).toBe(1);
+	});
+
+	test("three", () => {
+		const cmp = composeComparators(
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("b")
+		);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 1 })).toBe(0);
+		expect(cmp({ a: 1, b: 1 }, { a: 2, b: 1 })).toBe(-1);
+		expect(cmp({ a: 2, b: 1 }, { a: 1, b: 1 })).toBe(1);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 2 })).toBe(-1);
+		expect(cmp({ a: 1, b: 2 }, { a: 1, b: 1 })).toBe(1);
+	});
+
+	test("four", () => {
+		const cmp = composeComparators(
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("b")
+		);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 1 })).toBe(0);
+		expect(cmp({ a: 1, b: 1 }, { a: 2, b: 1 })).toBe(-1);
+		expect(cmp({ a: 2, b: 1 }, { a: 1, b: 1 })).toBe(1);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 2 })).toBe(-1);
+		expect(cmp({ a: 1, b: 2 }, { a: 1, b: 1 })).toBe(1);
+	});
+
+	test("any", () => {
+		const cmp = composeComparators(
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("a"),
+			compareByKey<any, any>("b")
+		);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 1 })).toBe(0);
+		expect(cmp({ a: 1, b: 1 }, { a: 2, b: 1 })).toBe(-1);
+		expect(cmp({ a: 2, b: 1 }, { a: 1, b: 1 })).toBe(1);
+		expect(cmp({ a: 1, b: 1 }, { a: 1, b: 2 })).toBe(-1);
+		expect(cmp({ a: 1, b: 2 }, { a: 1, b: 1 })).toBe(1);
+	});
 });
