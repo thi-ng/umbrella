@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:01Z
+- **Last updated**: 2026-03-08T10:20:53Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.5.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.5.3) (2026-03-08)
+
+#### ⏱ Performance improvements
+
+- add fast paths for `composeComparators()`, add tests ([1e01866](https://github.com/thi-ng/umbrella/commit/1e01866))
+- simplify `compareByKey` impls ([eb5b92d](https://github.com/thi-ng/umbrella/commit/eb5b92d))
 
 ## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.5.0) (2026-03-07)
 

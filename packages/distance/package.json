@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/distance",
-	"version": "3.0.33",
+	"version": "3.0.34",
 	"description": "N-dimensional distance metrics & K-nearest neighborhoods for point queries",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/api": "^8.12.16",
 		"@thi.ng/checks": "^3.8.6",
 		"@thi.ng/errors": "^2.6.5",
-		"@thi.ng/heaps": "^2.1.123",
+		"@thi.ng/heaps": "^2.1.124",
 		"@thi.ng/math": "^5.15.5",
 		"@thi.ng/vectors": "^8.6.22"
 	},

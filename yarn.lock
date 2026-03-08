@@ -4063,17 +4063,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@thi.ng/adjacency@npm:^3.0.72, @thi.ng/adjacency@workspace:^, @thi.ng/adjacency@workspace:packages/adjacency":
+"@thi.ng/adjacency@npm:^3.0.73, @thi.ng/adjacency@workspace:^, @thi.ng/adjacency@workspace:packages/adjacency":
   version: 0.0.0-use.local
   resolution: "@thi.ng/adjacency@workspace:packages/adjacency"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/bitfield": "npm:^2.4.29"
-    "@thi.ng/dcons": "npm:^3.2.185"
+    "@thi.ng/dcons": "npm:^3.2.186"
     "@thi.ng/disjoint-set": "npm:^1.1.43"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/sparse": "npm:^1.1.32"
+    "@thi.ng/sparse": "npm:^1.1.33"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -4121,13 +4121,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/arrays@npm:^2.14.10, @thi.ng/arrays@workspace:^, @thi.ng/arrays@workspace:packages/arrays":
+"@thi.ng/arrays@npm:^2.14.11, @thi.ng/arrays@workspace:^, @thi.ng/arrays@workspace:packages/arrays":
   version: 0.0.0-use.local
   resolution: "@thi.ng/arrays@workspace:packages/arrays"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/random": "npm:^4.1.41"
@@ -4137,18 +4137,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/associative@npm:^7.1.29, @thi.ng/associative@workspace:^, @thi.ng/associative@workspace:packages/associative":
+"@thi.ng/associative@npm:^7.1.30, @thi.ng/associative@workspace:^, @thi.ng/associative@workspace:packages/associative":
   version: 0.0.0-use.local
   resolution: "@thi.ng/associative@workspace:packages/associative"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/dcons": "npm:^3.2.185"
+    "@thi.ng/dcons": "npm:^3.2.186"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/object-utils": "npm:^1.3.8"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4169,7 +4169,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/axidraw@npm:^1.1.170, @thi.ng/axidraw@workspace:packages/axidraw":
+"@thi.ng/axidraw@npm:^1.1.171, @thi.ng/axidraw@workspace:packages/axidraw":
   version: 0.0.0-use.local
   resolution: "@thi.ng/axidraw@workspace:packages/axidraw"
   dependencies:
@@ -4180,7 +4180,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/units": "npm:^1.1.6"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
@@ -4219,12 +4219,12 @@ __metadata:
   resolution: "@thi.ng/bencode@workspace:packages/bencode"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/transducers-binary": "npm:^2.1.198"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/transducers-binary": "npm:^2.1.199"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4288,7 +4288,7 @@ __metadata:
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/bitfield": "npm:^2.4.29"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/file-io": "npm:^2.2.26"
     "@thi.ng/logger": "npm:^3.2.15"
@@ -4326,7 +4326,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/distance": "npm:^3.0.33"
+    "@thi.ng/distance": "npm:^3.0.34"
     "@thi.ng/geom-closest-point": "npm:^2.1.206"
     "@thi.ng/geom-resample": "npm:^3.0.78"
     "@thi.ng/math": "npm:^5.15.5"
@@ -4350,12 +4350,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/cache@npm:^2.3.66, @thi.ng/cache@workspace:^, @thi.ng/cache@workspace:packages/cache":
+"@thi.ng/cache@npm:^2.3.67, @thi.ng/cache@workspace:^, @thi.ng/cache@workspace:packages/cache":
   version: 0.0.0-use.local
   resolution: "@thi.ng/cache@workspace:packages/cache"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/dcons": "npm:^3.2.185"
+    "@thi.ng/dcons": "npm:^3.2.186"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4378,11 +4378,11 @@ __metadata:
   resolution: "@thi.ng/cellular@workspace:packages/cellular"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4407,7 +4407,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/base-n": "npm:^2.7.62"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/color": "npm:^5.8.13"
+    "@thi.ng/color": "npm:^5.8.14"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/hex": "npm:^2.4.9"
     esbuild: "npm:^0.27.2"
@@ -4416,22 +4416,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/color@npm:^5.8.13, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
+"@thi.ng/color@npm:^5.8.14, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
   version: 0.0.0-use.local
   resolution: "@thi.ng/color@workspace:packages/color"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/compose": "npm:^3.0.53"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/random": "npm:^4.1.41"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -4464,7 +4464,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/bidir-index": "npm:^1.5.2"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/rle-pack": "npm:^3.2.3"
     esbuild: "npm:^0.27.2"
@@ -4473,7 +4473,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/compare@npm:^2.5.2, @thi.ng/compare@workspace:^, @thi.ng/compare@workspace:packages/compare":
+"@thi.ng/compare@npm:^2.5.3, @thi.ng/compare@workspace:^, @thi.ng/compare@workspace:packages/compare":
   version: 0.0.0-use.local
   resolution: "@thi.ng/compare@workspace:packages/compare"
   dependencies:
@@ -4510,12 +4510,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/csp@npm:^3.3.16, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
+"@thi.ng/csp@npm:^3.3.17, @thi.ng/csp@workspace:^, @thi.ng/csp@workspace:packages/csp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/csp@workspace:packages/csp"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/buffers": "npm:^1.0.35"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
@@ -4533,7 +4533,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4553,17 +4553,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dcons@npm:^3.2.185, @thi.ng/dcons@workspace:packages/dcons":
+"@thi.ng/dcons@npm:^3.2.186, @thi.ng/dcons@workspace:packages/dcons":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dcons@workspace:packages/dcons"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4588,7 +4588,7 @@ __metadata:
   resolution: "@thi.ng/dgraph-dot@workspace:packages/dgraph-dot"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/dgraph": "npm:^2.1.195"
+    "@thi.ng/dgraph": "npm:^2.1.196"
     "@thi.ng/dot": "npm:^2.1.129"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -4596,15 +4596,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dgraph@npm:^2.1.195, @thi.ng/dgraph@workspace:^, @thi.ng/dgraph@workspace:packages/dgraph":
+"@thi.ng/dgraph@npm:^2.1.196, @thi.ng/dgraph@workspace:^, @thi.ng/dgraph@workspace:packages/dgraph":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dgraph@workspace:packages/dgraph"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/associative": "npm:^7.1.29"
+    "@thi.ng/associative": "npm:^7.1.30"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4644,14 +4644,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/distance@npm:^3.0.33, @thi.ng/distance@workspace:^, @thi.ng/distance@workspace:packages/distance":
+"@thi.ng/distance@npm:^3.0.34, @thi.ng/distance@workspace:^, @thi.ng/distance@workspace:packages/distance":
   version: 0.0.0-use.local
   resolution: "@thi.ng/distance@workspace:packages/distance"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/heaps": "npm:^2.1.123"
+    "@thi.ng/heaps": "npm:^2.1.124"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
@@ -4702,8 +4702,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/transducers-binary": "npm:^2.1.198"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/transducers-binary": "npm:^2.1.199"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4719,7 +4719,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4754,16 +4754,16 @@ __metadata:
   resolution: "@thi.ng/ecs@workspace:packages/ecs"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/associative": "npm:^7.1.29"
+    "@thi.ng/associative": "npm:^7.1.30"
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/dcons": "npm:^3.2.185"
+    "@thi.ng/dcons": "npm:^3.2.186"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/idgen": "npm:^2.2.90"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/malloc": "npm:^6.1.138"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4782,7 +4782,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/prefixes": "npm:^2.3.67"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers-binary": "npm:^2.1.198"
+    "@thi.ng/transducers-binary": "npm:^2.1.199"
     "@thi.ng/trie": "npm:^2.0.15"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
@@ -4838,7 +4838,7 @@ __metadata:
   resolution: "@thi.ng/fibers@workspace:packages/fibers"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/buffers": "npm:^1.0.35"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
@@ -4875,10 +4875,10 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/fuzzy": "npm:^2.1.132"
     "@thi.ng/hiccup": "npm:^5.3.39"
-    "@thi.ng/hiccup-svg": "npm:^5.6.3"
+    "@thi.ng/hiccup-svg": "npm:^5.6.4"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/text-canvas": "npm:^3.0.109"
+    "@thi.ng/text-canvas": "npm:^3.0.110"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -4897,20 +4897,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-accel@npm:^4.1.79, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
+"@thi.ng/geom-accel@npm:^4.1.80, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-accel@workspace:packages/geom-accel"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/distance": "npm:^3.0.33"
+    "@thi.ng/distance": "npm:^3.0.34"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/geom-isec": "npm:^4.0.78"
-    "@thi.ng/heaps": "npm:^2.1.123"
+    "@thi.ng/heaps": "npm:^2.1.124"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -4937,15 +4937,15 @@ __metadata:
   resolution: "@thi.ng/geom-axidraw@workspace:packages/geom-axidraw"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
-    "@thi.ng/axidraw": "npm:^1.1.170"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/arrays": "npm:^2.14.11"
+    "@thi.ng/axidraw": "npm:^1.1.171"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/defmulti": "npm:^3.0.92"
-    "@thi.ng/geom": "npm:^8.3.18"
-    "@thi.ng/geom-accel": "npm:^4.1.79"
+    "@thi.ng/geom": "npm:^8.3.19"
+    "@thi.ng/geom-accel": "npm:^4.1.80"
     "@thi.ng/geom-clip-line": "npm:^2.3.168"
     "@thi.ng/geom-isec": "npm:^4.0.78"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -4998,13 +4998,13 @@ __metadata:
   resolution: "@thi.ng/geom-fuzz@workspace:packages/geom-fuzz"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/color": "npm:^5.8.13"
-    "@thi.ng/geom": "npm:^8.3.18"
+    "@thi.ng/color": "npm:^5.8.14"
+    "@thi.ng/geom": "npm:^8.3.19"
     "@thi.ng/geom-clip-line": "npm:^2.3.168"
     "@thi.ng/geom-resample": "npm:^3.0.78"
-    "@thi.ng/grid-iterators": "npm:^4.0.152"
+    "@thi.ng/grid-iterators": "npm:^4.0.153"
     "@thi.ng/object-utils": "npm:^1.3.8"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5051,12 +5051,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-isoline@npm:^2.1.213, @thi.ng/geom-isoline@workspace:^, @thi.ng/geom-isoline@workspace:packages/geom-isoline":
+"@thi.ng/geom-isoline@npm:^2.1.214, @thi.ng/geom-isoline@workspace:^, @thi.ng/geom-isoline@workspace:packages/geom-isoline":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-isoline@workspace:packages/geom-isoline"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5102,12 +5102,12 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/geom": "npm:^8.3.18"
-    "@thi.ng/geom-isoline": "npm:^2.1.213"
+    "@thi.ng/geom": "npm:^8.3.19"
+    "@thi.ng/geom-isoline": "npm:^2.1.214"
     "@thi.ng/geom-poly-utils": "npm:^3.1.15"
     "@thi.ng/geom-resample": "npm:^3.0.78"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5131,11 +5131,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-subdiv-curve@npm:^3.0.86, @thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve":
+"@thi.ng/geom-subdiv-curve@npm:^3.0.87, @thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve"
   dependencies:
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5143,18 +5143,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-tessellate@npm:^3.0.86, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
+"@thi.ng/geom-tessellate@npm:^3.0.87, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/geom-accel": "npm:^4.1.79"
+    "@thi.ng/geom-accel": "npm:^4.1.80"
     "@thi.ng/geom-isec": "npm:^4.0.78"
     "@thi.ng/geom-poly-utils": "npm:^3.1.15"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/morton": "npm:^3.1.139"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5168,7 +5168,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/grid-iterators": "npm:^4.0.152"
+    "@thi.ng/grid-iterators": "npm:^4.0.153"
     "@thi.ng/matrices": "npm:^3.0.37"
     "@thi.ng/pixel": "npm:^7.5.25"
     "@thi.ng/vectors": "npm:^8.6.22"
@@ -5206,25 +5206,25 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/geom": "npm:^8.3.18"
+    "@thi.ng/geom": "npm:^8.3.19"
     "@thi.ng/object-utils": "npm:^1.3.8"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/vector-pools": "npm:^3.2.88"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/vector-pools": "npm:^3.2.89"
     "@thi.ng/vectors": "npm:^8.6.22"
-    "@thi.ng/webgl": "npm:^6.9.98"
+    "@thi.ng/webgl": "npm:^6.9.99"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@npm:^8.3.18, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@npm:^8.3.19, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
-    "@thi.ng/adjacency": "npm:^3.0.72"
+    "@thi.ng/adjacency": "npm:^3.0.73"
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/equiv": "npm:^2.1.106"
@@ -5238,16 +5238,16 @@ __metadata:
     "@thi.ng/geom-poly-utils": "npm:^3.1.15"
     "@thi.ng/geom-resample": "npm:^3.0.78"
     "@thi.ng/geom-splines": "npm:^2.3.78"
-    "@thi.ng/geom-subdiv-curve": "npm:^3.0.86"
-    "@thi.ng/geom-tessellate": "npm:^3.0.86"
+    "@thi.ng/geom-subdiv-curve": "npm:^3.0.87"
+    "@thi.ng/geom-tessellate": "npm:^3.0.87"
     "@thi.ng/hiccup": "npm:^5.3.39"
-    "@thi.ng/hiccup-svg": "npm:^5.6.3"
+    "@thi.ng/hiccup-svg": "npm:^5.6.4"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/matrices": "npm:^3.0.37"
     "@thi.ng/object-utils": "npm:^1.3.8"
     "@thi.ng/random": "npm:^4.1.41"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5263,26 +5263,26 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/zipper": "npm:^2.1.165"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/zipper": "npm:^2.1.166"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/grid-iterators@npm:^4.0.152, @thi.ng/grid-iterators@workspace:^, @thi.ng/grid-iterators@workspace:packages/grid-iterators":
+"@thi.ng/grid-iterators@npm:^4.0.153, @thi.ng/grid-iterators@workspace:^, @thi.ng/grid-iterators@workspace:packages/grid-iterators":
   version: 0.0.0-use.local
   resolution: "@thi.ng/grid-iterators@workspace:packages/grid-iterators"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/bitfield": "npm:^2.4.29"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/morton": "npm:^3.1.139"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -5296,7 +5296,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/diff": "npm:^5.1.117"
     "@thi.ng/hiccup": "npm:^5.3.39"
-    "@thi.ng/hiccup-css": "npm:^2.7.81"
+    "@thi.ng/hiccup-css": "npm:^2.7.82"
     "@thi.ng/strings": "npm:^3.9.37"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
@@ -5317,7 +5317,7 @@ __metadata:
     "@thi.ng/diff": "npm:^5.1.117"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/hdom": "npm:^9.4.103"
-    "@thi.ng/hiccup-canvas": "npm:^3.2.11"
+    "@thi.ng/hiccup-canvas": "npm:^3.2.12"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -5332,8 +5332,8 @@ __metadata:
     "@thi.ng/canvas": "npm:^1.1.9"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/transducers-stats": "npm:^2.2.56"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/transducers-stats": "npm:^2.2.57"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -5372,12 +5372,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/heaps@npm:^2.1.123, @thi.ng/heaps@workspace:packages/heaps":
+"@thi.ng/heaps@npm:^2.1.124, @thi.ng/heaps@workspace:packages/heaps":
   version: 0.0.0-use.local
   resolution: "@thi.ng/heaps@workspace:packages/heaps"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/equiv": "npm:^2.1.106"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5395,14 +5395,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@npm:^3.2.11, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@npm:^3.2.12, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/canvas": "npm:^1.1.9"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/color": "npm:^5.8.13"
+    "@thi.ng/color": "npm:^5.8.14"
     "@thi.ng/geom-arc": "npm:^2.1.211"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/pixel": "npm:^7.5.25"
@@ -5424,14 +5424,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-css@npm:^2.7.81, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
+"@thi.ng/hiccup-css@npm:^2.7.82, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-css@workspace:packages/hiccup-css"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -5468,7 +5468,7 @@ __metadata:
   resolution: "@thi.ng/hiccup-markdown@workspace:packages/hiccup-markdown"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/emoji": "npm:^1.0.35"
@@ -5477,20 +5477,20 @@ __metadata:
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/parse": "npm:^2.6.45"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/text-canvas": "npm:^3.0.109"
+    "@thi.ng/text-canvas": "npm:^3.0.110"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@npm:^5.6.3, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@npm:^5.6.4, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/color": "npm:^5.8.13"
+    "@thi.ng/color": "npm:^5.8.14"
     "@thi.ng/prefixes": "npm:^2.3.67"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5533,7 +5533,7 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5572,12 +5572,12 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/geom": "npm:^8.3.18"
+    "@thi.ng/geom": "npm:^8.3.19"
     "@thi.ng/geom-isec": "npm:^4.0.78"
-    "@thi.ng/layout": "npm:^4.1.5"
+    "@thi.ng/layout": "npm:^4.1.6"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/ramp": "npm:^3.3.75"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/ramp": "npm:^3.3.76"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5615,12 +5615,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/k-means@npm:^2.0.31, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
+"@thi.ng/k-means@npm:^2.0.32, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
   version: 0.0.0-use.local
   resolution: "@thi.ng/k-means@workspace:packages/k-means"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/distance": "npm:^3.0.33"
+    "@thi.ng/distance": "npm:^3.0.34"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/random": "npm:^4.1.41"
     "@thi.ng/vectors": "npm:^8.6.22"
@@ -5646,12 +5646,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/layout@npm:^4.1.5, @thi.ng/layout@workspace:^, @thi.ng/layout@workspace:packages/layout":
+"@thi.ng/layout@npm:^4.1.6, @thi.ng/layout@workspace:^, @thi.ng/layout@workspace:packages/layout":
   version: 0.0.0-use.local
   resolution: "@thi.ng/layout@workspace:packages/layout"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5688,7 +5688,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
@@ -5732,7 +5732,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5763,7 +5763,7 @@ __metadata:
     "@thi.ng/compose": "npm:^3.0.53"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -5812,18 +5812,18 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/args": "npm:^3.2.11"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/file-io": "npm:^2.2.26"
-    "@thi.ng/hiccup-css": "npm:^2.7.81"
+    "@thi.ng/hiccup-css": "npm:^2.7.82"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/memoize": "npm:^4.0.40"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rstream": "npm:^9.3.17"
     "@thi.ng/strings": "npm:^3.9.37"
     "@thi.ng/text-format": "npm:^2.2.56"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5902,7 +5902,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/equiv": "npm:^2.1.106"
     esbuild: "npm:^0.27.2"
@@ -5944,15 +5944,15 @@ __metadata:
   resolution: "@thi.ng/pixel-analysis@workspace:packages/pixel-analysis"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
-    "@thi.ng/color": "npm:^5.8.13"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/arrays": "npm:^2.14.11"
+    "@thi.ng/color": "npm:^5.8.14"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/metrics": "npm:^0.2.21"
     "@thi.ng/pixel": "npm:^7.5.25"
     "@thi.ng/pixel-convolve": "npm:^1.1.25"
-    "@thi.ng/pixel-dominant-colors": "npm:^2.0.32"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/pixel-dominant-colors": "npm:^2.0.33"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -5988,12 +5988,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/pixel-dominant-colors@npm:^2.0.32, @thi.ng/pixel-dominant-colors@workspace:^, @thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors":
+"@thi.ng/pixel-dominant-colors@npm:^2.0.33, @thi.ng/pixel-dominant-colors@workspace:^, @thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel-dominant-colors@workspace:packages/pixel-dominant-colors"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/k-means": "npm:^2.0.31"
+    "@thi.ng/k-means": "npm:^2.0.32"
     "@thi.ng/pixel": "npm:^7.5.25"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
@@ -6125,7 +6125,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/geom-accel": "npm:^4.1.79"
+    "@thi.ng/geom-accel": "npm:^4.1.80"
     "@thi.ng/random": "npm:^4.1.41"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
@@ -6160,7 +6160,7 @@ __metadata:
   resolution: "@thi.ng/proctext@workspace:packages/proctext"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/errors": "npm:^2.6.5"
@@ -6185,16 +6185,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/ramp@npm:^3.3.75, @thi.ng/ramp@workspace:^, @thi.ng/ramp@workspace:packages/ramp":
+"@thi.ng/ramp@npm:^3.3.76, @thi.ng/ramp@workspace:^, @thi.ng/ramp@workspace:packages/ramp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/ramp@workspace:packages/ramp"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/arrays": "npm:^2.14.11"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6246,10 +6246,10 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/equiv": "npm:^2.1.106"
-    "@thi.ng/grid-iterators": "npm:^4.0.152"
+    "@thi.ng/grid-iterators": "npm:^4.0.153"
     "@thi.ng/porter-duff": "npm:^2.1.128"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6263,10 +6263,10 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/canvas": "npm:^1.1.9"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/hiccup-canvas": "npm:^3.2.11"
+    "@thi.ng/hiccup-canvas": "npm:^3.2.12"
     "@thi.ng/object-utils": "npm:^1.3.8"
-    "@thi.ng/rdom": "npm:^1.7.77"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rdom": "npm:^1.7.78"
+    "@thi.ng/rstream": "npm:^9.3.17"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6280,10 +6280,10 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/hiccup-html": "npm:^2.7.48"
     "@thi.ng/object-utils": "npm:^1.3.8"
-    "@thi.ng/rdom": "npm:^1.7.77"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rdom": "npm:^1.7.78"
+    "@thi.ng/rstream": "npm:^9.3.17"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6298,15 +6298,15 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/hiccup-html": "npm:^2.7.48"
-    "@thi.ng/rdom": "npm:^1.7.77"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rdom": "npm:^1.7.78"
+    "@thi.ng/rstream": "npm:^9.3.17"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rdom@npm:^1.7.77, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
+"@thi.ng/rdom@npm:^1.7.78, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"
   dependencies:
@@ -6316,7 +6316,7 @@ __metadata:
     "@thi.ng/hiccup": "npm:^5.3.39"
     "@thi.ng/paths": "npm:^5.2.35"
     "@thi.ng/prefixes": "npm:^2.3.67"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rstream": "npm:^9.3.17"
     "@thi.ng/strings": "npm:^3.9.37"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6369,21 +6369,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream-csp@workspace:packages/rstream-csp"
   dependencies:
-    "@thi.ng/csp": "npm:^3.3.16"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/csp": "npm:^3.3.17"
+    "@thi.ng/rstream": "npm:^9.3.17"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rstream-dot@npm:^3.0.165, @thi.ng/rstream-dot@workspace:^, @thi.ng/rstream-dot@workspace:packages/rstream-dot":
+"@thi.ng/rstream-dot@npm:^3.0.166, @thi.ng/rstream-dot@workspace:^, @thi.ng/rstream-dot@workspace:packages/rstream-dot":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream-dot@workspace:packages/rstream-dot"
   dependencies:
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rstream": "npm:^9.3.17"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6397,8 +6397,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/rstream": "npm:^9.3.16"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/rstream": "npm:^9.3.17"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6415,8 +6415,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/paths": "npm:^5.2.35"
     "@thi.ng/resolve-map": "npm:^7.1.128"
-    "@thi.ng/rstream": "npm:^9.3.16"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/rstream": "npm:^9.3.17"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6427,7 +6427,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream-log-file@workspace:packages/rstream-log-file"
   dependencies:
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rstream": "npm:^9.3.17"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6442,9 +6442,9 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/logger": "npm:^3.2.15"
-    "@thi.ng/rstream": "npm:^9.3.16"
+    "@thi.ng/rstream": "npm:^9.3.17"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6456,33 +6456,33 @@ __metadata:
   resolution: "@thi.ng/rstream-query@workspace:packages/rstream-query"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/associative": "npm:^7.1.29"
+    "@thi.ng/associative": "npm:^7.1.30"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/rstream": "npm:^9.3.16"
-    "@thi.ng/rstream-dot": "npm:^3.0.165"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/rstream": "npm:^9.3.17"
+    "@thi.ng/rstream-dot": "npm:^3.0.166"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rstream@npm:^9.3.16, @thi.ng/rstream@workspace:^, @thi.ng/rstream@workspace:packages/rstream":
+"@thi.ng/rstream@npm:^9.3.17, @thi.ng/rstream@workspace:^, @thi.ng/rstream@workspace:packages/rstream":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream@workspace:packages/rstream"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
-    "@thi.ng/associative": "npm:^7.1.29"
+    "@thi.ng/arrays": "npm:^2.14.11"
+    "@thi.ng/associative": "npm:^7.1.30"
     "@thi.ng/atom": "npm:^5.3.57"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/logger": "npm:^3.2.15"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6496,8 +6496,8 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/transducers-fsm": "npm:^2.2.159"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/transducers-fsm": "npm:^2.2.160"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6536,8 +6536,8 @@ __metadata:
   resolution: "@thi.ng/server@workspace:packages/server"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
-    "@thi.ng/cache": "npm:^2.3.66"
+    "@thi.ng/arrays": "npm:^2.14.11"
+    "@thi.ng/cache": "npm:^2.3.67"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/file-io": "npm:^2.2.26"
@@ -6570,14 +6570,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-glsl@npm:^1.0.59, @thi.ng/shader-ast-glsl@workspace:^, @thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl":
+"@thi.ng/shader-ast-glsl@npm:^1.0.60, @thi.ng/shader-ast-glsl@workspace:^, @thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6594,7 +6594,7 @@ __metadata:
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/matrices": "npm:^3.0.37"
     "@thi.ng/pixel": "npm:^7.5.25"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6611,33 +6611,33 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/math": "npm:^5.15.5"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-stdlib@npm:^1.0.59, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
+"@thi.ng/shader-ast-stdlib@npm:^1.0.60, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast@npm:^1.1.40, @thi.ng/shader-ast@workspace:^, @thi.ng/shader-ast@workspace:packages/shader-ast":
+"@thi.ng/shader-ast@npm:^1.1.41, @thi.ng/shader-ast@workspace:^, @thi.ng/shader-ast@workspace:packages/shader-ast":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast@workspace:packages/shader-ast"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/defmulti": "npm:^3.0.92"
-    "@thi.ng/dgraph": "npm:^2.1.195"
+    "@thi.ng/dgraph": "npm:^2.1.196"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/logger": "npm:^3.2.15"
     esbuild: "npm:^0.27.2"
@@ -6666,7 +6666,7 @@ __metadata:
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/transducers-binary": "npm:^2.1.198"
+    "@thi.ng/transducers-binary": "npm:^2.1.199"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6679,11 +6679,11 @@ __metadata:
   resolution: "@thi.ng/sorted-map@workspace:packages/sorted-map"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/associative": "npm:^7.1.29"
+    "@thi.ng/associative": "npm:^7.1.30"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6695,7 +6695,7 @@ __metadata:
   resolution: "@thi.ng/sparse-set@workspace:packages/sparse-set"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/associative": "npm:^7.1.29"
+    "@thi.ng/associative": "npm:^7.1.30"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     esbuild: "npm:^0.27.2"
@@ -6704,13 +6704,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/sparse@npm:^1.1.32, @thi.ng/sparse@workspace:packages/sparse":
+"@thi.ng/sparse@npm:^1.1.33, @thi.ng/sparse@workspace:packages/sparse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/sparse@workspace:packages/sparse"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6736,7 +6736,7 @@ __metadata:
   resolution: "@thi.ng/system@workspace:packages/system"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/dgraph": "npm:^2.1.195"
+    "@thi.ng/dgraph": "npm:^2.1.196"
     "@thi.ng/logger": "npm:^3.2.15"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6751,13 +6751,13 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/args": "npm:^3.2.11"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/date": "npm:^2.7.79"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/file-io": "npm:^2.2.26"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6772,7 +6772,7 @@ __metadata:
   resolution: "@thi.ng/tensors@workspace:packages/tensors"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/equiv": "npm:^2.1.106"
     "@thi.ng/errors": "npm:^2.6.5"
@@ -6791,13 +6791,13 @@ __metadata:
   resolution: "@thi.ng/text-analysis@workspace:packages/text-analysis"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/bidir-index": "npm:^1.5.2"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/distance": "npm:^3.0.33"
-    "@thi.ng/k-means": "npm:^2.0.31"
+    "@thi.ng/distance": "npm:^3.0.34"
+    "@thi.ng/k-means": "npm:^2.0.32"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6805,19 +6805,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/text-canvas@npm:^3.0.109, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
+"@thi.ng/text-canvas@npm:^3.0.109, @thi.ng/text-canvas@npm:^3.0.110, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/text-canvas@workspace:packages/text-canvas"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/geom-clip-line": "npm:^2.3.168"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/strings": "npm:^3.9.37"
     "@thi.ng/text-format": "npm:^2.2.56"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6881,7 +6881,7 @@ __metadata:
     "@thi.ng/file-io": "npm:^2.2.26"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -6899,14 +6899,14 @@ __metadata:
     "@thi.ng/compose": "npm:^3.0.53"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/timestamp": "npm:^1.1.35"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-binary@npm:^2.1.198, @thi.ng/transducers-binary@workspace:^, @thi.ng/transducers-binary@workspace:packages/transducers-binary":
+"@thi.ng/transducers-binary@npm:^2.1.199, @thi.ng/transducers-binary@workspace:^, @thi.ng/transducers-binary@workspace:packages/transducers-binary":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-binary@workspace:packages/transducers-binary"
   dependencies:
@@ -6916,19 +6916,19 @@ __metadata:
     "@thi.ng/hex": "npm:^2.4.9"
     "@thi.ng/random": "npm:^4.1.41"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-fsm@npm:^2.2.159, @thi.ng/transducers-fsm@workspace:^, @thi.ng/transducers-fsm@workspace:packages/transducers-fsm":
+"@thi.ng/transducers-fsm@npm:^2.2.160, @thi.ng/transducers-fsm@workspace:^, @thi.ng/transducers-fsm@workspace:packages/transducers-fsm":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-fsm@workspace:packages/transducers-fsm"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6941,7 +6941,7 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "npm:^9.4.103"
     "@thi.ng/hiccup": "npm:^5.3.39"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -6956,14 +6956,14 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/paths": "npm:^5.2.35"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-stats@npm:^2.2.56, @thi.ng/transducers-stats@workspace:^, @thi.ng/transducers-stats@workspace:packages/transducers-stats":
+"@thi.ng/transducers-stats@npm:^2.2.57, @thi.ng/transducers-stats@workspace:^, @thi.ng/transducers-stats@workspace:packages/transducers-stats":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-stats@workspace:packages/transducers-stats"
   dependencies:
@@ -6971,21 +6971,21 @@ __metadata:
     "@thi.ng/buffers": "npm:^1.0.35"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers@npm:^9.6.26, @thi.ng/transducers@workspace:^, @thi.ng/transducers@workspace:packages/transducers":
+"@thi.ng/transducers@npm:^9.6.26, @thi.ng/transducers@npm:^9.6.27, @thi.ng/transducers@workspace:^, @thi.ng/transducers@workspace:packages/transducers":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers@workspace:packages/transducers"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/compose": "npm:^3.0.53"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/math": "npm:^5.15.5"
@@ -7015,7 +7015,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/random": "npm:^4.1.41"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -7071,7 +7071,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/vector-pools@npm:^3.2.88, @thi.ng/vector-pools@workspace:^, @thi.ng/vector-pools@workspace:packages/vector-pools":
+"@thi.ng/vector-pools@npm:^3.2.89, @thi.ng/vector-pools@workspace:^, @thi.ng/vector-pools@workspace:packages/vector-pools":
   version: 0.0.0-use.local
   resolution: "@thi.ng/vector-pools@workspace:packages/vector-pools"
   dependencies:
@@ -7081,7 +7081,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/malloc": "npm:^6.1.138"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -7112,13 +7112,13 @@ __metadata:
   resolution: "@thi.ng/viz@workspace:packages/viz"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/date": "npm:^2.7.79"
     "@thi.ng/math": "npm:^5.15.5"
     "@thi.ng/object-utils": "npm:^1.3.8"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/transducers": "npm:^9.6.26"
+    "@thi.ng/transducers": "npm:^9.6.27"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -7126,23 +7126,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-bindgen@npm:^1.2.65, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+"@thi.ng/wasm-api-bindgen@npm:^1.2.66, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/args": "npm:^3.2.11"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/binary": "npm:^3.6.5"
     "@thi.ng/checks": "npm:^3.8.6"
-    "@thi.ng/compare": "npm:^2.5.2"
+    "@thi.ng/compare": "npm:^2.5.3"
     "@thi.ng/defmulti": "npm:^3.0.92"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/file-io": "npm:^2.2.26"
     "@thi.ng/logger": "npm:^3.2.15"
     "@thi.ng/paths": "npm:^5.2.35"
     "@thi.ng/strings": "npm:^3.9.37"
-    "@thi.ng/wasm-api": "npm:^2.4.19"
+    "@thi.ng/wasm-api": "npm:^2.4.20"
     "@types/node": "npm:^24.10.9"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -7157,16 +7157,16 @@ __metadata:
   resolution: "@thi.ng/wasm-api-canvas@workspace:packages/wasm-api-canvas"
   dependencies:
     "@thi.ng/binary": "npm:^3.6.5"
-    "@thi.ng/wasm-api": "npm:^2.4.19"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.65"
-    "@thi.ng/wasm-api-dom": "npm:^2.0.21"
+    "@thi.ng/wasm-api": "npm:^2.4.20"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.66"
+    "@thi.ng/wasm-api-dom": "npm:^2.0.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@npm:^2.0.21, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-dom@npm:^2.0.22, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
@@ -7174,8 +7174,8 @@ __metadata:
     "@thi.ng/canvas": "npm:^1.1.9"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/prefixes": "npm:^2.3.67"
-    "@thi.ng/wasm-api": "npm:^2.4.19"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.65"
+    "@thi.ng/wasm-api": "npm:^2.4.20"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.66"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -7187,8 +7187,8 @@ __metadata:
   resolution: "@thi.ng/wasm-api-schedule@workspace:packages/wasm-api-schedule"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/wasm-api": "npm:^2.4.19"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.65"
+    "@thi.ng/wasm-api": "npm:^2.4.20"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.66"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -7201,22 +7201,22 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
     "@thi.ng/errors": "npm:^2.6.5"
-    "@thi.ng/wasm-api": "npm:^2.4.19"
-    "@thi.ng/wasm-api-bindgen": "npm:^1.2.65"
-    "@thi.ng/wasm-api-dom": "npm:^2.0.21"
-    "@thi.ng/webgl": "npm:^6.9.98"
+    "@thi.ng/wasm-api": "npm:^2.4.20"
+    "@thi.ng/wasm-api-bindgen": "npm:^1.2.66"
+    "@thi.ng/wasm-api-dom": "npm:^2.0.22"
+    "@thi.ng/webgl": "npm:^6.9.99"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@npm:^2.4.19, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@npm:^2.4.20, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/hex": "npm:^2.4.9"
@@ -7233,11 +7233,11 @@ __metadata:
   resolution: "@thi.ng/webgl-msdf@workspace:packages/webgl-msdf"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/vector-pools": "npm:^3.2.88"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/vector-pools": "npm:^3.2.89"
     "@thi.ng/vectors": "npm:^8.6.22"
-    "@thi.ng/webgl": "npm:^6.9.98"
+    "@thi.ng/webgl": "npm:^6.9.99"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
@@ -7249,16 +7249,16 @@ __metadata:
   resolution: "@thi.ng/webgl-shadertoy@workspace:packages/webgl-shadertoy"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
-    "@thi.ng/shader-ast-glsl": "npm:^1.0.59"
-    "@thi.ng/webgl": "npm:^6.9.98"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
+    "@thi.ng/shader-ast-glsl": "npm:^1.0.60"
+    "@thi.ng/webgl": "npm:^6.9.99"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@npm:^6.9.98, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@npm:^6.9.99, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
@@ -7272,11 +7272,11 @@ __metadata:
     "@thi.ng/memoize": "npm:^4.0.40"
     "@thi.ng/object-utils": "npm:^1.3.8"
     "@thi.ng/pixel": "npm:^7.5.25"
-    "@thi.ng/shader-ast": "npm:^1.1.40"
-    "@thi.ng/shader-ast-glsl": "npm:^1.0.59"
-    "@thi.ng/shader-ast-stdlib": "npm:^1.0.59"
-    "@thi.ng/transducers": "npm:^9.6.26"
-    "@thi.ng/vector-pools": "npm:^3.2.88"
+    "@thi.ng/shader-ast": "npm:^1.1.41"
+    "@thi.ng/shader-ast-glsl": "npm:^1.0.60"
+    "@thi.ng/shader-ast-stdlib": "npm:^1.0.60"
+    "@thi.ng/transducers": "npm:^9.6.27"
+    "@thi.ng/vector-pools": "npm:^3.2.89"
     "@thi.ng/vectors": "npm:^8.6.22"
     esbuild: "npm:^0.27.2"
     typedoc: "npm:^0.28.16"
@@ -7284,12 +7284,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/zipper@npm:^2.1.165, @thi.ng/zipper@workspace:packages/zipper":
+"@thi.ng/zipper@npm:^2.1.166, @thi.ng/zipper@workspace:packages/zipper":
   version: 0.0.0-use.local
   resolution: "@thi.ng/zipper@workspace:packages/zipper"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/arrays": "npm:^2.14.10"
+    "@thi.ng/arrays": "npm:^2.14.11"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     esbuild: "npm:^0.27.2"
