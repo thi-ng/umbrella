@@ -59,10 +59,7 @@ export function compareByKeys2(
 ): Comparator<any> {
 	const ka = __key(a);
 	const kb = __key(b);
-	return (x, y) => {
-		let res = cmpA(ka(x), ka(y));
-		return res === 0 ? cmpB(kb(x), kb(y)) : res;
-	};
+	return (x, y) => cmpA(ka(x), ka(y)) || cmpB(kb(x), kb(y));
 }
 
 /**
@@ -107,14 +104,8 @@ export function compareByKeys3(
 	const ka = __key(a);
 	const kb = __key(b);
 	const kc = __key(c);
-	return (x, y) => {
-		let res = cmpA(ka(x), ka(y));
-		return res === 0
-			? (res = cmpB(kb(x), kb(y))) === 0
-				? cmpC(kc(x), kc(y))
-				: res
-			: res;
-	};
+	return (x, y) =>
+		cmpA(ka(x), ka(y)) || cmpB(kb(x), kb(y)) || cmpC(kc(x), kc(y));
 }
 
 /**
@@ -169,14 +160,9 @@ export function compareByKeys4(
 	const kb = __key(b);
 	const kc = __key(c);
 	const kd = __key(d);
-	return (x, y) => {
-		let res = cmpA(ka(x), ka(y));
-		return res === 0
-			? (res = cmpB(kb(x), kb(y))) === 0
-				? (res = cmpC(kc(x), kc(y))) === 0
-					? cmpD(kd(x), kd(y))
-					: res
-				: res
-			: res;
-	};
+	return (x, y) =>
+		cmpA(ka(x), ka(y)) ||
+		cmpB(kb(x), kb(y)) ||
+		cmpC(kc(x), kc(y)) ||
+		cmpD(kd(x), kd(y));
 }
