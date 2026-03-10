@@ -1,43 +1,15 @@
 #!/bin/sh
 
-# usage: stats packages stats.csv (default)
-# usage: stats packages stats-zig.csv Zig
-# usage: stats examples stats-ex.csv
-# usage: stats examples stats-ex-zig.csv Zig
-
 if [ $# -gt 0 ]; then
-    modules="$1/*"
+    modules="$*"
 else
-    modules="packages/*"
+    modules="packages examples tools"
 fi
 
-if [ $# -gt 1 ]; then
-    out="$2"
-else
-    out=dev/stats.csv
-fi
-
-if [ $# -gt 2 ]; then
-    lang="$3"
-    srcdir="/$(echo "$3" | tr '[:upper:]' '[:lower:]')"
-else
-    lang="TypeScript"
-    srcdir="/src"
-fi
-
-echo "package,files,comments,sloc" > $out
-
-for m in $modules; do
-    if [ -d "$m" ]; then
-        skip=$(grep -e '"skip": true' "$m/package.json")
-        if [ -e "$m/.skip" ] || [ -n "$skip" ] || [ ! -d "$m$srcdir" ]; then
-            echo "\tskipping $m$srcdir"
-        else
-            echo "$m $skip"
-            echo "$m,$(cloc $m$srcdir --csv | grep $lang | cut -d ',' -f1 -f4-5)" >> $out
-        fi
-    fi
-done
-
-echo "---"
-awk -F ',' '{ files+=$2; comments+=$3; sloc+=$4 } END { print "files:", files, "\tcode:", sloc, "\tcomments:", comments, "\ttotal:", sloc + comments }' $out
+# https://github.com/boyter/scc
+# brew install scc
+scc -a \
+    -x js,json,d.ts,csv,css,dot,org,c,sh,txt \
+    -n tpl.readme.md,CHANGELOG.md,AUTHORS.md,LICENSE,results.md,framework.md,index.html \
+    --exclude-dir doc,dev,.zig-cache \
+    $modules
