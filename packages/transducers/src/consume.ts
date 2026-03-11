@@ -27,5 +27,5 @@
  * @param src
  */
 export const consume = (src: Iterable<any>) => {
-	for (let _ of src);
+	for (const _ of src);
 };

@@ -64,7 +64,7 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	*[Symbol.iterator](): IterableIterator<T> {
 		const { data } = this;
-		for (let i of this.indices()) yield data[i];
+		for (const i of this.indices()) yield data[i];
 	}
 
 	broadcast<S extends Shape>(shape: S, stride: S): ShapeTensor<S, T> {
@@ -131,7 +131,7 @@ export abstract class ATensor<T = number> implements ITensor<T> {
 
 	fill(value: T) {
 		const { data } = this;
-		for (let i of this.indices()) data[i] = value;
+		for (const i of this.indices()) data[i] = value;
 		return this;
 	}
 
