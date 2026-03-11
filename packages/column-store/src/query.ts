@@ -154,7 +154,7 @@ export class Query<T extends Row> {
 	*[Symbol.iterator]() {
 		const { table, _limit, _offset } = this;
 		const ctx = new QueryCtx(this);
-		for (let term of this.terms) {
+		for (const term of this.terms) {
 			const op = QUERY_OPS[term.type];
 			let column: Maybe<IColumn>;
 			if (term.column) {
@@ -170,7 +170,7 @@ export class Query<T extends Row> {
 		if (!ctx.bitmap) return;
 		if (this._cmp) {
 			const rows: RowWithMeta<T>[] = [];
-			for (let i of ctx) {
+			for (const i of ctx) {
 				rows.push(table.getRow(i, false, true)!);
 			}
 			rows.sort(this._cmp);
@@ -186,7 +186,7 @@ export class Query<T extends Row> {
 		// iterate in normal row order
 		let j = 0;
 		const n = _offset + _limit;
-		for (let i of ctx) {
+		for (const i of ctx) {
 			if (j >= _offset) {
 				if (j >= n) return;
 				yield table.getRow(i, false, true)!;
@@ -275,7 +275,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 	const key = column!.valueKey(term.value);
 	let mask: Maybe<Uint32Array>;
 	if (isArray(key)) {
-		for (let k of key) {
+		for (const k of key) {
 			const b = bitmap.index.get(k)?.buffer;
 			if (!b) continue;
 			// compute union bitmaps
@@ -296,8 +296,8 @@ const execOr: QueryTermOp = (ctx, term, column) => {
 		? (row: any[], k) => row.includes(k)
 		: (row, k) => row === k;
 	let mask: Maybe<Uint32Array>;
-	for (let k of isArray(key) ? key : [key]) {
-		for (let i of ctx) {
+	for (const k of isArray(key) ? key : [key]) {
+		for (const i of ctx) {
 			if (pred(column!.getRowKey(i), k)) {
 				if (!mask) mask = ctx.makeMask();
 				mask[i >>> 5] |= 1 << (i & 31);
@@ -320,7 +320,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 	const isNeg = term.type === "nand";
 	let mask: Maybe<Uint32Array>;
 	if (isArray(key)) {
-		for (let k of key) {
+		for (const k of key) {
 			const b = bitmap.index.get(k)?.buffer;
 			if (!b) {
 				if (isNeg) {
@@ -351,9 +351,9 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 		: (row, v) => row === v;
 	const isNeg = term.type === "nand";
 	let mask: Maybe<Uint32Array>;
-	for (let k of isArray(key) ? key : [key]) {
+	for (const k of isArray(key) ? key : [key]) {
 		let m: Maybe<Uint32Array>;
-		for (let i of ctx) {
+		for (const i of ctx) {
 			if (pred(column!.getRowKey(i), k)) {
 				if (!m) m = ctx.makeMask();
 				m[i >>> 5] |= 1 << (i & 31);
@@ -407,7 +407,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 		fn: (ctx, term, column) => {
 			const pred: Predicate<any> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (let i of ctx) {
+			for (const i of ctx) {
 				if (pred(column!.getRow(i))) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
@@ -425,7 +425,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const columns = term.params!;
 			const pred: Predicate<Record<string, any>> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (let i of ctx) {
+			for (const i of ctx) {
 				if (pred(table.getPartialRow(i, columns, false)!)) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
@@ -442,7 +442,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const table = ctx.table;
 			const pred: Predicate<Record<string, any>> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (let i of ctx) {
+			for (const i of ctx) {
 				if (pred(table.getRow(i, false)!)) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);

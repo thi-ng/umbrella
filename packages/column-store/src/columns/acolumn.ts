@@ -106,7 +106,7 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 			const value = this.getRowKey(i);
 			if (value == null) continue;
 			if (isArray) {
-				for (let x of value) bitmap.setBit(x, i);
+				for (const x of value) bitmap.setBit(x, i);
 			} else bitmap.setBit(value, i);
 		}
 	}

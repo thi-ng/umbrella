@@ -130,7 +130,7 @@ export class Table<T extends Row>
 	}
 
 	addRows(rows: Iterable<Partial<T>>) {
-		for (let row of rows) this.addRow(row);
+		for (const row of rows) this.addRow(row);
 	}
 
 	updateRow(i: number, row: T) {
@@ -186,7 +186,7 @@ export class Table<T extends Row>
 	) {
 		if (safe && (i < 0 || i >= this.length)) return;
 		const row: Row = includeID ? { __row: i } : {};
-		for (let id of columns) {
+		for (const id of columns) {
 			row[<string>id] = this.columns[id]?.getRow(i);
 		}
 		return row;

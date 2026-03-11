@@ -65,7 +65,7 @@ export class DictTupleColumn<T extends Row = Row> extends AColumn<T> {
 		values.length = n;
 		values.fill($value, 0, n);
 		if (bitmap && $value) {
-			for (let x of $value) bitmap.ensure(x).fill(1, 0, n);
+			for (const x of $value) bitmap.ensure(x).fill(1, 0, n);
 		}
 	}
 
@@ -80,8 +80,8 @@ export class DictTupleColumn<T extends Row = Row> extends AColumn<T> {
 					: dict.addAll(value)
 				: null);
 		if (bitmap) {
-			if (old) for (let x of old) bitmap.clearBit(x, i);
-			if (encoded) for (let x of encoded) bitmap.setBit(x, i);
+			if (old) for (const x of old) bitmap.clearBit(x, i);
+			if (encoded) for (const x of encoded) bitmap.setBit(x, i);
 		}
 	}
 

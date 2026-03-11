@@ -39,7 +39,7 @@ export class TupleColumn<T extends Row = Row> extends AColumn<T> {
 		values.length = n;
 		values.fill(value ?? null, 0, n);
 		if (bitmap && value) {
-			for (let x of value) bitmap.ensure(x).fill(1, 0, n);
+			for (const x of value) bitmap.ensure(x).fill(1, 0, n);
 		}
 	}
 
@@ -54,8 +54,8 @@ export class TupleColumn<T extends Row = Row> extends AColumn<T> {
 					: value
 				: null);
 		if (bitmap) {
-			if (old) for (let x of old) bitmap.clearBit(x, i);
-			if (row) for (let x of row) bitmap.setBit(x, i);
+			if (old) for (const x of old) bitmap.clearBit(x, i);
+			if (row) for (const x of row) bitmap.setBit(x, i);
 		}
 	}
 

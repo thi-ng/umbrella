@@ -42,12 +42,12 @@ export class BitmapIndex {
 	 * @param id
 	 */
 	removeBit(rowID: number) {
-		for (let bitmap of this.index.values()) bitmap.removeBit(rowID);
+		for (const bitmap of this.index.values()) bitmap.removeBit(rowID);
 	}
 
 	toJSON() {
 		const res: Record<string, number[]> = {};
-		for (let [k, bits] of this.index) {
+		for (const [k, bits] of this.index) {
 			if (bits.buffer) res[k] = Array.from(bits.buffer);
 		}
 		return res;
