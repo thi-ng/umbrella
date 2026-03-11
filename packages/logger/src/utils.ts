@@ -18,11 +18,19 @@ export const expandArgs = (args: any[]) =>
  * Similar to {@link expandArgs}, but also stringifies each part as JSON (unless
  * string or number).
  *
+ * @remarks
+ * Special treatment for the following types:
+ *
+ * - `Error`: uses `.stack` or `.message` string properties
+ * - `RegExp`: use `.source` string property
+ *
  * @param args
  */
 export const expandArgsJSON = (args: any[]) =>
 	args.map((x) => {
 		if (typeof x === "function") x = x();
+		if (x instanceof Error) x = x.stack ?? x.message;
+		if (x instanceof RegExp) x = x.source;
 		if (!(typeof x === "string" || typeof x === "number")) {
 			x = JSON.stringify(x);
 		}
