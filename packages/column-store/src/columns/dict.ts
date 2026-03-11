@@ -5,6 +5,7 @@ import { decodeBinary, encodeBinary } from "@thi.ng/rle-pack/binary";
 import { decodeSimple, encodeSimple } from "@thi.ng/rle-pack/simple";
 import { FLAG_RLE, type Row, type SerializedColumn } from "../api.js";
 import { __validateValue } from "../internal/checks.js";
+import { __frequencies, __frequencyIndex } from "../internal/frequencies.js";
 import { __indexOfSingle, __lastIndexOfSingle } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
@@ -34,9 +35,9 @@ export class DictColumn<T extends Row = Row> extends AColumn<T> {
 
 	reindex(): void {
 		const dict = this.dict;
-		const newDict = new BidirIndex();
+		const newDict = __frequencyIndex(dict, __frequencies(this.values));
 		this.values = this.values.map((x) =>
-			x != null ? newDict.add(dict.getID(x)) : null
+			x != null ? newDict.get(dict.getID(x))! : null
 		);
 		this.dict = newDict;
 		super.updateBitmap();

@@ -3,6 +3,10 @@ import { BidirIndex } from "@thi.ng/bidir-index";
 import { isArray } from "@thi.ng/checks/is-array";
 import { FLAG_UNIQUE, type Row, type SerializedColumn } from "../api.js";
 import { __validateArrayValue } from "../internal/checks.js";
+import {
+	__frequenciesTuples,
+	__frequencyIndex,
+} from "../internal/frequencies.js";
 import { __indexOfTuple, __lastIndexOfTuple } from "../internal/indexof.js";
 import { __serializeDict } from "../internal/serialize.js";
 import { AColumn } from "./acolumn.js";
@@ -27,9 +31,12 @@ export class DictTupleColumn<T extends Row = Row> extends AColumn<T> {
 
 	reindex(): void {
 		const dict = this.dict;
-		const newDict = new BidirIndex();
+		const newDict = __frequencyIndex(
+			dict,
+			__frequenciesTuples(this.values)
+		);
 		this.values = this.values.map((ids) =>
-			ids ? newDict.addAll(dict.getAllIDs(ids)) : null
+			ids ? newDict.getAll(dict.getAllIDs(ids)) : null
 		);
 		this.dict = newDict;
 		super.updateBitmap();
