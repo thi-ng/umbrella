@@ -288,6 +288,24 @@ for(let result of query) { ... }
 const results = [...query];
 ```
 
+Alternatively, queries can also be eagerly executed via
+[`.exec()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#exec).
+This will also include metadata alongside the results, useful for paging
+results.
+
+```ts
+// predefine query
+const query = table.query().or("name", ["alice", "bob"]).limit(10);
+
+const results = query.exec();
+// {
+//   results: [{...}, ...],
+//   total: 123,
+//   offset: 0,
+//   limit: 10
+// }
+```
+
 #### Optimized row iteration
 
 The query engine works by applying a number of [query
