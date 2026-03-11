@@ -572,4 +572,63 @@ describe("query", () => {
 			]);
 		});
 	});
+
+	test("exec", () => {
+		const table = new Table<{ a: number }>({ a: { type: "num" } });
+		table.addRows([{ a: 100 }, { a: 101 }, { a: 102 }, { a: 103 }]);
+		expect(
+			table
+				.query()
+				.matchColumn("a", (x) => x < 102)
+				.exec()
+		).toEqual({
+			results: [
+				{ a: 100, __row: 0 },
+				{ a: 101, __row: 1 },
+			],
+			total: 2,
+			offset: 0,
+			limit: Infinity,
+		});
+		expect(table.query().nor("a", -1).limit(2, 1).exec()).toEqual({
+			results: [
+				{ a: 101, __row: 1 },
+				{ a: 102, __row: 2 },
+			],
+			total: 4,
+			offset: 1,
+			limit: 2,
+		});
+		expect(
+			table.query().nor("a", -1).limit(2, 1).sortBy(["a", false]).exec()
+		).toEqual({
+			results: [
+				{ a: 102, __row: 2 },
+				{ a: 101, __row: 1 },
+			],
+			total: 4,
+			offset: 1,
+			limit: 2,
+		});
+		expect(table.query().nor("a", -1).limit(0, 1).exec()).toEqual({
+			results: [],
+			total: 4,
+			offset: 1,
+			limit: 0,
+		});
+		expect(
+			table.query().nor("a", -1).limit(0, 1).sortBy("a").exec()
+		).toEqual({
+			results: [],
+			total: 4,
+			offset: 1,
+			limit: 0,
+		});
+		expect(table.query().where("a", 1000).exec()).toEqual({
+			results: [],
+			total: 0,
+			offset: 0,
+			limit: Infinity,
+		});
+	});
 });

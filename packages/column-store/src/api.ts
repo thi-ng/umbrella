@@ -250,6 +250,26 @@ export interface QueryTermOpSpec {
 	fn: QueryTermOp;
 }
 
+export interface QueryResult<T extends Row> {
+	/**
+	 * Array of result rows (each incl. `__row` index)
+	 */
+	results: RowWithMeta<T>[];
+	/**
+	 * Total number of query results (might be more than in
+	 * {@link QueryResult.results}).
+	 */
+	total: number;
+	/**
+	 * Page info. Configured result offset (via {@link Query.limit}).
+	 */
+	offset: number;
+	/**
+	 * Page info. Configured result limit (via {@link Query.limit}).
+	 */
+	limit: number;
+}
+
 /**
  * Initial capacity for typedarray and vector columns
  *

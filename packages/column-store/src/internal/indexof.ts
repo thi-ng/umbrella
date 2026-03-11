@@ -99,7 +99,11 @@ export const __clamp = (x: number, a: number, b: number) =>
 	x < a ? a : x > b ? b : x;
 
 /** @internal */
-export const __clampRange = (max: number, start: number, end?: number) => {
+export const __clampRange = (
+	max: number,
+	start: number,
+	end?: number
+): [number, number] => {
 	start = __clamp(start, 0, max);
 	end = __clamp(end ?? max, start, max);
 	return [start, end];

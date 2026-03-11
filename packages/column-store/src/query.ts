@@ -13,6 +13,7 @@ import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	ColumnID,
 	IColumn,
+	QueryResult,
 	QueryTerm,
 	QueryTermOp,
 	QueryTermOpSpec,
@@ -158,47 +159,63 @@ export class Query<T extends Row> {
 		return this;
 	}
 
+	/**
+	 * Eagerly executes query with current terms and returns results as array in
+	 * an object including total number of results and selected paging details
+	 * (i.e. offset & limit).
+	 */
+	exec() {
+		const { table, _limit, _offset } = this;
+		const ctx = new QueryCtx(this).exec();
+		let rows: RowWithMeta<T>[] = [];
+		const result: QueryResult<T> = {
+			results: rows,
+			total: 0,
+			offset: _offset,
+			limit: _limit,
+		};
+		if (!ctx.bitmap) return result;
+		if (this._cmp) {
+			rows = [...ctx.rows()].sort(this._cmp);
+			result.total = rows.length;
+			result.results = rows.slice(
+				...__clampRange(rows.length, _offset, _offset + _limit)
+			);
+		} else {
+			// iterate in normal row order
+			let n = 0;
+			const max = _offset + _limit;
+			for (const i of ctx) {
+				if (n >= _offset && n < max) {
+					rows.push(table.getRow(i, false, true)!);
+				}
+				n++;
+			}
+			result.total = n;
+		}
+		return result;
+	}
+
 	*[Symbol.iterator]() {
 		const { table, _limit, _offset } = this;
-		const ctx = new QueryCtx(this);
-		for (const term of this.terms) {
-			const op = QUERY_OPS[term.type];
-			let column: Maybe<IColumn>;
-			if (term.column) {
-				column = ctx.table.columns[term.column];
-				if (!column) illegalArgs(`column: ${String(term.column)}`);
-			} else if (QUERY_OPS[term.type].mode !== "row") {
-				illegalArgs(
-					`query op: ${term.type} requires a column name given`
-				);
-			}
-			if (!op.fn(ctx, term, column)) return;
-		}
+		const ctx = new QueryCtx(this).exec();
 		if (!ctx.bitmap) return;
 		if (this._cmp) {
-			const rows: RowWithMeta<T>[] = [];
+			const rows = [...ctx.rows()].sort(this._cmp);
+			yield* rows.slice(
+				...__clampRange(rows.length, _offset, _offset + _limit)
+			);
+		} else {
+			// iterate in normal row order
+			let j = 0;
+			const n = _offset + _limit;
 			for (const i of ctx) {
-				rows.push(table.getRow(i, false, true)!);
+				if (j >= _offset) {
+					if (j >= n) return;
+					yield table.getRow(i, false, true)!;
+				}
+				j++;
 			}
-			rows.sort(this._cmp);
-			for (
-				let i = this._offset, n = Math.min(rows.length, i + _limit);
-				i < n;
-				i++
-			) {
-				yield rows[i];
-			}
-			return;
-		}
-		// iterate in normal row order
-		let j = 0;
-		const n = _offset + _limit;
-		for (const i of ctx) {
-			if (j >= _offset) {
-				if (j >= n) return;
-				yield table.getRow(i, false, true)!;
-			}
-			j++;
 		}
 	}
 }
@@ -213,6 +230,23 @@ export class QueryCtx<T extends Row> {
 		this.size = Math.ceil(this.table.length / 32);
 	}
 
+	exec() {
+		for (const term of this.query.terms) {
+			const op = QUERY_OPS[term.type];
+			let column: Maybe<IColumn>;
+			if (term.column) {
+				column = this.table.columns[term.column];
+				if (!column) illegalArgs(`column: ${String(term.column)}`);
+			} else if (QUERY_OPS[term.type].mode !== "row") {
+				illegalArgs(
+					`query op: ${term.type} requires a column name given`
+				);
+			}
+			if (!op.fn(this, term, column)) break;
+		}
+		return this;
+	}
+
 	/**
 	 * If a bitmap is already present, yield iterator of only currently selected
 	 * row IDs, otherwise yields row IDs in `[0,table.length)` range.
@@ -224,6 +258,11 @@ export class QueryCtx<T extends Row> {
 		} else {
 			for (let i = 0; i < n; i++) yield i;
 		}
+	}
+
+	*rows() {
+		const table = this.query.table;
+		for (const i of this) yield table.getRow(i, false, true)!;
 	}
 
 	clear() {
