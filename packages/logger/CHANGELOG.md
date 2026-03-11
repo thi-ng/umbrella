@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-03-11T09:59:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.3.0) (2026-03-11)
+
+#### 🚀 Features
+
+- add Error & RegExp support for `expandArgsJSON()` ([0bd9ad5](https://github.com/thi-ng/umbrella/commit/0bd9ad5))
 
 ### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@3.2.1) (2025-10-07)
 

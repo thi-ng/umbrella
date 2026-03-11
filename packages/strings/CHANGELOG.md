@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-03-11T09:59:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.10.0) (2026-03-11)
+
+#### 🚀 Features
+
+- add Error & RegExp support for `stringify()` ([78690d4](https://github.com/thi-ng/umbrella/commit/78690d4))
 
 ### [3.9.31](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.9.31) (2025-12-03)
 
