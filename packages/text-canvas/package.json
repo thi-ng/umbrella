@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-canvas",
-	"version": "3.0.111",
+	"version": "3.0.112",
 	"description": "Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)",
 	"type": "module",
 	"module": "./index.js",
@@ -48,7 +48,7 @@
 		"@thi.ng/math": "^5.15.5",
 		"@thi.ng/strings": "^3.10.0",
 		"@thi.ng/text-format": "^2.2.56",
-		"@thi.ng/transducers": "^9.6.28"
+		"@thi.ng/transducers": "^9.6.29"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ecs",
-	"version": "0.7.203",
+	"version": "0.7.204",
 	"description": "Entity Component System based around typed arrays & sparse sets",
 	"type": "module",
 	"module": "./index.js",
@@ -41,15 +41,15 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.16",
-		"@thi.ng/associative": "^7.1.31",
+		"@thi.ng/associative": "^7.1.32",
 		"@thi.ng/binary": "^3.6.5",
 		"@thi.ng/checks": "^3.8.6",
-		"@thi.ng/dcons": "^3.2.187",
+		"@thi.ng/dcons": "^3.2.188",
 		"@thi.ng/errors": "^2.6.5",
 		"@thi.ng/idgen": "^2.2.90",
 		"@thi.ng/logger": "^3.3.0",
 		"@thi.ng/malloc": "^6.1.138",
-		"@thi.ng/transducers": "^9.6.28"
+		"@thi.ng/transducers": "^9.6.29"
 	},
 	"devDependencies": {
 		"@thi.ng/equiv": "^2.1.106",

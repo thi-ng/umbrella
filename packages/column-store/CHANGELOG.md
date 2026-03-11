@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-11T09:59:17Z
+- **Last updated**: 2026-03-11T15:07:15Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.12.0) (2026-03-11)
+
+#### 🚀 Features
+
+- update re-indexing for dict-based columns, now frequency-based ([a13fed2](https://github.com/thi-ng/umbrella/commit/a13fed2))
+  - re-index DictColumn/DictTupleColumn based on usage frequency of individual values
+  - add frequency/histogram helper functions
+  - add tests
+
+#### ♻️ Refactoring
+
+- update const use in for-of loops ([f90c1d1](https://github.com/thi-ng/umbrella/commit/f90c1d1))
 
 ### [0.11.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.11.2) (2026-03-07)
 
