@@ -505,7 +505,7 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.28 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.27 KB
 
 ## Dependencies
 
