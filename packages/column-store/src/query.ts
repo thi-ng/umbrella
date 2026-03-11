@@ -35,14 +35,21 @@ export class Query<T extends Row> {
 	protected _limit = Infinity;
 	protected _offset = 0;
 
-	constructor(public readonly table: Table<T>, terms: QueryTerm<T>[] = []) {
-		for (let term of terms) this.addTerm(term);
+	constructor(
+		public readonly table: Table<T>,
+		terms?: Iterable<QueryTerm<T>>
+	) {
+		if (terms) this.addTerms(terms);
 	}
 
 	addTerm(term: QueryTerm<T>) {
 		if (!QUERY_OPS[term.type]) unsupportedOp(`query type: ${term.type}`);
 		this.terms.push(term);
 		return this;
+	}
+
+	addTerms(terms: Iterable<QueryTerm<T>>) {
+		for (const term of terms) this.addTerm(term);
 	}
 
 	limit(limit: number, offset = 0) {
@@ -74,15 +81,15 @@ export class Query<T extends Row> {
 				isFunction(x)
 					? x
 					: isString(x)
-					? compareByKey(x)
-					: compareByKey<any, any>(
-							x[0],
-							isFunction(x[1])
-								? x[1]
-								: x[1]
-								? compare
-								: reverse(compare)
-					  )
+						? compareByKey(x)
+						: compareByKey<any, any>(
+								x[0],
+								isFunction(x[1])
+									? x[1]
+									: x[1]
+										? compare
+										: reverse(compare)
+							)
 		);
 		this._cmp = composeComparators(...(<[Comparator<any>]>fns));
 		return this;

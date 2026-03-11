@@ -22,7 +22,10 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 
 	abstract isArray: boolean;
 
-	constructor(public readonly id: ColumnID<T>, public table: Table<T>) {
+	constructor(
+		public readonly id: ColumnID<T>,
+		public table: Table<T>
+	) {
 		this.spec = table.schema[id];
 		this.ensureBitmap();
 	}
@@ -115,8 +118,8 @@ export abstract class AColumn<T extends Row = Row> implements IColumn {
 		return val != null
 			? val
 			: this.spec.cardinality[0] > 0
-			? this.spec.default ?? __columnError(this.id, `missing value`)
-			: this.spec.default ?? null;
+				? (this.spec.default ?? __columnError(this.id, `missing value`))
+				: (this.spec.default ?? null);
 	}
 
 	protected ensureBitmap() {
