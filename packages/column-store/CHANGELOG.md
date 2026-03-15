@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-15T19:24:27Z
+- **Last updated**: 2026-03-15T22:06:23Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.13.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.13.1) (2026-03-15)
+
+#### 🩹 Bug fixes
+
+- only bail out query if no matching terms ([57b0ab7](https://github.com/thi-ng/umbrella/commit/57b0ab7))
+  - queries without terms operate on ALL rows and still respect sort & limit criteria
+  - add tests
 
 ## [0.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.13.0) (2026-03-15)
 
