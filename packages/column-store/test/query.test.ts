@@ -630,5 +630,23 @@ describe("query", () => {
 			offset: 0,
 			limit: Infinity,
 		});
+		expect(table.query().limit(2).exec()).toEqual({
+			results: [
+				{ a: 100, __row: 0 },
+				{ a: 101, __row: 1 },
+			],
+			total: 4,
+			offset: 0,
+			limit: 2,
+		});
+		expect(table.query().limit(2).sortBy(["a", false]).exec()).toEqual({
+			results: [
+				{ a: 103, __row: 3 },
+				{ a: 102, __row: 2 },
+			],
+			total: 4,
+			offset: 0,
+			limit: 2,
+		});
 	});
 });

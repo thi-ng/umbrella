@@ -174,7 +174,7 @@ export class Query<T extends Row> {
 			offset: _offset,
 			limit: _limit,
 		};
-		if (!ctx.bitmap) return result;
+		if (!ctx.bitmap && this.terms.length) return result;
 		if (this._cmp) {
 			rows = [...ctx.rows()].sort(this._cmp);
 			result.total = rows.length;
@@ -199,7 +199,7 @@ export class Query<T extends Row> {
 	*[Symbol.iterator]() {
 		const { table, _limit, _offset } = this;
 		const ctx = new QueryCtx(this).exec();
-		if (!ctx.bitmap) return;
+		if (!ctx.bitmap && this.terms.length) return;
 		if (this._cmp) {
 			const rows = [...ctx.rows()].sort(this._cmp);
 			yield* rows.slice(
