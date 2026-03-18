@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-03-18T21:46:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.4.0) (2026-03-18)
+
+#### 🚀 Features
+
+- add `isSubscriber()`, `isSubscriptionLike()` helper predicates ([ea28608](https://github.com/thi-ng/umbrella/commit/ea28608))
 
 ### [9.3.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@9.3.13) (2026-02-07)
 
