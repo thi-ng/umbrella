@@ -94,7 +94,7 @@ export interface Num extends Value, WithPresets<number> {
 	placeholder?: StringAttrib;
 	size?: number;
 	step?: number | "any";
-	value?: ISubscription<number, number>;
+	value?: number | ISubscription<number, number>;
 	attribs?: Partial<InputNumericAttribs>;
 }
 
@@ -110,7 +110,7 @@ export interface Str extends Value, WithPresets<string> {
 	pattern?: string | RegExp | Predicate<string>;
 	placeholder?: StringAttrib;
 	size?: number;
-	value?: ISubscription<string, string>;
+	value?: string | ISubscription<string, string>;
 	attribs?: Partial<InputTextAttribs>;
 }
 
@@ -138,13 +138,13 @@ export interface Text extends Value {
 	cols?: number;
 	rows?: number;
 	placeholder?: StringAttrib;
-	value?: ISubscription<string, string>;
+	value?: string | ISubscription<string, string>;
 	attribs?: Partial<TextAreaAttribs>;
 }
 
 export interface Color extends Value, WithPresets<string> {
 	type: "color";
-	value?: ISubscription<string, string>;
+	value?: string | ISubscription<string, string>;
 }
 
 export interface DateTime extends Value, WithPresets<string> {
@@ -152,7 +152,7 @@ export interface DateTime extends Value, WithPresets<string> {
 	min?: string;
 	max?: string;
 	step?: number;
-	value?: ISubscription<string, string>;
+	value?: string | ISubscription<string, string>;
 }
 
 export interface DateVal extends Omit<DateTime, "type"> {
@@ -173,7 +173,7 @@ export interface Month extends Omit<DateTime, "type" | "list"> {
 
 export interface Select<T> extends Value {
 	items: (T | SelectItem<T> | SelectItemGroup<T>)[];
-	value?: ISubscription<T, T>;
+	value?: T | ISubscription<T, T>;
 	attribs?: Partial<Omit<SelectAttribs, "multiple">>;
 }
 
@@ -197,24 +197,26 @@ export interface SelectNum<T extends number = number> extends Select<T> {
 
 export interface MultiSelect<T> extends Value {
 	items: (T | SelectItem<T> | SelectItemGroup<T>)[];
-	value?: ISubscription<T[], T[]>;
+	value?: T | ISubscription<T[], T[]>;
 	size?: number;
 	attribs?: Partial<Omit<SelectAttribs, "multiple">>;
 }
 
-export interface MultiSelectStr<T extends string = string>
-	extends MultiSelect<T> {
+export interface MultiSelectStr<
+	T extends string = string,
+> extends MultiSelect<T> {
 	type: "multiSelectStr";
 }
 
-export interface MultiSelectNum<T extends number = number>
-	extends MultiSelect<T> {
+export interface MultiSelectNum<
+	T extends number = number,
+> extends MultiSelect<T> {
 	type: "multiSelectNum";
 }
 
 export interface Toggle extends Value {
 	type: "toggle";
-	value?: ISubscription<boolean, boolean>;
+	value?: boolean | ISubscription<boolean, boolean>;
 	attribs?: Partial<InputCheckboxAttribs>;
 }
 
@@ -239,7 +241,7 @@ export interface Reset extends Omit<Value, "required" | "readonly"> {
 
 export interface Radio<T> extends Value {
 	items: (T | SelectItem<T>)[];
-	value?: ISubscription<T, T>;
+	value?: T | ISubscription<T, T>;
 	attribs?: Partial<InputRadioAttribs>;
 }
 
@@ -295,8 +297,10 @@ type KnownTypes =
 /**
  * Type specific attribute overrides
  */
-export interface TypeAttribs
-	extends Record<KnownTypes["type"], Partial<Attribs>> {
+export interface TypeAttribs extends Record<
+	KnownTypes["type"],
+	Partial<Attribs>
+> {
 	form: Partial<FormAttribs>;
 	/**
 	 * Attribs for {@link group} label elements

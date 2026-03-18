@@ -41,7 +41,12 @@ import {
 	$replace,
 	type ComponentLike,
 } from "@thi.ng/rdom";
-import type { ISubscribable } from "@thi.ng/rstream";
+import type {
+	ISubscribable,
+	ISubscriber,
+	ISubscription,
+} from "@thi.ng/rstream";
+import { isSubscriptionLike } from "@thi.ng/rstream/checks";
 import type {
 	Color,
 	Container,
@@ -284,11 +289,11 @@ const __edit = <T extends Str>(val: T) => {
 			const target = <HTMLInputElement>e.target;
 			const body = target.value;
 			const ok = match(body);
-			if (ok) val.value!.next(body);
+			if (ok) (<ISubscription<string, string>>val.value).next(body);
 			$attribs(target, { invalid: !ok });
 		};
 	}
-	return $input(val.value!);
+	return $input(<ISubscription<string, string>>val.value);
 };
 
 const __useValues = (opts: Partial<FormOpts>) =>
@@ -371,7 +376,9 @@ export const compileForm: MultiFn2<
 			const ctrl = checkbox(
 				__attribs(
 					{ ...opts.typeAttribs?.toggle },
-					{ onchange: $inputCheckbox((<Toggle>$val).value!) },
+					isSubscriptionLike(val.value)
+						? { onchange: $inputCheckbox(val.value!) }
+						: {},
 					val,
 					opts,
 					"checked"
@@ -445,7 +452,7 @@ export const compileForm: MultiFn2<
 					id: __genID(id, opts),
 					name: val.name || val.id,
 					checked:
-						val.value && __useValues(opts)
+						isSubscriptionLike(val.value) && __useValues(opts)
 							? val.value.map((x) => x === item.value)
 							: undefined,
 					value: item.value,
@@ -477,7 +484,15 @@ export const compileForm: MultiFn2<
 				opts,
 				inputColor,
 				{ ...opts.typeAttribs?.color },
-				{ onchange: $input((<Color>$val).value!) }
+				isSubscriptionLike((<Color>$val).value)
+					? {
+							onchange: $input(
+								<ISubscription<string, string>>(
+									(<Color>$val).value!
+								)
+							),
+						}
+					: {}
 			),
 
 		file: ($val, opts) => {
@@ -516,7 +531,9 @@ export const compileForm: MultiFn2<
 					placeholder: val.placeholder,
 					size: val.size,
 				},
-				{ onchange: $inputNum(val.value!) }
+				isSubscriptionLike(val.value)
+					? { onchange: $inputNum(<ISubscriber<number>>val.value) }
+					: {}
 			);
 		},
 
@@ -533,7 +550,9 @@ export const compileForm: MultiFn2<
 							max: val.max,
 							step: val.step,
 						},
-						{ [edit]: $inputNum(val.value!) },
+						isSubscriptionLike(val.value)
+							? { [edit]: $inputNum(val.value!) }
+							: {},
 						val,
 						opts
 					)
@@ -542,16 +561,18 @@ export const compileForm: MultiFn2<
 			if (val.value && val.vlabel !== false && __useValues(opts)) {
 				const fmt =
 					val.vlabel === true || val.vlabel === undefined
-						? opts.behaviors?.rangeLabelFmt ?? 2
+						? (opts.behaviors?.rangeLabelFmt ?? 2)
 						: val.vlabel;
-				children.push(
-					span(
-						{ ...opts.typeAttribs?.rangeLabel },
-						val.value.map(
-							isFunction(fmt) ? fmt : (x) => x.toFixed(fmt)
+				if (isSubscriptionLike(val.value)) {
+					children.push(
+						span(
+							{ ...opts.typeAttribs?.rangeLabel },
+							(<ISubscription<number, number>>val.value).map(
+								isFunction(fmt) ? fmt : (x) => x.toFixed(fmt)
+							)
 						)
-					)
-				);
+					);
+				}
 			}
 			return div(
 				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
@@ -581,7 +602,7 @@ export const compileForm: MultiFn2<
 					pattern: isString(val.pattern) ? val.pattern : undefined,
 					size: val.size,
 				},
-				{ [edit]: __edit(val) }
+				isSubscriptionLike(val.value) ? { [edit]: __edit(val) } : {}
 			);
 		},
 
@@ -599,7 +620,9 @@ export const compileForm: MultiFn2<
 					rows: val.rows,
 					placeholder: val.placeholder,
 				},
-				{ [edit]: $input(val.value!) }
+				isSubscriptionLike(val.value)
+					? { [edit]: $input(val.value!) }
+					: {}
 			);
 		},
 
@@ -618,7 +641,9 @@ export const compileForm: MultiFn2<
 					max: val.max,
 					step: val.step,
 				},
-				{ onchange: $input(val.value!) }
+				isSubscriptionLike(val.value)
+					? { onchange: $input(val.value!) }
+					: {}
 			);
 		},
 
@@ -642,11 +667,13 @@ export const compileForm: MultiFn2<
 							...(opts.typeAttribs?.[val.type] ||
 								opts.typeAttribs?.select),
 						},
-						{
-							onchange: isNumeric
-								? $inputNum(val.value!)
-								: $input(val.value!),
-						},
+						isSubscriptionLike(val.value)
+							? {
+									onchange: isNumeric
+										? $inputNum(val.value!)
+										: $input(val.value!),
+								}
+							: {},
 						val,
 						opts,
 						false
@@ -656,14 +683,14 @@ export const compileForm: MultiFn2<
 							? optGroup(
 									{ label: item.name },
 									...item.items.map((i) => $option(i, sel))
-							  )
+								)
 							: $option(item, sel)
 					)
 				);
 			return div(
 				{ ...opts.wrapperAttribs, ...val.wrapperAttribs },
 				...__genCommon(val, opts),
-				val.value && __useValues(opts)
+				isSubscriptionLike(val.value) && __useValues(opts)
 					? $replace(val.value.map($select))
 					: $select()
 			);
@@ -676,7 +703,7 @@ export const compileForm: MultiFn2<
 				? (x) => parseFloat(x.value)
 				: (x) => x.value;
 			const sel =
-				val.value && __useValues(opts)
+				isSubscriptionLike(val.value) && __useValues(opts)
 					? val.value.map((x) => (isArray(x) ? x : [x]))
 					: null;
 			const $option = ($item: any | SelectItem<any>) => {
@@ -701,23 +728,25 @@ export const compileForm: MultiFn2<
 					multiple: true,
 					size: val.size,
 				},
-				{
-					onchange: (e: InputEvent) => {
-						val.value!.next(
-							[
-								...(<HTMLSelectElement>e.target)
-									.selectedOptions,
-							].map(coerce)
-						);
-					},
-				},
+				isSubscriptionLike(val.value)
+					? {
+							onchange: (e: InputEvent) => {
+								(<ISubscription<any, any>>val.value).next(
+									[
+										...(<HTMLSelectElement>e.target)
+											.selectedOptions,
+									].map(coerce)
+								);
+							},
+						}
+					: {},
 				false,
 				...val.items.map((item) =>
 					isPlainObject(item) && "items" in item
 						? optGroup(
 								{ label: item.name },
 								...item.items.map($option)
-						  )
+							)
 						: $option(item)
 				)
 			);
