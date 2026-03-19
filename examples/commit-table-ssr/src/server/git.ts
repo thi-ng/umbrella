@@ -51,7 +51,7 @@ const parseStats = ([_, stats]: string[]): Maybe<Partial<Commit>> =>
 				map(([k, v]) => <[string, number]>[k, parseInt(v)]),
 				assocObj(),
 				zip(["files", "add", "del"], stats.split(","))
-		  )
+			)
 		: undefined;
 
 /**
@@ -76,8 +76,8 @@ export const repoCommits = (repoPath: string) =>
 				x.indexOf("~~Merge ") !== -1
 					? Math.random()
 					: x.length > 0
-					? 1
-					: 0
+						? 1
+						: 0
 			),
 			// remove empty lines
 			filter((x) => x[0].length > 0),

@@ -21,7 +21,7 @@ const tick = (i: number, r1: number, r2: number) => {
 					{ stroke: "none" },
 					cartesian2(null, [r1 - 10, theta]),
 					i > 0 ? i : 12,
-			  ]
+				]
 			: null,
 	];
 };

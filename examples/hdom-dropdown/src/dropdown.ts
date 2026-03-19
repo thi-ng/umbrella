@@ -70,7 +70,7 @@ export function dropdown(themeCtxPath: Path) {
 							)
 						),
 					],
-			  ]
+				]
 			: [
 					"div",
 					ui.root,
@@ -82,10 +82,10 @@ export function dropdown(themeCtxPath: Path) {
 							? opts.hoverLabel
 							: (state.items.find(
 									(x: any) => x[0] === state.selected
-							  ) || [undefined, opts.hoverLabel])[1],
+								) || [undefined, opts.hoverLabel])[1],
 					],
 					["div", ui.bodyClosed],
-			  ];
+				];
 	};
 }
 

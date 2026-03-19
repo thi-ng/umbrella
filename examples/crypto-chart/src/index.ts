@@ -339,43 +339,53 @@ const chart = sync({
 				line([MARGIN_X, MARGIN_Y], [MARGIN_X, by]),
 				line([MARGIN_X, by], [width - MARGIN_X, by]),
 				// Y axis ticks
-				mapcat((price: number) => {
-					const y = mapY(price);
-					return [
-						line([MARGIN_X - 10, y], [MARGIN_X, y]),
-						line([MARGIN_X, y], [width - MARGIN_X, y], {
-							stroke:
-								price % 100 < 1
-									? theme.chart.gridMajor
-									: theme.chart.gridMinor,
-							"stroke-dasharray": 2,
-						}),
-						text([MARGIN_X - 15, y + 4], price.toFixed(4), {
-							stroke: "none",
-						}),
-					];
-				}, range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)),
+				mapcat(
+					(price: number) => {
+						const y = mapY(price);
+						return [
+							line([MARGIN_X - 10, y], [MARGIN_X, y]),
+							line([MARGIN_X, y], [width - MARGIN_X, y], {
+								stroke:
+									price % 100 < 1
+										? theme.chart.gridMajor
+										: theme.chart.gridMinor,
+								"stroke-dasharray": 2,
+							}),
+							text([MARGIN_X - 15, y + 4], price.toFixed(4), {
+								stroke: "none",
+							}),
+						];
+					},
+					range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)
+				),
 				// X axis ticks
-				mapcat((t: number) => {
-					const x = fit(
-						t,
-						data.tbounds[0],
+				mapcat(
+					(t: number) => {
+						const x = fit(
+							t,
+							data.tbounds[0],
+							data.tbounds[1],
+							MARGIN_X + bw / 2,
+							width - MARGIN_X - bw / 2
+						);
+						return [
+							line([x, by], [x, by + 10]),
+							line([x, MARGIN_Y], [x, by], {
+								stroke: theme.chart.gridMinor,
+								"stroke-dasharray": 2,
+							}),
+							text([x, by + 20], fmtTime(t), {
+								stroke: "none",
+								"text-anchor": "middle",
+							}),
+						];
+					},
+					range(
+						Math.ceil(data.tbounds[0] / tickX) * tickX,
 						data.tbounds[1],
-						MARGIN_X + bw / 2,
-						width - MARGIN_X - bw / 2
-					);
-					return [
-						line([x, by], [x, by + 10]),
-						line([x, MARGIN_Y], [x, by], {
-							stroke: theme.chart.gridMinor,
-							"stroke-dasharray": 2,
-						}),
-						text([x, by + 20], fmtTime(t), {
-							stroke: "none",
-							"text-anchor": "middle",
-						}),
-					];
-				}, range(Math.ceil(data.tbounds[0] / tickX) * tickX, data.tbounds[1], tickX))
+						tickX
+					)
+				)
 			),
 			// moving averages
 			map(

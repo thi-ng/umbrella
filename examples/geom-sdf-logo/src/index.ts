@@ -59,8 +59,10 @@ const logoBounds = bounds(logo, W * 1.5)!;
 // waves (used for the next processing step below)
 const sineWarp =
 	(freq: number, amp: number) =>
-	([x, y]: ReadonlyVec) =>
-		[x + amp * Math.sin(y * freq), y + amp * Math.sin(x * freq)];
+	([x, y]: ReadonlyVec) => [
+		x + amp * Math.sin(y * freq),
+		y + amp * Math.sin(x * freq),
+	];
 
 // convert geometry hierarchy to a 2D SDF and sample it within the given
 // bounding rect & resolution. we also use the above `sineWarp()` function to

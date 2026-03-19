@@ -54,8 +54,7 @@ const shapeScatterPlot =
 		data: DomainValues,
 		attribs: any = {}
 	): PlotFn =>
-	(spec) =>
-		["g", attribs, ...map(shape, processedPoints(spec, data))];
+	(spec) => ["g", attribs, ...map(shape, processedPoints(spec, data))];
 
 // our custom shape function for a single datum of the scatter plot
 // `pos` is the mapped position, `orig` the original domain position
@@ -161,7 +160,7 @@ const createViz = ({
 							// configure to the gradient defined above
 							// see: https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-svg/README.md#automatic-attribute-conversions
 							attribs: { stroke: "$grad", weight: 0.5 },
-					  })
+						})
 					: () => () => null,
 				shapeScatterPlot(dot, data, { id: "scatter" }),
 			],

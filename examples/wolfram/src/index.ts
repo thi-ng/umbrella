@@ -52,7 +52,7 @@ const evolveCA = (src: number[], { kernel, rule, reset }: any) =>
 					),
 					range(src.length)
 				),
-		  ];
+			];
 
 const triggerReset = () =>
 	wolfram.add(fromIterable([true, false], { delay: 16 }), "reset");

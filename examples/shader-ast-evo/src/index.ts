@@ -109,7 +109,7 @@ const AST_OPTS: ASTOpts<Function, Vec3Term> = {
 					rnd.norm(NORM_SCALE),
 					rnd.norm(NORM_SCALE),
 					rnd.norm(NORM_SCALE)
-			  ),
+				),
 	ops: [
 		{ fn: randomFn(OP1), arity: 1, prob: 0.4 },
 		{ fn: randomFn(OP2), arity: 2, prob: 0.4 },

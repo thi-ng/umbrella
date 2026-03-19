@@ -76,45 +76,36 @@ export const UI = {
 // `UI.main` and `inputs` are defined in `index.ts`.
 export const app =
 	(ctx: any, inputs: any) =>
-	({ src, hiccup }: any) =>
+	({ src, hiccup }: any) => [
+		"div.flex-ns",
 		[
-			"div.flex-ns",
+			editPane,
+			["XML/HTML source", ["small", ctx.small, "(must be well formed!)"]],
+			{
+				...ctx.src,
+				onkeydown: handleTab(inputs.xml),
+				// emitting a new value to the stream will
+				// re-trigger conversion & UI update
+				oninput: (e: any) => inputs.xml.next(e.target.value),
+			},
+			src,
+		],
+		[
+			editPane,
+			["Transformed Hiccup / JSON"],
+			hiccup.indexOf("error") < 0 ? ctx.result.success : ctx.result.error,
+			hiccup,
 			[
-				editPane,
-				[
-					"XML/HTML source",
-					["small", ctx.small, "(must be well formed!)"],
-				],
+				copyButton,
 				{
-					...ctx.src,
-					onkeydown: handleTab(inputs.xml),
-					// emitting a new value to the stream will
-					// re-trigger conversion & UI update
-					oninput: (e: any) => inputs.xml.next(e.target.value),
+					class: hiccup.indexOf("error") < 0 ? "bg-green" : "bg-gray",
 				},
-				src,
-			],
-			[
-				editPane,
-				["Transformed Hiccup / JSON"],
-				hiccup.indexOf("error") < 0
-					? ctx.result.success
-					: ctx.result.error,
+				inputs.copyButton,
 				hiccup,
-				[
-					copyButton,
-					{
-						class:
-							hiccup.indexOf("error") < 0
-								? "bg-green"
-								: "bg-gray",
-					},
-					inputs.copyButton,
-					hiccup,
-				],
-				[transformOpts, inputs],
 			],
-		];
+			[transformOpts, inputs],
+		],
+	];
 
 // configurable editor panel UI component
 // (uses Tachyons CSS classes for styling)

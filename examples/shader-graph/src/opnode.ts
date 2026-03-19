@@ -27,7 +27,10 @@ export class OpNode<T extends UserUniforms> {
 	updateSpec: ModelSpec;
 	drawSpec: ModelSpec;
 
-	constructor(public ctx: AppCtx, public spec: OpSpec<T>) {
+	constructor(
+		public ctx: AppCtx,
+		public spec: OpSpec<T>
+	) {
 		// create texture as render target
 		this.tex = defTexture(ctx.gl, {
 			width: ctx.texSize,
@@ -54,10 +57,13 @@ export class OpNode<T extends UserUniforms> {
 		});
 
 		// expose uniforms as plain JS object
-		this.params = Object.entries(spec.unis).reduce((acc, [id, val]) => {
-			acc[id] = val[1];
-			return acc;
-		}, <any>{});
+		this.params = Object.entries(spec.unis).reduce(
+			(acc, [id, val]) => {
+				acc[id] = val[1];
+				return acc;
+			},
+			<any>{}
+		);
 
 		// define stub ModelSpec's for drawing
 		// re-use pre-defined geometries defined in AppCtx

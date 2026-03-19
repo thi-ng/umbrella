@@ -115,18 +115,17 @@ export const ytVideo = (ctx: any, id: string) => [
 
 export const app =
 	(slideCount: number, ctx: any) =>
-	({ slideID, content, time }: any) =>
+	({ slideID, content, time }: any) => [
+		"div",
+		ctx.app.root,
+		content,
 		[
-			"div",
-			ctx.app.root,
-			content,
-			[
-				footer,
-				["div.w-33.tl", ctx.app.credits],
-				["div.w-34.tc", time],
-				["div.w-33.tr", `${slideID} / ${slideCount - 1}`],
-			],
-		];
+			footer,
+			["div.w-33.tl", ctx.app.credits],
+			["div.w-34.tc", time],
+			["div.w-33.tr", `${slideID} / ${slideCount - 1}`],
+		],
+	];
 
 export const printApp = (ctx: any, slides: any[]) => [
 	"div",

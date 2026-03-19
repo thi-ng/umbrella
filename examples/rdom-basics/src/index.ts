@@ -97,8 +97,8 @@ $compile(
 					class: isString(x)
 						? "item-string"
 						: x === typing
-						? "item-typing"
-						: "item-default",
+							? "item-typing"
+							: "item-default",
 				},
 				x
 			)

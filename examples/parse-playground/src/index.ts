@@ -120,12 +120,12 @@ const result = sync({
 						"partial",
 						`partial match only (stopped @ ${ctx.state.l}:${ctx.state.c})...\n\n${body}`,
 						time
-				  )
+					)
 			: $result(
 					"fail",
 					`input parse failure (no match)...\n\n${body}`,
 					time
-			  );
+				);
 	} catch (e) {
 		return $result("err", `Parse error: ${e}`);
 	}

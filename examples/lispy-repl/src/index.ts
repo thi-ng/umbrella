@@ -102,7 +102,7 @@ const replItem = (item: REPLItem) =>
 							);
 							el.value = item.value;
 							el.focus();
-					  }
+						}
 					: undefined,
 		},
 		item.value

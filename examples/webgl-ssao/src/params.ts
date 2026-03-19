@@ -3,22 +3,21 @@ import type { IObjectOf } from "@thi.ng/api";
 import { reactive, type Stream } from "@thi.ng/rstream";
 import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
 
-const slider = (label: string, attribs: any, stream: Stream<number>) => () =>
+const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
+	"div.mb2",
+	["span.dib.w4", label],
 	[
-		"div.mb2",
-		["span.dib.w4", label],
-		[
-			"input.w5",
-			{
-				...attribs,
-				type: "range",
-				value: stream.deref(),
-				oninput: (e: Event) =>
-					stream.next(parseFloat((<HTMLInputElement>e.target).value)),
-			},
-		],
-		["span.ml3", stream.deref()],
-	];
+		"input.w5",
+		{
+			...attribs,
+			type: "range",
+			value: stream.deref(),
+			oninput: (e: Event) =>
+				stream.next(parseFloat((<HTMLInputElement>e.target).value)),
+		},
+	],
+	["span.ml3", stream.deref()],
+];
 
 type ParamDef = [string, any, number];
 

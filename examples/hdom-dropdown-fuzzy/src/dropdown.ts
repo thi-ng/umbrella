@@ -76,10 +76,10 @@ export function dropdown(themeCtxPath: Path) {
 										onclick: opts.onchange!(x[0]),
 									},
 									...(isString(x[1]) ? [x[1]] : x[1]),
-							  ])
+								])
 							: ["span", ui.itemDisabled, opts.noItems],
 					],
-			  ]
+				]
 			: [
 					"div",
 					ui.root,
@@ -91,10 +91,10 @@ export function dropdown(themeCtxPath: Path) {
 							? opts.hoverLabel
 							: (state.items.find(
 									(x: any) => x[0] === state.selected
-							  ) || [undefined, opts.hoverLabel])[1],
+								) || [undefined, opts.hoverLabel])[1],
 					],
 					["div", ui.bodyClosed],
-			  ];
+				];
 	};
 }
 

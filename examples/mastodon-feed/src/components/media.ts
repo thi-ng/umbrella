@@ -118,8 +118,8 @@ export const mediaModal = (
 							{},
 							item.description || "😢 No alt text provided..."
 						)
-				  )
+					)
 				: // invisible div if no item
-				  div(".dn", {})
+					div(".dn", {})
 		)
 	);

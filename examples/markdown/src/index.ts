@@ -74,7 +74,7 @@ const CUSTOM_TAGS: Partial<TagTransforms> = {
 					["input", { type: "checkbox", checked: attribs.__done }],
 					" ",
 					...body,
-			  ]
+				]
 			: ["li", { __index: index }, ...body],
 	ulitem: (ctx, attribs, body) =>
 		attribs.__todo
@@ -84,7 +84,7 @@ const CUSTOM_TAGS: Partial<TagTransforms> = {
 					["input", { type: "checkbox", checked: attribs.__done }],
 					" ",
 					...body,
-			  ]
+				]
 			: ["li", {}, ...body],
 	strike: (ctx, body) => ["del.bg-washed-red", ...body],
 	table: (ctx, head, rows) => [
@@ -112,36 +112,35 @@ const CUSTOM_TAGS: Partial<TagTransforms> = {
 };
 
 const colAlign = (ctx: TransformCtx) =>
-	({ default: "tl", left: "tl", center: "tc", right: "tr" }[
+	({ default: "tl", left: "tl", center: "tc", right: "tr" })[
 		ctx.align[ctx.column]
-	]);
+	];
 
 // UI root component
 const app =
 	(input: Stream<string>) =>
-	({ src, parsed: [hiccup, time] }: any) =>
+	({ src, parsed: [hiccup, time] }: any) => [
+		"div.flex.vh-100.sans-serif.flex-column.flex-row-l",
 		[
-			"div.flex.vh-100.sans-serif.flex-column.flex-row-l",
+			"div.w-100.h-50.w-50-l.h-100-l",
 			[
-				"div.w-100.h-50.w-50-l.h-100-l",
-				[
-					"textarea.w-100.vh-50.vh-100-l.bg-washed-blue.navy.pa3.f7.code.lh-copy",
-					{
-						value: src,
-						oninput: (e: Event) =>
-							input.next((<HTMLTextAreaElement>e.target).value),
-					},
-				],
+				"textarea.w-100.vh-50.vh-100-l.bg-washed-blue.navy.pa3.f7.code.lh-copy",
+				{
+					value: src,
+					oninput: (e: Event) =>
+						input.next((<HTMLTextAreaElement>e.target).value),
+				},
 			],
+		],
+		[
+			"div.w-100.h-50.w-50-l.vh-100-l.overflow-y-scroll.pa3.lh-copy",
 			[
-				"div.w-100.h-50.w-50-l.vh-100-l.overflow-y-scroll.pa3.lh-copy",
-				[
-					"div.pa2.bg-yellow.purple.f7",
-					`Parsed ${src.length} chars in ${time | 0}ms`,
-				],
-				...hiccup,
+				"div.pa2.bg-yellow.purple.f7",
+				`Parsed ${src.length} chars in ${time | 0}ms`,
 			],
-		];
+			...hiccup,
+		],
+	];
 
 // markdown input stream
 // seed w/ temp input
@@ -165,7 +164,7 @@ src.transform(
 								{},
 								`Incomplete parse, stopped at line ${state.l}`,
 							],
-					  ];
+						];
 			} catch (e) {
 				return [
 					[

@@ -138,7 +138,7 @@ const domStats = (_: any, grid: any, res: number, _static: number) =>
 					["span.pink", res * res + res + _static],
 					" DOM nodes total",
 				],
-		  ]
+			]
 		: null;
 
 const newCells = (res: number) => new Array(res * res).fill(0);

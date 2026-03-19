@@ -17,7 +17,10 @@ export class Draggable extends Component {
 	protected opts: DraggableOpts;
 	protected active = false;
 
-	constructor(protected inner: ComponentLike, opts?: Partial<DraggableOpts>) {
+	constructor(
+		protected inner: ComponentLike,
+		opts?: Partial<DraggableOpts>
+	) {
 		super();
 		this.opts = {
 			dropzone: "dropzone",

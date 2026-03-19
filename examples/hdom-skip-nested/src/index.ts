@@ -77,7 +77,7 @@ const wrapper = () => {
 					nextSkip
 						? ["div.dib.mh3.f7.red", "(counter updates not shown)"]
 						: null,
-			  ];
+				];
 };
 
 const app = () => {

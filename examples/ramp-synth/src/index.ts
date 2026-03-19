@@ -142,7 +142,7 @@ start(() => {
 					mpos[1] < HEIGHT - PAD
 						? ["line", {}, [PAD, mpos[1]], [PAD + CWIDTH, mpos[1]]]
 						: null,
-			  ]
+				]
 			: null,
 	];
 });

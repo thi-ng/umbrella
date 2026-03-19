@@ -105,11 +105,14 @@ imageFromURL(LOGO).then((img) => {
 		const waves = map(
 			(y) =>
 				polyline([
-					...map((x) => {
-						const q = geom.mapLocalPointToNode(imgNode, [x, y]);
-						const r = sampler(q[0], q[1])[0] * 5;
-						return [x, y + sin(x, 0.05, r)];
-					}, range(-200, 200)),
+					...map(
+						(x) => {
+							const q = geom.mapLocalPointToNode(imgNode, [x, y]);
+							const r = sampler(q[0], q[1])[0] * 5;
+							return [x, y + sin(x, 0.05, r)];
+						},
+						range(-200, 200)
+					),
 				]),
 			range(-200, 200, 5)
 		);

@@ -44,7 +44,7 @@ start(
 						onclick: () => ctx.bus.dispatch(["inc-counter"]),
 					},
 					`clicks: ${ctx.db.value.clicks}`,
-			  ]
+				]
 			: null,
 	// hdom options incl.
 	// arbitrary user context object passed to all components

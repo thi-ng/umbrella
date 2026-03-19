@@ -65,10 +65,10 @@ const parseAttrib = (attrib: string[]) => {
 		return k === "style"
 			? [k, transformCSS(v)]
 			: v === "true"
-			? [k, true]
-			: v === "false"
-			? [k, false]
-			: [k, /^[0-9.e+-]+$/.test(v) ? parseFloat(v) : v];
+				? [k, true]
+				: v === "false"
+					? [k, false]
+					: [k, /^[0-9.e+-]+$/.test(v) ? parseFloat(v) : v];
 	}
 	return attrib;
 };

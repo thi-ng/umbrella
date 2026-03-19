@@ -16,8 +16,11 @@ export interface SearchIndex {
 
 const defDecoder =
 	([[psh, pmsk], [fsh, fmsk], [lsh, lmsk]]: number[][]) =>
-	(id: number) =>
-		[(id >>> psh) & pmsk, (id >>> fsh) & fmsk, (id >>> lsh) & lmsk];
+	(id: number) => [
+		(id >>> psh) & pmsk,
+		(id >>> fsh) & fmsk,
+		(id >>> lsh) & lmsk,
+	];
 
 const find = (node: PackedTrie, key: string) => {
 	for (let i = 0, n = key.length; node && i < n; i++) {

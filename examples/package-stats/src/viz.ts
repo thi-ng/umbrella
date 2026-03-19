@@ -40,26 +40,24 @@ const tickY =
 
 export const labeledTickX =
 	(y: number) =>
-	([x, n]: any[]) =>
-		[
-			line([x, y], [x, y + 5]),
-			text([x, y + 15], n, {
-				stroke: "none",
-				"text-anchor": "end",
-				transform: `rotate(-45 ${x} ${y + 15})`,
-			}),
-		];
+	([x, n]: any[]) => [
+		line([x, y], [x, y + 5]),
+		text([x, y + 15], n, {
+			stroke: "none",
+			"text-anchor": "end",
+			transform: `rotate(-45 ${x} ${y + 15})`,
+		}),
+	];
 
 export const labeledTickY =
 	(width: number, fmt = (x: number) => String(x)) =>
 	(x: number) =>
-	([y, n]: [number, any]) =>
-		[
-			...tick(x - 5, y, x, y, x - 10, y + 4, n > 0 ? fmt(n) : 0),
-			n > 0
-				? line([x + 20, y], [width, y], { "stroke-dasharray": "1 3" })
-				: null,
-		];
+	([y, n]: [number, any]) => [
+		...tick(x - 5, y, x, y, x - 10, y + 4, n > 0 ? fmt(n) : 0),
+		n > 0
+			? line([x + 20, y], [width, y], { "stroke-dasharray": "1 3" })
+			: null,
+	];
 
 // x-axis with ticks as SVG group
 export const axisX = ({ axis: a, domain: d, range: r, label, ticks }: any) => [

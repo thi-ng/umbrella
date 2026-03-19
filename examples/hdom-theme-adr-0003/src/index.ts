@@ -75,7 +75,8 @@ const button = (themeCtxPath: Path, behavior?: Partial<ButtonBehavior>) => {
 				(args.href == null || args.href === "#")
 			) {
 				attribs.onclick = (e: Event) => (
-					e.preventDefault(), args.onclick!(e)
+					e.preventDefault(),
+					args.onclick!(e)
 				);
 			}
 			return [behavior!.tag, attribs, ...body];

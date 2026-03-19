@@ -107,7 +107,7 @@ const infoNode = new Node2D({
 						`${info.p![0].toFixed(2)}, ${info.p![1].toFixed(2)}`,
 					],
 					["text", {}, [8, -24], `ID: ${info.node.id}`],
-			  ]
+				]
 			: undefined,
 	],
 });

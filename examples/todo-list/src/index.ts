@@ -69,8 +69,11 @@ const taskList = () => {
 };
 
 const button =
-	(onclick: EventListener, body: string) => (_: any, disabled: boolean) =>
-		["button", { onclick, disabled }, body];
+	(onclick: EventListener, body: string) => (_: any, disabled: boolean) => [
+		"button",
+		{ onclick, disabled },
+		body,
+	];
 
 const toolbar = () => {
 	const btAdd = button(() => addNewTask(), "+ Add");

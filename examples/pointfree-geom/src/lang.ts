@@ -141,13 +141,13 @@ const scaleCenter: StackFn = (ctx) => {
 		? (shape: IHiccupShape2) => {
 				const c = centroid(shape)!;
 				return _transform(shape, scaleWithCenter23([], c, scale));
-		  }
+			}
 		: (shape: IHiccupShape2) => {
 				const c = centroid(shape)!;
 				ds.push(c, scale);
 				exec(ctx);
 				return _transform(shape, scaleWithCenter23([], c, ds.pop()));
-		  };
+			};
 	if (shape instanceof Group) {
 		ds.push(group({}, shape.children.map($)));
 	} else {
@@ -233,11 +233,14 @@ const grid: StackFn = (ctx) => {
 	ds.push(
 		group(
 			{},
-			map((p) => {
-				ds.push(p, xform);
-				exec(ctx);
-				return _transform(shape, ds.pop());
-			}, range2d(cols, rows))
+			map(
+				(p) => {
+					ds.push(p, xform);
+					exec(ctx);
+					return _transform(shape, ds.pop());
+				},
+				range2d(cols, rows)
+			)
 		)
 	);
 	return ctx;

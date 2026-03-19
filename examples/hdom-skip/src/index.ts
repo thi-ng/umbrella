@@ -27,7 +27,7 @@ const timer = (period: number, name = `${period}ms`) => {
 			return !this.inited || t % period < 16
 				? ["div.sans-serif", `${name} @ ${this.val++ || 0}`]
 				: // dummy content (could be an empty div)
-				  ["div", { __skip: true }, "I should be never seen"];
+					["div", { __skip: true }, "I should be never seen"];
 		},
 	};
 };

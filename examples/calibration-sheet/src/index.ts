@@ -29,16 +29,19 @@ const swatches = (layout: GridLayout, num: number) => {
 		rect([x - MARGIN + bgWidth, y - MARGIN], [bgWidth, h], {
 			fill: "white",
 		}),
-		...map((t) => {
-			const cell = nested.next([1, rows]);
-			return group({ translate: [cell.x, y] }, [
-				rect(w, { fill: [t, t, t] }),
-				text([w / 2, w + 10], (t * 100) | 0, {
-					compose: "difference",
-					fill: "white",
-				}),
-			]);
-		}, normRange(num, false)),
+		...map(
+			(t) => {
+				const cell = nested.next([1, rows]);
+				return group({ translate: [cell.x, y] }, [
+					rect(w, { fill: [t, t, t] }),
+					text([w / 2, w + 10], (t * 100) | 0, {
+						compose: "difference",
+						fill: "white",
+					}),
+				]);
+			},
+			normRange(num, false)
+		),
 	]);
 };
 

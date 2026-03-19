@@ -86,7 +86,7 @@ const branchBody = (items: Item[], existing: string[]) => {
 					".tags",
 					{},
 					...sharedTags.map((x) => branch(selItems, [...existing, x]))
-			  )
+				)
 			: null
 	);
 };
@@ -102,7 +102,7 @@ const itemList = (items: Item[]) => {
 				{},
 				div({}, ...pkgs.map(branchItem)),
 				div({}, ...examples.map(branchItem))
-		  )
+			)
 		: div({}, ...(pkgs || examples).map(branchItem));
 };
 
@@ -116,7 +116,7 @@ const itemListReveal = (items: Item[]) => {
 						".show",
 						{ onclick: $inputTrigger(show) },
 						`show ${items.length} items`
-				  )
+					)
 		)
 	);
 };
@@ -160,7 +160,7 @@ const branchItem = ({ id, desc, img: imgSrc }: Item) => {
 				{},
 				img({ src: `${ASSET_BASE_URL}/${imgSrc}`, alt: "screenshot" }),
 				div({}, ...body)
-		  )
+			)
 		: div(".project", {}, ...body);
 };
 
@@ -231,8 +231,8 @@ const glossaryLink = (tag: string) => {
 		gloss
 			? externalLink(GLOSSARY_URL + gloss, "Glossary")
 			: wiki
-			? externalLink(WIKI_URL + wiki, "Wikipedia")
-			: desc
+				? externalLink(WIKI_URL + wiki, "Wikipedia")
+				: desc
 	);
 };
 

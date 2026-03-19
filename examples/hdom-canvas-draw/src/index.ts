@@ -22,8 +22,12 @@ const W = 480;
 // takes a tuple of 2 points and returns a component fn
 const line =
 	([a, b]: number[][]) =>
-	(_: any, attribs: any) =>
-		["line", { ...attribs, weight: dist2(a, b) / 4 }, a, b];
+	(_: any, attribs: any) => [
+		"line",
+		{ ...attribs, weight: dist2(a, b) / 4 },
+		a,
+		b,
+	];
 
 // higher order root component function. takes a @thi.ng/rstream
 // `StreamSync` instance as argument to dynamically add a new input

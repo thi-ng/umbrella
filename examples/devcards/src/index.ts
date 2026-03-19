@@ -140,10 +140,10 @@ function bmi(state: IAtom<BMIState>) {
 		bmi > thresh[3][0]
 			? thresh[3][1]
 			: bmi > thresh[2][0]
-			? thresh[2][1]
-			: bmi > thresh[1][0]
-			? thresh[1][1]
-			: thresh[0][1]
+				? thresh[2][1]
+				: bmi > thresh[1][0]
+					? thresh[1][1]
+					: thresh[0][1]
 	);
 
 	// another derived view to create SVG visualization

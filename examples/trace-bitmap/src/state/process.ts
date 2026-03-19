@@ -209,7 +209,7 @@ export const scene = sync({
 										size: strokeWeight * PSIZE,
 									},
 									false
-							  )
+								)
 							: child
 					)
 				),

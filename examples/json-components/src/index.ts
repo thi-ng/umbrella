@@ -38,8 +38,12 @@ let db = [
 // the `item` function is the root component for each JSON object
 // it's a higher-order function, since we will create different
 // instances for theming purposes... see below
-const item = (theme: any) => (item: any) =>
-	[`div.item.${theme}`, item.title, item.meta, item.content];
+const item = (theme: any) => (item: any) => [
+	`div.item.${theme}`,
+	item.title,
+	item.meta,
+	item.content,
+];
 const meta = (meta: any) => ["div.meta", meta.author, meta.created, meta.tags];
 const author = (author: any) => [
 	"div",

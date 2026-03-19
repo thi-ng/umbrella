@@ -45,12 +45,12 @@ export const gallery = async () => {
 	}).map(({ selected: sel, threshold }) =>
 		sel < 0
 			? // return full set if no image selected
-			  DB.map((x, i) => <RankedItem>[x, i, -1])
+				DB.map((x, i) => <RankedItem>[x, i, -1])
 			: // compute similarities to selected image
-			  // this is the actual Jaccard index calculation
-			  // see: https://docs.thi.ng/umbrella/bitfield/classes/BitField.html#similarity
-			  // prettier-ignore
-			  DB.map((x, i) => <RankedItem>[x, i, DB[sel].encoded!.similarity(DB[i].encoded!)])
+				// this is the actual Jaccard index calculation
+				// see: https://docs.thi.ng/umbrella/bitfield/classes/BitField.html#similarity
+				// prettier-ignore
+				DB.map((x, i) => <RankedItem>[x, i, DB[sel].encoded!.similarity(DB[i].encoded!)])
 					// discard unrelated items
 					.filter((x) => x[2] >= threshold)
 					// sort remaining by similarity (in best-to-worst order)

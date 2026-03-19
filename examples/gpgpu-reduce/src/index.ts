@@ -34,24 +34,23 @@ const { gl } = glCanvas({ width: 1, height: 1 });
 // each fragment reducing 2x2 input vec4 values using given operation
 const reduceStep =
 	(op: FnU2<Vec4Term>): ShaderFn =>
-	(gl, unis, _, outs) =>
-		[
-			defMain(() => {
-				let uv: IVec2Sym;
-				const sample = (x: number, y: number) =>
-					texelFetchOffset(unis.input0, uv, int(0), ivec2(x, y));
-				return [
-					(uv = sym(lshift(ivec2($xy(gl.gl_FragCoord)), int(1)))),
-					assign(
-						outs.output0,
-						op(
-							op(sample(0, 0), sample(1, 0)),
-							op(sample(0, 1), sample(1, 1))
-						)
-					),
-				];
-			}),
-		];
+	(gl, unis, _, outs) => [
+		defMain(() => {
+			let uv: IVec2Sym;
+			const sample = (x: number, y: number) =>
+				texelFetchOffset(unis.input0, uv, int(0), ivec2(x, y));
+			return [
+				(uv = sym(lshift(ivec2($xy(gl.gl_FragCoord)), int(1)))),
+				assign(
+					outs.output0,
+					op(
+						op(sample(0, 0), sample(1, 0)),
+						op(sample(0, 1), sample(1, 1))
+					)
+				),
+			];
+		}),
+	];
 
 // build declarative multi-pass shader pipeline for performing GPU-side reductions
 const defReduction = (op: FnU2<Vec4Term>, size: number, data: Float32Array) => {

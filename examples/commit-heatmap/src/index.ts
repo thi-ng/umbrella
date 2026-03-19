@@ -144,18 +144,18 @@ const parseCommit = ([head, ...files]: string[]) => {
 				/\.md$/.test(x)
 					? "docs"
 					: /(package|tsconfig)\.json$/.test(x)
-					? "build"
-					: x.startsWith("packages")
-					? /^packages\/([a-z0-9-]+)/.exec(x)![1]
-					: x.startsWith("examples")
-					? "examples"
-					: x.startsWith("assets")
-					? "assets"
-					: x.startsWith("tools")
-					? "tools"
-					: BUILD.has(x)
-					? "build"
-					: null
+						? "build"
+						: x.startsWith("packages")
+							? /^packages\/([a-z0-9-]+)/.exec(x)![1]
+							: x.startsWith("examples")
+								? "examples"
+								: x.startsWith("assets")
+									? "assets"
+									: x.startsWith("tools")
+										? "tools"
+										: BUILD.has(x)
+											? "build"
+											: null
 			),
 			keep(),
 			filter((x) => !IGNORE.has(x)),
@@ -245,19 +245,22 @@ const mapColor = (x: number, max: number) =>
  * Returns iterator of quarterly timeline axis labels.
  */
 const timeLineLabels = () =>
-	map((t) => {
-		const x = mapEpoch(t);
-		const d = new Date(t);
-		return group(
-			{},
-			line([x, 0], [x, NUM_PKG * 10 + 20], {
-				stroke: "#999",
-				"stroke-width": 0.5,
-				"stroke-dasharray": 1,
-			}),
-			text([x + 5, 8], `${d.getFullYear()}-${Z2(d.getMonth() + 1)}`)
-		);
-	}, quarters(MIN_DATE, MAX_DATE));
+	map(
+		(t) => {
+			const x = mapEpoch(t);
+			const d = new Date(t);
+			return group(
+				{},
+				line([x, 0], [x, NUM_PKG * 10 + 20], {
+					stroke: "#999",
+					"stroke-width": 0.5,
+					"stroke-dasharray": 1,
+				}),
+				text([x + 5, 8], `${d.getFullYear()}-${Z2(d.getMonth() + 1)}`)
+			);
+		},
+		quarters(MIN_DATE, MAX_DATE)
+	);
 
 /**
  * Main visualization. Returns SVG group of commits for given package

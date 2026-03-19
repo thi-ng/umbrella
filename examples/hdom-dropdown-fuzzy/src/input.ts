@@ -62,7 +62,7 @@ export function cancelableInput(themeCtxPath: Path) {
 							"i.absolute.fas.fa-times-circle.gray.f7",
 							{ style: { right: "0.5rem", top: "0.25rem" } },
 						],
-				  ]
+					]
 				: undefined,
 		],
 	};

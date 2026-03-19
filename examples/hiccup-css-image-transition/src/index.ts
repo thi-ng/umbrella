@@ -45,13 +45,16 @@ const reveal = animation(
 		[10, 0, 0, 1],
 		[50, 0, 0, 1],
 		[60, 90, -90, 0],
-	].reduce((acc, [time, rx, ry, opacity]) => {
-		acc[time] = {
-			transform: `rotateY(${ry}deg) rotateX(${rx}deg)`,
-			opacity,
-		};
-		return acc;
-	}, <any>{})
+	].reduce(
+		(acc, [time, rx, ry, opacity]) => {
+			acc[time] = {
+				transform: `rotateY(${ry}deg) rotateX(${rx}deg)`,
+				opacity,
+			};
+			return acc;
+		},
+		<any>{}
+	)
 );
 
 // function returning some common CSS size properties

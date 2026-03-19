@@ -35,10 +35,10 @@ const cellBackground = (cell: any) =>
 	cell.focus
 		? "bg-yellow"
 		: cell.formula
-		? cell.error
-			? "bg-red white"
-			: "bg-light-green"
-		: "";
+			? cell.error
+				? "bg-red white"
+				: "bg-light-green"
+			: "";
 
 /**
  * thi.ng/hdom cell component with lifecycle methods. (The current

@@ -32,6 +32,6 @@ function userCard(ctx: AppContext, id: number) {
 				user.job,
 				["hr", ui.sep],
 				["p", ui.body, user.desc],
-		  ]
+			]
 		: undefined;
 }

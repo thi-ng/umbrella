@@ -66,7 +66,7 @@ const swatch = (i: number, bg: number[], hex1: string, hex2: string) => {
 		maxC < 4.5
 			? rect([0, i * 20], W - 2, 20, {
 					fill: "url(#invalid)",
-			  })
+				})
 			: null,
 		// text label
 		text(

@@ -56,8 +56,8 @@ const formatVal = (opts: FormatOpts, x: any, indent = true) =>
 	isNumber(x) || isBoolean(x)
 		? x
 		: isPlainObject(x)
-		? format(indent ? indentState(opts) : opts, "", x)
-		: opts.quote + escape(opts, x) + opts.quote;
+			? format(indent ? indentState(opts) : opts, "", x)
+			: opts.quote + escape(opts, x) + opts.quote;
 
 // attrib key-value pair formatter w/ indentation
 const formatPair = (opts: FormatOpts, x: any, k: string) =>

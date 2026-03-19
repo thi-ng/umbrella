@@ -16,7 +16,7 @@ const app = ({ pageID, isLoading }: AppState) =>
 		? [
 				"div.w-100.vh-100.flex.items-center.justify-center.bg-black.white",
 				["div", "Loading..."],
-		  ]
+			]
 		: [
 				"div.ma3",
 				// delegate to child component
@@ -59,7 +59,7 @@ const app = ({ pageID, isLoading }: AppState) =>
 				],
 				// only here to show timestamp of last DOM update
 				["div.mt3", new Date().toString()],
-		  ];
+			];
 
 /**
  * Dummy page content.

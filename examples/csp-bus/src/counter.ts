@@ -11,7 +11,11 @@ export class Counter extends Component {
 	value: Mult<number>;
 	disabled: Channel<boolean>;
 
-	constructor(public bus: EventBus, public delay: number, public id: number) {
+	constructor(
+		public bus: EventBus,
+		public delay: number,
+		public id: number
+	) {
 		super();
 		this.value = mult<any>();
 		this.disabled = channel<boolean>();
@@ -45,7 +49,10 @@ export class Counter extends Component {
 
 // simple wrapper component for multiple counters (configurable number)
 export class CounterGroup extends Component {
-	constructor(public config: number[], public bus: EventBus) {
+	constructor(
+		public config: number[],
+		public bus: EventBus
+	) {
 		super();
 	}
 
