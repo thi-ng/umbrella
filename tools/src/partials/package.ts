@@ -146,8 +146,8 @@ export const packageInstallation = (pkg: Package) => {
 			parts.length > 1
 				? initials(parts).toLowerCase()
 				: parts[0].length > 5
-				? parts[0].substring(0, 3)
-				: parts[0];
+					? parts[0].substring(0, 3)
+					: parts[0];
 	}
 	console.log(id);
 	return [

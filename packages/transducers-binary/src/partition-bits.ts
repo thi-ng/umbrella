@@ -31,8 +31,8 @@ export function partitionBits(...args: any[]): any {
 			return destSize < srcSize
 				? __small(rfn, destSize, srcSize)
 				: destSize > srcSize
-				? __large(rfn, destSize, srcSize)
-				: rfn;
+					? __large(rfn, destSize, srcSize)
+					: rfn;
 		})
 	);
 }

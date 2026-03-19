@@ -141,5 +141,5 @@ export const indent = (opts: CSSOpts, d = opts.depth) =>
 	d > 1
 		? [...repeat(opts.format.indent, d)].join("")
 		: d > 0
-		? opts.format.indent
-		: "";
+			? opts.format.indent
+			: "";

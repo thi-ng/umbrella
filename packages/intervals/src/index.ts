@@ -150,8 +150,8 @@ export const parse = (src: string) => {
 				(x === "" && i === 0) || (inf && inf[1] === "-")
 					? -Infinity
 					: (x === "" && i > 0) || (inf && inf[1] !== "-")
-					? Infinity
-					: parseFloat(x);
+						? Infinity
+						: parseFloat(x);
 			isNaN(n) && illegalArgs(`expected number: '${x}'`);
 			return n;
 		});
@@ -287,8 +287,8 @@ export const isBefore = (
 			? i.r <= x.l
 			: i.r < x.l
 		: i.ropen
-		? i.r <= <number>x
-		: i.r < <number>x;
+			? i.r <= <number>x
+			: i.r < <number>x;
 
 /**
  * Returns true iff interval `i` LHS > `x`, taking into account openness. If `x`
@@ -307,8 +307,8 @@ export const isAfter = (
 			? i.l >= x.r
 			: i.l > x.r
 		: i.ropen
-		? i.l >= <number>x
-		: i.l > <number>x;
+			? i.l >= <number>x
+			: i.l > <number>x;
 
 /**
  * Compares interval `a` with `b` and returns a comparator value (-1, 0 or 1).
@@ -323,14 +323,14 @@ export const compare = (a: Readonly<Interval>, b: Readonly<Interval>) => {
 	return a.l < b.l
 		? -1
 		: a.l > b.l
-		? 1
-		: a.r < b.r
-		? -1
-		: a.r > b.r
-		? 1
-		: (c = ~~a.lopen - ~~b.lopen) === 0
-		? ~~b.ropen - ~~a.ropen
-		: c;
+			? 1
+			: a.r < b.r
+				? -1
+				: a.r > b.r
+					? 1
+					: (c = ~~a.lopen - ~~b.lopen) === 0
+						? ~~b.ropen - ~~a.ropen
+						: c;
 };
 
 /**
@@ -355,8 +355,8 @@ export const include = (i: Readonly<Interval>, x: number) =>
 	isAfter(i, x)
 		? new Interval(x, i.r, false, i.ropen)
 		: isBefore(i, x)
-		? new Interval(i.l, x, i.lopen, false)
-		: i.copy();
+			? new Interval(i.l, x, i.lopen, false)
+			: i.copy();
 
 /**
  * Returns the distance between intervals, or zero if they touch or overlap.
@@ -418,16 +418,16 @@ export const classify = (a: Readonly<Interval>, b: Readonly<Interval>) =>
 	a.equiv(b)
 		? Classifier.EQUIV
 		: isBefore(a, b)
-		? Classifier.DISJOINT_LEFT
-		: isAfter(a, b)
-		? Classifier.DISJOINT_RIGHT
-		: contains(a, b.l)
-		? contains(a, b.r)
-			? Classifier.SUPERSET
-			: Classifier.OVERLAP_RIGHT
-		: contains(a, b.r)
-		? Classifier.OVERLAP_LEFT
-		: Classifier.SUBSET;
+			? Classifier.DISJOINT_LEFT
+			: isAfter(a, b)
+				? Classifier.DISJOINT_RIGHT
+				: contains(a, b.l)
+					? contains(a, b.r)
+						? Classifier.SUPERSET
+						: Classifier.OVERLAP_RIGHT
+					: contains(a, b.r)
+						? Classifier.OVERLAP_LEFT
+						: Classifier.SUBSET;
 
 /**
  * Returns true if interval `a` intersects `b` in any way (incl. subset /

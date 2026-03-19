@@ -24,7 +24,10 @@ test("basic", async () => {
 	}
 
 	class DB implements ILifecycle {
-		constructor(protected logger: Logger, protected state: Cache) {}
+		constructor(
+			protected logger: Logger,
+			protected state: Cache
+		) {}
 
 		async start() {
 			this.logger.info("start db");

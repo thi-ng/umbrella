@@ -100,8 +100,8 @@ export const step = <A, B>(
 				acc.length === 1 && unwrap
 					? acc[0]
 					: acc.length > 0
-					? acc
-					: undefined;
+						? acc
+						: undefined;
 			if (cache) result = res;
 			return res;
 		}

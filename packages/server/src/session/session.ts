@@ -17,7 +17,7 @@ import { inMemorySessionStore } from "./memory.js";
  */
 export interface SessionOpts<
 	CTX extends RequestCtx = RequestCtx,
-	SESSION extends ServerSession = ServerSession
+	SESSION extends ServerSession = ServerSession,
 > {
 	/**
 	 * Factory function to create a new session object. See
@@ -76,9 +76,8 @@ export interface SessionMeta {
  */
 export class SessionInterceptor<
 	CTX extends RequestCtx = RequestCtx,
-	SESSION extends ServerSession = ServerSession
-> implements Interceptor<CTX>
-{
+	SESSION extends ServerSession = ServerSession,
+> implements Interceptor<CTX> {
 	factory: SessionOpts<CTX, SESSION>["factory"];
 	onInvalid: Fn2<CTX, SessionInterceptor<CTX, SESSION>, Promise<boolean>>;
 	store: ISessionStore<SESSION>;
@@ -105,8 +104,8 @@ export class SessionInterceptor<
 		this.secret = isNumber(secret)
 			? randomBytes(secret)
 			: isString(secret)
-			? Buffer.from(secret)
-			: secret;
+				? Buffer.from(secret)
+				: secret;
 		this.cookieName = cookieName;
 		this.cookieOpts = cookieOpts;
 	}
@@ -235,7 +234,7 @@ export class SessionInterceptor<
  */
 export const sessionInterceptor = <
 	CTX extends RequestCtx = RequestCtx,
-	SESSION extends ServerSession = ServerSession
+	SESSION extends ServerSession = ServerSession,
 >(
 	opts: SessionOpts<CTX, SESSION>
 ) => new SessionInterceptor(opts);

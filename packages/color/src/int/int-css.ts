@@ -7,7 +7,7 @@ export const intArgb32Css = (src: number) => {
 	return a < 255
 		? `rgba(${(src >> 16) & 0xff},${(src >> 8) & 0xff},${src & 0xff},${FF(
 				a * INV8BIT
-		  )})`
+			)})`
 		: `#${U24(src & 0xffffff)}`;
 };
 

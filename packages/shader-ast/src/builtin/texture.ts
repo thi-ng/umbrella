@@ -41,14 +41,14 @@ const __texRetType = (sampler: Term<Sampler>) => {
 			? F
 			: V4
 		: t === "i"
-		? shadow
-			? I
-			: "ivec4"
-		: t === "u"
-		? shadow
-			? U
-			: "uvec4"
-		: illegalArgs(`unknown sampler type ${sampler.type}`);
+			? shadow
+				? I
+				: "ivec4"
+			: t === "u"
+				? shadow
+					? U
+					: "uvec4"
+				: illegalArgs(`unknown sampler type ${sampler.type}`);
 };
 
 /** @internal */

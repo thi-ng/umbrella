@@ -56,19 +56,19 @@ export const $compile = (tree: any): IComponent =>
 		? isFunction(tree[0])
 			? $compile(tree[0].apply(null, tree.slice(1)))
 			: __isComplexComponent(tree)
-			? __complexComponent(tree)
-			: __basicComponent(tree)
+				? __complexComponent(tree)
+				: __basicComponent(tree)
 		: isComponent(tree)
-		? tree
-		: isSubscribable(tree)
-		? $sub(tree, "span")
-		: isAsyncIterable(tree)
-		? $async(tree, "span")
-		: isFunction(tree)
-		? $compile(tree())
-		: tree instanceof Element
-		? $wrapEl(tree)
-		: $wrapText("span", null, tree);
+			? tree
+			: isSubscribable(tree)
+				? $sub(tree, "span")
+				: isAsyncIterable(tree)
+					? $async(tree, "span")
+					: isFunction(tree)
+						? $compile(tree())
+						: tree instanceof Element
+							? $wrapEl(tree)
+							: $wrapText("span", null, tree);
 
 /** @internal */
 const __walk = (

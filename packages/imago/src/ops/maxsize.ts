@@ -25,14 +25,14 @@ export const maxsizeProc: Processor = async (spec, input, ctx) => {
 			return resizeWidth
 				? resizeProc(specW, input, ctx)
 				: resizeHeight
-				? resizeProc(specH, input, ctx)
-				: result;
+					? resizeProc(specH, input, ctx)
+					: result;
 		} else {
 			return resizeHeight
 				? resizeProc(specH, input, ctx)
 				: resizeWidth
-				? resizeProc(specW, input, ctx)
-				: result;
+					? resizeProc(specW, input, ctx)
+					: result;
 		}
 	}
 	return result;

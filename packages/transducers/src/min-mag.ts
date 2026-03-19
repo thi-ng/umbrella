@@ -14,5 +14,5 @@ export function minMag(src?: Iterable<number>): any {
 		: reducer(
 				() => Infinity,
 				(acc, x: number) => (Math.abs(x) < Math.abs(acc) ? x : acc)
-		  );
+			);
 }

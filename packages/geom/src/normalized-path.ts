@@ -35,7 +35,7 @@ export function normalizedPath(path: Path | Path3, only?: any[]) {
 /** @internal */
 const __normalizedPath = <
 	P extends IPath<any> & ICopyTransformed<S[]>,
-	S extends P["segments"][0]
+	S extends P["segments"][0],
 >(
 	path: P,
 	only?: string[]

@@ -20,7 +20,7 @@ export type SyncTuple<T extends IObjectOf<ISubscribable<any>>> = {
 
 export interface StreamSyncOpts<
 	A extends IObjectOf<ISubscribable<any>>,
-	B = SyncTuple<A>
+	B = SyncTuple<A>,
 > extends TransformableOpts<SyncTuple<A>, B> {
 	/**
 	 * An object of input streams / subscribables. The object keys are used to
@@ -143,7 +143,7 @@ export const sync = <A extends IObjectOf<ISubscribable<any>>, B = SyncTuple<A>>(
  */
 export class StreamSync<
 	A extends IObjectOf<ISubscribable<any>>,
-	B = SyncTuple<A>
+	B = SyncTuple<A>,
 > extends Subscription<any, B> {
 	/**
 	 * maps actual inputs to their virtual input subs

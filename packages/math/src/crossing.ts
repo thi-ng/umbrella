@@ -68,7 +68,7 @@ export const classifyCrossing = (
 			? "flat"
 			: "equal"
 		: isCrossOver(a1, a2, b1, b2)
-		? "over"
-		: isCrossUnder(a1, a2, b1, b2)
-		? "under"
-		: "other";
+			? "over"
+			: isCrossUnder(a1, a2, b1, b2)
+				? "under"
+				: "other";

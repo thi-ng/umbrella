@@ -2,7 +2,8 @@
 import type { IClear, ICopy, IEmpty, Maybe, Pair } from "@thi.ng/api";
 
 export interface ISpatialMap<K, V>
-	extends Iterable<Pair<K, V>>,
+	extends
+		Iterable<Pair<K, V>>,
 		IClear,
 		ICopy<ISpatialMap<K, V>>,
 		IEmpty<ISpatialMap<K, V>> {
@@ -19,10 +20,7 @@ export interface ISpatialMap<K, V>
 }
 
 export interface ISpatialSet<K>
-	extends Iterable<K>,
-		IClear,
-		ICopy<ISpatialSet<K>>,
-		IEmpty<ISpatialSet<K>> {
+	extends Iterable<K>, IClear, ICopy<ISpatialSet<K>>, IEmpty<ISpatialSet<K>> {
 	readonly size: number;
 
 	keys(): IterableIterator<K>;

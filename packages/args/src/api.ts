@@ -241,7 +241,7 @@ export class Tuple<T> implements IDeref<T[]> {
 
 export interface CLIAppConfig<
 	OPTS extends object,
-	CTX extends CommandCtx<OPTS, OPTS> = CommandCtx<OPTS, OPTS>
+	CTX extends CommandCtx<OPTS, OPTS> = CommandCtx<OPTS, OPTS>,
 > {
 	/**
 	 * App (CLI command) short name.
@@ -293,7 +293,7 @@ export interface CLIAppConfig<
 export interface Command<
 	OPTS extends BASE,
 	BASE extends object,
-	CTX extends CommandCtx<OPTS, BASE> = CommandCtx<OPTS, BASE>
+	CTX extends CommandCtx<OPTS, BASE> = CommandCtx<OPTS, BASE>,
 > {
 	/**
 	 * Command description (any length, will be word wrapped if needed)

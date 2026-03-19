@@ -211,7 +211,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 							...opts!,
 							// @ts-ignore
 							xform: comp(...args),
-					  }
+						}
 					: opts
 			)
 		);

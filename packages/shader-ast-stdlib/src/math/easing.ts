@@ -48,29 +48,23 @@ export const easeInOutSine = defEasing((x) => [
 
 const __easeIn =
 	(k: FloatTerm): FnBody1<"float"> =>
-	(x) =>
-		[ret(pow(x, k))];
+	(x) => [ret(pow(x, k))];
 
 const __easeOut =
 	(k: FloatTerm): FnBody1<"float"> =>
-	(x) =>
-		[ret(sub(FLOAT1, pow(sub(FLOAT1, x), k)))];
+	(x) => [ret(sub(FLOAT1, pow(sub(FLOAT1, x), k)))];
 
 const __easeInOut =
 	(a: FloatTerm, b: FloatTerm): FnBody1<"float"> =>
-	(x) =>
-		[
-			ret(
-				ternary(
-					lt(x, FLOAT05),
-					mul(a, pow(x, b)),
-					sub(
-						FLOAT1,
-						div(pow(madd(neg(FLOAT2), x, FLOAT2), b), FLOAT2)
-					)
-				)
-			),
-		];
+	(x) => [
+		ret(
+			ternary(
+				lt(x, FLOAT05),
+				mul(a, pow(x, b)),
+				sub(FLOAT1, div(pow(madd(neg(FLOAT2), x, FLOAT2), b), FLOAT2))
+			)
+		),
+	];
 
 export const easeInQuad = defEasing(__easeIn(FLOAT2));
 

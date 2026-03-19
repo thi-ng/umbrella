@@ -59,16 +59,16 @@ export const processImage = async (
 		isString(src) || isArrayBufferView(src)
 			? sharp(<string | BufferLike>src, {
 					autoOrient: opts.autoOrient !== false,
-			  })
+				})
 			: isIntBufferLike(src)
-			? sharp(new Uint8Array(src.data.buffer), {
-					raw: {
-						width: src.width,
-						height: src.height,
-						channels: <Range1_4>src.format.channels.length,
-					},
-			  })
-			: <Sharp>src;
+				? sharp(new Uint8Array(src.data.buffer), {
+						raw: {
+							width: src.width,
+							height: src.height,
+							channels: <Range1_4>src.format.channels.length,
+						},
+					})
+				: <Sharp>src;
 	const meta = await img.metadata();
 	ensureSize(meta);
 

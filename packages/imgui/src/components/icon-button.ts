@@ -50,7 +50,7 @@ export const iconButton = ({
 						],
 						{ fill: col, stroke: "none" },
 						label
-				  )
+					)
 				: undefined,
 		];
 	};

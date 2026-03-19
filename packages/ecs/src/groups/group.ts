@@ -41,14 +41,17 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
 		this.id = opts.id;
 		this.cache = opts.cache || new UnboundedCache();
 
-		this.info = comps.reduce((acc: GroupInfo<SPEC, K>, c) => {
-			acc[c.id] = {
-				values: <any>c.vals,
-				size: c.size,
-				stride: c.stride,
-			};
-			return acc;
-		}, <any>{});
+		this.info = comps.reduce(
+			(acc: GroupInfo<SPEC, K>, c) => {
+				acc[c.id] = {
+					values: <any>c.vals,
+					size: c.size,
+					stride: c.stride,
+				};
+				return acc;
+			},
+			<any>{}
+		);
 
 		// update ownerships
 		owned.forEach((c) => {

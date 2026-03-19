@@ -16,11 +16,11 @@ import type { Attribs } from "./api.js";
  */
 export interface ElementFactory<T, B> {
 	(attribs?: Nullable<T>, ...body: B[]): [string, Nullable<T>, ...B[]];
-	(emmet: string, attribs?: Nullable<T>, ...body: B[]): [
-		string,
-		Nullable<T>,
-		...B[]
-	];
+	(
+		emmet: string,
+		attribs?: Nullable<T>,
+		...body: B[]
+	): [string, Nullable<T>, ...B[]];
 }
 
 /**

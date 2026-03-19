@@ -23,9 +23,9 @@ const __mathOp =
 	(first: any, ...args: any[]) => {
 		return args.length > 0
 			? // use a reduction for 2+ args
-			  args.reduce((acc, x) => fn(acc, x), first)
+				args.reduce((acc, x) => fn(acc, x), first)
 			: // apply special case unary function
-			  fn1(first);
+				fn1(first);
 	};
 
 const ENV = {
@@ -61,7 +61,7 @@ const interpret = runtime<Implementations<null, any>, null, any>({
 		const match = /^[-+]?[0-9.]+(e[+-]?\d+)?/.exec(value);
 		return match
 			? quantity(+match[0], asUnit(value.substring(match[0].length)))
-			: (<any>CONST)[value.toUpperCase()] ?? asUnit(value);
+			: ((<any>CONST)[value.toUpperCase()] ?? asUnit(value));
 	},
 	str: () => illegalArgs("string value"),
 	num: (x) => x.value,

@@ -59,5 +59,8 @@ export function* processedPoints(
 export const defSimplePlotFn =
 	<T extends { attribs: any }>(shape: string) =>
 	(data: DomainValues, opts: Partial<T> = {}): PlotFn =>
-	(spec) =>
-		[shape, opts.attribs || {}, [...processedPoints(spec, data, true)]];
+	(spec) => [
+		shape,
+		opts.attribs || {},
+		[...processedPoints(spec, data, true)],
+	];

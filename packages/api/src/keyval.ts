@@ -36,14 +36,14 @@ export type Keys3<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
-	C extends Keys2<T, A, B>
+	C extends Keys2<T, A, B>,
 > = Keys2<Required<T>[A], B, C>;
 export type Keys4<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
-	D extends Keys3<T, A, B, C>
+	D extends Keys3<T, A, B, C>,
 > = Keys3<Required<T>[A], B, C, D>;
 export type Keys5<
 	T,
@@ -51,7 +51,7 @@ export type Keys5<
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
-	E extends Keys4<T, A, B, C, D>
+	E extends Keys4<T, A, B, C, D>,
 > = Keys4<Required<T>[A], B, C, D, E>;
 export type Keys6<
 	T,
@@ -60,7 +60,7 @@ export type Keys6<
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
-	F extends Keys5<T, A, B, C, D, E>
+	F extends Keys5<T, A, B, C, D, E>,
 > = Keys5<Required<T>[A], B, C, D, E, F>;
 export type Keys7<
 	T,
@@ -70,7 +70,7 @@ export type Keys7<
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
-	G extends Keys6<T, A, B, C, D, E, F>
+	G extends Keys6<T, A, B, C, D, E, F>,
 > = Keys6<Required<T>[A], B, C, D, E, F, G>;
 export type Keys8<
 	T,
@@ -81,7 +81,7 @@ export type Keys8<
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
 	G extends Keys6<T, A, B, C, D, E, F>,
-	H extends Keys7<T, A, B, C, D, E, F, G>
+	H extends Keys7<T, A, B, C, D, E, F, G>,
 > = Keys7<Required<T>[A], B, C, D, E, F, G, H>;
 
 /**
@@ -97,7 +97,7 @@ type KeysNReducer<T, L, R extends unknown[]> = L extends keyof T
 	? {
 			0: keyof Required<T>[L];
 			1: KeysNReducer<Required<T>[L], Head<R>, Tail<R>>;
-	  }[R extends [] ? 0 : 1]
+		}[R extends [] ? 0 : 1]
 	: never;
 
 /**
@@ -121,14 +121,14 @@ export type Val3<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
-	C extends Keys2<T, A, B>
+	C extends Keys2<T, A, B>,
 > = ValN<T, [A, B, C]>;
 export type Val4<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
-	D extends Keys3<T, A, B, C>
+	D extends Keys3<T, A, B, C>,
 > = ValN<T, [A, B, C, D]>;
 export type Val5<
 	T,
@@ -136,7 +136,7 @@ export type Val5<
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
-	E extends Keys4<T, A, B, C, D>
+	E extends Keys4<T, A, B, C, D>,
 > = ValN<T, [A, B, C, D, E]>;
 export type Val6<
 	T,
@@ -145,7 +145,7 @@ export type Val6<
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
-	F extends Keys5<T, A, B, C, D, E>
+	F extends Keys5<T, A, B, C, D, E>,
 > = ValN<T, [A, B, C, D, E, F]>;
 export type Val7<
 	T,
@@ -155,7 +155,7 @@ export type Val7<
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
-	G extends Keys6<T, A, B, C, D, E, F>
+	G extends Keys6<T, A, B, C, D, E, F>,
 > = ValN<T, [A, B, C, D, E, F, G]>;
 export type Val8<
 	T,
@@ -166,7 +166,7 @@ export type Val8<
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
 	G extends Keys6<T, A, B, C, D, E, F>,
-	H extends Keys7<T, A, B, C, D, E, F, G>
+	H extends Keys7<T, A, B, C, D, E, F, G>,
 > = ValN<T, [A, B, C, D, E, F, G, H]>;
 
 /**
@@ -182,7 +182,7 @@ type ValNReducer<T, C, R extends unknown[]> = C extends keyof T
 	? {
 			0: T[C];
 			1: ValNReducer<Required<T>[C], Head<R>, Tail<R>>;
-	  }[R extends [] ? 0 : 1]
+		}[R extends [] ? 0 : 1]
 	: never;
 
 /**
@@ -204,14 +204,14 @@ export type Without3<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
-	C extends Keys2<T, A, B>
+	C extends Keys2<T, A, B>,
 > = Without<T, A> & { [id in A]: Without2<Val1<T, A>, B, C> };
 export type Without4<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
-	D extends Keys3<T, A, B, C>
+	D extends Keys3<T, A, B, C>,
 > = Without<T, A> & { [id in A]: Without3<Val1<T, A>, B, C, D> };
 export type Without5<
 	T,
@@ -219,7 +219,7 @@ export type Without5<
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
-	E extends Keys4<T, A, B, C, D>
+	E extends Keys4<T, A, B, C, D>,
 > = Without<T, A> & { [id in A]: Without4<Val1<T, A>, B, C, D, E> };
 export type Without6<
 	T,
@@ -228,7 +228,7 @@ export type Without6<
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
-	F extends Keys5<T, A, B, C, D, E>
+	F extends Keys5<T, A, B, C, D, E>,
 > = Without<T, A> & { [id in A]: Without5<Val1<T, A>, B, C, D, E, F> };
 export type Without7<
 	T,
@@ -238,7 +238,7 @@ export type Without7<
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
-	G extends Keys6<T, A, B, C, D, E, F>
+	G extends Keys6<T, A, B, C, D, E, F>,
 > = Without<T, A> & { [id in A]: Without6<Val1<T, A>, B, C, D, E, F, G> };
 export type Without8<
 	T,
@@ -249,7 +249,7 @@ export type Without8<
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
 	G extends Keys6<T, A, B, C, D, E, F>,
-	H extends Keys7<T, A, B, C, D, E, F, G>
+	H extends Keys7<T, A, B, C, D, E, F, G>,
 > = Without<T, A> & { [id in A]: Without7<Val1<T, A>, B, C, D, E, F, G, H> };
 
 /**
@@ -266,7 +266,7 @@ type WithoutNReducer<T, C, R extends unknown[]> = C extends keyof T
 			0: Without<T, C>;
 			1: Without<T, C> &
 				Record<C, WithoutNReducer<T[C], Head<R>, Tail<R>>>;
-	  }[R extends [] ? 0 : 1]
+		}[R extends [] ? 0 : 1]
 	: never;
 
 /**
@@ -291,7 +291,7 @@ export type Replace3<
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
-	V
+	V,
 > = Without<T, A> & { [id in A]: Replace2<Val1<T, A>, B, C, V> };
 export type Replace4<
 	T,
@@ -299,7 +299,7 @@ export type Replace4<
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
-	V
+	V,
 > = Without<T, A> & { [id in A]: Replace3<Val1<T, A>, B, C, D, V> };
 export type Replace5<
 	T,
@@ -308,7 +308,7 @@ export type Replace5<
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
-	V
+	V,
 > = Without<T, A> & { [id in A]: Replace4<Val1<T, A>, B, C, D, E, V> };
 export type Replace6<
 	T,
@@ -318,7 +318,7 @@ export type Replace6<
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
-	V
+	V,
 > = Without<T, A> & { [id in A]: Replace5<Val1<T, A>, B, C, D, E, F, V> };
 export type Replace7<
 	T,
@@ -329,7 +329,7 @@ export type Replace7<
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
 	G extends Keys6<T, A, B, C, D, E, F>,
-	V
+	V,
 > = Without<T, A> & { [id in A]: Replace6<Val1<T, A>, B, C, D, E, F, G, V> };
 export type Replace8<
 	T,
@@ -341,7 +341,7 @@ export type Replace8<
 	F extends Keys5<T, A, B, C, D, E>,
 	G extends Keys6<T, A, B, C, D, E, F>,
 	H extends Keys7<T, A, B, C, D, E, F, G>,
-	V
+	V,
 > = Without<T, A> & { [id in A]: Replace7<Val1<T, A>, B, C, D, E, F, G, H, V> };
 
 /**
@@ -359,7 +359,7 @@ type ReplaceNReducer<T, C, R extends unknown[], V> = C extends keyof T
 			0: Replace<T, C, V>;
 			1: Without<T, C> &
 				Record<C, ReplaceNReducer<T[C], Head<R>, Tail<R>, V>>;
-	  }[R extends [] ? 0 : 1]
+		}[R extends [] ? 0 : 1]
 	: never;
 
 /**

@@ -42,10 +42,10 @@ export const kelvinRgb = (out: SRGB | null, kelvin: number, alpha = 1) => {
 						? 0
 						: clamp01(
 								B1 + B2 * (t = kelvin - 10) + B3 * Math.log(t)
-						  ),
+							),
 					alpha
 				)
-		  )
+			)
 		: <SRGB>(
 				setC4(
 					out || srgb(),
@@ -54,5 +54,5 @@ export const kelvinRgb = (out: SRGB | null, kelvin: number, alpha = 1) => {
 					1,
 					alpha
 				)
-		  );
+			);
 };

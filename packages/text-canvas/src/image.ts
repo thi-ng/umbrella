@@ -156,8 +156,8 @@ export const blitBarsV = (
 			return ac === 0x20
 				? undefined
 				: ac > 0x2580 && ac < 0x2589
-				? blend(a, b, x, yy)
-				: a;
+					? blend(a, b, x, yy)
+					: a;
 		});
 	}
 };

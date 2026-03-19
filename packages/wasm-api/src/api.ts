@@ -192,8 +192,10 @@ export type MemoryViewType =
 	| "f32"
 	| "f64";
 
-export interface MemoryViewTypeMap
-	extends Record<MemoryViewType, TypedArray | BigTypedArray> {
+export interface MemoryViewTypeMap extends Record<
+	MemoryViewType,
+	TypedArray | BigTypedArray
+> {
 	u8: Uint8Array;
 	u8c: Uint8ClampedArray;
 	i8: Int8Array;

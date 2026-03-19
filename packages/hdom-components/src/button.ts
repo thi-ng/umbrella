@@ -73,17 +73,18 @@ export const button = (opts?: Partial<ButtonOpts>): Button => {
 						disabled: true,
 					},
 					...body,
-			  ]
+				]
 			: [
 					opts!.tag,
 					{
 						...mergeAttribs(opts!.attribs, args.attribs),
 						onclick: opts!.preventDefault
 							? (e: Event) => (
-									e.preventDefault(), args.onclick(e)
-							  )
+									e.preventDefault(),
+									args.onclick(e)
+								)
 							: args.onclick,
 					},
 					...body,
-			  ];
+				];
 };

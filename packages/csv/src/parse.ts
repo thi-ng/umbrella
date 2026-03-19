@@ -132,7 +132,8 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 				const collectAll = (row: CSVRecord) =>
 					record.reduce(
 						(acc, x, i) => (
-							(acc[revIndex[i]] = trim ? x.trim() : x), acc
+							(acc[revIndex[i]] = trim ? x.trim() : x),
+							acc
 						),
 						row
 					);
@@ -197,7 +198,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 						return acc;
 					}
 				});
-		  };
+			};
 }
 
 /**
@@ -255,16 +256,21 @@ export function parseCSVSimple(
 				let record: string[] = [];
 
 				const collect = () =>
-					cols!.reduce((acc, col, i) => {
-						if (col) {
-							let val = record[i];
-							if (val !== undefined) {
-								trim && (val = val.trim());
-								acc.push(isFunction(col) ? col(val, acc) : val);
+					cols!.reduce(
+						(acc, col, i) => {
+							if (col) {
+								let val = record[i];
+								if (val !== undefined) {
+									trim && (val = val.trim());
+									acc.push(
+										isFunction(col) ? col(val, acc) : val
+									);
+								}
 							}
-						}
-						return acc;
-					}, <CSVRow>[]);
+							return acc;
+						},
+						<CSVRow>[]
+					);
 
 				return compR(rfn, (acc, line: string) => {
 					if (
@@ -297,7 +303,7 @@ export function parseCSVSimple(
 						return acc;
 					}
 				});
-		  };
+			};
 }
 
 /**
@@ -399,18 +405,21 @@ const __initIndex = (
 	cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>
 ) =>
 	isArray(cols)
-		? cols.reduce((acc, spec, i) => {
-				if (spec) {
-					const alias = spec.alias || line[i] || String(i);
-					acc[alias] = { i, spec: { alias, ...spec } };
-				}
-				return acc;
-		  }, <Record<string, IndexEntry>>{})
+		? cols.reduce(
+				(acc, spec, i) => {
+					if (spec) {
+						const alias = spec.alias || line[i] || String(i);
+						acc[alias] = { i, spec: { alias, ...spec } };
+					}
+					return acc;
+				},
+				<Record<string, IndexEntry>>{}
+			)
 		: line.reduce(
 				(acc, id, i) =>
 					cols[id] ? ((acc[id] = { i, spec: cols[id] }), acc) : acc,
 				<Record<string, IndexEntry>>{}
-		  );
+			);
 
 /** @internal */
 const __initRevIndex = (line: string[]) =>
@@ -428,15 +437,18 @@ const __initDefaults = (
 						`missing column alias for default: ${c.default}`
 					);
 				return true;
-		  })
-		: Object.entries(cols).reduce((acc, [k, v]) => {
-				if (v.default !== undefined) {
-					acc.push({
-						alias: v.alias ?? k,
-						default: v.default,
-					});
-				}
-				return acc;
-		  }, <ColumnSpec[]>[]);
+			})
+		: Object.entries(cols).reduce(
+				(acc, [k, v]) => {
+					if (v.default !== undefined) {
+						acc.push({
+							alias: v.alias ?? k,
+							default: v.default,
+						});
+					}
+					return acc;
+				},
+				<ColumnSpec[]>[]
+			);
 	return defaults.length ? defaults : undefined;
 };

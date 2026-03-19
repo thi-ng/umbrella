@@ -9,15 +9,15 @@ export type Timestamp = number | bigint;
 export const now: () => Timestamp =
 	typeof BigInt !== "undefined"
 		? typeof process !== "undefined" &&
-		  typeof process.hrtime !== "undefined" &&
-		  typeof process.hrtime.bigint === "function"
+			typeof process.hrtime !== "undefined" &&
+			typeof process.hrtime.bigint === "function"
 			? () => process.hrtime.bigint()
 			: typeof performance !== "undefined"
-			? () => BigInt(Math.floor(performance.now() * 1e6))
-			: () => BigInt(Date.now() * 1e6)
+				? () => BigInt(Math.floor(performance.now() * 1e6))
+				: () => BigInt(Date.now() * 1e6)
 		: typeof performance !== "undefined"
-		? () => performance.now() * 1e6
-		: () => Date.now() * 1e6;
+			? () => performance.now() * 1e6
+			: () => Date.now() * 1e6;
 
 /**
  * Returns the difference in milliseconds between 2 given {@link Timestamp}s,

@@ -92,16 +92,34 @@ const __normalizeTree = (
 	tree == null
 		? undefined
 		: isArray(tree)
-		? __normalizeArray(tree, opts, ctx, path, keys, span)
-		: typeof tree === "function"
-		? __normalizeTree(tree(ctx), opts, ctx, path, keys, span)
-		: typeof tree.toHiccup === "function"
-		? __normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span)
-		: typeof tree.deref === "function"
-		? __normalizeTree(tree.deref(), opts, ctx, path, keys, span)
-		: span
-		? ["span", keys ? { key: path.join("-") } : {}, tree.toString()]
-		: tree.toString();
+			? __normalizeArray(tree, opts, ctx, path, keys, span)
+			: typeof tree === "function"
+				? __normalizeTree(tree(ctx), opts, ctx, path, keys, span)
+				: typeof tree.toHiccup === "function"
+					? __normalizeTree(
+							tree.toHiccup(opts.ctx),
+							opts,
+							ctx,
+							path,
+							keys,
+							span
+						)
+					: typeof tree.deref === "function"
+						? __normalizeTree(
+								tree.deref(),
+								opts,
+								ctx,
+								path,
+								keys,
+								span
+							)
+						: span
+							? [
+									"span",
+									keys ? { key: path.join("-") } : {},
+									tree.toString(),
+								]
+							: tree.toString();
 
 /** @internal */
 const __normalizeArray = (

@@ -39,5 +39,5 @@ export function donchian(period: number, src?: Iterable<number>): any {
 						? rfn[2](acc, [minDeque.head(), maxDeque.head()])
 						: acc;
 				});
-		  };
+			};
 }

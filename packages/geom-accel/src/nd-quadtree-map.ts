@@ -150,7 +150,6 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 			for (
 				let i = MAX_CHILDREN[this.pos.length], j = this.numC;
 				i-- > 0 && j > 0;
-
 			) {
 				if (this.children[i]) {
 					this.children[i].doQuery(p, r, max, acc, distFn);

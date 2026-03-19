@@ -53,7 +53,7 @@ export function defSampler(
 					cc: (src) => __bicubicFloat(src, __sampleFNC(src)),
 					cw: (src) => __bicubicFloat(src, __sampleFNW(src)),
 					cr: (src) => __bicubicFloat(src, __sampleFNR(src)),
-			  }
+				}
 			: <IObjectOf<Fn<IntBuffer, IntSampler>>>{
 					nc1: __sampleINC,
 					nw1: __sampleINW,
@@ -73,7 +73,7 @@ export function defSampler(
 					cc: (src) => __bicubicABGR(src, __sampleINC(src)),
 					cw: (src) => __bicubicABGR(src, __sampleINW(src)),
 					cr: (src) => __bicubicABGR(src, __sampleINR(src)),
-			  }
+				}
 	)[id];
 	assert(!!impl, `missing impl for ${id}`);
 	return impl(<any>src);
@@ -112,7 +112,7 @@ const __sampleFNC =
 		let i: number;
 		return x >= 0 && x < width && y >= 0 && y < height
 			? ((i = (y | 0) * rowStride + (x | 0) * stride),
-			  data.slice(i, i + stride))
+				data.slice(i, i + stride))
 			: [0];
 	};
 

@@ -75,11 +75,11 @@ const __sizeOf = defmulti<
 					isNumeric(field.type) || isBigNumeric(field.type)
 						? SIZEOF[<Type>field.type]
 						: isWasmString(field.type)
-						? opts.target.sizeBytes *
-						  (isStringSlice(opts.stringType) ? 2 : 1)
-						: isOpaque(field.type)
-						? opts.target.sizeBytes
-						: __sizeOf(coll[field.type], coll, align, opts);
+							? opts.target.sizeBytes *
+								(isStringSlice(opts.stringType) ? 2 : 1)
+							: isOpaque(field.type)
+								? opts.target.sizeBytes
+								: __sizeOf(coll[field.type], coll, align, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
 					if (field.sentinel !== undefined && field.tag === "array") {
@@ -149,13 +149,13 @@ const __alignOf = defmulti<
 			return (field.__align = isPointerLike(field, coll)
 				? align.align(<Field>{ type: opts.target.usize })
 				: isNumeric(field.type) || isBigNumeric(field.type)
-				? align.align(field)
-				: __alignOf(
-						coll[field.type],
-						coll,
-						selectAlignment(coll[field.type]),
-						opts
-				  ));
+					? align.align(field)
+					: __alignOf(
+							coll[field.type],
+							coll,
+							selectAlignment(coll[field.type]),
+							opts
+						));
 		},
 
 		ext: (type) => {

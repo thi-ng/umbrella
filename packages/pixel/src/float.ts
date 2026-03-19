@@ -74,9 +74,9 @@ export function floatBuffer(
 export function floatBuffer(...args: any[]) {
 	return args[0] instanceof IntBuffer
 		? // @ts-ignore
-		  floatBufferFromInt(...args)
+			floatBufferFromInt(...args)
 		: // @ts-ignore
-		  new FloatBuffer(...args);
+			new FloatBuffer(...args);
 }
 
 /**

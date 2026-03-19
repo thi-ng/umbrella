@@ -16,8 +16,10 @@ export interface INDBase<BUF extends any[] | TypedArray = any[]> {
  * Semi-typechecked interface for cases accepting 1D-4D grids, i.e.
  * {@link IGrid1D} - {@link IGrid4D}.
  */
-export interface IGridND<BUF extends any[] | TypedArray = any[], T = any>
-	extends INDBase<BUF> {
+export interface IGridND<
+	BUF extends any[] | TypedArray = any[],
+	T = any,
+> extends INDBase<BUF> {
 	/**
 	 * Returns true if given position is valid (i.e. within grid bounds).
 	 *
@@ -119,8 +121,10 @@ export interface IGridND<BUF extends any[] | TypedArray = any[], T = any>
  * @remarks
  * See {@link IGrid1DMixin} for mixin implementation.
  */
-export interface IGrid1D<BUF extends any[] | TypedArray = any[], T = any>
-	extends INDBase<BUF> {
+export interface IGrid1D<
+	BUF extends any[] | TypedArray = any[],
+	T = any,
+> extends INDBase<BUF> {
 	readonly dim: 1;
 
 	/**
@@ -184,8 +188,10 @@ export interface IGrid1D<BUF extends any[] | TypedArray = any[], T = any>
  * @remarks
  * See {@link IGrid2DMixin} for mixin implementation.
  */
-export interface IGrid2D<BUF extends any[] | TypedArray = any[], T = any>
-	extends INDBase<BUF> {
+export interface IGrid2D<
+	BUF extends any[] | TypedArray = any[],
+	T = any,
+> extends INDBase<BUF> {
 	readonly dim: 2;
 
 	/**
@@ -259,8 +265,10 @@ export interface IGrid2D<BUF extends any[] | TypedArray = any[], T = any>
  * @remarks
  * See {@link IGrid3DMixin} for mixin implementation.
  */
-export interface IGrid3D<BUF extends any[] | TypedArray = any[], T = any>
-	extends INDBase<BUF> {
+export interface IGrid3D<
+	BUF extends any[] | TypedArray = any[],
+	T = any,
+> extends INDBase<BUF> {
 	readonly dim: 3;
 
 	/**
@@ -341,8 +349,10 @@ export interface IGrid3D<BUF extends any[] | TypedArray = any[], T = any>
  * @remarks
  * See {@link IGrid4DMixin} for mixin implementation.
  */
-export interface IGrid4D<BUF extends any[] | TypedArray = any[], T = any>
-	extends INDBase<BUF> {
+export interface IGrid4D<
+	BUF extends any[] | TypedArray = any[],
+	T = any,
+> extends INDBase<BUF> {
 	readonly dim: 4;
 
 	/**

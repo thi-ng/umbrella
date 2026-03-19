@@ -287,8 +287,8 @@ const __compile: MultiFn4<
 							? altD(acc)
 							: discard(acc[0])
 						: acc.length > 1
-						? alt(acc)
-						: acc[0],
+							? alt(acc)
+							: acc[0],
 				repeat,
 				disc,
 				lookahead,
@@ -389,7 +389,7 @@ const __compileLookahead = (
 				parser,
 				__compile(__nth(spec, 1), lang, opts, {}),
 				__first(spec).result === "+"
-		  )
+			)
 		: parser;
 };
 
@@ -406,7 +406,7 @@ const __compileRD = (
 				__compileRepeat(parser(false), rspec, opts),
 				dspec,
 				opts
-		  );
+			);
 
 /** @internal */
 const __compileRDL = (

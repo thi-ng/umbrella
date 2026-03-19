@@ -62,7 +62,7 @@ export function at_keyframes(id: string, ...args: Keyframe[]): RuleFn {
 			: args.reduce((acc, x, i) => {
 					acc[((i / (args.length - 1)) * 100) | 0] = x;
 					return acc;
-			  }, {});
+				}, {});
 	return (acc: string[], opts: CSSOpts) => {
 		const outer = indent(opts);
 		opts.depth++;

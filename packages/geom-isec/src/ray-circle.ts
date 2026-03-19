@@ -25,13 +25,13 @@ export const intersectRayCircle = (
 			? b >= 0
 				? a > b
 					? // prettier-ignore
-					  [false,b, a, [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]]
+						[false,b, a, [maddN(delta, dir, b, rpos), maddN([], dir, a, rpos)]]
 					: // prettier-ignore
-					  [false, a, b, [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]]
+						[false, a, b, [maddN(delta, dir, a, rpos), maddN([], dir, b, rpos)]]
 				: [true, a, undefined, [maddN(delta, dir, a, rpos)]]
 			: b >= 0
-			? [true, b, undefined, [maddN(delta, dir, b, rpos)]]
-			: undefined;
+				? [true, b, undefined, [maddN(delta, dir, b, rpos)]]
+				: undefined;
 	return isec
 		? {
 				type: IntersectionType.INTERSECT,
@@ -39,6 +39,6 @@ export const intersectRayCircle = (
 				alpha: isec[1],
 				beta: isec[2],
 				isec: isec[3],
-		  }
+			}
 		: NONE;
 };

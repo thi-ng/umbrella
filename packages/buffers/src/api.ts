@@ -33,9 +33,7 @@ export interface IReadBuffer<T> {
  * Base interface for all implementations in this package.
  */
 export interface IReadWriteBuffer<T>
-	extends IClear,
-		ICopy<IReadWriteBuffer<T>>,
-		IReadBuffer<T> {
+	extends IClear, ICopy<IReadWriteBuffer<T>>, IReadBuffer<T> {
 	/**
 	 * Returns true iff the buffer principally accepts an item for writing. Also
 	 * see {@link IReadWriteBuffer.write}. The latter **MUST NOT** be called if

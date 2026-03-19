@@ -150,7 +150,7 @@ export const defOpRTT = <A = number, B = A>(
 		? (a: ITensor<A>, b: ITensor<A>) => {
 				const { shape, a: $a, b: $b } = broadcast(a, b);
 				return impls[shape.length]!($a, $b);
-		  }
+			}
 		: (a: ITensor<A>, b: ITensor<A>) => impls[a.dim]!(a, b);
 
 	return <any>wrapper;

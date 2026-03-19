@@ -71,5 +71,5 @@ export function flattenWith<A>(
 					return reduce(acc, x);
 				};
 				return compR(rfn, flatten);
-		  };
+			};
 }

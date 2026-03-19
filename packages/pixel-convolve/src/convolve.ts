@@ -110,7 +110,7 @@ const __initKernel = (
 					(<PoolKernelSpec>kernel).pool,
 				kw,
 				kh
-		  ))(src);
+			))(src);
 
 /** @internal */
 const __initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
@@ -163,10 +163,10 @@ const __declOffset = (
 	idx < 0
 		? `const ${pre}${i} = max(${pre}${
 				idx < -1 ? idx + "*" : "-"
-		  }${stride},${min});`
+			}${stride},${min});`
 		: `const ${pre}${i} = min(${pre}+${
 				idx > 1 ? idx + "*" : ""
-		  }${stride},${max});`;
+			}${stride},${max});`;
 
 /**
  * HOF convolution or pooling kernel code generator. Takes either a

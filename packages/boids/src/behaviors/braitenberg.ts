@@ -39,8 +39,8 @@ export const braitenberg2 = (
 			return valC > valL && valC > valR
 				? boid.steerTowards(maddN(left, boid.vel.curr, -1, pos))
 				: valL === valR
-				? boid.api.ZERO
-				: boid.steerTowards(valL > valR ? left : right);
+					? boid.api.ZERO
+					: boid.steerTowards(valL > valR ? left : right);
 		},
 	};
 };

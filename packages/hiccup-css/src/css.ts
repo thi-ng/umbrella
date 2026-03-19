@@ -19,15 +19,15 @@ export const css = (rules: any, opts?: Partial<CSSOpts>) => {
 	return isPlainObject(rules)
 		? formatDecls(rules, <CSSOpts>opts)
 		: isFunction(rules)
-		? rules([], <CSSOpts>opts).join(opts.format!.rules)
-		: expand(
-				[],
-				[],
-				isArray(rules)
-					? rules
-					: isNotStringAndIterable(rules)
-					? [...rules]
-					: illegalArgs(`invalid rules`),
-				<CSSOpts>opts
-		  ).join(opts.format!.rules);
+			? rules([], <CSSOpts>opts).join(opts.format!.rules)
+			: expand(
+					[],
+					[],
+					isArray(rules)
+						? rules
+						: isNotStringAndIterable(rules)
+							? [...rules]
+							: illegalArgs(`invalid rules`),
+					<CSSOpts>opts
+				).join(opts.format!.rules);
 };

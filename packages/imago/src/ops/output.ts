@@ -45,7 +45,7 @@ export const outputProc: Processor = async (spec, input, ctx) => {
 				"tile",
 				"tiff",
 				"webp",
-		  ]);
+			]);
 	switch (format) {
 		case "avif":
 			if (opts.avif) output = output.avif(opts.avif);

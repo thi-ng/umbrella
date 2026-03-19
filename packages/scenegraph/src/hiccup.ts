@@ -26,9 +26,9 @@ export const toHiccup = <T extends ANode<T> & IToHiccup>(
 						? ["g", { transform: node.mat }, body]
 						: undefined,
 					...node.children.map((c) => c.toHiccup(ctx)),
-			  ]
+				]
 			: body
-			? ["g", { transform: node.mat }, body]
-			: undefined
+				? ["g", { transform: node.mat }, body]
+				: undefined
 		: undefined;
 };

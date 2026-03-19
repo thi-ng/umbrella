@@ -44,8 +44,8 @@ export const toPath = (path: Path): readonly NumOrString[] => {
 				? toPath(path.split("."))
 				: []
 			: path != null
-			? <any[]>[path]
-			: [];
+				? <any[]>[path]
+				: [];
 	}
 };
 

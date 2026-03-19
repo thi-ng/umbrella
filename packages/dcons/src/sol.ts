@@ -27,7 +27,10 @@ export type SOFn<T> = Fn2<SOL<T>, ConsCell<T>, ConsCell<T>>;
  * https://en.wikipedia.org/wiki/Self-organizing_list
  */
 export class SOL<T> extends DCons<T> {
-	constructor(protected _reorder: SOFn<T>, src?: Iterable<T>) {
+	constructor(
+		protected _reorder: SOFn<T>,
+		src?: Iterable<T>
+	) {
 		super();
 		src && this.into(src);
 	}

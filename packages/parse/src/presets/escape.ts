@@ -24,6 +24,7 @@ export const ESC = xform(seq([litD("\\"), always()], "esc"), ($) => {
 export const UNICODE = xform(
 	seq([stringD("\\u"), repeat(HEX_DIGIT, 4, 4)], "unicode"),
 	($, ctx) => (
-		($!.result = String.fromCharCode(xfInt(16)($, ctx)!.result)), $
+		($!.result = String.fromCharCode(xfInt(16)($, ctx)!.result)),
+		$
 	)
 );

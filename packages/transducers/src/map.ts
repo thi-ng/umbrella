@@ -29,7 +29,7 @@ export function map<A, B>(fn: Fn<A, B>, src?: Iterable<A>): any {
 		: (rfn: Reducer<B, any>) => {
 				const r = rfn[2];
 				return compR(rfn, (acc, x: A) => r(acc, fn(x)));
-		  };
+			};
 }
 
 /**

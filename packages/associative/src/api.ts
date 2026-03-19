@@ -12,7 +12,8 @@ import type {
 } from "@thi.ng/api";
 
 export interface IEquivSet<T>
-	extends Set<T>,
+	extends
+		Set<T>,
 		IClear,
 		ICopy<IEquivSet<T>>,
 		IEmpty<IEquivSet<T>>,

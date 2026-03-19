@@ -22,5 +22,5 @@ export function pushSort<T>(
 				() => [],
 				(acc) => acc.sort(cmp),
 				(acc, x) => (acc.push(x), acc),
-		  ];
+			];
 }

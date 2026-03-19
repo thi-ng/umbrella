@@ -59,28 +59,28 @@ export const allChildren = (t: Term<any>) =>
 	(t.tag === "scope"
 		? (<Scope>t).body
 		: t.tag === "ternary"
-		? [(<Ternary<any>>t).test, (<Ternary<any>>t).t, (<Ternary<any>>t).f]
-		: t.tag === "ret"
-		? (<FuncReturn<any>>t).val !== undefined
-			? [(<FuncReturn<any>>t).val]
-			: undefined
-		: t.tag === "call" || t.tag === "call_i"
-		? (<FnCall<any>>t).args
-		: t.tag === "sym" && (<Sym<any>>t).init
-		? [(<Sym<any>>t).init]
-		: t.tag === "decl"
-		? [(<Decl<any>>t).id]
-		: t.tag === "op1" || t.tag === "swizzle"
-		? [(<Op1<any>>t).val]
-		: t.tag === "op2"
-		? [(<Op2<any>>t).l, (<Op2<any>>t).r]
-		: t.tag === "assign"
-		? [(<Assign<any>>t).r]
-		: isVec(t) || isMat(t)
-		? (<Lit<any>>t).val
-		: isTerm((<Lit<any>>t).val)
-		? (<Lit<any>>t).val
-		: undefined);
+			? [(<Ternary<any>>t).test, (<Ternary<any>>t).t, (<Ternary<any>>t).f]
+			: t.tag === "ret"
+				? (<FuncReturn<any>>t).val !== undefined
+					? [(<FuncReturn<any>>t).val]
+					: undefined
+				: t.tag === "call" || t.tag === "call_i"
+					? (<FnCall<any>>t).args
+					: t.tag === "sym" && (<Sym<any>>t).init
+						? [(<Sym<any>>t).init]
+						: t.tag === "decl"
+							? [(<Decl<any>>t).id]
+							: t.tag === "op1" || t.tag === "swizzle"
+								? [(<Op1<any>>t).val]
+								: t.tag === "op2"
+									? [(<Op2<any>>t).l, (<Op2<any>>t).r]
+									: t.tag === "assign"
+										? [(<Assign<any>>t).r]
+										: isVec(t) || isMat(t)
+											? (<Lit<any>>t).val
+											: isTerm((<Lit<any>>t).val)
+												? (<Lit<any>>t).val
+												: undefined);
 
 /**
  * Traverses given AST in depth-first order and applies `visit` and
@@ -133,7 +133,7 @@ export const buildCallGraph = (
 		? fn.deps.reduce(
 				(graph, d) => buildCallGraph(d, graph.addDependency(fn, d)),
 				graph
-		  )
+			)
 		: graph.addNode(fn);
 
 export const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({

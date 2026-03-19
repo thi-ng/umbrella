@@ -112,14 +112,14 @@ export const css = (
 	return isString(src)
 		? src
 		: isNumber(src)
-		? intArgb32Css(src)
-		: (<TypedColor<any>>src).mode
-		? (asCss = cssTarget[(<TypedColor<any>>src).mode])
-			? asCss(src)
-			: cssTarget.rgb!(
-					convert([], src, "rgb", (<TypedColor<any>>src).mode)
-			  )
-		: srgbCss(src);
+			? intArgb32Css(src)
+			: (<TypedColor<any>>src).mode
+				? (asCss = cssTarget[(<TypedColor<any>>src).mode])
+					? asCss(src)
+					: cssTarget.rgb!(
+							convert([], src, "rgb", (<TypedColor<any>>src).mode)
+						)
+				: srgbCss(src);
 };
 
 /**

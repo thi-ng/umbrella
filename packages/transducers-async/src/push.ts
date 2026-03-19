@@ -11,9 +11,9 @@ export function push<T>(src?: MaybeAsyncIterable<T>) {
 				let res: T[] = [];
 				for await (let x of src) res.push(x);
 				return res;
-		  })()
+			})()
 		: reducer<T, T[]>(
 				() => [],
 				(acc, x) => (acc.push(x), acc)
-		  );
+			);
 }

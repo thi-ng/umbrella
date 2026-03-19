@@ -10,8 +10,10 @@ export const flipX: PointTransform2D = (cols) => (x, y) => [cols - 1 - x, y];
 
 export const flipY: PointTransform2D = (_, rows) => (x, y) => [x, rows - 1 - y];
 
-export const flipXY: PointTransform2D = (cols, rows) => (x, y) =>
-	[cols - 1 - x, rows - 1 - y];
+export const flipXY: PointTransform2D = (cols, rows) => (x, y) => [
+	cols - 1 - x,
+	rows - 1 - y,
+];
 
 /**
  * {@link PointTransform2D} to swaps X & Y coords.

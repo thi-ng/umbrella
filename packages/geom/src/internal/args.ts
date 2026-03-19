@@ -19,8 +19,8 @@ export const __argAttribs = (args: any[]) => {
 		return isPlainObject(last)
 			? args.pop()
 			: last == null
-			? (args.pop(), undefined)
-			: undefined;
+				? (args.pop(), undefined)
+				: undefined;
 	}
 };
 
@@ -55,8 +55,8 @@ export const __argsVN = (args: any[]) => {
 		? args.length === 2
 			? [args[0], args[1], attr]
 			: isNumber(args[0])
-			? [undefined, args[0], attr]
-			: [args[0], undefined, attr]
+				? [undefined, args[0], attr]
+				: [args[0], undefined, attr]
 		: [undefined, undefined, attr];
 };
 

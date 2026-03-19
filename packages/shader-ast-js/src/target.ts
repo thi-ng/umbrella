@@ -115,8 +115,8 @@ const __buildExports = (tree: Term<any>) =>
 				.map((f) => `${(<Func<any>>f).id}: ${(<Func<any>>f).id}`)
 				.join(",\n")
 		: tree.tag === "fn"
-		? `${(<Func<any>>tree).id}: ${(<Func<any>>tree).id}`
-		: "";
+			? `${(<Func<any>>tree).id}: ${(<Func<any>>tree).id}`
+			: "";
 
 export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 	opts = { ...opts };
@@ -171,8 +171,8 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			id.init
 				? res.push(`= ${emit(id.init)}`)
 				: id.opts.num !== undefined
-				? res.push(`= new Array(${id.opts.num})`)
-				: undefined;
+					? res.push(`= new Array(${id.opts.num})`)
+					: undefined;
 			return res.join(" ");
 		},
 
@@ -247,10 +247,10 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			return complex && t.post
 				? `${(<Sym<any>>t.val).id} = ${t.type}.${OP_IDS[op]}(${val})`
 				: complex
-				? `${t.type}.${OP_IDS[op]}1(${val})`
-				: (<Op1<any>>t).post
-				? `(${val}${op})`
-				: `${op}${val}`;
+					? `${t.type}.${OP_IDS[op]}1(${val})`
+					: (<Op1<any>>t).post
+						? `(${val}${op})`
+						: `${op}${val}`;
 		},
 
 		op2: (t) => {
@@ -258,14 +258,14 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			const vec = __isVecOrMat(l)
 				? l.type
 				: __isVecOrMat(r)
-				? r.type
-				: undefined;
+					? r.type
+					: undefined;
 			const int = !vec
 				? __isIntOrBool(l)
 					? l.type
 					: __isIntOrBool(r)
-					? r.type
-					: undefined
+						? r.type
+						: undefined
 				: undefined;
 			const el = emit(l);
 			const er = emit(r);
@@ -286,7 +286,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 			t.id.length > 1
 				? `env.swizzle${t.id.length}(${emit(t.val)}, ${__swizzle(
 						t.id
-				  )})`
+					)})`
 				: `${emit(t.val)}[${__swizzle(t.id)}]`,
 
 		sym: (t) => t.id,

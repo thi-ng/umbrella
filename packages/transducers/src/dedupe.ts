@@ -47,12 +47,12 @@ export function dedupe<T>(...args: any[]): any {
 									: r(acc, x);
 							prev = x;
 							return acc;
-					  }
+						}
 					: (acc, x: T) => {
 							acc = prev === x ? acc : r(acc, x);
 							prev = x;
 							return acc;
-					  }
+						}
 			);
 		})
 	);

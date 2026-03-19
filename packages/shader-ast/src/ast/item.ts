@@ -27,10 +27,10 @@ export const numberWithMatchingType = (t: Term<Prim | Int>, x: number) => {
 	return id === "i"
 		? int(x)
 		: id === "u"
-		? uint(x)
-		: id === "b"
-		? bool(x)
-		: float(x);
+			? uint(x)
+			: id === "b"
+				? bool(x)
+				: float(x);
 };
 
 export const matchingPrimFor = <T extends Prim>(

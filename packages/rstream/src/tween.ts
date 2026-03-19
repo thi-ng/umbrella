@@ -82,8 +82,8 @@ export const tween = <T>(
 				clock == null
 					? fromRAF()
 					: isNumber(clock)
-					? fromInterval(clock)
-					: clock,
+						? fromInterval(clock)
+						: clock,
 		},
 		closeIn: "first",
 	}).transform(

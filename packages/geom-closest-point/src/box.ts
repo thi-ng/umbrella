@@ -28,20 +28,20 @@ export const closestPointAABB = (
 				minW,
 				clamp(p[1], bmin[1], bmax[1]),
 				clamp(p[2], bmin[2], bmax[2])
-		  )
+			)
 		: minID! === 1
-		? setC3(
-				out,
-				clamp(p[0], bmin[0], bmax[0]),
-				minW,
-				clamp(p[2], bmin[2], bmax[2])
-		  )
-		: setC3(
-				out,
-				clamp(p[0], bmin[0], bmax[0]),
-				clamp(p[1], bmin[1], bmax[1]),
-				minW
-		  );
+			? setC3(
+					out,
+					clamp(p[0], bmin[0], bmax[0]),
+					minW,
+					clamp(p[2], bmin[2], bmax[2])
+				)
+			: setC3(
+					out,
+					clamp(p[0], bmin[0], bmax[0]),
+					clamp(p[1], bmin[1], bmax[1]),
+					minW
+				);
 };
 
 /** @internal */

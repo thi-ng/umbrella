@@ -164,8 +164,8 @@ export function resolve(root: any, opts?: Partial<ResolveOpts>) {
 	return isPlainObject(root)
 		? __resolveMap(root, $opts)
 		: isArray(root)
-		? __resolveArray(root, $opts)
-		: root;
+			? __resolveArray(root, $opts)
+			: root;
 }
 
 /** @internal */

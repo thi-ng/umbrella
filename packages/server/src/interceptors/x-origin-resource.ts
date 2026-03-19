@@ -17,6 +17,7 @@ export const crossOriginResourcePolicy = (
 	policy: CrossOriginResourcePolicy = "same-origin"
 ): Interceptor => ({
 	pre: (ctx) => (
-		ctx.res.setHeader("cross-origin-resource-policy", policy), true
+		ctx.res.setHeader("cross-origin-resource-policy", policy),
+		true
 	),
 });

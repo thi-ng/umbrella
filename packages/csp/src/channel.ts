@@ -187,7 +187,7 @@ export class Channel<T> implements IChannel<T> {
 					? queue.push(val)
 					: illegalState(
 							"max. queue capacity reached, reduce back pressure!"
-					  );
+						);
 			}
 			if (reads.length) {
 				this.deliver();

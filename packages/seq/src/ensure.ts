@@ -16,7 +16,7 @@ export const ensureSeq = <T>(
 	implementsFunction(x, "seq")
 		? (<ISeqable<T>>x).seq()
 		: isArrayLike(x)
-		? aseq(x)
-		: x != null
-		? <ISeq<T>>x
-		: undefined;
+			? aseq(x)
+			: x != null
+				? <ISeq<T>>x
+				: undefined;

@@ -41,21 +41,24 @@ export interface FromRAFOpts extends CommonOpts {
 export const fromRAF = (opts: Partial<FromRAFOpts> = {}) =>
 	isNode()
 		? fromInterval(16, opts)
-		: stream<number>((stream) => {
-				let i = 0;
-				let isActive = true;
-				let t0 = isNumber(opts.t0) ? opts.t0 : undefined;
-				const loop: FrameRequestCallback = (time) => {
-					if (opts.timestamp && opts.t0) {
-						if (t0 === undefined) t0 = time;
-						time -= t0;
-					}
-					isActive && stream.next(opts.timestamp ? time : i++);
-					isActive && (id = requestAnimationFrame(loop));
-				};
-				let id = requestAnimationFrame(loop);
-				return () => {
-					isActive = false;
-					cancelAnimationFrame(id);
-				};
-		  }, __optsWithID("raf", opts));
+		: stream<number>(
+				(stream) => {
+					let i = 0;
+					let isActive = true;
+					let t0 = isNumber(opts.t0) ? opts.t0 : undefined;
+					const loop: FrameRequestCallback = (time) => {
+						if (opts.timestamp && opts.t0) {
+							if (t0 === undefined) t0 = time;
+							time -= t0;
+						}
+						isActive && stream.next(opts.timestamp ? time : i++);
+						isActive && (id = requestAnimationFrame(loop));
+					};
+					let id = requestAnimationFrame(loop);
+					return () => {
+						isActive = false;
+						cancelAnimationFrame(id);
+					};
+				},
+				__optsWithID("raf", opts)
+			);

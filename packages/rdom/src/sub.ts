@@ -73,7 +73,10 @@ export const $subWithID = <T>(
 export class $Sub<T = any> extends Subscription<T, T> {
 	el?: Element;
 
-	constructor(protected inner: IMountWithState<Maybe<T>>, id?: string) {
+	constructor(
+		protected inner: IMountWithState<Maybe<T>>,
+		id?: string
+	) {
 		super(undefined, { id: id || `rdom$sub-${__nextID()}` });
 	}
 
@@ -104,7 +107,11 @@ export class $SubA extends Subscription<any, any> {
 	protected setter: Fn2<any, any, any>;
 	protected attr: any = {};
 
-	constructor(protected comp: IComponent, path: Path, id?: string) {
+	constructor(
+		protected comp: IComponent,
+		path: Path,
+		id?: string
+	) {
 		super(undefined, { id: id || `rdom$attr-${__nextID()}` });
 		this.setter = defSetterUnsafe(path);
 	}

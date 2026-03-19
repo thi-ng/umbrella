@@ -20,7 +20,10 @@ export class FeedbackDelay
 	extends Delay<number>
 	implements ICopy<FeedbackDelay>
 {
-	constructor(n: number, protected _feedback = 0.5) {
+	constructor(
+		n: number,
+		protected _feedback = 0.5
+	) {
 		super(n, 0);
 		this.setFeedback(_feedback);
 	}

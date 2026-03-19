@@ -196,8 +196,9 @@ export const TYPEDARRAY_CTORS: Record<Type, TypedArrayConstructor> = {
 	...UINT_ARRAY_CTORS,
 };
 
-export interface TypedArrayTypeMap<T extends ArrayBufferLike = ArrayBufferLike>
-	extends Record<Type | GLType, TypedArray<T>> {
+export interface TypedArrayTypeMap<
+	T extends ArrayBufferLike = ArrayBufferLike,
+> extends Record<Type | GLType, TypedArray<T>> {
 	u8: Uint8Array<T>;
 	u8c: Uint8ClampedArray<T>;
 	i8: Int8Array<T>;
@@ -217,7 +218,7 @@ export interface TypedArrayTypeMap<T extends ArrayBufferLike = ArrayBufferLike>
 }
 
 export interface BigTypedArrayTypeMap<
-	T extends ArrayBufferLike = ArrayBufferLike
+	T extends ArrayBufferLike = ArrayBufferLike,
 > extends Record<BigType, BigTypedArray<T>> {
 	i64: BigInt64Array<T>;
 	u64: BigUint64Array<T>;
@@ -472,10 +473,10 @@ export const widenUint = (t: UintType) =>
 	t === "u8" || t === "u8c"
 		? "u16"
 		: t === "u16"
-		? "u32"
-		: t === "u32"
-		? "u64"
-		: "u64";
+			? "u32"
+			: t === "u32"
+				? "u64"
+				: "u64";
 
 /**
  * Returns the next smaller {@link FloatType} for given type (or the same type
@@ -503,8 +504,8 @@ export const narrowType = (t: Type | BigType) =>
 	t[0] === "i"
 		? narrowInt(<IntType>t)
 		: t[0] === "u"
-		? narrowUint(<UintType>t)
-		: narrowFloat(<FloatType>t);
+			? narrowUint(<UintType>t)
+			: narrowFloat(<FloatType>t);
 
 /**
  * Returns the next larger type (i.e. {@link IntType}, {@link UintType} or
@@ -516,5 +517,5 @@ export const widenType = (t: Type | BigType) =>
 	t[0] === "i"
 		? widenInt(<IntType>t)
 		: t[0] === "u"
-		? widenUint(<UintType>t)
-		: widenFloat(<FloatType>t);
+			? widenUint(<UintType>t)
+			: widenFloat(<FloatType>t);

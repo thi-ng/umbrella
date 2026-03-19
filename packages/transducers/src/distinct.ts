@@ -55,7 +55,7 @@ export function distinct<T>(...args: any[]): any {
 							return !seen.has(k)
 								? (seen.add(k), r(acc, x))
 								: acc;
-					  }
+						}
 					: (acc, x: T) =>
 							!seen.has(x) ? (seen.add(x), r(acc, x)) : acc
 			);

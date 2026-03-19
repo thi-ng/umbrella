@@ -56,8 +56,10 @@ export const dial = ({
 	);
 };
 
-export interface DialGroupOpts
-	extends Omit<DialOpts, "layout" | "value" | "label" | "info"> {
+export interface DialGroupOpts extends Omit<
+	DialOpts,
+	"layout" | "value" | "label" | "info"
+> {
 	layout: IGridLayout<any>;
 	value: number[];
 	label: string[];

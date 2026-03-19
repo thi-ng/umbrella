@@ -106,5 +106,5 @@ export function patchArray<T>(...args: any[]) {
 					}
 					return acc;
 				}
-		  );
+			);
 }

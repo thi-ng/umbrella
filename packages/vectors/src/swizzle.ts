@@ -70,7 +70,8 @@ export const swapYZ: VecOpV = (out, v) => swizzle3(out, v, 0, 2, 1);
  * @param a -
  */
 export const setSwizzle1 = (out: Vec, n: number, a: number) => (
-	(out[a] = n), out
+	(out[a] = n),
+	out
 );
 
 /**
@@ -82,7 +83,8 @@ export const setSwizzle1 = (out: Vec, n: number, a: number) => (
  * @param b -
  */
 export const setSwizzle2 = (out: Vec, v: ReadonlyVec, a: number, b: number) => (
-	((out[a] = v[0]), (out[b] = v[1])), out
+	((out[a] = v[0]), (out[b] = v[1])),
+	out
 );
 
 /**
@@ -120,5 +122,6 @@ export const setSwizzle4 = (
 	c: number,
 	d: number
 ) => (
-	((out[a] = v[0]), (out[b] = v[1]), (out[c] = v[2]), (out[d] = v[3])), out
+	((out[a] = v[0]), (out[b] = v[1]), (out[c] = v[2]), (out[d] = v[3])),
+	out
 );

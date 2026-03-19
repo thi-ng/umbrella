@@ -34,9 +34,9 @@ const __mathOp =
 	(first: any, ...args: any[]) => {
 		return args.length > 0
 			? // use a reduction for 2+ args
-			  args.reduce((acc, x) => fn(acc, x), first)
+				args.reduce((acc, x) => fn(acc, x), first)
 			: // apply special case unary function
-			  fn1(first);
+				fn1(first);
 	};
 
 /** @internal */
@@ -121,8 +121,8 @@ export const BUILTINS = defmulti<ASTNode[], Env, any>(
 			interpret(test, env)
 				? interpret(truthy, env)
 				: falsy
-				? interpret(falsy, env)
-				: undefined,
+					? interpret(falsy, env)
+					: undefined,
 
 		// create local symbol/variable bindings, e.g.
 		// `(let (a 1 b 2 c (+ a b)) (print a b c))`

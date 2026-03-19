@@ -186,12 +186,12 @@ export const ensureLines = (
 	isString(src)
 		? split(src)
 		: isArray(src)
-		? src
-		: key
-		? src[key]
-			? ensureLines(src[key]!, key)
-			: []
-		: [];
+			? src
+			: key
+				? src[key]
+					? ensureLines(src[key]!, key)
+					: []
+				: [];
 
 export const ensureStringArray = (src: string | string[]) =>
 	isString(src) ? [src] : src;

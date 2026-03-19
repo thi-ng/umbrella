@@ -89,11 +89,11 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 							requestTimeout,
 						},
 						this.listener.bind(this)
-				  )
+					)
 				: http.createServer(
 						{ ServerResponse },
 						this.listener.bind(this)
-				  );
+					);
 			this.server.listen(port, host, undefined, () => {
 				this.logger.info(
 					`starting server: http${ssl ? "s" : ""}://${host}:${port}`
@@ -258,7 +258,7 @@ export class Server<CTX extends RequestCtx = RequestCtx> {
 						{ mode: "br", tx: createBrotliCompress },
 						{ mode: "gzip", tx: createGzip },
 						{ mode: "deflate", tx: createDeflate },
-				  ]).find((x) => accept.includes(x.mode))
+					]).find((x) => accept.includes(x.mode))
 				: undefined;
 		return new Promise<void>((resolve) => {
 			try {

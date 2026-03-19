@@ -29,7 +29,11 @@ export abstract class Int32<T extends TypedColor<T>> implements TypedColor<T> {
 	value!: number;
 	[id: number]: number;
 
-	constructor(buf?: NumericArray, public offset = 0, public stride = 1) {
+	constructor(
+		buf?: NumericArray,
+		public offset = 0,
+		public stride = 1
+	) {
 		this.buf = buf || [0];
 	}
 
@@ -208,18 +212,20 @@ const __defInt = <T extends Int32<T>>(
 		src == null
 			? new ctor()
 			: isNumber(src)
-			? args.length && args.every(isNumber)
-				? new ctor([srgbIntArgb32([src, ...args])])
-				: new ctor([src], ...args)
-			: isString(src)
-			? factory(parseCss(src))
-			: isArrayLike(src)
-			? isString((<IColor>src).mode)
-				? new ctor([fromSrgb(srgb(src))], ...args)
-				: new ctor(<NumericArray>src, ...args)
-			: implementsFunction(src, "deref")
-			? new ctor([fromSrgb(srgb(src))], ...args)
-			: illegalArgs(`can't create a ARGB32 color from: ${src}`);
+				? args.length && args.every(isNumber)
+					? new ctor([srgbIntArgb32([src, ...args])])
+					: new ctor([src], ...args)
+				: isString(src)
+					? factory(parseCss(src))
+					: isArrayLike(src)
+						? isString((<IColor>src).mode)
+							? new ctor([fromSrgb(srgb(src))], ...args)
+							: new ctor(<NumericArray>src, ...args)
+						: implementsFunction(src, "deref")
+							? new ctor([fromSrgb(srgb(src))], ...args)
+							: illegalArgs(
+									`can't create a ARGB32 color from: ${src}`
+								);
 
 	factory.class = <any>ctor;
 

@@ -27,5 +27,5 @@ export function throttle<T>(
 				return compR<T, T, any>(rfn, async (acc, x) =>
 					(await $pred(x)) ? reduce(acc, x) : acc
 				);
-		  };
+			};
 }

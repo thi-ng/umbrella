@@ -20,7 +20,7 @@ export const defEnsure =
 			? assert(
 					() => pred(x),
 					msg || `expected ${expected}, got ${typeof x}`
-			  )
+				)
 			: assert(false, `expected ${expected}, got ${x}`);
 		return <T>x;
 	};

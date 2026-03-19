@@ -38,7 +38,7 @@ export const dropdown = ({
 				layout.ch,
 				layout.gapX,
 				layout.gapY
-		  );
+			);
 	let res: Maybe<number>;
 	const box = nested.next();
 	const { x, y, w, h } = box;

@@ -16,7 +16,10 @@ export class NumericState implements IDeref<number>, ITimeStep {
 	curr!: number;
 	prev!: number;
 
-	constructor(public value: number, public update: StateUpdate<number>) {
+	constructor(
+		public value: number,
+		public update: StateUpdate<number>
+	) {
 		this.reset(value);
 	}
 

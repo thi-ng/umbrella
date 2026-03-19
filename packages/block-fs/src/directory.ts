@@ -11,7 +11,10 @@ import {
 import type { BlockFS } from "./fs.js";
 
 export class Directory implements IDirectory {
-	constructor(public fs: BlockFS, public entry: IEntry) {}
+	constructor(
+		public fs: BlockFS,
+		public entry: IEntry
+	) {}
 
 	async *[Symbol.asyncIterator](): AsyncIterableIterator<IEntry> {
 		const fs = this.fs;

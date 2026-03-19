@@ -37,8 +37,8 @@ export const defStripes = <T = number>({
 	dir === "h"
 		? (_, x) => (x % size < sizeA ? a : b)
 		: dir === "v"
-		? (_, __, y) => (y % size < sizeA ? a : b)
-		: (_, x, y) => ((x + y) % size < sizeA ? a : b);
+			? (_, __, y) => (y % size < sizeA ? a : b)
+			: (_, x, y) => ((x + y) % size < sizeA ? a : b);
 
 export interface RandomShaderOpts<T> {
 	probability?: number;
@@ -80,11 +80,11 @@ export const defBlendF = (
 		? (buf, x, y) => {
 				const dest = buf.getAtUnsafe(x, y);
 				return <NumericArray>blend(dest, col(buf, x, y), dest);
-		  }
+			}
 		: (buf, x, y) => {
 				const dest = buf.getAtUnsafe(x, y);
 				return <NumericArray>blend(dest, col, dest);
-		  };
+			};
 };
 
 /**

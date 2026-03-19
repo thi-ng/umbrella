@@ -43,7 +43,8 @@ export interface StridedVec {
 }
 
 export interface IVector<T>
-	extends Vec,
+	extends
+		Vec,
 		ICopy<T>,
 		ICopyView<T>,
 		IEmpty<T>,

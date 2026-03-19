@@ -156,7 +156,7 @@ export const fromTuple = <T>(
  */
 export class StreamObj<
 	T extends object,
-	K extends Keys<T>
+	K extends Keys<T>,
 > extends Subscription<T, T> {
 	/**
 	 * Object of managed & typed streams for registered keys.
@@ -174,7 +174,7 @@ export class StreamObj<
 				? {
 						xform: dedupe<any>(opts.equiv || ((a, b) => a === b)),
 						...opts,
-				  }
+					}
 				: opts;
 		for (const k of this.keys) {
 			this.streams[<K>k] = subscription(undefined, {

@@ -191,13 +191,16 @@ export class Router<T = any> implements INotify<RouterEventType> {
 			);
 		}
 		let hasParams = false;
-		const params = match.reduce((acc, x, i) => {
-			if (__isRouteParam(x)) {
-				hasParams = true;
-				acc[i] = x.substring(1);
-			}
-			return acc;
-		}, <Record<number, string>>{});
+		const params = match.reduce(
+			(acc, x, i) => {
+				if (__isRouteParam(x)) {
+					hasParams = true;
+					acc[i] = x.substring(1);
+				}
+				return acc;
+			},
+			<Record<number, string>>{}
+		);
 		return {
 			spec: route,
 			id: route.id,

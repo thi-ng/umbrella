@@ -67,6 +67,6 @@ export function defVocab(
 		? defBidirIndex(
 				mapcat((x: Iterable<string>) => (isString(x) ? [x] : x), src),
 				{ start }
-		  )
+			)
 		: bidirIndexFromJSON(src);
 }

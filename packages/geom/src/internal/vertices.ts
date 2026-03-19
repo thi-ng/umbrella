@@ -18,11 +18,11 @@ export const __circleOpts = (
 				opts.theta
 					? Math.floor(TAU / opts.theta)
 					: opts.dist
-					? Math.floor(TAU / (opts.dist / r))
-					: opts.num || DEFAULT_SAMPLES,
+						? Math.floor(TAU / (opts.dist / r))
+						: opts.num || DEFAULT_SAMPLES,
 				(opts.start || 0) * TAU,
 				opts.last === true,
-		  ];
+			];
 
 /**
  * @param opts
@@ -41,8 +41,8 @@ export const __sampleAttribs = (
 				? val
 				: { num: opts, ...val }
 			: isNumber(val)
-			? { ...opts, num: val }
-			: { ...opts, ...val };
+				? { ...opts, num: val }
+				: { ...opts, ...val };
 	}
 	return opts;
 };

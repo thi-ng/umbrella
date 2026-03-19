@@ -11,7 +11,10 @@ export const altB = (x = true) => new Alt(x, !x);
 export class Alt<T> extends AGen<T> implements ICopy<Alt<T>>, IReset {
 	protected _flip = true;
 
-	constructor(protected _a: T, protected _b: T) {
+	constructor(
+		protected _a: T,
+		protected _b: T
+	) {
 		super(_b);
 	}
 

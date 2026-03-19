@@ -22,5 +22,5 @@ export function str(sep?: string, src?: Iterable<any>): any {
 					(first = false),
 					acc
 				)
-		  );
+			);
 }

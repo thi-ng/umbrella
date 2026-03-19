@@ -15,5 +15,5 @@ export function drop<T>(n: number, src?: Iterable<T>): any {
 				return compR(rfn, (acc, x: T) =>
 					m > 0 ? (m--, acc) : r(acc, x)
 				);
-		  };
+			};
 }

@@ -35,5 +35,5 @@ export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
 						? ((prev = t), true)
 						: false;
 				};
-		  });
+			});
 }

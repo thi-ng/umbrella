@@ -101,6 +101,6 @@ export const arcFrom2Points = (
 				res.xl,
 				res.cw,
 				attribs
-		  )
+			)
 		: undefined;
 };

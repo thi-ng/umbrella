@@ -152,7 +152,7 @@ export const ensurePred =
 			? {
 					[FX_CANCEL]: true,
 					...(err ? err(state, e, bus, ctx) : null),
-			  }
+				}
 			: undefined;
 
 /** @internal */

@@ -82,10 +82,10 @@ const __coerce = (x: any, isec = false) =>
 			? __intersect(x)
 			: (y: any) => x.includes(y)
 		: isSet(x)
-		? isec
-			? __intersect(x)
-			: (y: any) => x.has(y)
-		: x;
+			? isec
+				? __intersect(x)
+				: (y: any) => x.has(y)
+			: x;
 
 /**
  * Similar to {@link __coerce}, but intended for S,P terms. Unless `x` is a
@@ -99,10 +99,10 @@ const __coerceStr = (x: any) =>
 	isArray(x)
 		? __coerce(x.map((y) => String(y)))
 		: isSet(x)
-		? __coerce(new Set([...x].map((y) => String(y))))
-		: x == null || isFunction(x)
-		? x
-		: String(x);
+			? __coerce(new Set([...x].map((y) => String(y))))
+			: x == null || isFunction(x)
+				? x
+				: String(x);
 
 /** @internal */
 const __addTriple = (acc: any, s: any, p: any, o: any) => {

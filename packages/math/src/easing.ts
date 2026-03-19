@@ -44,17 +44,17 @@ export const easeInOutBack: FnN = (t) =>
 	t < 0.5
 		? ((2 * t) ** 2 * ((2.5949095 + 1) * 2 * t - 2.5949095)) / 2
 		: ((2 * t - 2) ** 2 * ((2.5949095 + 1) * (t * 2 - 2) + 2.5949095) + 2) /
-		  2;
+			2;
 
 export const easeInBounce: FnN = (t) => 1 - easeOutBounce(1 - t);
 export const easeOutBounce: FnN = (t) =>
 	t < 1 / 2.75
 		? 7.5625 * (t * t)
 		: t < 2 / 2.75
-		? 7.5625 * (t - 1.5 / 2.75) * (t - 1.5 / 2.75) + 0.75
-		: t < 2.5 / 2.75
-		? 7.5625 * (t - 2.25 / 2.75) * (t - 2.25 / 2.75) + 0.9375
-		: 7.5625 * (t - 2.625 / 2.75) * (t - 2.625 / 2.75) + 0.984375;
+			? 7.5625 * (t - 1.5 / 2.75) * (t - 1.5 / 2.75) + 0.75
+			: t < 2.5 / 2.75
+				? 7.5625 * (t - 2.25 / 2.75) * (t - 2.25 / 2.75) + 0.9375
+				: 7.5625 * (t - 2.625 / 2.75) * (t - 2.625 / 2.75) + 0.984375;
 export const easeInOutBounce: FnN = (t) =>
 	t < 0.5
 		? (1 - easeOutBounce(1 - 2 * t)) / 2
@@ -71,22 +71,25 @@ export const easeInElastic: FnN = (t) =>
 	t <= 0
 		? 0
 		: t >= 1
-		? 1
-		: -(2 ** (10 * t - 10)) * sin((t * 10 - 10.75) * (TAU / 3));
+			? 1
+			: -(2 ** (10 * t - 10)) * sin((t * 10 - 10.75) * (TAU / 3));
 export const easeOutElastic: FnN = (t) =>
 	t <= 0
 		? 0
 		: t >= 1
-		? 1
-		: 2 ** (-10 * t) * sin((t * 10 - 0.75) * (TAU / 3)) + 1;
+			? 1
+			: 2 ** (-10 * t) * sin((t * 10 - 0.75) * (TAU / 3)) + 1;
 export const easeInOutElastic: FnN = (t) =>
 	t <= 0
 		? 0
 		: t >= 1
-		? 1
-		: t < 0.5
-		? -(2 ** (20 * t - 10) * sin((20 * t - 11.125) * (TAU / 4.5))) / 2
-		: (2 ** (-20 * t + 10) * sin((20 * t - 11.125) * (TAU / 4.5))) / 2 + 1;
+			? 1
+			: t < 0.5
+				? -(2 ** (20 * t - 10) * sin((20 * t - 11.125) * (TAU / 4.5))) /
+					2
+				: (2 ** (-20 * t + 10) * sin((20 * t - 11.125) * (TAU / 4.5))) /
+						2 +
+					1;
 
 export const easeInExp2: FnN = (t) => (t <= 0 ? 0 : 2 ** (10 * t - 10));
 export const easeOutExp2: FnN = (t) => (t >= 1 ? 1 : 1 - 2 ** (-10 * t));
@@ -94,10 +97,10 @@ export const easeInOutExp2: FnN = (t) =>
 	t < 0
 		? 0
 		: t >= 1
-		? 1
-		: t < 0.5
-		? 2 ** (20 * t - 10) / 2
-		: (2 - 2 ** (-20 * t + 10)) / 2;
+			? 1
+			: t < 0.5
+				? 2 ** (20 * t - 10) / 2
+				: (2 - 2 ** (-20 * t + 10)) / 2;
 
 export const easeInSine: FnN = (t) => 1 - cos(t * HALF_PI);
 export const easeOutSine: FnN = (t) => sin(t * HALF_PI);

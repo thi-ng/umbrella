@@ -84,7 +84,7 @@ export function intBuffer(...args: any[]) {
 	return args[0] instanceof IntBuffer
 		? args[0].as(args[1])
 		: // @ts-ignore
-		  new IntBuffer(...args);
+			new IntBuffer(...args);
 }
 
 /**
@@ -305,7 +305,7 @@ export class IntBuffer
 						for (let xx = 0; xx < rw; xx++) {
 							dbuf[di + xx] = df(sf(sbuf[si + xx]));
 						}
-				  }
+					}
 				: (si: number, di: number) =>
 						dbuf.set(sbuf.subarray(si, si + rw), di);
 		for (

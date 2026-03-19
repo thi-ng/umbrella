@@ -47,7 +47,10 @@ export function serial(...procs: IProc<any, any>[]): IProc<any, any> {
 }
 
 export class Serial2<A, B, C> extends AProc<A, C> {
-	constructor(protected _a: IProc<A, B>, protected _b: IProc<B, C>) {
+	constructor(
+		protected _a: IProc<A, B>,
+		protected _b: IProc<B, C>
+	) {
 		super(<any>null);
 	}
 

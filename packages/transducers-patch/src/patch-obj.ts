@@ -47,5 +47,5 @@ export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
 					}
 					return acc;
 				}
-		  );
+			);
 }

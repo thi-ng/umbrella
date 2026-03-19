@@ -102,7 +102,7 @@ const __argPrefix = (
 		? __ansi(
 				`[${prefixes.join(", ")}] `,
 				isRequired ? theme.required! : theme.multi!
-		  )
+			)
 		: "";
 
 /** @internal */
@@ -119,5 +119,5 @@ const __argDefault = (
 						: spec.default
 				)})`,
 				theme.default
-		  )
+			)
 		: "";

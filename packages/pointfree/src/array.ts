@@ -365,8 +365,8 @@ export const copy = defOp1((x) =>
 	isArray(x)
 		? x.slice()
 		: isPlainObject(x)
-		? { ...x }
-		: illegalArgs(`can't copy type ${typeof x}`)
+			? { ...x }
+			: illegalArgs(`can't copy type ${typeof x}`)
 );
 
 /**

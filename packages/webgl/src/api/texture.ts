@@ -744,9 +744,7 @@ export interface TextureOpts {
 }
 
 export interface ITexture
-	extends IBind<number>,
-		IConfigure<Partial<TextureOpts>>,
-		IRelease {
+	extends IBind<number>, IConfigure<Partial<TextureOpts>>, IRelease {
 	tex: WebGLTexture;
 	target: TextureTarget;
 	format: TextureFormat;

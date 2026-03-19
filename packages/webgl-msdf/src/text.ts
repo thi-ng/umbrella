@@ -42,7 +42,7 @@ export const text = (
 							size: 4,
 							byteOffset: 20,
 						},
-				  }
+					}
 				: null),
 		},
 		num: len * 4,

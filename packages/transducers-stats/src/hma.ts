@@ -28,5 +28,5 @@ export function hma(period: number, src?: Iterable<number>): any {
 				drop(period - 1),
 				map((w) => 2 * w[0] - w[1]),
 				wma(Math.sqrt(period))
-		  );
+			);
 }

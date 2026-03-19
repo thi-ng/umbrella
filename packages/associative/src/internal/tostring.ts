@@ -26,8 +26,8 @@ const __tostring = (x: any): string => {
 	return x instanceof Set
 		? __tostringSet(x)
 		: x instanceof Map
-		? __tostringMap(x)
-		: JSON.stringify(x);
+			? __tostringMap(x)
+			: JSON.stringify(x);
 };
 
 /**

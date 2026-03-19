@@ -49,7 +49,7 @@ export const intersectRayPolyline = (
 				isec: [maddN2([], dir, alpha, rpos)],
 				inside: !!inside,
 				alpha,
-		  }
+			}
 		: NONE;
 };
 

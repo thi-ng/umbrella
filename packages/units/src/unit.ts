@@ -99,8 +99,8 @@ export const asUnit = (id: string): Unit => {
 			return PREFIXES[<Prefix>pre] !== undefined
 				? prefix(<Prefix>pre, unit)
 				: !pre
-				? unit
-				: illegalArgs(`unknown unit: ${id}`);
+					? unit
+					: illegalArgs(`unknown unit: ${id}`);
 		}
 	}
 	for (const u in UNITS) {
@@ -257,8 +257,8 @@ export function add(a: Quantity<any>, b: Quantity<any>): any {
 			? valA.map((x, i) => x + valB[i])
 			: valA.map((x) => x + valB)
 		: isArray(valB)
-		? valB.map((x) => x + valA)
-		: valA + valB;
+			? valB.map((x) => x + valA)
+			: valA + valB;
 	return quantity(val, $unit);
 }
 
@@ -302,8 +302,8 @@ export function sub(a: Quantity<any>, b: Quantity<any>): any {
 			? valA.map((x, i) => x - valB[i])
 			: valA.map((x) => x - valB)
 		: isArray(valB)
-		? valB.map((x) => x - valA)
-		: valA - valB;
+			? valB.map((x) => x - valA)
+			: valA - valB;
 	return quantity(val, $unit);
 }
 
@@ -431,7 +431,7 @@ export function reciprocal(
 				isArray(u.value)
 					? u.value.map((x) => div(NONE, x))
 					: div(NONE, u.value)
-		  )
+			)
 		: div(NONE, u, coherent);
 }
 
@@ -592,7 +592,7 @@ const __combineQ = (
 				? a.value.map((x, i) => op(x, (<Unit[]>$b.value)[i]))
 				: a.value.map((x) => op(x, <Unit>$b.value))
 			: vecB
-			? $b.value.map((x) => op(<Unit>a.value, x))
-			: op(a.value, $b.value)
+				? $b.value.map((x) => op(<Unit>a.value, x))
+				: op(a.value, $b.value)
 	);
 };

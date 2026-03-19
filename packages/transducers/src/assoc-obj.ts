@@ -15,5 +15,5 @@ export function assocObj<T>(src?: Iterable<Pair<PropertyKey, T>>): any {
 		: reducer<Pair<PropertyKey, T>, IObjectOf<T>>(
 				() => ({}),
 				(acc, [k, v]) => ((acc[<any>k] = v), acc)
-		  );
+			);
 }

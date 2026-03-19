@@ -42,8 +42,8 @@ export const postmultiply = (out: Color | null, src: ReadonlyColor) => {
 	return a > 0
 		? setC4(out || src, src[0] / a, src[1] / a, src[2] / a, a)
 		: out && out != src
-		? setV4(out, src)
-		: src;
+			? setV4(out, src)
+			: src;
 };
 
 /**

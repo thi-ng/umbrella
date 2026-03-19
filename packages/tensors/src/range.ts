@@ -4,8 +4,10 @@ import { isPlainObject } from "@thi.ng/checks";
 import type { ITensor1, NumType, TensorOpts } from "./api.js";
 import { tensor } from "./tensor.js";
 
-export interface RangeOpts<T extends NumType>
-	extends Pick<TensorOpts<T, [number]>, "storage"> {
+export interface RangeOpts<T extends NumType> extends Pick<
+	TensorOpts<T, [number]>,
+	"storage"
+> {
 	/**
 	 * Tensor data type.
 	 *

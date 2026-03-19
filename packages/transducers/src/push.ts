@@ -16,5 +16,5 @@ export function push<T>(src?: Iterable<T>): any {
 		: reducer<T, T[]>(
 				() => [],
 				(acc, x) => (acc.push(x), acc)
-		  );
+			);
 }

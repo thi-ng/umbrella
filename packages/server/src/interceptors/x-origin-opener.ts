@@ -18,6 +18,7 @@ export const crossOriginOpenerPolicy = (
 	policy: CrossOriginOpenerPolicy = "same-origin"
 ): Interceptor => ({
 	pre: (ctx) => (
-		ctx.res.setHeader("cross-origin-opener-policy", policy), true
+		ctx.res.setHeader("cross-origin-opener-policy", policy),
+		true
 	),
 });

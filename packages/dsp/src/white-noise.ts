@@ -16,7 +16,10 @@ export const whiteNoise = (gain?: number, rnd?: IRandom) =>
 	new WhiteNoise(gain, rnd);
 
 export class WhiteNoise extends AGen<number> implements IReset {
-	constructor(protected _gain = 1, protected _rnd: IRandom = SYSTEM) {
+	constructor(
+		protected _gain = 1,
+		protected _rnd: IRandom = SYSTEM
+	) {
 		super(0);
 	}
 

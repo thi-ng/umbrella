@@ -49,7 +49,10 @@ export class ParseContext<T> {
 	protected _debug: boolean;
 	protected _retain: boolean;
 
-	constructor(public reader: IReader<T>, opts?: Partial<ContextOpts>) {
+	constructor(
+		public reader: IReader<T>,
+		opts?: Partial<ContextOpts>
+	) {
 		this.opts = { maxDepth: 64, debug: false, retain: false, ...opts };
 		this._maxDepth = this.opts.maxDepth!;
 		this._debug = this.opts.debug!;
@@ -207,8 +210,8 @@ export function defContext(
 		isString(input)
 			? defStringReader(input)
 			: isArrayLike(input)
-			? defArrayReader(input)
-			: input,
+				? defArrayReader(input)
+				: input,
 		opts
 	);
 }

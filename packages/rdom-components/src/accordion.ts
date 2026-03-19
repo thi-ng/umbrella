@@ -53,7 +53,7 @@ export const accordion = (
 					? div(
 							attribs.content,
 							$promise(sections[i].content(i), error)
-					  )
+						)
 					: null
 			)
 	);

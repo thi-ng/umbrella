@@ -27,9 +27,10 @@ import { ensureVertices, vertices } from "./vertices.js";
  * Function overrides for {@link clipConvex}.
  */
 export type ClipConvexFn = {
-	(shape: ComplexPolygon, boundary: IShape2 | ReadonlyVec[]): Maybe<
-		ComplexPolygon[]
-	>;
+	(
+		shape: ComplexPolygon,
+		boundary: IShape2 | ReadonlyVec[]
+	): Maybe<ComplexPolygon[]>;
 	(shape: Group, boundary: IShape2 | ReadonlyVec[]): Maybe<Group[]>;
 	(shape: Line, boundary: IShape2 | ReadonlyVec[]): Maybe<Line[]>;
 	(shape: Path, boundary: IShape2 | ReadonlyVec[]): Maybe<Path[]>;

@@ -19,8 +19,10 @@ import type { SubdivKernel } from "./api.js";
  */
 export const kernel2 =
 	([ua, ub]: number[], [va, vb]: number[]) =>
-	([a, b]: ReadonlyVec[]) =>
-		[addW2([], a, b, ua, ub), addW2([], a, b, va, vb)];
+	([a, b]: ReadonlyVec[]) => [
+		addW2([], a, b, ua, ub),
+		addW2([], a, b, va, vb),
+	];
 
 /**
  * HOF subdiv kernel function for computing 2 split points from 3 source
@@ -31,8 +33,10 @@ export const kernel2 =
  */
 export const kernel3 =
 	([ua, ub, uc]: number[], [va, vb, vc]: number[]) =>
-	([a, b, c]: ReadonlyVec[]) =>
-		[addW3([], a, b, c, ua, ub, uc), addW3([], a, b, c, va, vb, vc)];
+	([a, b, c]: ReadonlyVec[]) => [
+		addW3([], a, b, c, ua, ub, uc),
+		addW3([], a, b, c, va, vb, vc),
+	];
 
 /**
  * HOF subdiv kernel function for computing 2 split points from 5 source
@@ -43,11 +47,10 @@ export const kernel3 =
  */
 export const kernel5 =
 	([ua, ub, uc, ud, ue]: number[], [va, vb, vc, vd, ve]: number[]) =>
-	([a, b, c, d, e]: ReadonlyVec[]) =>
-		[
-			addW5([], a, b, c, d, e, ua, ub, uc, ud, ue),
-			addW5([], a, b, c, d, e, va, vb, vc, vd, ve),
-		];
+	([a, b, c, d, e]: ReadonlyVec[]) => [
+		addW5([], a, b, c, d, e, ua, ub, uc, ud, ue),
+		addW5([], a, b, c, d, e, va, vb, vc, vd, ve),
+	];
 
 /** @internal */
 const __wrap2 = (pts: ReadonlyVec[], closed: boolean) =>
@@ -95,10 +98,10 @@ export const SUBDIV_CHAIKIN: SubdivKernel = {
 		closed
 			? CHAIKIN_MAIN(pts)
 			: i == 0
-			? [pts[0], ...CHAIKIN_FIRST(pts)]
-			: i === n - 3
-			? [...CHAIKIN_LAST(pts), pts[2]]
-			: CHAIKIN_MAIN(pts),
+				? [pts[0], ...CHAIKIN_FIRST(pts)]
+				: i === n - 3
+					? [...CHAIKIN_LAST(pts), pts[2]]
+					: CHAIKIN_MAIN(pts),
 	pre: __wrap3,
 	size: 3,
 };

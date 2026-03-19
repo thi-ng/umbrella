@@ -38,5 +38,5 @@ export function rsi(period: number, src?: Iterable<number>): any {
 				),
 				drop(period - 1),
 				map((hl) => 100 - 100 / (1 + hl[0] / Math.max(1e-6, hl[1])))
-		  );
+			);
 }

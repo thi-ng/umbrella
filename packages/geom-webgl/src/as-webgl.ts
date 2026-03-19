@@ -100,7 +100,7 @@ export const asWebGlModel: MultiFn1O<
 							? withAttribs(
 									child,
 									mergeDeepObj($.attribs, child.attribs)
-							  )
+								)
 							: withAttribs(child, $.attribs)
 						: child,
 					opts

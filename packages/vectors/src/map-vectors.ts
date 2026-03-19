@@ -87,8 +87,8 @@ export function mapVectors(
 			? __mapVVN(<VecOpVVN>fn, out, a, <ReadonlyVec[]>b, c)
 			: __mapVVV(<VecOpVVV>fn, out, a, <ReadonlyVec[]>b, c)
 		: isNumber(b)
-		? __mapVN(<VecOpVN>fn, out, a, b)
-		: __mapVV(<VecOpVV>fn, out, a, b);
+			? __mapVN(<VecOpVN>fn, out, a, b)
+			: __mapVV(<VecOpVV>fn, out, a, b);
 	return out;
 }
 

@@ -16,7 +16,10 @@ export class Integrator
 	extends AProc<number, number>
 	implements ICopy<Integrator>, IReset
 {
-	constructor(protected _coeff = 1, protected _start = 0) {
+	constructor(
+		protected _coeff = 1,
+		protected _start = 0
+	) {
 		super(_start);
 	}
 

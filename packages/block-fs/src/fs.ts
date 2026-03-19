@@ -105,7 +105,10 @@ export class BlockFS {
 	/** Root directory */
 	root!: IDirectory;
 
-	constructor(public storage: IBlockStorage, opts?: Partial<BlockFSOpts>) {
+	constructor(
+		public storage: IBlockStorage,
+		opts?: Partial<BlockFSOpts>
+	) {
 		this.opts = {
 			directory: (fs, entry) => new Directory(fs, entry),
 			entry: DEFAULT_ENTRY,

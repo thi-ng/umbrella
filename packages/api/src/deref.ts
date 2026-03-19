@@ -41,7 +41,7 @@ export type Derefed<T> = T extends IDeref<any> ? ReturnType<T["deref"]> : T;
  */
 export type DerefedKeys<
 	T extends IObjectOf<any>,
-	K extends keyof T = keyof T
+	K extends keyof T = keyof T,
 > = {
 	[P in K]: Derefed<T[P]>;
 };

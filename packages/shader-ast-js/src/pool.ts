@@ -33,7 +33,11 @@ export class Pool implements IReset {
 	from: (...args: number[]) => Vec;
 	uniform: (n: number) => Vec;
 
-	constructor(type: Type, protected size: number, protected cap: number) {
+	constructor(
+		type: Type,
+		protected size: number,
+		protected cap: number
+	) {
 		this.mem = typedArray(type, cap * size);
 		this.items = new Array<TypedArray>(cap);
 		for (let i = 0; i < cap; i++) {

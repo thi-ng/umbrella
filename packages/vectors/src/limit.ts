@@ -12,8 +12,8 @@ const $ =
 		return m > n * n
 			? mulN(out, v, n / Math.sqrt(m))
 			: out !== v
-			? set(out, v)
-			: out;
+				? set(out, v)
+				: out;
 	};
 
 /**

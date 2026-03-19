@@ -18,6 +18,6 @@ export const normalize: TensorOpTNO = (out, a, n = 1): any => {
 	return m >= 1e-6
 		? mulN(<any>out, <any>a, n / m)
 		: out !== a
-		? set(out, a)
-		: out;
+			? set(out, a)
+			: out;
 };

@@ -29,6 +29,6 @@ export const convexity = (pts: ReadonlyVec[], eps = EPS) => {
 	return type === 3
 		? Convexity.CONCAVE
 		: type > 0
-		? Convexity.CONVEX
-		: Convexity.COLINEAR;
+			? Convexity.CONVEX
+			: Convexity.COLINEAR;
 };

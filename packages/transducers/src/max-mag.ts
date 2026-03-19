@@ -14,5 +14,5 @@ export function maxMag(src?: Iterable<number>): any {
 		: reducer(
 				() => 0,
 				(acc, x: number) => (Math.abs(x) > Math.abs(acc) ? x : acc)
-		  );
+			);
 }

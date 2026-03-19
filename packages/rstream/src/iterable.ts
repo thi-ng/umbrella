@@ -32,19 +32,22 @@ export const fromIterable = <T>(
 	src: Iterable<T>,
 	opts: Partial<FromIterableOpts> = {}
 ) =>
-	stream<T>((stream) => {
-		const iter = src[Symbol.iterator]();
-		const id = setInterval(() => {
-			let val: IteratorResult<T>;
-			if ((val = iter.next()).done) {
-				clearInterval(id);
-				stream.closeIn !== "never" && stream.done();
-			} else {
-				stream.next(val.value);
-			}
-		}, opts.delay || 0);
-		return () => clearInterval(id);
-	}, __optsWithID("iterable", opts));
+	stream<T>(
+		(stream) => {
+			const iter = src[Symbol.iterator]();
+			const id = setInterval(() => {
+				let val: IteratorResult<T>;
+				if ((val = iter.next()).done) {
+					clearInterval(id);
+					stream.closeIn !== "never" && stream.done();
+				} else {
+					stream.next(val.value);
+				}
+			}, opts.delay || 0);
+			return () => clearInterval(id);
+		},
+		__optsWithID("iterable", opts)
+	);
 
 /**
  * Creates a new {@link Stream} of given iterable which synchronously calls
@@ -60,9 +63,12 @@ export const fromIterableSync = <T>(
 	src: Iterable<T>,
 	opts?: Partial<CommonOpts>
 ) =>
-	stream<T>((stream) => {
-		for (const s of src) {
-			stream.next(s);
-		}
-		stream.closeIn !== "never" && stream.done();
-	}, __optsWithID("iterable-sync", opts));
+	stream<T>(
+		(stream) => {
+			for (const s of src) {
+				stream.next(s);
+			}
+			stream.closeIn !== "never" && stream.done();
+		},
+		__optsWithID("iterable-sync", opts)
+	);

@@ -39,13 +39,13 @@ export function formatCSV(
 						colTx = isArray(cols)
 							? cols
 							: header
-							? header.map(
-									(id) =>
-										(<Record<string, Stringer<any>>>cols)[
-											id
-										]
-							  )
-							: [];
+								? header.map(
+										(id) =>
+											(<Record<string, Stringer<any>>>(
+												cols
+											))[id]
+									)
+								: [];
 					}
 					const $row = isArray(row)
 						? row
@@ -65,7 +65,7 @@ export function formatCSV(
 											reQuote,
 											`${quote}${quote}`
 										)
-								  )
+									)
 								: cell;
 						})
 						.join(delim);
@@ -82,7 +82,7 @@ export function formatCSV(
 						return reduce(acc, line);
 					}
 				});
-		  };
+			};
 }
 
 export const formatCSVString = (

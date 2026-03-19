@@ -52,16 +52,19 @@ export const parseRequestFormData = async (req: IncomingMessage) => {
  * @param body
  */
 export const parseFormData = (body: string) =>
-	body.split("&").reduce((acc, x) => {
-		x = decodeURIComponent(x.replace(/\+/g, " "));
-		const idx = x.indexOf("=");
-		if (idx < 1) return acc;
-		const k = x.substring(0, idx);
-		const v = x.substring(idx + 1);
-		if (k.includes("[")) return parseObjectVal(acc, k, v);
-		if (!isProtoPath(k)) acc[k] = v;
-		return acc;
-	}, <ParsedFormData>{});
+	body.split("&").reduce(
+		(acc, x) => {
+			x = decodeURIComponent(x.replace(/\+/g, " "));
+			const idx = x.indexOf("=");
+			if (idx < 1) return acc;
+			const k = x.substring(0, idx);
+			const v = x.substring(idx + 1);
+			if (k.includes("[")) return parseObjectVal(acc, k, v);
+			if (!isProtoPath(k)) acc[k] = v;
+			return acc;
+		},
+		<ParsedFormData>{}
+	);
 
 const parseObjectVal = (
 	acc: ParsedFormData,
@@ -78,7 +81,7 @@ const parseObjectVal = (
 			return !isProtoPath(path)
 				? updateInUnsafe(acc, path, (curr) =>
 						isArray(curr) ? [...curr, val] : [val]
-				  )
+					)
 				: acc;
 		}
 		const idx = p.indexOf("]");

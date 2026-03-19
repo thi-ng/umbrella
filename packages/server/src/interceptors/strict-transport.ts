@@ -18,7 +18,8 @@ export const strictTransportSecurity = (
 	}`;
 	return {
 		pre: (ctx) => (
-			ctx.res.setHeader("strict-transport-security", value), true
+			ctx.res.setHeader("strict-transport-security", value),
+			true
 		),
 	};
 };

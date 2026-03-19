@@ -47,8 +47,10 @@ export const readGeoTiff = async (
 		opts.pool instanceof Pool
 			? opts.pool
 			: opts.pool
-			? new Pool(typeof opts.pool === "number" ? opts.pool : undefined)
-			: undefined;
+				? new Pool(
+						typeof opts.pool === "number" ? opts.pool : undefined
+					)
+				: undefined;
 	const data = <TypedArray>(
 		(await tiffImg.readRasters({ pool, samples: [opts.channel || 0] }))![0]
 	);
@@ -67,7 +69,7 @@ export const readGeoTiff = async (
 					return acc;
 				},
 				[Infinity, -Infinity]
-		  );
+			);
 	const fmt = FLOAT_GRAY_RANGE(min, max);
 	let img: FloatBuffer;
 	switch (type) {

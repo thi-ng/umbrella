@@ -8,7 +8,7 @@ import type { Reduced } from "@thi.ng/transducers";
 export type AsyncReducer<A, B> = [
 	AsyncReducerInit<B>,
 	AsyncReducerComplete<B>,
-	AsyncReduction<A, B>
+	AsyncReduction<A, B>,
 ];
 
 export type AsyncReducerInit<T> = Fn0<MaybePromise<T>>;

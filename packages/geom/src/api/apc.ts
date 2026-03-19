@@ -7,7 +7,10 @@ import type { Attribs, PCLike } from "../api.js";
 export abstract class APC implements IClear, PCLike {
 	points: Vec[];
 
-	constructor(points?: Iterable<Vec>, public attribs?: Attribs) {
+	constructor(
+		points?: Iterable<Vec>,
+		public attribs?: Attribs
+	) {
 		this.points = points ? ensureArray(points) : [];
 	}
 

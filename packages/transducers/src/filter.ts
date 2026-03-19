@@ -16,5 +16,5 @@ export function filter<T>(pred: Predicate<T>, src?: Iterable<T>): any {
 		: (rfn: Reducer<T, any>) => {
 				const r = rfn[2];
 				return compR(rfn, (acc, x: T) => (pred(x) ? r(acc, x) : acc));
-		  };
+			};
 }

@@ -20,7 +20,11 @@ class Node<K, V> {
 	up: Maybe<Node<K, V>>;
 	down: Maybe<Node<K, V>>;
 
-	constructor(public k?: K, public v?: V, public level = 0) {}
+	constructor(
+		public k?: K,
+		public v?: V,
+		public level = 0
+	) {}
 }
 
 /**

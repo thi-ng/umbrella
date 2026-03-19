@@ -19,7 +19,8 @@ export interface CanvasAttribs extends Attribs, DimensionAttribs {}
 export const canvas = defElement<Partial<CanvasAttribs>>("canvas");
 
 export interface ImageAttribs
-	extends Attribs,
+	extends
+		Attribs,
 		CORSAttribs,
 		DimensionAttribs,
 		ImportanceAttribs,

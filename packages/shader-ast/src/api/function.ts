@@ -26,14 +26,14 @@ export type Arg2<A extends Type, B extends Type> = [Arg<A>, Arg<B>];
 export type Arg3<A extends Type, B extends Type, C extends Type> = [
 	Arg<A>,
 	Arg<B>,
-	Arg<C>
+	Arg<C>,
 ];
 
 export type Arg4<
 	A extends Type,
 	B extends Type,
 	C extends Type,
-	D extends Type
+	D extends Type,
 > = [Arg<A>, Arg<B>, Arg<C>, Arg<D>];
 
 export type Arg5<
@@ -41,7 +41,7 @@ export type Arg5<
 	B extends Type,
 	C extends Type,
 	D extends Type,
-	E extends Type
+	E extends Type,
 > = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>];
 
 export type Arg6<
@@ -50,7 +50,7 @@ export type Arg6<
 	C extends Type,
 	D extends Type,
 	E extends Type,
-	F extends Type
+	F extends Type,
 > = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>];
 
 export type Arg7<
@@ -60,7 +60,7 @@ export type Arg7<
 	D extends Type,
 	E extends Type,
 	F extends Type,
-	G extends Type
+	G extends Type,
 > = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>, Arg<G>];
 
 export type Arg8<
@@ -71,7 +71,7 @@ export type Arg8<
 	E extends Type,
 	F extends Type,
 	G extends Type,
-	H extends Type
+	H extends Type,
 > = [Arg<A>, Arg<B>, Arg<C>, Arg<D>, Arg<E>, Arg<F>, Arg<G>, Arg<H>];
 
 export type FnBody0 = Fn0<ScopeBody>;
@@ -95,7 +95,7 @@ export type FnBody4<
 	A extends Type,
 	B extends Type,
 	C extends Type,
-	D extends Type
+	D extends Type,
 > = Fn4<Sym<A>, Sym<B>, Sym<C>, Sym<D>, ScopeBody>;
 
 export type FnBody5<
@@ -103,7 +103,7 @@ export type FnBody5<
 	B extends Type,
 	C extends Type,
 	D extends Type,
-	E extends Type
+	E extends Type,
 > = Fn5<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, ScopeBody>;
 
 export type FnBody6<
@@ -112,7 +112,7 @@ export type FnBody6<
 	C extends Type,
 	D extends Type,
 	E extends Type,
-	F extends Type
+	F extends Type,
 > = Fn6<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, ScopeBody>;
 
 export type FnBody7<
@@ -122,7 +122,7 @@ export type FnBody7<
 	D extends Type,
 	E extends Type,
 	F extends Type,
-	G extends Type
+	G extends Type,
 > = Fn7<Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, ScopeBody>;
 
 export type FnBody8<
@@ -133,7 +133,7 @@ export type FnBody8<
 	E extends Type,
 	F extends Type,
 	G extends Type,
-	H extends Type
+	H extends Type,
 > = Fn8<
 	Sym<A>,
 	Sym<B>,
@@ -160,7 +160,7 @@ export type Func3<
 	A extends Type,
 	B extends Type,
 	C extends Type,
-	T extends Type
+	T extends Type,
 > = Fn3<Term<A>, Term<B>, Term<C>, FnCall<T>>;
 
 export type Func4<
@@ -168,7 +168,7 @@ export type Func4<
 	B extends Type,
 	C extends Type,
 	D extends Type,
-	T extends Type
+	T extends Type,
 > = Fn4<Term<A>, Term<B>, Term<C>, Term<D>, FnCall<T>>;
 
 export type Func5<
@@ -177,7 +177,7 @@ export type Func5<
 	C extends Type,
 	D extends Type,
 	E extends Type,
-	T extends Type
+	T extends Type,
 > = Fn5<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, FnCall<T>>;
 
 export type Func6<
@@ -187,7 +187,7 @@ export type Func6<
 	D extends Type,
 	E extends Type,
 	F extends Type,
-	T extends Type
+	T extends Type,
 > = Fn6<Term<A>, Term<B>, Term<C>, Term<D>, Term<E>, Term<F>, FnCall<T>>;
 
 export type Func7<
@@ -198,7 +198,7 @@ export type Func7<
 	E extends Type,
 	F extends Type,
 	G extends Type,
-	T extends Type
+	T extends Type,
 > = Fn7<
 	Term<A>,
 	Term<B>,
@@ -219,7 +219,7 @@ export type Func8<
 	F extends Type,
 	G extends Type,
 	H extends Type,
-	T extends Type
+	T extends Type,
 > = Fn8<
 	Term<A>,
 	Term<B>,

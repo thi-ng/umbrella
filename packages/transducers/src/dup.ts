@@ -35,6 +35,6 @@ export function dup(x: any): any {
 	return isString(x)
 		? x + x
 		: isArray(x)
-		? x.concat(x)
-		: ((x = ensureArray(x)), concat(x, x));
+			? x.concat(x)
+			: ((x = ensureArray(x)), concat(x, x));
 }

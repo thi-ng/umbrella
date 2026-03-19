@@ -9,14 +9,14 @@ describe("reindex", () => {
 			a: { type: "str", cardinality: [0, 1], flags: FLAG_DICT },
 		});
 		table.addRows(
-			["c", "b", "a", "a", null, "a", "c"].map((x) => ({ a: x })),
+			["c", "b", "a", "a", null, "a", "c"].map((x) => ({ a: x }))
 		);
 		expect((<DictColumn>table.columns.a).dict.fwd).toEqual(
 			new Map([
 				["c", 0],
 				["b", 1],
 				["a", 2],
-			]),
+			])
 		);
 		table.reindex();
 		// keys should be sorted by frequency
@@ -25,7 +25,7 @@ describe("reindex", () => {
 				["a", 0],
 				["c", 1],
 				["b", 2],
-			]),
+			])
 		);
 	});
 
@@ -34,14 +34,14 @@ describe("reindex", () => {
 			a: { type: "str", cardinality: [0, 5], flags: FLAG_DICT },
 		});
 		table.addRows(
-			[["c", "b", "a"], null, ["a", "a", "c"]].map((x) => ({ a: x })),
+			[["c", "b", "a"], null, ["a", "a", "c"]].map((x) => ({ a: x }))
 		);
 		expect((<DictColumn>table.columns.a).dict.fwd).toEqual(
 			new Map([
 				["c", 0],
 				["b", 1],
 				["a", 2],
-			]),
+			])
 		);
 		table.reindex();
 		// keys should be sorted by frequency
@@ -50,7 +50,7 @@ describe("reindex", () => {
 				["a", 0],
 				["c", 1],
 				["b", 2],
-			]),
+			])
 		);
 	});
 });

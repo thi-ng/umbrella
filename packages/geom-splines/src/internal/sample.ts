@@ -24,11 +24,11 @@ export const __sample = (sample: Fn3<Vec[], ReadonlyVec[], number, void>) =>
 			? {
 					num: opts,
 					last: true,
-			  }
+				}
 			: {
 					num: DEFAULT_SAMPLES,
 					...opts,
-			  };
+				};
 		const res: Vec[] = [];
 		sample(res, pts, opts.num!);
 		opts.last && res.push(set([], pts[pts.length - 1]));

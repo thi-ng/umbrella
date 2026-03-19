@@ -39,6 +39,6 @@ export const image = (
 				dpos[1],
 				width,
 				height
-		  )
+			)
 		: ctx.drawImage(img, dpos[0], dpos[1], width, height);
 };

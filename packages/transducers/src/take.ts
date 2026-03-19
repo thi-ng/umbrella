@@ -36,8 +36,8 @@ export function take<T>(n: number, src?: Iterable<T>): any {
 					--m > 0
 						? r(acc, x)
 						: m === 0
-						? ensureReduced(r(acc, x))
-						: reduced(acc)
+							? ensureReduced(r(acc, x))
+							: reduced(acc)
 				);
-		  };
+			};
 }

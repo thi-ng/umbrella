@@ -15,4 +15,4 @@ export const __combineSet = <T>(
 				() => <any>null,
 				(acc) => acc || new Set<T>(),
 				(acc, x) => (!acc ? ensureSet(x) : op(acc, ensureSet(x))),
-		  ];
+			];

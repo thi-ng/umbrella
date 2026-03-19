@@ -21,8 +21,8 @@ export const __copyAttribs = (attribs?: Attribs, ...exclude: string[]) =>
 	!attribs
 		? undefined
 		: exclude.length
-		? <Attribs>withoutKeysObj({ ...attribs }, exclude)
-		: { ...attribs };
+			? <Attribs>withoutKeysObj({ ...attribs }, exclude)
+			: { ...attribs };
 
 /**
  * Syntax sugar for {@link __copyShapeAttribs}, also removing `__samples` key from

@@ -132,14 +132,17 @@ const __getNodeInput = (
 	i.path
 		? fromViewUnsafe(state, { path: i.path })
 		: i.stream
-		? isString(i.stream)
-			? resolve(i.stream)
-			: i.stream(resolve)
-		: i.const !== undefined
-		? fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const], {
-				closeIn: "never",
-		  })
-		: illegalArgs(`invalid node input: ${id}`);
+			? isString(i.stream)
+				? resolve(i.stream)
+				: i.stream(resolve)
+			: i.const !== undefined
+				? fromIterableSync(
+						[isFunction(i.const) ? i.const(resolve) : i.const],
+						{
+							closeIn: "never",
+						}
+					)
+				: illegalArgs(`invalid node input: ${id}`);
 
 /** @internal */
 const __prepareNodeOutputs = (
@@ -155,8 +158,8 @@ const __prepareNodeOutputs = (
 		res[id] = isFunction(out)
 			? out(node, id)
 			: id == "*"
-			? __nodeOutAll(node, state, nodeID, out)
-			: __nodeOutID(node, state, nodeID, out, id);
+				? __nodeOutAll(node, state, nodeID, out)
+				: __nodeOutID(node, state, nodeID, out, id);
 	}
 	return res;
 };

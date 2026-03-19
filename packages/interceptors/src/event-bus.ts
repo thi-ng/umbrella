@@ -588,8 +588,8 @@ export class StatelessEventBus implements IDispatch {
 		return isArray(spec)
 			? (<any>spec).map(__asInterceptor)
 			: isFunction(spec)
-			? [{ pre: spec }]
-			: [spec];
+				? [{ pre: spec }]
+				: [spec];
 	}
 }
 

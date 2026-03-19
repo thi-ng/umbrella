@@ -21,5 +21,5 @@ export const colorAttrib = (
 	opts.instanceColor
 		? mul(attribs[opts.instanceColor], fallback)
 		: opts.color
-		? mul(attribs[opts.color], fallback)
-		: fallback;
+			? mul(attribs[opts.color], fallback)
+			: fallback;

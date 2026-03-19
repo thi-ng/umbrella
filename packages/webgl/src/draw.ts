@@ -85,7 +85,7 @@ const __drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
 				? (<WebGL2RenderingContext>gl).vertexAttribDivisor(
 						attr.loc,
 						div
-				  )
+					)
 				: ext!.vertexAttribDivisorANGLE(attr.loc, div);
 		}
 	}
@@ -101,14 +101,14 @@ const __drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
 					type,
 					0,
 					spec.instances!.num
-			  )
+				)
 			: ext!.drawElementsInstancedANGLE(
 					spec.mode!,
 					spec.num,
 					type,
 					0,
 					spec.instances!.num
-			  );
+				);
 	} else {
 		isGL2
 			? (<WebGL2RenderingContext>gl).drawArraysInstanced(
@@ -116,13 +116,13 @@ const __drawInstanced = (gl: WebGLRenderingContext, spec: ModelSpec) => {
 					0,
 					spec.num,
 					spec.instances!.num
-			  )
+				)
 			: ext!.drawArraysInstancedANGLE(
 					spec.mode!,
 					0,
 					spec.num,
 					spec.instances!.num
-			  );
+				);
 	}
 	// reset attrib divisors to allow non-instanced draws later on
 	for (const id in iattribs) {

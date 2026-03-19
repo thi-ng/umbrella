@@ -122,7 +122,7 @@ export async function convertCommand(ctx: AppCtx<ConvertOpts>) {
 					? [ctx.opts.eval]
 					: ctx.inputs.map((file) =>
 							readText(resolve(file), ctx.logger)
-					  ),
+						),
 				ctx.opts.out
 			);
 		}
@@ -541,10 +541,10 @@ const __buildDeclsForPath = (
 						__isVerbatimProp(x)
 							? __verbatimPropDecl(x)
 							: __isAssignment(x)
-							? __varDecl(x)
-							: __isTemplateRef(x)
-							? __templateDecl(specs, x)
-							: withoutInternals(specs.classes[x]),
+								? __varDecl(x)
+								: __isTemplateRef(x)
+									? __templateDecl(specs, x)
+									: withoutInternals(specs.classes[x]),
 					ids
 				)
 			);
@@ -645,14 +645,17 @@ const __templateDecl = (specs: CompiledSpecs, id: string): IObjectOf<any> => {
 	if (!spec) illegalArgs(`unknown template: ${tplID}`);
 	if (vals.length !== spec.__arity)
 		illegalArgs(`template "${tplID}" expected ${spec.__arity} arguments`);
-	return Object.entries(spec).reduce((acc, [k, v]) => {
-		if (!k.startsWith("__")) {
-			k = interpolate(k, ...vals);
-			if (isString(v)) v = interpolate(v, ...vals);
-			acc[k] = v;
-		}
-		return acc;
-	}, <IObjectOf<any>>{});
+	return Object.entries(spec).reduce(
+		(acc, [k, v]) => {
+			if (!k.startsWith("__")) {
+				k = interpolate(k, ...vals);
+				if (isString(v)) v = interpolate(v, ...vals);
+				acc[k] = v;
+			}
+			return acc;
+		},
+		<IObjectOf<any>>{}
+	);
 };
 
 /** @internal */

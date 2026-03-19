@@ -30,8 +30,8 @@ export const wordBoundaryP: Predicate2<Nullable<string>> = (prev, next) => {
 			? ALPHA_NUM[prev] && !ALPHA_NUM[next]
 			: ALPHA_NUM[prev]
 		: next
-		? ALPHA_NUM[next]
-		: false;
+			? ALPHA_NUM[next]
+			: false;
 };
 
 export const wordBoundary = anchor(wordBoundaryP);

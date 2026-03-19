@@ -63,7 +63,7 @@ interface WasmElement extends Element {
 const EVENT_MAP: [
 	RegExp,
 	Maybe<Exclude<keyof EventBody, keyof WasmTypeBase>>,
-	EventType
+	EventType,
 ][] = [
 	[/^drag(end|enter|leave|over|start)|drop$/, "drag", EventType.DRAG],
 	[/^blur|focus(in|out)?$/, undefined, EventType.FOCUS],
@@ -158,7 +158,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 						? document.createElementNS(
 								NS_PREFIXES[ns] || ns,
 								tagName
-						  )
+							)
 						: document.createElement(tagName);
 					const id = this.elements.add(el);
 					this.initElement(id, el, opts, nestedParent);
@@ -311,8 +311,11 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 						e.target === ctx
 							? ctxID
 							: e.target === window
-							? -1
-							: this.elements.find((x) => x === e.target, false);
+								? -1
+								: this.elements.find(
+										(x) => x === e.target,
+										false
+									);
 					event.target = target !== undefined ? target : -2;
 					event.id = eventTypeID;
 					const slice = body ? body.fromEvent(<any>e) : undefined;
@@ -503,7 +506,7 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 		const name = this.parent.getString(nameAddr);
 		return name in el
 			? // @ts-ignore
-			  (el[name] = value)
+				(el[name] = value)
 			: el.setAttribute(name, String(value));
 	}
 

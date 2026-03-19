@@ -21,7 +21,10 @@ export const defFlock = (accel: IBoidAccel, boids?: Boid[]) =>
  * acceleration structure before integrating the boids.
  */
 export class Flock implements ITimeStep {
-	constructor(public accel: IBoidAccel, public boids: Boid[] = []) {}
+	constructor(
+		public accel: IBoidAccel,
+		public boids: Boid[] = []
+	) {}
 
 	add(boid: Boid) {
 		this.boids.push(boid);

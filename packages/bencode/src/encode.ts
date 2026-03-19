@@ -60,16 +60,16 @@ const __encodeBin = (x: any) =>
 				? "f"
 				: "i"
 			: isBoolean(x)
-			? "i"
-			: isString(x)
-			? "s"
-			: x instanceof Uint8Array
-			? "b"
-			: isPlainObject(x)
-			? "d"
-			: isArrayLike(x)
-			? "l"
-			: illegalArgs(`unsupported data type: ${x}`)
+				? "i"
+				: isString(x)
+					? "s"
+					: x instanceof Uint8Array
+						? "b"
+						: isPlainObject(x)
+							? "d"
+							: isArrayLike(x)
+								? "l"
+								: illegalArgs(`unsupported data type: ${x}`)
 	](x);
 
 /** @internal */

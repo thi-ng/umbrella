@@ -85,29 +85,29 @@ const __maybeFoldMath = (op: Operator, l: number, r: number) =>
 	op === "+"
 		? l + r
 		: op === "-"
-		? l - r
-		: op === "*"
-		? l * r
-		: op === "/"
-		? r != 0
-			? l / r
-			: illegalArgs(`division by zero: ${l}/${r}`)
-		: undefined;
+			? l - r
+			: op === "*"
+				? l * r
+				: op === "/"
+					? r != 0
+						? l / r
+						: illegalArgs(`division by zero: ${l}/${r}`)
+					: undefined;
 
 const __maybeFoldCompare = (op: Operator, l: number, r: number) =>
 	op === "=="
 		? l === r
 		: op === "!="
-		? l !== r
-		: op === "<"
-		? l < r
-		: op === "<="
-		? l <= r
-		: op === ">="
-		? l >= r
-		: op === ">"
-		? l > r
-		: undefined;
+			? l !== r
+			: op === "<"
+				? l < r
+				: op === "<="
+					? l <= r
+					: op === ">="
+						? l >= r
+						: op === ">"
+							? l > r
+							: undefined;
 
 /** @internal */
 const COMPS: Record<Swizzle4_1, number> = { x: 0, y: 1, z: 2, w: 3 };

@@ -44,7 +44,8 @@ export const cacheControl = (
 	const value = acc.join(", ");
 	return {
 		pre: (ctx) => (
-			value && ctx.res.setHeader("cache-control", value), true
+			value && ctx.res.setHeader("cache-control", value),
+			true
 		),
 	};
 };

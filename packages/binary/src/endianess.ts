@@ -135,15 +135,15 @@ const __get4 = (
 ) =>
 	isLE !== IS_LE
 		? ((U8[3] = src[i]),
-		  (U8[2] = src[i + 1]),
-		  (U8[1] = src[i + 2]),
-		  (U8[0] = src[i + 3]),
-		  view[0])
+			(U8[2] = src[i + 1]),
+			(U8[1] = src[i + 2]),
+			(U8[0] = src[i + 3]),
+			view[0])
 		: ((U8[0] = src[i]),
-		  (U8[1] = src[i + 1]),
-		  (U8[2] = src[i + 2]),
-		  (U8[3] = src[i + 3]),
-		  view[0]);
+			(U8[1] = src[i + 1]),
+			(U8[2] = src[i + 2]),
+			(U8[3] = src[i + 3]),
+			view[0]);
 
 const __get8 = <T = number>(
 	src: ArrayLike<number>,
@@ -153,23 +153,23 @@ const __get8 = <T = number>(
 ): T =>
 	isLE !== IS_LE
 		? ((U8[7] = src[i]),
-		  (U8[6] = src[i + 1]),
-		  (U8[5] = src[i + 2]),
-		  (U8[4] = src[i + 3]),
-		  (U8[3] = src[i + 4]),
-		  (U8[2] = src[i + 5]),
-		  (U8[1] = src[i + 6]),
-		  (U8[0] = src[i + 7]),
-		  view[0])
+			(U8[6] = src[i + 1]),
+			(U8[5] = src[i + 2]),
+			(U8[4] = src[i + 3]),
+			(U8[3] = src[i + 4]),
+			(U8[2] = src[i + 5]),
+			(U8[1] = src[i + 6]),
+			(U8[0] = src[i + 7]),
+			view[0])
 		: ((U8[0] = src[i]),
-		  (U8[1] = src[i + 1]),
-		  (U8[2] = src[i + 2]),
-		  (U8[3] = src[i + 3]),
-		  (U8[4] = src[i + 4]),
-		  (U8[5] = src[i + 5]),
-		  (U8[6] = src[i + 6]),
-		  (U8[7] = src[i + 7]),
-		  view[0]);
+			(U8[1] = src[i + 1]),
+			(U8[2] = src[i + 2]),
+			(U8[3] = src[i + 3]),
+			(U8[4] = src[i + 4]),
+			(U8[5] = src[i + 5]),
+			(U8[6] = src[i + 6]),
+			(U8[7] = src[i + 7]),
+			view[0]);
 
 const __set2 = (data: NumericArray, addr: number, isLE = true) => {
 	if (isLE !== IS_LE) {

@@ -56,13 +56,13 @@ export function bits(...args: any[]): any {
 								acc = reduce(acc, (x >>> i) & 1);
 							}
 							return acc;
-					  }
+						}
 					: (acc, x: number) => {
 							for (let i = 0; i < size && !isReduced(acc); i++) {
 								acc = reduce(acc, (x >>> i) & 1);
 							}
 							return acc;
-					  }
+						}
 			);
 		})
 	);

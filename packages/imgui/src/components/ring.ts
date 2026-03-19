@@ -74,8 +74,10 @@ export const ring = ({
 	);
 };
 
-export interface RingGroupOpts
-	extends Omit<RingOpts, "layout" | "value" | "label" | "info"> {
+export interface RingGroupOpts extends Omit<
+	RingOpts,
+	"layout" | "value" | "label" | "info"
+> {
 	layout: IGridLayout<any>;
 	/**
 	 * If true (default), the controls will be arranged horizontally.
@@ -99,7 +101,7 @@ export const ringGroup = (opts: RingGroupOpts) => {
 					) +
 						1) *
 						n,
-			  ]);
+				]);
 	let res: Maybe<number>;
 	let idx: number = -1;
 	for (let i = 0; i < n; i++) {
@@ -219,5 +221,5 @@ const __arcVerts = (
 				normRange(
 					Math.max(1, Math.abs(end - start) / (PI / thetaRes)) | 0
 				)
-		  )
+			)
 		: [o];

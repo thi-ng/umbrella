@@ -14,5 +14,5 @@ export function div(init: number, src?: Iterable<number>): any {
 		: reducer(
 				() => init,
 				(acc, x: number) => acc / x
-		  );
+			);
 }

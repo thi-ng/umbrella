@@ -92,7 +92,6 @@ export class SparseVec {
 		for (
 			let i = 0, j = 0, na = da.length, nb = db.length;
 			i < na || j < nb;
-
 		) {
 			ia = da[i];
 			ib = db[j];
@@ -169,7 +168,6 @@ export class SparseVec {
 		for (
 			let i = 0, j = 0, na = da.length, nb = db.length;
 			i < na && j < nb;
-
 		) {
 			ia = da[i];
 			ib = db[j];

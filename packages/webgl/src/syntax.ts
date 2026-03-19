@@ -70,7 +70,7 @@ const __arrayDecl = (
 	return type.indexOf("[]") > 0
 		? `${qualifier} ${type.replace("[]", "")} ${id}[${
 				(<[GLSL, number]>decl)[1]
-		  }];`
+			}];`
 		: `${qualifier} ${type} ${id};`;
 };
 

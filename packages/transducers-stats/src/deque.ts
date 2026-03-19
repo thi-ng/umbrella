@@ -5,7 +5,10 @@ import type { Predicate2 } from "@thi.ng/api";
 export class Deque {
 	index: number[] = [];
 
-	constructor(public samples: number[], public pred: Predicate2<number>) {}
+	constructor(
+		public samples: number[],
+		public pred: Predicate2<number>
+	) {}
 
 	head() {
 		return this.samples[this.index[0]];

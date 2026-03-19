@@ -10,5 +10,5 @@ export function min(src?: Iterable<number>): any {
 		: reducer(
 				() => Infinity,
 				(acc, x: number) => Math.min(acc, x)
-		  );
+			);
 }

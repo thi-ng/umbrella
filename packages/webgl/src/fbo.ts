@@ -37,7 +37,7 @@ export class FBO implements IFbo {
 		this.ext =
 			!isGL2Context(gl) && opts?.tex && opts.tex.length > 1
 				? gl.getExtension("WEBGL_draw_buffers") ||
-				  error("missing WEBGL_draw_buffers ext")
+					error("missing WEBGL_draw_buffers ext")
 				: undefined;
 		this.maxAttachments = gl.getParameter(GL_MAX_COLOR_ATTACHMENTS_WEBGL);
 		opts && this.configure(opts);
@@ -101,14 +101,14 @@ export class FBO implements IFbo {
 						gl.DEPTH_ATTACHMENT,
 						gl.RENDERBUFFER,
 						opts.depth.buffer
-				  )
+					)
 				: gl.framebufferTexture2D(
 						gl.FRAMEBUFFER,
 						gl.DEPTH_ATTACHMENT,
 						gl.TEXTURE_2D,
 						(<ITexture>opts.depth).tex,
 						0
-				  );
+					);
 		}
 		this.validate();
 		return unbind ? this.unbind() : true;

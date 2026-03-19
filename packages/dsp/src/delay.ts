@@ -40,7 +40,10 @@ export class Delay<T>
 	 * @param n -
 	 * @param _empty -
 	 */
-	constructor(n: number, protected _empty: T | Fn0<T>) {
+	constructor(
+		n: number,
+		protected _empty: T | Fn0<T>
+	) {
 		super(isFunction(_empty) ? _empty() : _empty);
 		if (n < 1) illegalArgs("delay size must be >= 1");
 		n >>>= 0;

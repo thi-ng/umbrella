@@ -77,10 +77,10 @@ export const fromFloatBuffer = ({
 				stride: [ty, tx, 1],
 				copy: false,
 				data,
-		  })
+			})
 		: tensor(type, [sy, sx], {
 				stride: [ty, tx],
 				copy: false,
 				data,
-		  });
+			});
 };

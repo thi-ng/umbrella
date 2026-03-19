@@ -206,7 +206,8 @@ export const bsLE: FnN = (i) => (i < 0 ? -i - 2 : i);
  * @param n - array length
  */
 export const bsGT: FnN2 = (i, n) => (
-	(i = i < 0 ? -i - 1 : i + 1), i < n ? i : -1
+	(i = i < 0 ? -i - 1 : i + 1),
+	i < n ? i : -1
 );
 
 /**

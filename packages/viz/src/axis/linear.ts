@@ -27,10 +27,9 @@ export const linearAxis = (src: InitialAxisSpec) => {
 
 export const linearTicks =
 	(step: number) =>
-	([d1, d2]: Domain) =>
-		[
-			...filter(
-				(x) => inRange(x, d1, d2),
-				range(roundTo(d1, step), d2 + step, step)
-			),
-		];
+	([d1, d2]: Domain) => [
+		...filter(
+			(x) => inRange(x, d1, d2),
+			range(roundTo(d1, step), d2 + step, step)
+		),
+	];

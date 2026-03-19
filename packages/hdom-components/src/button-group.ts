@@ -78,12 +78,11 @@ export type ButtonGroup = (
  */
 export const buttonGroup =
 	(opts: ButtonGroupOpts): ButtonGroup =>
-	(_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) =>
-		[
-			"div",
-			mergeAttribs(opts.attribs, args.attribs),
-			...__groupBody(opts, args.disabled, buttons),
-		];
+	(_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) => [
+		"div",
+		mergeAttribs(opts.attribs, args.attribs),
+		...__groupBody(opts, args.disabled, buttons),
+	];
 
 /** @internal */
 const __groupBody = (

@@ -38,10 +38,10 @@ export const roundedRect = (
 	const [tl, tr, br, bl] = isNumber(radii)
 		? [radii, radii, radii, radii]
 		: radii.length === 2
-		? [radii[0], radii[1], radii[0], radii[1]]
-		: radii.length === 3
-		? [radii[0], radii[1], radii[2], radii[1]]
-		: radii;
+			? [radii[0], radii[1], radii[0], radii[1]]
+			: radii.length === 3
+				? [radii[0], radii[1], radii[2], radii[1]]
+				: radii;
 	const b = pathBuilder(attribs)
 		.moveTo([pos[0] + tl, pos[1]])
 		.hlineTo(w - tl - tr, true);

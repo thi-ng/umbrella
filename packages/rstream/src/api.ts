@@ -66,8 +66,7 @@ export interface WithTransform<A, B> {
 }
 
 export interface TransformableOpts<A, B>
-	extends CommonOpts,
-		WithTransform<A, B> {}
+	extends CommonOpts, WithTransform<A, B> {}
 
 export type ErrorHandler = Fn<any, boolean>;
 
@@ -207,7 +206,8 @@ export interface ITransformable<B> {
 }
 
 export interface ISubscription<A, B>
-	extends IDeref<Maybe<B>>,
+	extends
+		IDeref<Maybe<B>>,
 		ISubscriber<A>,
 		ISubscribable<B>,
 		ITransformable<B> {

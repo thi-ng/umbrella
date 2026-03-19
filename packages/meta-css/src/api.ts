@@ -8,8 +8,10 @@ export interface CommonOpts {
 	verbose: boolean;
 }
 
-export interface AppCtx<T extends CommonOpts>
-	extends CommandCtx<T, CommonOpts> {
+export interface AppCtx<T extends CommonOpts> extends CommandCtx<
+	T,
+	CommonOpts
+> {
 	format: FormatPresets;
 }
 

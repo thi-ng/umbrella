@@ -185,4 +185,4 @@ export const asVec3 = (x: Vec) =>
 				x.length >= 3
 					? <NumericArray>x
 					: [x[0] || 0, x[1] || 0, x[2] || 0]
-		  );
+			);

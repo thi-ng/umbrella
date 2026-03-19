@@ -32,6 +32,6 @@ export const initials = (parts: string[], mode: "u" | "l" | null = "u") => {
 	return mode === "u"
 		? res.toUpperCase()
 		: mode === "l"
-		? res.toLowerCase()
-		: res;
+			? res.toLowerCase()
+			: res;
 };

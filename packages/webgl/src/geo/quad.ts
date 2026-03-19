@@ -46,7 +46,7 @@ export const defQuadModel = (opts: Partial<QuadOpts> = {}): ModelSpec => {
 							data: new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]),
 							size: 2,
 						},
-				  }
+					}
 				: null),
 		},
 		uniforms: {},

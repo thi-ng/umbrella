@@ -126,8 +126,8 @@ export const units = (
 				? unit.pd || unit.p
 				: unit.p
 			: isDativ
-			? unit.sd || unit.s
-			: unit.s;
+				? unit.sd || unit.s
+				: unit.s;
 	return unitsOnly ? res : `${x} ${res}`;
 };
 

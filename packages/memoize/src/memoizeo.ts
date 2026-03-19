@@ -54,14 +54,14 @@ export function memoizeO<
 	A extends NumOrString,
 	B extends NumOrString,
 	C extends NumOrString,
-	D
+	D,
 >(fn: Fn3<A, B, C, D>, cache?: IObjectOf<D>): Fn3<A, B, C, D>;
 export function memoizeO<
 	A extends NumOrString,
 	B extends NumOrString,
 	C extends NumOrString,
 	D extends NumOrString,
-	E
+	E,
 >(fn: Fn4<A, B, C, D, E>, cache?: IObjectOf<E>): Fn4<A, B, C, D, E>;
 export function memoizeO<T extends (...xs: NumOrString[]) => any>(
 	fn: T,
@@ -96,7 +96,7 @@ export function memoizeAsyncO<
 	A extends NumOrString,
 	B extends NumOrString,
 	C extends NumOrString,
-	D
+	D,
 >(
 	fn: Fn3<A, B, C, MaybePromise<D>>,
 	cache?: IObjectOf<D>
@@ -106,7 +106,7 @@ export function memoizeAsyncO<
 	B extends NumOrString,
 	C extends NumOrString,
 	D extends NumOrString,
-	E
+	E,
 >(
 	fn: Fn4<A, B, C, D, MaybePromise<E>>,
 	cache?: IObjectOf<E>

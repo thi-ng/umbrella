@@ -65,10 +65,10 @@ export const defOp2v =
 			isa && isb
 				? __op2vAB(f, a, b)
 				: isb && !isa
-				? __op2vB(f, a, b)
-				: isa && !isb
-				? __op2vA(f, a, b)
-				: illegalArgs("at least one arg must be an array");
+					? __op2vB(f, a, b)
+					: isa && !isb
+						? __op2vA(f, a, b)
+						: illegalArgs("at least one arg must be an array");
 		return ctx;
 	};
 

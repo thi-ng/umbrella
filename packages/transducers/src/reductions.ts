@@ -12,7 +12,8 @@ export function reductions<A, B>(rfn: Reducer<A, B>, src?: Iterable<A>): any {
 		: <Reducer<A, B[]>>[
 				() => [init()],
 				(acc) => (
-					(acc[acc.length - 1] = complete(acc[acc.length - 1])), acc
+					(acc[acc.length - 1] = complete(acc[acc.length - 1])),
+					acc
 				),
 				(acc, x) => {
 					const res = _reduce(acc[acc.length - 1], x);
@@ -23,5 +24,5 @@ export function reductions<A, B>(rfn: Reducer<A, B>, src?: Iterable<A>): any {
 					acc.push(res);
 					return acc;
 				},
-		  ];
+			];
 }

@@ -74,9 +74,9 @@ export const rateLimiter = <T extends RequestCtx = RequestCtx>(
  *
  *
  */
-export class RateLimiter<T extends RequestCtx = RequestCtx>
-	implements Interceptor<T>
-{
+export class RateLimiter<
+	T extends RequestCtx = RequestCtx,
+> implements Interceptor<T> {
 	buckets: LeakyBucketMap<string>;
 	capacity: Fn2<T, string, number>;
 	clientID: Fn<T, Maybe<string>>;

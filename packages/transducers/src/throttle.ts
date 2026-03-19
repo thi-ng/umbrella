@@ -36,5 +36,5 @@ export function throttle<T>(
 				const r = rfn[2];
 				const _pred = pred();
 				return compR(rfn, (acc, x: T) => (_pred(x) ? r(acc, x) : acc));
-		  };
+			};
 }

@@ -34,5 +34,5 @@ export function length(n = 0, src?: Iterable<ILength>): any {
 				n === 0
 					? (x: ILength) => x.length
 					: (x: ILength) => x.length + n
-		  );
+			);
 }

@@ -51,11 +51,9 @@ export interface ConvolutionOpts<K> {
 	 */
 	reduce?: Fn0<Reducer<number, number>>;
 }
-export interface Convolution1DOpts
-	extends ConvolutionOpts<ConvolutionKernel1D> {}
+export interface Convolution1DOpts extends ConvolutionOpts<ConvolutionKernel1D> {}
 
-export interface Convolution2DOpts
-	extends ConvolutionOpts<ConvolutionKernel2D> {
+export interface Convolution2DOpts extends ConvolutionOpts<ConvolutionKernel2D> {
 	height: number;
 	kheight?: number;
 }
@@ -91,10 +89,10 @@ const __kernelLookup1d = (
 				const xx =
 					x < -ox ? width + ox : x >= width - ox ? ox - 1 : x + ox;
 				return w * src[xx];
-		  }
+			}
 		: ({ 0: w, 1: ox }) => {
 				return x < -ox || x >= width - ox ? border : w * src[x + ox];
-		  };
+			};
 
 /** @internal */
 const __kernelLookup2d = (
@@ -113,12 +111,12 @@ const __kernelLookup2d = (
 				const yy =
 					y < -oy ? height + oy : y >= height - oy ? oy - 1 : y + oy;
 				return w * src[yy * width + xx];
-		  }
+			}
 		: ({ 0: w, 1: { 0: ox, 1: oy } }) => {
 				return x < -ox || y < -oy || x >= width - ox || y >= height - oy
 					? border
 					: w * src[(y + oy) * width + x + ox];
-		  };
+			};
 
 /** @internal */
 const __kernelError = () => illegalArgs(`no kernel or kernel config`);

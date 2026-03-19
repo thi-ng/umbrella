@@ -286,6 +286,6 @@ export const delay = (n: number) => {
 				buf[i++] = x;
 				i %= n;
 				return y;
-		  }
+			}
 		: (x: boolean) => x;
 };

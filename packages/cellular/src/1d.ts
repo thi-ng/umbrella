@@ -175,7 +175,11 @@ export class MultiCA1D implements IClear {
 	gens!: Uint8Array[];
 	prob!: Float32Array;
 
-	constructor(configs: CASpec1D[], public width: number, public wrap = true) {
+	constructor(
+		configs: CASpec1D[],
+		public width: number,
+		public wrap = true
+	) {
 		this.configs = configs.map(__compileSpec);
 		this.rows =
 			transduce(
@@ -389,8 +393,8 @@ export class MultiCA1D implements IClear {
 		return target === "cells"
 			? [this.current, this.numStates]
 			: target === "mask"
-			? [this.mask, this.configs.length]
-			: [this.prob, 1];
+				? [this.mask, this.configs.length]
+				: [this.prob, 1];
 	}
 }
 

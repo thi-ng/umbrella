@@ -75,5 +75,5 @@ export function struct(fields: StructField<any>[], src?: Iterable<any>): any {
 					),
 					false
 				)
-		  );
+			);
 }

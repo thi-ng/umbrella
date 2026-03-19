@@ -14,10 +14,10 @@ const __getNodeType = (sub: ISubscribable<any>) =>
 	sub instanceof Stream
 		? "Stream"
 		: sub instanceof StreamSync
-		? "StreamSync"
-		: sub instanceof StreamMerge
-		? "StreamMerge"
-		: undefined;
+			? "StreamSync"
+			: sub instanceof StreamMerge
+				? "StreamMerge"
+				: undefined;
 
 /** @internal */
 const __getChildren = (sub: any): ISubscribable<any>[] => {

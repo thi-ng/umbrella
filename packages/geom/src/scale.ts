@@ -127,12 +127,12 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 						mulN2([], $.pos, delta),
 						$.r * delta,
 						__copyAttribs($.attribs)
-				  )
+					)
 				: new Ellipse(
 						mul2([], $.pos, delta),
 						mulN2([], delta, $.r),
 						__copyAttribs($.attribs)
-				  ),
+					),
 
 		ellipse: ($: Ellipse, delta) => {
 			delta = __asVec(delta);
@@ -208,7 +208,7 @@ export const scale = <ScaleFn>defmulti<any, number | ReadonlyVec, IShape>(
 						mulN3([], $.pos, delta),
 						$.r * delta,
 						__copyAttribs($.attribs)
-				  )
+					)
 				: unsupportedOp("can't non-uniformly scale sphere"),
 
 		text: ($: Text, delta) =>

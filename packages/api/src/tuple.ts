@@ -16,8 +16,8 @@ export type ArrayValue<T extends unknown[]> = T[0];
 export type DeepArrayValue<T> = T extends unknown[]
 	? DeepArrayValue<T[0]>
 	: T extends TypedArray
-	? number
-	: T;
+		? number
+		: T;
 
 /**
  * Defines a fixed sized, iterable tuple with elements of type `T` and

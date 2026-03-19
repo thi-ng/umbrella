@@ -42,8 +42,8 @@ export const floatFixedWidth: (
 				(x === 0
 					? "0"
 					: ax < pr || ax >= pl
-					? __exp(x, width)
-					: x.toFixed(prec - (x < pln ? 1 : 0)))
+						? __exp(x, width)
+						: x.toFixed(prec - (x < pln ? 1 : 0)))
 		);
 	};
 });
@@ -65,7 +65,7 @@ const __nanOrInf = (x: number) =>
 	isNaN(x)
 		? "NaN"
 		: x === Infinity
-		? "+∞"
-		: x === -Infinity
-		? "-∞"
-		: undefined;
+			? "+∞"
+			: x === -Infinity
+				? "-∞"
+				: undefined;

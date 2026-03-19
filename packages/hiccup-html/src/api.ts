@@ -106,7 +106,8 @@ export type TransitionEventAttribs = EventAttribs<
 export type WheelEventAttribs = EventAttribs<"onwheel", WheelEvent>;
 
 export interface GlobalEventAttribs
-	extends AnimationEventAttribs,
+	extends
+		AnimationEventAttribs,
 		DragEventAttribs,
 		FocusEventAttribs,
 		InputEventAttribs,
@@ -631,9 +632,7 @@ export type CSSSVGProperty =
 	| "writing-mode";
 
 export interface Attribs
-	extends GlobalEventAttribs,
-		MicroformatAttribs,
-		RDFaAttribs {
+	extends GlobalEventAttribs, MicroformatAttribs, RDFaAttribs {
 	accesskey: StringAttrib;
 	autocapitalize: AttribVal<
 		"off" | "on" | "sentences" | "words" | "characters"

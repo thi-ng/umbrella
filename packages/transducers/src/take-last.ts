@@ -38,5 +38,5 @@ export function takeLast<T>(n: number, src?: Iterable<T>): any {
 						return acc;
 					},
 				];
-		  };
+			};
 }

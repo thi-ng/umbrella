@@ -26,11 +26,10 @@ export interface DownloadOpts {
 /**
  * User options for {@link canvasRecorder}.
  */
-export interface CanvasRecorderOpts
-	extends Pick<
-		MediaRecorderOptions,
-		"mimeType" | "bitsPerSecond" | "videoBitsPerSecond"
-	> {
+export interface CanvasRecorderOpts extends Pick<
+	MediaRecorderOptions,
+	"mimeType" | "bitsPerSecond" | "videoBitsPerSecond"
+> {
 	/**
 	 * Recording frame rate (fps)
 	 *

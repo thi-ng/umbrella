@@ -34,7 +34,11 @@ import {
 } from "../api/types.js";
 import { isVec } from "./checks.js";
 
-export const lit = <T extends Type>(type: T, val: any, info?: string): Lit<T> =>
+export const lit = <T extends Type>(
+	type: T,
+	val: any,
+	info?: string
+): Lit<T> =>
 	type === val.type && info === val.info
 		? val
 		: {
@@ -42,7 +46,7 @@ export const lit = <T extends Type>(type: T, val: any, info?: string): Lit<T> =>
 				type,
 				info,
 				val,
-		  };
+			};
 
 export const bool = (x: NumericB) => lit(B, isNumber(x) ? !!x : x);
 
@@ -61,8 +65,8 @@ const __wrap =
 		isNumber(x)
 			? ctor(x)
 			: x !== undefined && !isVec(x) && x.type !== type
-			? ctor(x)
-			: x;
+				? ctor(x)
+				: x;
 
 /**
  * Takes a plain number or numeric term and wraps it as float literal if
@@ -117,8 +121,10 @@ export const SQRT2 = float(Math.SQRT2);
 export const PHI = float((1 + Math.sqrt(5)) / 2);
 
 const $gvec =
-	(wrap: Fn<any, Maybe<Term<any>>>, init: Term<any>) => (xs: any[]) =>
-		[xs[0] === undefined ? init : wrap(xs[0]), ...xs.slice(1).map(wrap)];
+	(wrap: Fn<any, Maybe<Term<any>>>, init: Term<any>) => (xs: any[]) => [
+		xs[0] === undefined ? init : wrap(xs[0]),
+		...xs.slice(1).map(wrap),
+	];
 
 const $vec = $gvec(wrapFloat, FLOAT0);
 

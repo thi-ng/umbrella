@@ -106,15 +106,15 @@ export const min4id: FnN4 = (a, b, c, d) =>
 				? 0
 				: 3
 			: c <= d
-			? 2
-			: 3
+				? 2
+				: 3
 		: b <= c
-		? b <= d
-			? 1
-			: 3
-		: c <= d
-		? 2
-		: 3;
+			? b <= d
+				? 1
+				: 3
+			: c <= d
+				? 2
+				: 3;
 
 export const max2id: FnN2 = (a, b) => (a >= b ? 0 : 1);
 
@@ -128,15 +128,15 @@ export const max4id: FnN4 = (a, b, c, d) =>
 				? 0
 				: 3
 			: c >= d
-			? 2
-			: 3
+				? 2
+				: 3
 		: b >= c
-		? b >= d
-			? 1
-			: 3
-		: c >= d
-		? 2
-		: 3;
+			? b >= d
+				? 1
+				: 3
+			: c >= d
+				? 2
+				: 3;
 
 /**
  * Returns the non-zero minimum value of the given `a`, `b` args.

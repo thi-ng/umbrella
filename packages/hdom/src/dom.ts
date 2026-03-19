@@ -356,8 +356,8 @@ export const setListener = (
 	isString(listener)
 		? el.setAttribute("on" + id, listener)
 		: isArray(listener)
-		? el.addEventListener(id, ...listener)
-		: el.addEventListener(id, listener);
+			? el.addEventListener(id, ...listener)
+			: el.addEventListener(id, listener);
 
 /**
  * Removes event listener (possibly with options).

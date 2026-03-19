@@ -27,5 +27,5 @@ export function interpose<A, B>(sep: any, src?: Iterable<A>): any {
 					acc = r(acc, _sep());
 					return isReduced(acc) ? acc : r(acc, x);
 				});
-		  };
+			};
 }

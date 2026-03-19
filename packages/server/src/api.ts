@@ -89,8 +89,9 @@ export interface ServerOpts<CTX extends RequestCtx = RequestCtx> {
 	>;
 }
 
-export interface ServerRoute<CTX extends RequestCtx = RequestCtx>
-	extends Route {
+export interface ServerRoute<
+	CTX extends RequestCtx = RequestCtx,
+> extends Route {
 	handlers: Partial<Record<Method, RequestHandler<CTX>>>;
 }
 
@@ -98,8 +99,9 @@ export interface ServerRoute<CTX extends RequestCtx = RequestCtx>
  * Version of {@link ServerRoute} whose handlers/interceptors already have been
  * pre-processed.
  */
-export interface CompiledServerRoute<CTX extends RequestCtx = RequestCtx>
-	extends Route {
+export interface CompiledServerRoute<
+	CTX extends RequestCtx = RequestCtx,
+> extends Route {
 	handlers: Partial<Record<Method, CompiledHandler<CTX>>>;
 }
 
@@ -184,7 +186,7 @@ export type RequestHandler<CTX extends RequestCtx = RequestCtx> =
 	| InterceptedRequestHandler<CTX>;
 
 export interface InterceptedRequestHandler<
-	CTX extends RequestCtx = RequestCtx
+	CTX extends RequestCtx = RequestCtx,
 > {
 	fn: Fn<CTX, HandlerResult>;
 	/**

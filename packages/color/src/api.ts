@@ -180,7 +180,8 @@ export interface TypedColorConstructor<T extends TypedColor<any>> {
 }
 
 export interface TypedColor<T>
-	extends IColor,
+	extends
+		IColor,
 		IDeref<Color>,
 		IEqualsDelta<T>,
 		IVector<T>,
@@ -254,7 +255,10 @@ export interface IParsedColor extends IColor, IDeref<Color> {}
  * array and color mode.
  */
 export class ParsedColor implements IParsedColor {
-	constructor(public readonly mode: ColorMode, public value: Color) {}
+	constructor(
+		public readonly mode: ColorMode,
+		public value: Color
+	) {}
 
 	deref() {
 		return this.value;

@@ -163,8 +163,8 @@ export class SparseSet8
 		isNumber(n)
 			? super(new Uint8Array(n), new Uint8Array(n))
 			: n.length === sparse!.length
-			? super(n, sparse!)
-			: __fail();
+				? super(n, sparse!)
+				: __fail();
 	}
 
 	get [Symbol.species]() {
@@ -194,8 +194,8 @@ export class SparseSet16
 		isNumber(n)
 			? super(new Uint16Array(n), new Uint16Array(n))
 			: n.length === sparse!.length
-			? super(n, sparse!)
-			: __fail();
+				? super(n, sparse!)
+				: __fail();
 	}
 
 	get [Symbol.species]() {
@@ -225,8 +225,8 @@ export class SparseSet32
 		isNumber(n)
 			? super(new Uint32Array(n), new Uint32Array(n))
 			: n.length === sparse!.length
-			? super(n, sparse!)
-			: __fail();
+				? super(n, sparse!)
+				: __fail();
 	}
 
 	get [Symbol.species]() {
@@ -257,5 +257,5 @@ export const defSparseSet = (n: number) =>
 	n <= 0x100
 		? new SparseSet8(n)
 		: n <= 0x10000
-		? new SparseSet16(n)
-		: new SparseSet32(n);
+			? new SparseSet16(n)
+			: new SparseSet32(n);

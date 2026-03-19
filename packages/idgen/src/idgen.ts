@@ -6,11 +6,7 @@ import { EVENT_ADDED, EVENT_REMOVED, type IDGenEventType } from "./api.js";
 
 @INotifyMixin
 export class IDGen
-	implements
-		Iterable<number>,
-		IClear,
-		IIDGen<number>,
-		INotify<IDGenEventType>
+	implements Iterable<number>, IClear, IIDGen<number>, INotify<IDGenEventType>
 {
 	readonly ids: number[];
 

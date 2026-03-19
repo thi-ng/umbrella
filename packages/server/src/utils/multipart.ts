@@ -55,20 +55,23 @@ export const parsePart = (buf: Uint8Array): MultipartPart => {
 	if (idx < 0) illegalArgs("invalid multipart data");
 	const headers = DECODER.decode(buf.slice(0, idx))
 		.split("\r\n")
-		.reduce((acc, x) => {
-			const idx = x.indexOf(":");
-			let key = x.substring(0, idx).toLowerCase();
-			let val = x.substring(idx + 1).trim();
-			if (key === "content-disposition") {
-				const name = /name="([a-z0-9_.-]{1,64})"/i.exec(val);
-				if (name) acc["name"] = name[1];
-				const filename =
-					/filename="([a-z0-9_.+\-~@ ()\[\]]{1,128})"/i.exec(val);
-				if (filename) acc["filename"] = filename[1];
-			}
-			acc[key] = val;
-			return acc;
-		}, <Record<string, string>>{});
+		.reduce(
+			(acc, x) => {
+				const idx = x.indexOf(":");
+				let key = x.substring(0, idx).toLowerCase();
+				let val = x.substring(idx + 1).trim();
+				if (key === "content-disposition") {
+					const name = /name="([a-z0-9_.-]{1,64})"/i.exec(val);
+					if (name) acc["name"] = name[1];
+					const filename =
+						/filename="([a-z0-9_.+\-~@ ()\[\]]{1,128})"/i.exec(val);
+					if (filename) acc["filename"] = filename[1];
+				}
+				acc[key] = val;
+				return acc;
+			},
+			<Record<string, string>>{}
+		);
 	const body = buf.slice(idx + 4);
 	return headers["content-type"]
 		? { headers, body }

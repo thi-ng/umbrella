@@ -10,7 +10,9 @@ export const defWorker = (worker: WorkerSource) =>
 	worker instanceof Worker
 		? worker
 		: isFunction<Fn0<Worker>>(worker)
-		? worker()
-		: new Worker(
-				worker instanceof Blob ? URL.createObjectURL(worker) : worker
-		  );
+			? worker()
+			: new Worker(
+					worker instanceof Blob
+						? URL.createObjectURL(worker)
+						: worker
+				);

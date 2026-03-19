@@ -39,8 +39,8 @@ export const normalizeS: VecOpSGVO<number> = (
 	return m >= EPS
 		? mulNS(out, v, n / m, num, io, ia, so, sa)
 		: out !== v
-		? setS(out, v, num, io, ia, so, sa)
-		: out;
+			? setS(out, v, num, io, ia, so, sa)
+			: out;
 };
 
 const $ =
@@ -51,8 +51,8 @@ const $ =
 		return m >= EPS
 			? mulN(out, v, n / m, io, ia, so, sa)
 			: out !== v
-			? set(out, v, io, ia, so, sa)
-			: out;
+				? set(out, v, io, ia, so, sa)
+				: out;
 	};
 
 /**

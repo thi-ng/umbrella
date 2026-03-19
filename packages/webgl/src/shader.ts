@@ -283,7 +283,7 @@ const __compileExtensionPragma = (
 						? "enable"
 						: "disable"
 					: behavior
-		  }\n`
+			}\n`
 		: "";
 };
 
@@ -363,7 +363,7 @@ const __compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
 					u[0],
 					id,
 					u[0].indexOf("[]") > 0 ? { num: <number>u[1] } : undefined
-			  )
+				)
 			: uniform(u, id);
 	}
 };
@@ -441,7 +441,7 @@ export const prepareShaderSource = (
 					spec.outputs || DEFAULT_OUTPUT,
 					syntax.output,
 					prefixes
-			  );
+				);
 		src += __compileVars(spec.varying, syntax.varying[type], prefixes);
 		src += __compileVars(spec.uniforms, syntax.uniform, prefixes);
 	}

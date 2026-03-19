@@ -98,7 +98,7 @@ const __resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 				? [
 						match[1].substring(0, paramIdx),
 						JSON.parse(match[1].substring(paramIdx).trim()),
-				  ]
+					]
 				: [match[1]];
 		let childBlock: Block;
 		if (childID.indexOf("#") > 0) {
@@ -229,7 +229,7 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 				: $ctx.fs.resolve(
 						parentDir,
 						`${meta.tangle || "."}${sep}${block.tangle}`
-				  );
+					);
 			let body = block.body;
 			if (!$ctx.outputs[dest]) {
 				if ($ctx.opts.comments && COMMENT_FORMATS[block.lang]) {

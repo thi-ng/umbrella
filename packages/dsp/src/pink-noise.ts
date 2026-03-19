@@ -54,7 +54,8 @@ export class PinkNoise extends AGen<number> implements IReset {
 		this._gain /= _amp.reduce((acc, x) => acc + x, 0);
 		this._psum = prob.reduce(
 			(acc: number[], x, i) => (
-				acc.push(i > 0 ? acc[i - 1] + x : x), acc
+				acc.push(i > 0 ? acc[i - 1] + x : x),
+				acc
 			),
 			[]
 		);

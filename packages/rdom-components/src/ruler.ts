@@ -35,9 +35,12 @@ export const verticalRuler = (attribs: Partial<Attribs> = {}, numSteps = 4) =>
 		attribs,
 		tbody(
 			{},
-			...map((x) => {
-				const id = `${(x * 100) | 0}%`;
-				return tr({}, td({ id }, anchor({ href: `#${id}` }, id)));
-			}, normRange(numSteps, false))
+			...map(
+				(x) => {
+					const id = `${(x * 100) | 0}%`;
+					return tr({}, td({ id }, anchor({ href: `#${id}` }, id)));
+				},
+				normRange(numSteps, false)
+			)
 		)
 	);

@@ -22,14 +22,20 @@ export const defEncoder =
 
 export const defDecoder =
 	([[psh, pmsk], [fsh, fmsk], [lsh, lmsk]]: number[][]) =>
-	(id: number) =>
-		[(id >>> psh) & pmsk, (id >>> fsh) & fmsk, (id >>> lsh) & lmsk];
+	(id: number) => [
+		(id >>> psh) & pmsk,
+		(id >>> fsh) & fmsk,
+		(id >>> lsh) & lmsk,
+	];
 
 const pack = (trie: MultiTrie<string, number>): PackedTrie => {
-	const next = [...trie.next].reduce((acc, [k, v]) => {
-		acc[k] = pack(v);
-		return acc;
-	}, <any>{});
+	const next = [...trie.next].reduce(
+		(acc, [k, v]) => {
+			acc[k] = pack(v);
+			return acc;
+		},
+		<any>{}
+	);
 	return trie.vals ? [next, [...trie.vals]] : [next];
 };
 

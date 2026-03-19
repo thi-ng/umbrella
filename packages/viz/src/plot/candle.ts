@@ -31,20 +31,23 @@ export const candlePlot =
 		return [
 			"g",
 			{},
-			...map(([x, candle]) => {
-				const { o, h, l, c } = candle;
-				return opts.shape(
-					candle,
-					{
-						o: mapper([x, o]),
-						h: mapper([x, h]),
-						l: mapper([x, l]),
-						c: mapper([x, c]),
-					},
-					x,
-					c >= o
-				);
-			}, __resolveData(data, spec.xaxis.domain)),
+			...map(
+				([x, candle]) => {
+					const { o, h, l, c } = candle;
+					return opts.shape(
+						candle,
+						{
+							o: mapper([x, o]),
+							h: mapper([x, h]),
+							l: mapper([x, l]),
+							c: mapper([x, c]),
+						},
+						x,
+						c >= o
+					);
+				},
+				__resolveData(data, spec.xaxis.domain)
+			),
 		];
 	};
 

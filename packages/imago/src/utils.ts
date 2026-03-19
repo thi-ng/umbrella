@@ -39,8 +39,8 @@ export const coerceColor = (col: Color) =>
 	isString(col)
 		? col
 		: isArrayLike(col)
-		? { r: col[0], g: col[1], b: col[2], alpha: col[3] ?? 1 }
-		: col;
+			? { r: col[0], g: col[1], b: col[2], alpha: col[3] ?? 1 }
+			: col;
 
 /**
  *
@@ -104,13 +104,13 @@ export const gravityPosition = (
 	gravity.includes("w")
 		? 0
 		: gravity.includes("e")
-		? parentW - w
-		: (parentW - w) >> 1,
+			? parentW - w
+			: (parentW - w) >> 1,
 	gravity.includes("n")
 		? 0
 		: gravity.includes("s")
-		? parentH - h
-		: (parentH - h) >> 1,
+			? parentH - h
+			: (parentH - h) >> 1,
 ];
 
 export const refSize = ([w, h]: Dim, ref?: SizeRef): Dim => {
@@ -161,12 +161,12 @@ export const computeSize = (
 					? size
 					: [w, w / aspect]
 				: h >= 0
-				? [h * aspect, h]
-				: illegalArgs(
-						`require at least width or height, but got: ${JSON.stringify(
-							size
-						)}`
-				  );
+					? [h * aspect, h]
+					: illegalArgs(
+							`require at least width or height, but got: ${JSON.stringify(
+								size
+							)}`
+						);
 	}
 	res[0] = round(res[0]);
 	res[1] = round(res[1]);

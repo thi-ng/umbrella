@@ -43,8 +43,8 @@ export const kmeans = <T extends ReadonlyVec>(
 	const centroids = Array.isArray(initial)
 		? initial
 		: initial
-		? initial(k, samples, dist, rnd)
-		: kmeansPlusPlus(k, samples, dist, rnd, exponent);
+			? initial(k, samples, dist, rnd)
+			: kmeansPlusPlus(k, samples, dist, rnd, exponent);
 	assert(centroids.length > 0, `missing initial centroids`);
 	k = centroids.length;
 	const clusters = new Uint32Array(num).fill(k);

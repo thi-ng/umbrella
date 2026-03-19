@@ -23,7 +23,7 @@ export const __wrap = (str: Maybe<string>, width: number) =>
 				width,
 				splitter: SPLIT_ANSI,
 				hard: false,
-		  })
+			})
 		: [];
 
 /** @internal */
@@ -43,5 +43,5 @@ export const __colorTheme = (color?: boolean | Partial<ColorTheme>) =>
 	isPlainObject(color)
 		? { ...DEFAULT_THEME, ...color }
 		: color !== false
-		? DEFAULT_THEME
-		: <ColorTheme>{};
+			? DEFAULT_THEME
+			: <ColorTheme>{};

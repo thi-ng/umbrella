@@ -136,10 +136,7 @@ export const metaXUA = () =>
 	meta({ "http-equiv": "x-ua-compatible", content: "IE=edge" });
 
 export interface LinkAttribs
-	extends RelAttribs,
-		CORSAttribs,
-		ImportanceAttribs,
-		ReferrerAttribs {
+	extends RelAttribs, CORSAttribs, ImportanceAttribs, ReferrerAttribs {
 	as: AttribVal<
 		| "audio"
 		| "document"

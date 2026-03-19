@@ -93,7 +93,7 @@ export const mulV344 = (out: Vec | null, m: ReadonlyMat, v: ReadonlyVec) => {
 				(dotS3(m, v, 0, 0, 4) + m[12]) / w,
 				(dotS3(m, v, 1, 0, 4) + m[13]) / w,
 				(dotS3(m, v, 2, 0, 4) + m[14]) / w
-		  )
+			)
 		: undefined;
 };
 

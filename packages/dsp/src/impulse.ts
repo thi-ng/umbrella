@@ -28,7 +28,10 @@ export const impulseT = <T>(on: T, off: T) => new Impulse<T>(on, off);
 export const impulseB = (start = true) => new Impulse(start, !start);
 
 export class Impulse<T> extends AGen<T> implements ICopy<Impulse<T>>, IReset {
-	constructor(protected _on: T, protected _off: T) {
+	constructor(
+		protected _on: T,
+		protected _off: T
+	) {
 		super(_on);
 	}
 

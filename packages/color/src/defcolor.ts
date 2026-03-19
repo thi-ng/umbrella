@@ -66,7 +66,11 @@ export const defColor = <M extends ColorMode, K extends string>(
 		buf: NumericArray;
 		[id: number]: number;
 
-		constructor(buf?: NumericArray, public offset = 0, public stride = 1) {
+		constructor(
+			buf?: NumericArray,
+			public offset = 0,
+			public stride = 1
+		) {
 			this.buf = buf || [0, 0, 0, 0];
 			this.offset = offset;
 			this.stride = stride;
@@ -163,18 +167,28 @@ export const defColor = <M extends ColorMode, K extends string>(
 		src == null
 			? <any>new $Color()
 			: isString(src)
-			? factory(parseCss(src), ...args)
-			: isArrayLike(src)
-			? isString((<IColor>src).mode)
-				? fromColor(src, (<IColor>src).mode, args)
-				: <any>new $Color(<NumericArray>src, ...args)
-			: implementsFunction(src, "deref")
-			? fromColor(src.deref(), (<IColor>src).mode, args)
-			: isNumber(src)
-			? args.length && args.every(isNumber)
-				? <any>new $Color(...__ensureArgs([src, ...args]))
-				: fromColor(intArgb32Srgb([], src), "srgb", args)
-			: illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
+				? factory(parseCss(src), ...args)
+				: isArrayLike(src)
+					? isString((<IColor>src).mode)
+						? fromColor(src, (<IColor>src).mode, args)
+						: <any>new $Color(<NumericArray>src, ...args)
+					: implementsFunction(src, "deref")
+						? fromColor(src.deref(), (<IColor>src).mode, args)
+						: isNumber(src)
+							? args.length && args.every(isNumber)
+								? <any>(
+										new $Color(
+											...__ensureArgs([src, ...args])
+										)
+									)
+								: fromColor(
+										intArgb32Srgb([], src),
+										"srgb",
+										args
+									)
+							: illegalArgs(
+									`can't create a ${spec.mode} color from: ${src}`
+								);
 
 	factory.class = <any>$Color;
 

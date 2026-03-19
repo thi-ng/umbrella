@@ -28,7 +28,7 @@ export const BUILTINS: IObjectOf<TagParser> = {
 				(ctx.opts.decrypt
 					? execFileSync("gpg", ["--decrypt"], {
 							input: body,
-					  }).toString()
+						}).toString()
 					: body
 				).trim()
 		: NODE_ONLY,

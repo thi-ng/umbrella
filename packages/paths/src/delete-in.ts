@@ -83,14 +83,14 @@ export function deleteIn<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
-	C extends Keys2<T, A, B>
+	C extends Keys2<T, A, B>,
 >(state: T, path: readonly [A, B, C]): Without3<T, A, B, C>;
 export function deleteIn<
 	T,
 	A extends Keys<T>,
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
-	D extends Keys3<T, A, B, C>
+	D extends Keys3<T, A, B, C>,
 >(state: T, path: readonly [A, B, C, D]): Without4<T, A, B, C, D>;
 export function deleteIn<
 	T,
@@ -98,7 +98,7 @@ export function deleteIn<
 	B extends Keys1<T, A>,
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
-	E extends Keys4<T, A, B, C, D>
+	E extends Keys4<T, A, B, C, D>,
 >(state: T, path: readonly [A, B, C, D, E]): Without5<T, A, B, C, D, E>;
 export function deleteIn<
 	T,
@@ -107,7 +107,7 @@ export function deleteIn<
 	C extends Keys2<T, A, B>,
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
-	F extends Keys5<T, A, B, C, D, E>
+	F extends Keys5<T, A, B, C, D, E>,
 >(state: T, path: readonly [A, B, C, D, E, F]): Without6<T, A, B, C, D, E, F>;
 export function deleteIn<
 	T,
@@ -117,7 +117,7 @@ export function deleteIn<
 	D extends Keys3<T, A, B, C>,
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
-	G extends Keys6<T, A, B, C, D, E, F>
+	G extends Keys6<T, A, B, C, D, E, F>,
 >(
 	state: T,
 	path: readonly [A, B, C, D, E, F, G]
@@ -131,7 +131,7 @@ export function deleteIn<
 	E extends Keys4<T, A, B, C, D>,
 	F extends Keys5<T, A, B, C, D, E>,
 	G extends Keys6<T, A, B, C, D, E, F>,
-	H extends Keys7<T, A, B, C, D, E, F, G>
+	H extends Keys7<T, A, B, C, D, E, F, G>,
 >(
 	state: T,
 	path: readonly [A, B, C, D, E, F, G, H]

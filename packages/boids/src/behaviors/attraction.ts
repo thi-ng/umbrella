@@ -22,7 +22,7 @@ export const attractPolyline = (
 							pos,
 							normalize(pos, boid.vel.curr, lookahead),
 							boid.pos.curr
-					  )
+						)
 					: boid.pos.curr,
 				points,
 				closed,

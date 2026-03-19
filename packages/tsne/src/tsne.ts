@@ -117,7 +117,7 @@ export class TSNE {
 					minGain,
 					sign(rowGrad[d]) === sign(step)
 						? // rowGrad[d] * step < 0
-						  rowGains[d] * gainDecay
+							rowGains[d] * gainDecay
 						: rowGains[d] + gainBias
 				);
 				rowGains[d] = newGain;

@@ -3,7 +3,8 @@ import type { Stack, StackContext } from "./api.js";
 import { $, $n } from "./safe.js";
 
 const __xsp = (id: 0 | 1) => (ctx: StackContext) => (
-	ctx[0].push(ctx[id].length), ctx
+	ctx[0].push(ctx[id].length),
+	ctx
 );
 
 const __dup = (id: 0 | 1) => __copy(id, id);
@@ -61,7 +62,9 @@ const __over = (id: 0 | 1) => (ctx: StackContext) => {
 };
 
 const __move = (src: 0 | 1, dest: 0 | 1) => (ctx: StackContext) => (
-	$(ctx[src], 1), ctx[dest].push(ctx[src].pop()), ctx
+	$(ctx[src], 1),
+	ctx[dest].push(ctx[src].pop()),
+	ctx
 );
 
 const __move2 = (a: 0 | 1, b: 0 | 1) => (ctx: StackContext) => {
@@ -73,7 +76,9 @@ const __move2 = (a: 0 | 1, b: 0 | 1) => (ctx: StackContext) => {
 };
 
 const __copy = (src: 0 | 1, dest: 0 | 1) => (ctx: StackContext) => (
-	$(ctx[src], 1), ctx[dest].push(tos(ctx[src])), ctx
+	$(ctx[src], 1),
+	ctx[dest].push(tos(ctx[src])),
+	ctx
 );
 
 const __copy2 = (a: 0 | 1, b: 0 | 1) => (ctx: StackContext) => {
@@ -85,7 +90,9 @@ const __copy2 = (a: 0 | 1, b: 0 | 1) => (ctx: StackContext) => {
 };
 
 const __incdec = (id: 0 | 1, n: number) => (ctx: StackContext) => (
-	$(ctx[id], 1), (ctx[id][ctx[id].length - 1] += n), ctx
+	$(ctx[id], 1),
+	(ctx[id][ctx[id].length - 1] += n),
+	ctx
 );
 
 //////////////////// Stack manipulation words ////////////////////
@@ -156,7 +163,9 @@ export const drop2 = __drop(0, 2);
  * Stack effect: `( x -- x )`
  */
 export const dropif = (ctx: StackContext) => (
-	$(ctx[0], 1), tos(ctx[0]) && ctx[0].length--, ctx
+	$(ctx[0], 1),
+	tos(ctx[0]) && ctx[0].length--,
+	ctx
 );
 
 /**

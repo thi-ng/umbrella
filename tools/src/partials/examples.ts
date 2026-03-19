@@ -35,7 +35,7 @@ export const examplesTable = (pkgName: string) => {
 									"Demo",
 									meta.demo ||
 										`${CONFIG.demoURL}/${exampleName}/`
-							  )
+								)
 							: "",
 					src: link(
 						"Source",
@@ -67,6 +67,6 @@ export const examplesTable = (pkgName: string) => {
 				`directory ${verb} using this package:`,
 				"",
 				tableKeys(headers, <any>keys, examples),
-		  ].join("\n")
+			].join("\n")
 		: "";
 };

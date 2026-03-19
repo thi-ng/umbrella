@@ -21,24 +21,28 @@ export const lowDiscrepancy = (dims: Iterator<number>[], offset = 0) => {
 		num === 1
 			? (function* () {
 					while (true) yield [<number>x.next().value];
-			  })()
+				})()
 			: num === 2
-			? (function* () {
-					while (true)
-						yield [<number>x.next().value, <number>y.next().value];
-			  })()
-			: num === 3
-			? (function* () {
-					while (true)
-						yield [
-							<number>x.next().value,
-							<number>y.next().value,
-							<number>z.next().value,
-						];
-			  })()
-			: (function* () {
-					while (true) yield dims.map((d) => <number>d.next().value);
-			  })();
+				? (function* () {
+						while (true)
+							yield [
+								<number>x.next().value,
+								<number>y.next().value,
+							];
+					})()
+				: num === 3
+					? (function* () {
+							while (true)
+								yield [
+									<number>x.next().value,
+									<number>y.next().value,
+									<number>z.next().value,
+								];
+						})()
+					: (function* () {
+							while (true)
+								yield dims.map((d) => <number>d.next().value);
+						})();
 	for (; offset-- > 0; ) iter.next();
 	return iter;
 };

@@ -12,4 +12,4 @@ export const __ensurePred = (match: string | RegExp | Predicate<string>) =>
 	isFunction(match)
 		? match
 		: ((match = __ensureRegEx(match)),
-		  (x: string) => (<RegExp>match).test(x));
+			(x: string) => (<RegExp>match).test(x));

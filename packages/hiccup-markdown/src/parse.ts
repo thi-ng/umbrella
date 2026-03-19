@@ -544,7 +544,7 @@ export const transformScope: Fn3<
 								parent[0] === "ul" ? "ulitem" : "olitem",
 								{},
 								sublist,
-						  ]);
+							]);
 					stack.push(sublist);
 					levels.push(currLevel);
 				} else if (currLevel < peek(levels)) {
@@ -729,7 +729,7 @@ const __listItemAttribs = (scope?: ParseScope<string>): TodoAttribs =>
 		? {
 				__todo: true,
 				__done: scope.result === "x",
-		  }
+			}
 		: {};
 
 /** @internal */

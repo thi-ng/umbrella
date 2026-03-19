@@ -20,7 +20,8 @@ export const addW3 = (
 	wb: number,
 	wc: number
 ) => (
-	!out && (out = a), maddN(out, c, wc, maddN(out, b, wb, mulN(out, a, wa)))
+	!out && (out = a),
+	maddN(out, c, wc, maddN(out, b, wb, mulN(out, a, wa)))
 );
 
 export const addW4 = (

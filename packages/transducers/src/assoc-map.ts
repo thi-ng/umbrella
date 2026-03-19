@@ -15,5 +15,5 @@ export function assocMap<A, B>(src?: Iterable<Pair<A, B>>): any {
 		: reducer<Pair<A, B>, Map<A, B>>(
 				() => new Map<A, B>(),
 				(acc, [k, v]) => acc.set(k, v)
-		  );
+			);
 }

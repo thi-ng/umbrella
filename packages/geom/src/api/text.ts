@@ -15,7 +15,11 @@ export class Text implements IHiccupShape2<Text> {
 	readonly type = "text";
 	readonly dim = 2;
 
-	constructor(public pos: Vec, public body: any, public attribs?: Attribs) {}
+	constructor(
+		public pos: Vec,
+		public body: any,
+		public attribs?: Attribs
+	) {}
 
 	copy(): Text {
 		return new Text(

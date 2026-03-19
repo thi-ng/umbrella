@@ -104,6 +104,6 @@ export const circumCenter3 = (
 					0.5 / m
 				),
 				a
-		  )
+			)
 		: undefined;
 };

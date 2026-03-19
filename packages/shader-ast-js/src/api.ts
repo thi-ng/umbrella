@@ -121,9 +121,7 @@ export interface JSBuiltinsFloat<T> extends JSBuiltinsCommon<T> {
 }
 
 export interface JSBuiltinsInt<T>
-	extends JSBuiltinsCommon<T>,
-		JSBuiltinsMath<T>,
-		JSBuiltinsBinary<T> {
+	extends JSBuiltinsCommon<T>, JSBuiltinsMath<T>, JSBuiltinsBinary<T> {
 	modi: Fn2<T, T, T>;
 }
 
@@ -154,7 +152,8 @@ export interface JSBuiltinsVecCompare {
 }
 
 export interface JSBuiltinsVec
-	extends JSBuiltinsFloat<Vec>,
+	extends
+		JSBuiltinsFloat<Vec>,
 		JSBuiltinsMath<Vec>,
 		JSBuiltinsVecScalar<Vec>,
 		JSBuiltinsVecCompare {
@@ -172,7 +171,8 @@ export interface JSBuiltinsVec3 extends JSBuiltinsVec {
 }
 
 export interface JSBuiltinsIntVec
-	extends JSBuiltinsInt<Vec>,
+	extends
+		JSBuiltinsInt<Vec>,
 		JSBuiltinsVecScalar<Vec>,
 		JSBuiltinsBinary<Vec>,
 		JSBuiltinsVecCompare {
@@ -183,8 +183,7 @@ export interface JSBuiltinsIntVec
 }
 
 export interface JSBuiltinsMat
-	extends JSBuiltinsMath<Mat>,
-		JSBuiltinsVecScalar<Mat> {
+	extends JSBuiltinsMath<Mat>, JSBuiltinsVecScalar<Mat> {
 	mulm: Fn2<Mat, Mat, Mat>;
 	mulvm: Fn2<Vec, Mat, Vec>;
 	mulmv: Fn2<Mat, Vec, Vec>;

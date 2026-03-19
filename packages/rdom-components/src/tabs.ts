@@ -45,11 +45,14 @@ export const tabs = (src: ISubscription<number, number>, opts: TabOpts) => {
 		$switch<number>(
 			src.transform(dedupe()),
 			identity,
-			sections.reduce((acc, { content }, i) => {
-				acc[i] = async (i) =>
-					section(attribs!.content, await content(i));
-				return acc;
-			}, <Record<number, Fn<number, Promise<ComponentLike>>>>{})
+			sections.reduce(
+				(acc, { content }, i) => {
+					acc[i] = async (i) =>
+						section(attribs!.content, await content(i));
+					return acc;
+				},
+				<Record<number, Fn<number, Promise<ComponentLike>>>>{}
+			)
 		)
 	);
 };

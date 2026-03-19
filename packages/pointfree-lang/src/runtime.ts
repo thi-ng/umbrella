@@ -369,8 +369,9 @@ const __visitWithResolver =
 		ctx[0].push(
 			state.word
 				? (_ctx: pf.StackContext) => (
-						_ctx[0].push(resolve(node, _ctx)), _ctx
-				  )
+						_ctx[0].push(resolve(node, _ctx)),
+						_ctx
+					)
 				: resolve(node, ctx)
 		);
 		return ctx;

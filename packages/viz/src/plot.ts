@@ -106,11 +106,10 @@ export const cartesianAxisX = (spec: AxisSpec) => {
 		labelOffset: [lx, ly],
 		range: [r1, r2],
 	} = spec;
-	const tick = (dy: number) => (x: number) =>
-		[
-			["M", [scale(x), pos]],
-			["v", dy],
-		];
+	const tick = (dy: number) => (x: number) => [
+		["M", [scale(x), pos]],
+		["v", dy],
+	];
 	return __axisCommon(
 		spec,
 		[
@@ -136,11 +135,10 @@ export const cartesianAxisY = (spec: AxisSpec) => {
 		labelOffset: [lx, ly],
 		range: [r1, r2],
 	} = spec;
-	const tick = (dx: number) => (y: number) =>
-		[
-			["M", [pos, scale(y)]],
-			["h", dx],
-		];
+	const tick = (dx: number) => (y: number) => [
+		["M", [pos, scale(y)]],
+		["h", dx],
+	];
 	return __axisCommon(
 		spec,
 		[

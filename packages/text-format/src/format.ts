@@ -44,7 +44,8 @@ export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
 export const defFormatPresets = (format: StringFormat): FormatPresets =>
 	Object.keys(PRESETS_TPL).reduce(
 		(acc, id) => (
-			(acc[id] = defFormat(format, PRESETS_TPL[<PresetID>id])), acc
+			(acc[id] = defFormat(format, PRESETS_TPL[<PresetID>id])),
+			acc
 		),
 		<any>{ format }
 	);

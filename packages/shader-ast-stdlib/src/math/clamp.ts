@@ -17,10 +17,10 @@ const __clamp =
 		x.type === F
 			? <any>clamp(<FloatTerm>x, float(min), float(max))
 			: x.type === V2
-			? <any>clamp(<Vec2Term>x, vec2(min), vec2(max))
-			: x.type === V3
-			? <any>clamp(<Vec3Term>x, vec3(min), vec3(max))
-			: <any>clamp(<Vec4Term>x, vec4(min), vec4(max));
+				? <any>clamp(<Vec2Term>x, vec2(min), vec2(max))
+				: x.type === V3
+					? <any>clamp(<Vec3Term>x, vec3(min), vec3(max))
+					: <any>clamp(<Vec4Term>x, vec4(min), vec4(max));
 
 /**
  * Inline function, expands to equivalent of `clamp(x, 0, 1)`.

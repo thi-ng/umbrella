@@ -78,5 +78,5 @@ export const defIndexed = (palette: NumericArray, isABGR = false) =>
 	palette.length <= 0x100
 		? defIndexed8(palette, isABGR)
 		: palette.length < 0x10000
-		? defIndexed16(palette, isABGR)
-		: defIndexed32(palette, isABGR);
+			? defIndexed16(palette, isABGR)
+			: defIndexed32(palette, isABGR);

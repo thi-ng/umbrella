@@ -226,8 +226,10 @@ export interface QueryOpts {
 /**
  * Subset of {@link QueryOpts} applicable to {@link defKeyQuery}.
  */
-export interface KeyQueryOpts
-	extends Pick<QueryOpts, "cwise" | "intersect" | "equiv"> {}
+export interface KeyQueryOpts extends Pick<
+	QueryOpts,
+	"cwise" | "intersect" | "equiv"
+> {}
 
 export interface QueryTerm<T extends QueryObj = QueryObj> {
 	/**

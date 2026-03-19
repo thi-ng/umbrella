@@ -50,5 +50,5 @@ export function toggle<T>(
 					complete,
 					(acc: any) => reduce(acc, (state = !state) ? on : off),
 				];
-		  };
+			};
 }

@@ -14,7 +14,7 @@ export const __iterNext = <T extends { id: number; iter: AsyncIterator<any> }>(
 
 /** @internal */
 export const __iterRemove = <
-	T extends { id: number; iter: AsyncIterator<any> }
+	T extends { id: number; iter: AsyncIterator<any> },
 >(
 	iters: T[],
 	id: number

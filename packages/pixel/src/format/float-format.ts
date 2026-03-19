@@ -68,7 +68,8 @@ const __defConvert1Gray = (res: FloatFormat) => {
 	res.toABGR = (col) =>
 		((((clamp01(col[0]) * 0xff + 0.5) | 0) * 0x010101) | 0xff000000) >>> 0;
 	res.fromABGR = (col, out = []) => (
-		(out[0] = __luminanceABGR(col) / 0xff), out
+		(out[0] = __luminanceABGR(col) / 0xff),
+		out
 	);
 };
 

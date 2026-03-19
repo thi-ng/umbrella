@@ -46,8 +46,10 @@ export interface ILayout<O, T> {
 	next(opts?: O): T;
 }
 
-export interface IGridLayout<T extends IGridLayout<T>>
-	extends ILayout<CellSpan, LayoutBox> {
+export interface IGridLayout<T extends IGridLayout<T>> extends ILayout<
+	CellSpan,
+	LayoutBox
+> {
 	readonly parent: IGridLayout<T> | null;
 	/** Left coordinate of entire layout */
 	readonly x: number;

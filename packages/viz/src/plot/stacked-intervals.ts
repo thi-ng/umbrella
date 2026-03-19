@@ -46,16 +46,19 @@ const __overlap = ([a, b]: number[], [c, d]: number[], pad = 0) =>
 
 /** @internal */
 const __laneStacking = <T>(data: [number[], T][], pad = 0) =>
-	data.reduce((acc, item) => {
-		const rx = item[0];
-		for (let i = 0; true; i++) {
-			const row = acc[i];
-			if (!row || !some((y) => __overlap(rx, y[0], pad), row)) {
-				row ? row.push(item) : (acc[i] = [item]);
-				return acc;
+	data.reduce(
+		(acc, item) => {
+			const rx = item[0];
+			for (let i = 0; true; i++) {
+				const row = acc[i];
+				if (!row || !some((y) => __overlap(rx, y[0], pad), row)) {
+					row ? row.push(item) : (acc[i] = [item]);
+					return acc;
+				}
 			}
-		}
-	}, <Lane<T>[]>[]);
+		},
+		<Lane<T>[]>[]
+	);
 
 /** @internal */
 const __processLane =

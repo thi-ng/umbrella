@@ -132,7 +132,7 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 				: (item = {
 						k: key,
 						v: $compile(ctor(val)),
-				  });
+					});
 			currCache.set(key, (currItems[i] = item));
 			const off = offsets.get(key);
 			off != undefined && deltas.set(key, Math.abs(i - off));

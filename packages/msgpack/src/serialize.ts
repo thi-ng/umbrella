@@ -124,14 +124,15 @@ export const serialize = (src: any, opts: Partial<EncodeOpts> = {}) => {
 			type !== "object"
 				? type
 				: isArray(x)
-				? "array"
-				: x instanceof Date
-				? "date"
-				: x instanceof Uint8Array || x instanceof Uint8ClampedArray
-				? "bin"
-				: isTypedArray(x)
-				? "array"
-				: type;
+					? "array"
+					: x instanceof Date
+						? "date"
+						: x instanceof Uint8Array ||
+							  x instanceof Uint8ClampedArray
+							? "bin"
+							: isTypedArray(x)
+								? "array"
+								: type;
 
 		switch (type) {
 			case "boolean":
@@ -146,16 +147,24 @@ export const serialize = (src: any, opts: Partial<EncodeOpts> = {}) => {
 				) {
 					addFloat(x);
 				} else if (x > 0) {
-					if (x < 0x80) add8(x); // fixint
-					else if (x < 0x100) add8id(0xcc, x); // uint8
-					else if (x < 0x1_0000) add16id(0xcd, x); // uint16
-					else if (x < 0x1_0000_0000) add32id(0xce, x); // uint32
+					if (x < 0x80)
+						add8(x); // fixint
+					else if (x < 0x100)
+						add8id(0xcc, x); // uint8
+					else if (x < 0x1_0000)
+						add16id(0xcd, x); // uint16
+					else if (x < 0x1_0000_0000)
+						add32id(0xce, x); // uint32
 					else addBigInt(BigInt(x));
 				} else {
-					if (x >= -0x20) add8(x); // fixint
-					else if (x >= -0x80) add8id(0xd0, x); // int8
-					else if (x >= -0x8000) add16id(0xd1, x); // int16
-					else if (x >= -0x8000_0000) add32id(0xd2, x); // int32
+					if (x >= -0x20)
+						add8(x); // fixint
+					else if (x >= -0x80)
+						add8id(0xd0, x); // int8
+					else if (x >= -0x8000)
+						add16id(0xd1, x); // int16
+					else if (x >= -0x8000_0000)
+						add32id(0xd2, x); // int32
 					else addBigInt(BigInt(x));
 				}
 				break;

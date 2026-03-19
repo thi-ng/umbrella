@@ -17,8 +17,8 @@ export const noneOfP = (
 	isSet(opts)
 		? (x) => !opts.has(x)
 		: isPlainObject(opts)
-		? (x) => !(<any>opts)[x]
-		: (x) => !opts.includes(x);
+			? (x) => !(<any>opts)[x]
+			: (x) => !opts.includes(x);
 
 /**
  * Matches single char against given options and only succeeds if

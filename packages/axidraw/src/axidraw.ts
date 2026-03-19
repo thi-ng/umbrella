@@ -83,11 +83,11 @@ export class AxiDraw implements IReset {
 								this.opts.bounds,
 								div(inch, this.opts.stepsPerInch)
 							),
-					  ]
+						]
 					: [
 							mulN2([], this.opts.bounds[0], this.scale),
 							mulN2([], this.opts.bounds[1], this.scale),
-					  ];
+						];
 		}
 		this.save();
 	}

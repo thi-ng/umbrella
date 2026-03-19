@@ -119,10 +119,9 @@ const $toggle =
 		shapeOn: any,
 		shapeOff: any
 	) =>
-	(_: any, attribs: any, state: boolean) =>
-		[
-			"svg",
-			{ ...size, ...attribs },
-			["rect", state ? bgOn : bgOff],
-			[shape, state ? shapeOn : shapeOff],
-		];
+	(_: any, attribs: any, state: boolean) => [
+		"svg",
+		{ ...size, ...attribs },
+		["rect", state ? bgOn : bgOff],
+		[shape, state ? shapeOn : shapeOff],
+	];

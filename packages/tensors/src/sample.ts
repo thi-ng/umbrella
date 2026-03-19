@@ -174,7 +174,7 @@ export const defSampler3 = (
 		| [
 				SamplerType | SamplerKernel,
 				SamplerType | SamplerKernel,
-				SamplerType | SamplerKernel
+				SamplerType | SamplerKernel,
 		  ],
 	boundary:
 		| BoundaryType
@@ -182,7 +182,7 @@ export const defSampler3 = (
 		| [
 				BoundaryType | BoundaryFn,
 				BoundaryType | BoundaryFn,
-				BoundaryType | BoundaryFn
+				BoundaryType | BoundaryFn,
 		  ] = "clamp"
 ): Sampler3 => {
 	const [indexX, indexY, indexZ] = (
@@ -246,7 +246,7 @@ export const defSampler4 = (
 				SamplerType | SamplerKernel,
 				SamplerType | SamplerKernel,
 				SamplerType | SamplerKernel,
-				SamplerType | SamplerKernel
+				SamplerType | SamplerKernel,
 		  ],
 	boundary:
 		| BoundaryType
@@ -255,7 +255,7 @@ export const defSampler4 = (
 				BoundaryType | BoundaryFn,
 				BoundaryType | BoundaryFn,
 				BoundaryType | BoundaryFn,
-				BoundaryType | BoundaryFn
+				BoundaryType | BoundaryFn,
 		  ] = "clamp"
 ): Sampler4 => {
 	const [indexX, indexY, indexZ, indexW] = (
@@ -324,7 +324,7 @@ export const defSampler4 = (
 
 /** @internal */
 const __resolveBoundary = (mode: Maybe<BoundaryFn | BoundaryType>) =>
-	isString(mode) ? BOUNDARY_MODES[mode] : mode ?? __boundaryClamp;
+	isString(mode) ? BOUNDARY_MODES[mode] : (mode ?? __boundaryClamp);
 
 /** @internal */
 const __resolveKernel = (kernel: SamplerKernel | SamplerType) =>

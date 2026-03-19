@@ -229,10 +229,10 @@ const __themePartFromTuple = (part: ColorThemePartTuple) => {
 		(args.length === 1
 			? { range, base: args[0], weight }
 			: args.length === 0
-			? COLOR_RANGES[<ColorRangePreset>range]
-				? { range, weight }
-				: { base: range, weight }
-			: illegalArgs(`invalid theme part: "${part}"`))
+				? COLOR_RANGES[<ColorRangePreset>range]
+					? { range, weight }
+					: { base: range, weight }
+				: illegalArgs(`invalid theme part: "${part}"`))
 	);
 };
 

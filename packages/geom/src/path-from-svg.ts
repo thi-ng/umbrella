@@ -121,8 +121,8 @@ const __readFlag = (src: string, i: number): [boolean, number] => {
 		c === "0"
 			? false
 			: c === "1"
-			? true
-			: illegalState(`expected '0' or '1' @ pos: ${i}`),
+				? true
+				: illegalState(`expected '0' or '1' @ pos: ${i}`),
 		i + 1,
 	];
 };

@@ -22,7 +22,10 @@ import { EVENT_ADDED, EVENT_REMOVED, type IDGenEventType } from "./api.js";
 export class MonotonicID implements IIDGen<number>, INotify<IDGenEventType> {
 	nextID: number;
 
-	constructor(public start = 0, public step = 1) {
+	constructor(
+		public start = 0,
+		public step = 1
+	) {
 		assert(step > 0, "invalid step size");
 		this.nextID = start;
 	}

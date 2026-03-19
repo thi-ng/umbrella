@@ -75,10 +75,10 @@ export function $(val: Term<any>, id: string): Swizzle<any> {
 			type === "i"
 				? rtype(I, "ivec")
 				: type === "u"
-				? rtype(U, "uvec")
-				: type === "b"
-				? rtype(B, "bvec")
-				: rtype(F, "vec"),
+					? rtype(U, "uvec")
+					: type === "b"
+						? rtype(B, "bvec")
+						: rtype(F, "vec"),
 		val,
 		id,
 	};
@@ -103,7 +103,7 @@ export const $z = <
 		| "uvec3"
 		| "uvec4"
 		| "bvec3"
-		| "bvec4"
+		| "bvec4",
 >(
 	val: Term<T>
 ): Swizzle<Select4<T, Vec, IVec, UVec, "float", "int", "uint", "bool">> =>

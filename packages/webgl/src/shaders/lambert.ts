@@ -20,8 +20,9 @@ import { defMaterial } from "../material.js";
 import { autoNormalMatrix2 } from "../matrices.js";
 import { colorAttrib, positionAttrib } from "../utils.js";
 
-export interface LambertOpts
-	extends ShaderPresetOpts<Pick<Material, "ambientCol" | "diffuseCol">> {
+export interface LambertOpts extends ShaderPresetOpts<
+	Pick<Material, "ambientCol" | "diffuseCol">
+> {
 	bidir: boolean;
 }
 
@@ -56,7 +57,7 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
 							? mul(
 									$(texture(unis.tex, ins.vuv), "xyz"),
 									ins.vcolor
-							  )
+								)
 							: ins.vcolor,
 						unis.lightCol,
 						unis.ambientCol

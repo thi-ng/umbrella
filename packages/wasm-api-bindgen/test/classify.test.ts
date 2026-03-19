@@ -5,7 +5,7 @@ import { classifyField, type Field, type FieldClass } from "../src/index.js";
 const checkAll = (
 	specs: [
 		Pick<Field, "type" | "tag" | "len" | "const">,
-		{ classifier: FieldClass; isConst: boolean }
+		{ classifier: FieldClass; isConst: boolean },
 	][]
 ) => {
 	for (let [f, res] of specs) {

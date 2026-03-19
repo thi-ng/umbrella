@@ -20,5 +20,5 @@ export const rgbHsi: ColorOp = (out, src) => {
 				atan2Abs(SQRT32 * (g - b), 0.5 * (2 * r - g - b)) / TAU,
 				1 - Math.min(r, g, b) / i,
 				i
-		  );
+			);
 };

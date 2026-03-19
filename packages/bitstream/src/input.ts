@@ -85,7 +85,7 @@ export class BitInputStream {
 
 	readStruct(fields: [string, number][], safe = true) {
 		return fields.reduce((acc: any, [id, word]) => {
-			return (acc[id] = this.read(word, safe)), acc;
+			return ((acc[id] = this.read(word, safe)), acc);
 		}, {});
 	}
 

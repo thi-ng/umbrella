@@ -9,7 +9,10 @@ export class PubSub<K, V> {
 	protected topics: Map<K, MSub<V>[]> = new Map();
 	protected isActive = false;
 
-	constructor(public src: AsyncIterable<V>, public topicFn: Fn<V, K>) {}
+	constructor(
+		public src: AsyncIterable<V>,
+		public topicFn: Fn<V, K>
+	) {}
 
 	/**
 	 * Creates a new subscription (aka custom `AsyncIterable`) which will

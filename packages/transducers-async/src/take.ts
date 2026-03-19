@@ -20,8 +20,8 @@ export function take<T>(n: number, src?: MaybeAsyncIterable<T>) {
 					--remaining > 0
 						? reduce(acc, x)
 						: remaining === 0
-						? ensureReduced(reduce(acc, x))
-						: reduced(acc)
+							? ensureReduced(reduce(acc, x))
+							: reduced(acc)
 				);
-		  };
+			};
 }

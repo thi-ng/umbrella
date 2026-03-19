@@ -57,8 +57,8 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
 	return r < 0
 		? []
 		: r < eps
-		? [-b / d]
-		: ((r = Math.sqrt(r)), [(-b - r) / d, (-b + r) / d]);
+			? [-b / d]
+			: ((r = Math.sqrt(r)), [(-b - r) / d, (-b + r) / d]);
 };
 
 /**

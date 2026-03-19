@@ -33,6 +33,6 @@ export const splice = (
 	return from <= 0
 		? insert + src.substring(to)
 		: from >= src.length
-		? src + insert
-		: src.substring(0, from) + insert + src.substring(to);
+			? src + insert
+			: src.substring(0, from) + insert + src.substring(to);
 };

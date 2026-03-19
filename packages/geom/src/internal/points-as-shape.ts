@@ -30,5 +30,5 @@ export const __pointArraysAsShapes = <T extends PCLike>(
 						),
 					points
 				),
-		  ]
+			]
 		: undefined;

@@ -40,5 +40,5 @@ export function movingAverage(period: number, src?: Iterable<number>): any {
 					n > period && (sum -= window.shift()!);
 					return n >= period ? reduce(acc, sum / period) : acc;
 				});
-		  };
+			};
 }

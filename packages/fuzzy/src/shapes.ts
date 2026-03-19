@@ -65,10 +65,10 @@ export const trapezoid: FnU4<number, FuzzyFn> = (a, b, c, d) => (x) =>
 	x < a || x > d
 		? 0
 		: x > b && x < c
-		? 1
-		: x <= b
-		? fit(x, a, b, 0, 1)
-		: fit(x, c, d, 1, 0);
+			? 1
+			: x <= b
+				? fit(x, a, b, 0, 1)
+				: fit(x, c, d, 1, 0);
 
 /**
  * HOF {@link FuzzyFn}, yielding sigmoid curve with configurable `steep` and

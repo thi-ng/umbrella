@@ -55,8 +55,10 @@ export const sliderH = ({
 	);
 };
 
-export interface SliderGroupOpts
-	extends Omit<SliderOpts, "layout" | "value" | "label" | "info"> {
+export interface SliderGroupOpts extends Omit<
+	SliderOpts,
+	"layout" | "value" | "label" | "info"
+> {
 	layout: IGridLayout<any>;
 	/**
 	 * If true (default: false), the sliders will be arranged horizontally.

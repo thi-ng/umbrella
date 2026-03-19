@@ -91,7 +91,7 @@ export class Location<T> {
 						path!.nodes,
 						path!.changed
 					)
-			  )
+				)
 			: undefined;
 	}
 
@@ -127,7 +127,7 @@ export class Location<T> {
 						path!.nodes,
 						path!.changed
 					)
-			  )
+				)
 			: this;
 	}
 
@@ -148,7 +148,7 @@ export class Location<T> {
 						path!.nodes,
 						path!.changed
 					)
-			  )
+				)
 			: this;
 	}
 

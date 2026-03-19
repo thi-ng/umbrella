@@ -194,7 +194,7 @@ const __parseRef = (id: string, ctx: ParseContext) => {
 				equiv(o: any) {
 					return o != null && o.$ref === this.$ref;
 				},
-		  };
+			};
 };
 
 /** @internal */

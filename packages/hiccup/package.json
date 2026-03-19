@@ -35,6 +35,7 @@
 		"clean": "bun ../../tools/src/clean-package.ts",
 		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
 		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"format": "../../node_modules/.bin/prettier src test --write",
 		"pub": "npm publish --access public",
 		"test": "bun test",
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
@@ -46,7 +47,6 @@
 		"@thi.ng/strings": "^3.10.0"
 	},
 	"devDependencies": {
-		"@thi.ng/atom": "^5.3.57",
 		"esbuild": "^0.27.2",
 		"typedoc": "^0.28.16",
 		"typescript": "^5.9.3"

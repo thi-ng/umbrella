@@ -32,5 +32,5 @@ export function join(sep = "", src?: Iterable<any>): any {
 				return compR(rfn, (acc, x: Iterable<any>) =>
 					r(acc, ensureArray(x).join(sep))
 				);
-		  };
+			};
 }

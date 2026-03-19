@@ -108,7 +108,7 @@ export function utf8Decode(src?: Iterable<number>): any {
 					}
 					return acc;
 				});
-		  };
+			};
 }
 
 /**
@@ -191,7 +191,7 @@ export function utf8Encode(src?: string): any {
 					}
 					return acc;
 				});
-		  };
+			};
 }
 
 /**

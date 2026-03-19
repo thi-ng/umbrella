@@ -300,17 +300,17 @@ simd.f32.set([1, 2, 3, 4, 5, 6, 7, 8, 10, 20, 30, 40, 50, 60, 70, 80]);
 assertEqual(simd.sum4_f32(0, 4, 4), 396);
 
 simd.f32.set([10, 20, 30, 40, 50, 60, 70, 80]);
-simd.swizzle4_32_aos(DEST, 0, 3, 0, 1, 2, 2, 4, 4),
-	assertEqual(
-		res_f32(DEST, 8),
-		// prettier-ignore
-		[40, 10, 20, 30, 80, 50, 60, 70],
-		"swizzle4 1"
-	);
-simd.swizzle4_32_aos(DEST, 0, 1, 1, 2, 2, 2, 4, 4),
-	assertEqual(
-		res_f32(DEST, 8),
-		// prettier-ignore
-		[20, 20, 30, 30, 60, 60, 70, 70],
-		"swizzle4 2"
-	);
+simd.swizzle4_32_aos(DEST, 0, 3, 0, 1, 2, 2, 4, 4);
+assertEqual(
+	res_f32(DEST, 8),
+	// prettier-ignore
+	[40, 10, 20, 30, 80, 50, 60, 70],
+	"swizzle4 1"
+);
+simd.swizzle4_32_aos(DEST, 0, 1, 1, 2, 2, 2, 4, 4);
+assertEqual(
+	res_f32(DEST, 8),
+	// prettier-ignore
+	[20, 20, 30, 30, 60, 60, 70, 70],
+	"swizzle4 2"
+);

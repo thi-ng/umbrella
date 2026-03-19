@@ -62,7 +62,7 @@ export type Dimensions = [
 	number,
 	number,
 	number,
-	number
+	number,
 ];
 
 /**

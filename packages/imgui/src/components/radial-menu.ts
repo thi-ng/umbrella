@@ -16,8 +16,10 @@ import { Key, type ComponentOpts, type Hash } from "../api.js";
 import { buttonRaw } from "./button.js";
 import { textLabelRaw } from "./textlabel.js";
 
-export interface RadialMenuOpts
-	extends Omit<ComponentOpts, "layout" | "label" | "info"> {
+export interface RadialMenuOpts extends Omit<
+	ComponentOpts,
+	"layout" | "label" | "info"
+> {
 	x: number;
 	y: number;
 	r: number;
@@ -38,19 +40,26 @@ export const radialMenu = ({
 	const key = hash([x, y, r, n, ~~gui.disabled]);
 	gui.registerID(id, key);
 	const cells: [Polygon, Hash, any, any][] = gui.resource(id, key, () => [
-		...mapIndexed((i, cell) => {
-			const p = add2(
-				null,
-				[-gui.textWidth(items[i]) >> 1, gui.theme.baseLine],
-				centroid(cell)!
-			);
-			return [
-				cell,
-				hash(p),
-				textLabelRaw(p, gui.textColor(false), items[i]),
-				textLabelRaw(p, gui.textColor(true), items[i]),
-			];
-		}, groupFromTessellation(tessellate(circle([x, y], r, { __samples: n }), [TESSELLATE_TRI_FAN]))),
+		...mapIndexed(
+			(i, cell) => {
+				const p = add2(
+					null,
+					[-gui.textWidth(items[i]) >> 1, gui.theme.baseLine],
+					centroid(cell)!
+				);
+				return [
+					cell,
+					hash(p),
+					textLabelRaw(p, gui.textColor(false), items[i]),
+					textLabelRaw(p, gui.textColor(true), items[i]),
+				];
+			},
+			groupFromTessellation(
+				tessellate(circle([x, y], r, { __samples: n }), [
+					TESSELLATE_TRI_FAN,
+				])
+			)
+		),
 	]);
 	let res: Maybe<number>;
 	let sel = -1;

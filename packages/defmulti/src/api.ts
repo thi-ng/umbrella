@@ -259,71 +259,80 @@ export interface MultiFnBase<I> {
 }
 
 export interface MultiFn<T>
-	extends Implementation<T>,
-		MultiFnBase<Implementation<T>> {}
+	extends Implementation<T>, MultiFnBase<Implementation<T>> {}
 
 export interface MultiFn1<A, T>
-	extends Implementation1<A, T>,
-		MultiFnBase<Implementation1<A, T>> {}
+	extends Implementation1<A, T>, MultiFnBase<Implementation1<A, T>> {}
 
 export interface MultiFn1O<A, B, T>
-	extends Implementation1O<A, B, T>,
-		MultiFnBase<Implementation1O<A, B, T>> {}
+	extends Implementation1O<A, B, T>, MultiFnBase<Implementation1O<A, B, T>> {}
 
 export interface MultiFn2<A, B, T>
-	extends Implementation2<A, B, T>,
-		MultiFnBase<Implementation2<A, B, T>> {}
+	extends Implementation2<A, B, T>, MultiFnBase<Implementation2<A, B, T>> {}
 
 export interface MultiFn2O<A, B, C, T>
-	extends Implementation2O<A, B, C, T>,
+	extends
+		Implementation2O<A, B, C, T>,
 		MultiFnBase<Implementation2O<A, B, C, T>> {}
 
 export interface MultiFn3<A, B, C, T>
-	extends Implementation3<A, B, C, T>,
+	extends
+		Implementation3<A, B, C, T>,
 		MultiFnBase<Implementation3<A, B, C, T>> {}
 
 export interface MultiFn3O<A, B, C, D, T>
-	extends Implementation3O<A, B, C, D, T>,
+	extends
+		Implementation3O<A, B, C, D, T>,
 		MultiFnBase<Implementation3O<A, B, C, D, T>> {}
 
 export interface MultiFn4<A, B, C, D, T>
-	extends Implementation4<A, B, C, D, T>,
+	extends
+		Implementation4<A, B, C, D, T>,
 		MultiFnBase<Implementation4<A, B, C, D, T>> {}
 
 export interface MultiFn4O<A, B, C, D, E, T>
-	extends Implementation4O<A, B, C, D, E, T>,
+	extends
+		Implementation4O<A, B, C, D, E, T>,
 		MultiFnBase<Implementation4O<A, B, C, D, E, T>> {}
 
 export interface MultiFn5<A, B, C, D, E, T>
-	extends Implementation5<A, B, C, D, E, T>,
+	extends
+		Implementation5<A, B, C, D, E, T>,
 		MultiFnBase<Implementation5<A, B, C, D, E, T>> {}
 
 export interface MultiFn5O<A, B, C, D, E, F, T>
-	extends Implementation5O<A, B, C, D, E, F, T>,
+	extends
+		Implementation5O<A, B, C, D, E, F, T>,
 		MultiFnBase<Implementation5O<A, B, C, D, E, F, T>> {}
 
 export interface MultiFn6<A, B, C, D, E, F, T>
-	extends Implementation6<A, B, C, D, E, F, T>,
+	extends
+		Implementation6<A, B, C, D, E, F, T>,
 		MultiFnBase<Implementation6<A, B, C, D, E, F, T>> {}
 
 export interface MultiFn6O<A, B, C, D, E, F, G, T>
-	extends Implementation6O<A, B, C, D, E, F, G, T>,
+	extends
+		Implementation6O<A, B, C, D, E, F, G, T>,
 		MultiFnBase<Implementation6O<A, B, C, D, E, F, G, T>> {}
 
 export interface MultiFn7<A, B, C, D, E, F, G, T>
-	extends Implementation7<A, B, C, D, E, F, G, T>,
+	extends
+		Implementation7<A, B, C, D, E, F, G, T>,
 		MultiFnBase<Implementation7<A, B, C, D, E, F, G, T>> {}
 
 export interface MultiFn7O<A, B, C, D, E, F, G, H, T>
-	extends Implementation7O<A, B, C, D, E, F, G, H, T>,
+	extends
+		Implementation7O<A, B, C, D, E, F, G, H, T>,
 		MultiFnBase<Implementation7O<A, B, C, D, E, F, G, H, T>> {}
 
 export interface MultiFn8<A, B, C, D, E, F, G, H, T>
-	extends Implementation8<A, B, C, D, E, F, G, H, T>,
+	extends
+		Implementation8<A, B, C, D, E, F, G, H, T>,
 		MultiFnBase<Implementation8<A, B, C, D, E, F, G, H, T>> {}
 
 export interface MultiFn8O<A, B, C, D, E, F, G, H, I, T>
-	extends Implementation8O<A, B, C, D, E, F, G, H, I, T>,
+	extends
+		Implementation8O<A, B, C, D, E, F, G, H, I, T>,
 		MultiFnBase<Implementation8O<A, B, C, D, E, F, G, H, I, T>> {}
 
 export type AncestorDefs = IObjectOf<

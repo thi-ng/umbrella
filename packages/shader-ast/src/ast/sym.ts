@@ -100,7 +100,7 @@ export const arraySym = <T extends keyof ArrayTypeMap>(
 					tag: "array_init",
 					type: atype,
 					init,
-			  }
+				}
 			: undefined,
 	};
 };

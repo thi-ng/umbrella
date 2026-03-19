@@ -76,7 +76,7 @@ export function compareByKeys3<
 	T,
 	A extends Keys<T>,
 	B extends Keys<T>,
-	C extends Keys<T>
+	C extends Keys<T>,
 >(
 	major: A,
 	minor: B,
@@ -125,7 +125,7 @@ export function compareByKeys4<
 	A extends Keys<T>,
 	B extends Keys<T>,
 	C extends Keys<T>,
-	D extends Keys<T>
+	D extends Keys<T>,
 >(
 	a: A,
 	b: B,

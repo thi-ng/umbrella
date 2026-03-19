@@ -13,5 +13,5 @@ export function conj<T>(src?: Iterable<T>): any {
 		: reducer(
 				() => new Set(),
 				(acc, x) => acc.add(x)
-		  );
+			);
 }

@@ -43,19 +43,22 @@ export const remove = (clock: VClock, id: NumOrString): VClock => {
  * @param b -
  */
 export const merge: FnU2<VClock> = (a, b) =>
-	[...__uniqueIDs(a, b)].reduce((acc, id) => {
-		const va = a[id];
-		const vb = b[id];
-		acc[id] =
-			va !== undefined && vb !== undefined
-				? va > vb
-					? va
-					: vb
-				: va !== undefined
-				? a[id]
-				: b[id];
-		return acc;
-	}, <VClock>{});
+	[...__uniqueIDs(a, b)].reduce(
+		(acc, id) => {
+			const va = a[id];
+			const vb = b[id];
+			acc[id] =
+				va !== undefined && vb !== undefined
+					? va > vb
+						? va
+						: vb
+					: va !== undefined
+						? a[id]
+						: b[id];
+			return acc;
+		},
+		<VClock>{}
+	);
 
 /**
  * Computes the componentwise max signed difference between given vector clocks.

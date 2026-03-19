@@ -96,7 +96,7 @@ export const smoothTangents = (
 						prev!,
 						curr,
 						Math.min(1, clen / (clen + plen! + EPS))
-				  )
+					)
 				: addmN([], prev!, curr, 0.5);
 		} else {
 			t = set([], curr);

@@ -19,7 +19,10 @@ export class OnePole
 	protected _a0!: number;
 	protected _b1!: number;
 
-	constructor(protected _type: OnepoleType, protected _freq: number) {
+	constructor(
+		protected _type: OnepoleType,
+		protected _freq: number
+	) {
 		super(0);
 		this.setFreq(_freq);
 	}

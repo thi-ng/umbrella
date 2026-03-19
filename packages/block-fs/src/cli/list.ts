@@ -80,7 +80,7 @@ export const LIST: Command<ListOpts, CLIOpts, AppCtx<ListOpts>> = {
 							PREFIX[last[depth]],
 							entry.name,
 						].join(""),
-				  ]
+					]
 				: [path];
 			if (opts.withSize) {
 				row.push(entry.isDirectory() ? "" : String(Number(entry.size)));

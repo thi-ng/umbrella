@@ -34,9 +34,8 @@ export async function* iterator<A, B>(
 	xform: AsyncTxLike<A, B>,
 	src: MaybeAsyncIterable<A>
 ): AsyncIterableIterator<B> {
-	const [_, complete, reduce]: AsyncReducer<A, B[]> = ensureAsyncTransducer(
-		xform
-	)(push());
+	const [_, complete, reduce]: AsyncReducer<A, B[]> =
+		ensureAsyncTransducer(xform)(push());
 	for await (let x of src) {
 		const y = await reduce([], x);
 		if (isReduced(y)) {

@@ -30,11 +30,13 @@ export const cossin = (theta: number, n = 1): [number, number] => [
  * @param theta -
  */
 export const absTheta: FnN = (theta) => (
-	(theta %= TAU), theta < 0 ? TAU + theta : theta
+	(theta %= TAU),
+	theta < 0 ? TAU + theta : theta
 );
 
 export const absInnerAngle: FnN = (theta) => (
-	(theta = Math.abs(theta)), theta > PI ? TAU - theta : theta
+	(theta = Math.abs(theta)),
+	theta > PI ? TAU - theta : theta
 );
 
 /**

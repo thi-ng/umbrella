@@ -76,7 +76,7 @@ const __intersectWith =
 						isec: [maddN([], dir, tmax, rpos)],
 						alpha: tmax,
 						inside,
-				  }
+					}
 				: {
 						type: IntersectionType.INTERSECT,
 						isec: [
@@ -85,7 +85,7 @@ const __intersectWith =
 						],
 						alpha: tmin,
 						beta: tmax,
-				  }
+					}
 			: NONE;
 	};
 

@@ -52,5 +52,5 @@ export function partitionTime<T>(period: number, src?: Iterable<T>): any {
 					timeDiff(prev, t) >= period && (prev = t);
 					return prev;
 				};
-		  }, true);
+			}, true);
 }

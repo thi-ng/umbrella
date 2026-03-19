@@ -12,8 +12,8 @@ export const diffObject = <T>(
 	a === b
 		? { distance: 0 }
 		: mode === "only-distance"
-		? __diffObjectDist(a, b, _equiv)
-		: __diffObjectFull(a, b, _equiv);
+			? __diffObjectDist(a, b, _equiv)
+			: __diffObjectFull(a, b, _equiv);
 
 /** @internal */
 const __diffObjectDist = (

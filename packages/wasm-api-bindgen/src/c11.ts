@@ -108,7 +108,7 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 							: [
 									__prefixedName(typePrefix, id, coll),
 									capitalize(id!),
-							  ];
+								];
 					res.push(...__sliceDef(ptr, typePrefix, name, coll));
 				}
 			}
@@ -387,8 +387,8 @@ const __declOrder = (coll: TypeColl) =>
 			isStruct(type) || isUnion(type)
 				? type.fields
 				: type.type === "funcptr"
-				? (<FuncPointer>type).args
-				: undefined;
+					? (<FuncPointer>type).args
+					: undefined;
 		return fields
 			? fields.map((x) => x.type).filter((x) => !!coll[x])
 			: undefined;
@@ -422,7 +422,7 @@ const __funcptr = (
 					coll,
 					opts,
 					typePrefix
-			  ).type;
+				).type;
 	return `typedef ${rtype} (*${name})(${args});`;
 };
 

@@ -44,11 +44,11 @@ export const __segmentTransformer =
 					? <any>{
 							type: s.type,
 							geo: txGeo(<any>s.geo),
-					  }
+						}
 					: s.point
-					? <S>{
-							type: s.type,
-							point: txPoint(s.point),
-					  }
-					: <S>{ ...s }
+						? <S>{
+								type: s.type,
+								point: txPoint(s.point),
+							}
+						: <S>{ ...s }
 		);

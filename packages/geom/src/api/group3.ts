@@ -15,7 +15,10 @@ export class Group3 implements IClear, IHiccupShape3<Group3> {
 
 	children: IHiccupShape3[];
 
-	constructor(public attribs?: Attribs, children?: Iterable<IHiccupShape3>) {
+	constructor(
+		public attribs?: Attribs,
+		children?: Iterable<IHiccupShape3>
+	) {
 		this.children = children ? ensureArray(children) : [];
 	}
 

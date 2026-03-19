@@ -24,10 +24,10 @@ export const wait = (delay?: number) =>
 	delay !== undefined
 		? untilPromise(
 				new Promise<void>((resolve) => setTimeout(resolve, delay))
-		  )
+			)
 		: fiber(function* () {
 				while (true) yield;
-		  });
+			});
 
 /**
  * Returns ES6 generator which "blocks" for given number of frames.

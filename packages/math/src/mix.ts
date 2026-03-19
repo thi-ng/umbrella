@@ -595,8 +595,8 @@ export const defMitchell = (b = 1 / 3, c = 1 / 3) => {
 		return t < 1
 			? (k1 * t2 * t + k2 * t2 + k3) / 6
 			: t < 2
-			? (k4 * t2 * t + k5 * t2 + k6 * t + k7) / 6
-			: 0;
+				? (k4 * t2 * t + k5 * t2 + k6 * t + k7) / 6
+				: 0;
 	};
 };
 

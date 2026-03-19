@@ -21,8 +21,8 @@ export const step = <A, B>(
 			return acc.length === 1 && unwrap
 				? acc[0]
 				: acc.length > 0
-				? acc
-				: undefined;
+					? acc
+					: undefined;
 		}
 	};
 };

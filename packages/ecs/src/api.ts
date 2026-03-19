@@ -32,8 +32,7 @@ export interface ComponentInfo<SPEC, K extends ComponentID<SPEC>> {
 }
 
 export interface IComponent<K extends string, VALUES, GET, SET>
-	extends IID<K>,
-		INotify {
+	extends IID<K>, INotify {
 	dense: UIntArray;
 	sparse: UIntArray;
 	vals: VALUES;

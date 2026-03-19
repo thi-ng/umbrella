@@ -147,8 +147,8 @@ const __buildTransform = (attribs: Attribs) => {
 			isString(v)
 				? v
 				: isArrayLike(v)
-				? `scale(${ff(v[0])} ${ff(v[1])})`
-				: `scale(${ff(v)})`
+					? `scale(${ff(v[0])} ${ff(v[1])})`
+					: `scale(${ff(v)})`
 		);
 		delete attribs.scale;
 	}

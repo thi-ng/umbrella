@@ -13,8 +13,8 @@ export const ensureDate = (x: MaybeDate): Date =>
 	isString(x) || isNumber(x)
 		? new Date(x)
 		: implementsFunction(x, "toDate")
-		? x.toDate()
-		: x;
+			? x.toDate()
+			: x;
 
 /**
  * Coerces `x` to a timestamp.

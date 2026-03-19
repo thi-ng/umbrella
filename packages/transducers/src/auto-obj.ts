@@ -28,5 +28,5 @@ export function autoObj<T>(prefix: string, src?: Iterable<T>): any {
 		: reducer<T, IObjectOf<T>>(
 				() => ({}),
 				(acc, v) => ((acc[prefix + id++] = v), acc)
-		  );
+			);
 }

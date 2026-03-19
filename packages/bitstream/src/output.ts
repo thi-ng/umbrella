@@ -17,8 +17,8 @@ export class BitOutputStream {
 			typeof buffer === "undefined"
 				? new Uint8Array(DEFAULT_BUF_SIZE)
 				: typeof buffer === "number"
-				? new Uint8Array(buffer)
-				: buffer;
+					? new Uint8Array(buffer)
+					: buffer;
 		this.start = offset;
 		this.seek(offset);
 		this.buffer[this.pos] &= ~((1 << this.bit) - 1);

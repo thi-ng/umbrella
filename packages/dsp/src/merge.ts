@@ -14,7 +14,10 @@ export const mergeT = <T>(channels: IGen<T>[], init: T) =>
 	new Merge(channels, init);
 
 export class Merge<T> extends AGen<T[]> {
-	constructor(protected _channels: IGen<T>[], init: T) {
+	constructor(
+		protected _channels: IGen<T>[],
+		init: T
+	) {
 		super(new Array<T>(_channels.length).fill(init));
 	}
 

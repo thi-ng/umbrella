@@ -32,8 +32,8 @@ export const defConversions = (
 				val.length === 2
 					? (out, src) => b(out, a(out, src))
 					: val.length === 3
-					? (out, src) => c!(out, b(out, a(out, src)))
-					: (out, src) => d!(out, c!(out, b(out, a(out, src))));
+						? (out, src) => c!(out, b(out, a(out, src)))
+						: (out, src) => d!(out, c!(out, b(out, a(out, src))));
 		}
 	}
 	CONVERSIONS[mode] = { ...CONVERSIONS[mode], ...(<Conversions>spec) };
@@ -60,6 +60,6 @@ export const convert = <T extends Color>(
 	return $convert
 		? <T>$convert(res, src)
 		: CONVERSIONS.rgb![srcMode]
-		? <T>spec!.rgb(res, CONVERSIONS.rgb![srcMode]!([], src))
-		: unsupportedOp(`can't convert: ${srcMode} -> ${destMode}`);
+			? <T>spec!.rgb(res, CONVERSIONS.rgb![srcMode]!([], src))
+			: unsupportedOp(`can't convert: ${srcMode} -> ${destMode}`);
 };

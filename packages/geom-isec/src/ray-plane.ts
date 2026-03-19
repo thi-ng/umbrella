@@ -31,6 +31,6 @@ export const intersectRayPlane = (
 		? {
 				type: IntersectionType.COINCIDENT,
 				isec: [copy(rpos)],
-		  }
+			}
 		: NONE;
 };

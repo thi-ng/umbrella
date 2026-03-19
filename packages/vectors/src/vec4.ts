@@ -201,4 +201,4 @@ export const asVec4 = (x: Vec) =>
 				x.length >= 4
 					? <NumericArray>x
 					: [x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]
-		  );
+			);

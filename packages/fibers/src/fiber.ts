@@ -399,8 +399,8 @@ export class Fiber<T = any>
 			typeof requestAnimationFrame === "function"
 				? requestAnimationFrame
 				: typeof setImmediate === "function"
-				? setImmediate
-				: (fn) => setTimeout(fn, 1)
+					? setImmediate
+					: (fn) => setTimeout(fn, 1)
 		);
 	}
 

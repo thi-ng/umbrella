@@ -27,11 +27,14 @@ export const fromEvent = (
 	listenerOpts: boolean | AddEventListenerOptions = false,
 	streamOpts?: Partial<EventOpts>
 ) => {
-	const result = stream<Event>((stream) => {
-		let listener = (e: Event) => stream.next(e);
-		src.addEventListener(name, listener, listenerOpts);
-		return () => src.removeEventListener(name, listener, listenerOpts);
-	}, __optsWithID(`event-${name}`, streamOpts));
+	const result = stream<Event>(
+		(stream) => {
+			let listener = (e: Event) => stream.next(e);
+			src.addEventListener(name, listener, listenerOpts);
+			return () => src.removeEventListener(name, listener, listenerOpts);
+		},
+		__optsWithID(`event-${name}`, streamOpts)
+	);
 	streamOpts?.init !== undefined && result.next(streamOpts.init);
 	return result;
 };

@@ -98,7 +98,7 @@ export const varToHiccup = (
 						[zero, height + 10],
 						"0.00",
 					],
-			  ]
+				]
 			: null,
 		[
 			"g",

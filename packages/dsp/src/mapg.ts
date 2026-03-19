@@ -42,7 +42,11 @@ export function mapG(op: FnAny<any>, ...args: any[]): IGen<any> {
 }
 
 export class MapG1<A, T> extends AGen<T> {
-	constructor(protected _op: Fn2<A, T, T>, protected _a: IGen<A>, init: T) {
+	constructor(
+		protected _op: Fn2<A, T, T>,
+		protected _a: IGen<A>,
+		init: T
+	) {
 		super(init);
 	}
 

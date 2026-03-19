@@ -344,24 +344,24 @@ export class IMGUI implements IClear, IToHiccup {
 		return this.disabled
 			? this.theme.bgDisabled
 			: hover
-			? this.theme.bgHover
-			: this.theme.bg;
+				? this.theme.bgHover
+				: this.theme.bg;
 	}
 
 	fgColor(hover: boolean) {
 		return this.disabled
 			? this.theme.fgDisabled
 			: hover
-			? this.theme.fgHover
-			: this.theme.fg;
+				? this.theme.fgHover
+				: this.theme.fg;
 	}
 
 	textColor(hover: boolean) {
 		return this.disabled
 			? this.theme.textDisabled
 			: hover
-			? this.theme.textHover
-			: this.theme.text;
+				? this.theme.textHover
+				: this.theme.text;
 	}
 
 	focusColor(id: string) {

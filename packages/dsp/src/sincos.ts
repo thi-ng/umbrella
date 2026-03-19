@@ -25,7 +25,10 @@ export class SinCos extends AGen<number[]> implements ICopy<SinCos>, IReset {
 	protected _s!: number;
 	protected _c!: number;
 
-	constructor(protected _freq: number, protected _amp = 1) {
+	constructor(
+		protected _freq: number,
+		protected _amp = 1
+	) {
 		super([0, _amp]);
 		this.calcCoeffs();
 	}

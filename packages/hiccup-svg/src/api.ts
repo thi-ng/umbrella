@@ -21,7 +21,7 @@ export type PathSegmentArc = [
 	number,
 	boolean,
 	boolean,
-	Vec2Like
+	Vec2Like,
 ];
 export type PathSegmentClose = ["Z" | "z"];
 

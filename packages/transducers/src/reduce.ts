@@ -13,8 +13,8 @@ const __parseArgs = (args: any[]) =>
 	args.length === 2
 		? [undefined, args[1]]
 		: args.length === 3
-		? [args[1], args[2]]
-		: illegalArity(args.length);
+			? [args[1], args[2]]
+			: illegalArity(args.length);
 
 export function reduce<A, B>(rfn: Reducer<A, B>, src: Iterable<A>): B;
 export function reduce<A, B>(rfn: Reducer<A, B>, acc: B, src: Iterable<A>): B;
@@ -37,8 +37,8 @@ export function reduce<A, B>(...args: any[]): B {
 			implementsFunction(src, "$reduce")
 				? src.$reduce(reduce, acc)
 				: isArrayLike(src)
-				? __reduceArray(reduce, acc, src)
-				: __reduceIterable(reduce, acc, <Iterable<A>>src)
+					? __reduceArray(reduce, acc, src)
+					: __reduceIterable(reduce, acc, <Iterable<A>>src)
 		)
 	);
 }

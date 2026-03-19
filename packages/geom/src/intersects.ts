@@ -181,7 +181,7 @@ export const intersects: MultiFn2O<
 						isec: points,
 						alpha: minD,
 						inside,
-				  }
+					}
 				: NONE;
 		},
 

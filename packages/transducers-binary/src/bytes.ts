@@ -147,7 +147,7 @@ export function asBytes(src?: Iterable<BinStructItem>): any {
 					default:
 						illegalArgs(`invalid struct item: ${x[0]}`);
 				}
-		  });
+			});
 }
 
 export function bytes(
@@ -298,5 +298,5 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
 					}
 					return acc;
 				},
-		  ];
+			];
 }

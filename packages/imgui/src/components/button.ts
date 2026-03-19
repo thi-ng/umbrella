@@ -39,7 +39,7 @@ export const buttonH = ({
 			: undefined,
 		labelHover
 			? // prettier-ignore
-			  __mkLabel(gui, textTransformH, id, key, x, y, w, h, true, labelHover)
+				__mkLabel(gui, textTransformH, id, key, x, y, w, h, true, labelHover)
 			: undefined,
 		info
 	);
@@ -66,7 +66,7 @@ export const buttonV = ({
 			: undefined,
 		labelHover
 			? // prettier-ignore
-			  __mkLabel(gui, textTransformV, id, key, x, y, w, h, true, labelHover)
+				__mkLabel(gui, textTransformV, id, key, x, y, w, h, true, labelHover)
 			: undefined,
 		info
 	);

@@ -22,7 +22,7 @@ export const readPixels = <T extends UIntArray | Float32Array>(
 };
 
 export const readTexture = <
-	T extends Uint8Array | Uint16Array | Uint32Array | Float32Array
+	T extends Uint8Array | Uint16Array | Uint32Array | Float32Array,
 >(
 	gl: WebGLRenderingContext,
 	tex: ITexture,

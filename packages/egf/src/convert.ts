@@ -42,10 +42,10 @@ export const toEGFNode = (
 				(isNode(v)
 					? `-> ${prefix(v.$id) || v.$id}`
 					: isRef(v)
-					? `-> ${prefix(v.$ref) || v.$ref}`
-					: isToEGF(v)
-					? v.toEGF()
-					: propFn(p, v))
+						? `-> ${prefix(v.$ref) || v.$ref}`
+						: isToEGF(v)
+							? v.toEGF()
+							: propFn(p, v))
 		);
 
 	for (const p in node) {
@@ -69,13 +69,17 @@ export const toEGFProp = (_: string, val: any) =>
 			? `>>>${val}<<<`
 			: val
 		: isNumber(val)
-		? `#num ${val}`
-		: isDate(val)
-		? `#date ${val.toISOString()}`
-		: isTypedArray(val)
-		? `#base64 ${base64Encode(
-				new Uint8Array(val.buffer, val.byteOffset, val.byteLength)
-		  )}`
-		: isArray(val) || isPlainObject(val)
-		? `#json ${JSON.stringify(val)}`
-		: String(val);
+			? `#num ${val}`
+			: isDate(val)
+				? `#date ${val.toISOString()}`
+				: isTypedArray(val)
+					? `#base64 ${base64Encode(
+							new Uint8Array(
+								val.buffer,
+								val.byteOffset,
+								val.byteLength
+							)
+						)}`
+					: isArray(val) || isPlainObject(val)
+						? `#json ${JSON.stringify(val)}`
+						: String(val);

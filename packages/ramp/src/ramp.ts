@@ -139,8 +139,8 @@ export class Ramp<T> implements ICopy<IRamp<T>>, IEmpty<IRamp<T>>, IRamp<T> {
 		return i == 0
 			? Math.min(t, stops[1][0] - eps)
 			: i === n
-			? Math.max(t, stops[n - 1][0] + eps)
-			: clamp(t, stops[i - 1][0] + eps, stops[i + 1][0] - eps);
+				? Math.max(t, stops[n - 1][0] + eps)
+				: clamp(t, stops[i - 1][0] + eps, stops[i + 1][0] - eps);
 	}
 
 	sort() {

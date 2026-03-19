@@ -34,5 +34,5 @@ export function pushKeys<T, K extends Keys<T>>(key: K, src?: Iterable<T>): any {
 		: reducer<T, T[K][]>(
 				() => [],
 				(acc, x) => (acc.push(x[key]), acc)
-		  );
+			);
 }

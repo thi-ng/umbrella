@@ -31,7 +31,7 @@ export const aseq = <T>(
 				next() {
 					return aseq<T>(buf, start + 1, end);
 				},
-		  }
+			}
 		: undefined;
 };
 
@@ -65,6 +65,6 @@ export const rseq = <T>(
 				next() {
 					return rseq<T>(buf, start! - 1, end);
 				},
-		  }
+			}
 		: undefined;
 };

@@ -292,8 +292,8 @@ const __makeRels = (spec: AncestorDefs) => {
 			val instanceof Set
 				? val
 				: Array.isArray(val)
-				? new Set(val)
-				: new Set([val]);
+					? new Set(val)
+					: new Set([val]);
 	}
 	return rels;
 };

@@ -56,7 +56,7 @@ export const tnormDombi = (p = 2): FnN2 =>
 				x === 0 || y === 0
 					? 0
 					: 1 /
-					  (1 +
+						(1 +
 							(((1 - x) / x) ** p + ((1 - y) / y) ** p) **
 								(1 / p));
 

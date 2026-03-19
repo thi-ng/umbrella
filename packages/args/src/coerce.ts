@@ -37,26 +37,31 @@ export function coerceKV(
 ): Fn<string[], KVMultiDict>;
 export function coerceKV(delim = "=", strict = false, multi = false) {
 	return (pairs: string[]) =>
-		pairs.reduce((acc, x) => {
-			const idx = x.indexOf(delim);
-			strict &&
-				idx < 1 &&
-				illegalArgs(
-					`got '${x}', but expected a 'key${delim}value' pair`
-				);
-			if (idx > 0) {
-				const id = x.substring(0, idx);
-				const val = x.substring(idx + 1);
-				if (multi) {
-					acc[id] ? (<string[]>acc[id]).push(val) : (acc[id] = [val]);
+		pairs.reduce(
+			(acc, x) => {
+				const idx = x.indexOf(delim);
+				strict &&
+					idx < 1 &&
+					illegalArgs(
+						`got '${x}', but expected a 'key${delim}value' pair`
+					);
+				if (idx > 0) {
+					const id = x.substring(0, idx);
+					const val = x.substring(idx + 1);
+					if (multi) {
+						acc[id]
+							? (<string[]>acc[id]).push(val)
+							: (acc[id] = [val]);
+					} else {
+						acc[id] = val;
+					}
 				} else {
-					acc[id] = val;
+					acc[x] = multi ? ["true"] : "true";
 				}
-			} else {
-				acc[x] = multi ? ["true"] : "true";
-			}
-			return acc;
-		}, <any>{});
+				return acc;
+			},
+			<any>{}
+		);
 }
 
 export const coerceTuple =

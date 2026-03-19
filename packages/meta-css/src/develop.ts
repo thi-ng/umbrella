@@ -19,7 +19,8 @@ import { convertCommand, type ConvertOpts } from "./convert.js";
 import { generateCommand, type GenerateOpts } from "./generate.js";
 
 interface DevelopOpts
-	extends Omit<ConvertOpts, "noWrite" | "out" | "pretty" | "specs" | "watch">,
+	extends
+		Omit<ConvertOpts, "noWrite" | "out" | "pretty" | "specs" | "watch">,
 		Omit<GenerateOpts, "out" | "pretty" | "watch"> {
 	outCss: string;
 	outSpecs: string;

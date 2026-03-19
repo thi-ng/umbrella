@@ -216,8 +216,10 @@ export interface OffscreenRawPixelBuffer extends OffscreenCanvasContext {
 	data: Uint32Array<ArrayBuffer>;
 }
 
-export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
-	extends IGrid2D<T, P> {
+export interface IPixelBuffer<
+	T extends TypedArray = TypedArray,
+	P = any,
+> extends IGrid2D<T, P> {
 	readonly width: number;
 	readonly height: number;
 	/**

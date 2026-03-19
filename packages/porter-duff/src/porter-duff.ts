@@ -58,7 +58,7 @@ export const porterDuff = (fa: FnN2, fb: FnN2): BlendFnF => {
 						dest[2] * bb,
 						__clamp01(sb * bb)
 					);
-			  };
+				};
 	} else if (destZero) {
 		return (out, src, dest) => {
 			const sa = src[3];
@@ -101,7 +101,7 @@ export const porterDuffInt = (fa: FnN2, fb: FnN2): BlendFnI => {
 						(__clamp(((b >>> 8) & 0xff) * bb) << 8) |
 						__clamp((b & 0xff) * bb)
 					);
-			  };
+				};
 	} else if (destZero) {
 		return (a, b) => {
 			const aa = fa((a >>> 24) / 255, (b >>> 24) / 255);

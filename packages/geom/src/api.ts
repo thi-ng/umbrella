@@ -111,8 +111,7 @@ export interface ICopyTransformed<A, B = A> {
 }
 
 export interface IShape<T extends IShape = IShape<any>>
-	extends IAttributed<T>,
-		ICopy<T> {
+	extends IAttributed<T>, ICopy<T> {
 	readonly type: number | string;
 	readonly dim: number;
 }

@@ -44,7 +44,7 @@ export class MemMappedComponent<K extends string> extends AComponent<
 						opts.buf,
 						opts.byteOffset!,
 						dense.length * stride
-				  )
+					)
 				: typedArray(opts.type!, dense.length * stride)
 		);
 		this.type = opts.type!;
@@ -85,7 +85,7 @@ export class MemMappedComponent<K extends string> extends AComponent<
 				? this.cache.getSet(i, () => {
 						i *= this.stride;
 						return this.vals.subarray(i, i + this.size);
-				  })
+					})
 				: ((i *= this.stride), this.vals.subarray(i, i + this.size))
 			: undefined;
 	}

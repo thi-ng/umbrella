@@ -161,7 +161,7 @@ const __initShader = (
 					),
 					assocObj(),
 					range(numOuts)
-			  )
+				)
 			: undefined,
 		state: pass.state,
 		pre: pass.pre,
@@ -186,18 +186,21 @@ const __initShader = (
 
 /** @internal */
 const __initTextures = (opts: MultipassOpts) =>
-	Object.keys(opts.textures).reduce((acc, id) => {
-		acc[id] = defTexture(opts.gl, {
-			width: opts.width,
-			height: opts.height,
-			depth: opts.depth,
-			filter: TextureFilter.NEAREST,
-			wrap: TextureRepeat.CLAMP,
-			image: null,
-			...opts.textures[id],
-		});
-		return acc;
-	}, <IObjectOf<ITexture>>{});
+	Object.keys(opts.textures).reduce(
+		(acc, id) => {
+			acc[id] = defTexture(opts.gl, {
+				width: opts.width,
+				height: opts.height,
+				depth: opts.depth,
+				filter: TextureFilter.NEAREST,
+				wrap: TextureRepeat.CLAMP,
+				image: null,
+				...opts.textures[id],
+			});
+			return acc;
+		},
+		<IObjectOf<ITexture>>{}
+	);
 
 /** @internal */
 const __initBuffers = (

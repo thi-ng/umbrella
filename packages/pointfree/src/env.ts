@@ -42,7 +42,9 @@ export const load = (ctx: StackContext) => {
  * @param env -
  */
 export const store = (ctx: StackContext) => (
-	$(ctx[0], 2), (ctx[2][ctx[0].pop()] = ctx[0].pop()), ctx
+	$(ctx[0], 2),
+	(ctx[2][ctx[0].pop()] = ctx[0].pop()),
+	ctx
 );
 
 /**

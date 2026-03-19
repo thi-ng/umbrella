@@ -78,5 +78,5 @@ export function interpolate<T>(
 		: comp(
 				partition<T>(window, 1),
 				mapcat((chunk) => map((t) => fn(chunk, t), normRange(n, false)))
-		  );
+			);
 }

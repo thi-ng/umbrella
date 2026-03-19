@@ -44,7 +44,7 @@ export interface BoidOpts {
 export interface IBoidAccel {
 	build(boids: Boid[]): void;
 	queryNeighborhood<
-		N extends INeighborhood<ReadonlyVec, Boid> & IDeref<Boid[]>
+		N extends INeighborhood<ReadonlyVec, Boid> & IDeref<Boid[]>,
 	>(
 		neighborhood: N
 	): N;

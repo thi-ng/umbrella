@@ -36,12 +36,12 @@ export const compareLex: Comparator<string> = (a, b) => {
 				__maybeNum(a.substring(ma.index + 1)),
 				__maybeNum(b.substring(0, mb.index + 1)),
 				__maybeNum(b.substring(mb.index + 1))
-		  )
+			)
 		: a < b
-		? -1
-		: a > b
-		? 1
-		: 0;
+			? -1
+			: a > b
+				? 1
+				: 0;
 };
 
 const __compare2 = (

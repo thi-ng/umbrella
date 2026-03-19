@@ -29,7 +29,7 @@ export const floodFill = <T extends any[] | TypedArray, P>(
 				$fill(__pred(grid, x, y), x, y, grid.size[0], grid.size[1]),
 				grid,
 				val
-		  )
+			)
 		: grid;
 
 const __pred = (

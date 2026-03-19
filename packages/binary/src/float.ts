@@ -18,7 +18,8 @@ export const uintBitsToFloat: FnN = (x) => ((U32[0] = x), F32[0]);
  * @param x -
  */
 export const floatToIntBits64 = (x: number): [number, number] => (
-	(F64[0] = x), IS_LE ? [I32[1], I32[0]] : [I32[0], I32[1]]
+	(F64[0] = x),
+	IS_LE ? [I32[1], I32[0]] : [I32[0], I32[1]]
 );
 
 /**
@@ -28,7 +29,8 @@ export const floatToIntBits64 = (x: number): [number, number] => (
  * @param x -
  */
 export const floatToUintBits64 = (x: number): [number, number] => (
-	(F64[0] = x), IS_LE ? [U32[1], U32[0]] : [U32[0], U32[1]]
+	(F64[0] = x),
+	IS_LE ? [U32[1], U32[0]] : [U32[0], U32[1]]
 );
 
 /**
@@ -109,7 +111,8 @@ export const f32u32: FnN = (x) => __f2u(x, 0x8000_0000, 0x7fff_ffff) >>> 0;
  * @param x -
  */
 export const u8f32: FnN = (x) => (
-	(x &= 0xff), (x | ((x >> 7) * 0xffff_ff00)) / (0x7f + (x >> 7))
+	(x &= 0xff),
+	(x | ((x >> 7) * 0xffff_ff00)) / (0x7f + (x >> 7))
 );
 
 /**
@@ -118,7 +121,8 @@ export const u8f32: FnN = (x) => (
  * @param x -
  */
 export const u16f32: FnN = (x) => (
-	(x &= 0xffff), (x | ((x >> 15) * 0xffff_0000)) / (0x7fff + (x >> 15))
+	(x &= 0xffff),
+	(x | ((x >> 15) * 0xffff_0000)) / (0x7fff + (x >> 15))
 );
 
 /**
@@ -127,7 +131,8 @@ export const u16f32: FnN = (x) => (
  * @param x -
  */
 export const u24f32: FnN = (x) => (
-	(x &= 0xffffff), (x | ((x >> 23) * 0xff00_0000)) / (0x7f_ffff + (x >> 23))
+	(x &= 0xffffff),
+	(x | ((x >> 23) * 0xff00_0000)) / (0x7f_ffff + (x >> 23))
 );
 
 /**

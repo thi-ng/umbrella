@@ -218,7 +218,7 @@ export const expandSpec = (
 						varValue,
 						currKey,
 						values[currKey]
-				  )
+					)
 				: undefined;
 			const currValue = isTemplate
 				? __templateValue(unit)
@@ -297,17 +297,17 @@ const __maxArity = (x: string, max: number) => {
 const __items = (spec: Spec, config: Pick<GeneratorConfig, "tables">) => {
 	const $values = isString(spec.values)
 		? config.tables?.[spec.values] ||
-		  illegalArgs(`invalid table ID: ${spec.values}`)
+			illegalArgs(`invalid table ID: ${spec.values}`)
 		: spec.values;
 	if (isPlainObject($values)) return <IObjectOf<NumOrString>>$values;
 	const keyFn: Fn2<any, number, string> =
 		spec.key === "v"
 			? (v) => String(v)
 			: spec.key === "i+1"
-			? (_, i) => String(i + 1)
-			: spec.key === "i" || spec.key === undefined
-			? (_, i) => String(i)
-			: illegalArgs(`invalid key type: ${spec.key}`);
+				? (_, i) => String(i + 1)
+				: spec.key === "i" || spec.key === undefined
+					? (_, i) => String(i)
+					: illegalArgs(`invalid key type: ${spec.key}`);
 	return (<any[]>$values).reduce(
 		(acc: IObjectOf<NumOrString>, x: any, i: number) => {
 			acc[keyFn(x, i)] = x;

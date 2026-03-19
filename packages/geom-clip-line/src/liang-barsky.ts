@@ -110,6 +110,6 @@ export const liangBarsky2Raw: FnU8<number, Maybe<Tuple<number, 6>>> = (
 				beta * dy + ay,
 				alpha,
 				beta,
-		  ]
+			]
 		: undefined;
 };

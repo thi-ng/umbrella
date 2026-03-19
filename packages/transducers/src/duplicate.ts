@@ -18,5 +18,5 @@ export function duplicate<T>(n = 1, src?: Iterable<T>): any {
 					}
 					return acc;
 				});
-		  };
+			};
 }

@@ -130,7 +130,7 @@ export class Boid implements ITimeStep {
 						this.vel.curr
 					),
 					this.opts.maxForce!
-			  )
+				)
 			: force;
 	}
 }

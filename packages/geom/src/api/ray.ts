@@ -9,7 +9,11 @@ export class Ray implements IHiccupShape2<Ray> {
 	readonly type = "ray";
 	readonly dim = 2;
 
-	constructor(public pos: Vec, public dir: Vec, public attribs?: Attribs) {}
+	constructor(
+		public pos: Vec,
+		public dir: Vec,
+		public attribs?: Attribs
+	) {}
 
 	copy(): Ray {
 		return new Ray(

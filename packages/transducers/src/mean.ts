@@ -16,5 +16,5 @@ export function mean(src?: Iterable<number>): any {
 				() => (n = 0),
 				(acc) => (n > 1 ? acc / n : acc),
 				(acc, x) => (n++, acc + x),
-		  ];
+			];
 }

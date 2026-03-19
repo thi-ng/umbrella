@@ -270,7 +270,7 @@ export class DVMesh<T> {
 							if (verts.length < 3) return;
 						}
 						cells.push(verts);
-				  }
+					}
 				: (e) => {
 						const first = (e = e.rot);
 						const verts = [];
@@ -278,7 +278,7 @@ export class DVMesh<T> {
 							verts.push(e.origin.pos);
 						} while ((e = e.lnext) !== first);
 						cells.push(verts);
-				  },
+					},
 			false
 		);
 		return cells;

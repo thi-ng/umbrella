@@ -199,10 +199,10 @@ export const defFormat =
 				isString(x)
 					? x.startsWith("\\")
 						? x.substring(1)
-						: FORMATTERS[x]?.(d, utc) ?? x
+						: (FORMATTERS[x]?.(d, utc) ?? x)
 					: isFunction(x)
-					? x(d, utc)
-					: x
+						? x(d, utc)
+						: x
 			)
 			.join("");
 	};
@@ -496,8 +496,8 @@ export const formatDurationParts = (parts: number[], prec: Precision = "s") => {
 			return x > 0
 				? units(x, unit, true)
 				: i === maxID && maxID < 6
-				? unitsLessThan(1, unit, true)
-				: "";
+					? unitsLessThan(1, unit, true)
+					: "";
 		})
 		.filter((x) => !!x)
 		.join(", ");

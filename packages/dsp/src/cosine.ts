@@ -16,7 +16,10 @@ export class Cosine extends AGen<number> implements IReset {
 	protected _cos!: number;
 	protected _nxt!: number;
 
-	constructor(protected _freq: number, protected _amp = 1) {
+	constructor(
+		protected _freq: number,
+		protected _amp = 1
+	) {
 		super(0);
 		this.calcCoeffs();
 	}

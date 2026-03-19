@@ -295,6 +295,6 @@ const __pythag: FnN2 = (a, b) => {
 	return a > b
 		? a * sqrt(1 + (b * b) / a / a)
 		: b !== 0
-		? b * sqrt(1 + (a * a) / b / b)
-		: a;
+			? b * sqrt(1 + (a * a) / b / b)
+			: a;
 };

@@ -45,6 +45,6 @@ export function palindrome(x: any): any {
 	return isString(x)
 		? str("", concat([x], reverse(x)))
 		: isArray(x)
-		? x.concat(x.slice().reverse())
-		: symmetric(x);
+			? x.concat(x.slice().reverse())
+			: symmetric(x);
 }

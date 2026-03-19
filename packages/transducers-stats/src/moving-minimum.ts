@@ -24,5 +24,5 @@ export function movingMinimum(period: number, src?: Iterable<number>): any {
 					}
 					return num >= period ? rfn[2](acc, deque.head()) : acc;
 				});
-		  };
+			};
 }

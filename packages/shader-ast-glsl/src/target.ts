@@ -111,7 +111,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 				? `${t.type}(${$list(t.init)})`
 				: unsupportedFeature(
 						`array initializers not available in GLSL ${_opts.version}`
-				  ),
+					),
 
 		assign: (t) => emit(t.l) + " = " + emit(t.r),
 
@@ -123,7 +123,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 			t.id === "texture" && _opts.version < GLSLVersion.GLES_300
 				? `${t.id}${(<Sym<any>>t.args[0]).type.substring(7)}(${$list(
 						t.args
-				  )})`
+					)})`
 				: $fn(t),
 
 		decl: (t) => $decl(t.id),

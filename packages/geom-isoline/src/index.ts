@@ -143,8 +143,8 @@ export function* isolines(
 						? 0
 						: 2
 					: from === 4
-					? 4
-					: 6;
+						? 4
+						: 6;
 			to = S10[idx];
 			clear = S10[idx + 1];
 		} else {

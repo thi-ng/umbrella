@@ -40,7 +40,7 @@ export function base64Decode(src?: string): any {
 					}
 					return acc;
 				});
-		  };
+			};
 }
 
 export interface Base64EncodeOpts {

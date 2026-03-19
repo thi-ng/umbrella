@@ -26,7 +26,7 @@ const __compile = (prog: StackProgram) =>
 							: w
 					)
 				)
-		  )
+			)
 		: (ctx: StackContext) => ctx;
 
 /**
@@ -71,8 +71,9 @@ export const defWord = (
 	return env
 		? mergeEnv
 			? (ctx: StackContext) => (
-					w([ctx[0], ctx[1], { ...ctx[2], ...env }]), ctx
-			  )
+					w([ctx[0], ctx[1], { ...ctx[2], ...env }]),
+					ctx
+				)
 			: (ctx: StackContext) => (w([ctx[0], ctx[1], { ...env }]), ctx)
 		: w;
 };
@@ -114,7 +115,8 @@ export const defWordU = (
  * @param ctx -
  */
 export const exec = (ctx: StackContext) => (
-	$(ctx[0], 1), $stackFn(ctx[0].pop())(ctx)
+	$(ctx[0], 1),
+	$stackFn(ctx[0].pop())(ctx)
 );
 
 /**

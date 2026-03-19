@@ -15,9 +15,7 @@ export interface IConfigure<T> {
 }
 
 export interface IFbo
-	extends IBind<void>,
-		IConfigure<Partial<FboOpts>>,
-		IRelease {}
+	extends IBind<void>, IConfigure<Partial<FboOpts>>, IRelease {}
 
 export interface IRenderBuffer extends IBind<void>, IRelease {
 	buffer: WebGLRenderbuffer;

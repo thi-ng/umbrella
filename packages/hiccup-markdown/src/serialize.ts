@@ -40,16 +40,16 @@ const __serialize = (tree: any, ctx: any, state: SerializeState): string =>
 	tree == null
 		? ""
 		: Array.isArray(tree)
-		? __serializeArray(tree, ctx, state)
-		: isFunction(tree)
-		? __serialize(tree(ctx), ctx, state)
-		: implementsFunction(tree, "toHiccup")
-		? __serialize(tree.toHiccup(ctx), ctx, state)
-		: implementsFunction(tree, "deref")
-		? __serialize(tree.deref(), ctx, state)
-		: isNotStringAndIterable(tree)
-		? __serializeIter(tree, ctx, state)
-		: tree.toString();
+			? __serializeArray(tree, ctx, state)
+			: isFunction(tree)
+				? __serialize(tree(ctx), ctx, state)
+				: implementsFunction(tree, "toHiccup")
+					? __serialize(tree.toHiccup(ctx), ctx, state)
+					: implementsFunction(tree, "deref")
+						? __serialize(tree.deref(), ctx, state)
+						: isNotStringAndIterable(tree)
+							? __serializeIter(tree, ctx, state)
+							: tree.toString();
 
 /** @internal */
 const __serializeArray = (tree: any[], ctx: any, state: SerializeState) => {
@@ -58,16 +58,16 @@ const __serializeArray = (tree: any[], ctx: any, state: SerializeState) => {
 	return isFunction(tag)
 		? __serialize(tag.apply(null, [ctx, ...tree.slice(1)]), ctx, state)
 		: implementsFunction(tag, "render")
-		? __serialize(
-				tag.render.apply(null, [ctx, ...tree.slice(1)]),
-				ctx,
-				state
-		  )
-		: isString(tag)
-		? __serializeTreeElement(tree, ctx, state)
-		: isNotStringAndIterable(tree)
-		? __serializeIter(tree, ctx, state)
-		: illegalArgs(`invalid tree node: ${tree}`);
+			? __serialize(
+					tag.render.apply(null, [ctx, ...tree.slice(1)]),
+					ctx,
+					state
+				)
+			: isString(tag)
+				? __serializeTreeElement(tree, ctx, state)
+				: isNotStringAndIterable(tree)
+					? __serializeIter(tree, ctx, state)
+					: illegalArgs(`invalid tree node: ${tree}`);
 };
 
 /** @internal */

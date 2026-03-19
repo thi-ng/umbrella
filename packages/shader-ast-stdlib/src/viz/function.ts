@@ -128,7 +128,7 @@ export const functionSampler = (
 						ifThen(gt(count, div(total, FLOAT2)), [
 							assign(count, sub(total, count)),
 						]),
-				  ]
+					]
 				: []),
 			ret(div(count, total)),
 		];

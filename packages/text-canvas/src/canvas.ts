@@ -110,8 +110,8 @@ export class Canvas
 			? ((this.data[this.indexAtUnsafe(x, y)] = charCode(
 					val,
 					this.format
-			  )),
-			  true)
+				)),
+				true)
 			: false;
 	}
 

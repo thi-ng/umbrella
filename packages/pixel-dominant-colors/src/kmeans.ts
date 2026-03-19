@@ -28,8 +28,8 @@ export const dominantColorsKmeans = (
 	const samples = opts?.filter
 		? filterSamples(opts.filter, img)
 		: Array.isArray(img)
-		? img
-		: [...img];
+			? img
+			: [...img];
 	return samples.length
 		? kmeans(Math.min(num, samples.length), samples, opts)
 				.sort((a, b) => b.items.length - a.items.length)

@@ -25,23 +25,26 @@ export const fromPromise = <T>(
 		err = e;
 		isError = true;
 	});
-	return stream<T>((stream) => {
-		src.then(
-			(x) => {
-				if (!canceled && stream.getState() < State.DONE) {
-					if (isError) {
-						stream.error(err);
-						err = null;
-					} else {
-						stream.next(x);
-						stream.closeIn !== "never" && stream.done();
+	return stream<T>(
+		(stream) => {
+			src.then(
+				(x) => {
+					if (!canceled && stream.getState() < State.DONE) {
+						if (isError) {
+							stream.error(err);
+							err = null;
+						} else {
+							stream.next(x);
+							stream.closeIn !== "never" && stream.done();
+						}
 					}
-				}
-			},
-			(e) => stream.error(e)
-		);
-		return () => {
-			canceled = true;
-		};
-	}, __optsWithID("promise", opts));
+				},
+				(e) => stream.error(e)
+			);
+			return () => {
+				canceled = true;
+			};
+		},
+		__optsWithID("promise", opts)
+	);
 };

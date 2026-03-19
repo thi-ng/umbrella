@@ -30,22 +30,22 @@ export type Shape = Shape0 | Shape1 | Shape2 | Shape3 | Shape4;
 export type ShapeTensor<S extends Shape, T> = S extends Shape4
 	? ITensor4<T>
 	: S extends Shape3
-	? ITensor3<T>
-	: S extends Shape2
-	? ITensor2<T>
-	: S extends Shape1
-	? ITensor1<T>
-	: ITensor0<T>;
+		? ITensor3<T>
+		: S extends Shape2
+			? ITensor2<T>
+			: S extends Shape1
+				? ITensor1<T>
+				: ITensor0<T>;
 
 export type Nested<T> = T[] | T[][] | T[][][] | T[][][][];
 
 export type NestedTensor<N extends Nested<T>, T> = N extends T[][][][]
 	? ITensor4<T>
 	: N extends T[][][]
-	? ITensor3<T>
-	: N extends T[][]
-	? ITensor2<T>
-	: ITensor1<T>;
+		? ITensor3<T>
+		: N extends T[][]
+			? ITensor2<T>
+			: ITensor1<T>;
 
 export interface TypeMap {
 	u8: number;
@@ -111,10 +111,7 @@ export interface TensorLike<T extends Type, S extends Shape> {
 }
 
 export interface ITensor<T = number>
-	extends ICopy<ITensor<T>>,
-		IEquiv,
-		IEqualsDelta<ITensor<T>>,
-		IRelease {
+	extends ICopy<ITensor<T>>, IEquiv, IEqualsDelta<ITensor<T>>, IRelease {
 	readonly type: Type;
 	readonly storage: ITensorStorage<T>;
 	readonly data: TensorData<T>;

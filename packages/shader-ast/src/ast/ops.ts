@@ -96,10 +96,10 @@ export const op2 = (
 			(isVec(l)
 				? l.type
 				: isVec(r)
-				? r.type
-				: isMat(r)
-				? r.type
-				: l.type);
+					? r.type
+					: isMat(r)
+						? r.type
+						: l.type);
 	}
 	return {
 		tag: "op2",

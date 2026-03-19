@@ -18,8 +18,8 @@ export const MANHATTAN: DTMetric = {
 		gu >= gi + u - i
 			? Infinity
 			: gi > gu + u - i
-			? -Infinity
-			: Math.floor((gu - gi + u + i) / 2),
+				? -Infinity
+				: Math.floor((gu - gi + u + i) / 2),
 };
 
 export const CHEBYSHEV: DTMetric = {

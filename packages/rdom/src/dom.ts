@@ -58,16 +58,16 @@ export const $tree = async (
 			? $comment(tree.slice(1), parent, idx)
 			: $treeElem(tree, parent, idx)
 		: isComponent(tree)
-		? tree.mount(parent, idx)
-		: isDeref(tree)
-		? $tree(tree.deref(), parent)
-		: isFunction(tree)
-		? $tree(tree(), parent, idx)
-		: isNotStringAndIterable(tree)
-		? $treeIter(tree, parent)
-		: tree != null
-		? $el("span", null, tree, <HTMLElement>parent, idx)
-		: null;
+			? tree.mount(parent, idx)
+			: isDeref(tree)
+				? $tree(tree.deref(), parent)
+				: isFunction(tree)
+					? $tree(tree(), parent, idx)
+					: isNotStringAndIterable(tree)
+						? $treeIter(tree, parent)
+						: tree != null
+							? $el("span", null, tree, <HTMLElement>parent, idx)
+							: null;
 
 const $treeElem = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 	const tag = tree[0];
@@ -75,13 +75,13 @@ const $treeElem = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 	return isString(tag)
 		? $treeTag(tree, parent, idx)
 		: // [icomponent, ...args]
-		isComponent(tag)
-		? tag.mount(parent, idx, ...tree.slice(1))
-		: // [fn, ...args]
-		isFunction(tag)
-		? $tree(tag.apply(null, tree.slice(1)), parent)
-		: // unsupported
-		  illegalArgs(`tag: ${tag}`);
+			isComponent(tag)
+			? tag.mount(parent, idx, ...tree.slice(1))
+			: // [fn, ...args]
+				isFunction(tag)
+				? $tree(tag.apply(null, tree.slice(1)), parent)
+				: // unsupported
+					illegalArgs(`tag: ${tag}`);
 };
 
 const $treeTag = (tree: any, parent: ParentNode, idx: NumOrElement) => {
@@ -184,8 +184,8 @@ export const $comment = (
 		isString(body)
 			? body
 			: body.length < 2
-			? body[0] || ""
-			: ["", ...body, ""].join("\n")
+				? body[0] || ""
+				: ["", ...body, ""].join("\n")
 	);
 	parent && $addChild(parent, comment, idx);
 	return comment;
@@ -332,7 +332,7 @@ const __getDesc = Object.getOwnPropertyDescriptor;
  */
 const __desc = (proto: any, prop: string): any =>
 	proto
-		? __getDesc(proto, prop) ?? __desc(__getProto(proto), prop)
+		? (__getDesc(proto, prop) ?? __desc(__getProto(proto), prop))
 		: undefined;
 
 /**

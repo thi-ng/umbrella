@@ -177,10 +177,10 @@ const __linearPath = (
 				__lineSegments(Line, shape.points, closed),
 				<PathSegment2[][]>subPaths,
 				attribs
-		  )
+			)
 		: new Path3(
 				__lineSegments(Line3, shape.points, closed),
 				<PathSegment3[][]>subPaths,
 				attribs
-		  );
+			);
 };

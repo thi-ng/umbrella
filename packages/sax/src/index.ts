@@ -233,8 +233,8 @@ const __toHiccup = (
 	...(root.children?.length
 		? root.children.map(__toHiccup)
 		: root.body
-		? [root.body]
-		: []),
+			? [root.body]
+			: []),
 ];
 
 /** @internal */

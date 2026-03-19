@@ -11,7 +11,8 @@ import type { MatOpNV } from "./api.js";
  * @param s -
  */
 export const scale22: MatOpNV = (m, s) => (
-	(s = isNumber(s) ? [s, s] : s), setC4(m || [], s[0], 0, 0, s[1])
+	(s = isNumber(s) ? [s, s] : s),
+	setC4(m || [], s[0], 0, 0, s[1])
 );
 
 /**
@@ -22,7 +23,8 @@ export const scale22: MatOpNV = (m, s) => (
  * @param s -
  */
 export const scale23: MatOpNV = (m, s) => (
-	(s = isNumber(s) ? [s, s] : s), setC6(m || [], s[0], 0, 0, s[1], 0, 0)
+	(s = isNumber(s) ? [s, s] : s),
+	setC6(m || [], s[0], 0, 0, s[1], 0, 0)
 );
 
 /**

@@ -26,7 +26,7 @@ import {
 
 export const cliApp = async <
 	OPTS extends object,
-	CTX extends CommandCtx<OPTS, OPTS>
+	CTX extends CommandCtx<OPTS, OPTS>,
 >(
 	config: CLIAppConfig<OPTS, CTX>
 ) => {

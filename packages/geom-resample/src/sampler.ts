@@ -85,7 +85,7 @@ export class Sampler {
 					closestT(p, points[minI], points[minI + 1]) || 0,
 					index[minI],
 					index[minI + 1]
-			  ) / this.totalLength()
+				) / this.totalLength()
 			: undefined;
 	}
 

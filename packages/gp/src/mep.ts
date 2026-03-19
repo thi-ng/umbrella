@@ -80,7 +80,7 @@ export class MEP<OP, T> {
 			cut !== undefined
 				? cut
 				: this.opts.rnd!.int() %
-				  Math.min(chromo1.length, chromo2.length);
+					Math.min(chromo1.length, chromo2.length);
 		return [
 			chromo1.slice(0, cut).concat(chromo2.slice(cut)),
 			chromo2.slice(0, cut).concat(chromo1.slice(cut)),
@@ -100,8 +100,8 @@ export class MEP<OP, T> {
 		return chromo1.length > minLen
 			? res.concat(chromo1.slice(minLen))
 			: chromo2.length > minLen
-			? res.concat(chromo2.slice(minLen))
-			: res;
+				? res.concat(chromo2.slice(minLen))
+				: res;
 	}
 
 	mutate(chromo: MEPChromosome<OP, T>) {

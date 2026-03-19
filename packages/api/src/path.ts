@@ -32,107 +32,114 @@ export type Path1<T, A> = A extends Keys<T> ? readonly [A] : never;
 /**
  * Type checked lookup path (depth 2)
  */
-export type Path2<T, A, B> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? readonly [A, B]
-		: never
-	: never;
+export type Path2<T, A, B> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? readonly [A, B]
+			: never
+		: never;
 
 /**
  * Type checked lookup path (depth 3)
  */
-export type Path3<T, A, B, C> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? C extends Keys2<T, A, B>
-			? readonly [A, B, C]
+export type Path3<T, A, B, C> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? C extends Keys2<T, A, B>
+				? readonly [A, B, C]
+				: never
 			: never
-		: never
-	: never;
+		: never;
 
 /**
  * Type checked lookup path (depth 4)
  */
-export type Path4<T, A, B, C, D> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? C extends Keys2<T, A, B>
-			? D extends Keys3<T, A, B, C>
-				? readonly [A, B, C, D]
+export type Path4<T, A, B, C, D> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? C extends Keys2<T, A, B>
+				? D extends Keys3<T, A, B, C>
+					? readonly [A, B, C, D]
+					: never
 				: never
 			: never
-		: never
-	: never;
+		: never;
 
 /**
  * Type checked lookup path (depth 5)
  */
-export type Path5<T, A, B, C, D, E> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? C extends Keys2<T, A, B>
-			? D extends Keys3<T, A, B, C>
-				? E extends Keys4<T, A, B, C, D>
-					? readonly [A, B, C, D, E]
-					: never
-				: never
-			: never
-		: never
-	: never;
-
-/**
- * Type checked lookup path (depth 6)
- */
-export type Path6<T, A, B, C, D, E, F> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? C extends Keys2<T, A, B>
-			? D extends Keys3<T, A, B, C>
-				? E extends Keys4<T, A, B, C, D>
-					? F extends Keys5<T, A, B, C, D, E>
-						? readonly [A, B, C, D, E, F]
+export type Path5<T, A, B, C, D, E> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? C extends Keys2<T, A, B>
+				? D extends Keys3<T, A, B, C>
+					? E extends Keys4<T, A, B, C, D>
+						? readonly [A, B, C, D, E]
 						: never
 					: never
 				: never
 			: never
-		: never
-	: never;
+		: never;
 
 /**
- * Type checked lookup path (depth 7)
+ * Type checked lookup path (depth 6)
  */
-export type Path7<T, A, B, C, D, E, F, G> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? C extends Keys2<T, A, B>
-			? D extends Keys3<T, A, B, C>
-				? E extends Keys4<T, A, B, C, D>
-					? F extends Keys5<T, A, B, C, D, E>
-						? G extends Keys6<T, A, B, C, D, E, F>
-							? readonly [A, B, C, D, E, F, G]
+export type Path6<T, A, B, C, D, E, F> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? C extends Keys2<T, A, B>
+				? D extends Keys3<T, A, B, C>
+					? E extends Keys4<T, A, B, C, D>
+						? F extends Keys5<T, A, B, C, D, E>
+							? readonly [A, B, C, D, E, F]
 							: never
 						: never
 					: never
 				: never
 			: never
-		: never
-	: never;
+		: never;
 
 /**
- * Type checked lookup path (depth 8)
+ * Type checked lookup path (depth 7)
  */
-export type Path8<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
-	? B extends Keys1<T, A>
-		? C extends Keys2<T, A, B>
-			? D extends Keys3<T, A, B, C>
-				? E extends Keys4<T, A, B, C, D>
-					? F extends Keys5<T, A, B, C, D, E>
-						? G extends Keys6<T, A, B, C, D, E, F>
-							? H extends Keys7<T, A, B, C, D, E, F, G>
-								? readonly [A, B, C, D, E, F, G, H]
+export type Path7<T, A, B, C, D, E, F, G> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? C extends Keys2<T, A, B>
+				? D extends Keys3<T, A, B, C>
+					? E extends Keys4<T, A, B, C, D>
+						? F extends Keys5<T, A, B, C, D, E>
+							? G extends Keys6<T, A, B, C, D, E, F>
+								? readonly [A, B, C, D, E, F, G]
 								: never
 							: never
 						: never
 					: never
 				: never
 			: never
-		: never
-	: never;
+		: never;
+
+/**
+ * Type checked lookup path (depth 8)
+ */
+export type Path8<T, A, B, C, D, E, F, G, H> =
+	A extends Keys<T>
+		? B extends Keys1<T, A>
+			? C extends Keys2<T, A, B>
+				? D extends Keys3<T, A, B, C>
+					? E extends Keys4<T, A, B, C, D>
+						? F extends Keys5<T, A, B, C, D, E>
+							? G extends Keys6<T, A, B, C, D, E, F>
+								? H extends Keys7<T, A, B, C, D, E, F, G>
+									? readonly [A, B, C, D, E, F, G, H]
+									: never
+								: never
+							: never
+						: never
+					: never
+				: never
+			: never
+		: never;
 
 /**
  * Semi-typechecked lookup path (depth > 8). Only the first 8 levels are
@@ -170,14 +177,15 @@ export type IsOpt<T> = T extends undefined ? true : never;
 /**
  * Internal recursive helper type for {@link IsOptPath}.
  */
-type IsOptR<T, K, P extends unknown[]> = K extends Keys<T>
-	? [true] extends [IsOpt<T[K]>]
-		? true
-		: {
-				0: IsOptR<Required<T>[K], Head<P>, Tail<P>>;
-				1: never;
-		  }[IsEmpty<P>]
-	: never;
+type IsOptR<T, K, P extends unknown[]> =
+	K extends Keys<T>
+		? [true] extends [IsOpt<T[K]>]
+			? true
+			: {
+					0: IsOptR<Required<T>[K], Head<P>, Tail<P>>;
+					1: never;
+				}[IsEmpty<P>]
+		: never;
 
 /**
  * Returns true if given path contains any intermediate properties

@@ -403,10 +403,10 @@ const __bestChild = <K extends ReadonlyVec, V>(node: KdNode<K, V>, q: K) => {
 	return !node.r
 		? node.l
 		: !node.l
-		? node.r
-		: q[d] < node.k[d]
-		? node.l
-		: node.r;
+			? node.r
+			: q[d] < node.k[d]
+				? node.l
+				: node.r;
 };
 
 /** @internal */

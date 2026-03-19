@@ -64,7 +64,7 @@ export type SerializerSpecs = Record<string, SerializerPair<any>>;
 
 export type SerializedType<
 	T extends SerializerSpecs,
-	K extends keyof T
+	K extends keyof T,
 > = ReturnType<T[K]["decode"]>;
 
 export type SerializedTuple<T extends SerializerSpecs> = {

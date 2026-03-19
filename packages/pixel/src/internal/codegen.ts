@@ -8,8 +8,8 @@ const __compileLShift = (x: string, shift: number) =>
 	shift > 0
 		? `(${x} << ${shift})`
 		: shift < 0
-		? `(${x} >>> ${-shift})`
-		: `${x}`;
+			? `(${x} >>> ${-shift})`
+			: `${x}`;
 
 /** @internal */
 const __compileRShift = (x: string, shift: number) =>

@@ -52,7 +52,7 @@ export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
 					? wordWrapLines(cell.body, {
 							width: cols[j].width,
 							hard: cell.hard || opts.hard,
-					  }).map((l) => l.toString())
+						}).map((l) => l.toString())
 					: cell.body.split(/\r?\n/g);
 			wrappedRow.push({
 				body: lines,
@@ -125,8 +125,8 @@ export const drawTable = (
 		opts.b === Border.H
 			? horizontalOnly(style)
 			: opts.b === Border.V
-			? verticalOnly(style)
-			: style;
+				? verticalOnly(style)
+				: style;
 
 	beginStyle(canvas, style);
 	fillRect(canvas, x + bFV, y + bFH, width - 2 * bFV, height - 2 * bFH, " ");

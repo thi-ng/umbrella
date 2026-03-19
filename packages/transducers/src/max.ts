@@ -10,5 +10,5 @@ export function max(src?: Iterable<number>): any {
 		: reducer(
 				() => -Infinity,
 				(acc, x: number) => Math.max(acc, x)
-		  );
+			);
 }

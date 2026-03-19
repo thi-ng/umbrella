@@ -64,5 +64,5 @@ export const padSides = <T>(
 			? concat(repeat(x, numLeft), src, repeat(x, numRight))
 			: concat(repeat(x, numLeft), src)
 		: numRight > 0
-		? concat(src, repeat(x, numRight))
-		: concat(src);
+			? concat(src, repeat(x, numRight))
+			: concat(src);

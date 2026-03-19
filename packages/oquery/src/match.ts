@@ -129,7 +129,7 @@ export const matchMultiple = <T extends QueryObj = QueryObj, V = any>(
 					},
 				],
 				opts: { cwise: false },
-		  }
+			}
 		: { q: [key, includes], opts: { intersect: !union } };
 };
 

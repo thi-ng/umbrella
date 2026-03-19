@@ -13,19 +13,19 @@ export const exposeGlobal = (id: string, value: any, always = false) => {
 		typeof global !== "undefined"
 			? global
 			: typeof window !== "undefined"
-			? window
-			: undefined;
+				? window
+				: undefined;
 	if (
 		glob &&
 		(always ||
 			(typeof process !== "undefined" && process.env !== undefined
 				? process.env.NODE_ENV !== "production" ||
-				  !!process.env.UMBRELLA_GLOBALS
+					!!process.env.UMBRELLA_GLOBALS
 				: (<any>import.meta).env
-				? (<any>import.meta).env.MODE !== "production" ||
-				  !!(<any>import.meta).env.UMBRELLA_GLOBALS ||
-				  !!(<any>import.meta).env.VITE_UMBRELLA_GLOBALS
-				: true))
+					? (<any>import.meta).env.MODE !== "production" ||
+						!!(<any>import.meta).env.UMBRELLA_GLOBALS ||
+						!!(<any>import.meta).env.VITE_UMBRELLA_GLOBALS
+					: true))
 	) {
 		glob[id] = value;
 	}

@@ -66,7 +66,10 @@ export const watchInputs = (paths: string[], logger: ILogger) => {
 
 /** @internal */
 export const withoutInternals = (props: CompiledSpec) =>
-	Object.keys(props).reduce((acc, k) => {
-		if (!k.startsWith("__")) acc[k] = props[k];
-		return acc;
-	}, <CompiledSpec>{});
+	Object.keys(props).reduce(
+		(acc, k) => {
+			if (!k.startsWith("__")) acc[k] = props[k];
+			return acc;
+		},
+		<CompiledSpec>{}
+	);

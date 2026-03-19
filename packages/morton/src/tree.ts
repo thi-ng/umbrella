@@ -65,7 +65,7 @@ export const cartesianToTree = (v: number[]) => {
 						v.map((x) => ((x - 1) % half) + 1),
 						half >>> 1
 					),
-			  ]
+				]
 			: [t];
 	};
 	return $(v, Math.max(2, ceilPow2(Math.max(...v))) >>> 1);

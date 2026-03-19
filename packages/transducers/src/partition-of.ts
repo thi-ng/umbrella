@@ -44,5 +44,5 @@ export function partitionOf<T>(sizes: number[], src?: Iterable<T>): any {
 					}
 					return j;
 				};
-		  }, true);
+			}, true);
 }

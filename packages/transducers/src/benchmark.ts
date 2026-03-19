@@ -40,5 +40,5 @@ export function benchmark(src?: Iterable<any>): any {
 					prev = t;
 					return r(acc, delta);
 				});
-		  };
+			};
 }

@@ -163,20 +163,26 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 				if (!unique.has(d)) queue.push(d);
 			}
 		}
-		const graph = [...unique].reduce((acc, mod) => {
-			assert(
-				(acc[mod.id] === undefined || acc[mod.id] === mod) &&
-					mod.id !== this.id,
-				`duplicate API module ID: ${mod.id}`
-			);
-			acc[mod.id] = mod;
-			return acc;
-		}, <IObjectOf<WasmModuleSpec<T>>>{});
+		const graph = [...unique].reduce(
+			(acc, mod) => {
+				assert(
+					(acc[mod.id] === undefined || acc[mod.id] === mod) &&
+						mod.id !== this.id,
+					`duplicate API module ID: ${mod.id}`
+				);
+				acc[mod.id] = mod;
+				return acc;
+			},
+			<IObjectOf<WasmModuleSpec<T>>>{}
+		);
 		this.order = topoSort(graph, (mod) => mod.deps?.map((x) => x.id));
-		this.modules = this.order.reduce((acc, id) => {
-			acc[id] = graph[id].factory(this);
-			return acc;
-		}, <IObjectOf<IWasmAPI<T>>>{});
+		this.modules = this.order.reduce(
+			(acc, id) => {
+				acc[id] = graph[id].factory(this);
+				return acc;
+			},
+			<IObjectOf<IWasmAPI<T>>>{}
+		);
 	}
 
 	/**

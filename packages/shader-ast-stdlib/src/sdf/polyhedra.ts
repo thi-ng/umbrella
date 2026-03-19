@@ -61,7 +61,7 @@ const __defGDF = (
 	vecs: Vec3Term[]
 ): [
 	TaggedFn2<"vec3", "float", "float">,
-	TaggedFn3<"vec3", "float", "float", "float">
+	TaggedFn3<"vec3", "float", "float", "float">,
 ] => [
 	defn(F, id, [V3, F], (p, r) => [
 		ret(

@@ -10,7 +10,10 @@ import { ABlockStorage } from "./astorage.js";
 const Z8 = padLeft(8, "0");
 
 export class FileBlock implements IBlock {
-	constructor(public storage: FileBlockStorage, public id: number) {}
+	constructor(
+		public storage: FileBlockStorage,
+		public id: number
+	) {}
 
 	async load() {
 		const { storage } = this;

@@ -21,13 +21,13 @@ export const resample = (
 					: sampler.sampleFixedNum(
 							opts.num || DEFAULT_SAMPLES,
 							opts.last
-					  )
+						)
 				: opts.dist
-				? sampler.sampleUniform(opts.dist, opts.last !== false)
-				: sampler.sampleFixedNum(
-						opts.num || DEFAULT_SAMPLES,
-						opts.last !== false
-				  )
+					? sampler.sampleUniform(opts.dist, opts.last !== false)
+					: sampler.sampleFixedNum(
+							opts.num || DEFAULT_SAMPLES,
+							opts.last !== false
+						)
 			: sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, !closed);
 	}
 	return copy ? copyVectors(pts) : pts;

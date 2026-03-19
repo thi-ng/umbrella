@@ -42,7 +42,8 @@ export const [div, figure, figcaption, para, pre, summary] = defElements([
 export const hr = defElement<Partial<Attribs>, never>("hr");
 
 export interface IFrameAttribs
-	extends Attribs,
+	extends
+		Attribs,
 		DimensionAttribs,
 		ImportanceAttribs,
 		LoadingAttribs,

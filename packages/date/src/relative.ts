@@ -80,7 +80,7 @@ export const parseRelative = (offset: string, base?: MaybeDate) => {
 						__parseNum(match![1], !!match[7]),
 						__parsePeriod(match![2]),
 						base
-				  )
+					)
 				: undefined;
 		}
 	}

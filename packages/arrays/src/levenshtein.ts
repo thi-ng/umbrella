@@ -99,8 +99,8 @@ export const levenshtein = <T>(
 				? d2 + 1
 				: d0 + 1
 			: equiv(ay, bx)
-			? d1
-			: d1 + 1;
+				? d1
+				: d1 + 1;
 	};
 
 	const vector: (T | number)[] = [];

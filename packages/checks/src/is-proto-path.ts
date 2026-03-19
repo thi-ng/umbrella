@@ -40,7 +40,7 @@ export const isProtoPath = (
 	isArray(path)
 		? path.some(isIllegalKey)
 		: isString(path)
-		? path.indexOf(".") !== -1
-			? path.split(".").some(isIllegalKey)
-			: isIllegalKey(path)
-		: false;
+			? path.indexOf(".") !== -1
+				? path.split(".").some(isIllegalKey)
+				: isIllegalKey(path)
+			: false;

@@ -16,7 +16,10 @@ export const foldback = (thresh?: number, amp?: number) =>
 	new Foldback(thresh, amp);
 
 export class Foldback extends AProc<number, number> {
-	constructor(protected _thresh = 1, protected _amp = 1 / _thresh) {
+	constructor(
+		protected _thresh = 1,
+		protected _amp = 1 / _thresh
+	) {
 		super(0);
 	}
 

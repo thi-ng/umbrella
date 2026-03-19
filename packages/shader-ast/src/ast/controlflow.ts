@@ -49,8 +49,8 @@ export function forLoop(...args: any[]): ForLoop {
 		args.length === 2
 			? [undefined, args[0], undefined, args[1]]
 			: args.length === 3
-			? [args[0], args[1], undefined, args[2]]
-			: args;
+				? [args[0], args[1], undefined, args[2]]
+				: args;
 	return {
 		tag: "for",
 		type: "void",

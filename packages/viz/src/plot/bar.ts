@@ -38,13 +38,16 @@ export const barPlot =
 		return [
 			"g",
 			{ weight: opts.width!, ...opts.attribs },
-			...map((datum) => {
-				const [x, val] = datum;
-				const a = mapper([x, y0]);
-				a[0] += offset;
-				const b = mapper([x, val]);
-				b[0] += offset;
-				return opts.shape!(datum, a, b);
-			}, __resolveData(data, spec.xaxis.domain)),
+			...map(
+				(datum) => {
+					const [x, val] = datum;
+					const a = mapper([x, y0]);
+					a[0] += offset;
+					const b = mapper([x, val]);
+					b[0] += offset;
+					return opts.shape!(datum, a, b);
+				},
+				__resolveData(data, spec.xaxis.domain)
+			),
 		];
 	};

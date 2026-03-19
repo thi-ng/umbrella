@@ -60,6 +60,6 @@ export const stringify =
 							? x.source
 							: x,
 					null,
-					indent,
+					indent
 				)
 			: String(x);

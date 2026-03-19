@@ -121,14 +121,12 @@ export interface TaggedFn0<T extends Type> extends Func0<T>, Func<T> {
 }
 
 export interface TaggedFn1<A extends Type, T extends Type>
-	extends Func1<A, T>,
-		Func<T> {
+	extends Func1<A, T>, Func<T> {
 	args: [Sym<A>];
 }
 
 export interface TaggedFn2<A extends Type, B extends Type, T extends Type>
-	extends Func2<A, B, T>,
-		Func<T> {
+	extends Func2<A, B, T>, Func<T> {
 	args: [Sym<A>, Sym<B>];
 }
 
@@ -136,9 +134,9 @@ export interface TaggedFn3<
 	A extends Type,
 	B extends Type,
 	C extends Type,
-	T extends Type
-> extends Func3<A, B, C, T>,
-		Func<T> {
+	T extends Type,
+>
+	extends Func3<A, B, C, T>, Func<T> {
 	args: [Sym<A>, Sym<B>, Sym<C>];
 }
 
@@ -147,9 +145,9 @@ export interface TaggedFn4<
 	B extends Type,
 	C extends Type,
 	D extends Type,
-	T extends Type
-> extends Func4<A, B, C, D, T>,
-		Func<T> {
+	T extends Type,
+>
+	extends Func4<A, B, C, D, T>, Func<T> {
 	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>];
 }
 
@@ -159,9 +157,9 @@ export interface TaggedFn5<
 	C extends Type,
 	D extends Type,
 	E extends Type,
-	T extends Type
-> extends Func5<A, B, C, D, E, T>,
-		Func<T> {
+	T extends Type,
+>
+	extends Func5<A, B, C, D, E, T>, Func<T> {
 	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>];
 }
 
@@ -172,9 +170,9 @@ export interface TaggedFn6<
 	D extends Type,
 	E extends Type,
 	F extends Type,
-	T extends Type
-> extends Func6<A, B, C, D, E, F, T>,
-		Func<T> {
+	T extends Type,
+>
+	extends Func6<A, B, C, D, E, F, T>, Func<T> {
 	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>];
 }
 
@@ -186,9 +184,9 @@ export interface TaggedFn7<
 	E extends Type,
 	F extends Type,
 	G extends Type,
-	T extends Type
-> extends Func7<A, B, C, D, E, F, G, T>,
-		Func<T> {
+	T extends Type,
+>
+	extends Func7<A, B, C, D, E, F, G, T>, Func<T> {
 	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>];
 }
 
@@ -201,9 +199,9 @@ export interface TaggedFn8<
 	F extends Type,
 	G extends Type,
 	H extends Type,
-	T extends Type
-> extends Func8<A, B, C, D, E, F, G, H, T>,
-		Func<T> {
+	T extends Type,
+>
+	extends Func8<A, B, C, D, E, F, G, H, T>, Func<T> {
 	args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, Sym<H>];
 }
 

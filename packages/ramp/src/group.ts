@@ -60,7 +60,10 @@ export class Group<T extends Record<string, any>> implements IReadonlyRamp<T> {
 
 	protected childEntries: [keyof T, IReadonlyRamp<any>][];
 
-	constructor(public children: GroupImpl<T>, opts?: Partial<RampOpts>) {
+	constructor(
+		public children: GroupImpl<T>,
+		opts?: Partial<RampOpts>
+	) {
 		this.childEntries = <[keyof T, IReadonlyRamp<any>][]>(
 			Object.entries(this.children)
 		);
@@ -69,10 +72,13 @@ export class Group<T extends Record<string, any>> implements IReadonlyRamp<T> {
 
 	at(t: number): T {
 		t = this.domain(t, ...this.timeBounds());
-		return this.childEntries.reduce((acc, [id, ramp]) => {
-			acc[id] = ramp.at(t);
-			return acc;
-		}, <T>{});
+		return this.childEntries.reduce(
+			(acc, [id, ramp]) => {
+				acc[id] = ramp.at(t);
+				return acc;
+			},
+			<T>{}
+		);
 	}
 
 	samples(n = 100, start?: number, end?: number): Iterable<Frame<T>> {

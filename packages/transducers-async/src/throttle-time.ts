@@ -21,5 +21,5 @@ export function throttleTime<T>(delay: number, src?: MaybeAsyncIterable<T>) {
 						? ((prev = t), true)
 						: false;
 				};
-		  });
+			});
 }
