@@ -5503,7 +5503,6 @@ __metadata:
   resolution: "@thi.ng/hiccup@workspace:packages/hiccup"
   dependencies:
     "@thi.ng/api": "npm:^8.12.16"
-    "@thi.ng/atom": "npm:^5.3.57"
     "@thi.ng/checks": "npm:^3.8.6"
     "@thi.ng/errors": "npm:^2.6.5"
     "@thi.ng/strings": "npm:^3.10.0"
@@ -8281,6 +8280,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^3.8.1":
+  version: 3.8.1
+  resolution: "prettier@npm:3.8.1"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10/3da1cf8c1ef9bea828aa618553696c312e951f810bee368f6887109b203f18ee869fe88f66e65f9cf60b7cb1f2eae859892c860a300c062ff8ec69c381fc8dbd
+  languageName: node
+  linkType: hard
+
 "proc-log@npm:^6.0.0":
   version: 6.1.0
   resolution: "proc-log@npm:6.1.0"
@@ -8423,6 +8431,7 @@ __metadata:
     bun-types: "npm:1.3.6"
     esbuild: "npm:^0.27.2"
     html-minifier-terser: "npm:^7.2.0"
+    prettier: "npm:^3.8.1"
     tools: "workspace:^"
     typedoc: "npm:^0.28.16"
     typescript: "npm:^5.9.3"

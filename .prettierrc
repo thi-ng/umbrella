@@ -1,6 +1,7 @@
 {
 	"arrowParens": "always",
 	"endOfLine": "lf",
+	"experimentalTernaries": false,
 	"semi": true,
 	"singleQuote": false,
 	"tabWidth": 4,
