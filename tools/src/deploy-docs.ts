@@ -11,7 +11,7 @@ import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execFileSync } from "node:child_process";
 import { LOGGER } from "./api.js";
 import { S3_BUCKET_DOCS, S3_OPTS } from "./aws-config.js";
-import { execAWS } from "./utils.js";
+import { execAWS, execRclone } from "./utils.js";
 
 interface CLIOpts {
 	alias?: KVDict;
@@ -34,8 +34,6 @@ interface DocCtx {
 	s3Prefix: string;
 	scope: string;
 }
-
-const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`;
 
 const MINIFY_OPTS =
 	"--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true";
@@ -117,9 +115,7 @@ const syncPackage = (ctx: DocCtx, id: string, root: string) => {
 	const destID = ctx.aliases[id] || id;
 	const dest = `${S3_BUCKET_DOCS}${ctx.s3Prefix}/${destID}`;
 	LOGGER.info("syncing", root, "->", dest);
-	if (!ctx.dryRun) {
-		LOGGER.info(execAWS(`s3 sync ${root} ${dest} ${SYNC_OPTS}`));
-	}
+	LOGGER.info(execRclone(root, dest, ctx.dryRun));
 };
 
 const processPackage = (ctx: DocCtx, id: string) => {
@@ -168,7 +164,7 @@ cliApp<CLIOpts, CLICtx>({
 	},
 	commands: {
 		default: {
-			desc: "Deploy example(s) to CDN",
+			desc: "Deploy package documentation",
 			fn: async (ctx) => {
 				const docCtx: DocCtx = {
 					aliases: ctx.opts.alias || {},
@@ -192,7 +188,7 @@ cliApp<CLIOpts, CLICtx>({
 					execFileSync("bun", ["tools/src/doc-table.ts"]);
 					if (!docCtx.dryRun) {
 						execAWS(
-							`s3 cp docs.html ${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`
+							`s3 cp docs.html s3://${S3_BUCKET_DOCS}/index.html ${S3_OPTS}`
 						);
 					}
 				}

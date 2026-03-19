@@ -58,12 +58,12 @@ const deploy = async ({ opts, logger }: CLICtx, name: string) => {
 			if (opts.compress && !NEVER_COMPRESS.has(ext)) {
 				compressFile(f);
 				execAWS(
-					`s3 cp ${f}.br ${fd} ${S3_COMPRESS_OPTS} --content-type ${type}`,
+					`s3 cp ${f}.br s3://${fd} ${S3_COMPRESS_OPTS} --content-type ${type}`,
 					logger
 				);
 			} else {
 				execAWS(
-					`s3 cp ${f} ${fd} ${S3_OPTS} --content-type ${type}`,
+					`s3 cp ${f} s3://${fd} ${S3_OPTS} --content-type ${type}`,
 					logger
 				);
 			}

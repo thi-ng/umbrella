@@ -323,7 +323,7 @@ console.log("uploading...");
 console.log(
 	execFileSync(
 		"aws",
-		`s3 cp assets/deps.svg.br ${S3_BUCKET_DEPS}/index.svg --content-type image/svg+xml ${S3_COMPRESS_OPTS}`.split(
+		`s3 cp assets/deps.svg.br s3://${S3_BUCKET_DEPS}/index.svg --content-type image/svg+xml ${S3_COMPRESS_OPTS}`.split(
 			" "
 		)
 	).toString()

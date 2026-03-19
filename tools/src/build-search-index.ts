@@ -120,6 +120,6 @@ compressFile("assets/search.bin");
 console.log("uploading...");
 console.log(
 	execAWS(
-		`s3 cp assets/search.bin.br ${S3_BUCKET_DOCS}/umbrella/search-index-latest.bin ${S3_COMPRESS_OPTS}`
+		`s3 cp assets/search.bin.br s3://${S3_BUCKET_DOCS}/umbrella/search-index-latest.bin ${S3_COMPRESS_OPTS}`
 	)
 );
