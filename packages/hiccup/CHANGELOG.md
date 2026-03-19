@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-03-19T12:29:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.4.0) (2026-03-19)
+
+#### 🚀 Features
+
+- add serialize() support for "textarea" value attrib ([30cee2d](https://github.com/thi-ng/umbrella/commit/30cee2d))
+  - update `serialize()` for textarea elements with value attrib:
+    - use value attrib as element body
+    - delete value attrib
+  - add tests
 
 ### [5.3.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@5.3.33) (2025-12-03)
 

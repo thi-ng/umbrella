@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-graph",
-	"version": "4.1.217",
+	"version": "4.1.218",
 	"description": "Declarative dataflow graph construction for @thi.ng/rstream",
 	"type": "module",
 	"module": "./index.js",
@@ -40,14 +40,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.16",
-		"@thi.ng/atom": "^5.3.57",
-		"@thi.ng/checks": "^3.8.6",
-		"@thi.ng/errors": "^2.6.5",
-		"@thi.ng/paths": "^5.2.35",
-		"@thi.ng/resolve-map": "^7.1.128",
-		"@thi.ng/rstream": "^9.4.0",
-		"@thi.ng/transducers": "^9.6.29"
+		"@thi.ng/api": "^8.12.17",
+		"@thi.ng/atom": "^5.3.58",
+		"@thi.ng/checks": "^3.8.7",
+		"@thi.ng/errors": "^2.6.6",
+		"@thi.ng/paths": "^5.2.36",
+		"@thi.ng/resolve-map": "^7.1.129",
+		"@thi.ng/rstream": "^9.4.1",
+		"@thi.ng/transducers": "^9.6.30"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

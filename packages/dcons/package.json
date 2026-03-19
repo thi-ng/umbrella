@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dcons",
-	"version": "3.2.188",
+	"version": "3.2.189",
 	"description": "Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)",
 	"type": "module",
 	"module": "./index.js",
@@ -40,13 +40,13 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.16",
-		"@thi.ng/checks": "^3.8.6",
-		"@thi.ng/compare": "^2.5.4",
+		"@thi.ng/api": "^8.12.17",
+		"@thi.ng/checks": "^3.8.7",
+		"@thi.ng/compare": "^2.5.5",
 		"@thi.ng/equiv": "^2.1.106",
-		"@thi.ng/errors": "^2.6.5",
-		"@thi.ng/random": "^4.1.41",
-		"@thi.ng/transducers": "^9.6.29"
+		"@thi.ng/errors": "^2.6.6",
+		"@thi.ng/random": "^4.1.42",
+		"@thi.ng/transducers": "^9.6.30"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

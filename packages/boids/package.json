@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/boids",
-	"version": "1.1.44",
+	"version": "1.1.45",
 	"description": "n-dimensional boids simulation with modular behavior system",
 	"type": "module",
 	"module": "./index.js",
@@ -40,14 +40,14 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.16",
-		"@thi.ng/checks": "^3.8.6",
-		"@thi.ng/distance": "^3.0.35",
-		"@thi.ng/geom-closest-point": "^2.1.207",
-		"@thi.ng/geom-resample": "^3.0.79",
-		"@thi.ng/math": "^5.15.5",
-		"@thi.ng/timestep": "^1.0.55",
-		"@thi.ng/vectors": "^8.6.23"
+		"@thi.ng/api": "^8.12.17",
+		"@thi.ng/checks": "^3.8.7",
+		"@thi.ng/distance": "^3.0.36",
+		"@thi.ng/geom-closest-point": "^2.1.208",
+		"@thi.ng/geom-resample": "^3.0.80",
+		"@thi.ng/math": "^5.15.6",
+		"@thi.ng/timestep": "^1.0.56",
+		"@thi.ng/vectors": "^8.6.24"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",
