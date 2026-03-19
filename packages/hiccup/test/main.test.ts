@@ -2,12 +2,20 @@
 import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
 import { escapeEntities } from "@thi.ng/strings";
-import { expect, test } from "bun:test";
-import { DOCTYPE_HTML, INLINE, XML_PROC, serialize } from "../src/index.js";
+import { describe, expect, test } from "bun:test";
+import {
+	DOCTYPE_HTML,
+	INLINE,
+	XML_PROC,
+	serialize,
+	type SerializeOpts,
+} from "../src/index.js";
 
-const _check = (a: any, b: any) => expect(serialize(a)).toBe(b);
+const _check = (a: any, b: any, opts?: Partial<SerializeOpts>) =>
+	expect(serialize(a, opts)).toBe(b);
 
-const check = (id: string, a: any, b: any) => test(id, () => _check(a, b));
+const check = (id: string, a: any, b: any, opts?: Partial<SerializeOpts>) =>
+	test(id, () => _check(a, b, opts));
 
 check("null", null, "");
 
@@ -396,3 +404,27 @@ test("inline", () =>
 			escape: true,
 		})
 	).toBe("<div><inline>&amp;</inline></div>"));
+
+describe("textarea", () => {
+	check(
+		"value attrib",
+		["textarea", { value: "body" }],
+		"<textarea>body</textarea>"
+	);
+
+	check("body", ["textarea", {}, "body"], "<textarea>body</textarea>");
+
+	check(
+		"escape value attrib",
+		["textarea", { value: "a & b" }],
+		"<textarea>a &amp; b</textarea>",
+		{ escape: true }
+	);
+
+	check(
+		"escape body",
+		["textarea", {}, "a & b"],
+		"<textarea>a &amp; b</textarea>",
+		{ escape: true }
+	);
+});

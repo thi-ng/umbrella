@@ -219,18 +219,18 @@ const __serialize = (tree: any, opts: SerializeOpts, path: any[]): string =>
 	tree == null
 		? ""
 		: Array.isArray(tree)
-		? __serializeElement(tree, opts, path)
-		: isFunction(tree)
-		? __serialize(tree(opts.ctx), opts, path)
-		: implementsFunction(tree, "toHiccup")
-		? __serialize(tree.toHiccup(opts.ctx), opts, path)
-		: isDeref(tree)
-		? __serialize(tree.deref(), opts, path)
-		: isNotStringAndIterable(tree)
-		? __serializeIter(tree, opts, path)
-		: ((tree = __escape(String(tree), opts)), opts.span)
-		? `<span${opts.keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>`
-		: tree;
+			? __serializeElement(tree, opts, path)
+			: isFunction(tree)
+				? __serialize(tree(opts.ctx), opts, path)
+				: implementsFunction(tree, "toHiccup")
+					? __serialize(tree.toHiccup(opts.ctx), opts, path)
+					: isDeref(tree)
+						? __serialize(tree.deref(), opts, path)
+						: isNotStringAndIterable(tree)
+							? __serializeIter(tree, opts, path)
+							: ((tree = __escape(String(tree), opts)), opts.span)
+								? `<span${opts.keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>`
+								: tree;
 
 /** @internal */
 const __serializeElement = (tree: any[], opts: SerializeOpts, path: any[]) => {
@@ -238,24 +238,28 @@ const __serializeElement = (tree: any[], opts: SerializeOpts, path: any[]) => {
 	return !tree.length
 		? ""
 		: isFunction(tag)
-		? __serialize(tag.apply(null, [opts.ctx, ...tree.slice(1)]), opts, path)
-		: implementsFunction(tag, "render")
-		? __serialize(
-				tag.render.apply(null, [opts.ctx, ...tree.slice(1)]),
-				opts,
-				path
-		  )
-		: tag === COMMENT
-		? __serializeComment(tree)
-		: tag === INLINE
-		? __serializeInline(tree)
-		: tag == CDATA
-		? __serializeCData(tree)
-		: isString(tag)
-		? __serializeTag(tree, opts, path)
-		: isNotStringAndIterable(tree)
-		? __serializeIter(tree, opts, path)
-		: illegalArgs(`invalid tree node: ${tree}`);
+			? __serialize(
+					tag.apply(null, [opts.ctx, ...tree.slice(1)]),
+					opts,
+					path
+				)
+			: implementsFunction(tag, "render")
+				? __serialize(
+						tag.render.apply(null, [opts.ctx, ...tree.slice(1)]),
+						opts,
+						path
+					)
+				: tag === COMMENT
+					? __serializeComment(tree)
+					: tag === INLINE
+						? __serializeInline(tree)
+						: tag == CDATA
+							? __serializeCData(tree)
+							: isString(tag)
+								? __serializeTag(tree, opts, path)
+								: isNotStringAndIterable(tree)
+									? __serializeIter(tree, opts, path)
+									: illegalArgs(`invalid tree node: ${tree}`);
 };
 
 /** @internal */
@@ -266,11 +270,17 @@ const __serializeTag = (tree: any[], opts: SerializeOpts, path: any[]) => {
 	opts.keys && attribs.key === undefined && (attribs.key = path.join("-"));
 	if (attribs.__escape != null) opts = { ...opts, escape: attribs.__escape };
 	const tag = tree[0];
-	const body = tree[2]
-		? __serializeBody(tag, tree[2], opts, path)
-		: !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
-		? `></${tag}>`
-		: PROC_TAGS[tag] || "/>";
+	let body = tree[2];
+	if (body == null && tag === "textarea" && attribs.value) {
+		body = attribs.value;
+		attribs.value = undefined;
+	}
+	body =
+		body != null
+			? __serializeBody(tag, body, opts, path)
+			: !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
+				? `></${tag}>`
+				: PROC_TAGS[tag] || "/>";
 	return `<${tag}${__serializeAttribs(attribs, opts)}${body}`;
 };
 
@@ -295,14 +305,14 @@ const __serializeAttrib = (
 	return v == null
 		? null
 		: isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null)
-		? null
-		: v === true
-		? " " + a + (opts.xml ? `=""` : "")
-		: v === false
-		? null
-		: a === "data"
-		? __serializeDataAttribs(v, opts)
-		: __attribPair(a, v, opts);
+			? null
+			: v === true
+				? " " + a + (opts.xml ? `=""` : "")
+				: v === false
+					? null
+					: a === "data"
+						? __serializeDataAttribs(v, opts)
+						: __attribPair(a, v, opts);
 };
 
 /** @internal */
@@ -311,10 +321,10 @@ const __attribPair = (a: string, v: any, opts: SerializeOpts) => {
 		a === "style" && isPlainObject(v)
 			? css(v)
 			: a === "prefix" && isPlainObject(v)
-			? formatPrefixes(v)
-			: isArray(v)
-			? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
-			: v.toString();
+				? formatPrefixes(v)
+				: isArray(v)
+					? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
+					: v.toString();
 	return v.length ? ` ${a}="${__escape(v, opts)}"` : null;
 };
 
