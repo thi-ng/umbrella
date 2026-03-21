@@ -2,6 +2,7 @@
 export * from "./api.js";
 
 export * from "./ansi.js";
+export * from "./balance.js";
 export * from "./case.js";
 export * from "./center.js";
 export * from "./currency.js";
