@@ -52,6 +52,7 @@
 	},
 	"keywords": [
 		"ansi",
+		"balance",
 		"composition",
 		"conversion",
 		"cursor",
@@ -75,6 +76,7 @@
 		"typescript",
 		"unicode",
 		"utf8",
+		"validate",
 		"wordwrap"
 	],
 	"publishConfig": {
@@ -96,6 +98,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./balance": {
+			"default": "./balance.js"
 		},
 		"./case": {
 			"default": "./case.js"

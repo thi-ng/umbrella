@@ -37,8 +37,9 @@
 
 ## About
 
-Various (~100) string formatting, word wrapping & utility functions, some
-higher-order, some memoized.
+Collection of ~115 string utilities for formatting, interpolation, word
+wrapping, validation, case conversion etc. Most of them are configurable
+higher-order functions, some memoized.
 
 Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 
@@ -50,6 +51,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 - `join` / `splice` / `split`
 - `repeat`
 - `stringify`
+- `balance`
 
 ### Numeric formatters
 
@@ -151,7 +153,7 @@ For Node.js REPL:
 const str = await import("@thi.ng/strings");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.56 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.73 KB
 
 ## Dependencies
 

@@ -4,8 +4,9 @@
 
 ## About
 
-Various (~100) string formatting, word wrapping & utility functions, some
-higher-order, some memoized.
+Collection of ~115 string utilities for formatting, interpolation, word
+wrapping, validation, case conversion etc. Most of them are configurable
+higher-order functions, some memoized.
 
 Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 
@@ -17,6 +18,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 - `join` / `splice` / `split`
 - `repeat`
 - `stringify`
+- `balance`
 
 ### Numeric formatters
 
