@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-03-21T09:18:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.11.0) (2026-03-21)
+
+#### 🚀 Features
+
+- add `balance()`, incl. docs, examples, tests ([20cba08](https://github.com/thi-ng/umbrella/commit/20cba08))
 
 ## [3.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.10.0) (2026-03-11)
 

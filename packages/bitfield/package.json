@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bitfield",
-	"version": "2.4.31",
+	"version": "2.4.32",
 	"description": "1D / 2D bit field implementations",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/api": "^8.12.17",
 		"@thi.ng/binary": "^3.6.6",
 		"@thi.ng/errors": "^2.6.6",
-		"@thi.ng/strings": "^3.10.1"
+		"@thi.ng/strings": "^3.11.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",
