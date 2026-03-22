@@ -3,6 +3,7 @@ import { expect, test, describe } from "bun:test";
 import {
 	Bitfield,
 	FLAG_BITMAP,
+	FLAG_DICT,
 	Table,
 	type SerializedTable,
 } from "../src/index.js";
@@ -40,7 +41,7 @@ describe("bitmap index", () => {
 		check();
 	});
 
-	test("remove row", () => {
+	test("remove row (single)", () => {
 		const t = Table.load(SRC);
 		const colA = t.columns.a;
 		// remove row {a:null}
@@ -69,6 +70,83 @@ describe("bitmap index", () => {
 		]) {
 			expect(colA.bitmap!.index.get(k)?.buffer![0]).toEqual(v);
 		}
+	});
+
+	test("remove row (dict tuple)", () => {
+		const table = new Table({
+			a: {
+				type: "str",
+				cardinality: [0, 4],
+				flags: FLAG_DICT | FLAG_BITMAP,
+			},
+		});
+		for (let i = 0; i < 66; i++) table.addRow({});
+		table.addRows([
+			{ a: ["x", "y"] },
+			{ a: ["x", "z"] },
+			{ a: ["x", "z", "y"] },
+		]);
+
+		const getBitmaps = () =>
+			[...table.columns.a.bitmap!.index.entries()].reduce(
+				(acc, [k, v]) => ((acc[k] = [...v.buffer!]), acc),
+				<any>{}
+			);
+
+		expect(getBitmaps()).toEqual({
+			x: [0, 0, 0b1_1100],
+			y: [0, 0, 0b1_0100],
+			z: [0, 0, 0b1_1000],
+		});
+
+		table.removeRow(0);
+		expect(getBitmaps()).toEqual({
+			x: [0, 0, 0b1110],
+			y: [0, 0, 0b1010],
+			z: [0, 0, 0b1100],
+		});
+
+		table.removeRow(64);
+		expect(getBitmaps()).toEqual({
+			x: [0, 0, 0b111],
+			y: [0, 0, 0b101],
+			z: [0, 0, 0b110],
+		});
+
+		table.removeRow(0);
+		expect(getBitmaps()).toEqual({
+			x: [0, 0b10000000_00000000_00000000_00000000, 0b11],
+			y: [0, 0b10000000_00000000_00000000_00000000, 0b10],
+			z: [0, 0, 0b11],
+		});
+
+		table.removeRow(64);
+		expect(getBitmaps()).toEqual({
+			x: [0, 0b10000000_00000000_00000000_00000000, 0b1],
+			y: [0, 0b10000000_00000000_00000000_00000000, 0b1],
+			z: [0, 0, 0b1],
+		});
+
+		table.removeRow(32);
+		expect(getBitmaps()).toEqual({
+			x: [0, 0b11000000_00000000_00000000_00000000, 0],
+			y: [0, 0b11000000_00000000_00000000_00000000, 0],
+			z: [0, 0b10000000_00000000_00000000_00000000, 0],
+		});
+
+		table.removeRow(62);
+		expect(getBitmaps()).toEqual({
+			x: [0, 0b01000000_00000000_00000000_00000000, 0],
+			y: [0, 0b01000000_00000000_00000000_00000000, 0],
+			z: [0, 0b01000000_00000000_00000000_00000000, 0],
+		});
+
+		table.updateRow(8, { a: ["y", "z"] });
+		expect(getBitmaps()).toEqual({
+			x: [0, 0b01000000_00000000_00000000_00000000, 0],
+			y: [0b1_00000000, 0b01000000_00000000_00000000_00000000, 0],
+			z: [0b1_00000000, 0b01000000_00000000_00000000_00000000, 0],
+		});
 	});
 
 	test("first", () => {
@@ -136,5 +214,16 @@ describe("bitmap index", () => {
 				0b11111111_11111111_11111111_11111100,
 			])
 		);
+	});
+
+	test("ones", () => {
+		expect([
+			...new Bitfield(
+				new Uint32Array([
+					0b10000000_00000000_11000000_00010001,
+					0b01000000_00000001_00000000_00000011,
+				])
+			).ones(),
+		]).toEqual([0, 4, 14, 15, 31, 32, 33, 48, 62]);
 	});
 });
