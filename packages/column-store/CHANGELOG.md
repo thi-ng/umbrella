@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-03-23T15:42:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.13.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.13.4) (2026-03-23)
+
+#### 🧪 Tests
+
+- add bitmap tests (remove row) ([b62937b](https://github.com/thi-ng/umbrella/commit/b62937b))
+
+### [0.13.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.13.2) (2026-03-18)
+
+#### 📖 Documentation
+
+- regen readmes ([ccd412f](https://github.com/thi-ng/umbrella/commit/ccd412f))
 
 ### [0.13.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.13.1) (2026-03-15)
 
@@ -28,6 +40,10 @@ and/or version bumps of transitive dependencies.
   - add `QueryResult` type
   - add tests
 
+#### 📖 Documentation
+
+- update readme, update pkg meta ([afbb07a](https://github.com/thi-ng/umbrella/commit/afbb07a))
+
 ## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.12.0) (2026-03-11)
 
 #### 🚀 Features
@@ -40,6 +56,12 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - update const use in for-of loops ([f90c1d1](https://github.com/thi-ng/umbrella/commit/f90c1d1))
+
+### [0.11.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.11.4) (2026-03-11)
+
+#### 📖 Documentation
+
+- regen readmes ([4c471e6](https://github.com/thi-ng/umbrella/commit/4c471e6))
 
 ### [0.11.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.11.2) (2026-03-07)
 
@@ -55,6 +77,14 @@ and/or version bumps of transitive dependencies.
   - update deps (add [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/main/packages/compare))
   - add tests
 - add getRows()/getPartialRows(), add tests ([72b4511](https://github.com/thi-ng/umbrella/commit/72b4511))
+
+#### 📖 Documentation
+
+- regen readmes ([6e7b540](https://github.com/thi-ng/umbrella/commit/6e7b540))
+
+#### 🧪 Tests
+
+- add tests ([d953b6e](https://github.com/thi-ng/umbrella/commit/d953b6e))
 
 ### [0.10.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.10.1) (2026-03-03)
 
@@ -77,11 +107,24 @@ and/or version bumps of transitive dependencies.
   - add `Table.slice()`
   - add `INITIAL_CAPACITY` (internal) const for typedarray & vector columns
 
+#### 🧪 Tests
+
+- add tests ([ad62481](https://github.com/thi-ng/umbrella/commit/ad62481))
+
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.9.0) (2026-03-01)
 
 #### 🚀 Features
 
 - add query predicates (syntax sugar) ([a9e7b89](https://github.com/thi-ng/umbrella/commit/a9e7b89))
+
+#### 📖 Documentation
+
+- update readme, add diagram ([3ba4594](https://github.com/thi-ng/umbrella/commit/3ba4594))
+- update readme ([3c13d60](https://github.com/thi-ng/umbrella/commit/3c13d60))
+
+#### 🧪 Tests
+
+- remove old tests ([5cd0f1d](https://github.com/thi-ng/umbrella/commit/5cd0f1d))
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.8.0) (2026-02-28)
 
@@ -101,6 +144,15 @@ and/or version bumps of transitive dependencies.
   - update all query ops to iterate via ctx/bitfield
   - add short-circuit to fail query if current op produced no results
 
+#### 📖 Documentation
+
+- update readme ([79d1a40](https://github.com/thi-ng/umbrella/commit/79d1a40))
+
+#### 🧪 Tests
+
+- add tests ([c4c1f6b](https://github.com/thi-ng/umbrella/commit/c4c1f6b))
+- add tests ([d566795](https://github.com/thi-ng/umbrella/commit/d566795))
+
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.7.0) (2026-02-26)
 
 #### 🚀 Features
@@ -110,6 +162,10 @@ and/or version bumps of transitive dependencies.
   - update `Table.addColumn()`
   - update `Table.validateColumnSpec()`
   - add tests for all column types
+
+#### 🧪 Tests
+
+- split tests into separate files ([87629b3](https://github.com/thi-ng/umbrella/commit/87629b3))
 
 ### [0.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.6.1) (2026-02-25)
 
@@ -123,6 +179,16 @@ and/or version bumps of transitive dependencies.
 #### 🚀 Features
 
 - add `IColumn.lastIndexOf()`, add `Bitfield.last()`, update column types ([6fce8c0](https://github.com/thi-ng/umbrella/commit/6fce8c0))
+
+#### 📖 Documentation
+
+- update readme ([11e3261](https://github.com/thi-ng/umbrella/commit/11e3261))
+
+### [0.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.5.1) (2026-02-25)
+
+#### 📖 Documentation
+
+- update readme ([c196802](https://github.com/thi-ng/umbrella/commit/c196802))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.5.0) (2026-02-25)
 
@@ -140,6 +206,16 @@ and/or version bumps of transitive dependencies.
   - add/update tests
 - add column type check for `valueRange()` op ([58f235f](https://github.com/thi-ng/umbrella/commit/58f235f))
 
+#### 📖 Documentation
+
+- update readme ([0237220](https://github.com/thi-ng/umbrella/commit/0237220))
+- regen readmes ([ed3bb4e](https://github.com/thi-ng/umbrella/commit/ed3bb4e))
+- update/extend readme (new query ops) ([4126772](https://github.com/thi-ng/umbrella/commit/4126772))
+
+#### 🧪 Tests
+
+- update tests ([572b24a](https://github.com/thi-ng/umbrella/commit/572b24a))
+
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.4.0) (2026-02-13)
 
 #### 🚀 Features
@@ -148,6 +224,10 @@ and/or version bumps of transitive dependencies.
 - add `IColumn.indexOf()`, add impls for all column types ([3901eec](https://github.com/thi-ng/umbrella/commit/3901eec))
 - add `Table.indexOf()`, fix vector impl, update tests ([164c67e](https://github.com/thi-ng/umbrella/commit/164c67e))
 - update `validateColumnSpec()` ([8aa82bf](https://github.com/thi-ng/umbrella/commit/8aa82bf))
+
+#### 🧪 Tests
+
+- add tests ([bc7ac38](https://github.com/thi-ng/umbrella/commit/bc7ac38))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.3.0) (2026-02-13)
 
@@ -158,6 +238,11 @@ and/or version bumps of transitive dependencies.
   - update `Table.getRow()`/`Table.getPartialRow()` to optionally include `__row` ID
   - update query results to include `__row` ID
   - update tests
+
+#### 📖 Documentation
+
+- update readme ([76bb8fa](https://github.com/thi-ng/umbrella/commit/76bb8fa))
+- update readme ([35b0104](https://github.com/thi-ng/umbrella/commit/35b0104))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.2.0) (2026-02-12)
 
@@ -173,6 +258,22 @@ and/or version bumps of transitive dependencies.
 #### ♻️ Refactoring
 
 - migrate/dedupe LIMITS, update RLE handling ([6b9f916](https://github.com/thi-ng/umbrella/commit/6b9f916))
+
+#### 📖 Documentation
+
+- update readme (vector types, precision, RLE etc.) ([3392f7e](https://github.com/thi-ng/umbrella/commit/3392f7e))
+- regen readmes ([8515e11](https://github.com/thi-ng/umbrella/commit/8515e11))
+- update readme (vector) ([1c16e92](https://github.com/thi-ng/umbrella/commit/1c16e92))
+
+#### 🧪 Tests
+
+- add query & RLE tests for all column types ([345c87b](https://github.com/thi-ng/umbrella/commit/345c87b))
+
+### [0.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.1.3) (2026-02-08)
+
+#### 🧪 Tests
+
+- start importing tests ([023a3cf](https://github.com/thi-ng/umbrella/commit/023a3cf))
 
 ### [0.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.1.2) (2026-02-08)
 
@@ -193,6 +294,10 @@ and/or version bumps of transitive dependencies.
 - rename tuple-based column types ([5111f88](https://github.com/thi-ng/umbrella/commit/5111f88))
   - rename `ArrayColumn` => `TupleColumn`
   - rename `DictArrayColumn` => `DictTupleColumn`
+
+#### 📖 Documentation
+
+- update readme ([a87c237](https://github.com/thi-ng/umbrella/commit/a87c237))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/column-store@0.1.0) (2026-02-07)
 
@@ -254,3 +359,14 @@ and/or version bumps of transitive dependencies.
 - rename FLAG_ENUM => FLAG_DICT ([de9b00f](https://github.com/thi-ng/umbrella/commit/de9b00f))
 - rename dict-based column types ([5a5b5ba](https://github.com/thi-ng/umbrella/commit/5a5b5ba))
 - update typedarray colum value validation ([2b14435](https://github.com/thi-ng/umbrella/commit/2b14435))
+
+#### 📖 Documentation
+
+- update readme and pkg meta, add code examples ([bc4df0d](https://github.com/thi-ng/umbrella/commit/bc4df0d))
+- update/extend readme ([7d617a3](https://github.com/thi-ng/umbrella/commit/7d617a3))
+- update/fix readme ([a8709f9](https://github.com/thi-ng/umbrella/commit/a8709f9))
+- update readme ([5861202](https://github.com/thi-ng/umbrella/commit/5861202))
+- update readme, add doc links, snippets ([ddc7d78](https://github.com/thi-ng/umbrella/commit/ddc7d78))
+- update readme ([5a6994f](https://github.com/thi-ng/umbrella/commit/5a6994f))
+- update readme ([f99167f](https://github.com/thi-ng/umbrella/commit/f99167f))
+- update readme, add RLE docs ([9d9fad1](https://github.com/thi-ng/umbrella/commit/9d9fad1))
