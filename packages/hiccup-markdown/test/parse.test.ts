@@ -77,6 +77,29 @@ test("codeblock", () => {
 	);
 });
 
+test("codeblock (empty)", () => {
+	check("```js\n```", [
+		[
+			"pre",
+			{
+				data: { lang: "js" },
+				__head: [],
+			},
+			["code", {}, ""],
+		],
+	]);
+});
+
+test("customblock", () => {
+	check(":::test a=AAA bbb=B\nbody\n:::", [
+		["custom", { type: "test", __head: ["a=AAA", "bbb=B"] }, "body"],
+	]);
+});
+
+test("customblock (empty)", () => {
+	check(":::test\n:::", [["custom", { type: "test", __head: [] }, ""]]);
+});
+
 test("em", () => {
 	check(`some _emphasized_ text`, [
 		["p", {}, "some ", ["em", {}, "emphasized"], " text"],
