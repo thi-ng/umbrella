@@ -13,7 +13,7 @@ import { SYSTEM } from "./system.js";
  */
 export const randomBytesFrom = (
 	rnd: IRandom,
-	buf: Uint8Array,
+	buf: Uint8Array<ArrayBuffer>,
 	start = 0,
 	end = buf.length
 ) => {
@@ -34,9 +34,9 @@ export const randomBytesFrom = (
  */
 export const randomBytes =
 	typeof window !== "undefined" && window["crypto"] !== undefined
-		? (buf: Uint8Array, start = 0, end = buf.length) => (
+		? (buf: Uint8Array<ArrayBuffer>, start = 0, end = buf.length) => (
 				window.crypto.getRandomValues(buf.subarray(start, end)),
 				buf
 			)
-		: (buf: Uint8Array, start?: number, end?: number) =>
+		: (buf: Uint8Array<ArrayBuffer>, start?: number, end?: number) =>
 				randomBytesFrom(SYSTEM, buf, start, end);

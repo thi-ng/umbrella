@@ -17,7 +17,7 @@ export class Crypto
 	extends ARandom
 	implements IBuffered<Uint8Array>, ICopy<Crypto>
 {
-	buffer: Uint8Array;
+	buffer: Uint8Array<ArrayBuffer>;
 	protected u32: Uint32Array;
 	protected i: number;
 
