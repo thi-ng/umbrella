@@ -17,7 +17,7 @@ import { randomBytes, randomBytesFrom } from "@thi.ng/random/random-bytes";
  * @param buf -
  * @param rnd -
  */
-export const uuidv4Bytes = (buf?: Uint8Array, rnd?: IRandom) => {
+export const uuidv4Bytes = (buf?: Uint8Array<ArrayBuffer>, rnd?: IRandom) => {
 	buf = buf || new Uint8Array(16);
 	buf = rnd ? randomBytesFrom(rnd, buf) : randomBytes(buf);
 	buf[6] = 0x40 | (buf[6] & 0x0f);
