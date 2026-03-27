@@ -24,7 +24,7 @@ export interface IKSUID {
 	 *
 	 * @param buf
 	 */
-	nextBinary(buf?: Uint8Array): Uint8Array;
+	nextBinary(buf?: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer>;
 
 	/**
 	 * Returns a new baseN encoded ID string for given `epoch` (default: current
@@ -42,7 +42,10 @@ export interface IKSUID {
 	 * @param epoch -
 	 * @param buf -
 	 */
-	timeOnlyBinary(epoch?: number, buf?: Uint8Array): Uint8Array;
+	timeOnlyBinary(
+		epoch?: number,
+		buf?: Uint8Array<ArrayBuffer>
+	): Uint8Array<ArrayBuffer>;
 
 	/**
 	 * Returns a new formatted ID, composed from user supplied timestamp
@@ -60,7 +63,10 @@ export interface IKSUID {
 	 * @param epoch
 	 * @param buf
 	 */
-	fromEpochBinary(epoch?: number, buf?: Uint8Array): Uint8Array;
+	fromEpochBinary(
+		epoch?: number,
+		buf?: Uint8Array<ArrayBuffer>
+	): Uint8Array<ArrayBuffer>;
 
 	/**
 	 * Returns baseN encoded version of given binary ID (generated via
@@ -78,7 +84,7 @@ export interface IKSUID {
 	 *
 	 * @param id -
 	 */
-	parse(id: string): { epoch: number; id: Uint8Array };
+	parse(id: string): { epoch: number; id: Uint8Array<ArrayBuffer> };
 }
 
 export interface KSUIDOpts {

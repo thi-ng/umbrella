@@ -11,7 +11,7 @@ export class KSUID64 extends AKSUID {
 		});
 	}
 
-	timeOnlyBinary(epoch = Date.now(), buf?: Uint8Array) {
+	timeOnlyBinary(epoch = Date.now(), buf?: Uint8Array<ArrayBuffer>) {
 		buf = buf || new Uint8Array(this.size);
 		const t = this.ensureTime(epoch - this.epoch);
 		const h = (t / 0x1_0000_0000) >>> 0;
