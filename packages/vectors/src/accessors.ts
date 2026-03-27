@@ -11,24 +11,30 @@ export const declareIndex = (
 		idx > 0
 			? strided
 				? function () {
+						// @ts-ignore mixin
 						return this.buf[this.offset + idx * this.stride];
 					}
 				: function () {
+						// @ts-ignore mixin
 						return this.buf[this.offset + idx];
 					}
 			: function () {
+					// @ts-ignore mixin
 					return this.buf[this.offset];
 				};
 	const set =
 		idx > 0
 			? strided
 				? function (n: number) {
+						// @ts-ignore mixin
 						this.buf[this.offset + idx * this.stride] = n;
 					}
 				: function (n: number) {
+						// @ts-ignore mixin
 						this.buf[this.offset + idx] = n;
 					}
 			: function (n: number) {
+					// @ts-ignore mixin
 					this.buf[this.offset] = n;
 				};
 	defNumeric &&
