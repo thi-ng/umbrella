@@ -183,8 +183,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                     | Description                                         | Live demo                                             | Source                                                                              |
-|:-------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------|:------------------------------------------------------------------------------------|
+| Screenshot                                                                                                                     | Description                                         | Live demo                                             | Source                                                                                     |
+|:-------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rasterize-blend.jpg" width="240"/> | Steering behavior drawing with alpha-blended shapes | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rasterize-blend) |
 
 ## API

@@ -93,8 +93,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                   | Description                                                      | Live demo                                           | Source                                                                            |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| Screenshot                                                                                                                   | Description                                                      | Live demo                                           | Source                                                                                   |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/> | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting) |
 
 ## API

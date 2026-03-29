@@ -909,8 +909,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                   | Description                                                        | Live demo                                           | Source                                                                            |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| Screenshot                                                                                                                   | Description                                                        | Live demo                                           | Source                                                                                   |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list) |
 
 ## API

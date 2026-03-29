@@ -114,8 +114,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                    | Description                                              | Live demo                                            | Source                                                                             |
-|:------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------|
+| Screenshot                                                                                                                    | Description                                              | Live demo                                            | Source                                                                                    |
+|:------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-evo.jpg" width="240"/> | Evolutionary shader generation using genetic programming | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-evo) |
 
 ## API

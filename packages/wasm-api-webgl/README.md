@@ -79,8 +79,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                      | Live demo                                       | Source                                                                        |
-|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:------------------------------------------------|:------------------------------------------------------------------------------|
+| Screenshot                                                                                                                | Description                      | Live demo                                       | Source                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------|:------------------------------------------------|:-------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-webgl.avif" width="240"/> | Basic Zig/WebAssembly WebGL demo | [Demo](https://demo.thi.ng/umbrella/zig-webgl/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-webgl) |
 
 ## API

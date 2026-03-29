@@ -89,8 +89,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                  | Description                             | Live demo                                         | Source                                                                          |
-|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------|:--------------------------------------------------|:--------------------------------------------------------------------------------|
+| Screenshot                                                                                                                  | Description                             | Live demo                                         | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------|:--------------------------------------------------|:---------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/tsne-colors.avif" width="240"/> | Animated t-SNE visualization of 4D data | [Demo](https://demo.thi.ng/umbrella/tsne-colors/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/tsne-colors) |
 
 ## API

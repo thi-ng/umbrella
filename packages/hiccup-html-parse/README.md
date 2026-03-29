@@ -153,8 +153,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                   | Description                                                                                             | Live demo                                           | Source                                                                            |
-|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| Screenshot                                                                                                                   | Description                                                                                             | Live demo                                           | Source                                                                                   |
+|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/> | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed) |
 
 ## API

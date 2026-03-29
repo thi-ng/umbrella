@@ -78,8 +78,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                  | Description                                                 | Live demo                                          | Source                                                                           |
-|:----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| Screenshot                                                                                                                  | Description                                                 | Live demo                                          | Source                                                                                  |
+|:----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/render-audio.png" width="240"/> | Generative audio synth offline renderer and WAV file export | [Demo](https://demo.thi.ng/umbrella/render-audio/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/render-audio) |
 
 ## API

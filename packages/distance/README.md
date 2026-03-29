@@ -160,8 +160,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                   | Description                               | Live demo                                           | Source                                                                            |
-|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| Screenshot                                                                                                                   | Description                               | Live demo                                           | Source                                                                                   |
+|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn-hash.jpg" width="240"/> | K-nearest neighbor search in an hash grid | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn-hash) |
 
 ## API

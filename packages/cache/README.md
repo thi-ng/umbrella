@@ -102,8 +102,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                      | Description                                                          | Live demo                                              | Source                                                                               |
-|:--------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| Screenshot                                                                                                                      | Description                                                          | Live demo                                              | Source                                                                                      |
+|:--------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-table-ssr.png" width="240"/> | Filterable commit log UI w/ minimal server to provide commit history | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-table-ssr) |
 
 ## API

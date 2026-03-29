@@ -85,8 +85,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Description                                                                  | Live demo                                          | Source                                                                           |
-|:-----------------------------------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| Description                                                                  | Live demo                                          | Source                                                                                  |
+|:-----------------------------------------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
 | GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gpgpu-reduce) |
 
 ## API

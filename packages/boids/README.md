@@ -133,8 +133,8 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                 | Description                                                    | Live demo                                         | Source                                                                          |
-|:---------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------------------------------------|
+| Screenshot                                                                                                                 | Description                                                    | Live demo                                         | Source                                                                                 |
+|:---------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------|:--------------------------------------------------|:---------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/boid-basics.png" width="240"/> | Basic 2D boid simulation and spatial indexing neighbor lookups | [Demo](https://demo.thi.ng/umbrella/boid-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/boid-basics) |
 
 ## API
