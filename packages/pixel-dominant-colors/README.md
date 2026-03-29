@@ -144,9 +144,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                     | Description                                                                 | Live demo                                             | Source                                                                                     |
-|:-------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/> | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors) |
+| Screenshot                                                                                                             | Description                                                                 | Live demo                                             | Source                                                                                     |
+|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/dominant-colors.png" width="240"/> | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors) |
 
 ## API
 

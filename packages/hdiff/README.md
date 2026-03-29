@@ -107,9 +107,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                            | Description                                               | Live demo                                   | Source                                                                           |
-|:----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdiff.avif" width="240"/> | Applying thi.ng/hdiff to generate static HTML diff output | [Demo](https://demo.thi.ng/umbrella/hdiff/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdiff) |
+| Screenshot                                                                                                    | Description                                               | Live demo                                   | Source                                                                           |
+|:--------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/hdiff.avif" width="240"/> | Applying thi.ng/hdiff to generate static HTML diff output | [Demo](https://demo.thi.ng/umbrella/hdiff/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdiff) |
 
 ## API
 

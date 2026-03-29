@@ -79,9 +79,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                              | Description                                                | Live demo                                        | Source                                                                                |
-|:------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/geom/geom-isoline.png" width="240"/> | Animated sine plasma effect visualized using contour lines | [Demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/iso-plasma) |
+| Screenshot                                                                                                      | Description                                                | Live demo                                        | Source                                                                                |
+|:----------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-isoline.png" width="240"/> | Animated sine plasma effect visualized using contour lines | [Demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/iso-plasma) |
 
 ## API
 

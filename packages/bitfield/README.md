@@ -85,9 +85,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                    | Description                                                        | Live demo                                            | Source                                                                                    |
-|:------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/> | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images) |
+| Screenshot                                                                                                            | Description                                                        | Live demo                                            | Source                                                                                    |
+|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/related-images.jpg" width="240"/> | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images) |
 
 ## API
 

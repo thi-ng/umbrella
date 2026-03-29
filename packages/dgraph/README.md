@@ -102,9 +102,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                   | Description                              | Live demo | Source                                                                                   |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:----------|:-----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/package-stats.png" width="240"/> | CLI util to visualize umbrella pkg stats |           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/package-stats) |
+| Screenshot                                                                                                           | Description                              | Live demo | Source                                                                                   |
+|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:----------|:-----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/package-stats.png" width="240"/> | CLI util to visualize umbrella pkg stats |           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/package-stats) |
 
 ## API
 

@@ -1,7 +1,7 @@
 {
 	"repoURL": "https://codeberg.org/thi.ng/umbrella",
 	"userURL": "https://codeberg.org",
-	"assetURL": "https://codeberg.org/thi.ng/umbrella/media/branch/develop",
+	"assetURL": "https://codeberg.org/thi.ng/umbrella/media/branch",
 	"bannerURL": "https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-",
 	"bannerBasePath": "../../assets/banners/thing-",
 	"demoURL": "https://demo.thi.ng/umbrella",

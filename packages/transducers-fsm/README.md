@@ -96,9 +96,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                        | Description                                                                                | Live demo                                                | Source                                                                                        |
-|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:----------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences) |
+| Screenshot                                                                                                                | Description                                                                                | Live demo                                                | Source                                                                                        |
+|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:----------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences) |
 
 ## Usage examples
 

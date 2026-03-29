@@ -398,9 +398,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                     | Description                                                                              | Live demo                                             | Source                                                                                     |
-|:-------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/procedural-text.jpg" width="240"/> | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation | [Demo](https://demo.thi.ng/umbrella/procedural-text/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text) |
+| Screenshot                                                                                                             | Description                                                                              | Live demo                                             | Source                                                                                     |
+|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|:------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/procedural-text.jpg" width="240"/> | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation | [Demo](https://demo.thi.ng/umbrella/procedural-text/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text) |
 
 ## API
 

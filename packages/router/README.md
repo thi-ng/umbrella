@@ -89,10 +89,10 @@ Two projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                   | Description                                             | Live demo                                           | Source                                                                                   |
-|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-router.jpg" width="240"/>   | Basic thi.ng/router usage with thi.ng/rdom components   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-router)   |
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading | [Demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/router-basics) |
+| Screenshot                                                                                                           | Description                                             | Live demo                                           | Source                                                                                   |
+|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-router.jpg" width="240"/>   | Basic thi.ng/router usage with thi.ng/rdom components   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-router)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading | [Demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/router-basics) |
 
 ## API
 

@@ -119,10 +119,10 @@ Two projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                       | Description                                                | Live demo                                              | Source                                                                                      |
-|:---------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>  | Interactive ridge-line plot                                | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)  |
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-scatter-plot) |
+| Screenshot                                                                                                               | Description                                                | Live demo                                              | Source                                                                                      |
+|:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/viz-ridge-lines.avif" width="240"/>  | Interactive ridge-line plot                                | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-scatter-plot) |
 
 ## API
 

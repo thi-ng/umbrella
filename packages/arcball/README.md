@@ -84,9 +84,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                                                       | Live demo                                           | Source                                                                                   |
-|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cube.png" width="240"/> | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-arcball) |
+| Screenshot                                                                                                        | Description                                                       | Live demo                                           | Source                                                                                   |
+|:------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-cube.png" width="240"/> | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-arcball) |
 
 ## API
 

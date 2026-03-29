@@ -95,9 +95,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                  | Description                                            | Live demo                                          | Source                                                                                  |
-|:----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap) |
+| Screenshot                                                                                                          | Description                                            | Live demo                                          | Source                                                                                  |
+|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap) |
 
 ## API
 

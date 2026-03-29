@@ -74,9 +74,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                  | Description                                   | Live demo                                          | Source                                                                                  |
-|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-cellular.jpg" width="240"/> | Zig-based 2D multi-behavior cellular automata | [Demo](https://demo.thi.ng/umbrella/zig-cellular/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-cellular) |
+| Screenshot                                                                                                          | Description                                   | Live demo                                          | Source                                                                                  |
+|:--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/zig-cellular.jpg" width="240"/> | Zig-based 2D multi-behavior cellular automata | [Demo](https://demo.thi.ng/umbrella/zig-cellular/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-cellular) |
 
 ## API
 

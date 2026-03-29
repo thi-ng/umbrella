@@ -86,9 +86,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                                 | Live demo                                        | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-msdf.jpg" width="240"/> | WebGL MSDF text rendering & particle system | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-msdf) |
+| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                                |
+|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-msdf.jpg" width="240"/> | WebGL MSDF text rendering & particle system | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-msdf) |
 
 ## API
 

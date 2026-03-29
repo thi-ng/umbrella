@@ -244,9 +244,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                                               | Live demo                                        | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/lispy-repl.png" width="240"/> | Browser REPL for a Lispy S-expression based mini language | [Demo](https://demo.thi.ng/umbrella/lispy-repl/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl) |
+| Screenshot                                                                                                        | Description                                               | Live demo                                        | Source                                                                                |
+|:------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/lispy-repl.png" width="240"/> | Browser REPL for a Lispy S-expression based mini language | [Demo](https://demo.thi.ng/umbrella/lispy-repl/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl) |
 
 ## API
 

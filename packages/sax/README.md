@@ -106,10 +106,10 @@ Two projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                   | Description                           | Live demo                                           | Source                                                                                   |
-|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-resample.png" width="240"/>  | SVG path parsing & dynamic resampling | [Demo](https://demo.thi.ng/umbrella/svg-resample/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)  |
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion  | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/xml-converter) |
+| Screenshot                                                                                                           | Description                           | Live demo                                           | Source                                                                                   |
+|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/svg-resample.png" width="240"/>  | SVG path parsing & dynamic resampling | [Demo](https://demo.thi.ng/umbrella/svg-resample/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion  | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/xml-converter) |
 
 ## API
 

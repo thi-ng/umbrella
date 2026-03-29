@@ -90,9 +90,9 @@ One project in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                           | Description                           | Live demo                                              | Source                                                                                      |
-|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/geom/geom-fuzz.png" width="240"/> | geom-fuzz basic shape & fill examples | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-fuzz-basics) |
+| Screenshot                                                                                                   | Description                           | Live demo                                              | Source                                                                                      |
+|:-------------------------------------------------------------------------------------------------------------|:--------------------------------------|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-fuzz.png" width="240"/> | geom-fuzz basic shape & fill examples | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-fuzz-basics) |
 
 ## API
 

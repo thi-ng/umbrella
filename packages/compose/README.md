@@ -99,10 +99,10 @@ Two projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                        | Description                                              | Live demo                                                | Source                                                                                        |
-|:----------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------|:----------------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-subdiv.jpg" width="240"/>        | Animated, iterative polygon subdivisions & visualization | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)        |
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/> | Minimal rdom-canvas animation                            | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-canvas-basics) |
+| Screenshot                                                                                                                | Description                                              | Live demo                                                | Source                                                                                        |
+|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------|:----------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/poly-subdiv.jpg" width="240"/>        | Animated, iterative polygon subdivisions & visualization | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/> | Minimal rdom-canvas animation                            | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-canvas-basics) |
 
 ## API
 

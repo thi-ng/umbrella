@@ -100,10 +100,10 @@ Two projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                     | Description                                  | Live demo                                          | Source                                                                                  |
-|:-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/pixel/pixel-basics.png" width="240"/>       | Pixel buffer manipulations                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-basics) |
-| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/porter-duff/porter-duff2.png" width="240"/> | Port-Duff image compositing / alpha blending | [Demo](https://demo.thi.ng/umbrella/porter-duff/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/porter-duff)  |
+| Screenshot                                                                                                             | Description                                  | Live demo                                          | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:---------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/pixel-basics.png" width="240"/>       | Pixel buffer manipulations                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-basics) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/porter-duff/porter-duff2.png" width="240"/> | Port-Duff image compositing / alpha blending | [Demo](https://demo.thi.ng/umbrella/porter-duff/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/porter-duff)  |
 
 ## API
 
