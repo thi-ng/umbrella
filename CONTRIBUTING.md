@@ -506,12 +506,12 @@ For others, the important rules are:
 
 ## Donations
 
-This project has been in development since early 2016 (some packages even
-older). If you would like to support the continued development & ever-increasing
-maintenance effort of this project, please consider a financial contribution
-(anything helps!) via any of the following channels:
+The projects in this monorepo have been in active development since early 2016
+(some packages even older). If you would like to support the continued
+development & ever-increasing maintenance effort (incl. others outside this
+repo), please consider a financial contribution (anything helps!) via any of the
+following methods:
 
 - [Liberapay](https://liberapay.com/thi.ng)
 - [GitHub Sponsors](https://github.com/sponsors/postspectacular)
 - [Patreon](https://www.patreon.com/thing_umbrella)
-- [Tezos](https://tzkt.io/tz1d4ThofujwwaWvxDQHF7VyJfaeR2ay3jhf)
