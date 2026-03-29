@@ -11,24 +11,24 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.0.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@2.0.24) (2025-12-03)
+### [2.0.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dominant-colors@2.0.24) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [2.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@2.0.8) (2025-07-30)
+### [2.0.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dominant-colors@2.0.8) (2025-07-30)
 
 #### ♻️ Refactoring
 
-- update arg types ([80826ff](https://github.com/thi-ng/umbrella/commit/80826ff))
+- update arg types ([80826ff](https://codeberg.org/thi.ng/umbrella/commit/80826ff))
   - use `NumericArray` => `ReadonlyVec`
 
-# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@2.0.0) (2025-06-24)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dominant-colors@2.0.0) (2025-06-24)
 
 #### 🛑 Breaking changes
 
-- update dominantColors() ([9cf7a48](https://github.com/thi-ng/umbrella/commit/9cf7a48))
+- update dominantColors() ([9cf7a48](https://codeberg.org/thi.ng/umbrella/commit/9cf7a48))
 - BREAKING CHANGE: rename `dominantColors()` => `dominantColorsKmeans()`, remove `dominantColorsArray()`
   - merge `dominantColors()` & `dominantColorsArray()` => `dominantColorsKmeans()`
   - add `DominantColor` result type
@@ -36,17 +36,17 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add dominantColorsMeanCut()/dominantColorsMedianCut() ([2ab48c7](https://github.com/thi-ng/umbrella/commit/2ab48c7))
+- add dominantColorsMeanCut()/dominantColorsMedianCut() ([2ab48c7](https://codeberg.org/thi.ng/umbrella/commit/2ab48c7))
 
-### [1.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@1.1.2) (2024-07-25)
+### [1.1.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dominant-colors@1.1.2) (2024-07-25)
 
 #### ♻️ Refactoring
 
-- add/extract `dominantColorsArray()` ([4aea78e](https://github.com/thi-ng/umbrella/commit/4aea78e))
+- add/extract `dominantColorsArray()` ([4aea78e](https://codeberg.org/thi.ng/umbrella/commit/4aea78e))
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dominant-colors@1.1.0) (2024-07-22)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dominant-colors@1.1.0) (2024-07-22)
 
 #### 🚀 Features
 
-- import as new pkg ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([a4174f5](https://github.com/thi-ng/umbrella/commit/a4174f5))
-  - migrate `dominantColors()` from [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/main/packages/pixel) pkg
+- import as new pkg ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([a4174f5](https://codeberg.org/thi.ng/umbrella/commit/a4174f5))
+  - migrate `dominantColors()` from [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/pixel) pkg

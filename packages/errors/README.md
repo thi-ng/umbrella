@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/errors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-errors.svg?d7513125)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-errors.svg?d7513125)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/errors.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -30,21 +31,21 @@ Custom error types and error factory functions.
 
 This package defines the following error types & helper functions to throw them:
 
-- [`AssertionError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/assert.ts)
-- [`IllegalArgumentError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-arguments.ts)
-- [`IllegalArityError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-arity.ts)
-- [`IllegalStateError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-statre.ts)
-- [`OutOfBoundsError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/out-of-bounds.ts)
-- [`UnsupportedOperationError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/unsupported.ts)
+- [`AssertionError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/assert.ts)
+- [`IllegalArgumentError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/illegal-arguments.ts)
+- [`IllegalArityError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/illegal-arity.ts)
+- [`IllegalStateError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/illegal-statre.ts)
+- [`OutOfBoundsError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/out-of-bounds.ts)
+- [`UnsupportedOperationError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/unsupported.ts)
 
 Custom error types can be easily defined using
-[`defError()`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/deferror.ts).
+[`defError()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/deferror.ts).
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Berrors%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Berrors%5D)
 
 ## Installation
 
@@ -81,12 +82,12 @@ None
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Description                                                                  | Live demo                                          | Source                                                                          |
-|:-----------------------------------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gpgpu-reduce) |
+| Description                                                                  | Live demo                                          | Source                                                                           |
+|:-----------------------------------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gpgpu-reduce) |
 
 ## API
 

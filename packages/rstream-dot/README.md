@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-dot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-dot.svg?622b0351)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/rstream-dot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-rstream-dot.svg?622b0351)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-dot.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -26,20 +27,20 @@
 
 ## About
 
-![example graph output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png)
+![example graph output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rs-dflow.png)
 
-Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) dataflow graph topologies.
+Graphviz DOT conversion of [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) dataflow graph topologies.
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-dot%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brstream-dot%5D)
 
 ## Related packages
 
-- [@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot) - Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
-- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
+- [@thi.ng/dgraph-dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph-dot) - Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
+- [@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
 
 ## Installation
 
@@ -71,20 +72,20 @@ Package sizes (brotli'd, pre-treeshake): ESM: 803 bytes
 
 ## Dependencies
 
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                          | Description                                            | Live demo                                              | Source                                                                              |
-|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>     | Minimal rstream dataflow graph                         | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)     |
+| Screenshot                                                                                                                  | Description                                            | Live demo                                              | Source                                                                               |
+|:----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rs-dflow.png" width="240"/>     | Minimal rstream dataflow graph                         | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-dataflow) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)     |
 
 ## API
 

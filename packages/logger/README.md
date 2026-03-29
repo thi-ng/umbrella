@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/logger](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-logger.svg?7a6ea9dc)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-logger.svg?7a6ea9dc)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/logger.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Log levels](#log-levels)
@@ -114,11 +115,11 @@ logger.info("result is", () => 23 + 42);
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blogger%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Blogger%5D)
 
 ## Related packages
 
-- [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/rstream-log](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 
 ## Installation
 
@@ -155,12 +156,12 @@ None
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                                                                    | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus) |
+| Screenshot                                                                                                                        | Description                                                                    | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus) |
 
 ## API
 

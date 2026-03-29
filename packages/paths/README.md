@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/paths](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-paths.svg?c7ad0393)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-paths.svg?c7ad0393)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -45,7 +46,7 @@ Immutable, optimized and optionally typed path-based object property / array acc
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpaths%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpaths%5D)
 
 ## Breaking changes
 
@@ -72,7 +73,7 @@ and their value type inferred as `any`.
 
 ## Related packages
 
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
+- [@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
 
 ## Installation
 
@@ -104,28 +105,28 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Eight projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                                      | Live demo                                                 | Source                                                                                 |
-|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-|                                                                                                                           | Using hdom in an Elm-like manner                                                 | [Demo](https://demo.thi.ng/umbrella/hdom-elm/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm)            |
-|                                                                                                                           | UI component w/ local state stored in hdom context                               | [Demo](https://demo.thi.ng/umbrella/hdom-localstate/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-localstate)     |
-|                                                                                                                           | Example for themed components proposal                                           | [Demo](https://demo.thi.ng/umbrella/hdom-theme/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-theme)          |
-|                                                                                                                           | Event handling w/ interceptors and side effects                                  | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/> | Minimal demo of using rstream constructs to form an interceptor-style event loop | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus   | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png" width="240"/>          | Obligatory to-do list example with undo/redo                                     | [Demo](https://demo.thi.ng/umbrella/todo-list/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>       | Triple store query results & sortable table                                      | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)        |
+| Screenshot                                                                                                                        | Description                                                                      | Live demo                                                 | Source                                                                                  |
+|:----------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+|                                                                                                                                   | Using hdom in an Elm-like manner                                                 | [Demo](https://demo.thi.ng/umbrella/hdom-elm/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-elm)            |
+|                                                                                                                                   | UI component w/ local state stored in hdom context                               | [Demo](https://demo.thi.ng/umbrella/hdom-localstate/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-localstate)     |
+|                                                                                                                                   | Example for themed components proposal                                           | [Demo](https://demo.thi.ng/umbrella/hdom-theme/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-theme)          |
+|                                                                                                                                   | Event handling w/ interceptors and side effects                                  | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/interceptor-basics2) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-event-loop.png" width="240"/> | Minimal demo of using rstream constructs to form an interceptor-style event loop | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-event-loop)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus   | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/todo-list.png" width="240"/>          | Obligatory to-do list example with undo/redo                                     | [Demo](https://demo.thi.ng/umbrella/todo-list/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/todo-list)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/triple-query.png" width="240"/>       | Triple store query results & sortable table                                      | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/triple-query)        |
 
 ## API
 

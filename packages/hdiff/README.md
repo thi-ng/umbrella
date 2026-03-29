@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hdiff](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hdiff.svg?56c7517e)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hdiff](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hdiff.svg?56c7517e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdiff.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -29,9 +30,9 @@
 
 ## About
 
-String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom), [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup). Includes CLI util to generate HTML, with theme support and code folding.
+String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom), [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup). Includes CLI util to generate HTML, with theme support and code folding.
 
-![screenshot of example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdiff/hdiff.png)
+![screenshot of example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/hdiff/hdiff.png)
 
 [Live example](https://demo.thi.ng/umbrella/hdiff/)
 
@@ -39,7 +40,7 @@ String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom]
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdiff%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhdiff%5D)
 
 ## Installation
 
@@ -92,23 +93,23 @@ npx hdiff packages/webgl/src/shader.ts develop~500 HEAD > diff.html
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/diff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/diff)
+- [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
+- [@thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                    | Description                                               | Live demo                                   | Source                                                                   |
-|:--------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdiff.avif" width="240"/> | Applying thi.ng/hdiff to generate static HTML diff output | [Demo](https://demo.thi.ng/umbrella/hdiff/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdiff) |
+| Screenshot                                                                                                            | Description                                               | Live demo                                   | Source                                                                    |
+|:----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:--------------------------------------------|:--------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdiff.avif" width="240"/> | Applying thi.ng/hdiff to generate static HTML diff output | [Demo](https://demo.thi.ng/umbrella/hdiff/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdiff) |
 
 ## API
 
@@ -120,7 +121,7 @@ Signature: `computeDiff(a: string, b: string) => any[]`
 
 Takes two strings and performs line-based diff, then formats result as
 tree of HTML elements in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 format.
 
 The generated format only uses the following data attributes:
@@ -143,7 +144,7 @@ HTML document as string.
 Signature: `compileTheme(theme: Theme) => string`
 
 Compiles a theme config into a complete CSS stylesheet string (using
-[@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)).
+[@thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css)).
 
 ## Authors
 

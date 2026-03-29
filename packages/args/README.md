@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/args](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-args.svg?781aa3c2)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/args](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-args.svg?781aa3c2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/args.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Built-in argument types](#built-in-argument-types)
@@ -96,7 +97,7 @@ section](#projects-using-this-package) in this readme.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bargs%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bargs%5D)
 
 ### Breaking changes in 3.0.0
 
@@ -133,12 +134,12 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.48 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/text-format](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

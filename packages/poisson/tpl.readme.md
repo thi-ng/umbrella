@@ -4,18 +4,18 @@
 
 ## About
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
+![example screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-voronoi.jpg)
 
 nD Stratified grid and [Poisson disc
 sampling](https://en.wikipedia.org/wiki/Supersampling#Poisson_disc) with
 support for variable spatial density, custom PRNGs (via
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)'s
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)'s
 `IRandom` interface & implementations) and customizable quality
 settings.
 
 The Poisson disc sampler requires a spatial index and we recommend using
 `KdTreeSet` from the
-[@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
+[@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
 package to speed up the sampling process, but other
 [`ISpatialSet`-compatible](https://docs.thi.ng/umbrella/geom-api/interfaces/ISpatialSet.html)
 indices are supported as well...
@@ -59,7 +59,7 @@ following options to customize the sampling process:
   uses this value to create a uniform distance field.
 - **index**: Spatial indexing implementation for nearest neighbor
   searches of candidate points. Currently only
-  [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
+  [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
   types are supported. The data structure is used to store all
   successful sample points. Furthermore, pre-seeding the data structure
   allows already indexed points to participate in the sampling process
@@ -80,10 +80,10 @@ following options to customize the sampling process:
   increasing this value improves overall quality, especially in dense
   regions with small radii. Default: 500
 - **rnd?**: Random number generator instance. Default:
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+  [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
   `SYSTEM` (aka Math.random)
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/poisson.jpg)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/poisson/poisson.jpg)
 
 ```ts
 import { asSvg, circle, svgDoc } from "@thi.ng/geom";
@@ -125,10 +125,10 @@ following config options:
 - **separation?**: Enforced minimum distance between samples (in [0 .. 0.99]
   range, default: `1/sqrt(2)`)
 - **rnd?**: Random number generator instance. Default:
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+  [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
   `SYSTEM` (aka Math.random)
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/stratified-grid.png)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/poisson/stratified-grid.png)
 
 ```ts
 import { asSvg, group, line, points, svgDoc } from "@thi.ng/geom";

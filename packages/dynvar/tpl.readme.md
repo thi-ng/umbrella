@@ -35,7 +35,7 @@ References:
 {{pkg.docs}}
 
 TODO - See
-[tests](https://github.com/thi-ng/umbrella/blob/develop/packages/dynvar/test/index.ts)
+[tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dynvar/test/index.ts)
 for usage...
 
 ### Logging example

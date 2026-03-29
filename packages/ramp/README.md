@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/ramp](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-ramp.svg?46eaa1aa)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/ramp](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-ramp.svg?46eaa1aa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ramp.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -31,7 +32,7 @@
 
 Extensible keyframe interpolation/tweening of arbitrary, nested types.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/ramp/readme.png)
 
 This package can perform keyframe interpolation for ramps of numeric values,
 n-dimensional vectors and nested objects of the same. It provides several
@@ -48,7 +49,7 @@ Built-in interpolation modes:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bramp%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bramp%5D)
 
 ## Installation
 
@@ -80,26 +81,26 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.02 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                              | Description                                              | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-scroll-anim.png" width="240"/> | Scroll-based, reactive, multi-param CSS animation basics | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-scroll-anim) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>       | Unison wavetable synth with waveform editor              | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)       |
+| Screenshot                                                                                                                      | Description                                              | Live demo                                              | Source                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ramp-scroll-anim.png" width="240"/> | Scroll-based, reactive, multi-param CSS animation basics | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-scroll-anim) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ramp-synth.png" width="240"/>       | Unison wavetable synth with waveform editor              | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-synth)       |
 
 ## API
 

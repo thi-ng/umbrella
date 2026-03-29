@@ -11,17 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.0.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/trie@2.0.9) (2025-12-03)
+### [2.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.9) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/trie@2.0.0) (2025-08-11)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.0) (2025-08-11)
 
 #### 🛑 Breaking changes
 
-- major update `TrieMap` & `MultiTrie` ([d7f4a12](https://github.com/thi-ng/umbrella/commit/d7f4a12))
+- major update `TrieMap` & `MultiTrie` ([d7f4a12](https://codeberg.org/thi.ng/umbrella/commit/d7f4a12))
 - BREAKING CHANGE: major update `TrieMap` & `MultiTrie`
   - update `MultiTrie` to only support array-based keys
     - switch internals to using Map for storing branches
@@ -35,18 +35,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update internals ([065cc27](https://github.com/thi-ng/umbrella/commit/065cc27))
+- update internals ([065cc27](https://codeberg.org/thi.ng/umbrella/commit/065cc27))
   - remove obsolete size/count in MultiTrie
 
-### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/trie@1.1.10) (2025-01-14)
+### [1.1.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@1.1.10) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/trie@1.1.0) (2024-07-22)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@1.1.0) (2024-07-22)
 
 #### 🚀 Features
 
-- import as new package ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([a2007af](https://github.com/thi-ng/umbrella/commit/a2007af))
-  - extract `MultiTrie` & `TrieMap` from [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/main/packages/associative)
+- import as new package ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([a2007af](https://codeberg.org/thi.ng/umbrella/commit/a2007af))
+  - extract `MultiTrie` & `TrieMap` from [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/associative)

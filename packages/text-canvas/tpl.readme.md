@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-![Terminal based textmode bar plots](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/multi-barplot.png)
+![Terminal based textmode bar plots](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/multi-barplot.png)
 
 {{meta.status}}
 
@@ -46,14 +46,14 @@ The text canvas stores all characters in a `Uint32Array` with the lower 16 bits
 used for the UTF-16 code and the upper 16 bits for **abitrary** formatting data.
 The package utilizes [format identifier constants and formatters from the
 @thi.ng/text-format
-package](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/),
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format/),
 which are tailored for the included ANSI & HTML formatters, but users are free to
 choose use any other system (but then will also need to implement a custom
 string formatter impl).
 
 The default format ID layout used by text canvas is as shown:
 
-![format bit layout](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/format-layout.png)
+![format bit layout](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/format-layout.png)
 
 Most drawing functions accept an optional `format` arg, but a default
 format can also be set via `setFormat(canvas, formatID)`.
@@ -67,7 +67,7 @@ formatters (also supplied by that package):
 
 **All constants and other formatters are also discussed in detail in the
 [@thi.ng/text-format
-readme](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/README.md).**
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format/README.md).**
 
 #### Colors
 
@@ -113,7 +113,7 @@ setFormat(canvas, tf.FG_BLACK | tf.BG_LIGHT_CYAN | tf.BOLD | tf.UNDERLINE);
 Canvas-to-string conversion is completely customizable via the [`StringFormat`
 interface](https://docs.thi.ng/umbrella/text-format/interfaces/StringFormat.html).
 Currently the following presets are supplied (in the
-[@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
+[@thi.ng/text-format](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format)
 package):
 
 - `FMT_ANSI16` - translate built-in format IDs to 4-bit ANSI escape sequences
@@ -211,7 +211,7 @@ const img = read(readFileSync("chroma-rings.ppm"))
 console.log(imageString565(img));
 ```
 
-![example image output in NodeJS REPL](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/chroma-rings.png)
+![example image output in NodeJS REPL](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/chroma-rings.png)
 
 ### Text functions
 
@@ -237,13 +237,13 @@ following border style options:
 
 | Border style     | Result                                                                                                          |
 |------------------|-----------------------------------------------------------------------------------------------------------------|
-| `Border.ALL`     | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-all.png)     |
-| `Border.NONE`    | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-none.png)    |
-| `Border.H`       | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-h.png)       |
-| `Border.V`       | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-v.png)       |
-| `Border.FRAME`   | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame.png)   |
-| `Border.FRAME_H` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame-h.png) |
-| `Border.FRAME_V` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame-v.png) |
+| `Border.ALL`     | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-all.png)     |
+| `Border.NONE`    | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-none.png)    |
+| `Border.H`       | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-h.png)       |
+| `Border.V`       | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-v.png)       |
+| `Border.FRAME`   | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-frame.png)   |
+| `Border.FRAME_H` | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-frame-h.png) |
+| `Border.FRAME_V` | ![table](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/table-border-frame-v.png) |
 
 Table cell contents will be word-wrapped. By default, individual words longer
 than the configured cell width will be truncated, but can be forced to wrap by
@@ -303,9 +303,9 @@ console.log(tc.formatCanvas(canvas, tf.FMT_ANSI16));
 
 For even more detailed control, tables can also be pre-initialized prior
 to creation of the canvas via
-[`initTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L29)
+[`initTable()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas/src/table.ts#L29)
 and then drawn via
-[`drawTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L97).
+[`drawTable()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas/src/table.ts#L97).
 The `initTable` function returns an object also containing the computed
 table size (`width`, `height` keys) which can then be used to create a
 canvas with the required size...
@@ -316,7 +316,7 @@ as content.
 
 ### 3D wireframe cube example
 
-![3D wireframe cube](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/3dcube.png)
+![3D wireframe cube](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/3dcube.png)
 
 Code for this above example output (CLI version):
 

@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.133](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-arc@2.1.133) (2024-06-21)
+### [2.1.133](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-arc@2.1.133) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- remove geom-api dep, update imports ([3ce21af](https://github.com/thi-ng/umbrella/commit/3ce21af))
+- remove geom-api dep, update imports ([3ce21af](https://codeberg.org/thi.ng/umbrella/commit/3ce21af))
 
-### [2.1.87](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-arc@2.1.87) (2023-11-09)
+### [2.1.87](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-arc@2.1.87) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

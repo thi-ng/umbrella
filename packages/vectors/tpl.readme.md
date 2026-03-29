@@ -32,7 +32,7 @@ unsigned integer vectors.
 - Highly modular & tree-shakeable: Each function is defined in its own
   submodule/file. In addition to each generic multi-method base function, all
   fixed-length optimized versions are exported too. E.g. If
-  [`add`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/add.ts)
+  [`add`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/add.ts)
   performs vector addition on arbitrary-length vectors, `add2`, `add3`, `add4`
   are the optimized version for fixed-length vectors...
 - Pluggable interface: The [`VecAPI`
@@ -41,32 +41,32 @@ unsigned integer vectors.
   specific vector sizes. Using this interface simplifies performance-critical
   use cases & algorithms which target different dimensions (e.g. 2D/3D), but
   should use the avaiable size-optimized vector ops. See
-  [`VEC2`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec2-api.ts),
-  [`VEC3`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec3-api.ts)
+  [`VEC2`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/vec2-api.ts),
+  [`VEC3`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/vec3-api.ts)
   and
-  [`VEC4`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec4-api.ts)
+  [`VEC4`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/vec4-api.ts)
 - Extensible: Custom vector ops can be defined in a similar manner using the
   provided code templating helpers (see
-  [`vop()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
+  [`vop()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/vop.ts)
   and various `defOpXXX()` functions, e.g.
-  [`defOpV()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/defopv.ts)).
+  [`defOpV()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/defopv.ts)).
 - Immutable by default: Each operation producing a vector result takes an output
   vector as first argument. If `null`, the vector given as 2nd argument will
   (usually) be used as output (i.e. for mutation).
 - Strided vector support is handled via the lightweight
-  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec2.ts)
+  [`Vec2/3/4`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/vec2.ts)
   class wrappers and the
-  [`gvec()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/gvec.ts)
+  [`gvec()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/gvec.ts)
   proxy (for generic, arbitrary-length vectors). These types behave like normal
   arrays (for read/write operations) and are also iterable. A subset of
   functions (suffixed with `S`, e.g.
-  [`addS`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/adds.ts)
+  [`addS`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors/src/adds.ts)
   vs. `add`) also support striding without the need for extra class wrappers.
   This is handled via additional index and stride arguments for each
   input/output vector. These functions are _mostly_ only available for sizes 2 /
-  3 / 4, though. Example: [SOA-ECS](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
+  3 / 4, though. Example: [SOA-ECS](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/soa-ecs)
 - Random vector functions support the `IRandom` interface defined by
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+  [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
   to work with custom (P)RNGs. If omitted, the built-in `Math.random()` will be
   used.
 
@@ -475,7 +475,7 @@ Component wise op with one input vector and single scalar:
 ### Rotations
 
 (Also see rotation matrices provided by
-[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices))
+[@thi.ng/matrices](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/matrices))
 
 | Function              | Generic | Fixed | Strided | Int | Comments            |
 |-----------------------|---------|-------|---------|-----|---------------------|
@@ -496,7 +496,7 @@ Component wise op with one input vector and single scalar:
 ### Randomness
 
 All ops support custom PRNG impls based on the
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 `IRandom` interface and use `Math.random` by default:
 
 | Function          | Generic | Fixed | Strided  | Int | Comments |

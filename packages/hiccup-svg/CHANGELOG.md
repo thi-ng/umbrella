@@ -11,100 +11,100 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [5.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.6.0) (2026-03-02)
+## [5.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.6.0) (2026-03-02)
 
 #### 🚀 Features
 
-- add `__prec` attrib support for `svg()` root element ([fa33c1e](https://github.com/thi-ng/umbrella/commit/fa33c1e))
+- add `__prec` attrib support for `svg()` root element ([fa33c1e](https://codeberg.org/thi.ng/umbrella/commit/fa33c1e))
   - add tests
 
 #### 🩹 Bug fixes
 
-- update `__prec` attrib checks in `convertTree()` ([c3893b8](https://github.com/thi-ng/umbrella/commit/c3893b8))
+- update `__prec` attrib checks in `convertTree()` ([c3893b8](https://codeberg.org/thi.ng/umbrella/commit/c3893b8))
   - check against nullish values to also support `__prec: 0` (i.e. integer coordinates)
 
-### [5.5.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.5.20) (2025-12-03)
+### [5.5.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.5.20) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [5.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.5.0) (2025-07-26)
+## [5.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.5.0) (2025-07-26)
 
 #### 🚀 Features
 
-- add branch-level support for `__convert: false` ([a51d634](https://github.com/thi-ng/umbrella/commit/a51d634))
+- add branch-level support for `__convert: false` ([a51d634](https://codeberg.org/thi.ng/umbrella/commit/a51d634))
   - update `convertTree()` to allow branch-local disabling of conversion
   - add tests
 
-### [5.4.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.4.13) (2025-01-14)
+### [5.4.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.4.13) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [5.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.4.0) (2024-09-16)
+## [5.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.4.0) (2024-09-16)
 
 #### 🚀 Features
 
-- add pattern(), add/use Attribs type alias ([4c40840](https://github.com/thi-ng/umbrella/commit/4c40840))
+- add pattern(), add/use Attribs type alias ([4c40840](https://codeberg.org/thi.ng/umbrella/commit/4c40840))
 
-## [5.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.3.0) (2024-06-21)
+## [5.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.3.0) (2024-06-21)
 
 #### 🚀 Features
 
-- add fillRule attrib conversion support ([9277417](https://github.com/thi-ng/umbrella/commit/9277417))
+- add fillRule attrib conversion support ([9277417](https://codeberg.org/thi.ng/umbrella/commit/9277417))
 
 #### ♻️ Refactoring
 
-- rename various rest args to be more semantically meaningful ([8088a56](https://github.com/thi-ng/umbrella/commit/8088a56))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [5.2.34](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.2.34) (2024-04-20)
+### [5.2.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.2.34) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([dc07fdd](https://github.com/thi-ng/umbrella/commit/dc07fdd))
+- update type usage ([dc07fdd](https://codeberg.org/thi.ng/umbrella/commit/dc07fdd))
 
-### [5.2.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.2.11) (2024-02-16)
+### [5.2.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.2.11) (2024-02-16)
 
 #### 🩹 Bug fixes
 
-- update scale attrib ([7e797d1](https://github.com/thi-ng/umbrella/commit/7e797d1))
+- update scale attrib ([7e797d1](https://codeberg.org/thi.ng/umbrella/commit/7e797d1))
   handling (if zero)
-- update path() attrib overrides ([7b25d0d](https://github.com/thi-ng/umbrella/commit/7b25d0d))
+- update path() attrib overrides ([7b25d0d](https://codeberg.org/thi.ng/umbrella/commit/7b25d0d))
 
-## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.2.0) (2023-12-26)
-
-#### 🚀 Features
-
-- include Inkscape xmlns in `<svg>` root ([997850b](https://github.com/thi-ng/umbrella/commit/997850b))
-- add `__inkscapeLayer` group attrib handling ([79a3932](https://github.com/thi-ng/umbrella/commit/79a3932))
-
-## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.1.0) (2023-12-18)
+## [5.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.2.0) (2023-12-26)
 
 #### 🚀 Features
 
-- update convertTree() rounded rect handling ([6115a50](https://github.com/thi-ng/umbrella/commit/6115a50))
+- include Inkscape xmlns in `<svg>` root ([997850b](https://codeberg.org/thi.ng/umbrella/commit/997850b))
+- add `__inkscapeLayer` group attrib handling ([79a3932](https://codeberg.org/thi.ng/umbrella/commit/79a3932))
+
+## [5.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.1.0) (2023-12-18)
+
+#### 🚀 Features
+
+- update convertTree() rounded rect handling ([6115a50](https://codeberg.org/thi.ng/umbrella/commit/6115a50))
   - use `r` attrib to derive rounded rect radius
 
-### [5.0.32](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.0.32) (2023-11-09)
+### [5.0.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.0.32) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.0.0) (2023-04-08)
+# [5.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-svg@5.0.0) (2023-04-08)
 
 #### 🛑 Breaking changes
 
-- update svgDoc() conversion handling ([f0e9092](https://github.com/thi-ng/umbrella/commit/f0e9092))
+- update svgDoc() conversion handling ([f0e9092](https://codeberg.org/thi.ng/umbrella/commit/f0e9092))
 - BREAKING CHANGE: update svgDoc(), rename `convert` attrib => `__convert`
   - for consistency, keep all control attribs prefixed as `__xxx`
 
 #### 🚀 Features
 
-- add support for precision attribute ([f81d0d8](https://github.com/thi-ng/umbrella/commit/f81d0d8))
+- add support for precision attribute ([f81d0d8](https://codeberg.org/thi.ng/umbrella/commit/f81d0d8))
   - update convertTree() to allow dynamic floating point precision
     handling via `__prec` control attrib
   - update docs
@@ -112,4 +112,4 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- update ff() to always return string ([ae1d844](https://github.com/thi-ng/umbrella/commit/ae1d844))
+- update ff() to always return string ([ae1d844](https://codeberg.org/thi.ng/umbrella/commit/ae1d844))

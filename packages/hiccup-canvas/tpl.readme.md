@@ -8,7 +8,7 @@
 
 This package provides a simple `draw()` function, which accepts a scene tree of
 different shape types in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 syntax/format (i.e. nested arrays,
 [`IToHiccup`](https://docs.thi.ng/umbrella/api/interfaces/IToHiccup.html)
 implementations) and then translates these into canvas API draw calls.
@@ -41,7 +41,7 @@ The shape tree given to
 [`draw()`](https://docs.thi.ng/umbrella/hiccup-canvas/functions/draw.html) MUST
 consist of well-formed, normalized hiccup syntax (incl. objects implementing the
 `IToHiccup()` interface, like the shape types provided by
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)).
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)).
 
 ## SVG conversion
 
@@ -49,13 +49,13 @@ Even though the shape element names & syntax are intentionally *very
 similar* (largely the same) to SVG elements, for performance reasons all
 geometry data given to each shape remains un-stringified (only styling
 attributes can be strings). However, the
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
+[@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg)
 package provides a `convertTree()` function which takes the arguably
 more "raw" shape format used by this package and converts an entire
 shape tree into SVG compatible & serializable format.
 
 It's very likely (and recommended) you're using the shape type provided
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom),
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom),
 in which case these can be provided as-is to this package's
 [`draw()`](https://docs.thi.ng/umbrella/hiccup-canvas/functions/draw.html)
 function and SVG conversion (from the same geometry) can be done like so:
@@ -200,7 +200,7 @@ Since v3.0.0 this package supports both circular and elliptic arc path segments,
 however only the latter segment type is compatible with SVG (circular arcs are
 only supported by the HTML Canvas API). We recommended to use one of the
 available path constructor functions in
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) to
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) to
 create individual arcs or paths which ensure SVG compatibility:
 
 Arcs:
@@ -389,7 +389,7 @@ Interpreted as float RGB(A):
 #### @thi.ng/color values
 
 Colors defined via the
-[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
+[@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color)
 package can be automatically converted to CSS color strings:
 
 `{ fill: hcya(0.1666, 1, 0.8859) }` => `{ fill: "#ffff00" }`
@@ -423,7 +423,7 @@ docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/
 for further details.
 
 Also see the [2x3 matrix functions in the
-@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices/README.md)
+@thi.ng/matrices](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/matrices/README.md)
 package for creating different kinds of transformation matrices, e.g.
 
 ```

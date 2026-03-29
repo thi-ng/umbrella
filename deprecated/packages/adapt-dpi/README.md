@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/adapt-dpi](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-adapt-dpi.svg?3c0ddd12)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/adapt-dpi](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-adapt-dpi.svg?3c0ddd12)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adapt-dpi.svg)
@@ -8,7 +8,7 @@
 
 > [!IMPORTANT]
 > This package has been deprecated and merged into
-> [@thi.ng/canvas](https://github.com/thi-ng/umbrella/blob/develop/packages/canvas/).
+> [@thi.ng/canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/canvas/).
 
 - [About](#about)
 - [Status](#status)
@@ -31,7 +31,7 @@ size, and resizes canvas pixel buffer itself based on DPR (e.g. 2x size).
 
 **DEPRECATED** - superseded by other package(s)
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Badapt-dpi%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Badapt-dpi%5D+in%3Atitle)
 
 ## Installation
 

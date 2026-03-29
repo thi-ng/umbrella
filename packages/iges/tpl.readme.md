@@ -9,7 +9,7 @@
 Mainly intended for exporting geometry to be used in various CAD
 applications (e.g. Rhino, Houdini, Fusion 360)
 
-![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/iges/iges-houdini.png)
+![houdini](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/iges/iges-houdini.png)
 
 {{meta.status}}
 

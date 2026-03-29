@@ -9,7 +9,7 @@
 This package can read & write binary
 [NetPBM](https://en.wikipedia.org/wiki/Netpbm) image formats from byte
 arrays/buffers to
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 pixel buffers (aka `PackedBuffer`).
 
 |      Source format | Destination format    | Rec. file extension<sup>(1)</sup> |

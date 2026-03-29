@@ -110,7 +110,7 @@ The following operators act as basic composition helpers to construct more elabo
 ### Composition via transducers
 
 The [@thi.ng/transducers
-package](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 can be very helpful to create complex fiber setups, for example:
 
 ```ts tangle:export/readme-2.ts
@@ -176,7 +176,7 @@ values are being read, essentially a memory management issue).
 #### Buffering behaviors
 
 The following channel buffer types/behaviors are included (from the
-[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers) package), all accepting a max. capacity
+[thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers) package), all accepting a max. capacity
 and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
@@ -194,7 +194,7 @@ interface required by the channel:
   Sliding window ring buffer. Writes to the channel are **never** blocking!
   Whilst the buffer is at full capacity, new writes will first expunge the
   oldest buffered value (similar to [LRU
-  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
   behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/fibers/functions/dropping.html):
   Dropping value ring buffer. Writes to the channel are **never** blocking!

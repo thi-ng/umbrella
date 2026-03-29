@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/oquery](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-oquery.svg?66fe5c4d)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/oquery](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-oquery.svg?66fe5c4d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/oquery.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -45,7 +46,7 @@ objects and arrays of objects.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Boquery%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Boquery%5D)
 
 ### Planned features
 
@@ -58,10 +59,10 @@ thi.ng/umbrella packages, but would benefit from a more unified approach.
 
 ## Related packages
 
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
-- [@thi.ng/csv](https://github.com/thi-ng/umbrella/tree/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer
-- [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/develop/packages/egf) - Extensible Graph Format
-- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query) - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) based triple store & reactive query engine
+- [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
+- [@thi.ng/csv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer
+- [@thi.ng/egf](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/egf) - Extensible Graph Format
+- [@thi.ng/rstream-query](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-query) - [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) based triple store & reactive query engine
 
 ## Installation
 
@@ -93,11 +94,11 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.70 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -312,7 +313,7 @@ console.log(
 // }
 ```
 
-More query examples in [tests](https://github.com/thi-ng/umbrella/blob/develop/packages/oquery/test/index.ts)...
+More query examples in [tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/oquery/test/index.ts)...
 
 ## Authors
 

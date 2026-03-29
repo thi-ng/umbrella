@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/testament](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-testament.svg?8f37c190)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/testament](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-testament.svg?8f37c190)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/testament.svg)
@@ -28,7 +28,7 @@ Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, 
 
 **DEPRECATED** - superseded by other approaches
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btestament%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btestament%5D+in%3Atitle)
 
 ## Installation
 
@@ -60,8 +60,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
 
 ## CLI
 

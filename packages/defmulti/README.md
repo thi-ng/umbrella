@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/defmulti](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-defmulti.svg?727d8a79)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-defmulti.svg?727d8a79)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/defmulti.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -43,7 +44,7 @@ any actual JS type relationships).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdefmulti%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdefmulti%5D)
 
 ## Installation
 
@@ -75,23 +76,23 @@ Package sizes (brotli'd, pre-treeshake): ESM: 805 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                                                                             | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>       | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL                                                   | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png" width="240"/>       | XML/HTML/SVG to hiccup/JS conversion                                                                    | [Demo](https://demo.thi.ng/umbrella/xml-converter/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)       |
+| Screenshot                                                                                                                         | Description                                                                                             | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/>       | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL                                                   | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-spreadsheet) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/xml-converter.png" width="240"/>       | XML/HTML/SVG to hiccup/JS conversion                                                                    | [Demo](https://demo.thi.ng/umbrella/xml-converter/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/xml-converter)       |
 
 ## API
 
@@ -253,7 +254,7 @@ baz.impls(); // Set { "c", "a", "b" }
 ```
 
 Also see the WIP package
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 for a concreate realworld usage example.
 
 ### defmultiN()
@@ -314,7 +315,7 @@ visit([{a: 1, b: ["foo", "bar", null, 42]}])
 ```
 
 See
-[/test/index.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti/test/index.ts)
+[/test/index.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti/test/index.ts)
 for a variation of this example.
 
 #### Dynamic dispatch: Simple S-expression interpreter
@@ -368,7 +369,7 @@ To facilitate better introspection of dynamically constructed/added `defmulti()`
 implementations (with possibly deep hierarchies of dispatch values), we can
 utilize the `.dependencies()` method to extract all dispatch value relationships
 and use these to build [dependency
-graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph), which
+graph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph), which
 then can also be visualized.
 
 ```ts
@@ -401,7 +402,7 @@ console.log(toDot(defDGraph(fn.dependencies()), { id: (id) => id }));
 // }
 ```
 
-![Graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/defmulti/readme.dot.svg)
+![Graphviz output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/defmulti/readme.dot.svg)
 
 ## Authors
 

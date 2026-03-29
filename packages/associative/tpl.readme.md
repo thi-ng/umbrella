@@ -32,10 +32,10 @@
 
 Please see these packages for some example use cases:
 
-- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
-- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
-- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query)
+- [@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)
+- [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
+- [@thi.ng/ecs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/ecs)
+- [@thi.ng/rstream-query](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-query)
 
 ### Why?
 
@@ -160,13 +160,13 @@ interface, an extension of the native ES6 Set API.
 ### ArraySet
 
 Simple array based `Set` implementation which by default uses
-[`@thi.ng/equiv`](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+[`@thi.ng/equiv`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
 for value equivalence checking.
 
 ### LLSet
 
 Similar to `ArraySet`, but uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons) linked list
+[@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons) linked list
 as backing storage for values.
 
 ### EquivMap

@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.123](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.123) (2025-12-03)
+### [2.1.123](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dot@2.1.123) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [2.1.77](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.77) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [2.1.69](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.69) (2024-03-18)
+### [2.1.77](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dot@2.1.77) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- minor update regexp ([5429dd5](https://github.com/thi-ng/umbrella/commit/5429dd5))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.1.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.45) (2023-11-09)
+### [2.1.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dot@2.1.69) (2024-03-18)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- minor update regexp ([5429dd5](https://codeberg.org/thi.ng/umbrella/commit/5429dd5))
 
-### [2.1.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/dot@2.1.43) (2023-09-28)
+### [2.1.45](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dot@2.1.45) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+### [2.1.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dot@2.1.43) (2023-09-28)
 
 #### 🩹 Bug fixes
 
-- update GraphAttribs.rankDir ([a8d87b7](https://github.com/thi-ng/umbrella/commit/a8d87b7))
+- update GraphAttribs.rankDir ([a8d87b7](https://codeberg.org/thi.ng/umbrella/commit/a8d87b7))

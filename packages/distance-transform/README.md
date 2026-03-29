@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/distance-transform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-distance-transform.svg?03e53129)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/distance-transform](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-distance-transform.svg?03e53129)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/distance-transform.svg)](https://www.npmjs.com/package/@thi.ng/distance-transform)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/distance-transform.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -27,7 +28,7 @@
 Binary image to Distance Field transformation.
 
 ![example distance field comparison for three different
-metrics](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt.png)
+metrics](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/distance-transform/dt.png)
 
 This package provides a function to transform a binary(-like) input grid/image
 into a distance field using a provided distance metric (default: Eucledian). Any
@@ -40,7 +41,7 @@ Based on: ["A general algorithm for computing Distance Transforms in linear
 time"](http://www.cs.rug.nl/~roe/publications/dt.pdf), A. Meijster, J.B.T.M.
 Roerdink and W.H. Hesselink
 
-![3d visualization](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt3d.png)
+![3d visualization](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/distance-transform/dt3d.png)
 
 Example of distance maps being utilized for 3D surface detailing.<br/>
 Image credits: (c) 2017 Karsten Schmidt
@@ -49,7 +50,7 @@ Image credits: (c) 2017 Karsten Schmidt
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdistance-transform%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdistance-transform%5D)
 
 ## Installation
 
@@ -81,7 +82,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 635 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -90,9 +91,9 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 [Generated API docs](https://docs.thi.ng/umbrella/distance-transform/)
 
 This small example uses functionality from the
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 and
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 packages...
 
 ```ts

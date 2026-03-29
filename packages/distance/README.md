@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/distance](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-distance.svg?7bd4f62f)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/distance](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-distance.svg?7bd4f62f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/distance.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Distance metrics](#distance-metrics)
@@ -62,7 +63,7 @@ distance values. The following preset metrics are provided too:
 Neighborhoods can be used to select n-D spatial items around a given target
 location and an optional catchment radius (infinite by default). Neighborhoods
 also use one of the given distance metrics and implement the widely used
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
+[`IDeref`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/deref.ts)
 interface to obtain the final query results.
 
 Custom neighborhood selections can be defined via the
@@ -82,7 +83,7 @@ proximity.
 An `INeighborhood` implementation for K-nearest neighbor queries around a given
 target location, initial query radius and `IDistance` metric to determine
 proximity. The K-nearest neighbors will be accumulated via an internal
-[heap](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps) and
+[heap](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/heaps) and
 results can be optionally returned in order of proximity (via `.deref()` or
 `.values()`). For K=1 it will be more efficient to use `Nearest` to avoid the
 additional overhead.
@@ -97,22 +98,22 @@ will be accumulated in order of processing via an internal array.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdistance%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdistance%5D)
 
 Work is underway integrating this approach into the spatial indexing data
 structures provided by the
-[@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
+[@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
 package.
 
 ## Support packages
 
-- [@thi.ng/distance-transform](https://github.com/thi-ng/umbrella/tree/develop/packages/distance-transform) - Binary image to Distance Field transformation
+- [@thi.ng/distance-transform](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/distance-transform) - Binary image to Distance Field transformation
 
 ## Related packages
 
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
-- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) - k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
+- [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
+- [@thi.ng/k-means](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/k-means) - k-means & k-medians with customizable distance functions and centroid initializations for n-D vectors
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 
 ## Installation
 
@@ -144,24 +145,24 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.41 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/heaps](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/heaps)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                           | Description                               | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/> | K-nearest neighbor search in an hash grid | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash) |
+| Screenshot                                                                                                                   | Description                               | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn-hash.jpg" width="240"/> | K-nearest neighbor search in an hash grid | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn-hash) |
 
 ## API
 

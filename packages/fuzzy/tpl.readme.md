@@ -12,7 +12,7 @@
 - Fully type checked
 - Fuzzy set domain shaping & composition functions (incl. negated / inverse)
 - Various [T-norms &
-  S-norms](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts),
+  S-norms](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy/src/tnorms.ts),
   incl. parametric versions
 - Rules with multiple inputs/outputs and arbitrary term combinators (i.e.
   T-norms). Syntax sugar for common `and`/`or` rules.
@@ -23,7 +23,7 @@
 - Linguistic variable creation and term/set classification for given domain
   values
 - Fuzzy set visualization (via
-  [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz))
+  [@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz))
 
 ### References / Further reading
 
@@ -60,7 +60,7 @@
 {{pkg.docs}}
 
 (See
-[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy/test) for
+[tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy/test) for
 more usage examples).
 
 ### Fuzzy set generators & combinators
@@ -89,11 +89,11 @@ overlapping) fuzzy sets within a given value domain. The can be used standalone
 or as inputs/outputs in rules (further below).
 
 The
-[@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
+[@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz)
 package provides utilities to visualize the fuzzy sets of an L-var.
 
 ![fuzzy set visualization of the example
-l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
+l-var](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/temperature-lvar-2.svg)
 
 ```ts
 import {
@@ -141,7 +141,7 @@ Example taken from Franck Dernoncourt's [Introduction to Fuzzy
 Logic](https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic):
 
 ![fuzzy set illustration from F.Dernoncourt's
-tutorial](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/fuzzy-matrix-dernoncourt.png)
+tutorial](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/fuzzy-matrix-dernoncourt.png)
 
 ```ts
 import {
@@ -212,7 +212,7 @@ Note: The results are slightly different than those in the textbook example, due
 to different `gaussian` fuzzy sets used for the `service` L-var.
 
 Using `instrumentStrategy()` from the upcoming
-[@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
+[@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz)
 package, we can also visualize the final, transformed fuzzy sets used to compute
 crisp results and highlight the position of the crisp result value.
 
@@ -304,6 +304,6 @@ Just for illustration purposes (and using a different example), SVG output can
 be obtained by merely switching to another instrumentation function (here
 `fuzzySetToSvg()`):
 
-![fuzzySetToSvg() visualization example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/strategy-viz.svg)
+![fuzzySetToSvg() visualization example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/strategy-viz.svg)
 
 <!-- include ../../assets/tpl/footer.md -->

@@ -4,7 +4,7 @@
 
 ## About
 
-![example graph output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png)
+![example graph output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rs-dflow.png)
 
 {{pkg.description}}
 

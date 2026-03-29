@@ -52,7 +52,7 @@ download("hello.txt", src, {
 ```
 
 ...or using MIME type preset from
-[@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime).
+[@thi.ng/mime](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime).
 
 ```ts
 import { preferredType } from "@thi.ng/mime";

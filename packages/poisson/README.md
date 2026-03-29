@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/poisson](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-poisson.svg?e82bcffe)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/poisson](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-poisson.svg?e82bcffe)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/poisson.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -28,18 +29,18 @@
 
 ## About
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
+![example screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-voronoi.jpg)
 
 nD Stratified grid and [Poisson disc
 sampling](https://en.wikipedia.org/wiki/Supersampling#Poisson_disc) with
 support for variable spatial density, custom PRNGs (via
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)'s
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)'s
 `IRandom` interface & implementations) and customizable quality
 settings.
 
 The Poisson disc sampler requires a spatial index and we recommend using
 `KdTreeSet` from the
-[@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
+[@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
 package to speed up the sampling process, but other
 [`ISpatialSet`-compatible](https://docs.thi.ng/umbrella/geom-api/interfaces/ISpatialSet.html)
 indices are supported as well...
@@ -48,14 +49,14 @@ indices are supported as well...
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpoisson%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpoisson%5D)
 
 ## Related packages
 
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
-- [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
-- [@thi.ng/lowdisc](https://github.com/thi-ng/umbrella/tree/develop/packages/lowdisc) - n-dimensional low-discrepancy sequence generators/iterators
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
+- [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
+- [@thi.ng/geom-voronoi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
+- [@thi.ng/lowdisc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lowdisc) - n-dimensional low-discrepancy sequence generators/iterators
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
@@ -87,28 +88,28 @@ Package sizes (brotli'd, pre-treeshake): ESM: 747 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Six projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                                      | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-complex-poly.png" width="240"/> | Shape conversions & operations using polygons with holes                         | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-complex-poly) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/>     | K-nearest neighbor search in an hash grid                                        | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/>  | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-voronoi-mst)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/poisson.jpg" width="240"/>            | 2D Poisson-disc sampler with procedural gradient map                             | [Demo](https://demo.thi.ng/umbrella/poisson-circles/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poisson-circles)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poisson-image.avif" width="240"/>    | Image-based Poisson-disk sampling                                                | [Demo](https://demo.thi.ng/umbrella/poisson-image/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poisson-image)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/stratified-grid.png" width="240"/>    | 2D Stratified grid sampling example                                              | [Demo](https://demo.thi.ng/umbrella/stratified-grid/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stratified-grid)   |
+| Screenshot                                                                                                                       | Description                                                                      | Live demo                                               | Source                                                                                |
+|:---------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-complex-poly.png" width="240"/> | Shape conversions & operations using polygons with holes                         | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-complex-poly) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn-hash.jpg" width="240"/>     | K-nearest neighbor search in an hash grid                                        | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn-hash)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/>  | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-voronoi-mst)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/poisson/poisson.jpg" width="240"/>            | 2D Poisson-disc sampler with procedural gradient map                             | [Demo](https://demo.thi.ng/umbrella/poisson-circles/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poisson-circles)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poisson-image.avif" width="240"/>    | Image-based Poisson-disk sampling                                                | [Demo](https://demo.thi.ng/umbrella/poisson-image/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poisson-image)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/poisson/stratified-grid.png" width="240"/>    | 2D Stratified grid sampling example                                              | [Demo](https://demo.thi.ng/umbrella/stratified-grid/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/stratified-grid)   |
 
 ## API
 
@@ -129,7 +130,7 @@ following options to customize the sampling process:
   uses this value to create a uniform distance field.
 - **index**: Spatial indexing implementation for nearest neighbor
   searches of candidate points. Currently only
-  [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
+  [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
   types are supported. The data structure is used to store all
   successful sample points. Furthermore, pre-seeding the data structure
   allows already indexed points to participate in the sampling process
@@ -150,10 +151,10 @@ following options to customize the sampling process:
   increasing this value improves overall quality, especially in dense
   regions with small radii. Default: 500
 - **rnd?**: Random number generator instance. Default:
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+  [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
   `SYSTEM` (aka Math.random)
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/poisson.jpg)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/poisson/poisson.jpg)
 
 ```ts
 import { asSvg, circle, svgDoc } from "@thi.ng/geom";
@@ -195,10 +196,10 @@ following config options:
 - **separation?**: Enforced minimum distance between samples (in [0 .. 0.99]
   range, default: `1/sqrt(2)`)
 - **rnd?**: Random number generator instance. Default:
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+  [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
   `SYSTEM` (aka Math.random)
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/stratified-grid.png)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/poisson/stratified-grid.png)
 
 ```ts
 import { asSvg, group, line, points, svgDoc } from "@thi.ng/geom";

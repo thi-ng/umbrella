@@ -5,7 +5,7 @@
 ## About
 
 {{pkg.description}} It's also closely aligned with and directly interacts with
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl).
+[@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl).
 
 {{meta.status}}
 

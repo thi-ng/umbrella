@@ -11,9 +11,9 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arcball@1.1.0) (2025-11-25)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arcball@1.1.0) (2025-11-25)
 
 #### 🚀 Features
 
-- import as new pkg ([b8888e2](https://github.com/thi-ng/umbrella/commit/b8888e2))
-- add webgl-arcball example ([7ac2e91](https://github.com/thi-ng/umbrella/commit/7ac2e91))
+- import as new pkg ([b8888e2](https://codeberg.org/thi.ng/umbrella/commit/b8888e2))
+- add webgl-arcball example ([7ac2e91](https://codeberg.org/thi.ng/umbrella/commit/7ac2e91))

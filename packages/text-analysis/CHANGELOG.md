@@ -11,59 +11,59 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.4.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.4.7) (2025-07-20)
+### [0.4.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.4.7) (2025-07-20)
 
 #### 🩹 Bug fixes
 
-- fix [#532](https://github.com/thi-ng/umbrella/issues/532), fix centralTermsVec() ([6e19974](https://github.com/thi-ng/umbrella/commit/6e19974))
+- fix [#532](https://github.com/thi-ng/umbrella/issues/532), fix centralTermsVec() ([6e19974](https://codeberg.org/thi.ng/umbrella/commit/6e19974))
   - update non-zero check
 
-## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.4.0) (2025-06-18)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.4.0) (2025-06-18)
 
 #### 🚀 Features
 
-- add `filterDocsFrequency()` ([6ac1f90](https://github.com/thi-ng/umbrella/commit/6ac1f90))
+- add `filterDocsFrequency()` ([6ac1f90](https://codeberg.org/thi.ng/umbrella/commit/6ac1f90))
 
 #### ⏱ Performance improvements
 
-- minor update kmeansDense() ([ebd5618](https://github.com/thi-ng/umbrella/commit/ebd5618))
+- minor update kmeansDense() ([ebd5618](https://codeberg.org/thi.ng/umbrella/commit/ebd5618))
   - internal use `lookupUnsafe()`
 
-### [0.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.3.1) (2025-06-15)
+### [0.3.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.3.1) (2025-06-15)
 
 #### 🩹 Bug fixes
 
-- update pkg exports ([ea72b9f](https://github.com/thi-ng/umbrella/commit/ea72b9f))
+- update pkg exports ([ea72b9f](https://codeberg.org/thi.ng/umbrella/commit/ea72b9f))
 
-## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.3.0) (2025-06-15)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.3.0) (2025-06-15)
 
 #### 🚀 Features
 
-- update kmeansDense ([d35b6bd](https://github.com/thi-ng/umbrella/commit/d35b6bd))
+- update kmeansDense ([d35b6bd](https://codeberg.org/thi.ng/umbrella/commit/d35b6bd))
   - update results to include original `docs` for each cluster
 
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.2.0) (2025-06-14)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.2.0) (2025-06-14)
 
 #### 🚀 Features
 
-- add/migrate refactored tf-idf functions ([d311acc](https://github.com/thi-ng/umbrella/commit/d311acc))
-- add/update vocab & vector encoding helpers, restructure ([9e4f60c](https://github.com/thi-ng/umbrella/commit/9e4f60c))
-- add filterDocsIDF() ([f682b58](https://github.com/thi-ng/umbrella/commit/f682b58))
-- add k-mean clustering fns ([3533843](https://github.com/thi-ng/umbrella/commit/3533843))
+- add/migrate refactored tf-idf functions ([d311acc](https://codeberg.org/thi.ng/umbrella/commit/d311acc))
+- add/update vocab & vector encoding helpers, restructure ([9e4f60c](https://codeberg.org/thi.ng/umbrella/commit/9e4f60c))
+- add filterDocsIDF() ([f682b58](https://codeberg.org/thi.ng/umbrella/commit/f682b58))
+- add k-mean clustering fns ([3533843](https://codeberg.org/thi.ng/umbrella/commit/3533843))
 
 #### ♻️ Refactoring
 
-- update imports/exports ([a44be87](https://github.com/thi-ng/umbrella/commit/a44be87))
+- update imports/exports ([a44be87](https://codeberg.org/thi.ng/umbrella/commit/a44be87))
 
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-analysis@0.1.0) (2025-06-09)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.1.0) (2025-06-09)
 
 #### 🚀 Features
 
-- import as new pkg ([89fe9bb](https://github.com/thi-ng/umbrella/commit/89fe9bb))
+- import as new pkg ([89fe9bb](https://codeberg.org/thi.ng/umbrella/commit/89fe9bb))
   - add re-exports from transducers/vectors pkgs
-  - add porter stemmer, contractions & stop words from old [@thi.ng/notes](https://github.com/thi-ng/umbrella/tree/main/packages/notes) repo
+  - add porter stemmer, contractions & stop words from old [@thi.ng/notes](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/notes) repo
     - add porter fixtures
-  - update defVocab() to use [@thi.ng/bidir-index](https://github.com/thi-ng/umbrella/tree/main/packages/bidir-index)
+  - update defVocab() to use [@thi.ng/bidir-index](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/bidir-index)
   - add sparse vector support
   - add/port cosine/jaccard similarities from vectors/sparse pkgs
   - add doc strings & examples

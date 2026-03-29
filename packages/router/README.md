@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/router](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-router.svg?995fe7f7)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/router](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-router.svg?995fe7f7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -44,12 +45,12 @@ Generic trie-based router with support for wildcards, route param validation/coe
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brouter%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brouter%5D)
 
 ## Related packages
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) compatible
 
 ## Installation
 
@@ -75,23 +76,23 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.95 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                                             | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-router.jpg" width="240"/>   | Basic thi.ng/router usage with thi.ng/rdom components   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-router)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading | [Demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics) |
+| Screenshot                                                                                                                   | Description                                             | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-router.jpg" width="240"/>   | Basic thi.ng/router usage with thi.ng/rdom components   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-router)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading | [Demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/router-basics) |
 
 ## API
 
@@ -187,7 +188,7 @@ router.start();
 The below benchmarks are ported from
 [router-benchmark](https://github.com/delvedor/router-benchmark), showing
 **highly competitive** results for this package. The
-[benchmark](https://github.com/thi-ng/umbrella/blob/develop/packages/router/bench/index.ts)
+[benchmark](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/router/bench/index.ts)
 itself can be run from the repo root like so:
 
 ```bash

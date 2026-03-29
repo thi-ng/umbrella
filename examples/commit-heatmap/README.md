@@ -1,6 +1,6 @@
 # commit-heatmap
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/commit-heatmap.png)
 
 This is offline example creates a heatmap visualization of per-package
 commits in this mono-repo, but could also be used for other mono-repos
@@ -10,7 +10,7 @@ spec. See source code for config options.
 ## Generating the visualization
 
 The instructions below assume the [entire umbrella repo has already been
-built](https://github.com/thi-ng/umbrella/blob/develop/README.md#building):
+built](https://codeberg.org/thi.ng/umbrella/src/branch/develop/README.md#building):
 
 ```bash
 cd umbrella/examples/commit-heatmap

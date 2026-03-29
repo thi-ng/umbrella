@@ -11,69 +11,69 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [4.0.41](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@4.0.41) (2025-04-16)
+### [4.0.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-isec@4.0.41) (2025-04-16)
 
 #### 🩹 Bug fixes
 
-- undo previous change in `intersectLinePolylineAll()` ([5454694](https://github.com/thi-ng/umbrella/commit/5454694))
-  - fix magnitude calc order (blame [dd1a57f](https://github.com/thi-ng/umbrella/commit/dd1a57f))
+- undo previous change in `intersectLinePolylineAll()` ([5454694](https://codeberg.org/thi.ng/umbrella/commit/5454694))
+  - fix magnitude calc order (blame [dd1a57f](https://codeberg.org/thi.ng/umbrella/commit/dd1a57f))
 
 #### ♻️ Refactoring
 
-- minor internal optimizations (vector ops) ([dd1a57f](https://github.com/thi-ng/umbrella/commit/dd1a57f))
+- minor internal optimizations (vector ops) ([dd1a57f](https://codeberg.org/thi.ng/umbrella/commit/dd1a57f))
 
-# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@4.0.0) (2024-06-21)
+# [4.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-isec@4.0.0) (2024-06-21)
 
 #### 🛑 Breaking changes
 
-- migrate types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api) ([235e191](https://github.com/thi-ng/umbrella/commit/235e191))
-- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api)
+- migrate types from [@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-api) ([235e191](https://codeberg.org/thi.ng/umbrella/commit/235e191))
+- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-api)
   - add/migrate IntersectionType, IntersectionResult
   - update imports
   - update deps
 
 #### 🚀 Features
 
-- add classifyPointLine2(), classifyPointSegment2() ([3bde7ba](https://github.com/thi-ng/umbrella/commit/3bde7ba))
-- fix [#429](https://github.com/thi-ng/umbrella/issues/429), add classifyPointPolygon(), classifyPointPlane() ([a771c67](https://github.com/thi-ng/umbrella/commit/a771c67))
+- add classifyPointLine2(), classifyPointSegment2() ([3bde7ba](https://codeberg.org/thi.ng/umbrella/commit/3bde7ba))
+- fix [#429](https://github.com/thi-ng/umbrella/issues/429), add classifyPointPolygon(), classifyPointPlane() ([a771c67](https://codeberg.org/thi.ng/umbrella/commit/a771c67))
 
 #### 🩹 Bug fixes
 
-- update intersectRayLine() to return proper IntersectionResult ([2616f7f](https://github.com/thi-ng/umbrella/commit/2616f7f))
+- update intersectRayLine() to return proper IntersectionResult ([2616f7f](https://codeberg.org/thi.ng/umbrella/commit/2616f7f))
   - wrap result `isec` as array
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@3.1.0) (2024-05-08)
+## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-isec@3.1.0) (2024-05-08)
 
 #### 🚀 Features
 
-- add pointInSegments() for polylines/polygons ([5b57e6f](https://github.com/thi-ng/umbrella/commit/5b57e6f))
-- add rdom-klist example project, update readmes ([cd458ac](https://github.com/thi-ng/umbrella/commit/cd458ac))
-- add rdom-klist example project, update readmes ([531437f](https://github.com/thi-ng/umbrella/commit/531437f))
+- add pointInSegments() for polylines/polygons ([5b57e6f](https://codeberg.org/thi.ng/umbrella/commit/5b57e6f))
+- add rdom-klist example project, update readmes ([cd458ac](https://codeberg.org/thi.ng/umbrella/commit/cd458ac))
+- add rdom-klist example project, update readmes ([531437f](https://codeberg.org/thi.ng/umbrella/commit/531437f))
 
-### [3.0.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@3.0.7) (2024-04-20)
+### [3.0.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-isec@3.0.7) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([a1dbad0](https://github.com/thi-ng/umbrella/commit/a1dbad0))
+- update type usage ([a1dbad0](https://codeberg.org/thi.ng/umbrella/commit/a1dbad0))
 
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@3.0.0) (2024-03-21)
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-isec@3.0.0) (2024-03-21)
 
 #### 🛑 Breaking changes
 
-- update pointInCircumCircle() arg order ([0a06976](https://github.com/thi-ng/umbrella/commit/0a06976))
+- update pointInCircumCircle() arg order ([0a06976](https://codeberg.org/thi.ng/umbrella/commit/0a06976))
 - BREAKING CHANGE: update pointInCircumCircle() arg order to align with rest of pkg
   - swap query point `p` arg from last to first arg
   - add docs
 
 #### 🚀 Features
 
-- update intersectRayPolylineAll() & intersectRayCircle() ([cb18d3b](https://github.com/thi-ng/umbrella/commit/cb18d3b))
+- update intersectRayPolylineAll() & intersectRayCircle() ([cb18d3b](https://codeberg.org/thi.ng/umbrella/commit/cb18d3b))
   - add alpha/beta to result
-- update line-line & ray intersection fns ([a45502b](https://github.com/thi-ng/umbrella/commit/a45502b))
+- update line-line & ray intersection fns ([a45502b](https://codeberg.org/thi.ng/umbrella/commit/a45502b))
   - update `IntersectionResult.isec` to always return arrays (if there're intersections)
     - `intersectLineLine()`
     - `intersectRayCircle()`
@@ -82,8 +82,8 @@ and/or version bumps of transitive dependencies.
     - add/fix `.inside` result flag
     - update `.isec`
 
-### [2.1.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isec@2.1.86) (2023-11-09)
+### [2.1.86](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-isec@2.1.86) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

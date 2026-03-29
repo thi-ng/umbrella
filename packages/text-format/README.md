@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/text-format](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-text-format.svg?f9723d28)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/text-format](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-text-format.svg?f9723d28)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-format.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Format identifiers](#format-identifiers)
@@ -46,13 +47,13 @@ identifiers for different output formats.
 
 The format constants provided by this package are _primarily_ (not exclusively)
 aimed at being used with the
-[@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
+[@thi.ng/text-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas)
 package. The text canvas stores all characters in a `Uint32Array` with the lower
 16 bits used for the UTF-16 code and the upper 16 bits for **abitrary**
 formatting data.
 
 The [format
-IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/src/api.ts#L146)
+IDs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format/src/api.ts#L146)
 provided here are tailored for some of the included ANSI & HTML formatters, but
 users are free to choose use any other interpretation (but then will also need
 to implement a custom string formatter impl).
@@ -126,7 +127,7 @@ flags (e.g. bold, underline etc.) **cannot be used**. Instead, use the
 [`format256()`](https://docs.thi.ng/umbrella/text-format/functions/format256.html)
 function to create a format ID based on given FG, BG colors.
 
-![ANSI256 color pallette](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/ansi256.png)
+![ANSI256 color pallette](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/ansi256.png)
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
@@ -143,7 +144,7 @@ available.
 
 These formats are primarily intended for image display, see the
 [@thi.ng/text-canvas
-readme](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/README.md#image-functions)
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas/README.md#image-functions)
 for usage examples...
 
 ### Ad-hoc formatting of strings
@@ -199,15 +200,15 @@ const html = defFormatPresets(FMT_HTML_TACHYONS);
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btext-format%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btext-format%5D)
 
 ## Support packages
 
-- [@thi.ng/text-format-image](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format-image) - Bitmap image formatting for CLI/Terminal
+- [@thi.ng/text-format-image](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format-image) - Bitmap image formatting for CLI/Terminal
 
 ## Related packages
 
-- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas) - Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)
+- [@thi.ng/text-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas) - Text based canvas, drawing, plotting, tables with arbitrary formatting (incl. ANSI/HTML)
 
 ## Installation
 
@@ -239,23 +240,23 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.87 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
-- [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/hex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hex)
+- [@thi.ng/memoize](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/memoize)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                       | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>    | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo                                        | [Demo](https://demo.thi.ng/umbrella/text-canvas/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/> | Textmode image warping w/ 16bit color output                      | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image) |
+| Screenshot                                                                                                                       | Description                                                       | Live demo                                               | Source                                                                                |
+|:---------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ascii-raymarch.jpg" width="240"/>    | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ascii-raymarch)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo                                        | [Demo](https://demo.thi.ng/umbrella/text-canvas/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/text-canvas)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/text-canvas-image.png" width="240"/> | Textmode image warping w/ 16bit color output                      | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/text-canvas-image) |
 
 ## API
 

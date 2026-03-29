@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-csp](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-csp.svg?6dc32d19)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/rstream-csp](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-rstream-csp.svg?6dc32d19)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-csp.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -26,20 +27,20 @@
 ## About
 
 Adapter bridge between async [CSP
-channels](https://github.com/thi-ng/umbrella/tree/develop/packages/csp)
+channels](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csp)
 and synchronous stream subscriptions/transformations of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream).
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-csp%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brstream-csp%5D)
 
 ## Related packages
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+- [@thi.ng/csp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -71,8 +72,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 235 bytes
 
 ## Dependencies
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/csp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csp)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 
 ## API
 

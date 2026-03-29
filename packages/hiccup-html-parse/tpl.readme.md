@@ -101,7 +101,7 @@ TODO
 ## Benchmarks
 
 Results from the
-[benchmark](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-html-parse/bench/index.ts)
+[benchmark](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html-parse/bench/index.ts)
 parsing the HTML of the [thi.ng](https://thi.ng) website (MBA M1 2021, 16GB RAM,
 Node.js v20.5.1):
 

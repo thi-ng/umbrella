@@ -8,7 +8,7 @@
 
 This still package provides several data structures for managing &
 working with memory mapped vectors. Together with
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors),
+[@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors),
 these structures enable high-level, zero-copy<sup>*</sup> manipulation
 of the underlying memory region and are largely intended for WebGL &
 WASM use cases, e.g. to provide JS friendly views of a structured data
@@ -19,9 +19,9 @@ region of a WebGL or WASM memory buffer.
 {{meta.status}}
 
 This package might be merged with and/or superseded by
-[@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
+[@thi.ng/ecs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/ecs)
 /
-[@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/develop/packages/soa).
+[@thi.ng/soa](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/soa).
 
 {{repo.supportPackages}}
 

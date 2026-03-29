@@ -149,7 +149,7 @@ asDays(absDifference("2020-02", "2021-02"))
 Several iterators are provided to produce timestamps of various granularities
 between two given dates. Originally, these were intended for visualization
 purposes (i.e. as axis tick label generators for
-[@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz)).
+[@thi.ng/viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/viz)).
 
 - `years()`
 - `querters()`

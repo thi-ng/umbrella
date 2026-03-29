@@ -14,7 +14,7 @@ the provided functions can also be used to process 2D vectors.
 ## Available functions
 
 See
-[/assembly](https://github.com/thi-ng/umbrella/tree/develop/packages/simd/assembly)
+[/assembly](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/simd/assembly)
 for sources:
 
 - `abs4_f32`
@@ -57,7 +57,7 @@ for sources:
 (2) 2x vec2 per iteration
 
 Also see
-[src/api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/simd/src/api.ts)
+[src/api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/simd/src/api.ts)
 for documentation about the exposed TS/JS API...
 
 {{meta.status}}

@@ -5,7 +5,7 @@
 ## About
 
 Type-agnostic directed acyclic graph (DAG), using
-[@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
+[@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative)
 maps & sets as backend.
 
 Implementation based on [Stuart Sierra's Clojure version](https://github.com/stuartsierra/dependency).

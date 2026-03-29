@@ -6,16 +6,16 @@
 
 {{pkg.description}}
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/imgui/imgui-all.png)
 
 Currently still somewhat bare-bones, but already usable & customizable
 [immediate mode GUI](https://github.com/ocornut/imgui#references)
 implementation, primarily for
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
+[@thi.ng/hdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-canvas)
 /
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 and
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
+[@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl),
 however with no direct dependency on either and only outputting data structures.
 
 IMGUI components are largely ephemeral and expressed as simple
@@ -28,7 +28,7 @@ interaction produced a change. Additionally, each component produces a
 number of shapes & text labels, all of which are collected internally
 and are, from the user's POV, a mere side effect. At the end of the
 update cycle IMGUI produces a tree of
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 compatible elements, which can be easily converted into other formats
 (incl. SVG).
 
@@ -47,7 +47,7 @@ published, pending ongoing development in other packages...*
 - Re-usable hover & activation behaviors (for creating new components)
 - Fully keyboard controllable & Tab-focus switching / highlighting
 - All built-in components based on
-  [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+  [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
   shape primitives
 
 ### Available components / widgets
@@ -112,7 +112,7 @@ if (res !== undefined) STATE.resetIn("foo", res);
 ### Layout support
 
 Most component functions exist in two versions: Using a
-[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)-compatible
+[@thi.ng/layout](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/layout)-compatible
 grid layout manager or not (e.g. `dial` vs. `dialRaw`). The latter
 versions are more "low-level" & verbose to use, but offer complete
 layout freedom and are re-used by other component types.
@@ -120,9 +120,9 @@ layout freedom and are re-used by other component types.
 The components in this package not needing a layout manager are only
 expecting a `ILayout` or `IGridLayout` interface, allowing for custom
 implementations. Furthermore / alternatively, the
-[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
+[@thi.ng/layout](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/layout)
 package also defines a [`LayoutBox`
-interface](https://github.com/thi-ng/umbrella/tree/develop/packages/imgui/src/api.ts),
+interface](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/imgui/src/api.ts),
 which can be passed instead and too is the type `ILayout`
 implementations are expected to produce when allocating space for a
 component.
@@ -131,7 +131,7 @@ The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/grid-layout.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/layout/grid-layout.png)
 
 The code producing this structure:
 
@@ -194,7 +194,7 @@ The entire UI is fully keyboard controllable, built-in behaviors:
 | `Alt+Left/Right`            | Textfield        | Move cursor to prev/next word |
 
 More complex behaviors can be achieved in user land. E.g. in the
-[demo](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui/),
+[demo](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui/),
 holding down `Alt` whilst adjusting a slider or dial group will set all
 values uniformly...
 

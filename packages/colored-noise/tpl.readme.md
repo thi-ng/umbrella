@@ -16,7 +16,7 @@ spectrums / histograms (averaged 1000 runs @ 256 samples each). Each noise gen
 is configurable in terms of number of internal RNG states, value range (default:
 `[-1..1)` interval, always centered around 0) and the actual backing PRNG
 implementation (default: `Math.random`, see
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 for alternatives).
 
 Code ported from Java, C & Clojure implementations and other
@@ -28,7 +28,7 @@ In alphabetical order:
 ### Blue noise
 
 High-pass filtered noise (opposite of [red](#red-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/blue.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/blue.ts)
 
 ```text
 blue2
@@ -90,7 +90,7 @@ blue32
 
 Band-pass filtered noise (interleaved blue noise, opposite of
 [violet](#violet-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/green.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/green.ts)
 
 ```text
 green4
@@ -137,7 +137,7 @@ green32
 ### Pink noise
 
 Exponential decay power curve (1/f) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/pink.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/pink.ts)
 
 ```text
 pink4
@@ -186,7 +186,7 @@ pink32
 ### Red / brown noise
 
 Low-pass filtered noise (opposite of [blue](#blue-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/red.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/red.ts)
 
 ```text
 red4
@@ -236,7 +236,7 @@ red32
 
 Band-stop filtered noise (interleaved red noise, opposite of
 [green](#green-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/violet.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/violet.ts)
 
 ```text
 violet2
@@ -298,7 +298,7 @@ violet32
 ### White noise
 
 Uniform distribution (unfiltered output from source PRNG) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/white.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/white.ts)
 
 ```text
 white
@@ -343,7 +343,7 @@ white
 TODO
 
 See
-[/tools](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/tools/)
+[/tools](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/tools/)
 for usage examples...
 
 ```ts
@@ -388,6 +388,6 @@ writeFileSync(
 );
 ```
 
-![Result waveform with spectrum](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/colored-noise/hihat-green.png)
+![Result waveform with spectrum](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/colored-noise/hihat-green.png)
 
 <!-- include ../../assets/tpl/footer.md -->

@@ -11,55 +11,55 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.6.0) (2025-12-25)
+## [3.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.6.0) (2025-12-25)
 
 #### 🚀 Features
 
-- add IDataView I64/U64 support, add/update tests ([63b90f7](https://github.com/thi-ng/umbrella/commit/63b90f7))
+- add IDataView I64/U64 support, add/update tests ([63b90f7](https://codeberg.org/thi.ng/umbrella/commit/63b90f7))
 
-## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.5.0) (2025-12-11)
+## [3.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.5.0) (2025-12-11)
 
 #### 🚀 Features
 
-- add `DATAVIEW` and `IDataView` ([a54ca91](https://github.com/thi-ng/umbrella/commit/a54ca91))
+- add `DATAVIEW` and `IDataView` ([a54ca91](https://codeberg.org/thi.ng/umbrella/commit/a54ca91))
 
 #### ♻️ Refactoring
 
-- internal update float<>int conversions, migrate `IS_LE` flag ([21646af](https://github.com/thi-ng/umbrella/commit/21646af))
+- internal update float<>int conversions, migrate `IS_LE` flag ([21646af](https://codeberg.org/thi.ng/umbrella/commit/21646af))
   - update to re-use LE/BE buffers
   - migrate `IS_LE` to endianess.ts
 
-### [3.4.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.26) (2024-06-21)
+### [3.4.26](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.4.26) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [3.4.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.12) (2024-02-19)
+### [3.4.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.4.12) (2024-02-19)
 
 #### 🩹 Bug fixes
 
-- update zero check in floatToSortableInt() (fix [#450](https://github.com/thi-ng/umbrella/issues/450)) ([c2dc294](https://github.com/thi-ng/umbrella/commit/c2dc294))
+- update zero check in floatToSortableInt() (fix [#450](https://github.com/thi-ng/umbrella/issues/450)) ([c2dc294](https://codeberg.org/thi.ng/umbrella/commit/c2dc294))
 
-## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.4.0) (2023-12-11)
+## [3.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.4.0) (2023-12-11)
 
 #### 🚀 Features
 
-- add signed/unsigned int conversions ([9f23ae6](https://github.com/thi-ng/umbrella/commit/9f23ae6))
+- add signed/unsigned int conversions ([9f23ae6](https://codeberg.org/thi.ng/umbrella/commit/9f23ae6))
 
 #### 🩹 Bug fixes
 
-- update precision for float/uint conversions (both ways) ([5289c40](https://github.com/thi-ng/umbrella/commit/5289c40))
+- update precision for float/uint conversions (both ways) ([5289c40](https://codeberg.org/thi.ng/umbrella/commit/5289c40))
   - add tests
 
-### [3.3.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.36) (2023-11-09)
+### [3.3.36](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.3.36) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [3.3.27](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.27) (2023-07-14)
+### [3.3.27](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/binary@3.3.27) (2023-07-14)
 
 #### ♻️ Refactoring
 
-- update little endian check (`IS_LE` const) ([ee47a7f](https://github.com/thi-ng/umbrella/commit/ee47a7f))
+- update little endian check (`IS_LE` const) ([ee47a7f](https://codeberg.org/thi.ng/umbrella/commit/ee47a7f))

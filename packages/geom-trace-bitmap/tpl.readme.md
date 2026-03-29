@@ -46,7 +46,7 @@ TODO
 ### Basic usage
 
 For brevity, this example uses
-[thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm)
+[thi.ng/pixel-io-netpbm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-netpbm)
 to load an image in PGM format. For that image format,  the `read()` function
 returns a [thi.ng/pixel
 IntBuffer](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) using the

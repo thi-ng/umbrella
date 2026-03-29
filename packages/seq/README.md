@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/seq](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-seq.svg?54021329)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/seq](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-seq.svg?54021329)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/seq.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -27,7 +28,7 @@
 ## About
 
 Various implementations of the [@thi.ng/api
-`ISeq`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/seq.ts)
+`ISeq`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/api/seq.ts)
 interface / sequence abstraction and related tooling (inspired by
 Clojure). Think of `ISeq`s as readonly sequential views & cursors of an
 underlying (not necessarily sequential) collection...
@@ -43,7 +44,7 @@ the remaining values at their own pace.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bseq%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bseq%5D)
 
 ## Installation
 
@@ -75,8 +76,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 537 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -161,7 +162,7 @@ Since the entire approach is interface based, sequences can be defined
 for any custom datatype (preferably via the
 [ISeqable](https://docs.thi.ng/umbrella/api/interfaces/ISeqable.html)
 interface), for example here using
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons):
+[@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons):
 
 ```ts
 import { dcons } from "@thi.ng/dcons";

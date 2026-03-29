@@ -18,7 +18,7 @@ Configurable basis for each dimension:
 
 `haltonND([2,3])`
 
-![2D Halton(2,3) sequence](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lowdisc/ld-halton-small.gif)
+![2D Halton(2,3) sequence](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lowdisc/ld-halton-small.gif)
 
 ### Kronecker
 
@@ -26,7 +26,7 @@ Configurable basis for each dimension:
 
 `kroneckerND([1 / 2 ** 0.5, 1 / 5 ** 0.5])`
 
-![2D Kronecker sequence (Golden ratio)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lowdisc/ld-kronecker-small.gif)
+![2D Kronecker sequence (Golden ratio)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lowdisc/ld-kronecker-small.gif)
 
 ### R<sub>2</sub> recurrence
 
@@ -35,7 +35,7 @@ Based on Kronecker with each dimension's base automatically derived from the
 
 `plasticND(2)`
 
-![2D R2 recurrence sequence](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lowdisc/ld-plastic-small.gif)
+![2D R2 recurrence sequence](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lowdisc/ld-plastic-small.gif)
 
 {{meta.status}}
 

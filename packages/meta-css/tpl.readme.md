@@ -29,7 +29,7 @@ This readme aims to provide a thorough overview of this toolchain, its
 possibilities and some concrete usage examples...
 
 Note: In all cases, final CSS generation itself is handled by
-[thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/).
+[thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css/).
 Please see its readme for further useful information.
 
 **👷🏻 This is all WIP!** See included & [linked examples](#usage-examples) for
@@ -505,18 +505,18 @@ ALWAYS combined using `and`:
 | `print: "only"`                  | `only print`                   |
 
 See [media queries in the bundled base
-specs](https://github.com/thi-ng/umbrella/blob/10a1633519e744335853d3c64d9d23d06d63cda4/packages/meta-css/specs/_info.mcss.json#L6-L27)
+specs](https://codeberg.org/thi.ng/umbrella/src/branch/10a1633519e744335853d3c64d9d23d06d63cda4/packages/meta-css/specs/_info.mcss.json#L6-L27)
 
 ### Custom declarations
 
 Each of the JSON spec files can provide fixed CSS declarations via the `decls`
 key. These declarations are to be given in
-[thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/)
+[thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css/)
 format and are passed as is to the CSS serializer used by the `convert` and
 `export` commands. Please see
-[`/specs/normalize.mcss.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/normalize.mcss.json)
+[`/specs/normalize.mcss.json`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/meta-css/specs/normalize.mcss.json)
 for examples and the [thi.ng/hiccup-css
-readme](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-css/README.md)
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css/README.md)
 for detailed reference.
 
 ```json
@@ -843,7 +843,7 @@ useful to store these names/patterns in a separate file. For that purpose, use
 the `@` prefix (e.g. `-f @includes.txt`) to indicate reading from file (only
 reading from a single file is supported at current)... See the [meta-css-basics
 example
-project](https://github.com/thi-ng/umbrella/blob/develop/examples/meta-css-basics)
+project](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/meta-css-basics)
 for concrete usage...
 
 ## Exporting a generated framework as CSS
@@ -917,7 +917,7 @@ mprocs 'yarn css:watch' 'yarn start:only'
 ```
 
 See that example's
-[package.json](https://github.com/thi-ng/umbrella/blob/develop/examples/meta-css-basics/package.json)
+[package.json](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/meta-css-basics/package.json)
 for concrete usage/reference.
 
 ```text
@@ -1024,7 +1024,7 @@ base framework specs.
 ## Bundled CSS base framework
 
 The package includes a large number of useful generator specs in
-[/specs](https://github.com/thi-ng/umbrella/blob/develop/packages/meta-css/specs/).
+[/specs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/meta-css/specs/).
 These are readily usable (and used by a growing number of example projects in
 this repo), but also are provided as starting point to define your own custom
 framework(s)...

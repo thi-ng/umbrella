@@ -16,34 +16,34 @@ This package provides the `IRandom` interface and various (mostly seedable)
 pseudo-random number generator implementations, incl. `IRandom` wrappers for
 `Math.random()` (or other external PRNGs) and `window.crypto`:
 
-- [Crypto](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/crypto.ts)
-- [SFC32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/sfc32.ts)
-- [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush32.ts)
-- [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
-- [WrappedRandom](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/wrapped.ts)
-- [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
-- [XorShift128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorshift128.ts)
-- [XorWow](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorwow.ts)
-- [XsAdd](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xsadd.ts)
+- [Crypto](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/crypto.ts)
+- [SFC32](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/sfc32.ts)
+- [Smush32](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/smush32.ts)
+- [System](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/system.ts)
+- [WrappedRandom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/wrapped.ts)
+- [Xoshiro128](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/xoshiro128.ts)
+- [XorShift128](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/xorshift128.ts)
+- [XorWow](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/xorwow.ts)
+- [XsAdd](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/xsadd.ts)
 
 Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 
 ### Random distributions
 
-- [`exponential()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/exponential.ts)
-- [`gaussian()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/gaussian.ts)
-- [`geometric()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/geometric.ts)
-- [`normal()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/normal.ts)
-- [`uniform()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/uniform.ts)
+- [`exponential()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/distributions/exponential.ts)
+- [`gaussian()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/distributions/gaussian.ts)
+- [`geometric()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/distributions/geometric.ts)
+- [`normal()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/distributions/normal.ts)
+- [`uniform()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/distributions/uniform.ts)
 
 ### Other utilities
 
-- [`coin()` / `fairCoin()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/coin.ts)
-- [`pickRandom()` / `pickRandomKey()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/pick-random.ts)
-- [`randomBytes()` / `randomBytesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
-- [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
-- [`weightedRandom()` / `weightedRandomKey()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
-- [`uniqueIndices()` / `uniqueValuesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/unique-indices.ts)
+- [`coin()` / `fairCoin()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/coin.ts)
+- [`pickRandom()` / `pickRandomKey()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/pick-random.ts)
+- [`randomBytes()` / `randomBytesFrom()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/random-bytes.ts)
+- [`randomID()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/random-id.ts)
+- [`weightedRandom()` / `weightedRandomKey()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/weighted-random.ts)
+- [`uniqueIndices()` / `uniqueValuesFrom()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/unique-indices.ts)
 
 {{meta.status}}
 

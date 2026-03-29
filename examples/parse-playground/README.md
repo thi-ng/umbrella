@@ -1,6 +1,6 @@
 # parse-playground
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/parse-playground.png)
 
 [Visit playground](http://demo.thi.ng/umbrella/parse-playground/)
 
@@ -19,7 +19,7 @@ The only additional features added afterwards are:
 - added various comments in the source code and some minor cleanup
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

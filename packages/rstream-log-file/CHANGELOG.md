@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.104](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log-file@2.1.104) (2024-02-22)
+### [2.1.104](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream-log-file@2.1.104) (2024-02-22)
 
 #### ♻️ Refactoring
 
-- update all `node:*` imports ([c71a526](https://github.com/thi-ng/umbrella/commit/c71a526))
+- update all `node:*` imports ([c71a526](https://codeberg.org/thi.ng/umbrella/commit/c71a526))
 
-### [2.1.80](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log-file@2.1.80) (2023-11-09)
+### [2.1.80](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream-log-file@2.1.80) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

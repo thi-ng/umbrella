@@ -10,7 +10,7 @@ For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj
 
 This project is a partially ported from the [Clojure version of the same
 name](http://thi.ng/geom-clj). All polymorphic operations built on
-[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
+[@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti).
 
 ### Shape types
 
@@ -29,39 +29,39 @@ linked sources and/or docs.
 
 | Shape/Form                                                                                             | Description                           | Hiccup support      |
 |--------------------------------------------------------------------------------------------------------|---------------------------------------|---------------------|
-| [AABB](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/aabb.ts)                      | 3D Axis-aligned bounding box          | ✅<sup>(1)</sup>     |
-| [Arc](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/arc.ts)                        | 2D elliptic arc                       | ✅                   |
-| [BPatch](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/bpatch.ts)                  | 2D cubic bezier patch (4x4 points)    | ✅                   |
-| [Circle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/circle.ts)                  | 2D circle                             | ✅                   |
-| [ComplexPolygon](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/complex-polygon.ts) | 2D polygon w/ holes                   | ✅                   |
-| [Cubic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/cubic.ts)                    | 2D cubic bezier                       | ✅                   |
-| [Cubic3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/cubic3.ts)                  | 3D cubic bezier                       | ✅<sup>(1)</sup>     |
-| [Ellipse](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ellipse.ts)                | 2D ellipse                            | ✅                   |
-| [Extra](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/extra.ts)                    | Custom embedded hiccup/SVG data       | ✅                   |
-| [Group](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/group.ts)                    | group of 2D shapes                    | ✅                   |
-| [Group3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/group3.ts)                  | group of 3D shapes                    | ✅<sup>(1)</sup>     |
-| [Line](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/line.ts)                      | 2D line segment                       | ✅                   |
-| [Line3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/line3.ts)                    | 3D line segment                       | ✅<sup>(1)</sup>     |
-| [Path](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/path.ts)                      | 2D path (w/ optional holes/sub-paths) | ✅                   |
-| [Path3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/path3.ts)                    | 3D path (w/ optional holes/sub-paths) | ✅<sup>(1),(2)</sup> |
-| [Plane](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/plane.ts)                    | 3D plane                              | ✅<sup>(1)</sup>     |
-| [Points](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/points.ts)                  | 2D point cloud                        | ✅                   |
-| [Points3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/points3.ts)                | 3D point cloud                        | ✅<sup>(1)</sup>     |
-| [Polygon](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polygon.ts)                | 2D simple polygon (no holes)          | ✅                   |
-| [Polygon3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polygon3.ts)              | 3D simple polygon (no holes)          | ✅                   |
-| [Polyline](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polyline.ts)              | 2D polyline                           | ✅                   |
-| [Polyline3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/polyline3.ts)            | 3D polyline                           | ✅<sup>(1)</sup>     |
-| [Quad](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quad.ts)                      | 2D quad (4-gon)                       | ✅                   |
-| [Quad3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quad3.ts)                    | 2D quad (4-gon)                       | ✅<sup>(1)</sup>     |
-| [Quadratic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quadratic.ts)            | 2D quadratic bezier                   | ✅                   |
-| [Quadratic3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quadratic3.ts)          | 3D quadratic bezier                   | ✅<sup>(1)</sup>     |
-| [Ray](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                        | 2D ray                                | ✅                   |
-| [Ray3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray3.ts)                      | 3D ray                                | ✅<sup>(1)</sup>     |
-| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/rect.ts)                 | 2D rectangle                          | ✅                   |
-| [Sphere](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/sphere.ts)                  | 3D sphere                             | ✅<sup>(1)</sup>     |
-| [Text](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/text.ts)                      | Basic stub for text labels            | ✅<sup>(3)</sup>     |
-| [Triangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/triangle.ts)              | 2D triangle                           | ✅                   |
-| [Triangle3](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/triangle3.ts)            | 3D triangle                           | ✅<sup>(1)</sup>     |
+| [AABB](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/aabb.ts)                      | 3D Axis-aligned bounding box          | ✅<sup>(1)</sup>     |
+| [Arc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/arc.ts)                        | 2D elliptic arc                       | ✅                   |
+| [BPatch](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/bpatch.ts)                  | 2D cubic bezier patch (4x4 points)    | ✅                   |
+| [Circle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/circle.ts)                  | 2D circle                             | ✅                   |
+| [ComplexPolygon](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/complex-polygon.ts) | 2D polygon w/ holes                   | ✅                   |
+| [Cubic](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/cubic.ts)                    | 2D cubic bezier                       | ✅                   |
+| [Cubic3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/cubic3.ts)                  | 3D cubic bezier                       | ✅<sup>(1)</sup>     |
+| [Ellipse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/ellipse.ts)                | 2D ellipse                            | ✅                   |
+| [Extra](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/extra.ts)                    | Custom embedded hiccup/SVG data       | ✅                   |
+| [Group](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/group.ts)                    | group of 2D shapes                    | ✅                   |
+| [Group3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/group3.ts)                  | group of 3D shapes                    | ✅<sup>(1)</sup>     |
+| [Line](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/line.ts)                      | 2D line segment                       | ✅                   |
+| [Line3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/line3.ts)                    | 3D line segment                       | ✅<sup>(1)</sup>     |
+| [Path](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/path.ts)                      | 2D path (w/ optional holes/sub-paths) | ✅                   |
+| [Path3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/path3.ts)                    | 3D path (w/ optional holes/sub-paths) | ✅<sup>(1),(2)</sup> |
+| [Plane](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/plane.ts)                    | 3D plane                              | ✅<sup>(1)</sup>     |
+| [Points](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/points.ts)                  | 2D point cloud                        | ✅                   |
+| [Points3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/points3.ts)                | 3D point cloud                        | ✅<sup>(1)</sup>     |
+| [Polygon](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/polygon.ts)                | 2D simple polygon (no holes)          | ✅                   |
+| [Polygon3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/polygon3.ts)              | 3D simple polygon (no holes)          | ✅                   |
+| [Polyline](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/polyline.ts)              | 2D polyline                           | ✅                   |
+| [Polyline3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/polyline3.ts)            | 3D polyline                           | ✅<sup>(1)</sup>     |
+| [Quad](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/quad.ts)                      | 2D quad (4-gon)                       | ✅                   |
+| [Quad3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/quad3.ts)                    | 2D quad (4-gon)                       | ✅<sup>(1)</sup>     |
+| [Quadratic](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/quadratic.ts)            | 2D quadratic bezier                   | ✅                   |
+| [Quadratic3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/quadratic3.ts)          | 3D quadratic bezier                   | ✅<sup>(1)</sup>     |
+| [Ray](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/ray.ts)                        | 2D ray                                | ✅                   |
+| [Ray3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/ray3.ts)                      | 3D ray                                | ✅<sup>(1)</sup>     |
+| [Rectangle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/rect.ts)                 | 2D rectangle                          | ✅                   |
+| [Sphere](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/sphere.ts)                  | 3D sphere                             | ✅<sup>(1)</sup>     |
+| [Text](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/text.ts)                      | Basic stub for text labels            | ✅<sup>(3)</sup>     |
+| [Triangle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/triangle.ts)              | 2D triangle                           | ✅                   |
+| [Triangle3](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/src/triangle3.ts)            | 3D triangle                           | ✅<sup>(1)</sup>     |
 
 - <sup>(1)</sup> valid hiccup format, but currently still missing **external** tool/library support
 - <sup>(2)</sup> only lines, cubic & quadratic curve segments supported
@@ -75,12 +75,12 @@ linked sources and/or docs.
 With very few exceptions these all are implementing the [`IToHiccup`
 interface](https://docs.thi.ng/umbrella/api/interfaces/IToHiccup.html) and so
 can be easily converted (via
-[hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)) to a
+[hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)) to a
 variety of other formats, incl. [conversion to SVG](#svg-support).
 
 By design, for more flexibility and for performance reasons, the hiccup flavor
 used by this package is **not** compatible with that used by
-[thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg),
+[thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg),
 though the latter provides a
 [`convertTree()`](https://docs.thi.ng/umbrella/hiccup-svg/functions/convertTree.html)
 function for that purpose. This is only needed for some cases of dynamic
@@ -88,7 +88,7 @@ in-browser SVG DOM creation...
 
 Instead, the hiccup format used here for interim interop is compatible with that
 used by the
-[thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 package (see its readme for details) and avoids extraneous stringification of
 geometry data and attrib values. A brief example to illustrate some differences:
 
@@ -300,7 +300,7 @@ To be used with [`subdivideCurve()`](https://docs.thi.ng/umbrella/geom/functions
 To be used with [`tessellate()`](https://docs.thi.ng/umbrella/geom/functions/tessellate.html):
 
 See [thi.ng/geom-tessellate
-readme](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-tessellate/README.md#tessellators)
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/README.md#tessellators)
 for diagrams/illustrations of each algorithm!
 
 - [TESSELLATE_EARCUT](https://docs.thi.ng/umbrella/geom/functions/TESSELLATE_EARCUT.html)

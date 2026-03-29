@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.91](https://github.com/thi-ng/umbrella/tree/@thi.ng/unionstruct@2.1.91) (2025-08-04)
+### [2.1.91](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/unionstruct@2.1.91) (2025-08-04)
 
 #### ♻️ Refactoring
 
-- minor update internal arg types (TS5.9) ([f477f05](https://github.com/thi-ng/umbrella/commit/f477f05))
+- minor update internal arg types (TS5.9) ([f477f05](https://codeberg.org/thi.ng/umbrella/commit/f477f05))
 
-### [2.1.60](https://github.com/thi-ng/umbrella/tree/@thi.ng/unionstruct@2.1.60) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [2.1.32](https://github.com/thi-ng/umbrella/tree/@thi.ng/unionstruct@2.1.32) (2023-11-09)
+### [2.1.60](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/unionstruct@2.1.60) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update all tests (packages T-Z) ([020ef6c](https://github.com/thi-ng/umbrella/commit/020ef6c))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
+
+### [2.1.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/unionstruct@2.1.32) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages T-Z) ([020ef6c](https://codeberg.org/thi.ng/umbrella/commit/020ef6c))

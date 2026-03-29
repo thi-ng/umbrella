@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers.svg?58ca567a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transducers.svg?58ca567a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -87,7 +88,7 @@ reduced result of the given input iterable.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransducers%5D)
 
 ### 9.0.0 release
 
@@ -96,27 +97,27 @@ generic type args given to [`Reducer<A, B>`](#reducer), which now uses the
 swapped & more logical order (i.e. reduce from `A` to `B`) and is the same order
 of generic type args for `Transducer` and `AsyncTransducer` / `AsyncReducer` (in
 the [thi.ng/transducers-async
-package](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers-async)).
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-async)).
 Most userland code should be unimpacted by this change - this is only a breaking
 change for custom reducer impls.
 
 ## Support packages
 
-- [@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
-- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary) - Binary data related transducers & reducers
-- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
-- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-hdom) - Transducer based UI updater for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/transducers-patch](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-patch) - Reducers for patch-based, immutable-by-default array & object editing
-- [@thi.ng/transducers-stats](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats) - Transducers for statistical / technical analysis
+- [@thi.ng/transducers-async](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
+- [@thi.ng/transducers-binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary) - Binary data related transducers & reducers
+- [@thi.ng/transducers-fsm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
+- [@thi.ng/transducers-hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-hdom) - Transducer based UI updater for [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
+- [@thi.ng/transducers-patch](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-patch) - Reducers for patch-based, immutable-by-default array & object editing
+- [@thi.ng/transducers-stats](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats) - Transducers for statistical / technical analysis
 
 ## Related packages
 
-- [@thi.ng/csv](https://github.com/thi-ng/umbrella/tree/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer
-- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
-- [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-graph) - Declarative dataflow graph construction for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
+- [@thi.ng/csv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer
+- [@thi.ng/grid-iterators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+- [@thi.ng/rstream-graph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-graph) - Declarative dataflow graph construction for [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/rstream-log](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/sax](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
 
 ### Blog posts
 
@@ -154,101 +155,101 @@ Package sizes (brotli'd, pre-treeshake): ESM: 9.20 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/compose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compose)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/timestamp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/timestamp)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 75 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                                                             | Live demo                                                  | Source                                                                                  |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:----------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/>            | Interactive image processing (adaptive threshold)                                                       | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>                | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/big-font.png" width="240"/>                      | Large ASCII font text generator using @thi.ng/rdom                                                      | [Demo](https://demo.thi.ng/umbrella/big-font/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/big-font)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>                   | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/calibration-sheet.avif" width="240"/>            | Parametrically design calibration sheet for B&W photography                                             | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/calibration-sheet)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                                                   | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                                       |                                                            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history                                    | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots                                  | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>             | Interactive visualization of closest points on ellipses                                                 | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>                     | Interactive inverse FFT toy synth                                                                       | [Demo](https://demo.thi.ng/umbrella/fft-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                                                             | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-complex-poly.png" width="240"/>             | Shape conversions & operations using polygons with holes                                                | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-complex-poly)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-csv-piechart.png" width="240"/>             | Piechart visualization of CSV data                                                                      | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-csv-piechart)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-hexgrid.png" width="240"/>                  | Hex grid generation & tessellations                                                                     | [Demo](https://demo.thi.ng/umbrella/geom-hexgrid/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-hexgrid)         |
-|                                                                                                                                      | GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline                            | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gpgpu-reduce)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>                | Visualization of different grid iterator strategies                                                     | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>               | hdom update performance benchmark w/ config options                                                     | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-clock.png" width="240"/>             | Realtime analog clock demo                                                                              | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/>              | Interactive pattern drawing demo using transducers                                                      | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export                                    | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)   |
-|                                                                                                                                      | Custom dropdown UI component w/ fuzzy search                                                            | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)  |
-|                                                                                                                                      | Isolated, component-local DOM updates                                                                   | [Demo](https://demo.thi.ng/umbrella/hdom-local-render/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-local-render)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                                                       | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-basics) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>                        | Canvas based Immediate Mode GUI components                                                              | [Demo](https://demo.thi.ng/umbrella/imgui/)                | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)                |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/>                      | Animated sine plasma effect visualized using contour lines                                              | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/json-components.jpg" width="240"/>               | Transforming JSON into UI components                                                                    | [Demo](https://demo.thi.ng/umbrella/json-components/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/json-components)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/layout-gridgen.png" width="240"/>                | Randomized space-filling, nested grid layout generator                                                  | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/layout-gridgen)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/lispy-repl.png" width="240"/>                    | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>                    | Worker based, interactive Mandelbrot visualization                                                      | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>                 | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>                 | Optical flow analysis of web cam or video inputs                                                        | [Demo](https://demo.thi.ng/umbrella/optical-flow/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                                                |                                                            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>              | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-waveform.jpg" width="240"/>                | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-waveform)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>                   | Polygon to cubic curve conversion & visualization                                                       | [Demo](https://demo.thi.ng/umbrella/poly-spline/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                                                | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>               | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                                             | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)           |
-|                                                                                                                                      | Demonstates various rdom usage patterns                                                                 | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/>            | Minimal rdom-canvas animation                                                                           | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>            | rstream & transducer-based FSM for converting key event sequences into high-level commands              | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>                | rdom & hiccup-canvas interop test                                                                       | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)       |
-|                                                                                                                                      | Full umbrella repo doc string search w/ paginated results                                               | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                                             | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-svg-nodes)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-web-components.png" width="240"/>           | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css             | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-web-components)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>                | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>                  | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>              | Animated Voronoi diagram, cubic splines & SVG download                                                  | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>                      | Minimal rstream dataflow graph                                                                          | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/>            | Minimal demo of using rstream constructs to form an interceptor-style event loop                        | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support                                  | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)         |
-|                                                                                                                                      | rstream based UI updates & state handling                                                               | [Demo](https://demo.thi.ng/umbrella/rstream-hdom/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-hdom)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-sync.png" width="240"/>                  | Minimal rstream sync() example using rdom                                                               | [Demo](https://demo.thi.ng/umbrella/rstream-sync/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-sync)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                           | [Demo](https://demo.thi.ng/umbrella/scenegraph/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-easings.png" width="240"/>            | Shader-AST meta-programming techniques for animated function plots                                      | [Demo](https://demo.thi.ng/umbrella/shader-ast-easings/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-easings)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/>            | Fork-join worker-based raymarch renderer (JS/CPU only)                                                  | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png" width="240"/>                  | Simplistic SVG bar chart component                                                                      | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                                                   | [Demo](https://demo.thi.ng/umbrella/svg-resample/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                                          | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote                                     | [Demo](https://demo.thi.ng/umbrella/talk-slides/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>                | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                                                             | [Demo](https://demo.thi.ng/umbrella/triple-query/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                                             | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>           | rdom & WebGL-based image channel editor                                                                 | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-channel-mixer)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>                    | WebGL multi-colored cube mesh                                                                           | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/>               | Drawing to floating point offscreen / multi-pass shader pipeline                                        | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>                    | WebGL instancing, animated grid                                                                         | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>                    | WebGL MSDF text rendering & particle system                                                             | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>                       | 1D Wolfram automata with OBJ point cloud export                                                         | [Demo](https://demo.thi.ng/umbrella/wolfram/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)              |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png" width="240"/>                 | XML/HTML/SVG to hiccup/JS conversion                                                                    | [Demo](https://demo.thi.ng/umbrella/xml-converter/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)        |
+| Screenshot                                                                                                                                   | Description                                                                                             | Live demo                                                  | Source                                                                                   |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/adaptive-threshold.png" width="240"/>            | Interactive image processing (adaptive threshold)                                                       | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/adaptive-threshold)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ascii-raymarch.jpg" width="240"/>                | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ascii-raymarch)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/big-font.png" width="240"/>                      | Large ASCII font text generator using @thi.ng/rdom                                                      | [Demo](https://demo.thi.ng/umbrella/big-font/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/big-font)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/bitmap-font.gif" width="240"/>                   | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/bitmap-font)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/calibration-sheet.avif" width="240"/>            | Parametrically design calibration sheet for B&W photography                                             | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/calibration-sheet)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/canvas-recorder)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                                                   | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/cellular-automata)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-contrast)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                                       |                                                            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-heatmap)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history                                    | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-table-ssr)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots                                  | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ellipse-proximity.png" width="240"/>             | Interactive visualization of closest points on ellipses                                                 | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ellipse-proximity)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fft-synth.png" width="240"/>                     | Interactive inverse FFT toy synth                                                                       | [Demo](https://demo.thi.ng/umbrella/fft-synth/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                                                             | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fiber-basics)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-complex-poly.png" width="240"/>             | Shape conversions & operations using polygons with holes                                                | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-complex-poly)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-csv-piechart.png" width="240"/>             | Piechart visualization of CSV data                                                                      | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-csv-piechart)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-hexgrid.png" width="240"/>                  | Hex grid generation & tessellations                                                                     | [Demo](https://demo.thi.ng/umbrella/geom-hexgrid/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-hexgrid)         |
+|                                                                                                                                              | GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline                            | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gpgpu-reduce)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/grid-iterators.png" width="240"/>                | Visualization of different grid iterator strategies                                                     | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/grid-iterators)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-benchmark2.png" width="240"/>               | hdom update performance benchmark w/ config options                                                     | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-benchmark2)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-clock.png" width="240"/>             | Realtime analog clock demo                                                                              | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-clock)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/>              | Interactive pattern drawing demo using transducers                                                      | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-draw)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export                                    | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes)   |
+|                                                                                                                                              | Custom dropdown UI component w/ fuzzy search                                                            | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown-fuzzy)  |
+|                                                                                                                                              | Isolated, component-local DOM updates                                                                   | [Demo](https://demo.thi.ng/umbrella/hdom-local-render/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-local-render)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                                                       | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-canvas-basics) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/imgui/imgui-all.png" width="240"/>                        | Canvas based Immediate Mode GUI components                                                              | [Demo](https://demo.thi.ng/umbrella/imgui/)                | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui)                |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/geom/geom-isoline.png" width="240"/>                      | Animated sine plasma effect visualized using contour lines                                              | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/iso-plasma)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/json-components.jpg" width="240"/>               | Transforming JSON into UI components                                                                    | [Demo](https://demo.thi.ng/umbrella/json-components/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/json-components)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/layout-gridgen.png" width="240"/>                | Randomized space-filling, nested grid layout generator                                                  | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/layout-gridgen)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/lispy-repl.png" width="240"/>                    | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mandelbrot.jpg" width="240"/>                    | Worker based, interactive Mandelbrot visualization                                                      | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mandelbrot)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/>                 | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/optical-flow.avif" width="240"/>                 | Optical flow analysis of web cam or video inputs                                                        | [Demo](https://demo.thi.ng/umbrella/optical-flow/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/optical-flow)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                                                |                                                            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/package-stats)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/parse-playground.png" width="240"/>              | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/parse-playground)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-waveform.jpg" width="240"/>                | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-waveform)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-spline.png" width="240"/>                   | Polygon to cubic curve conversion & visualization                                                       | [Demo](https://demo.thi.ng/umbrella/poly-spline/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-spline)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                                                | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/procedural-text.jpg" width="240"/>               | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                                             | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-synth)           |
+|                                                                                                                                              | Demonstates various rdom usage patterns                                                                 | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-basics)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/>            | Minimal rdom-canvas animation                                                                           | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-canvas-basics)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>            | rstream & transducer-based FSM for converting key event sequences into high-level commands              | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-lissajous.png" width="240"/>                | rdom & hiccup-canvas interop test                                                                       | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-lissajous)       |
+|                                                                                                                                              | Full umbrella repo doc string search w/ paginated results                                               | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-search-docs)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                                             | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-svg-nodes)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-web-components.png" width="240"/>           | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css             | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-web-components)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/>                | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/render-audio.png" width="240"/>                  | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/render-audio)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rotating-voronoi.jpg" width="240"/>              | Animated Voronoi diagram, cubic splines & SVG download                                                  | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rotating-voronoi)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rs-dflow.png" width="240"/>                      | Minimal rstream dataflow graph                                                                          | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-dataflow)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-event-loop.png" width="240"/>            | Minimal demo of using rstream constructs to form an interceptor-style event loop                        | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-event-loop)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support                                  | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid)         |
+|                                                                                                                                              | rstream based UI updates & state handling                                                               | [Demo](https://demo.thi.ng/umbrella/rstream-hdom/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-hdom)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-sync.png" width="240"/>                  | Minimal rstream sync() example using rdom                                                               | [Demo](https://demo.thi.ng/umbrella/rstream-sync/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-sync)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                           | [Demo](https://demo.thi.ng/umbrella/scenegraph/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-easings.png" width="240"/>            | Shader-AST meta-programming techniques for animated function plots                                      | [Demo](https://demo.thi.ng/umbrella/shader-ast-easings/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-easings)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-workers.jpg" width="240"/>            | Fork-join worker-based raymarch renderer (JS/CPU only)                                                  | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-workers)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-barchart.png" width="240"/>                  | Simplistic SVG bar chart component                                                                      | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-barchart)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                                                   | [Demo](https://demo.thi.ng/umbrella/svg-resample/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                                          | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-waveform)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/talk-slides.png" width="240"/>                   | hdom based slide deck viewer & slides from my ClojureX 2018 keynote                                     | [Demo](https://demo.thi.ng/umbrella/talk-slides/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/talk-slides)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/thing-browser.avif" width="240"/>                | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/thing-browser)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                                                             | [Demo](https://demo.thi.ng/umbrella/triple-query/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/triple-query)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                                             | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>           | rdom & WebGL-based image channel editor                                                                 | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-channel-mixer)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cube.png" width="240"/>                    | WebGL multi-colored cube mesh                                                                           | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-cube)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-float-fbo.jpg" width="240"/>               | Drawing to floating point offscreen / multi-pass shader pipeline                                        | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-float-fbo)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-grid.jpg" width="240"/>                    | WebGL instancing, animated grid                                                                         | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-grid)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-msdf.jpg" width="240"/>                    | WebGL MSDF text rendering & particle system                                                             | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-msdf)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/wolfram.png" width="240"/>                       | 1D Wolfram automata with OBJ point cloud export                                                         | [Demo](https://demo.thi.ng/umbrella/wolfram/)              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/wolfram)              |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/xml-converter.png" width="240"/>                 | XML/HTML/SVG to hiccup/JS conversion                                                                    | [Demo](https://demo.thi.ng/umbrella/xml-converter/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/xml-converter)        |
 
 ### Basic usage patterns
 
@@ -301,10 +302,10 @@ f = step(take)
 ### Interpolation & SVG generation
 
 This example uses the
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 package for quick SVG generation.
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/transducers/hermite-tx.png)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/transducers/hermite-tx.png)
 
 ```ts
 import { asSvg, svgDoc, circle, polyline } from "@thi.ng/geom";
@@ -536,7 +537,7 @@ transduce(
 ### Stream parsing / structuring
 
 The `struct` transducer is simply a composition of: `partitionOf -> partition -> rename -> mapKeys`. [See code
-here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/struct.ts).
+here](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/struct.ts).
 
 ```ts
 import { struct } from "@thi.ng/transducers";
@@ -647,7 +648,7 @@ transduce(
 ### Keyframe interpolation
 
 See
-[`tween()`](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/tween.ts)
+[`tween()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/tween.ts)
 docs for details.
 
 ```ts
@@ -752,8 +753,8 @@ custom optimized iterations can be provided via implementations of the
 `IReducible` interface in the source collection type. Examples can be found
 here:
 
-- [DCons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons/src/index.ts#L156)
-- [SortedMap](https://github.com/thi-ng/umbrella/tree/develop/packages/associative/src/sorted-map.ts#L276)
+- [DCons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons/src/index.ts#L156)
+- [SortedMap](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative/src/sorted-map.ts#L276)
 
 **Note:** The `IReducible` interface is only used by `reduce()`, `transduce()`
 and `run()`.
@@ -935,114 +936,114 @@ transduce(map((x) => x*10), push(), range(4))
 // [ 0, 10, 20, 30 ]
 ```
 
-- [benchmark](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/benchmark.ts)
-- [binned](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/binned.ts)
-- [cat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cat.ts)
-- [converge](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/converge.ts)
-- [convolve2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/convolve.ts)
-- [dedupe](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/dedupe.ts)
-- [delayed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/delayed.ts)
-- [distinct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/distinct.ts)
-- [dropNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/drop-nth.ts)
-- [dropWhile](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/drop-while.ts)
-- [drop](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/drop.ts)
-- [duplicate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/duplicate.ts)
-- [filterFuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/filter-fuzzy.ts)
-- [filter](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/filter.ts)
-- [flattenWith](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/flatten-with.ts)
-- [flatten](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/flatten.ts)
-- [flatten1](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/flatten1.ts)
-- [indexed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/indexed.ts)
-- [interleave](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interleave.ts)
-- [interpolate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpolate.ts)
-- [interpolate-hermite](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpolate-hermite.ts)
-- [interpolate-linear](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpolate-linear.ts)
-- [interpose](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpose.ts)
-- [keep](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/keep.ts)
-- [labeled](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/labeled.ts)
-- [length](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/length.ts)
-- [mapDeep](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-deep.ts)
-- [mapIndexed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-indexed.ts)
-- [mapKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-keys.ts)
-- [mapNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-nth.ts)
-- [mapVals](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-vals.ts)
-- [map](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map.ts)
-- [mapcat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/mapcat.ts)
-- [matchFirst](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/match-first.ts)
-- [matchLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/match-last.ts)
-- [movingAverage](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/moving-average.ts)
-- [movingMedian](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/moving-median.ts)
-- [multiplexObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/multiplex-obj.ts)
-- [multiplex](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/multiplex.ts)
-- [noop](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/noop.ts)
-- [padLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pad-last.ts)
-- [page](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/page.ts)
-- [partitionBy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-by.ts)
-- [partitionOf](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-of.ts)
-- [partitionSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-sort.ts)
-- [partitionSync](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-sync.ts)
-- [partitionTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-time.ts)
-- [partitionWhen](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-when.ts)
-- [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition.ts)
-- [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/peek.ts)
-- [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pluck.ts)
-- [rechunk](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rechunk.ts)
-- [rename](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rename.ts)
-- [sample](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sample.ts)
-- [scan](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/scan.ts)
-- [selectKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/select-keys.ts)
-- [sideEffect](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/side-effect.ts)
-- [slidingWindow](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sliding-window.ts)
-- [streamShuffle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/stream-shuffle.ts)
-- [streamSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/stream-sort.ts)
-- [struct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/struct.ts)
-- [syncTuples](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/syncTuples.ts)
-- [swizzle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/swizzle.ts)
-- [takeLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-last.ts)
-- [takeNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-nth.ts)
-- [takeWhile](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-while.ts)
-- [take](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take.ts)
-- [throttleTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/throttle-time.ts)
-- [throttle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/throttle.ts)
-- [toggle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/toggle.ts)
-- [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/trace.ts)
-- [wordWrap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/word-wrap.ts)
+- [benchmark](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/benchmark.ts)
+- [binned](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/binned.ts)
+- [cat](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/cat.ts)
+- [converge](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/converge.ts)
+- [convolve2d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/convolve.ts)
+- [dedupe](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/dedupe.ts)
+- [delayed](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/delayed.ts)
+- [distinct](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/distinct.ts)
+- [dropNth](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/drop-nth.ts)
+- [dropWhile](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/drop-while.ts)
+- [drop](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/drop.ts)
+- [duplicate](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/duplicate.ts)
+- [filterFuzzy](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/filter-fuzzy.ts)
+- [filter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/filter.ts)
+- [flattenWith](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/flatten-with.ts)
+- [flatten](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/flatten.ts)
+- [flatten1](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/flatten1.ts)
+- [indexed](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/indexed.ts)
+- [interleave](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/interleave.ts)
+- [interpolate](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/interpolate.ts)
+- [interpolate-hermite](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/interpolate-hermite.ts)
+- [interpolate-linear](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/interpolate-linear.ts)
+- [interpose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/interpose.ts)
+- [keep](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/keep.ts)
+- [labeled](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/labeled.ts)
+- [length](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/length.ts)
+- [mapDeep](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/map-deep.ts)
+- [mapIndexed](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/map-indexed.ts)
+- [mapKeys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/map-keys.ts)
+- [mapNth](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/map-nth.ts)
+- [mapVals](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/map-vals.ts)
+- [map](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/map.ts)
+- [mapcat](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/mapcat.ts)
+- [matchFirst](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/match-first.ts)
+- [matchLast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/match-last.ts)
+- [movingAverage](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/moving-average.ts)
+- [movingMedian](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/moving-median.ts)
+- [multiplexObj](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/multiplex-obj.ts)
+- [multiplex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/multiplex.ts)
+- [noop](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/noop.ts)
+- [padLast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/pad-last.ts)
+- [page](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/page.ts)
+- [partitionBy](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition-by.ts)
+- [partitionOf](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition-of.ts)
+- [partitionSort](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition-sort.ts)
+- [partitionSync](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition-sync.ts)
+- [partitionTime](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition-time.ts)
+- [partitionWhen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition-when.ts)
+- [partition](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/partition.ts)
+- [peek](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/peek.ts)
+- [pluck](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/pluck.ts)
+- [rechunk](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/rechunk.ts)
+- [rename](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/rename.ts)
+- [sample](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/sample.ts)
+- [scan](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/scan.ts)
+- [selectKeys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/select-keys.ts)
+- [sideEffect](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/side-effect.ts)
+- [slidingWindow](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/sliding-window.ts)
+- [streamShuffle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/stream-shuffle.ts)
+- [streamSort](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/stream-sort.ts)
+- [struct](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/struct.ts)
+- [syncTuples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/syncTuples.ts)
+- [swizzle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/swizzle.ts)
+- [takeLast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/take-last.ts)
+- [takeNth](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/take-nth.ts)
+- [takeWhile](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/take-while.ts)
+- [take](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/take.ts)
+- [throttleTime](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/throttle-time.ts)
+- [throttle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/throttle.ts)
+- [toggle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/toggle.ts)
+- [trace](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/trace.ts)
+- [wordWrap](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/word-wrap.ts)
 
 ### Generators / Iterators
 
-- [choices](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/choices.ts)
-- [concat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/concat.ts)
-- [curve](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/curve.ts)
-- [cycle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cycle.ts)
-- [dup](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/dup.ts)
-- [extendSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/extend-sides.ts)
-- [iterate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iterate.ts)
-- [keyPermutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/key-permutations.ts)
-- [keys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/keys.ts)
-- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/line.ts)
-- [normRange](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-range.ts)
-- [normRange2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-range.ts)
-- [normRange3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-range.ts)
-- [padSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pad-sides.ts)
-- [pairs](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pairs.ts)
-- [palindrome](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/palindrome.ts)
-- [permutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/permutations.ts)
-- [permutationsN](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/permutationsN.ts)
-- [range](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range.ts)
-- [range2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range2d.ts)
-- [range3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range3d.ts)
-- [rangeNd](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range-nd.ts)
-- [repeat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeat.ts)
-- [repeatedly](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly.ts)
-- [repeatedly2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly2d.ts)
-- [repeatedly3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly3d.ts)
-- [reverse](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reverse.ts)
-- [sortedKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sorted-keys.ts)
-- [symmetric](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/symmetric.ts)
-- [tween](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/tween.ts)
-- [vals](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/vals.ts)
-- [wrapSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/wrap-sides.ts)
-- [zip](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/zip.ts)
+- [choices](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/choices.ts)
+- [concat](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/concat.ts)
+- [curve](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/curve.ts)
+- [cycle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/cycle.ts)
+- [dup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/dup.ts)
+- [extendSides](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/extend-sides.ts)
+- [iterate](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/iterate.ts)
+- [keyPermutations](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/key-permutations.ts)
+- [keys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/keys.ts)
+- [line](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/line.ts)
+- [normRange](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/norm-range.ts)
+- [normRange2d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/norm-range.ts)
+- [normRange3d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/norm-range.ts)
+- [padSides](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/pad-sides.ts)
+- [pairs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/pairs.ts)
+- [palindrome](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/palindrome.ts)
+- [permutations](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/permutations.ts)
+- [permutationsN](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/permutationsN.ts)
+- [range](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/range.ts)
+- [range2d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/range2d.ts)
+- [range3d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/range3d.ts)
+- [rangeNd](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/range-nd.ts)
+- [repeat](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/repeat.ts)
+- [repeatedly](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/repeatedly.ts)
+- [repeatedly2d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/repeatedly2d.ts)
+- [repeatedly3d](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/repeatedly3d.ts)
+- [reverse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/reverse.ts)
+- [sortedKeys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/sorted-keys.ts)
+- [symmetric](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/symmetric.ts)
+- [tween](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/tween.ts)
+- [vals](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/vals.ts)
+- [wrapSides](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/wrap-sides.ts)
+- [zip](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/zip.ts)
 
 ### Reducers
 
@@ -1050,40 +1051,40 @@ As with transducer functions, reducer functions can also given an optional input
 iterable. If done so, the function will consume the input and return a reduced
 result (as if it would be called via `reduce()`).
 
-- [add](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/add.ts)
-- [assocMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/assoc-map.ts)
-- [assocObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/assoc-obj.ts)
-- [conj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/conj.ts)
-- [count](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/count.ts)
-- [div](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/div.ts)
-- [every](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/every.ts)
-- [fill](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/fill.ts)
-- [frequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/frequencies.ts)
-- [groupBinary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/group-binary.ts)
-- [groupByMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/group-by-map.ts)
-- [groupByObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/group-by-obj.ts)
-- [last](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/last.ts)
-- [max](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/max.ts)
-- [maxCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/max-compare.ts)
-- [maxMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/max-mag.ts)
-- [mean](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/mean.ts)
-- [min](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min.ts)
-- [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min-compare.ts)
-- [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min-mag.ts)
-- [minMax](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min-max.ts)
-- [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/mul.ts)
-- [normCount](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-count.ts)
-- [normFrequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-frequencies.ts)
-- [normFrequenciesAuto](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-frequencies-auto.ts)
-- [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push.ts)
-- [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-copy.ts)
-- [pushKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-keys.ts)
-- [pushSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-sort.ts)
-- [reductions](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reductions.ts)
-- [some](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/some.ts)
-- [sortedFrequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sorted-frequencies.ts)
-- [str](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/str.ts)
-- [sub](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sub.ts)
+- [add](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/add.ts)
+- [assocMap](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/assoc-map.ts)
+- [assocObj](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/assoc-obj.ts)
+- [conj](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/conj.ts)
+- [count](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/count.ts)
+- [div](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/div.ts)
+- [every](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/every.ts)
+- [fill](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/fill.ts)
+- [frequencies](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/frequencies.ts)
+- [groupBinary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/group-binary.ts)
+- [groupByMap](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/group-by-map.ts)
+- [groupByObj](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/group-by-obj.ts)
+- [last](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/last.ts)
+- [max](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/max.ts)
+- [maxCompare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/max-compare.ts)
+- [maxMag](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/max-mag.ts)
+- [mean](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/mean.ts)
+- [min](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/min.ts)
+- [minCompare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/min-compare.ts)
+- [minMag](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/min-mag.ts)
+- [minMax](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/min-max.ts)
+- [mul](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/mul.ts)
+- [normCount](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/norm-count.ts)
+- [normFrequencies](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/norm-frequencies.ts)
+- [normFrequenciesAuto](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/norm-frequencies-auto.ts)
+- [push](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/push.ts)
+- [pushCopy](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/push-copy.ts)
+- [pushKeys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/push-keys.ts)
+- [pushSort](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/push-sort.ts)
+- [reductions](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/reductions.ts)
+- [some](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/some.ts)
+- [sortedFrequencies](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/sorted-frequencies.ts)
+- [str](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/str.ts)
+- [sub](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/src/sub.ts)
 
 ## Authors
 

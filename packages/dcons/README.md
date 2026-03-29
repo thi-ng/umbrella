@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/dcons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-dcons.svg?a2b73bce)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-dcons.svg?a2b73bce)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dcons.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -67,14 +68,14 @@ Only the following operations will trigger the self-organizing behavior:
 - `findWith()`
 
 Btw. Also see
-[@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
+[@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)
 for more LRU, MRU implementations based on managed `DCons` impls...
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdcons%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdcons%5D)
 
 ## Installation
 
@@ -106,13 +107,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

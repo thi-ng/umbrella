@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-fuzz.png)
 
 {{meta.status}}
 

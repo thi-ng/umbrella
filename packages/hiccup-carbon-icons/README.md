@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-carbon-icons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-carbon-icons.svg?a35f8171)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup-carbon-icons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup-carbon-icons.svg?a35f8171)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-carbon-icons.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Contact sheet](#contact-sheet)
@@ -30,7 +31,7 @@
 This package provides the full set of IBM's [Carbon
 icons](https://github.com/IBM/carbon-icons) in hiccup format (i.e. as Javascript
 encoded SVG), counting in at ~1100 and ready to be used within any
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 supporting scenario.
 
 Each icon is defined in its own source file and can be imported individually.
@@ -42,13 +43,13 @@ e.g. `withSize(DOWNLOAD, "12px")`.
 
 All icons can be previewed here: [contact
 sheet](https://demo.thi.ng/umbrella/hiccup-carbon-icons/). ([Source
-code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons/tools/contact-sheet.ts))
+code](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-carbon-icons/tools/contact-sheet.ts))
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-carbon-icons%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup-carbon-icons%5D)
 
 ## Installation
 
@@ -85,17 +86,17 @@ None
 ## Usage examples
 
 Six projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                                                                 | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>              | Canvas based Immediate Mode GUI components                                                  | [Demo](https://demo.thi.ng/umbrella/imgui/)               | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)               |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>    | Parser grammar livecoding editor/playground & codegen                                       | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-dnd.png" width="240"/>            | rdom drag & drop example                                                                    | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-web-components.png" width="240"/> | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-web-components) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/>  | Declarative component-based system with central rstream-based pubsub event bus              | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>      | Tree-based UI to find & explore thi.ng projects via their associated keywords               | [Demo](https://demo.thi.ng/umbrella/thing-browser/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)       |
+| Screenshot                                                                                                                         | Description                                                                                 | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/imgui/imgui-all.png" width="240"/>              | Canvas based Immediate Mode GUI components                                                  | [Demo](https://demo.thi.ng/umbrella/imgui/)               | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui)               |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/parse-playground.png" width="240"/>    | Parser grammar livecoding editor/playground & codegen                                       | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/parse-playground)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-dnd.png" width="240"/>            | rdom drag & drop example                                                                    | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-dnd)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-web-components.png" width="240"/> | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-web-components) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/>  | Declarative component-based system with central rstream-based pubsub event bus              | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/thing-browser.avif" width="240"/>      | Tree-based UI to find & explore thi.ng projects via their associated keywords               | [Demo](https://demo.thi.ng/umbrella/thing-browser/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/thing-browser)       |
 
 ## API
 
@@ -126,7 +127,7 @@ checkout of both the original carbon and the umbrella mono repos.
 # install pre-requisites
 yarn global add svgo
 
-git clone https://github.com/thi-ng/umbrella.git
+git clone https://codeberg.org/thi.ng/umbrella.git
 
 # build entire umbrella repo
 cd umbrella

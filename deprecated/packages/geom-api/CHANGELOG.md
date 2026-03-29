@@ -9,24 +9,24 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@5.0.0) (2024-06-21)
+# [5.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@5.0.0) (2024-06-21)
 
 #### 🛑 Breaking changes
 
-- add Tessellation type, update Tessellator ([5b0b2ec](https://github.com/thi-ng/umbrella/commit/5b0b2ec))
+- add Tessellation type, update Tessellator ([5b0b2ec](https://codeberg.org/thi.ng/umbrella/commit/5b0b2ec))
 - BREAKING CHANGE: update Tessellator behavior & signature
   - Tessellators now collect/append results to a Tessellation object, consisting of
     a single point array and an array of face vertex IDs
 
 #### 🚀 Features
 
-- add/update/rename types, more specific 2d/3d versions ([2325ee8](https://github.com/thi-ng/umbrella/commit/2325ee8))
+- add/update/rename types, more specific 2d/3d versions ([2325ee8](https://codeberg.org/thi.ng/umbrella/commit/2325ee8))
   - add IShape2/3
   - add IHiccupShape2/3
   - add PathSegment2/3, HiccupPathSegment
   - add SegmentType2/3
   - update PCLikeConstructor, add generics
-- add/update various 2d/3d shape types ([262188c](https://github.com/thi-ng/umbrella/commit/262188c))
+- add/update various 2d/3d shape types ([262188c](https://codeberg.org/thi.ng/umbrella/commit/262188c))
   - add 3d shape types & factory functions:
     - Cubic3
     - Line3
@@ -39,67 +39,67 @@ and/or version bumps of transitive dependencies.
     - Ray3
     - Triangle3
   - update existing shape type impls & ctors/factories
-- update IShape & CubicOpts ([4caff0d](https://github.com/thi-ng/umbrella/commit/4caff0d))
-- update Attribs, add known opt. attrib hints ([ab0fdba](https://github.com/thi-ng/umbrella/commit/ab0fdba))
-- add GroupAttribs, add docs ([f76c5bd](https://github.com/thi-ng/umbrella/commit/f76c5bd))
+- update IShape & CubicOpts ([4caff0d](https://codeberg.org/thi.ng/umbrella/commit/4caff0d))
+- update Attribs, add known opt. attrib hints ([ab0fdba](https://codeberg.org/thi.ng/umbrella/commit/ab0fdba))
+- add GroupAttribs, add docs ([f76c5bd](https://codeberg.org/thi.ng/umbrella/commit/f76c5bd))
 
 #### 🩹 Bug fixes
 
-- __samples attribute should be Partial<SamplingOpts> ([409fbdd](https://github.com/thi-ng/umbrella/commit/409fbdd))
+- __samples attribute should be Partial<SamplingOpts> ([409fbdd](https://codeberg.org/thi.ng/umbrella/commit/409fbdd))
 
 #### ♻️ Refactoring
 
-- update SUBDIV_DISPLACE, internal refactoring ([3e84ba8](https://github.com/thi-ng/umbrella/commit/3e84ba8))
+- update SUBDIV_DISPLACE, internal refactoring ([3e84ba8](https://codeberg.org/thi.ng/umbrella/commit/3e84ba8))
 
-### [4.0.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@4.0.7) (2024-04-20)
+### [4.0.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@4.0.7) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([e00c3a7](https://github.com/thi-ng/umbrella/commit/e00c3a7))
+- update type usage ([e00c3a7](https://codeberg.org/thi.ng/umbrella/commit/e00c3a7))
 
-# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@4.0.0) (2024-03-21)
+# [4.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@4.0.0) (2024-03-21)
 
 #### 🛑 Breaking changes
 
-- update IntersectionResult.isec type ([36f69ba](https://github.com/thi-ng/umbrella/commit/36f69ba))
+- update IntersectionResult.isec type ([36f69ba](https://codeberg.org/thi.ng/umbrella/commit/36f69ba))
 - BREAKING CHANGE: `IntersectionResult.isec` now always an array of points (if there're intersections)
 
-### [3.4.44](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.4.44) (2023-11-09)
+### [3.4.44](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.4.44) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [3.4.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.4.11) (2023-03-24)
+### [3.4.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.4.11) (2023-03-24)
 
 #### ♻️ Refactoring
 
-- update PCLikeConstructor ([1c10c09](https://github.com/thi-ng/umbrella/commit/1c10c09))
+- update PCLikeConstructor ([1c10c09](https://codeberg.org/thi.ng/umbrella/commit/1c10c09))
   - make attribs optional
 
-## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.4.0) (2023-01-10)
+## [3.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.4.0) (2023-01-10)
 
 #### 🚀 Features
 
-- add SamplingOpts.start ([8b72804](https://github.com/thi-ng/umbrella/commit/8b72804))
+- add SamplingOpts.start ([8b72804](https://codeberg.org/thi.ng/umbrella/commit/8b72804))
 
-## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.3.0) (2022-06-28)
-
-#### 🚀 Features
-
-- add IAttributed, update IShape ([35799db](https://github.com/thi-ng/umbrella/commit/35799db))
-
-## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.2.0) (2022-06-20)
+## [3.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.3.0) (2022-06-28)
 
 #### 🚀 Features
 
-- add AABBLike.offset() ([9152db3](https://github.com/thi-ng/umbrella/commit/9152db3))
+- add IAttributed, update IShape ([35799db](https://codeberg.org/thi.ng/umbrella/commit/35799db))
 
-## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.1.0) (2021-11-17)
+## [3.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.2.0) (2022-06-20)
 
 #### 🚀 Features
 
-- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+- add AABBLike.offset() ([9152db3](https://codeberg.org/thi.ng/umbrella/commit/9152db3))
+
+## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.1.0) (2021-11-17)
+
+#### 🚀 Features
+
+- Using workspaces for local tools ([bf7a404](https://codeberg.org/thi.ng/umbrella/commit/bf7a404))
   Improving the overall build ergonomics
   - introduced a tools workspaces
   - imported it in all needed packages/examples
@@ -107,26 +107,26 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+- testrunner to binary ([4ebbbb2](https://codeberg.org/thi.ng/umbrella/commit/4ebbbb2))
   this commit reverts (partly) changes made in:
   ef346d7a8753590dc9094108a3d861a8dbd5dd2c
   overall purpose is better testament ergonomics:
   instead of having to pass NODE_OPTIONS with every invocation
   having a binary to handle this for us.
 
-### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.0.1) (2021-10-13)
+### [3.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.0.1) (2021-10-13)
 
 #### ♻️ Refactoring
 
-- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+- update imports in all pkgs ([5fa2b6f](https://codeberg.org/thi.ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all tests/pkgs ([effd591](https://codeberg.org/thi.ng/umbrella/commit/effd591))
 
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.0.0) (2021-10-12)
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@3.0.0) (2021-10-12)
 
 #### 🛑 Breaking changes
 
-- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://codeberg.org/thi.ng/umbrella/commit/0d1d6ea))
 - BREAKING CHANGE: discontinue CommonJS & UMD versions
   - only ESM modules will be published from now on
   - CJS obsolete due to ESM support in recent versions of node:
@@ -137,75 +137,75 @@ and/or version bumps of transitive dependencies.
   Also:
   - normalize/restructure/reorg all package.json files
   - cleanup all build scripts, remove obsolete
-  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
+  - switch from mocha to [@thi.ng/testament](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/testament) for all tests
 
 #### ♻️ Refactoring
 
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://codeberg.org/thi.ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/testament)
+- update all test stubs ([f2d6d53](https://codeberg.org/thi.ng/umbrella/commit/f2d6d53))
 
-# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@2.0.0) (2020-12-22)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@2.0.0) (2020-12-22)
 
 #### 🛑 Breaking changes
 
-- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([c079a2a](https://github.com/thi-ng/umbrella/commit/c079a2a))
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([c079a2a](https://codeberg.org/thi.ng/umbrella/commit/c079a2a))
 - BREAKING CHANGE: replace SegmentType enum w/ type alias
-- fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://github.com/thi-ng/umbrella/commit/e2cd24a))
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://codeberg.org/thi.ng/umbrella/commit/e2cd24a))
 - BREAKING CHANGE: remove obsolete shape Type enum
 
-### [1.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.1.4) (2020-12-07)
+### [1.1.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@1.1.4) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports in various tests/pkgs ([3fd9c24](https://codeberg.org/thi.ng/umbrella/commit/3fd9c24))
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.1.0) (2020-09-22)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@1.1.0) (2020-09-22)
 
 #### 🚀 Features
 
-- add Type.TEXT/3 ([0a45ef8](https://github.com/thi-ng/umbrella/commit/0a45ef8))
+- add Type.TEXT/3 ([0a45ef8](https://codeberg.org/thi.ng/umbrella/commit/0a45ef8))
 
-### [1.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.0.8) (2020-04-05)
-
-#### ♻️ Refactoring
-
-- switch to non-const enums ([f25bfa4](https://github.com/thi-ng/umbrella/commit/f25bfa4))
-
-### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.0.2) (2020-02-25)
+### [1.0.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@1.0.8) (2020-04-05)
 
 #### ♻️ Refactoring
 
-- update imports ([aa0f356](https://github.com/thi-ng/umbrella/commit/aa0f356))
+- switch to non-const enums ([f25bfa4](https://codeberg.org/thi.ng/umbrella/commit/f25bfa4))
 
-# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.0.0) (2020-01-24)
+### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@1.0.2) (2020-02-25)
+
+#### ♻️ Refactoring
+
+- update imports ([aa0f356](https://codeberg.org/thi.ng/umbrella/commit/aa0f356))
+
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@1.0.0) (2020-01-24)
 
 #### 🛑 Breaking changes
 
-- replace ISpatialAccel w/ new interfaces ([baa05d1](https://github.com/thi-ng/umbrella/commit/baa05d1))
+- replace ISpatialAccel w/ new interfaces ([baa05d1](https://codeberg.org/thi.ng/umbrella/commit/baa05d1))
 - BREAKING CHANGE: replace ISpatialAccel with new interfaces:
   ISpatialMap, ISpatialSet, IRegionQuery
 
 #### ♻️ Refactoring
 
-- update ISpatialMap/Set ([7015512](https://github.com/thi-ng/umbrella/commit/7015512))
+- update ISpatialMap/Set ([7015512](https://codeberg.org/thi.ng/umbrella/commit/7015512))
   - add IClear, ICopy, IEmpty
   - add keys()/values() map-like iterators
 
-## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@0.3.0) (2019-07-12)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@0.3.0) (2019-07-12)
 
 #### 🚀 Features
 
-- add CubicOpts ([81ac728](https://github.com/thi-ng/umbrella/commit/81ac728))
+- add CubicOpts ([81ac728](https://codeberg.org/thi.ng/umbrella/commit/81ac728))
 
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@0.2.0) (2019-04-15)
-
-#### 🚀 Features
-
-- add more Type enums ([90e8b50](https://github.com/thi-ng/umbrella/commit/90e8b50))
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@0.1.0) (2019-02-05)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@0.2.0) (2019-04-15)
 
 #### 🚀 Features
 
-- add ISpatialAccel.selectVals() ([4bde37e](https://github.com/thi-ng/umbrella/commit/4bde37e))
+- add more Type enums ([90e8b50](https://codeberg.org/thi.ng/umbrella/commit/90e8b50))
+
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-api@0.1.0) (2019-02-05)
+
+#### 🚀 Features
+
+- add ISpatialAccel.selectVals() ([4bde37e](https://codeberg.org/thi.ng/umbrella/commit/4bde37e))

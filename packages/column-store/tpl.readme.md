@@ -338,7 +338,7 @@ table.query()
 
 ![Diagram showing a list of rows with object values and three columns
 illustrating the narrowing effect of query operators with their partial
-results](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/column-store/query-narrowing.png)
+results](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/column-store/query-narrowing.png)
 
 ### Built-in operators
 

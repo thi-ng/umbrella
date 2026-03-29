@@ -11,40 +11,40 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-canvas@1.1.0) (2025-11-19)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-canvas@1.1.0) (2025-11-19)
 
 #### 🚀 Features
 
-- [#554](https://github.com/thi-ng/umbrella/issues/554), add support for `__dpr` control attrib ([40ff38b](https://github.com/thi-ng/umbrella/commit/40ff38b))
+- [#554](https://github.com/thi-ng/umbrella/issues/554), add support for `__dpr` control attrib ([40ff38b](https://codeberg.org/thi.ng/umbrella/commit/40ff38b))
   - remove obsolete DPR handling in this pkg,
-    now dealt with directly by [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup-canvas)
+    now dealt with directly by [@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/hiccup-canvas)
   - remove obsolete deps
 
 #### 🩹 Bug fixes
 
-- update `__dpr` logic to accommodate resizing ([7c37f60](https://github.com/thi-ng/umbrella/commit/7c37f60))
+- update `__dpr` logic to accommodate resizing ([7c37f60](https://codeberg.org/thi.ng/umbrella/commit/7c37f60))
 
-### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-canvas@1.0.2) (2025-01-14)
-
-#### ♻️ Refactoring
-
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
-
-### [0.5.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-canvas@0.5.36) (2023-11-09)
+### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-canvas@1.0.2) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-canvas@0.5.0) (2023-04-08)
+### [0.5.36](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-canvas@0.5.36) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-canvas@0.5.0) (2023-04-08)
 
 #### 🚀 Features
 
-- set fallback canvas size if given as sub ([7fe9d63](https://github.com/thi-ng/umbrella/commit/7fe9d63))
+- set fallback canvas size if given as sub ([7fe9d63](https://codeberg.org/thi.ng/umbrella/commit/7fe9d63))
 
 #### 🩹 Bug fixes
 
-- fix generics, internal refactoring ([18ebe32](https://github.com/thi-ng/umbrella/commit/18ebe32))
+- fix generics, internal refactoring ([18ebe32](https://codeberg.org/thi.ng/umbrella/commit/18ebe32))
   - update internal resize handling
   - remove obsolete bg/clear handling (now part of hiccup-canvas)
   - add subscription IDs

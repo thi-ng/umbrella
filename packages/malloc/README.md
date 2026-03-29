@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/malloc](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-malloc.svg?9230c22e)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/malloc](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-malloc.svg?9230c22e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/malloc.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Memory layout](#memory-layout)
@@ -59,14 +60,14 @@ allocation of typed arrays and reduce GC pressure. See
 
 Since v4.1.0, all internal allocator state is stored in the
 `ArrayBuffer` itself (thanks to the [initial idea & work done by
-@Bnaya](https://github.com/thi-ng/umbrella/pull/153)). This change
+@Bnaya](https://codeberg.org/thi.ng/umbrella/pulls/153)). This change
 allows the `ArrayBuffer` (or `SharedArrayBuffer`) being passed to
 workers and/or the entire memory state being easily serialized/restored
 to/from local storage.
 
 The new memory layout is as follows:
 
-![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/malloc-layout.png)
+![Memory layout diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/malloc-layout.png)
 
 ### Free block compaction / coalescing
 
@@ -80,14 +81,14 @@ The following diagrams show the different stages of this behavior:
 
 In this example we start with three allocated neighboring blocks:
 
-![Block compaction (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-01.png)
+![Block compaction (initial layout)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/compact-01.png)
 
 **Non-continuous free blocks**
 
 After freeing the first & last blocks, the free blocks are linked via
 their `next` pointers, but still occupy non-continuous memory regions.
 
-![Block compaction (non-continuous)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-02.png)
+![Block compaction (non-continuous)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/compact-02.png)
 
 **Single compacted free block**
 
@@ -100,7 +101,7 @@ pointer to the beginning of that block and considers it blank space that
 way (essentially a merge with the remaining free/unallocated space of
 the array buffer).
 
-![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-03.png)
+![Block compaction (result)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/compact-03.png)
 
 ### Block splitting
 
@@ -117,18 +118,18 @@ This behavior too is enabled by default, but can be turned off via the
 
 Initial example layout:
 
-![Block splitting (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-01.png)
+![Block splitting (initial layout)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/split-01.png)
 
 Layout after allocating only a smaller size than the free block's
 capacity:
 
-![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-02.png)
+![Block splitting (result)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/split-02.png)
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmalloc%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bmalloc%5D)
 
 ## Installation
 
@@ -160,22 +161,22 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.81 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                       | Description                                                           | Live demo                                       | Source                                                                       |
-|:-----------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------|:-----------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/> | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot) |
+| Screenshot                                                                                                               | Description                                                           | Live demo                                       | Source                                                                        |
+|:-------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------|:------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/simd-plot.png" width="240"/> | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/simd-plot) |
 
 ## API
 
@@ -266,7 +267,7 @@ and instead of byte size, expects number of elements. Returns `null`, if
 allocation failed.
 
 Types are referred to via the `Type` enum in the base
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/typedarray.ts)
+[@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/typedarray.ts)
 package, e.g. `Type.F64`:
 
 `U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`
@@ -345,7 +346,7 @@ const b = pool.reallocArray(a2, 8);
 ## Benchmarks
 
 Benchmark
-([source](https://github.com/thi-ng/umbrella/blob/develop/packages/malloc/bench/index.js))
+([source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/malloc/bench/index.js))
 comparing against raw typed array construction of different sizes:
 
 ```bash

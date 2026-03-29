@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/adjacency](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-adjacency.svg?74dfa3d1)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/adjacency](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-adjacency.svg?74dfa3d1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Graph implementations](#graph-implementations)
@@ -58,11 +59,11 @@ support both directed & undirected graphs:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Badjacency%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Badjacency%5D)
 
 ## Related packages
 
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) - Type-agnostic directed acyclic graph (DAG) & graph operations
+- [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph) - Type-agnostic directed acyclic graph (DAG) & graph operations
 
 ## Installation
 
@@ -94,25 +95,25 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.53 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
-- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
-- [@thi.ng/disjoint-set](https://github.com/thi-ng/umbrella/tree/develop/packages/disjoint-set)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/sparse](https://github.com/thi-ng/umbrella/tree/develop/packages/sparse)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/bitfield](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/bitfield)
+- [@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons)
+- [@thi.ng/disjoint-set](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/disjoint-set)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/sparse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sparse)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                              | Description                                                                      | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/> | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-voronoi-mst) |
+| Screenshot                                                                                                                      | Description                                                                      | Live demo                                              | Source                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/> | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-voronoi-mst) |
 
 ## API
 
@@ -196,7 +197,7 @@ graph.removeEdge(0, 1);
 
 GraphViz visualization of the above example graph:
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/adjacency/readme.png)
+![example graph](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/adjacency/readme.png)
 
 ## Authors
 

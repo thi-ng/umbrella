@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-io-geotiff](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-io-geotiff.svg?75748ad3)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-io-geotiff](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-io-geotiff.svg?75748ad3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-io-geotiff.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -24,9 +25,9 @@
 
 ## About
 
-GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+GeoTIFF reader support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
-![Pseudo-3D DEM visualization using hidden lines plot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
+![Pseudo-3D DEM visualization using hidden lines plot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
 
 This package is only intended to simplify obtaining DEM (elevation) data and not
 aimed at general
@@ -38,7 +39,7 @@ functionality. For the latter we recommend using the wrapped
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-io-geotiff%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-io-geotiff%5D)
 
 ## Installation
 
@@ -70,9 +71,9 @@ Package sizes (brotli'd, pre-treeshake): ESM: 474 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 - [geotiff](https://github.com/geotiffjs/geotiff.js)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)

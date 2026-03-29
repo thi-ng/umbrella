@@ -9,7 +9,7 @@
 A growing collection (currently ~230) of useful functions & higher order
 constructs (incl. meta programming approaches) for GPU / shader programming,
 acting as optional standard library for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+[@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
 based workflows.
 
 These functions can be imported like normal TS/JS functions and (in TS) are
@@ -163,7 +163,7 @@ gl_Position = ((proj * (view * model)) * vec4(position, 1.0));
 ### Generated fragment shader
 
 The `fragColor` output variable is auto-created by
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
+[@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl)
 if no other output vars are defined. For WebGL v1 this is defined as an
 alias for `gl_FragColor`...
 
@@ -208,7 +208,7 @@ dependencies are resolved and emitted in the correct topological order
 during later code generation.
 
 Below is the main shader code of the [Simplex noise
-example](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise).
+example](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-noise).
 
 ```ts
 import { add, defn, float, ret, sym, vec2, vec3, vec4 } from "@thi.ng/shader-ast";
@@ -247,7 +247,7 @@ several other HOFs from this library to drastically simplify user code.
 
 ### Color
 
-[/src/color](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/color/)
+[/src/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/color/)
 
 - `ACESFilm` (tone mapping)
 - `cosineGradient`
@@ -263,7 +263,7 @@ several other HOFs from this library to drastically simplify user code.
 
 Use the `porterDuff` higher order function to define new blend modes.
 See
-[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+[@thi.ng/porter-duff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/porter-duff)
 for reference.
 
 12 standard PD operators for `vec4` RGBA colors:
@@ -285,7 +285,7 @@ Related:
 
 ### Fog
 
-[/src/fog](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/fog/)
+[/src/fog](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/fog/)
 
 - `fogLinear`
 - `fogExp`
@@ -293,14 +293,14 @@ Related:
 
 ### Intersection tests
 
-[/src/isec](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/isec/)
+[/src/isec](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/isec/)
 
 - `isPointInCircle`
 - `isPointInRect`
 
 ### Lighting
 
-[/src/light](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/light/)
+[/src/light](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/light/)
 
 - `lambert`
 - `halfLambert`
@@ -309,7 +309,7 @@ Related:
 
 ### Math
 
-[/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/)
+[/src/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/math/)
 
 - `additive`
 - `cartesian2` / `cartesian3`
@@ -331,7 +331,7 @@ Related:
 
 ### Easing functions
 
-[/src/math/easing.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/easing.ts)
+[/src/math/easing.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/math/easing.ts)
 
 - `easeInBack` / `easeOutBack` / `easeInOutBack`
 - `easeInBounce` / `easeOutBounce` / `easeInOutBounce`
@@ -346,13 +346,13 @@ Related:
 
 ### Oscillators
 
-[/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/osc.ts)
+[/src/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/math/osc.ts)
 
 - `sinOsc` / `sawOsc` / `triOsc` / `rectOsc`
 
 ### Matrix operations
 
-[/src/matrix](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/matrix/)
+[/src/matrix](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/matrix/)
 
 - `lookat`
 - `transformMVP`
@@ -363,7 +363,7 @@ Related:
 
 ### Noise / randomness
 
-[/src/noise](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/noise/)
+[/src/noise](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/noise/)
 
 - `fbmNoiseVec34`
 - `hash2` / `hash3`
@@ -379,7 +379,7 @@ Related:
 
 ### Raymarching
 
-[/src/raymarch](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/raymarch/)
+[/src/raymarch](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/raymarch/)
 
 - `raymarchAO`
 - `raymarchDir`
@@ -389,13 +389,13 @@ Related:
 
 ### Screen coordinates
 
-[/src/screen](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/screen/)
+[/src/screen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/screen/)
 
 - `aspectCorrectedUV`
 
 ### Signed Distance Fields
 
-[/src/sdf](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/sdf/)
+[/src/sdf](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/sdf/)
 
 #### Primitives
 
@@ -440,7 +440,7 @@ Related:
 
 ### Texture lookups
 
-[/src/tex](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/tex/)
+[/src/tex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/tex/)
 
 - `indexToCoord` / `coordToIndex`
 - `indexToUV` / `uvToIndex`
@@ -449,7 +449,7 @@ Related:
 
 ### Visualization
 
-[/src/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/viz/)
+[/src/viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/viz/)
 
 - `functionDomainMapper`
 - `functionSampler`

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/gp](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-gp.svg?964bfbe6)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/gp](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-gp.svg?964bfbe6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/gp.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -54,15 +55,15 @@ References:
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgp%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgp%5D)
 
 ## Related packages
 
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti) - Dynamic, extensible multiple dispatch via user supplied dispatch function.
-- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) - Pointfree functional composition / Forth style stack execution engine
-- [@thi.ng/sexpr](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr) - Extensible S-Expression parser & runtime infrastructure
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
-- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper) - Functional tree editing, manipulation & navigation
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti) - Dynamic, extensible multiple dispatch via user supplied dispatch function.
+- [@thi.ng/pointfree](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree) - Pointfree functional composition / Forth style stack execution engine
+- [@thi.ng/sexpr](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sexpr) - Extensible S-Expression parser & runtime infrastructure
+- [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
+- [@thi.ng/zipper](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/zipper) - Functional tree editing, manipulation & navigation
 
 ### Blog posts
 
@@ -98,24 +99,24 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.28 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/zipper](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/zipper)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                            | Description                                              | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/> | Evolutionary shader generation using genetic programming | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo) |
+| Screenshot                                                                                                                    | Description                                              | Live demo                                            | Source                                                                             |
+|:------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-evo.jpg" width="240"/> | Evolutionary shader generation using genetic programming | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-evo) |
 
 ## API
 

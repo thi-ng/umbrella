@@ -8,15 +8,15 @@
 
 This package defines the following error types & helper functions to throw them:
 
-- [`AssertionError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/assert.ts)
-- [`IllegalArgumentError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-arguments.ts)
-- [`IllegalArityError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-arity.ts)
-- [`IllegalStateError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-statre.ts)
-- [`OutOfBoundsError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/out-of-bounds.ts)
-- [`UnsupportedOperationError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/unsupported.ts)
+- [`AssertionError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/assert.ts)
+- [`IllegalArgumentError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/illegal-arguments.ts)
+- [`IllegalArityError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/illegal-arity.ts)
+- [`IllegalStateError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/illegal-statre.ts)
+- [`OutOfBoundsError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/out-of-bounds.ts)
+- [`UnsupportedOperationError`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/unsupported.ts)
 
 Custom error types can be easily defined using
-[`defError()`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/deferror.ts).
+[`defError()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors/src/deferror.ts).
 
 {{meta.status}}
 

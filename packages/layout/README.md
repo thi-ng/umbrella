@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/layout](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-layout.svg?d285f417)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/layout](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-layout.svg?d285f417)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/layout.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -42,11 +43,11 @@ below.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blayout%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Blayout%5D)
 
 ## Related packages
 
-- [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/develop/packages/imgui) - Immediate mode GUI with flexible state handling & data only shape output
+- [@thi.ng/imgui](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/imgui) - Immediate mode GUI with flexible state handling & data only shape output
 
 ## Installation
 
@@ -78,25 +79,25 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Five projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                 | Live demo                                               | Source                                                                               |
-|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/calibration-sheet.avif" width="240"/> | Parametrically design calibration sheet for B&W photography | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/calibration-sheet) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>          | Interactive inverse FFT toy synth                           | [Demo](https://demo.thi.ng/umbrella/fft-synth/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>             | Canvas based Immediate Mode GUI components                  | [Demo](https://demo.thi.ng/umbrella/imgui/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/>       | Minimal IMGUI usage example                                 | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/layout-gridgen.png" width="240"/>     | Randomized space-filling, nested grid layout generator      | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/layout-gridgen)    |
+| Screenshot                                                                                                                        | Description                                                 | Live demo                                               | Source                                                                                |
+|:----------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/calibration-sheet.avif" width="240"/> | Parametrically design calibration sheet for B&W photography | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/calibration-sheet) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fft-synth.png" width="240"/>          | Interactive inverse FFT toy synth                           | [Demo](https://demo.thi.ng/umbrella/fft-synth/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/imgui/imgui-all.png" width="240"/>             | Canvas based Immediate Mode GUI components                  | [Demo](https://demo.thi.ng/umbrella/imgui/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/imgui-basics.png" width="240"/>       | Minimal IMGUI usage example                                 | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui-basics)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/layout-gridgen.png" width="240"/>     | Randomized space-filling, nested grid layout generator      | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/layout-gridgen)    |
 
 ## API
 
@@ -108,7 +109,7 @@ The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/readme-grid.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/layout/readme-grid.png)
 
 The code producing this layout (incl. the visualization itself):
 
@@ -205,7 +206,7 @@ IMPORTANT: As with GridLayout, nested layouts **MUST** be completed first before
 requesting new cells (aka `LayoutBoxes`) from a parent, otherwise unintended
 overlaps will occur.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/readme-stacked.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/layout/readme-stacked.png)
 
 The code producing this layout (incl. the visualization itself):
 

@@ -1,6 +1,6 @@
 # viz-ridge-lines
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/viz-ridge-lines.avif)
 
 [Live demo](http://demo.thi.ng/umbrella/viz-ridge-lines/)
 
@@ -8,8 +8,8 @@
 
 Please refer to the instructions on the wiki:
 
-- [Development](https://github.com/thi-ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
-- [Production build](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+- [Development](https://codeberg.org/thi.ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
+- [Production build](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 
 ## Authors
 

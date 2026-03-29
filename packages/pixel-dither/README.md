@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-dither](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-dither.svg?fd072b2b)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-dither](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-dither.svg?fd072b2b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-dither.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -26,9 +27,9 @@
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-dither.jpg)
 
-Extensible image dithering w/ various algorithm presets. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+Extensible image dithering w/ various algorithm presets. This is a support package for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 The package provides the following dithering algorithm presets (can also be
 very easily extended via definition of custom kernels):
@@ -47,7 +48,7 @@ very easily extended via definition of custom kernels):
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-dither%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-dither%5D)
 
 ## Installation
 
@@ -79,21 +80,21 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                                            | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg" width="240"/>  | Showcase of various dithering algorithms               | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-dither)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes   | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>  | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)  |
+| Screenshot                                                                                                                   | Description                                            | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-dither.jpg" width="240"/>  | Showcase of various dithering algorithms               | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-dither)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes   | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-indexed) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>  | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)  |
 
 ## API
 

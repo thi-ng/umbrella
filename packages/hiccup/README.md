@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup.svg?2a2bf94f)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup.svg?2a2bf94f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Features](#features)
@@ -59,9 +60,9 @@ easily *composable* components for static serialization to HTML & friends.
 This library is suitable for any SGML-style (HTML/XML/SVG/RSS/Atom etc.)
 serialization, including static website/asset generation, server side rendering
 etc. For interactive use cases, please see companion packages
-[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+[@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
 (or the older, now unmaintained
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom))
 and their various support packages.
 
 ### Features
@@ -127,31 +128,31 @@ iterable
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup%5D)
 
 ## Support packages
 
-- [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
-- [@thi.ng/hiccup-carbon-icons](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
-- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css) - CSS from nested JS data structures
-- [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
-- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - Well-formed HTML parsing and customizable transformation to nested JS arrays in [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) format
-- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
+- [@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
+- [@thi.ng/hiccup-carbon-icons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
+- [@thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css) - CSS from nested JS data structures
+- [@thi.ng/hiccup-html](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) related infrastructure
+- [@thi.ng/hiccup-html-parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html-parse) - Well-formed HTML parsing and customizable transformation to nested JS arrays in [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) format
+- [@thi.ng/hiccup-markdown](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
+- [@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) & related tooling
 
 ## Related packages
 
-- [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/axidraw) - Minimal AxiDraw plotter/drawing machine controller for Node.js
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
-- [@thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw) - Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
-- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
-- [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
-- [@thi.ng/rdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
-- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper) - Functional tree editing, manipulation & navigation
+- [@thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw) - Minimal AxiDraw plotter/drawing machine controller for Node.js
+- [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
+- [@thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-axidraw) - Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/hdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
+- [@thi.ng/hdom-components](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) compatible
+- [@thi.ng/rdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas) and declarative canvas drawing
+- [@thi.ng/rdom-components](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
+- [@thi.ng/zipper](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/zipper) - Functional tree editing, manipulation & navigation
 
 ### Blog posts
 
@@ -188,32 +189,32 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.27 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 11 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                            | Live demo                                                         | Source                                                                                         |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                      |                                                                   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)              |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history   | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdiff.avif" width="240"/>                        | Applying thi.ng/hdiff to generate static HTML diff output              | [Demo](https://demo.thi.ng/umbrella/hdiff/)                       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdiff)                       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/>   | Generating pure CSS image transitions                                  | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
-|                                                                                                                                      | Hiccup / hdom DOM hydration example                                    | [Demo](https://demo.thi.ng/umbrella/hydrate-basics/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)              |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/>               | Markdown to Hiccup to HTML parser / transformer                        | [Demo](https://demo.thi.ng/umbrella/markdown/)                    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)                    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                               |                                                                   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)               |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/>                 | Generate SVG using pointfree DSL                                       |                                                                   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)               |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>                  | Basic usage of the declarative rdom-forms generator                    | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)                | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)                |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)                | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)                |
+| Screenshot                                                                                                                                   | Description                                                            | Live demo                                                         | Source                                                                                          |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                      |                                                                   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-heatmap)              |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history   | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-table-ssr)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdiff.avif" width="240"/>                        | Applying thi.ng/hdiff to generate static HTML diff output              | [Demo](https://demo.thi.ng/umbrella/hdiff/)                       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdiff)                       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/>   | Generating pure CSS image transitions                                  | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-css-image-transition) |
+|                                                                                                                                              | Hiccup / hdom DOM hydration example                                    | [Demo](https://demo.thi.ng/umbrella/hydrate-basics/)              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hydrate-basics)              |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/markdown-parser.jpg" width="240"/>               | Markdown to Hiccup to HTML parser / transformer                        | [Demo](https://demo.thi.ng/umbrella/markdown/)                    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/markdown)                    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                               |                                                                   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/package-stats)               |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-svg.png" width="240"/>                 | Generate SVG using pointfree DSL                                       |                                                                   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-svg)               |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-formgen.jpg" width="240"/>                  | Basic usage of the declarative rdom-forms generator                    | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)                | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen)                |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)                | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid)                |
 
 ## API
 
@@ -391,9 +392,9 @@ serialize([div, {id: "foo"}, "bar"]);
 ### SVG generation, generators & lazy composition
 
 Also see
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
+[@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg)
 and
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 for related (and more advanced) functionality.
 
 ```ts tangle:export/readme-circles.js
@@ -556,7 +557,7 @@ Re-formatted HTML output:
 ### Component objects
 
 The sibling library
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
 supports components with basic life cycle methods (init, render, release). To
 support serialization of hdom component trees, hiccup too supports such
 components since version 2.0.0. For static serialization only the `render`
@@ -577,7 +578,7 @@ behavior of individual elements / tree branches:
 
 - **`__escape`** - boolean flag to enable/disable entity escaping
 - **`__skip`** - if true, skips serialization (also used by
-  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
+  [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom))
 - **`__serialize`** - if false, skips serialization (hiccup only)
 
 ```js

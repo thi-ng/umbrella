@@ -18,7 +18,7 @@ character...
 ### References
 
 The
-[index](https://github.com/thi-ng/umbrella/blob/develop/packages/emoji/src/emoji.ts)
+[index](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/emoji/src/emoji.ts)
 is based on the one used by
 [node-emoji](https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json)
 (which itself is sourced from the [js-emoji](https://github.com/iamcal/js-emoji)

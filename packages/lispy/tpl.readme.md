@@ -9,7 +9,7 @@
 > [!NOTE]
 > This DSL implementation has been extracted as standalone package from
 > existing work/examples bundled in the thi.ng/umbrella monorepo (i.e.
-> [lispy-repl](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl))
+> [lispy-repl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl))
 
 ## Core language features
 
@@ -178,7 +178,7 @@ passing a custom environment to
 
 > [!NOTE]
 > Please also see
-> [/tests](https://github.com/thi-ng/umbrella/blob/develop/packages/lispy/test)
+> [/tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lispy/test)
 > for more small code examples..
 
 ```ts tangle:export/readme-1.ts

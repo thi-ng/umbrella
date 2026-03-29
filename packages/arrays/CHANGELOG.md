@@ -11,127 +11,127 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.14.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.14.3) (2025-12-03)
+### [2.14.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.14.3) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [2.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.14.0) (2025-11-13)
+## [2.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.14.0) (2025-11-13)
 
 #### 🚀 Features
 
-- add `findLastSequence()`, add tests ([3a3364f](https://github.com/thi-ng/umbrella/commit/3a3364f))
+- add `findLastSequence()`, add tests ([3a3364f](https://codeberg.org/thi.ng/umbrella/commit/3a3364f))
 
-### [2.13.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.13.3) (2025-07-15)
+### [2.13.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.13.3) (2025-07-15)
 
 #### ♻️ Refactoring
 
-- add optional generics ([ba81685](https://github.com/thi-ng/umbrella/commit/ba81685))
+- add optional generics ([ba81685](https://codeberg.org/thi.ng/umbrella/commit/ba81685))
   - update `ensureArray()`/`ensureArrayLike()`
   - update `ensureIterable()`
 
-## [2.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.13.0) (2025-06-18)
+## [2.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.13.0) (2025-06-18)
 
 #### 🚀 Features
 
-- add filterAll() ([91791ba](https://github.com/thi-ng/umbrella/commit/91791ba))
+- add filterAll() ([91791ba](https://codeberg.org/thi.ng/umbrella/commit/91791ba))
   - add docs & code example
 
-## [2.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.12.0) (2025-06-14)
+## [2.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.12.0) (2025-06-14)
 
 #### 🚀 Features
 
-- add lookup() / lookupUnsafe() fns ([deb2b37](https://github.com/thi-ng/umbrella/commit/deb2b37))
+- add lookup() / lookupUnsafe() fns ([deb2b37](https://codeberg.org/thi.ng/umbrella/commit/deb2b37))
 
 #### ♻️ Refactoring
 
-- minor update swizzle() ([84d3aba](https://github.com/thi-ng/umbrella/commit/84d3aba))
+- minor update swizzle() ([84d3aba](https://codeberg.org/thi.ng/umbrella/commit/84d3aba))
 
-## [2.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.11.0) (2025-04-30)
+## [2.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.11.0) (2025-04-30)
 
 #### 🚀 Features
 
-- add `permutation()` ([7dcc389](https://github.com/thi-ng/umbrella/commit/7dcc389))
+- add `permutation()` ([7dcc389](https://codeberg.org/thi.ng/umbrella/commit/7dcc389))
 
 #### ♻️ Refactoring
 
-- minor update arg types ([52900ef](https://github.com/thi-ng/umbrella/commit/52900ef))
+- minor update arg types ([52900ef](https://codeberg.org/thi.ng/umbrella/commit/52900ef))
 
-### [2.10.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.10.11) (2025-01-17)
+### [2.10.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.10.11) (2025-01-17)
 
 #### 🩹 Bug fixes
 
-- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([21a4c41](https://github.com/thi-ng/umbrella/commit/21a4c41))
-  - fix/undo [8cbfc7b0c8](https://github.com/thi-ng/umbrella/commit/8cbfc7b0c8)
+- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([21a4c41](https://codeberg.org/thi.ng/umbrella/commit/21a4c41))
+  - fix/undo [8cbfc7b0c8](https://codeberg.org/thi.ng/umbrella/commit/8cbfc7b0c8)
   - update loop type & condition to skip last iteration
   - switch back to using `rnd.minmax()`
   - see [comment](https://github.com/thi-ng/umbrella/issues/495#issuecomment-2595138357)
 
 #### ⏱ Performance improvements
 
-- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([8cbfc7b](https://github.com/thi-ng/umbrella/commit/8cbfc7b))
+- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([8cbfc7b](https://codeberg.org/thi.ng/umbrella/commit/8cbfc7b))
   - update loop to skip last iteration (obsolete)
   - use `rnd.minmaxInt()` to compute swap index
 
-## [2.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.10.0) (2024-08-18)
+## [2.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.10.0) (2024-08-18)
 
 #### 🚀 Features
 
-- update topoSort() ([6606d08](https://github.com/thi-ng/umbrella/commit/6606d08))
+- update topoSort() ([6606d08](https://codeberg.org/thi.ng/umbrella/commit/6606d08))
   - add missing node check/assertion
   - update `deps` fn to incl. node ID as 2nd arg
 
-### [2.9.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.9.7) (2024-06-21)
+### [2.9.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.7) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- rename various rest args to be more semantically meaningful ([8088a56](https://github.com/thi-ng/umbrella/commit/8088a56))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.9.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.9.4) (2024-04-20)
+### [2.9.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.4) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([35eddc8](https://github.com/thi-ng/umbrella/commit/35eddc8))
+- update type usage ([35eddc8](https://codeberg.org/thi.ng/umbrella/commit/35eddc8))
 
-## [2.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.9.0) (2024-03-28)
+## [2.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.0) (2024-03-28)
 
 #### 🚀 Features
 
-- add findSequence() & tests ([5f4db56](https://github.com/thi-ng/umbrella/commit/5f4db56))
+- add findSequence() & tests ([5f4db56](https://codeberg.org/thi.ng/umbrella/commit/5f4db56))
 
 #### ♻️ Refactoring
 
-- add support for typed arrays ([1383916](https://github.com/thi-ng/umbrella/commit/1383916))
+- add support for typed arrays ([1383916](https://codeberg.org/thi.ng/umbrella/commit/1383916))
   - add function overrides to support typed arrays for:
     - argSort()
     - bisect(), bisectWith()
     - floydRivest()
-- update findSequence() ([f9e3c29](https://github.com/thi-ng/umbrella/commit/f9e3c29))
+- update findSequence() ([f9e3c29](https://codeberg.org/thi.ng/umbrella/commit/f9e3c29))
   - reverse inner scan direction
 
-## [2.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.8.0) (2024-02-19)
+## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.8.0) (2024-02-19)
 
 #### 🚀 Features
 
-- add blitPred1d() predicate version of blit1d() ([c13c4f9](https://github.com/thi-ng/umbrella/commit/c13c4f9))
+- add blitPred1d() predicate version of blit1d() ([c13c4f9](https://codeberg.org/thi.ng/umbrella/commit/c13c4f9))
 
-## [2.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.7.0) (2023-10-27)
-
-#### 🚀 Features
-
-- add rotate(), rotateTyped() ([c1d322e](https://github.com/thi-ng/umbrella/commit/c1d322e))
-
-## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.6.0) (2023-10-05)
+## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.7.0) (2023-10-27)
 
 #### 🚀 Features
 
-- add argMin()/argMax() ([33512ec](https://github.com/thi-ng/umbrella/commit/33512ec))
-- add selectThresholdMin/Max() fns ([de9ba50](https://github.com/thi-ng/umbrella/commit/de9ba50))
+- add rotate(), rotateTyped() ([c1d322e](https://codeberg.org/thi.ng/umbrella/commit/c1d322e))
 
-### [2.5.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.5.15) (2023-08-04)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.6.0) (2023-10-05)
+
+#### 🚀 Features
+
+- add argMin()/argMax() ([33512ec](https://codeberg.org/thi.ng/umbrella/commit/33512ec))
+- add selectThresholdMin/Max() fns ([de9ba50](https://codeberg.org/thi.ng/umbrella/commit/de9ba50))
+
+### [2.5.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.5.15) (2023-08-04)
 
 #### ♻️ Refactoring
 
-- update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
+- update `identity` usage in various pkgs ([b6db053](https://codeberg.org/thi.ng/umbrella/commit/b6db053))

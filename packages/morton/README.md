@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/morton](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-morton.svg?ad8d232e)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/morton](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-morton.svg?ad8d232e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/morton.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -41,12 +42,12 @@ References:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmorton%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bmorton%5D)
 
 ## Related packages
 
-- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
+- [@thi.ng/grid-iterators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings
+- [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
 
 ## Installation
 
@@ -78,10 +79,10 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -142,7 +143,7 @@ z.decode(67807501328384n);
 
 ### Low level (2D / 3D only)
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/morton/src/mux.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/morton/src/mux.ts)
 
 ```ts
 import * as m from "@thi.ng/morton";

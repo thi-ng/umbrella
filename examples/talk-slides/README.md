@@ -1,17 +1,17 @@
 # talk-slides
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/talk-slides.png)
 
 [Live demo](http://demo.thi.ng/umbrella/talk-slides/) |
 
 Minimal, skinnable presentation tool with keyboard navigation, using:
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-hdom)
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/transducers-hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-hdom)
 
 The contents of the
-[slides](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides/src/slides.ts)
+[slides](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/talk-slides/src/slides.ts)
 are from my talk at the [ClojureX 2018
 conference](https://skillsmatter.com/skillscasts/12269-keynote-the-spirit-of-clojure),
 however for file size reasons all media assets have been **excluded**
@@ -32,7 +32,7 @@ also see this useful site for quick reference: [Tachyons
 TL;DR](https://tachyons-tldr.now.sh/).
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

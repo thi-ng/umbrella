@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/date](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-date.svg?6fafa39b)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/date](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-date.svg?6fafa39b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/date.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -40,7 +41,7 @@ Datetime types, relative dates, math, iterators, composable formatters, locales.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdate%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdate%5D)
 
 ## Installation
 
@@ -72,25 +73,25 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.42 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Five projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                            | Description                                                                                             | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits                                                       |                                                      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/>        | CSP channel-based event handling, async transducers & reactive UI components                            | [Demo](https://demo.thi.ng/umbrella/csp-bus/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>  | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang                          | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/>  | Zig-based To-Do list, DOM creation, local storage task persistence                                      | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list)  |
+| Screenshot                                                                                                                    | Description                                                                                             | Live demo                                            | Source                                                                             |
+|:------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits                                                       |                                                      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-heatmap) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/csp-bus.png" width="240"/>        | CSP channel-based event handling, async transducers & reactive UI components                            | [Demo](https://demo.thi.ng/umbrella/csp-bus/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/csp-bus)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/>  | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang                          | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-geom) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-todo-list.png" width="240"/>  | Zig-based To-Do list, DOM creation, local storage task persistence                                      | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list)  |
 
 ## API
 
@@ -215,7 +216,7 @@ asDays(absDifference("2020-02", "2021-02"))
 Several iterators are provided to produce timestamps of various granularities
 between two given dates. Originally, these were intended for visualization
 purposes (i.e. as axis tick label generators for
-[@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz)).
+[@thi.ng/viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/viz)).
 
 - `years()`
 - `querters()`

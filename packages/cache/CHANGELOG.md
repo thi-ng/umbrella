@@ -11,45 +11,45 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.3.59](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.3.59) (2025-12-03)
+### [2.3.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.59) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [2.3.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.3.12) (2024-10-31)
+### [2.3.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.12) (2024-10-31)
 
 #### ♻️ Refactoring
 
-- add MapLike interface to loosen Map impls ([603c76c](https://github.com/thi-ng/umbrella/commit/603c76c))
+- add MapLike interface to loosen Map impls ([603c76c](https://codeberg.org/thi.ng/umbrella/commit/603c76c))
 
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.3.0) (2024-07-28)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.0) (2024-07-28)
 
 #### 🚀 Features
 
-- add `TLRUCacheOpts.autoExtend` option ([9fbda4c](https://github.com/thi-ng/umbrella/commit/9fbda4c))
+- add `TLRUCacheOpts.autoExtend` option ([9fbda4c](https://codeberg.org/thi.ng/umbrella/commit/9fbda4c))
   - add support to auto-extend TTL of cached values upon cache hit
   - add tests
   - add/update docs
   - update readme
 
-### [2.2.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.2.11) (2024-04-20)
+### [2.2.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.11) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([a3833d0](https://github.com/thi-ng/umbrella/commit/a3833d0))
+- update type usage ([a3833d0](https://codeberg.org/thi.ng/umbrella/commit/a3833d0))
 
-### [2.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.2.1) (2024-03-11)
+### [2.2.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.1) (2024-03-11)
 
 #### 🩹 Bug fixes
 
-- fix regression, all ctor args optional again ([54e6b37](https://github.com/thi-ng/umbrella/commit/54e6b37))
+- fix regression, all ctor args optional again ([54e6b37](https://codeberg.org/thi.ng/umbrella/commit/54e6b37))
 
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.2.0) (2024-03-11)
+## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.0) (2024-03-11)
 
 #### 🚀 Features
 
-- add value update callback, update TLRUCache ([d2fed06](https://github.com/thi-ng/umbrella/commit/d2fed06))
+- add value update callback, update TLRUCache ([d2fed06](https://codeberg.org/thi.ng/umbrella/commit/d2fed06))
   - add CacheOpts.update
   - update doSetEntry() in all impls
   - refactor TLRUCache.getSet() as async fn
@@ -58,20 +58,20 @@ and/or version bumps of transitive dependencies.
   - add tests
   - add docs
 
-### [2.1.106](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.1.106) (2024-03-11)
+### [2.1.106](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.106) (2024-03-11)
 
 #### 🩹 Bug fixes
 
-- fix ICache.get() return type, add docs ([d9f98f7](https://github.com/thi-ng/umbrella/commit/d9f98f7))
+- fix ICache.get() return type, add docs ([d9f98f7](https://codeberg.org/thi.ng/umbrella/commit/d9f98f7))
 
-### [2.1.89](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.1.89) (2024-01-26)
+### [2.1.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.89) (2024-01-26)
 
 #### 🩹 Bug fixes
 
-- attempt to add element bigger than "maxsize" blocks addition of any new elements to the cache ([3c855ef](https://github.com/thi-ng/umbrella/commit/3c855ef))
+- attempt to add element bigger than "maxsize" blocks addition of any new elements to the cache ([3c855ef](https://codeberg.org/thi.ng/umbrella/commit/3c855ef))
 
-### [2.1.76](https://github.com/thi-ng/umbrella/tree/@thi.ng/cache@2.1.76) (2023-11-09)
+### [2.1.76](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.76) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

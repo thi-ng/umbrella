@@ -1,4 +1,4 @@
-![thi.ng/umbrella](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-umbrella-masthead.jpg)
+![thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-umbrella-masthead.jpg)
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thi-ng/umbrella/test.yml?branch=main)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
 [![Become a sponsor](https://img.shields.io/badge/github-sponsor-yellow.svg)](https://github.com/sponsors/postspectacular/)
@@ -242,9 +242,9 @@ complexities (often combining functionality from several packages) in the
 
 | Example screenshots                                                                                                                                     | (small selection)                                                                                                                                             |                                                                                                                                                                 |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/boid-basics"><img src="./assets/examples/boid-basics.png" width="240"/></a>           | <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/imgui"><img src="./assets/imgui/imgui-all.png" width="240"/></a>                            | <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/shader-ast-raymarch"><img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/></a> |
-| <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/geom-terrain-viz"><img src="./assets/examples/geom-terrain-viz.jpg" width="240"/></a> | <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/poly-subdiv"><img src="./assets/examples/poly-subdiv.jpg" width="240"/></a>                 | <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/crypto-chart"><img src="./assets/examples/crypto-chart.png" width="240"/></a>                 |
-| <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/layout-gridgen"><img src="./assets/examples/layout-gridgen.png" width="240"/></a>     | <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/webgl-channel-mixer"><img src="./assets/examples/webgl-channel-mixer.jpg" width="240"/></a> | <a href="https://github.com/thi-ng/umbrella/blob/develop/examples/geom-tessel"><img src="./assets/geom/tessel.png" width="240"/></a>                            |
+| <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/boid-basics"><img src="./assets/examples/boid-basics.png" width="240"/></a>           | <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui"><img src="./assets/imgui/imgui-all.png" width="240"/></a>                            | <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-raymarch"><img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/></a> |
+| <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-terrain-viz"><img src="./assets/examples/geom-terrain-viz.jpg" width="240"/></a> | <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv"><img src="./assets/examples/poly-subdiv.jpg" width="240"/></a>                 | <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart"><img src="./assets/examples/crypto-chart.png" width="240"/></a>                 |
+| <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/layout-gridgen"><img src="./assets/examples/layout-gridgen.png" width="240"/></a>     | <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-channel-mixer"><img src="./assets/examples/webgl-channel-mixer.jpg" width="240"/></a> | <a href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-tessel"><img src="./assets/geom/tessel.png" width="240"/></a>                            |
 
 ### awesome.thi.ng
 
@@ -279,26 +279,26 @@ from this collection.
 Join the [discussions here on
 Github](https://github.com/thi-ng/umbrella/discussions), get in touch via
 [Mastodon](https://mastodon.thi.ng/@toxi) or use the [issue
-tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to contribute
+tracker](https://codeberg.org/thi.ng/umbrella/issues). If you'd like to contribute
 in other ways, please first read [this document](./CONTRIBUTING.md).
 
 In general, we welcome contributions of all kinds (docs, examples, bug fixes,
 feature requests, [financial
 contributions](https://github.com/sponsors/postspectacular/) etc.). You can find
 a detailed overview for contributors here:
-[CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
+[CONTRIBUTING.md](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md).
 
 **Note: The default branch for this repo is `develop` and all PRs should be
 based on this branch. This too means, the README files on this branch _might_
 refer to yet-unreleased features or packages. Please use the
-[main](https://github.com/thi-ng/umbrella/tree/main) branch for viewing the most
+[main](https://codeberg.org/thi.ng/umbrella/src/branch/main) branch for viewing the most
 recently released version(s)!**.
 
 ### Wiki
 
-To date, the [wiki](https://github.com/thi-ng/umbrella/wiki) has only been
+To date, the [wiki](https://codeberg.org/thi.ng/umbrella/wiki) has only been
 updated sporadically, but please be sure to check it out for project-wide
-[glossary](https://github.com/thi-ng/umbrella/wiki/Glossary), information,
+[glossary](https://codeberg.org/thi.ng/umbrella/wiki/Glossary), information,
 cookbooks, useful snippets etc.
 
 ## Projects
@@ -614,7 +614,7 @@ The following packages have been deprecated. Their readmes describe reasons and 
 > [Bun](https://bun.sh) is required for running some build & other project tasks.
 
 ```bash
-git clone https://github.com/thi-ng/umbrella.git
+git clone https://codeberg.org/thi.ng/umbrella.git
 cd umbrella
 
 yarn install
@@ -645,7 +645,7 @@ rebuilt via `build:decl`...
 ### Building example projects
 
 Please see the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 in the wiki for further details.
 
 ### Testing
@@ -685,13 +685,13 @@ prepare & check each of them, but work is under way! Please get in touch if you
 want to help!).
 
 The code extraction is handled via
-[thi.ng/tangle](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle),
+[thi.ng/tangle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/tangle),
 itself a part of thi.ng/umbrella. You can read more details about this process
 here:
 
 - [Mastodon post #1](https://mastodon.thi.ng/@toxi/111959275083112668)
 - [Mastodon post #2](https://mastodon.thi.ng/@toxi/112026554577015934)
-- [thi.ng/tangle readme](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle/README.md)
+- [thi.ng/tangle readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/tangle/README.md)
 
 To extract code blocks as source files from readmes:
 

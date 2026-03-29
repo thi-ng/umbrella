@@ -18,9 +18,9 @@ This package provides small frequently used helpers for HTML Canvas 2D creation
 {{meta.status}}
 
 Note: Some functions were previously part of the
-[thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/blob/develop/packages/adapt-dpi)
+[thi.ng/adapt-dpi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/adapt-dpi)
 and
-[thi.ng/pixel](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel)
+[thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 packages, but have been migrated to this package for better/smaller re-use...
 
 {{repo.supportPackages}}

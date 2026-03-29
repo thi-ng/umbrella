@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-splines](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-splines.svg?4bff3432)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-splines](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-splines.svg?4bff3432)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-splines.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -29,7 +30,7 @@
 
 ## About
 
-nD cubic & quadratic curve analysis, conversion, interpolation, splitting. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+nD cubic & quadratic curve analysis, conversion, interpolation, splitting. This is a support package for [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 Current implementations partially based on
 [toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
@@ -39,11 +40,11 @@ Current implementations partially based on
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-splines%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-splines%5D)
 
 ## Related packages
 
-- [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-subdiv-curve) - Freely customizable, iterative nD subdivision curves for open / closed geometries
+- [@thi.ng/geom-subdiv-curve](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-subdiv-curve) - Freely customizable, iterative nD subdivision curves for open / closed geometries
 
 ## Installation
 
@@ -75,24 +76,24 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.79 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-arc)
-- [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-resample)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/geom-arc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-arc)
+- [@thi.ng/geom-resample](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-resample)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                         | Description                                       | Live demo                                         | Source                                                                         |
-|:-------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/> | Polygon to cubic curve conversion & visualization | [Demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline) |
+| Screenshot                                                                                                                 | Description                                       | Live demo                                         | Source                                                                          |
+|:---------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-spline.png" width="240"/> | Polygon to cubic curve conversion & visualization | [Demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-spline) |
 
 ## API
 
@@ -118,7 +119,7 @@ points.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-uni.png) |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-cp-uni.png) |
 
 #### Poly vertices as break points
 
@@ -129,7 +130,7 @@ each vertex corner, taking into the convexity of each poly vertex.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-uni.png) |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-bp-uni.png) |
 
 ## Authors
 

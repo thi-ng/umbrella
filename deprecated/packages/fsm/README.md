@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/fsm](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-fsm.svg?44fc664d)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/fsm](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-fsm.svg?44fc664d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fsm.svg)
@@ -8,7 +8,7 @@
 
 > [!IMPORTANT]
 > This package has been deprecated and superseded by
-> [@thi.ng/parse](https://github.com/thi-ng/umbrella/blob/develop/packages/parse/).
+> [@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/).
 
 - [About](#about)
 - [Status](#status)
@@ -29,12 +29,12 @@ Composable primitives for building declarative, transducer based Finite-State Ma
 
 **DEPRECATED** - superseded by other package(s)
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bfsm%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bfsm%5D+in%3Atitle)
 
 ## Related packages
 
-- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse) - Purely functional parser combinators & AST generation for generic inputs
-- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
+- [@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse) - Purely functional parser combinators & AST generation for generic inputs
+- [@thi.ng/transducers-fsm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
 
 ## Installation
 
@@ -66,12 +66,12 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.31 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 ## API
 
@@ -87,24 +87,24 @@ also support optional user callbacks, which are executed when a match
 was made and are responsible for state transitions, state update and
 production of any result values.
 
-- [`alts()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/alts.ts)
-- [`altsLit()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/alts-lit.ts)
-- [`always()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/always.ts)
-- [`lit()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/lit.ts)
-- [`never()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/never.ts)
-- [`not()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/not.ts)
-- [`range()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/range.ts) (plus multiple presets)
-- [`repeat()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/repeat.ts)
-- [`seq()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/seq.ts)
-- [`str()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/str.ts)
-- [`until()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/until.ts)
+- [`alts()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/alts.ts)
+- [`altsLit()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/alts-lit.ts)
+- [`always()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/always.ts)
+- [`lit()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/lit.ts)
+- [`never()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/never.ts)
+- [`not()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/not.ts)
+- [`range()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/range.ts) (plus multiple presets)
+- [`repeat()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/repeat.ts)
+- [`seq()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/seq.ts)
+- [`str()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/str.ts)
+- [`until()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/until.ts)
 
 See docs strings in `/src` folder for now.
 
 ### FSM transducer
 
 The
-[`fsm()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/fsm.ts)
+[`fsm()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/fsm.ts)
 function is a Finite-state machine transducer / iterator with support
 for single lookahead values. Takes an object of `states` and their
 matchers, an arbitrary context object and an `initial` state ID.

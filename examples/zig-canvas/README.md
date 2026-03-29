@@ -1,10 +1,10 @@
 # zig-canvas
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/zig-canvas.png)
 
 [Live demo](http://demo.thi.ng/umbrella/zig-canvas/)
 
-Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
+Please refer to the [example build instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
 Additionally, this example requires Zig & Binaryen installed (and on the
 `$PATH`) for building the WebAssembly binary.
@@ -28,7 +28,7 @@ asdf local zig 0.15.1
 ```
 
 -   [Zig](https://ziglang.org) v0.15.1 or newer versions (see
-    [comments](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system))
+    [comments](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/README.md#using-the-zig-build-system))
 -   [Binaryen](https://github.com/WebAssembly/binaryen)
 
 Please see the comments in

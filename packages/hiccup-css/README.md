@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-css](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-css.svg?176128a0)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup-css.svg?176128a0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Features](#features)
@@ -46,10 +47,10 @@
 
 ## About
 
-CSS from nested JS data structures. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+CSS from nested JS data structures. This is a support package for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup).
 
 Following a similar pattern as the
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 package, this library generates CSS from plain nested arrays / data
 structures, functions, iterators.
 
@@ -95,12 +96,12 @@ Clojure projects:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-css%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup-css%5D)
 
 ## Related packages
 
-- [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
+- [@thi.ng/hiccup-html](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) related infrastructure
+- [@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) & related tooling
 
 ## Installation
 
@@ -126,24 +127,24 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.24 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                         | Description                                              | Live demo                                                         | Source                                                                                         |
-|:-----------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>             | hdom update performance benchmark w/ config options      | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions                    | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-scroll-anim.png" width="240"/>            | Scroll-based, reactive, multi-param CSS animation basics | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-scroll-anim)            |
+| Screenshot                                                                                                                                 | Description                                              | Live demo                                                         | Source                                                                                          |
+|:-------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-benchmark2.png" width="240"/>             | hdom update performance benchmark w/ config options      | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-benchmark2)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions                    | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-css-image-transition) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ramp-scroll-anim.png" width="240"/>            | Scroll-based, reactive, multi-param CSS animation basics | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-scroll-anim)            |
 
 ## API
 
@@ -161,7 +162,7 @@ This is the main function exposed by this module. It accepts a JS data
 structure (array, object, iterator or function) and returns a CSS
 string. The optional `opts` arg is used to control formatting,
 auto-prefixing and other conversion options. See
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css/src/api.ts)
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css/src/api.ts)
 for reference.
 
 By default the generated CSS uses the `css.COMPACT` format, causing

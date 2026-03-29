@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/seq@1.0.2) (2025-01-14)
+### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/seq@1.0.2) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [0.4.72](https://github.com/thi-ng/umbrella/tree/@thi.ng/seq@0.4.72) (2024-04-20)
-
-#### ♻️ Refactoring
-
-- update type usage ([76645c7](https://github.com/thi-ng/umbrella/commit/76645c7))
-
-### [0.4.44](https://github.com/thi-ng/umbrella/tree/@thi.ng/seq@0.4.44) (2023-11-09)
+### [0.4.72](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/seq@0.4.72) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update type usage ([76645c7](https://codeberg.org/thi.ng/umbrella/commit/76645c7))
+
+### [0.4.44](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/seq@0.4.44) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

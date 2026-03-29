@@ -12,7 +12,7 @@ The WASM binary (~860 bytes) is embedded as base64 string in the
 TypeScript source to make it easier to use in both browser & node
 environments. The source code of the actual implementation (written in
 [Zig](https://ziglang.org)) is included in
-[/zig/leb128.zig](https://github.com/thi-ng/umbrella/tree/develop/packages/leb128/zig/leb128.zig)
+[/zig/leb128.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/leb128/zig/leb128.zig)
 
 All public functions throw an error if the WASM module could not be
 initialized.

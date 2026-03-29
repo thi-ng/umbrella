@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-patch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers-patch.svg?77daeed3)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transducers-patch](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transducers-patch.svg?77daeed3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-patch.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -26,7 +27,7 @@
 
 ## About
 
-Reducers for patch-based, immutable-by-default array & object editing. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Reducers for patch-based, immutable-by-default array & object editing. This is a support package for [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 The `patchArray` and `patchObj` reducers can be used in any
 reducer/transducer scenario and are useful for any form of declarative
@@ -37,7 +38,7 @@ state update. By default all edits are performed non-destructively, but
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-patch%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransducers-patch%5D)
 
 ## Installation
 
@@ -69,11 +70,11 @@ Package sizes (brotli'd, pre-treeshake): ESM: 496 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -152,7 +153,7 @@ reduce(
 ### Stream-based processing
 
 .This example uses constructs from the
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 package.
 
 ```ts

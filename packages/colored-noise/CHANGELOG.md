@@ -11,26 +11,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.87](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@1.0.87) (2024-12-24)
+### [1.0.87](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/colored-noise@1.0.87) (2024-12-24)
 
 #### 🩹 Bug fixes
 
-- update imports ([5f8f8df](https://github.com/thi-ng/umbrella/commit/5f8f8df))
+- update imports ([5f8f8df](https://codeberg.org/thi.ng/umbrella/commit/5f8f8df))
 
-### [1.0.66](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@1.0.66) (2024-04-08)
-
-#### ♻️ Refactoring
-
-- update reducer handling ([5b445a7](https://github.com/thi-ng/umbrella/commit/5b445a7))
-
-### [1.0.56](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@1.0.56) (2024-02-22)
+### [1.0.66](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/colored-noise@1.0.66) (2024-04-08)
 
 #### ♻️ Refactoring
 
-- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
+- update reducer handling ([5b445a7](https://codeberg.org/thi.ng/umbrella/commit/5b445a7))
 
-### [1.0.35](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@1.0.35) (2023-11-09)
+### [1.0.56](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/colored-noise@1.0.56) (2024-02-22)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
+
+### [1.0.35](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/colored-noise@1.0.35) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

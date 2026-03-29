@@ -32,7 +32,7 @@ channels are blocking on both the reader and writer side.
 ### Buffering behaviors
 
 The following channel buffer types/behaviors are included (from the
-[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
+[thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers)
 package), all accepting a max. capacity and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/buffers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
@@ -50,7 +50,7 @@ interface required by the channel:
   Sliding window ring buffer. Writes to the channel are **never** blocking!
   Whilst the buffer is at full capacity, new writes will first expunge the
   oldest buffered value (similar to [LRU
-  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
   behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/buffers/functions/dropping.html):
   Dropping value ring buffer. Writes to the channel are **never** blocking!

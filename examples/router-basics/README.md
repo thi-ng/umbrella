@@ -1,11 +1,11 @@
 # router-basics
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/router-basics.jpg)
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/)
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## About

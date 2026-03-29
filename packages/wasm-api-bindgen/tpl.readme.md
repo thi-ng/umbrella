@@ -27,7 +27,7 @@ These code generators derive their outputs from a single source of truth, a user
 provided JSON file of shared type definitions and optional additional
 configuration, e.g. to configure string behavior and/or provide custom user code
 to inject into the generated source code. Please see the
-[@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/)
+[@thi.ng/wasm-api-dom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/)
 support package for a more thorough realworld example...
 
 ### Code independence
@@ -36,11 +36,11 @@ Even though these code generators are published as part of the group of
 thi.ng/wasm-api packages, there are **no runtime dependencies for the generated
 native WASM side code**. For C/Zig compilation, only the boilerplate type definition headers are required:
 
-- [C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
-- [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/zig/lib.zig)
+- [C/C++](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
+- [Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/zig/lib.zig)
 
 However, the generated TypeScript types will depend on the core
-[thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+[thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api)
 infrastructure, but that should be expected, since that kind of re-use is the
 entire purpose of that parent package.
 
@@ -199,9 +199,9 @@ are required, set `const` field option to `false`.
 This is the default behavior/implementation for `string`:
 
 See
-[C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
+[C/C++](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
 and
-[Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/zig/lib.zig)
+[Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/zig/lib.zig)
 types for definitions of `StringPtr` and `ConstStringPtr` et al...
 
 | Base type | Tag     | Length | Const | Equiv Zig type signature | Description                         |
@@ -268,7 +268,7 @@ pub const ConstFooSlice = extern struct { ptr: *const Foo; len: usize; };
 ```
 
 For convenience, the supplied Zig [slice
-polyfill](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/zig/lib.zig)
+polyfill](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/zig/lib.zig)
 also provides coercion functions to/from native slice types...
 
 The TypeScript codegen will emit slices as JS arrays and doesn't support direct
@@ -412,7 +412,7 @@ pub const TestType = enum(i32) {
 The package provides a detailed schema to aid the authoring of type definitions
 (and provide inline documentation) via editors with JSON schema integration. The
 schema is distributed as part of the package and located in
-[`/schema/wasm-api-types.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/schema/wasm-api-types.json).
+[`/schema/wasm-api-types.json`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/schema/wasm-api-types.json).
 
 For VSCode, you can [add this snippet to your workspace
 settings](https://code.visualstudio.com/Docs/languages/json#_mapping-to-a-schema-in-the-workspace)
@@ -430,7 +430,7 @@ to apply the schema to any `typedefs.json` files:
 ## CLI generator
 
 The package includes a [small CLI
-wrapper](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/src/cli.ts)
+wrapper](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/src/cli.ts)
 to invoke the code generator(s) from JSON type definitions and to write the
 generated source code(s) to different files:
 
@@ -750,7 +750,7 @@ zig build-exe \
 
 Alternatively, use Zig's native build system with the [build file bundled with
 the thi.ng/wasm-api main
-package](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/README.md#using-the-zig-build-system)
 and which is being used by various example projects in this repo...
 
 ### Runtime example
@@ -824,7 +824,7 @@ getters/setters](#omitting-getters--setters)...
 TODO
 
 Please also see further examples in the [@thi.ng/wasm-api main
-readme](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api) and
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api) and
 the various (commented) example projects linked above.
 
 <!-- include ../../assets/tpl/footer.md -->

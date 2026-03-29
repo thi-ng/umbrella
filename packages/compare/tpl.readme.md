@@ -5,7 +5,7 @@
 ## About
 
 Comparators with optional support for types implementing the [@thi.ng/api
-`ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/compare.ts)
+`ICompare`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/compare.ts)
 interface.
 
 ### Generic comparison

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/quad-edge](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-quad-edge.svg?83a8d81f)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/quad-edge](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-quad-edge.svg?83a8d81f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/quad-edge.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -28,7 +29,7 @@
 Quadedge data structure after Guibas & Stolfi.
 
 See the related
-[@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi)
+[@thi.ng/geom-voronoi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-voronoi)
 package for concrete usage. This package merely provides the underlying
 graph data structure.
 
@@ -44,11 +45,11 @@ Reference:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bquad-edge%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bquad-edge%5D)
 
 ## Related packages
 
-- [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
+- [@thi.ng/geom-voronoi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
 
 ## Installation
 
@@ -80,7 +81,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 558 bytes
 
 ## Dependencies
 
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 ## API
 

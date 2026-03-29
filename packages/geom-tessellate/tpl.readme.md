@@ -16,13 +16,13 @@ triangle, square, hexagon and octagon.
 
 #### Ear cut
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/ear-cut.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/ear-cut.png)
 
-- [earCut](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/earcut.ts)
+- [earCut](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/earcut.ts)
 
 ##### Complex polygons
 
-- [earCutComplex](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/earcut-complex.ts)
+- [earCutComplex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/earcut-complex.ts)
 
 Higher order tessellator for concave polygons and/or polygons with holes...
 
@@ -30,48 +30,48 @@ TODO add comments, credits & example
 
 #### Edge split
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/edge-split.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/edge-split.png)
 
-- [edgeSplit](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/edge-split.ts)
+- [edgeSplit](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/edge-split.ts)
 
 #### Inset
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/inset.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/inset.png)
 
-- [inset](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/inset.ts)
+- [inset](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/inset.ts)
 
 Higher order tessellator with configurable inset distance (normalized) toward
 centroid and option to keep center polygon (empty by default).
 
 #### Quad fan
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/quad-fan.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/quad-fan.png)
 
-- [quadFan](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/quad-fan.ts)
+- [quadFan](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/quad-fan.ts)
 
 #### Rim triangles
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/rim-tris.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/rim-tris.png)
 
-- [rimTris](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/rim-tris.ts)
+- [rimTris](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/rim-tris.ts)
 
 #### Tri fan (with boundary point)
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/tri-fan-boundary.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/tri-fan-boundary.png)
 
-- [triFanBoundary](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/tri-fan-boundary.ts)
+- [triFanBoundary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/tri-fan-boundary.ts)
 
 #### Tri fan (with centroid)
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/tri-fan.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/tri-fan.png)
 
-- [triFan](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/tri-fan.ts)
+- [triFan](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/tri-fan.ts)
 
 #### Tri fan (with edge splitting)
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/tri-fan-split.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/tri-fan-split.png)
 
-- [triFanSplit](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/tri-fan-split.ts)
+- [triFanSplit](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/tri-fan-split.ts)
 
 
 ### The `ITessellation` interface & implementation

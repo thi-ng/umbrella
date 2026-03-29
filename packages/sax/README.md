@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/sax](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-sax.svg?6d971129)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/sax](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-sax.svg?6d971129)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -32,7 +33,7 @@
 
 ## About
 
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)-based,
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)-based,
 [SAX](https://en.wikipedia.org/wiki/Simple_API_for_XML)-like,
 non-validating, [configurable](#parser-options), speedy & tiny XML
 parser (~1.4KB brotli).
@@ -53,14 +54,14 @@ well (see SVG parsing example further below). The choice is yours!
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsax%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bsax%5D)
 
 ## Related packages
 
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
-- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse) - Purely functional parser combinators & AST generation for generic inputs
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
-- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
+- [@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) & related tooling
+- [@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse) - Purely functional parser combinators & AST generation for generic inputs
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
+- [@thi.ng/transducers-fsm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
 
 ## Installation
 
@@ -92,23 +93,23 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.65 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/transducers-fsm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-fsm)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                           | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>  | SVG path parsing & dynamic resampling | [Demo](https://demo.thi.ng/umbrella/svg-resample/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion  | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter) |
+| Screenshot                                                                                                                   | Description                           | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-resample.png" width="240"/>  | SVG path parsing & dynamic resampling | [Demo](https://demo.thi.ng/umbrella/svg-resample/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion  | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/xml-converter) |
 
 ## API
 
@@ -181,7 +182,7 @@ example parses an SVG file, then extracts and selectively applies
 transformations to only the `<circle>` elements in the first group
 (`<g>`) element. Btw. The transformed elements can be serialized back
 into SVG syntax using
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)...
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)...
 
 Given the composed transducer below, parsing stops immediately after the
 first `<g>` element is complete. This is because the `matchFirst()`
@@ -242,7 +243,7 @@ console.log(
 ### DOM-style tree parsing using `defmulti`
 
 This example shows how SVG can be parsed into
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 format.
 
 ```ts tangle:export/readme-parse-elements.ts

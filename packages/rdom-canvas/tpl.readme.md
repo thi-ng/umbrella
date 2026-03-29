@@ -11,17 +11,17 @@ background information...
 
 As with most thi.ng/rdom components, the state (aka geometry/scenegraph) for the
 canvas component is being sourced from a
-[thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 subscription. The canvas redraws every time that subscription delivers a new
 value. The size of the canvas can be given as a subscription too and if so will
 also automatically trigger resizing of the canvas.
 
 The geometry to rendered to the canvas is expressed as
-[thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup),
+[thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup),
 specifically the flavor used by
-[thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas),
+[thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas),
 which (not just coincidentally) is the same as also used by
-[thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 shapes.
 
 ```ts tangle:export/readme1.ts
@@ -66,7 +66,7 @@ The root shape/group support the following special attributes:
   `window.devicePixelRatio`)
 
 Also see relevant section in the [thi.ng/hiccup-canvas
-README](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-canvas/README.md#special-attributes)...
+README](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas/README.md#special-attributes)...
 
 {{meta.status}}
 

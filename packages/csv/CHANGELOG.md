@@ -11,65 +11,65 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.5.2) (2025-08-06)
+### [2.5.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.5.2) (2025-08-06)
 
 #### 🩹 Bug fixes
 
-- update default handling (empty) ([b223719](https://github.com/thi-ng/umbrella/commit/b223719))
+- update default handling (empty) ([b223719](https://codeberg.org/thi.ng/umbrella/commit/b223719))
   - include empty columns/cells for default eligibility
   - update `ColumnSpec` docs (re: role of cell transforms)
   - update tests
 
-### [2.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.5.1) (2025-08-06)
+### [2.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.5.1) (2025-08-06)
 
 #### ♻️ Refactoring
 
-- update default value handling (fn lookup) ([8d373bb](https://github.com/thi-ng/umbrella/commit/8d373bb))
+- update default value handling (fn lookup) ([8d373bb](https://codeberg.org/thi.ng/umbrella/commit/8d373bb))
   - allow `ColumnSpec.default` to be functions
   - update `parseCSV()`
   - update tests
 
-## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.5.0) (2025-08-06)
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.5.0) (2025-08-06)
 
 #### 🚀 Features
 
-- add support for column default values ([e105548](https://github.com/thi-ng/umbrella/commit/e105548))
+- add support for column default values ([e105548](https://codeberg.org/thi.ng/umbrella/commit/e105548))
   - update `ColumnSpec`
   - update `parseCSV()` to support & validate column specs w/ default values
   - add tests
 
-## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.4.0) (2025-07-12)
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.4.0) (2025-07-12)
 
 #### 🚀 Features
 
-- add `json()` higher-order cell transform ([d8a95dd](https://github.com/thi-ng/umbrella/commit/d8a95dd))
+- add `json()` higher-order cell transform ([d8a95dd](https://codeberg.org/thi.ng/umbrella/commit/d8a95dd))
 
-### [2.3.87](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.87) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [2.3.81](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.81) (2024-04-08)
+### [2.3.87](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.3.87) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update reducer handling due to updates in [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/main/packages/transducers) pkg ([99871a1](https://github.com/thi-ng/umbrella/commit/99871a1))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.3.66](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.66) (2024-02-22)
-
-#### ♻️ Refactoring
-
-- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
-
-### [2.3.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.26) (2023-08-28)
+### [2.3.81](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.3.81) (2024-04-08)
 
 #### ♻️ Refactoring
 
-- add ColumnSpecs alias ([217cb84](https://github.com/thi-ng/umbrella/commit/217cb84))
+- update reducer handling due to updates in [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/transducers) pkg ([99871a1](https://codeberg.org/thi.ng/umbrella/commit/99871a1))
 
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.3.0) (2023-02-05)
+### [2.3.66](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.3.66) (2024-02-22)
+
+#### ♻️ Refactoring
+
+- update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
+
+### [2.3.26](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.3.26) (2023-08-28)
+
+#### ♻️ Refactoring
+
+- add ColumnSpecs alias ([217cb84](https://codeberg.org/thi.ng/umbrella/commit/217cb84))
+
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/csv@2.3.0) (2023-02-05)
 
 #### 🚀 Features
 
-- add oneOff() cell transform for enum like values ([7c297db](https://github.com/thi-ng/umbrella/commit/7c297db))
+- add oneOff() cell transform for enum like values ([7c297db](https://codeberg.org/thi.ng/umbrella/commit/7c297db))

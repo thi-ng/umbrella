@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/parse](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-parse.svg?68aa7075)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-parse.svg?68aa7075)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/parse.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Features](#features)
@@ -69,13 +70,13 @@ grammars](https://makertube.net/w/ursFuQNJQQskmejx1ydL7q)
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bparse%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bparse%5D)
 
 ## Related packages
 
-- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
-- [@thi.ng/proctext](https://github.com/thi-ng/umbrella/tree/develop/packages/proctext) - Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions
-- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
+- [@thi.ng/hiccup-markdown](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
+- [@thi.ng/proctext](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/proctext) - Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions
+- [@thi.ng/transducers-fsm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
 
 ## Installation
 
@@ -107,28 +108,28 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.41 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                              | Description                                                                                             | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/>  | Markdown to Hiccup to HTML parser / transformer                                                         | [Demo](https://demo.thi.ng/umbrella/markdown/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>    | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
+| Screenshot                                                                                                                      | Description                                                                                             | Live demo                                              | Source                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/markdown-parser.jpg" width="240"/>  | Markdown to Hiccup to HTML parser / transformer                                                         | [Demo](https://demo.thi.ng/umbrella/markdown/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/markdown)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/>    | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/parse-playground) |
 
 **Note:** Please also see the [dedicated wiki
-page](https://github.com/thi-ng/umbrella/wiki/Parser-grammars) collecting
+page](https://codeberg.org/thi.ng/umbrella/wiki/Parser-grammars) collecting
 various grammar examples and links to their playgrounds.
 
 ## API
@@ -139,10 +140,10 @@ TODO
 
 ### Context & reader creation
 
-- [`defContext`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/context.ts)
+- [`defContext`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/context.ts)
 
 Source:
-[/readers](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/readers)
+[/readers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/readers)
 
 - `defArrayReader`
 - `defStringReader`
@@ -150,7 +151,7 @@ Source:
 ### Presets parsers
 
 Source:
-[/presets](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/presets)
+[/presets](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/presets)
 
 - `WS` / `WS0` / `WS1` / `NL` / `DNL` / `SPACE` / `SPACES` / `SPACES0`
 - `ALPHA` / `LOWER_CASE` / `UPPER_CASE` / `ALPHA_NUM`
@@ -163,7 +164,7 @@ Source:
 ### Primitives
 
 Source:
-[/prims](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/prims)
+[/prims](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/prims)
 
 #### Naming conventions / suffixes
 
@@ -201,7 +202,7 @@ in order to decide about successful matching.
 ### Combinators
 
 Source:
-[/combinators](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/combinators)
+[/combinators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/combinators)
 
 - `alt` / `altS` / `altD`
 - `check`
@@ -217,7 +218,7 @@ Source:
 ### Transformers
 
 Source:
-[/xform](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/xform)
+[/xform](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/xform)
 
 Syntax sugars for `xform(parser, fn)`:
 
@@ -253,7 +254,7 @@ Actual transforms:
 ## Grammar definition
 
 Complex parsers can be constructed via
-[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L320),
+[`defGrammar()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/src/grammar.ts#L320),
 which accepts a string of rule definitions in the built-in (and still
 WIP) grammar rule definition language, similar to PEGs and regular
 expressions:
@@ -437,7 +438,7 @@ rule references in the grammar definition as well:
 ### S-expression DSL
 
 (Also see
-[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+[@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
 as a useful tool for processing/interpreting/compiling the result AST)
 
 ```ts tangle:export/readme-sexpr.ts

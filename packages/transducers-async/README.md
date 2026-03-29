@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-async](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers-async.svg?1156f965)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transducers-async](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transducers-async.svg?1156f965)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-async.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Evaluators](#evaluators)
@@ -31,7 +32,7 @@
 
 ## About
 
-Async versions of various highly composable transducers, reducers and iterators. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Async versions of various highly composable transducers, reducers and iterators. This is a support package for [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 ### Evaluators
 
@@ -82,13 +83,13 @@ Async versions of various highly composable transducers, reducers and iterators.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-async%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransducers-async%5D)
 
 ## Related packages
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
-- [@thi.ng/fibers](https://github.com/thi-ng/umbrella/tree/develop/packages/fibers) - Process hierarchies & operators for cooperative multitasking
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+- [@thi.ng/csp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
+- [@thi.ng/fibers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fibers) - Process hierarchies & operators for cooperative multitasking
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -120,26 +121,26 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.25 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compose)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/timestamp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/timestamp)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                     | Description                                                                  | Live demo                                        | Source                                                                        |
-|:---------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)    |
-|                                                                                                                | Basic & barebones usage of async iterables in thi.ng/rdom                    | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-async) |
+| Screenshot                                                                                                             | Description                                                                  | Live demo                                        | Source                                                                         |
+|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:-------------------------------------------------|:-------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/csp-bus)    |
+|                                                                                                                        | Basic & barebones usage of async iterables in thi.ng/rdom                    | [Demo](https://demo.thi.ng/umbrella/rdom-async/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-async) |
 
 ## API
 

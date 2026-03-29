@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.130](https://github.com/thi-ng/umbrella/tree/@thi.ng/iges@2.1.130) (2024-06-21)
+### [2.1.130](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/iges@2.1.130) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.1.84](https://github.com/thi-ng/umbrella/tree/@thi.ng/iges@2.1.84) (2023-11-09)
+### [2.1.84](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/iges@2.1.84) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

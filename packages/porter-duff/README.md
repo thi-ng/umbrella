@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/porter-duff](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-porter-duff.svg?3ece97c3)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/porter-duff](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-porter-duff.svg?3ece97c3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/porter-duff.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [References](#references)
@@ -52,12 +53,12 @@ ints or RGBA float vectors.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bporter-duff%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bporter-duff%5D)
 
 ## Related packages
 
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
-- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
+- [@thi.ng/shader-ast-stdlib](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
 
 ## Installation
 
@@ -89,20 +90,20 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                             | Description                                  | Live demo                                          | Source                                                                          |
-|:-----------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>       | Pixel buffer manipulations                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/> | Port-Duff image compositing / alpha blending | [Demo](https://demo.thi.ng/umbrella/porter-duff/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)  |
+| Screenshot                                                                                                                     | Description                                  | Live demo                                          | Source                                                                           |
+|:-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/pixel/pixel-basics.png" width="240"/>       | Pixel buffer manipulations                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-basics) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/porter-duff/porter-duff2.png" width="240"/> | Port-Duff image compositing / alpha blending | [Demo](https://demo.thi.ng/umbrella/porter-duff/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/porter-duff)  |
 
 ## API
 
@@ -164,7 +165,7 @@ import { porterDuffInt } from "@thi.ng/porter-duff";
 const customOp = porterDuffInt(() => -0.5, () => 1);
 ```
 
-![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff-custom.png)
+![custom operator](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/porter-duff/porter-duff-custom.png)
 
 The following coefficient functions are included by default (and are
 used by all standard operators):

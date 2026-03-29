@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hdom-components](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hdom-components.svg?fb3fa9fe)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hdom-components](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hdom-components.svg?fb3fa9fe)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-components.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -29,16 +30,16 @@
 
 ## About
 
-Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
+Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom).
 
 A growing collection of unstyled, re-usable & customizable components
 for use with
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
 &
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup).
 
 **Please see
-[ADR-0002](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/adr/0002-component-configuration.md)
+[ADR-0002](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/adr/0002-component-configuration.md)
 and onwards for detailed discussion about the design intentions of these
 components**. Feedback welcome!
 
@@ -46,7 +47,7 @@ components**. Feedback welcome!
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdom-components%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhdom-components%5D)
 
 ## Installation
 
@@ -72,34 +73,34 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.04 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/transducers-stats](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/canvas)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/transducers-stats](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 11 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                            | Live demo                                                 | Source                                                                                 |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png" width="240"/>                   | Canvas based dial widget                                               | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                  | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>               | hdom update performance benchmark w/ config options                    | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)  |
-|                                                                                                                                      | Custom dropdown UI component for hdom                                  | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown)       |
-|                                                                                                                                      | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-toggle.png" width="240"/>                   | Customizable slide toggle component demo                               | [Demo](https://demo.thi.ng/umbrella/hdom-toggle/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-toggle)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>                    | Worker based, interactive Mandelbrot visualization                     | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                            | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>                 | WebGL cube maps with async texture loading                             | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)       |
+| Screenshot                                                                                                                                   | Description                                                            | Live demo                                                 | Source                                                                                  |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/canvas-dial.png" width="240"/>                   | Canvas based dial widget                                               | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/canvas-dial)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                  | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/cellular-automata)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-benchmark2.png" width="240"/>               | hdom update performance benchmark w/ config options                    | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-benchmark2)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes)  |
+|                                                                                                                                              | Custom dropdown UI component for hdom                                  | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown)       |
+|                                                                                                                                              | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown-fuzzy) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-toggle.png" width="240"/>                   | Customizable slide toggle component demo                               | [Demo](https://demo.thi.ng/umbrella/hdom-toggle/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-toggle)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mandelbrot.jpg" width="240"/>                    | Worker based, interactive Mandelbrot visualization                     | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mandelbrot)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/triple-query.png" width="240"/>                  | Triple store query results & sortable table                            | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/triple-query)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cubemap.jpg" width="240"/>                 | WebGL cube maps with async texture loading                             | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-cubemap)       |
 
 ## API
 
@@ -107,25 +108,25 @@ directory are using this package:
 
 ### Canvas
 
-- [Canvas types](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/canvas.ts) (WebGL, WebGL2 & Canvas2D)
+- [Canvas types](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/canvas.ts) (WebGL, WebGL2 & Canvas2D)
 
 ### Form elements
 
-- [Button](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/button.ts)
-- [Button group](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/button-group.ts)
-- [Dropdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/dropdown.ts)
-- [Pager](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/pager.ts)
+- [Button](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/button.ts)
+- [Button group](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/button-group.ts)
+- [Dropdown](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/dropdown.ts)
+- [Pager](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/pager.ts)
 
 ### Links
 
-- [Link types](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/link.ts)
+- [Link types](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/link.ts)
 
 ### Other
 
-- [FPS counter](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/fps-counter.ts)
-- [Notification](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/notification.ts)
-- [Sparkline](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/sparkline.ts)
-- [Title](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components/src/title.ts)
+- [FPS counter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/fps-counter.ts)
+- [Notification](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/notification.ts)
+- [Sparkline](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/sparkline.ts)
+- [Title](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-components/src/title.ts)
 
 ## Authors
 

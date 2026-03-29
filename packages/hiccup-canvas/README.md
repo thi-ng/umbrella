@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-canvas](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-canvas.svg?210d0679)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup-canvas.svg?210d0679)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-canvas.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -60,11 +61,11 @@
 
 ## About
 
-Hiccup shape tree renderer for vanilla Canvas 2D contexts. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+Hiccup shape tree renderer for vanilla Canvas 2D contexts. This is a support package for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup).
 
 This package provides a simple `draw()` function, which accepts a scene tree of
 different shape types in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 syntax/format (i.e. nested arrays,
 [`IToHiccup`](https://docs.thi.ng/umbrella/api/interfaces/IToHiccup.html)
 implementations) and then translates these into canvas API draw calls.
@@ -73,12 +74,12 @@ implementations) and then translates these into canvas API draw calls.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-canvas%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup-canvas%5D)
 
 ## Related packages
 
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) - HTML/SVG/XML serialization of nested data structures, iterables & closures
+- [@thi.ng/hdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
+- [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) - HTML/SVG/XML serialization of nested data structures, iterables & closures
 
 ## Installation
 
@@ -110,41 +111,41 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.65 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
-- [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-arc)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/canvas)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color)
+- [@thi.ng/geom-arc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-arc)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 16 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                              | Live demo                                                   | Source                                                                                   |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/calibration-sheet.avif" width="240"/>            | Parametrically design calibration sheet for B&W photography              | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/calibration-sheet)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                              | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-classify-point.png" width="240"/>           | Polygon point classification (inside/boundary/outside)                   | [Demo](https://demo.thi.ng/umbrella/geom-classify-point/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-classify-point)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-complex-poly.png" width="240"/>             | Shape conversions & operations using polygons with holes                 | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-complex-poly)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-extra-hiccup.jpg" width="240"/>             | Embedding thi.ng/hiccup data/elements in thi.ng/geom shape hierarchies   | [Demo](https://demo.thi.ng/umbrella/geom-extra-hiccup/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-extra-hiccup)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png" width="240"/>                         | geom-fuzz basic shape & fill examples                                    | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-fuzz-basics)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-unique-edges.png" width="240"/>             | Iterating the unique edges of a tessellation                             | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-unique-edges)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-clock.png" width="240"/>             | Realtime analog clock demo                                               | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/>              | Interactive pattern drawing demo using transducers                       | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg" width="240"/>         | 2D Bezier curve-guided particle system                                   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export     | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-arcs.jpg" width="240"/>            | Animated arcs & drawing using hiccup-canvas                              | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-arcs/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-arcs)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                        | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-basics)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                 | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/>          | Basic 2D scenegraph example with pan/zoom functionality                  | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom)   |
+| Screenshot                                                                                                                                   | Description                                                              | Live demo                                                   | Source                                                                                    |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:------------------------------------------------------------|:------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/calibration-sheet.avif" width="240"/>            | Parametrically design calibration sheet for B&W photography              | [Demo](https://demo.thi.ng/umbrella/calibration-sheet/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/calibration-sheet)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/canvas-recorder.png" width="240"/>               | Self-modifying, animated typographic grid with emergent complex patterns | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/canvas-recorder)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                              | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fiber-basics)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-classify-point.png" width="240"/>           | Polygon point classification (inside/boundary/outside)                   | [Demo](https://demo.thi.ng/umbrella/geom-classify-point/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-classify-point)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-complex-poly.png" width="240"/>             | Shape conversions & operations using polygons with holes                 | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-complex-poly)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-extra-hiccup.jpg" width="240"/>             | Embedding thi.ng/hiccup data/elements in thi.ng/geom shape hierarchies   | [Demo](https://demo.thi.ng/umbrella/geom-extra-hiccup/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-extra-hiccup)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/geom/geom-fuzz.png" width="240"/>                         | geom-fuzz basic shape & fill examples                                    | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-fuzz-basics)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-unique-edges.png" width="240"/>             | Iterating the unique edges of a tessellation                             | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-unique-edges)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-clock.png" width="240"/>             | Realtime analog clock demo                                               | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-clock)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/>              | Interactive pattern drawing demo using transducers                       | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-draw)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-particles.jpg" width="240"/>         | 2D Bezier curve-guided particle system                                   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-particles) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export     | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-canvas-arcs.jpg" width="240"/>            | Animated arcs & drawing using hiccup-canvas                              | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-arcs/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-canvas-arcs)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                        | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-canvas-basics)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                 | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/>          | Basic 2D scenegraph example with pan/zoom functionality                  | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph-pan-zoom)   |
 
 ## API
 
@@ -154,7 +155,7 @@ The shape tree given to
 [`draw()`](https://docs.thi.ng/umbrella/hiccup-canvas/functions/draw.html) MUST
 consist of well-formed, normalized hiccup syntax (incl. objects implementing the
 `IToHiccup()` interface, like the shape types provided by
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)).
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)).
 
 ## SVG conversion
 
@@ -162,13 +163,13 @@ Even though the shape element names & syntax are intentionally *very
 similar* (largely the same) to SVG elements, for performance reasons all
 geometry data given to each shape remains un-stringified (only styling
 attributes can be strings). However, the
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
+[@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg)
 package provides a `convertTree()` function which takes the arguably
 more "raw" shape format used by this package and converts an entire
 shape tree into SVG compatible & serializable format.
 
 It's very likely (and recommended) you're using the shape type provided
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom),
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom),
 in which case these can be provided as-is to this package's
 [`draw()`](https://docs.thi.ng/umbrella/hiccup-canvas/functions/draw.html)
 function and SVG conversion (from the same geometry) can be done like so:
@@ -313,7 +314,7 @@ Since v3.0.0 this package supports both circular and elliptic arc path segments,
 however only the latter segment type is compatible with SVG (circular arcs are
 only supported by the HTML Canvas API). We recommended to use one of the
 available path constructor functions in
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) to
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) to
 create individual arcs or paths which ensure SVG compatibility:
 
 Arcs:
@@ -502,7 +503,7 @@ Interpreted as float RGB(A):
 #### @thi.ng/color values
 
 Colors defined via the
-[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
+[@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color)
 package can be automatically converted to CSS color strings:
 
 `{ fill: hcya(0.1666, 1, 0.8859) }` => `{ fill: "#ffff00" }`
@@ -536,7 +537,7 @@ docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/
 for further details.
 
 Also see the [2x3 matrix functions in the
-@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices/README.md)
+@thi.ng/matrices](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/matrices/README.md)
 package for creating different kinds of transformation matrices, e.g.
 
 ```

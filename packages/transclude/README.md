@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transclude](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transclude.svg?652d2a29)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transclude](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transclude.svg?652d2a29)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transclude.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -32,21 +33,21 @@ currently is mainly used to generate all ~350 readme & changelog files in this
 repo, but otherwise is **not** bound to this project in any way.
 
 Please see
-[`/tools/src/readme.ts`](https://github.com/thi-ng/umbrella/blob/develop/tools/src/readme.ts)
+[`/tools/src/readme.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/tools/src/readme.ts)
 for a concrete usage example...
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransclude%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransclude%5D)
 
 ## Related packages
 
-- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
-- [@thi.ng/markdown-table](https://github.com/thi-ng/umbrella/tree/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
-- [@thi.ng/proctext](https://github.com/thi-ng/umbrella/tree/develop/packages/proctext) - Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions
-- [@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle) - Literate programming code block tangling / codegen utility, inspired by org-mode & noweb
+- [@thi.ng/hiccup-markdown](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
+- [@thi.ng/markdown-table](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
+- [@thi.ng/proctext](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/proctext) - Extensible procedural text generation engine with dynamic, mutable state, indirection, randomizable & recursive variable expansions
+- [@thi.ng/tangle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/tangle) - Literate programming code block tangling / codegen utility, inspired by org-mode & noweb
 
 ## Installation
 
@@ -70,13 +71,13 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.96 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

@@ -8,7 +8,7 @@
 
 | Quasiflock                                                                                                                                        | Danza                                                                                                                                            | S-TRACE                                                                                                                                             | Voxelscape                                                                                                                                                           |
 |---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <a href="https://www.fxhash.xyz/generative/6671"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/quasiflock-240.jpg"/></a> | <a href="https://mastodon.thi.ng/@toxi/tagged/DANZA"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/danza-240.jpg"/></a> | <a href="https://mastodon.thi.ng/@toxi/tagged/STRACE"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/s-trace-240.jpg"/></a> | <a href="https://twitter.com/search?q=from%3A%40toxi+voxel+ziglang"><img src="https://github.com/thi-ng/umbrella/raw/develop/assets/fxhash/voxelscape-240.jpg"/></a> |
+| <a href="https://www.fxhash.xyz/generative/6671"><img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fxhash/quasiflock-240.jpg"/></a> | <a href="https://mastodon.thi.ng/@toxi/tagged/DANZA"><img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fxhash/danza-240.jpg"/></a> | <a href="https://mastodon.thi.ng/@toxi/tagged/STRACE"><img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fxhash/s-trace-240.jpg"/></a> | <a href="https://twitter.com/search?q=from%3A%40toxi+voxel+ziglang"><img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fxhash/voxelscape-240.jpg"/></a> |
 
 (Screenshots of selected projects made with Zig & TypeScript using the interop features provided by this package. Images link to respective project info)
 
@@ -24,16 +24,16 @@ JS/WebAssembly applications.
 3. A minimal core API for debug output, string/pointer/typedarray accessors for
 8/16/32/64 bit (u)ints and 32/64 bit floats. Additionally, a number of support
 modules for [DOM
-manipulation](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/),
+manipulation](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/),
 [scheduled function
-execution](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule/),
+execution](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-schedule/),
 WebGL, WebGPU, WebAudio etc. is being actively worked on.
 4. Different types of memory-mapped (UTF-8) string abstractions (slice or pointer based)
 5. Shared (opt-in) memory allocation mechanism, also accessible from JS/TS side
 6. Include files for
-   [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/zig),
+   [Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig),
    and
-   [C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
+   [C/C++](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/include)
    defining glue code for the TypeScript [core
    API](https://docs.thi.ng/umbrella/wasm-api/interfaces/CoreAPI.html) defined
    by this package
@@ -43,13 +43,13 @@ WebGL, WebGPU, WebAudio etc. is being actively worked on.
 ## Polyglot bindings generator
 
 The toolkit includes an extensible [code
-generator](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/)
+generator](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/)
 for shared datatypes and (currently) supports Zig & TypeScript and C11. For TS
 fully type checked and memory-mapped (mostly zero-copy) accessors of WASM-side
 data are generated. In principle, all languages with a WASM target are
 supported, however currently only bindings for the languages mentioned are
 included. The codegen also includes a [CLI
-frontend/utility](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#cli-generator).
+frontend/utility](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/README.md#cli-generator).
 
 ## Custom API modules
 
@@ -59,7 +59,7 @@ can be extented via custom defined API modules. Such child modules will consist
 of a collection of JS/TS functions & variables, their related counterparts
 (import definitions) for the WASM target and (optionally) some shared data types
 ([bindings for which can be generated via
-thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen)).
+thi.ng/wasm-api-bindgen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen)).
 
 On the JS side, custom API extensions can be easily integrated and exposed via
 the [`IWasmAPI`
@@ -210,7 +210,7 @@ Furthermore, the package provides these string wrapper types:
 - [`WasmStringSlice`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmStringSlice.html)
 
 Finally, see more information in the
-[@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#string-handling)
+[@thi.ng/wasm-api-bindgen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/README.md#string-handling)
 package readme.
 
 ## Memory allocations
@@ -222,9 +222,9 @@ The actual allocator is implementation specific and suitable generic mechanisms
 are defined for both the included Zig & C bindings. Please see for further
 reference:
 
-- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L34-L68):
+- [`/zig/lib.zig`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig/lib.zig#L34-L68):
   comments about WASM-side allocator handling in Zig
-- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L18-L28):
+- [`/include/wasmapi.h`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/include/wasmapi.h#L18-L28):
   comments about WASM-side allocator handling in C/C++
 - [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate):
   allocating memory from JS side
@@ -235,7 +235,7 @@ Note: The provided Zig library supports the idiomatic (Zig) pattern of working
 with multiple allocators in different parts of the application and supports
 dynamic assignments/swapping of the exposed allocator. See comments in source
 file and
-[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/test)
+[tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/test)
 for more details...
 
 ```ts
@@ -264,8 +264,8 @@ try {
 ### API module auto-initialization
 
 The supplied child APIs
-([wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom),
-[wasm-api-schedule](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule)
+([wasm-api-dom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom),
+[wasm-api-schedule](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-schedule)
 etc.) use an auto-intialization hook related to the above `WASM_ALLOCATOR`
 mechanism: If that allocator is available, the WASM side of these modules will
 auto initialize and thus reduce boilerplate. However, if no such central
@@ -280,7 +280,7 @@ be managed manually in JS. For this purpose the [`ObjectIndex`
 class](https://docs.thi.ng/umbrella/wasm-api/classes/ObjectIndex.html) can be
 used by API modules to handle the indexing of different types of JS
 objects/values and their ID generation (incl. recycling of IDs, using
-[@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)).
+[@thi.ng/idgen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/idgen)).
 Using this approach, only the numeric IDs (handles) will then need to be
 exchanged with the WASM module...
 
@@ -329,12 +329,12 @@ canvases.delete(0);
 ```
 
 The supplied Zig core library also includes a
-[`ManagedIndex`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/managed-index.zig)
+[`ManagedIndex`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig/managed-index.zig)
 for similar resource management on the Zig side of the application. For example,
 in the
-[@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/)
+[@thi.ng/wasm-api-dom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/)
 &
-[@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/)
+[@thi.ng/wasm-api-schedule](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-schedule/)
 packages this is used to manage Zig-side event listeners.
 
 ## Using the Zig build system
@@ -349,7 +349,7 @@ built-in build system is as simple as:
 versions, older Zig versions than
 [v0.15.1](https://ziglang.org/download/0.15.1/release-notes.html), are not
 actively supported anymore (however, [build files for older versions are still
-included](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig)).
+included](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig)).
 
 Please see [bundled examples](#usage-examples) for more details...
 
@@ -384,13 +384,13 @@ pub fn build(b: *std.Build) void {
 All bundled example projects (see [list below](#usage-examples)) are being built
 via this script. **More details/options in the commented source code:**
 
-- [`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
+- [`/zig/build.zig`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig/build.zig)
 
 ## Naming & structural conventions
 
 To avoid guesswork about the internals of any of the supplied WASM API modules,
 please also consult the information in
-[#368](https://github.com/thi-ng/umbrella/issues/368).
+[#368](https://codeberg.org/thi.ng/umbrella/issues/368).
 
 {{meta.status}}
 

@@ -51,7 +51,7 @@
 TODO
 
 See
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-io-obj/src/api.ts)
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-io-obj/src/api.ts)
 for details about resulting data structure. Also see tests for more.
 
 ```ts

@@ -22,7 +22,7 @@ emitted/processed downstream once a _logical_ CSV row is complete.
 
 Also, being transducer based means the parser can be easily integrated into more
 complex data preparation, cleaning or conversion workflows. See
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 for more details/ideas.
 
 {{meta.status}}

@@ -11,26 +11,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.190](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-netpbm@2.1.190) (2026-02-07)
+### [2.1.190](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-io-netpbm@2.1.190) (2026-02-07)
 
 #### ♻️ Refactoring
 
-- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://github.com/thi-ng/umbrella/commit/3abbddf))
+- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [2.1.131](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-netpbm@2.1.131) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [2.1.127](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-netpbm@2.1.127) (2024-04-20)
+### [2.1.131](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-io-netpbm@2.1.131) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update type usage ([327bf20](https://github.com/thi-ng/umbrella/commit/327bf20))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.1.84](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-netpbm@2.1.84) (2023-11-09)
+### [2.1.127](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-io-netpbm@2.1.127) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update type usage ([327bf20](https://codeberg.org/thi.ng/umbrella/commit/327bf20))
+
+### [2.1.84](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-io-netpbm@2.1.84) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

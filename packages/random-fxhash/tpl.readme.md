@@ -12,9 +12,9 @@ driven by an unique transaction hash, incl. the platform's provided PRNG which
 is meant to be used by each project to ensure deterministic behavior and
 reproducibility. The fxhash PRNG is an implementation of the [SFC32 (Simple Fast
 Counter)
-algorithm](https://github.com/thi-ng/umbrella/blob/develop/packages/random/src/sfc32.ts),
+algorithm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random/src/sfc32.ts),
 which is also provided by the
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 parent package.
 
 This support package provides a singleton implementation (`RND`) of that PRNG,
@@ -40,15 +40,15 @@ are supporting the above mentioned `IRandom` interface. That means the `RND`
 instance can be passed to any of the functions/classes to provide more advanced
 functionality, e.g.:
 
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays): Array shuffling
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color): Generate procedural/stochastic colors/themes/ranges, analog colors
-- [@thi.ng/colored-noise](https://github.com/thi-ng/umbrella/tree/develop/packages/colored-noise): Various 1D noise generators
-- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp): Genetic programming toolkit
-- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means): nD k-Means clustering
-- [@thi.ng/lowdisc](https://github.com/thi-ng/umbrella/tree/develop/packages/lowdisc): nD low-discrepancy sequence generators/iterators
-- [@thi.ng/lsys](https://github.com/thi-ng/umbrella/tree/develop/packages/lsys): Highly customizable L-System interpreter
-- [@thi.ng/poisson](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson): nD poisson disc sampling
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors): 800+ vector functions, incl. random nD vector creation
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays): Array shuffling
+- [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color): Generate procedural/stochastic colors/themes/ranges, analog colors
+- [@thi.ng/colored-noise](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise): Various 1D noise generators
+- [@thi.ng/gp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/gp): Genetic programming toolkit
+- [@thi.ng/k-means](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/k-means): nD k-Means clustering
+- [@thi.ng/lowdisc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lowdisc): nD low-discrepancy sequence generators/iterators
+- [@thi.ng/lsys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lsys): Highly customizable L-System interpreter
+- [@thi.ng/poisson](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/poisson): nD poisson disc sampling
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors): 800+ vector functions, incl. random nD vector creation
 
 {{meta.status}}
 

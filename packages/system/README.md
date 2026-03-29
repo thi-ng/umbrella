@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/system](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-system.svg?5482c49a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/system](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-system.svg?5482c49a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/system.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -40,7 +41,7 @@ API](https://docs.thi.ng/umbrella/system/interfaces/ILifecycle.html).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsystem%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bsystem%5D)
 
 ## Installation
 
@@ -72,22 +73,22 @@ Package sizes (brotli'd, pre-treeshake): ESM: 579 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                                    | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/>            | CSP channel-based event handling, async transducers & reactive UI components   | [Demo](https://demo.thi.ng/umbrella/csp-bus/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus) |
+| Screenshot                                                                                                                        | Description                                                                    | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/csp-bus.png" width="240"/>            | CSP channel-based event handling, async transducers & reactive UI components   | [Demo](https://demo.thi.ng/umbrella/csp-bus/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/csp-bus)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus) |
 
 ## API
 
@@ -216,14 +217,14 @@ await FOO.reset();
 
 For a `System` to initialize its components in the correct order, an internal
 [dependency
-graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) is
+graph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph) is
 constructed. This graph is not required any further after system initialization
 (see
 [System.init()](https://docs.thi.ng/umbrella/system/classes/System.html#init)),
 though can be useful for debugging and documentation purposes.
 
 For example, we can utilize the
-[@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot)
+[@thi.ng/dgraph-dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph-dot)
 package to generate a [Graphviz](https://graphviz.org) source file to visualize
 the dependencies between the system's components.
 
@@ -245,7 +246,7 @@ console.log(toDot(FOO.graph, { id: (node) => node }));
 
 Resulting visualization:
 
-![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/system/basic.png)
+![graphviz output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/system/basic.png)
 
 ## Authors
 

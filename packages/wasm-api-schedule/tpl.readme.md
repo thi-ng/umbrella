@@ -59,9 +59,9 @@ schedule.cancel(listenerID);
 reference](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html).
 
 Also see the
-[zig-counter](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-counter/)
+[zig-counter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-counter/)
 and
-[zig-todo-list](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-todo-list/)
+[zig-todo-list](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list/)
 example projects for more advanced usage...
 
 {{meta.status}}

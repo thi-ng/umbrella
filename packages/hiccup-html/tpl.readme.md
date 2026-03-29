@@ -10,14 +10,14 @@ The following type-checked factory functions are provided **so far** and in most
 cases include specialized type definitions for element-specific attributes,
 incl. enumerated attrib values (where applicable/useful) and 420+ CSS property
 names (for use with the `style` attrib). See type definitions in
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts)
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/api.ts)
 and [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
 
 #### Block content
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/blocks.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/blocks.ts)
 
 - `blockquote`
 - `details`
@@ -35,7 +35,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Forms / inputs
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/forms.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/forms.ts)
 
 - `button`
 - `checkbox`
@@ -63,7 +63,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Head / metadata
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/head.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/head.ts)
 
 - `base`
 - `head`
@@ -82,7 +82,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Inline
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/inline.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/inline.ts)
 
 - `abbr`
 - `anchor`
@@ -110,7 +110,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Lists
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/lists.ts)
 
 - `datalist`
 - `dd`
@@ -123,7 +123,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Media
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/media.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/media.ts)
 
 - `audio`
 - `canvas`
@@ -136,7 +136,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Sections
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/sections.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/sections.ts)
 
 - `address`
 - `article`
@@ -161,7 +161,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Tables
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/table.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/table.ts)
 
 - `caption`
 - `col`
@@ -188,9 +188,9 @@ most there're compatible alternative ways of expressing the same data.
 The table below provides an overview of the _current_ syntax feature
 support by the relevant packages consuming hiccup:
 
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+- [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
 
 | Feature                    | Example and HTML equivalent/result                   | hiccup | hdom | rdom |
 |----------------------------|------------------------------------------------------|--------|------|------|
@@ -216,11 +216,11 @@ packages.
 of course, but will NOT be evaluated to obtain final attrib value
 
 (2) The
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
+[`IDeref`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/deref.ts)
 interface is implemented by various data structures in the
 thi.ng/umbrella eco system (most relevant:
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)).
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream),
+[@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)).
 
 {{meta.status}}
 
@@ -322,13 +322,13 @@ const div = defElement<Partial<Pick<Attribs, "class" | "style">>>("div");
 The `Attribs` interface provides a common, fully typed base definition
 of HTML attributes (incl. event listeners and enumerated attrib options)
 and can be found in
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts#L126).
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/api.ts#L126).
 
 The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
-[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom))
+[@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom))
 and [`IDeref`
-instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
+instances](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/deref.ts)
 when later providing attribute values to an element.
 
 #### Element creation
@@ -343,7 +343,7 @@ signatures](https://docs.thi.ng/umbrella/hiccup-html/functions/defElement.html):
 ```
 
 The result of either form is a simple tuple, defining an HTML element in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 syntax.
 
 If the second call signature is used, the initial `emmet`-style string

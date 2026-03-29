@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > This package has been deprecated and most of the provided functionality has
 > been superseded by
-> [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+> [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 <!-- toc -->
 
@@ -451,7 +451,7 @@ similar speeds (up to `cacheLimit` divergence). The cache is shared by
 given `cacheLimit`, the other forks will lose intermediate values. If in
 doubt, increase the cache limit to a higher value (default 16). The
 cache uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+[@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons)
 to avoid unnecessary copying during window sliding.
 
 ```ts

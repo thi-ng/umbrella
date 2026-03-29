@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api-dom](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api-dom.svg?1770a2af)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/wasm-api-dom](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-wasm-api-dom.svg?1770a2af)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-dom.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Module initialization](#module-initialization)
@@ -31,7 +32,7 @@
 
 ## About
 
-Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api).
 
 This package provides a small TypeScript core API
 and related [Ziglang](https://ziglang.org) bindings for UI & DOM
@@ -42,11 +43,11 @@ Current key features for the Zig (WASM) side:
 - Fully declarative or imperative DOM tree creation & manipulation
 - ID handle management for WASM created DOM elements & listeners
 - Canvas element creation (with HDPI support, see
-  [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/blob/develop/packages/adapt-dpi))
+  [@thi.ng/adapt-dpi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/adapt-dpi))
 - Attribute setters/getters (string, numeric, boolean)
 - `.innerHTML` & `.innerText` setters
 - Event handlers, event types (see generated types in
-  [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig)
+  [api.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/api.zig)
   for details):
     - drag 'n drop (WIP)
     - focus
@@ -73,8 +74,8 @@ const dom = @import("wasm-api-dom");
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig/lib.zig
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/events.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
 
@@ -100,7 +101,7 @@ export fn start() void {
 Since DOM related resources created on the JS side cannot be returned to the
 WASM module directly, the bridge API caches those on the host side and [uses
 managed ID (integer)
-handles](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#object-indices--handles)
+handles](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/README.md#object-indices--handles)
 to exchange them. These IDs can then be used in subsequent API calls to refer to
 certain DOM elements, listeners etc.
 
@@ -176,7 +177,7 @@ options](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateCanvasOpts.h
 exist for `<canvas>` elements.
 
 Also see the
-[thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas)
+[thi.ng/wasm-api-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas)
 sibling package for working with canvases...
 
 ### Attribute creation & accessors
@@ -207,7 +208,7 @@ _ = dom.createElement(&.{
 ```
 
 The following accessors are provided (see
-[/zig/lib.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig)
+[/zig/lib.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/lib.zig)
 for documentation):
 
 - `getStringAttrib()` / `setStringAttrib()`
@@ -222,7 +223,7 @@ for passing arbitrary user context.
 
 A more advanced version of the following click counter button component can be
 seen in action in the
-[zig-counter](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)
+[zig-counter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-counter)
 example project. Also check other supplied Zig examples for more realworld
 [usage examples](#usage-examples).
 
@@ -283,7 +284,7 @@ const Counter = struct {
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-dom%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bwasm-api-dom%5D)
 
 ## Installation
 
@@ -309,27 +310,27 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.95 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
-- [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/canvas)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/prefixes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/prefixes)
+- [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Five projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                                                        | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/>    | Zig-based DOM creation & canvas drawing app                        | [Demo](https://demo.thi.ng/umbrella/zig-canvas/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-cellular.jpg" width="240"/>  | Zig-based 2D multi-behavior cellular automata                      | [Demo](https://demo.thi.ng/umbrella/zig-cellular/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-cellular)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/>   | Simple Zig/WASM click counter DOM component                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.avif" width="240"/>    | Basic Zig/WebAssembly WebGL demo                                   | [Demo](https://demo.thi.ng/umbrella/zig-webgl/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-webgl)     |
+| Screenshot                                                                                                                   | Description                                                        | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-canvas.png" width="240"/>    | Zig-based DOM creation & canvas drawing app                        | [Demo](https://demo.thi.ng/umbrella/zig-canvas/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-canvas)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-cellular.jpg" width="240"/>  | Zig-based 2D multi-behavior cellular automata                      | [Demo](https://demo.thi.ng/umbrella/zig-cellular/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-cellular)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-counter.png" width="240"/>   | Simple Zig/WASM click counter DOM component                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-counter)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-webgl.avif" width="240"/>    | Basic Zig/WebAssembly WebGL demo                                   | [Demo](https://demo.thi.ng/umbrella/zig-webgl/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-webgl)     |
 
 ## API
 
@@ -337,9 +338,9 @@ directory are using this package:
 
 For now, please see the [package
 docs](https://docs.thi.ng/umbrella/wasm-api-dom/), source code comments
-([TS](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/src/)
+([TS](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/src/)
 &
-[Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/zig/))
+[Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/))
 and the various comments in the above linked example projects for further
 reference and usage patterns! Thank you!
 

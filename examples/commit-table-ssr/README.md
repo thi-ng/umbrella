@@ -1,11 +1,11 @@
 # commit-table-ssr
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/commit-table-ssr.png)
 
 [Live version](http://demo.thi.ng/umbrella/commit-table-ssr/)
 
 This example demonstrates isomorphic,
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)-based
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)-based
 server-side rendering, static file generation and an extended
 interactive browser version of a git repo commit log. The server is a
 simple [express](https://expressjs.com/) app.
@@ -28,10 +28,10 @@ without change, though the browser version has additional functionality
 The server example builds a large table (~700KB worth of HTML) of this
 repo's 1460+ commits by shelling out to `git` to retrieve and transform
 the raw history / log using
-[transducer](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+[transducer](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 pipelines. Since this process doesn't need to be performed for each
 server request, the app uses
-[TLRUCaches](https://github.com/thi-ng/umbrella/tree/develop/packages/cache#tlru)
+[TLRUCaches](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache#tlru)
 to cache both the raw commits and the rendered HTML. Reloading the page
 will show the timing difference.
 
@@ -45,7 +45,7 @@ here](./src/common/config.ts#L24).
 See [/src/server/index.ts](./src/server/index.ts) for details...
 
 ```bash
-git clone https://github.com/thi-ng/umbrella.git
+git clone https://codeberg.org/thi.ng/umbrella.git
 cd umbrella/examples/commit-table-ssr
 yarn install
 yarn start
@@ -56,7 +56,7 @@ Then open http://localhost:8080/ssr in your browser.
 ### Browser version
 
 The browser version uses the same UI components, but realizes them via
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom).
 
 In addition to the SSR version above, this version displays additional
 repo stats and allows for interactive filtering of the commits. The
@@ -64,7 +64,7 @@ commits themselves are loaded as JSON which are provided by the server
 app above.
 
 Furthermore, this version utilizes
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 to build a simple dataflow graph and handle app state changes via
 various reactive stream constructs. Comments are included.
 

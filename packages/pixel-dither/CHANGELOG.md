@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.1.187](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dither@1.1.187) (2025-12-03)
+### [1.1.187](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dither@1.1.187) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [1.1.136](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dither@1.1.136) (2024-07-22)
-
-#### ♻️ Refactoring
-
-- update imports ([a748565](https://github.com/thi-ng/umbrella/commit/a748565))
-
-### [1.1.131](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dither@1.1.131) (2024-06-21)
+### [1.1.136](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dither@1.1.136) (2024-07-22)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- update imports ([a748565](https://codeberg.org/thi.ng/umbrella/commit/a748565))
 
-### [1.1.109](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dither@1.1.109) (2024-02-22)
-
-#### ♻️ Refactoring
-
-- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
-
-### [1.1.84](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dither@1.1.84) (2023-11-09)
+### [1.1.131](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dither@1.1.131) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
+
+### [1.1.109](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dither@1.1.109) (2024-02-22)
+
+#### ♻️ Refactoring
+
+- update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
+
+### [1.1.84](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-dither@1.1.84) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

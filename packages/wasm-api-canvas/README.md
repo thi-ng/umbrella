@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api-canvas](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api-canvas.svg?91454960)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/wasm-api-canvas](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-wasm-api-canvas.svg?91454960)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-canvas.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -28,7 +29,7 @@
 
 ## About
 
-HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api).
 
 This package already covers ~80-90% of the HTML Canvas2D features and provides
 some additional drawing utilities to minimize boilerplate & WASM/JS cross-calling.
@@ -37,7 +38,7 @@ some additional drawing utilities to minimize boilerplate & WASM/JS cross-callin
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-canvas%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bwasm-api-canvas%5D)
 
 ## Installation
 
@@ -63,19 +64,19 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.62 KB
 
 ## Dependencies
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
-- [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api)
+- [@thi.ng/wasm-api-dom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                          | Description                                   | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-cellular.jpg" width="240"/> | Zig-based 2D multi-behavior cellular automata | [Demo](https://demo.thi.ng/umbrella/zig-cellular/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-cellular) |
+| Screenshot                                                                                                                  | Description                                   | Live demo                                          | Source                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-cellular.jpg" width="240"/> | Zig-based 2D multi-behavior cellular automata | [Demo](https://demo.thi.ng/umbrella/zig-cellular/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-cellular) |
 
 ## API
 
@@ -83,12 +84,12 @@ directory is using this package:
 
 ### Zig bindings
 
-- [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-canvas/zig/api.zig)
-- [lib.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-canvas/zig/lib.zig)
+- [api.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas/zig/api.zig)
+- [lib.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas/zig/lib.zig)
 
 ### Minimal example
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/wasm-api-canvas/readme.png)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/wasm-api-canvas/readme.png)
 
 ```zig
 const canvas2d = @import("wasm-api-canvas");

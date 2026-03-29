@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-sdf](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-sdf.svg?6e818b90)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-sdf](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-sdf.svg?6e818b90)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-sdf.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [SDF creation](#sdf-creation)
@@ -30,7 +31,7 @@
 
 ## About
 
-2D Signed Distance Field creation from [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) shapes, conversions, sampling, combinators.
+2D Signed Distance Field creation from [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) shapes, conversions, sampling, combinators.
 
 Includes several distance functions and SDF operators ported from GLSL
 implementations by:
@@ -63,7 +64,7 @@ const f = asSDF(group({}, [circle([-50, 0], 100), circle([50, 0], 100)]));
 
 ### Supported thi.ng/geom shape types
 
-([shape type descriptions](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/README.md#shape-types))
+([shape type descriptions](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/README.md#shape-types))
 
 - circle
 - complexPoly (polygon w/ holes)
@@ -100,11 +101,11 @@ group({ __sdf: { combine: "diff", chamfer: 50 }}, [
 
 | Operator | Union                                                                                                    | Difference                                                                                              | Intersection                                                                                            |
 |----------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| default  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-union.png)    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-diff.png)    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-isec.png)    |
-| chamfer  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-union.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-diff.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-isec.png) |
-| round    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-union.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-diff.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-isec.png)   |
-| smooth   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-union.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-diff.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-isec.png)  |
-| steps    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-union.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-diff.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-isec.png)   |
+| default  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-none-union.png)    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-none-diff.png)    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-none-isec.png)    |
+| chamfer  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-chamfer-union.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-chamfer-diff.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-chamfer-isec.png) |
+| round    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-round-union.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-round-diff.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-round-isec.png)   |
+| smooth   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-smooth-union.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-smooth-diff.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-smooth-isec.png)  |
+| steps    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-steps-union.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-steps-diff.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-steps-isec.png)   |
 
 ### SDF discretization, sampling & domain modifiers
 
@@ -123,23 +124,23 @@ support custom modfifiers. The table below illustrates a few examples effects:
 
 | Modifier          |                                                                                                     |                                                                                                     |                                                                                                     |
 |-------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| `repeat2()`       | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-01.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-02.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-03.png) |
-| `repeatGrid2()`   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-01.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-02.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-03.png)   |
-| `repeatMirror2()` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-01.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-02.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-03.png) |
-| `repeatPolar2()`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-01.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-02.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-03.png)  |
+| `repeat2()`       | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-repeat-01.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-repeat-02.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-repeat-03.png) |
+| `repeatGrid2()`   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-grid-01.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-grid-02.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-grid-03.png)   |
+| `repeatMirror2()` | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-mirror-01.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-mirror-02.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-mirror-03.png) |
+| `repeatPolar2()`  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-polar-01.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-polar-02.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-polar-03.png)  |
 
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-sdf%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-sdf%5D)
 
 ## Related packages
 
-- [@thi.ng/distance-transform](https://github.com/thi-ng/umbrella/tree/develop/packages/distance-transform) - Binary image to Distance Field transformation
-- [@thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isoline) - Fast 2D contour line extraction / generation
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
-- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+- [@thi.ng/distance-transform](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/distance-transform) - Binary image to Distance Field transformation
+- [@thi.ng/geom-isoline](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-isoline) - Fast 2D contour line extraction / generation
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
+- [@thi.ng/shader-ast-stdlib](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
 
 ## Installation
 
@@ -171,30 +172,30 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.76 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
-- [@thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isoline)
-- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
-- [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-resample)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
+- [@thi.ng/geom-isoline](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-isoline)
+- [@thi.ng/geom-poly-utils](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-poly-utils)
+- [@thi.ng/geom-resample](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-resample)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                                                       | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/> | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-path.png" width="240"/> | SVG path to SDF, applying deformation and converting back to SVG  | [Demo](https://demo.thi.ng/umbrella/geom-sdf-path/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-path) |
+| Screenshot                                                                                                                   | Description                                                       | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-sdf-logo.jpg" width="240"/> | (Re)Constructing the thi.ng logo using a 2D signed-distance field | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-sdf-logo) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-sdf-path.png" width="240"/> | SVG path to SDF, applying deformation and converting back to SVG  | [Demo](https://demo.thi.ng/umbrella/geom-sdf-path/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-sdf-path) |
 
 ## API
 
@@ -263,9 +264,9 @@ Results:
 
 | `circle()`                                                                                                                   | `rect()`                                                                                                                          |
 |------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| ![metaballs based on circles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs.png)       | ![metaballs based on rectangles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect.png)    |
+| ![metaballs based on circles](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs.png)       | ![metaballs based on rectangles](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs-rect.png)    |
 | `circle()` (smooth)                                                                                                          | `rect()` (smooth)                                                                                                                 |
-| ![metaballs w/ smooth union](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-smooth.png) | ![metaballs w/ smooth union](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect-smooth.png) |
+| ![metaballs w/ smooth union](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs-smooth.png) | ![metaballs w/ smooth union](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs-rect-smooth.png) |
 
 ## Authors
 

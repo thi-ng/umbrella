@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/idgen](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-idgen.svg?f9691d54)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/idgen](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-idgen.svg?f9691d54)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/idgen.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -41,7 +42,7 @@ If versioning is used, the produced IDs are *composite* values, i.e. the
 lowest bits contain the actual ID (e.g for indexing purposes) and other
 bits contain the version information.
 
-![composite ID](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/idgen/composite-id.png)
+![composite ID](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/idgen/composite-id.png)
 
 Both parts can be extracted via the generator's `.id()` and `.version()`
 methods. Each time a valid versioned ID is being discarded via
@@ -54,12 +55,12 @@ be checked for validity via `.has(id)` (in constant time).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bidgen%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bidgen%5D)
 
 ## Related packages
 
-- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
-- [@thi.ng/ksuid](https://github.com/thi-ng/umbrella/tree/develop/packages/ksuid) - Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
+- [@thi.ng/ecs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
+- [@thi.ng/ksuid](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/ksuid) - Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
 
 ## Installation
 
@@ -91,20 +92,20 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics) |
+| Screenshot                                                                                                                  | Description                                 | Live demo                                          | Source                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fiber-basics.png" width="240"/> | Fiber-based cooperative multitasking basics | [Demo](https://demo.thi.ng/umbrella/fiber-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fiber-basics) |
 
 ## API
 

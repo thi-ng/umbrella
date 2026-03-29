@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rdom-forms](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rdom-forms.svg?772a2e23)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/rdom-forms](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-rdom-forms.svg?772a2e23)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rdom-forms.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Examples](#examples)
@@ -28,7 +29,7 @@
 
 ## About
 
-Data-driven declarative & extensible HTML form generation. This is a support package for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom).
+Data-driven declarative & extensible HTML form generation. This is a support package for [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom).
 
 This package uses vanilla JS objects to define component specs for various types
 of form elements (various factory functions are provided). These specs can then
@@ -36,9 +37,9 @@ be passed to the polymorphic & dynamically extensible
 [`compileForm()`](https://docs.thi.ng/umbrella/rdom/functions/compileForm.html)
 function to generate the actual form elements/components in hiccup format, which
 can then be used with
-[thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) or
+[thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) or
 for static (or SSR) HTML generation via
-[thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+[thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup).
 
 All generated form elements are unstyled by default, but can be fully customized
 (in various stages) via user-provided options.
@@ -46,7 +47,7 @@ All generated form elements are unstyled by default, but can be fully customized
 ## Examples
 
 Please see the [rdom-formgen example
-project](https://github.com/thi-ng/umbrella/blob/develop/examples/rdom-formgen),
+project](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen),
 which demonstrates **all** supported elements and various customization
 options...
 
@@ -106,11 +107,11 @@ Resulting output (reformatted):
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brdom-forms%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brdom-forms%5D)
 
 ## Related packages
 
-- [@thi.ng/rdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+- [@thi.ng/rdom-components](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
 
 ## Installation
 
@@ -136,32 +137,32 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.34 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html)
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/hiccup-html](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html)
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Nine projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                                 | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/big-font.png" width="240"/>          | Large ASCII font text generator using @thi.ng/rdom                          | [Demo](https://demo.thi.ng/umbrella/big-font/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/big-font)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>          | Interactive & reactive image blurhash generator                             | [Demo](https://demo.thi.ng/umbrella/blurhash/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>   | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/> | Matrix-based image color adjustments                                        | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>     | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>      | Basic usage of the declarative rdom-forms generator                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>    | rdom & hiccup-canvas interop test                                           | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>  | Interactive ridge-line plot                                                 | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples                  | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-scatter-plot)  |
+| Screenshot                                                                                                                       | Description                                                                 | Live demo                                               | Source                                                                                |
+|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/big-font.png" width="240"/>          | Large ASCII font text generator using @thi.ng/rdom                          | [Demo](https://demo.thi.ng/umbrella/big-font/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/big-font)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/blurhash.jpg" width="240"/>          | Interactive & reactive image blurhash generator                             | [Demo](https://demo.thi.ng/umbrella/blurhash/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/blurhash)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>   | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-colormatrix.jpg" width="240"/> | Matrix-based image color adjustments                                        | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-colormatrix) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/>     | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-formgen.jpg" width="240"/>      | Basic usage of the declarative rdom-forms generator                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-lissajous.png" width="240"/>    | rdom & hiccup-canvas interop test                                           | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-lissajous)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>  | Interactive ridge-line plot                                                 | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples                  | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-scatter-plot)  |
 
 ## API
 

@@ -91,7 +91,7 @@ z.decode(67807501328384n);
 
 ### Low level (2D / 3D only)
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/morton/src/mux.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/morton/src/mux.ts)
 
 ```ts
 import * as m from "@thi.ng/morton";

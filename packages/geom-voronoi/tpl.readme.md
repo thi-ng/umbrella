@@ -6,7 +6,7 @@
 
 Fast, incremental 2D Delaunay & Voronoi mesh implementation, based on
 the
-[@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/develop/packages/quad-edge)
+[@thi.ng/quad-edge](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/quad-edge)
 data structure after Guibas & Stolfi and partially ported from C++
 versions by Dani Lischinski, Paul Heckbert et al:
 
@@ -16,7 +16,7 @@ References:
 - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps
 
 Construction speed: 20k random points ([poisson disc samples, even
-distribution](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson))
+distribution](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/poisson))
 in ~850ms (Chrome 72, MBP 2016)
 
 {{meta.status}}
@@ -43,7 +43,7 @@ in ~850ms (Chrome 72, MBP 2016)
 
 {{pkg.docs}}
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
+![example screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-voronoi.jpg)
 
 ```ts
 import * as g from "@thi.ng/geom";

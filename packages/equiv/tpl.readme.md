@@ -15,7 +15,7 @@ Supports:
 - Date
 - RegExp
 - Types with
-  [IEquiv](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/equiv.ts)
+  [IEquiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/api/equiv.ts)
   implementation
 
 {{meta.status}}

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-convolve](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-convolve.svg?68dd5cd4)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-convolve](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-convolve.svg?68dd5cd4)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-convolve.svg)](https://www.npmjs.com/package/@thi.ng/pixel-convolve)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-convolve.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Strided convolution & pooling](#strided-convolution--pooling)
@@ -27,7 +28,7 @@
 
 ## About
 
-Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation. This is a support package for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 This package contains functionality which was previously part of and has been
 extracted from the [@thi.ng/pixel](https://thi.ng/pixel) package.
@@ -112,10 +113,10 @@ unsigned values when the image is converted into an integer format.
 
 | Step | Scale = 1                                                                                | Scale = 2                                                                                | Scale = 4                                                                                | Scale = 8                                                                                |
 |------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| 0    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-8.jpg) |
-| 1    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-8.jpg) |
-| 2    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-8.jpg) |
-| 3    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-8.jpg) |
+| 0    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-0-1.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-0-2.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-0-4.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-0-8.jpg) |
+| 1    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-1-1.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-1-2.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-1-4.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-1-8.jpg) |
+| 2    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-2-1.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-2-2.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-2-4.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-2-8.jpg) |
+| 3    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-3-1.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-3-2.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-3-4.jpg) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/nmap-3-8.jpg) |
 
 ```ts tangle:export/readme-normalmap.ts
 import { ARGB8888, FLOAT_GRAY, floatBufferFromImage, imageFromURL } from "@thi.ng/pixel";
@@ -140,7 +141,7 @@ const nmapARGB = nmap.as(ARGB8888);
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-convolve%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-convolve%5D)
 
 ## Installation
 
@@ -172,25 +173,25 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.29 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                     | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/> | Interactive image processing (adaptive threshold)               | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-terrain-viz.jpg" width="240"/>   | 2.5D hidden line visualization of digital elevation files (DEM) | [Demo](https://demo.thi.ng/umbrella/geom-terrain-viz/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-terrain-viz)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-normal-map.jpg" width="240"/>   | Normal map creation/conversion basics                           | [Demo](https://demo.thi.ng/umbrella/pixel-normal-map/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-normal-map)   |
+| Screenshot                                                                                                                        | Description                                                     | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/adaptive-threshold.png" width="240"/> | Interactive image processing (adaptive threshold)               | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/adaptive-threshold) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-terrain-viz.jpg" width="240"/>   | 2.5D hidden line visualization of digital elevation files (DEM) | [Demo](https://demo.thi.ng/umbrella/geom-terrain-viz/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-terrain-viz)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-normal-map.jpg" width="240"/>   | Normal map creation/conversion basics                           | [Demo](https://demo.thi.ng/umbrella/pixel-normal-map/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-normal-map)   |
 
 ## API
 

@@ -302,7 +302,7 @@ In addition to the CLI wrapper, the package provides the
 and
 [`tangleString()`](https://docs.thi.ng/umbrella/tangle/functions/tangleString.html)
 functions. See
-[/test/index.ts](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle/test/index.ts)
+[/test/index.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/tangle/test/index.ts)
 for usage examples.
 
 <!-- include ../../assets/tpl/footer.md -->

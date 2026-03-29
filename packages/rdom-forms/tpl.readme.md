@@ -12,9 +12,9 @@ be passed to the polymorphic & dynamically extensible
 [`compileForm()`](https://docs.thi.ng/umbrella/rdom/functions/compileForm.html)
 function to generate the actual form elements/components in hiccup format, which
 can then be used with
-[thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) or
+[thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) or
 for static (or SSR) HTML generation via
-[thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+[thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup).
 
 All generated form elements are unstyled by default, but can be fully customized
 (in various stages) via user-provided options.
@@ -22,7 +22,7 @@ All generated form elements are unstyled by default, but can be fully customized
 ## Examples
 
 Please see the [rdom-formgen example
-project](https://github.com/thi-ng/umbrella/blob/develop/examples/rdom-formgen),
+project](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen),
 which demonstrates **all** supported elements and various customization
 options...
 

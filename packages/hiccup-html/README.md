@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-html](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-html.svg?99483872)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup-html](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup-html.svg?99483872)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-html.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Supported elements](#supported-elements)
@@ -39,20 +40,20 @@
 
 ## About
 
-100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
+100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) related infrastructure.
 
 The following type-checked factory functions are provided **so far** and in most
 cases include specialized type definitions for element-specific attributes,
 incl. enumerated attrib values (where applicable/useful) and 420+ CSS property
 names (for use with the `style` attrib). See type definitions in
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts)
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/api.ts)
 and [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
 
 #### Block content
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/blocks.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/blocks.ts)
 
 - `blockquote`
 - `details`
@@ -70,7 +71,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Forms / inputs
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/forms.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/forms.ts)
 
 - `button`
 - `checkbox`
@@ -98,7 +99,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Head / metadata
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/head.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/head.ts)
 
 - `base`
 - `head`
@@ -117,7 +118,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Inline
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/inline.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/inline.ts)
 
 - `abbr`
 - `anchor`
@@ -145,7 +146,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Lists
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/lists.ts)
 
 - `datalist`
 - `dd`
@@ -158,7 +159,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Media
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/media.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/media.ts)
 
 - `audio`
 - `canvas`
@@ -171,7 +172,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Sections
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/sections.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/sections.ts)
 
 - `address`
 - `article`
@@ -196,7 +197,7 @@ and [`defElement()`](#defelement) below for more details.
 
 #### Tables
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/table.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/table.ts)
 
 - `caption`
 - `col`
@@ -223,9 +224,9 @@ most there're compatible alternative ways of expressing the same data.
 The table below provides an overview of the _current_ syntax feature
 support by the relevant packages consuming hiccup:
 
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+- [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
 
 | Feature                    | Example and HTML equivalent/result                   | hiccup | hdom | rdom |
 |----------------------------|------------------------------------------------------|--------|------|------|
@@ -251,17 +252,17 @@ packages.
 of course, but will NOT be evaluated to obtain final attrib value
 
 (2) The
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
+[`IDeref`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/deref.ts)
 interface is implemented by various data structures in the
 thi.ng/umbrella eco system (most relevant:
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)).
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream),
+[@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)).
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-html%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup-html%5D)
 
 The current aim is not necessarily to have wrappers for *each* possible
 HTML5 element, but certainly to support the most commonly used ones. PRs
@@ -269,13 +270,13 @@ welcome!
 
 ## Support packages
 
-- [@thi.ng/hiccup-html-parse](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html-parse) - Well-formed HTML parsing and customizable transformation to nested JS arrays in [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) format
+- [@thi.ng/hiccup-html-parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html-parse) - Well-formed HTML parsing and customizable transformation to nested JS arrays in [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) format
 
 ## Related packages
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) compatible
+- [@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) & related tooling
 
 ## Installation
 
@@ -301,51 +302,51 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.63 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 33 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                  | Description                                                                                             | Live demo                                                 | Source                                                                                 |
-|:----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/big-font.png" width="240"/>             | Large ASCII font text generator using @thi.ng/rdom                                                      | [Demo](https://demo.thi.ng/umbrella/big-font/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/big-font)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>          | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>             | Interactive & reactive image blurhash generator                                                         | [Demo](https://demo.thi.ng/umbrella/blurhash/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-recorder.png" width="240"/>      | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-recorder)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>      | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>         | Probabilistic color theme generator                                                                     | [Demo](https://demo.thi.ng/umbrella/color-themes/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/>              | CSP channel-based event handling, async transducers & reactive UI components                            | [Demo](https://demo.thi.ng/umbrella/csp-bus/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>      | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/layout-gridgen.png" width="240"/>       | Randomized space-filling, nested grid layout generator                                                  | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/layout-gridgen)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/lispy-repl.png" width="240"/>           | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>        | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/meta-css-basics.png" width="240"/>      | Basic thi.ng/meta-css usage & testbed                                                                   | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/meta-css-basics)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>     | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>      | Randomized 4-point 2D color gradient image generator                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>        | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                                        | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-waveform.jpg" width="240"/>       | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-waveform)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>      | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-dnd.png" width="240"/>             | rdom drag & drop example                                                                                | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>         | Basic usage of the declarative rdom-forms generator                                                     | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>   | rstream & transducer-based FSM for converting key event sequences into high-level commands              | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>       | rdom & hiccup-canvas interop test                                                                       | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-router.jpg" width="240"/>          | Basic thi.ng/router usage with thi.ng/rdom components                                                   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-router)         |
-|                                                                                                                             | Full umbrella repo doc string search w/ paginated results                                               | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-web-components.png" width="240"/>  | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css             | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-web-components) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>       | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>         | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/>   | Declarative component-based system with central rstream-based pubsub event bus                          | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>       | Responsive & reactively computed stacked column layout                                                  | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>         | SVG path parsing & dynamic resampling                                                                   | [Demo](https://demo.thi.ng/umbrella/svg-resample/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-browser.avif" width="240"/>       | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-browser)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/thing-packages-quiz.avif" width="240"/> | thi.ng/rdom & thi.ng/rstream based quiz to guess thi.ng package names                                   | [Demo](https://demo.thi.ng/umbrella/thing-packages-quiz/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/thing-packages-quiz) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>         | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>  | rdom & WebGL-based image channel editor                                                                 | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-channel-mixer) |
+| Screenshot                                                                                                                          | Description                                                                                             | Live demo                                                 | Source                                                                                  |
+|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/big-font.png" width="240"/>             | Large ASCII font text generator using @thi.ng/rdom                                                      | [Demo](https://demo.thi.ng/umbrella/big-font/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/big-font)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/bitmap-font.gif" width="240"/>          | Figlet-style bitmap font creation with transducers                                                      | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/bitmap-font)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/blurhash.jpg" width="240"/>             | Interactive & reactive image blurhash generator                                                         | [Demo](https://demo.thi.ng/umbrella/blurhash/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/blurhash)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/canvas-recorder.png" width="240"/>      | Self-modifying, animated typographic grid with emergent complex patterns                                | [Demo](https://demo.thi.ng/umbrella/canvas-recorder/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/canvas-recorder)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-contrast.avif" width="240"/>      | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-contrast)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-themes.png" width="240"/>         | Probabilistic color theme generator                                                                     | [Demo](https://demo.thi.ng/umbrella/color-themes/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-themes)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/csp-bus.png" width="240"/>              | CSP channel-based event handling, async transducers & reactive UI components                            | [Demo](https://demo.thi.ng/umbrella/csp-bus/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/csp-bus)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>      | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/layout-gridgen.png" width="240"/>       | Randomized space-filling, nested grid layout generator                                                  | [Demo](https://demo.thi.ng/umbrella/layout-gridgen/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/layout-gridgen)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/lispy-repl.png" width="240"/>           | Browser REPL for a Lispy S-expression based mini language                                               | [Demo](https://demo.thi.ng/umbrella/lispy-repl/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/>        | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/meta-css-basics.png" width="240"/>      | Basic thi.ng/meta-css usage & testbed                                                                   | [Demo](https://demo.thi.ng/umbrella/meta-css-basics/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/meta-css-basics)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/parse-playground.png" width="240"/>     | Parser grammar livecoding editor/playground & codegen                                                   | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/parse-playground)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-gradients.jpg" width="240"/>      | Randomized 4-point 2D color gradient image generator                                                    | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-gradients)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/>        | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                                        | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-waveform.jpg" width="240"/>       | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-waveform)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/procedural-text.jpg" width="240"/>      | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-dnd.png" width="240"/>             | rdom drag & drop example                                                                                | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-dnd)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-formgen.jpg" width="240"/>         | Basic usage of the declarative rdom-forms generator                                                     | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>   | rstream & transducer-based FSM for converting key event sequences into high-level commands              | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-lissajous.png" width="240"/>       | rdom & hiccup-canvas interop test                                                                       | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-lissajous)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-router.jpg" width="240"/>          | Basic thi.ng/router usage with thi.ng/rdom components                                                   | [Demo](https://demo.thi.ng/umbrella/rdom-router/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-router)         |
+|                                                                                                                                     | Full umbrella repo doc string search w/ paginated results                                               | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-search-docs)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-web-components.png" width="240"/>  | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css             | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-web-components) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/>       | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/render-audio.png" width="240"/>         | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/render-audio)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/>   | Declarative component-based system with central rstream-based pubsub event bus                          | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/stacked-layout.png" width="240"/>       | Responsive & reactively computed stacked column layout                                                  | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/stacked-layout)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-resample.png" width="240"/>         | SVG path parsing & dynamic resampling                                                                   | [Demo](https://demo.thi.ng/umbrella/svg-resample/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/thing-browser.avif" width="240"/>       | Tree-based UI to find & explore thi.ng projects via their associated keywords                           | [Demo](https://demo.thi.ng/umbrella/thing-browser/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/thing-browser)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/thing-packages-quiz.avif" width="240"/> | thi.ng/rdom & thi.ng/rstream based quiz to guess thi.ng package names                                   | [Demo](https://demo.thi.ng/umbrella/thing-packages-quiz/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/thing-packages-quiz) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>         | Multi-layer vectorization & dithering of bitmap images                                                  | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>  | rdom & WebGL-based image channel editor                                                                 | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-channel-mixer) |
 
 ## API
 
@@ -423,13 +424,13 @@ const div = defElement<Partial<Pick<Attribs, "class" | "style">>>("div");
 The `Attribs` interface provides a common, fully typed base definition
 of HTML attributes (incl. event listeners and enumerated attrib options)
 and can be found in
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts#L126).
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-html/src/api.ts#L126).
 
 The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
-[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom))
+[@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom))
 and [`IDeref`
-instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
+instances](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/deref.ts)
 when later providing attribute values to an element.
 
 #### Element creation
@@ -444,7 +445,7 @@ signatures](https://docs.thi.ng/umbrella/hiccup-html/functions/defElement.html):
 ```
 
 The result of either form is a simple tuple, defining an HTML element in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 syntax.
 
 If the second call signature is used, the initial `emmet`-style string

@@ -15,11 +15,11 @@ Current key features for the Zig (WASM) side:
 - Fully declarative or imperative DOM tree creation & manipulation
 - ID handle management for WASM created DOM elements & listeners
 - Canvas element creation (with HDPI support, see
-  [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/blob/develop/packages/adapt-dpi))
+  [@thi.ng/adapt-dpi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/adapt-dpi))
 - Attribute setters/getters (string, numeric, boolean)
 - `.innerHTML` & `.innerText` setters
 - Event handlers, event types (see generated types in
-  [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig)
+  [api.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/api.zig)
   for details):
     - drag 'n drop (WIP)
     - focus
@@ -46,8 +46,8 @@ const dom = @import("wasm-api-dom");
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig/lib.zig
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/events.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
 
@@ -73,7 +73,7 @@ export fn start() void {
 Since DOM related resources created on the JS side cannot be returned to the
 WASM module directly, the bridge API caches those on the host side and [uses
 managed ID (integer)
-handles](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#object-indices--handles)
+handles](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/README.md#object-indices--handles)
 to exchange them. These IDs can then be used in subsequent API calls to refer to
 certain DOM elements, listeners etc.
 
@@ -149,7 +149,7 @@ options](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateCanvasOpts.h
 exist for `<canvas>` elements.
 
 Also see the
-[thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas)
+[thi.ng/wasm-api-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas)
 sibling package for working with canvases...
 
 ### Attribute creation & accessors
@@ -180,7 +180,7 @@ _ = dom.createElement(&.{
 ```
 
 The following accessors are provided (see
-[/zig/lib.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig)
+[/zig/lib.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/lib.zig)
 for documentation):
 
 - `getStringAttrib()` / `setStringAttrib()`
@@ -195,7 +195,7 @@ for passing arbitrary user context.
 
 A more advanced version of the following click counter button component can be
 seen in action in the
-[zig-counter](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)
+[zig-counter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-counter)
 example project. Also check other supplied Zig examples for more realworld
 [usage examples](#usage-examples).
 
@@ -278,9 +278,9 @@ const Counter = struct {
 
 For now, please see the [package
 docs](https://docs.thi.ng/umbrella/wasm-api-dom/), source code comments
-([TS](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/src/)
+([TS](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/src/)
 &
-[Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/zig/))
+[Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/zig/))
 and the various comments in the above linked example projects for further
 reference and usage patterns! Thank you!
 

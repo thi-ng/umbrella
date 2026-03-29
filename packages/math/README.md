@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/math](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-math.svg?3abd517f)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/math](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-math.svg?3abd517f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/math.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj)
 
@@ -39,7 +40,7 @@ Partially ported from Clojure version
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmath%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bmath%5D)
 
 ### Breaking changes in v4.0.0
 
@@ -81,31 +82,31 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.48 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 13 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                   | Description                                                            | Live demo                                                   | Source                                                                                   |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:------------------------------------------------------------|:-----------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/boid-basics.png" width="240"/>           | Basic 2D boid simulation and spatial indexing neighbor lookups         | [Demo](https://demo.thi.ng/umbrella/boid-basics/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/boid-basics)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>          | Basic crypto-currency candle chart with multiple moving averages plots | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fisheye-menu.avif" width="240"/>         | Fisheye menu list component for thi.ng/rdom                            | [Demo](https://demo.thi.ng/umbrella/fisheye-menu/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fisheye-menu)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg" width="240"/> | 2D Bezier curve-guided particle system                                 | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/>              | Animated sine plasma effect visualized using contour lines             | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>            | Worker based, interactive Mandelbrot visualization                     | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>           | Animated, iterative polygon subdivisions & visualization               | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>            | Unison wavetable synth with waveform editor                            | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>            | 2D scenegraph & shape picking                                          | [Demo](https://demo.thi.ng/umbrella/scenegraph/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>      | 2D scenegraph & image map based geometry manipulation                  | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png" width="240"/>          | Simplistic SVG bar chart component                                     | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>          | SVG path parsing & dynamic resampling                                  | [Demo](https://demo.thi.ng/umbrella/svg-resample/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>      | Interactive ridge-line plot                                            | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)       |
+| Screenshot                                                                                                                           | Description                                                            | Live demo                                                   | Source                                                                                    |
+|:-------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:------------------------------------------------------------|:------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/boid-basics.png" width="240"/>           | Basic 2D boid simulation and spatial indexing neighbor lookups         | [Demo](https://demo.thi.ng/umbrella/boid-basics/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/boid-basics)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/crypto-chart.png" width="240"/>          | Basic crypto-currency candle chart with multiple moving averages plots | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fisheye-menu.avif" width="240"/>         | Fisheye menu list component for thi.ng/rdom                            | [Demo](https://demo.thi.ng/umbrella/fisheye-menu/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fisheye-menu)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-particles.jpg" width="240"/> | 2D Bezier curve-guided particle system                                 | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-particles) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/geom/geom-isoline.png" width="240"/>              | Animated sine plasma effect visualized using contour lines             | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/iso-plasma)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mandelbrot.jpg" width="240"/>            | Worker based, interactive Mandelbrot visualization                     | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mandelbrot)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-subdiv.jpg" width="240"/>           | Animated, iterative polygon subdivisions & visualization               | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ramp-synth.png" width="240"/>            | Unison wavetable synth with waveform editor                            | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-synth)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph.png" width="240"/>            | 2D scenegraph & shape picking                                          | [Demo](https://demo.thi.ng/umbrella/scenegraph/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph-image.png" width="240"/>      | 2D scenegraph & image map based geometry manipulation                  | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph-image)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-barchart.png" width="240"/>          | Simplistic SVG bar chart component                                     | [Demo](https://demo.thi.ng/umbrella/svg-barchart/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-barchart)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-resample.png" width="240"/>          | SVG path parsing & dynamic resampling                                  | [Demo](https://demo.thi.ng/umbrella/svg-resample/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>      | Interactive ridge-line plot                                            | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)       |
 
 ## API
 

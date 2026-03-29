@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/associative](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-associative.svg?8301e9d6)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-associative.svg?8301e9d6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/associative.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Why?](#why)
@@ -60,10 +61,10 @@ ES Map/Set-compatible implementations with customizable equality semantics & sup
 
 Please see these packages for some example use cases:
 
-- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
-- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
-- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query)
+- [@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)
+- [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
+- [@thi.ng/ecs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/ecs)
+- [@thi.ng/rstream-query](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-query)
 
 ### Why?
 
@@ -159,7 +160,7 @@ map.set([1, 2], "c");
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bassociative%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bassociative%5D)
 
 ## Installation
 
@@ -191,29 +192,29 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.13 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
+- [@thi.ng/object-utils](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/object-utils)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Four projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                    | Description                                                                                | Live demo                                                    | Source                                                                                    |
-|:------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>         | Heatmap visualization of this mono-repo's commits                                          |                                                              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-attrib-pool.jpg" width="240"/> | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers              | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-attrib-pool) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>     | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>         | Responsive image gallery with tag-based Jaccard similarity ranking                         | [Demo](https://demo.thi.ng/umbrella/related-images/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)         |
+| Screenshot                                                                                                                            | Description                                                                                | Live demo                                                    | Source                                                                                     |
+|:--------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-heatmap.png" width="240"/>         | Heatmap visualization of this mono-repo's commits                                          |                                                              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-heatmap)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-webgl-attrib-pool.jpg" width="240"/> | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers              | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-webgl-attrib-pool) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>     | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/>         | Responsive image gallery with tag-based Jaccard similarity ranking                         | [Demo](https://demo.thi.ng/umbrella/related-images/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images)         |
 
 ## API
 
@@ -228,13 +229,13 @@ interface, an extension of the native ES6 Set API.
 ### ArraySet
 
 Simple array based `Set` implementation which by default uses
-[`@thi.ng/equiv`](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+[`@thi.ng/equiv`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
 for value equivalence checking.
 
 ### LLSet
 
 Similar to `ArraySet`, but uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons) linked list
+[@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons) linked list
 as backing storage for values.
 
 ### EquivMap

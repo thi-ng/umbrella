@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-![Pseudo-3D DEM visualization using hidden lines plot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
+![Pseudo-3D DEM visualization using hidden lines plot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
 
 This package is only intended to simplify obtaining DEM (elevation) data and not
 aimed at general

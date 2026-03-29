@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/interceptors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-interceptors.svg?d0aebc5c)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/interceptors](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-interceptors.svg?d0aebc5c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)
@@ -8,15 +8,16 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 **Update 12/2022: This package is considered completed and no longer being
 updated with new features. Please consider using
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 instead...**
 
 - [About](#about)
@@ -42,7 +43,7 @@ Interceptor based event bus, side effect & immutable state handling.
 
 ### Interceptors: Event and Effect primitives
 
-[Reference](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/interceptors.ts)
+[Reference](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors/src/interceptors.ts)
 
 The idea of interceptors is quite similar to functional composition and
 AOP ([aspect oriented
@@ -52,7 +53,7 @@ For example, if you have multiple actions which should be undoable, you
 can compose your main event handlers with the
 [`snapShot()`](https://docs.thi.ng/umbrella/interceptors/functions/snapshot.html)
 interceptor, which requires a
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)/History-like
+[@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)/History-like
 instance and records a snapshot of the current app state, but else is
 completely invisible.
 
@@ -69,7 +70,7 @@ performance. Most composed event handler chains are setup so that your
 "actual" main handler is last in line in the pre processing phase. If
 e.g. your event handlers would directly update the state atom, then any
 attached watches [(derived views, cursors, other
-subscriptions)](https://github.com/thi-ng/umbrella/tree/develop/packages/atom#about)
+subscriptions)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom#about)
 would be re-run each time. By assigning the updated state to, e.g., an
 `FX_STATE` event, we can avoid these interim updates and only apply the
 new state once all events in the current frame have been processed.
@@ -112,7 +113,7 @@ In most apps there're far more event types/handlers than possible
 actions any component can take. So assigning them to registered side
 effects enables better code reuse. Another use-case is debugging. With a
 break point set at the beginning of `processEffects()` (in
-[`event-bus.ts`](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L487))
+[`event-bus.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors/src/event-bus.ts#L487))
 you can see exactly which side effects have occurred at each frame. This
 can be very helpful for debugging and avoid having to "keep everything
 in your head" or - as Rich Hickey would say - make your app "Easier to
@@ -121,19 +122,19 @@ reason about".
 More comprehensive description forthcoming. Please check the detailed
 commented source code and examples for now:
 
-- [/src/event-bus.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors/src/event-bus.ts)
+- [/src/event-bus.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors/src/event-bus.ts)
 
 ## Status
 
 **COMPLETED** - no further development planned
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Binterceptors%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Binterceptors%5D)
 
 ## Related packages
 
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
+- [@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) compatible
 
 ## Installation
 
@@ -159,31 +160,31 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.13 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Eight projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                                                            | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-|                                                                                                                      | Minimal demo using interceptors with an async side effect              | [Demo](https://demo.thi.ng/umbrella/async-effect/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/async-effect)        |
-|                                                                                                                      | Custom dropdown UI component for hdom                                  | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown)       |
-|                                                                                                                      | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy) |
-|                                                                                                                      | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)  |
-|                                                                                                                      | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading                | [Demo](https://demo.thi.ng/umbrella/router-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>  | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>  | Additive waveform synthesis & SVG visualization with undo/redo         | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)        |
+| Screenshot                                                                                                                   | Description                                                            | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+|                                                                                                                              | Minimal demo using interceptors with an async side effect              | [Demo](https://demo.thi.ng/umbrella/async-effect/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/async-effect)        |
+|                                                                                                                              | Custom dropdown UI component for hdom                                  | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown)       |
+|                                                                                                                              | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown-fuzzy) |
+|                                                                                                                              | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/interceptor-basics)  |
+|                                                                                                                              | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/interceptor-basics2) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading                | [Demo](https://demo.thi.ng/umbrella/router-basics/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/router-basics)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-grid.jpg" width="240"/>  | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-waveform.jpg" width="240"/>  | Additive waveform synthesis & SVG visualization with undo/redo         | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-waveform)        |
 
 ## API
 

@@ -5,7 +5,7 @@ stats in this mono-repo. The charts will be saved in this example's
 directory.
 
 ```bash
-git clone https://github.com/thi-ng/umbrella.git
+git clone https://codeberg.org/thi.ng/umbrella.git
 
 # first need to build the entire mono-repo
 # to produce necessary meta data

@@ -257,6 +257,6 @@ console.log(
 // }
 ```
 
-More query examples in [tests](https://github.com/thi-ng/umbrella/blob/develop/packages/oquery/test/index.ts)...
+More query examples in [tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/oquery/test/index.ts)...
 
 <!-- include ../../assets/tpl/footer.md -->

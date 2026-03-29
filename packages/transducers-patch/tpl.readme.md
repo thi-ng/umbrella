@@ -106,7 +106,7 @@ reduce(
 ### Stream-based processing
 
 .This example uses constructs from the
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 package.
 
 ```ts

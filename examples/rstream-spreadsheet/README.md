@@ -1,16 +1,16 @@
 # rstream-spreadsheet
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rstream-spreadsheet.png)
 
 [Live demo](http://demo.thi.ng/umbrella/rstream-spreadsheet/)
 
 Spreadsheet demo built w/
-[@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-graph)
+[@thi.ng/rstream-graph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-graph)
 primitives and [S-expression based formula
-DSL](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr) to
+DSL](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sexpr) to
 dynamically define & edit the dataflow graph.
 
-Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
+Please refer to the [example build instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
 ## Authors
 

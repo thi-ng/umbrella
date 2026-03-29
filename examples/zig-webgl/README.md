@@ -1,6 +1,6 @@
 # zig-webgl
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.avif)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/zig-webgl.avif)
 
 [Live demo](http://demo.thi.ng/umbrella/zig-webgl/)
 
@@ -8,8 +8,8 @@
 
 Please refer to the instructions on the wiki:
 
-- [Development](https://github.com/thi-ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
-- [Production build](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+- [Development](https://codeberg.org/thi.ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
+- [Production build](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 
 Additionally, this example requires Zig & Binaryen installed (and on the
 `$PATH`) for building the WebAssembly binary.
@@ -33,7 +33,7 @@ asdf local zig 0.15.1
 ```
 
 -   [Zig](https://ziglang.org) v0.15.1 or newer versions (see
-    [comments](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system))
+    [comments](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/README.md#using-the-zig-build-system))
 -   [Binaryen](https://github.com/WebAssembly/binaryen)
 
 Please see the comments in

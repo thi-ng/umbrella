@@ -160,14 +160,14 @@ await FOO.reset();
 
 For a `System` to initialize its components in the correct order, an internal
 [dependency
-graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) is
+graph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph) is
 constructed. This graph is not required any further after system initialization
 (see
 [System.init()](https://docs.thi.ng/umbrella/system/classes/System.html#init)),
 though can be useful for debugging and documentation purposes.
 
 For example, we can utilize the
-[@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot)
+[@thi.ng/dgraph-dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph-dot)
 package to generate a [Graphviz](https://graphviz.org) source file to visualize
 the dependencies between the system's components.
 
@@ -189,6 +189,6 @@ console.log(toDot(FOO.graph, { id: (node) => node }));
 
 Resulting visualization:
 
-![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/system/basic.png)
+![graphviz output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/system/basic.png)
 
 <!-- include ../../assets/tpl/footer.md -->

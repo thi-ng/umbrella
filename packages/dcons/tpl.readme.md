@@ -41,7 +41,7 @@ Only the following operations will trigger the self-organizing behavior:
 - `findWith()`
 
 Btw. Also see
-[@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
+[@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)
 for more LRU, MRU implementations based on managed `DCons` impls...
 
 {{meta.status}}

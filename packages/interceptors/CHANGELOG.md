@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.2.112](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.112) (2025-12-03)
+### [3.2.112](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.112) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [3.2.59](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.59) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [3.2.56](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.56) (2024-04-20)
+### [3.2.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.59) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update type usage ([d051405](https://github.com/thi-ng/umbrella/commit/d051405))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [3.2.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.42) (2024-02-16)
-
-#### ♻️ Refactoring
-
-- update LOGGER handling ([df5c874](https://github.com/thi-ng/umbrella/commit/df5c874))
-
-### [3.2.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.2.24) (2023-11-09)
+### [3.2.56](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.56) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update type usage ([d051405](https://codeberg.org/thi.ng/umbrella/commit/d051405))
+
+### [3.2.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.42) (2024-02-16)
+
+#### ♻️ Refactoring
+
+- update LOGGER handling ([df5c874](https://codeberg.org/thi.ng/umbrella/commit/df5c874))
+
+### [3.2.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.24) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

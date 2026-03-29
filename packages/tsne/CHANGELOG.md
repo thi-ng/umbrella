@@ -11,29 +11,29 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.15) (2025-06-03)
+### [0.1.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.15) (2025-06-03)
 
 #### ⏱ Performance improvements
 
-- avoid allocations, optimize computeGradient() ([8888892](https://github.com/thi-ng/umbrella/commit/8888892))
+- avoid allocations, optimize computeGradient() ([8888892](https://codeberg.org/thi.ng/umbrella/commit/8888892))
   - pre-allocate arrays for gradient & yMean
   - skip gradient update if same rows
   - use destructured Math fns
 
-### [0.1.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.9) (2025-04-16)
+### [0.1.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.9) (2025-04-16)
 
 #### ♻️ Refactoring
 
-- minor internal updates ([52958dd](https://github.com/thi-ng/umbrella/commit/52958dd))
+- minor internal updates ([52958dd](https://codeberg.org/thi.ng/umbrella/commit/52958dd))
 
-### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.1) (2025-02-20)
+### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.1) (2025-02-20)
 
 #### ⏱ Performance improvements
 
-- more efficient use of vector ops ([af07e27](https://github.com/thi-ng/umbrella/commit/af07e27))
+- more efficient use of vector ops ([af07e27](https://codeberg.org/thi.ng/umbrella/commit/af07e27))
 
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/tsne@0.1.0) (2025-02-19)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.0) (2025-02-19)
 
 #### 🚀 Features
 
-- import as new pkg ([6761949](https://github.com/thi-ng/umbrella/commit/6761949))
+- import as new pkg ([6761949](https://codeberg.org/thi.ng/umbrella/commit/6761949))

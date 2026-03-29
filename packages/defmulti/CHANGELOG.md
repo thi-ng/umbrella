@@ -11,47 +11,47 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.0.90](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@3.0.90) (2026-02-07)
+### [3.0.90](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@3.0.90) (2026-02-07)
 
 #### ♻️ Refactoring
 
-- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://github.com/thi-ng/umbrella/commit/3abbddf))
+- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [3.0.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@3.0.86) (2025-12-03)
-
-#### ♻️ Refactoring
-
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
-
-### [3.0.40](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@3.0.40) (2024-06-21)
+### [3.0.86](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@3.0.86) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [3.0.37](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@3.0.37) (2024-04-20)
-
-#### ♻️ Refactoring
-
-- update type usage ([595da92](https://github.com/thi-ng/umbrella/commit/595da92))
-
-### [3.0.23](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@3.0.23) (2024-02-16)
+### [3.0.40](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@3.0.40) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update LOGGER handling ([46bc987](https://github.com/thi-ng/umbrella/commit/46bc987))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@3.0.0) (2023-09-15)
+### [3.0.37](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@3.0.37) (2024-04-20)
+
+#### ♻️ Refactoring
+
+- update type usage ([595da92](https://codeberg.org/thi.ng/umbrella/commit/595da92))
+
+### [3.0.23](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@3.0.23) (2024-02-16)
+
+#### ♻️ Refactoring
+
+- update LOGGER handling ([46bc987](https://codeberg.org/thi.ng/umbrella/commit/46bc987))
+
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@3.0.0) (2023-09-15)
 
 #### 🛑 Breaking changes
 
-- update .impls() ([db48f57](https://github.com/thi-ng/umbrella/commit/db48f57))
+- update .impls() ([db48f57](https://codeberg.org/thi.ng/umbrella/commit/db48f57))
 - BREAKING CHANGE: update .impls() to return a Map of dispatch values and
   their implementations
   - update tests
 
-### [2.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@2.1.39) (2023-08-04)
+### [2.1.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/defmulti@2.1.39) (2023-08-04)
 
 #### ♻️ Refactoring
 
-- update `identity` usage in various pkgs ([b6db053](https://github.com/thi-ng/umbrella/commit/b6db053))
+- update `identity` usage in various pkgs ([b6db053](https://codeberg.org/thi.ng/umbrella/commit/b6db053))

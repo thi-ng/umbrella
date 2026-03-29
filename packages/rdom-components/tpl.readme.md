@@ -8,11 +8,11 @@
 
 Currently, this package provides:
 
-- [Accordion](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components/src/accordion.ts)
-- [Dropdown](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components/src/dropdown.ts)
-- [Editor](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components/src/editor.ts)
-- [Icon button](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components/src/icon-button.rs)
-- [Tabs](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components/src/tabs.ts)
+- [Accordion](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components/src/accordion.ts)
+- [Dropdown](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components/src/dropdown.ts)
+- [Editor](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components/src/editor.ts)
+- [Icon button](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components/src/icon-button.rs)
+- [Tabs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-components/src/tabs.ts)
 
 {{meta.status}}
 

@@ -4,7 +4,7 @@
 
 ## About
 
-![Custom cellular automata w/ 7-neighborhood & 128 states](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png)
+![Custom cellular automata w/ 7-neighborhood & 128 states](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hero.png)
 
 {{pkg.description}}
 
@@ -170,7 +170,7 @@ writeFileSync("export/out.ppm", asPPM(img));
 
 Result:
 
-![1D Wolfram CA, rule 73](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/wolfram-73.png)
+![1D Wolfram CA, rule 73](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/wolfram-73.png)
 
 ### Custom kernels & multiple rules
 
@@ -237,8 +237,8 @@ writeFileSync("export/out.ppm", asPPM(img));
 
 | 1st CA only                                                                                       | 2nd CA only                                                                                     |
 |---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-a.png)       | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-b.png)     |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-a.png)       | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-b.png)     |
 | Hybrid (stripe pattern)                                                                           | Hybrid (noise)                                                                                  |
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-pattern.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-noise.png) |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-pattern.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-noise.png) |
 
 <!-- include ../../assets/tpl/footer.md -->

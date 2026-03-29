@@ -177,7 +177,7 @@ In this example, we use [Tachyons](https://tachyons.io) CSS classes to
 provide themed versions of the above raw button component. However, a
 more "traditional" approach could inject CSS rules via the `style`
 attribute. Also see
-[@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)
+[@thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css)
 for this purpose.
 
 ```ts
@@ -247,5 +247,5 @@ and the look and feel of the provided raw components.
 
 ## Discussion
 
-Please use [#18](https://github.com/thi-ng/umbrella/issues/18) to
+Please use [#18](https://codeberg.org/thi.ng/umbrella/issues/18) to
 discuss any aspect of this ADR.

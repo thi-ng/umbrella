@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-svg](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-svg.svg?b89d2384)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup-svg.svg?b89d2384)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-svg.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Important](#important)
@@ -30,7 +31,7 @@
 
 ## About
 
-SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling.
+SVG element functions for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) & related tooling.
 
 ### Important
 
@@ -53,9 +54,9 @@ svg({}, circle([0, 0], 100, { fill: "red" }));
 
 Since v2.0.0 this package provides a conversion utility to translate the more
 compact syntax used by
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 and
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 shape trees (designed for more performant realtime / canvas drawing) into a SVG
 serializable hiccup format.
 
@@ -124,7 +125,7 @@ Interpreted as float RGB(A):
 
 `{ fill: [1, 0.8, 0.6, 0.4] }` => `{ fill: "rgba(255,204,153,0.40)" }`
 
-##### [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) values
+##### [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color) values
 
 Converted to CSS color strings:
 
@@ -152,7 +153,7 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-svg%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup-svg%5D)
 
 ## Installation
 
@@ -184,38 +185,38 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.53 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
-- [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color)
+- [@thi.ng/prefixes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/prefixes)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 17 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                                      | Live demo                                                | Source                                                                                |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold | [Demo](https://demo.thi.ng/umbrella/color-contrast/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                              | [Demo](https://demo.thi.ng/umbrella/color-themes/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots           | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images      | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png" width="240"/>              | Mouse gesture / stroke analysis, simplification, corner detection                | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gesture-analysis)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export             | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                         |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/>                 | Generate SVG using pointfree DSL                                                 |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>                   | Polygon to cubic curve conversion & visualization                                | [Demo](https://demo.thi.ng/umbrella/poly-spline/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-reactive-svg.jpg" width="240"/>             | Animated SVG elements with reactive attributes                                   | [Demo](https://demo.thi.ng/umbrella/rdom-reactive-svg/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-reactive-svg)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                      | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-svg-nodes)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support           | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                            | [Demo](https://demo.thi.ng/umbrella/svg-resample/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                   | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                      | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif" width="240"/>             | Interactive scatter & line plot of low-discrepancy samples                       | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-scatter-plot)   |
+| Screenshot                                                                                                                                   | Description                                                                      | Live demo                                                | Source                                                                                 |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold | [Demo](https://demo.thi.ng/umbrella/color-contrast/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-contrast)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                              | [Demo](https://demo.thi.ng/umbrella/color-themes/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-themes)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                |                                                          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-heatmap)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots           | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images      | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/gesture-analysis.png" width="240"/>              | Mouse gesture / stroke analysis, simplification, corner detection                | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gesture-analysis)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export             | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                         |                                                          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/package-stats)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-svg.png" width="240"/>                 | Generate SVG using pointfree DSL                                                 |                                                          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-svg)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-spline.png" width="240"/>                   | Polygon to cubic curve conversion & visualization                                | [Demo](https://demo.thi.ng/umbrella/poly-spline/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-spline)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-reactive-svg.jpg" width="240"/>             | Animated SVG elements with reactive attributes                                   | [Demo](https://demo.thi.ng/umbrella/rdom-reactive-svg/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-reactive-svg)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                      | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-svg-nodes)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support           | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                            | [Demo](https://demo.thi.ng/umbrella/svg-resample/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-resample)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo                   | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-waveform)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                      | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-scatter-plot.avif" width="240"/>             | Interactive scatter & line plot of low-discrepancy samples                       | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-scatter-plot)   |
 
 ## API
 
@@ -239,7 +240,7 @@ fs.writeFileSync(
 ```
 
 Minimal example showing SVG conversion of a hiccup-canvas scene (also see
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 for another compatible approach):
 
 ```ts

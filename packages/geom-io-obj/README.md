@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-io-obj](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-io-obj.svg?bfe84d70)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-io-obj](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-io-obj.svg?bfe84d70)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-io-obj.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Features](#features)
@@ -27,7 +28,7 @@
 
 ## About
 
-Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 ### Features
 
@@ -51,7 +52,7 @@ Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/g
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-io-obj%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-io-obj%5D)
 
 ## Installation
 
@@ -83,9 +84,9 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1004 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -96,7 +97,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 TODO
 
 See
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-io-obj/src/api.ts)
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-io-obj/src/api.ts)
 for details about resulting data structure. Also see tests for more.
 
 ```ts

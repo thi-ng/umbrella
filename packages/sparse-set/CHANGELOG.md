@@ -11,21 +11,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/sparse-set@1.2.0) (2025-07-10)
+## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/sparse-set@1.2.0) (2025-07-10)
 
 #### 🚀 Features
 
-- add `Symbol.dispose` support ([f88ac0d](https://github.com/thi-ng/umbrella/commit/f88ac0d))
+- add `Symbol.dispose` support ([f88ac0d](https://codeberg.org/thi.ng/umbrella/commit/f88ac0d))
 
 #### ♻️ Refactoring
 
-- update all Map/Set private state and `toString()` impls ([#505](https://github.com/thi-ng/umbrella/issues/505)) ([9ab7d9d](https://github.com/thi-ng/umbrella/commit/9ab7d9d))
+- update all Map/Set private state and `toString()` impls ([#505](https://github.com/thi-ng/umbrella/issues/505)) ([9ab7d9d](https://codeberg.org/thi.ng/umbrella/commit/9ab7d9d))
   - use private class properties instead of WeakMap to strore internal state
   - replace `__inspectable` with `__tostringMixin`
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/sparse-set@1.1.0) (2024-07-22)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/sparse-set@1.1.0) (2024-07-22)
 
 #### 🚀 Features
 
-- import as new pkg ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([49f7e2d](https://github.com/thi-ng/umbrella/commit/49f7e2d))
-  - extract sparseset-related fns/classes from [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/main/packages/associative)
+- import as new pkg ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([49f7e2d](https://codeberg.org/thi.ng/umbrella/commit/49f7e2d))
+  - extract sparseset-related fns/classes from [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/associative)

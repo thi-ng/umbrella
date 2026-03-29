@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 See the related
-[@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi)
+[@thi.ng/geom-voronoi](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-voronoi)
 package for concrete usage. This package merely provides the underlying
 graph data structure.
 

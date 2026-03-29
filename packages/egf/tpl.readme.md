@@ -29,7 +29,7 @@ line based, plain text data format and package supports:
 - Hand-optimized parser, largely regexp free
 - Configurable GraphViz DOT export
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/egf/egf-readme2.png)
+![example graph](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/egf/egf-readme2.png)
 
 ([Source for this example graph is further below](#basic-example))
 
@@ -95,11 +95,11 @@ deployed already.
 
 **TODO - Full docs forthcoming...**
 
-- [api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/egf/src/api.ts) - Data structures & options
-- [dot.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/egf/src/dot.ts) - Graphviz export (via
-  [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/egf/))
-- [parser.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/egf/src/parser.ts) - Main parser
-- [tags.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/egf/src/tags.ts) - Tagged value parsers
+- [api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/egf/src/api.ts) - Data structures & options
+- [dot.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/egf/src/dot.ts) - Graphviz export (via
+  [@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/egf/))
+- [parser.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/egf/src/parser.ts) - Main parser
+- [tags.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/egf/src/tags.ts) - Tagged value parsers
 
 ### Basic example
 
@@ -236,7 +236,7 @@ node2
 
 A full grammar definition is forthcoming. In the meantime, please see a somewhat
 outdated older version and related comments in
-[#234](https://github.com/thi-ng/umbrella/issues/234#issuecomment-662878452) for
+[#234](https://codeberg.org/thi.ng/umbrella/issues/234#issuecomment-985690) for
 more details.
 
 ### Node references
@@ -263,7 +263,7 @@ bob
 Using default parser options, this produces an object as follows. Note, the
 references are encoded as objects with a `$ref` property and implement the
 `IDeref` and `IEquiv` interfaces defined in the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+[@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 package.
 
 ```js
@@ -327,7 +327,7 @@ IDs to be defined in a `prefix:name` format alongside `@prefix` declarations.
 Such prefix IDs will be expanded during parsing and usually form complete URIs,
 but could expand to any string. The various (50+) commonly used Linked Data
 vocabulary prefixes bundled in
-[@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
+[@thi.ng/prefixes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/prefixes)
 are available by default, though can be overridden, of course...
 
 ```text

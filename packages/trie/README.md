@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/trie](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-trie.svg?0795a323)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/trie](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-trie.svg?0795a323)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/trie.svg)](https://www.npmjs.com/package/@thi.ng/trie)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/trie.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [TrieMap](#triemap)
@@ -111,11 +112,11 @@ console.log([...t.keys(["to", "be"], false)]);
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btrie%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btrie%5D)
 
 ## Related packages
 
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
+- [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
 
 ## Installation
 
@@ -147,7 +148,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.14 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

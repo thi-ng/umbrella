@@ -6,14 +6,14 @@
 
 {{pkg.description}}
 
-![AXI-SCAPE #000](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/axidraw/axiscape-1280.jpg)
+![AXI-SCAPE #000](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/axidraw/axiscape-1280.jpg)
 
 <small>AXI-SCAPE \#000, 12-layer watercolor painting/plot of cellular automata, © 2023 Karsten Schmidt</small>
 
 This package provides a super-lightweight alternative to control an [AxiDraw
 plotter](https://axidraw.com/) directly from Node.js, using a small custom set
 of medium/high-level drawing commands. Structurally, these custom commands are
-[thi.ng/hiccup](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/)-like
+[thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup/)-like
 S-expressions, which can be easily serialized to/from JSON and are translated to
 the native [EBB commands](https://evil-mad.github.io/EggBot/ebb.html) for the
 plotter.
@@ -24,7 +24,7 @@ Due to AxiDraw's lack of G-Code support, most other available AxiDraw support
 libraries are providing only a purely imperative API to control the machine. In
 contrast, this package utilizes a more declarative approach, also very much
 following the pattern of other packages in the
-[thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo, which allows
+[thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) monorepo, which allows
 (geometry) data to be inspected, augmented, converted/transformed, serialized up
 until the very last moment before being sent to the machine for physical
 output...
@@ -47,28 +47,28 @@ The bounding rect can be either defined by a tuple of `[[minX,minY],
 default value is DIN A3 landscape.
 
 If given as paper size (e.g. via
-[thi.ng/units](https://github.com/thi-ng/umbrella/blob/develop/packages/units/)
+[thi.ng/units](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/units/)
 presets), the actual units used to define these dimensions are irrelevant and
 will be automatically converted.
 
 [List of paper
-sizes/presets](https://github.com/thi-ng/umbrella/blob/develop/packages/units/README.md#constants)
+sizes/presets](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/units/README.md#constants)
 
 ### Path planning
 
 Path planning is considered a higher level operation than what's addressed by
 this package and is therefore out of scope. The
-[thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
+[thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-axidraw)
 provides some configurable point & shape sorting functions, but this is an
 interim solution and a full path/route planning facility is currently still
 outstanding and awaiting to be ported from other projects.
 
 ### thi.ng/geom support
 
-The [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+The [thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 package provides numerous shape types & operations to generate & transform
 geometry. Additionally,
-[thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
+[thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-axidraw)
 can act as bridge API and provides the polymorphic
 [`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html)
 function to convert single shapes or entire shape groups/hierarchies directly
@@ -80,7 +80,7 @@ more details and examples.
 This package does **not** provide any direct conversions from SVG or any other
 geometry format. But again, whilst not containing a full SVG parser (at current
 only single paths can be parsed), the family of
-[thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 packages provides numerous shape types & operations which can be directly
 utilized to output generated geometry together with this package...
 

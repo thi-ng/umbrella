@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/bench](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-bench.svg?0f877590)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/bench](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-bench.svg?0f877590)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bench.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -42,12 +43,12 @@ Benchmarking & profiling utilities w/ various statistics & formatters (CSV, JSON
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbench%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bbench%5D)
 
 ## Related packages
 
-- [@thi.ng/csv](https://github.com/thi-ng/umbrella/tree/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer
-- [@thi.ng/markdown-table](https://github.com/thi-ng/umbrella/tree/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
+- [@thi.ng/csv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer
+- [@thi.ng/markdown-table](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
 
 ## Installation
 
@@ -79,29 +80,29 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.06 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/timestamp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/timestamp)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 10 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                                      | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg" width="240"/>           | Doodle w/ K-nearest neighbor search result visualization                         | [Demo](https://demo.thi.ng/umbrella/geom-knn/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/>      | K-nearest neighbor search in an hash grid                                        | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/>   | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-voronoi-mst)   |
-|                                                                                                                           | GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline     | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gpgpu-reduce)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/>    | Markdown to Hiccup to HTML parser / transformer                                  | [Demo](https://demo.thi.ng/umbrella/markdown/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>   | Parser grammar livecoding editor/playground & codegen                            | [Demo](https://demo.thi.ng/umbrella/parse-playground/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>      | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                 | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poisson-image.avif" width="240"/>     | Image-based Poisson-disk sampling                                                | [Demo](https://demo.thi.ng/umbrella/poisson-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poisson-image)      |
-|                                                                                                                           | Full umbrella repo doc string search w/ paginated results                        | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                           | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
+| Screenshot                                                                                                                        | Description                                                                      | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn.jpg" width="240"/>           | Doodle w/ K-nearest neighbor search result visualization                         | [Demo](https://demo.thi.ng/umbrella/geom-knn/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn-hash.jpg" width="240"/>      | K-nearest neighbor search in an hash grid                                        | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn-hash)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/>   | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-voronoi-mst)   |
+|                                                                                                                                   | GPU-based data reduction using thi.ng/shader-ast & WebGL multi-pass pipeline     | [Demo](https://demo.thi.ng/umbrella/gpgpu-reduce/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gpgpu-reduce)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/markdown-parser.jpg" width="240"/>    | Markdown to Hiccup to HTML parser / transformer                                  | [Demo](https://demo.thi.ng/umbrella/markdown/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/markdown)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/parse-playground.png" width="240"/>   | Parser grammar livecoding editor/playground & codegen                            | [Demo](https://demo.thi.ng/umbrella/parse-playground/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/parse-playground)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/>      | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                 | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poisson-image.avif" width="240"/>     | Image-based Poisson-disk sampling                                                | [Demo](https://demo.thi.ng/umbrella/poisson-image/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poisson-image)      |
+|                                                                                                                                   | Full umbrella repo doc string search w/ paginated results                        | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-search-docs)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                           | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-workers) |
 
 ## API
 
@@ -159,7 +160,7 @@ statistics: mean, median, min/max, 1st/3rd quartile, standard deviation
 (as percentage)...
 
 See
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/bench/src/api.ts)
+[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/bench/src/api.ts)
 for configuration options.
 
 Also see the [formatting](#output-formatting) section below for other output

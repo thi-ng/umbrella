@@ -59,7 +59,7 @@ All native events are abstracted into one of the following event types:
 ### GestureEvent
 
 The stream emits
-[`GestureEvent`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-gestures/src/api.ts#L37)
+[`GestureEvent`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-gestures/src/api.ts#L37)
 objects of:
 
 - **type** - Current translated/abstracted event type (`GestureType`)
@@ -99,7 +99,7 @@ objects of:
 ### GestureStreamOpts
 
 See the
-[`GestureStreamOpts`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-gestures/src/api.ts#L74)
+[`GestureStreamOpts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-gestures/src/api.ts#L74)
 config options for further details.
 
 ### Basic usage

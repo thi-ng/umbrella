@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-graph.svg?6997b27f)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/rstream-graph](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-rstream-graph.svg?6997b27f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-graph.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -29,10 +30,10 @@
 ## About
 
 Declarative, reactive dataflow graph construction using
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream),
+[@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)
 and
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 primitives.
 
 Stream subscription types act as graph nodes and attached transducers as
@@ -46,13 +47,13 @@ these and keep any cycles async).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-graph%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brstream-graph%5D)
 
 ## Related packages
 
-- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
-- [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/develop/packages/resolve-map) - DAG resolution of vanilla objects & arrays with internally linked values
-- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot) - Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) dataflow graph topologies
+- [@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
+- [@thi.ng/resolve-map](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/resolve-map) - DAG resolution of vanilla objects & arrays with internally linked values
+- [@thi.ng/rstream-dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-dot) - Graphviz DOT conversion of [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) dataflow graph topologies
 
 ## Installation
 
@@ -84,28 +85,28 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
-- [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/develop/packages/resolve-map)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
+- [@thi.ng/resolve-map](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/resolve-map)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                                            | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>            | Minimal rstream dataflow graph                                         | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>        | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL                  | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet) |
+| Screenshot                                                                                                                         | Description                                                            | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rs-dflow.png" width="240"/>            | Minimal rstream dataflow graph                                         | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-dataflow)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-grid.jpg" width="240"/>        | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL                  | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-spreadsheet) |
 
 ## API
 
@@ -174,7 +175,7 @@ interface NodeSpec {
 Specification for a single "node" in the dataflow graph. Nodes here are
 actually just wrappers of streams / subscriptions (or generally any form
 of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 `ISubscribable`), usually with an associated transducer to transform /
 combine the inputs and produce values for the node's result stream.
 
@@ -183,17 +184,17 @@ construct and the library provides several general purpose helpers for
 that purpose. The keys used to specify inputs in the `ins` object are
 dictated by the actual node `fn` used. Most node functions with multiple
 inputs will be implemented as
-[`StreamSync`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-sync.ts)
+[`StreamSync`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream/src/stream-sync.ts)
 instances and the input IDs are used to locally rename input streams
 within the `StreamSync` container. Alo see `initGraph` and
 `nodeFromSpec` (in
-[`/src/nodes.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-graph/src/nodes.ts)
+[`/src/nodes.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-graph/src/nodes.ts)
 for more details how these specs are compiled into stream constructs.
 
 Specification for a single input, which can be given in different ways:
 
 1) Create a stream of value changes at given path in state
-   [Atom](https://github.com/thi-ng/umbrella/e/develop/packages/atom)
+   [Atom](https://codeberg.org/thi.ng/umbrella/e/develop/packages/atom)
    (passed to `initGraph`):
 
 ```ts
@@ -202,7 +203,7 @@ Specification for a single input, which can be given in different ways:
 ```
 
 2) Reference path to another node's output in the GraphSpec object. See
-   [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/develop/packages/resolve-map)
+   [@thi.ng/resolve-map](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/resolve-map)
    for details.
 
 ```ts

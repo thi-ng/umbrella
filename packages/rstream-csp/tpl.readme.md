@@ -5,9 +5,9 @@
 ## About
 
 Adapter bridge between async [CSP
-channels](https://github.com/thi-ng/umbrella/tree/develop/packages/csp)
+channels](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csp)
 and synchronous stream subscriptions/transformations of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream).
 
 {{meta.status}}
 

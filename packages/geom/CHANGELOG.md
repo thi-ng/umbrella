@@ -11,92 +11,92 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [8.3.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.3.14) (2026-02-07)
+### [8.3.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.14) (2026-02-07)
 
 #### ♻️ Refactoring
 
-- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://github.com/thi-ng/umbrella/commit/3abbddf))
+- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [8.3.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.3.9) (2025-12-03)
+### [8.3.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.9) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [8.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.3.0) (2025-10-24)
+## [8.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.0) (2025-10-24)
 
 #### 🚀 Features
 
-- add basic `offset()` support for convex polygons ([fe51702](https://github.com/thi-ng/umbrella/commit/fe51702))
+- add basic `offset()` support for convex polygons ([fe51702](https://codeberg.org/thi.ng/umbrella/commit/fe51702))
   - add/update docs
 
-## [8.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.2.0) (2025-07-20)
+## [8.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.2.0) (2025-07-20)
 
 #### 🚀 Features
 
-- update SVGDocAttribs, update docs ([7e4a252](https://github.com/thi-ng/umbrella/commit/7e4a252))
+- update SVGDocAttribs, update docs ([7e4a252](https://codeberg.org/thi.ng/umbrella/commit/7e4a252))
 
-### [8.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.39) (2025-04-16)
+### [8.1.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.39) (2025-04-16)
 
 #### 🩹 Bug fixes
 
-- update `asCubic()` for some 3D shapes ([5abc2aa](https://github.com/thi-ng/umbrella/commit/5abc2aa))
+- update `asCubic()` for some 3D shapes ([5abc2aa](https://codeberg.org/thi.ng/umbrella/commit/5abc2aa))
   - update `polygon3`, `polyline3`, `quad3`, `tri3` impls to exclude "break" & "hobby" conversion modes
     (these modes are currently not supported in 3D)
   - add/update docs
-- update sphere/sphere `intersects()` impl ([43f4059](https://github.com/thi-ng/umbrella/commit/43f4059))
+- update sphere/sphere `intersects()` impl ([43f4059](https://codeberg.org/thi.ng/umbrella/commit/43f4059))
 
 #### ♻️ Refactoring
 
-- minor internal optimizations (vector ops) ([c51b0de](https://github.com/thi-ng/umbrella/commit/c51b0de))
+- minor internal optimizations (vector ops) ([c51b0de](https://codeberg.org/thi.ng/umbrella/commit/c51b0de))
 
-### [8.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.22) (2025-01-14)
-
-#### ♻️ Refactoring
-
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
-
-### [8.1.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.11) (2024-10-05)
+### [8.1.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.22) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- add explicit type casts (TS5.6.2) ([dcbdd60](https://github.com/thi-ng/umbrella/commit/dcbdd60))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [8.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.1.0) (2024-08-10)
+### [8.1.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.11) (2024-10-05)
+
+#### ♻️ Refactoring
+
+- add explicit type casts (TS5.6.2) ([dcbdd60](https://codeberg.org/thi.ng/umbrella/commit/dcbdd60))
+
+## [8.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.0) (2024-08-10)
 
 #### 🚀 Features
 
-- add circle inversion functions ([bb3a322](https://github.com/thi-ng/umbrella/commit/bb3a322))
+- add circle inversion functions ([bb3a322](https://codeberg.org/thi.ng/umbrella/commit/bb3a322))
   - add invertCircle(), invertCirclePoint()
 
-### [8.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.0.1) (2024-06-29)
+### [8.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.0.1) (2024-06-29)
 
 #### 🩹 Bug fixes
 
-- add missing pkg exports ([7ec144f](https://github.com/thi-ng/umbrella/commit/7ec144f))
+- add missing pkg exports ([7ec144f](https://codeberg.org/thi.ng/umbrella/commit/7ec144f))
 
-# [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@8.0.0) (2024-06-21)
+# [8.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.0.0) (2024-06-21)
 
 #### 🛑 Breaking changes
 
-- add/update asCubic()/asPath() impls/types/signatures ([9b4df2e](https://github.com/thi-ng/umbrella/commit/9b4df2e))
+- add/update asCubic()/asPath() impls/types/signatures ([9b4df2e](https://codeberg.org/thi.ng/umbrella/commit/9b4df2e))
 - BREAKING CHANGE: update asCubic/asPath() to use new CubicOpts
   - add support for more shape types, incl. 3D
-- update svgDoc(), add SVGDocAttribs ([a26628b](https://github.com/thi-ng/umbrella/commit/a26628b))
+- update svgDoc(), add SVGDocAttribs ([a26628b](https://codeberg.org/thi.ng/umbrella/commit/a26628b))
 - BREAKING CHANGE: rename `__bleed` attrib => `__margin`
   - set default SVG precision to 3 (fractional digits)
-- update clipConvex(), add support for more shape types ([5d594c6](https://github.com/thi-ng/umbrella/commit/5d594c6))
+- update clipConvex(), add support for more shape types ([5d594c6](https://codeberg.org/thi.ng/umbrella/commit/5d594c6))
 - BREAKING CHANGE: update clipConvex() to return array of result shapes (rather than single)
   - add support for polyline & open paths
-- update/extend tessellate() to use new setup/behavior ([c4dadfd](https://github.com/thi-ng/umbrella/commit/c4dadfd))
+- update/extend tessellate() to use new setup/behavior ([c4dadfd](https://codeberg.org/thi.ng/umbrella/commit/c4dadfd))
 - BREAKING CHANGE: update/extend tessellate() to use new setup/behavior
   - update signature to return `Tessellation`
   - add/update impls for complex polygons & groups
   - add `groupFromTessellation()` to process tessellation results
   - add `TESSELLATE_EARCUT_COMPLEX` preset
-  - remove `TESSELLATE_EDGE_SPLIT_THRESHOLD` & `TESSELLATE_TRI_FAN_SPLIT_THRESHOLD` (see [97f1f66200](https://github.com/thi-ng/umbrella/commit/97f1f66200))
-- migrate types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api) ([3182726](https://github.com/thi-ng/umbrella/commit/3182726))
-- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api)
+  - remove `TESSELLATE_EDGE_SPLIT_THRESHOLD` & `TESSELLATE_TRI_FAN_SPLIT_THRESHOLD` (see [97f1f66200](https://codeberg.org/thi.ng/umbrella/commit/97f1f66200))
+- migrate types from [@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-api) ([3182726](https://codeberg.org/thi.ng/umbrella/commit/3182726))
+- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-api)
   - add/migrate:
     - Attribs, GroupAttribs, IAttributed
     - IShape, IShape2/3
@@ -115,12 +115,12 @@ and/or version bumps of transitive dependencies.
   - update CubicOpts.mode, rename `breakpoints` => `break`
   - update imports
   - update deps
-- update tessellate() for new API ([4c6a5f4](https://github.com/thi-ng/umbrella/commit/4c6a5f4))
+- update tessellate() for new API ([4c6a5f4](https://codeberg.org/thi.ng/umbrella/commit/4c6a5f4))
 - BREAKING CHANGE: update tessellate() for new API
   - add optional ITessellation arg
   - add `basicTessellation()` & `meshTessellation()` factory fns
   - update tessellation post-processors (`graphFromTessellation()` etc.)
-- update PathBuilder to support 2D/3D, add pathBuilder3() ([dcf5210](https://github.com/thi-ng/umbrella/commit/dcf5210))
+- update PathBuilder to support 2D/3D, add pathBuilder3() ([dcf5210](https://codeberg.org/thi.ng/umbrella/commit/dcf5210))
 - BREAKING CHANGE: PathBuilder now using injected segment ctors
   - users should only use pathBuilder() & pathBuilder3() factory functions
   - add internal P2D & P3D shape ctor configs
@@ -130,7 +130,7 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add/update various 2d/3d shape types ([262188c](https://github.com/thi-ng/umbrella/commit/262188c))
+- add/update various 2d/3d shape types ([262188c](https://codeberg.org/thi.ng/umbrella/commit/262188c))
   - add 3d shape types & factory functions:
     - Cubic3
     - Line3
@@ -143,79 +143,79 @@ and/or version bumps of transitive dependencies.
     - Ray3
     - Triangle3
   - update existing shape type impls & ctors/factories
-- add/update rotate, scale, translate, transform ops (signatures & type support, impls) ([cb04a96](https://github.com/thi-ng/umbrella/commit/cb04a96))
-- add rotateAroundAxis(), add rotateX/Y/Z() ops ([8831cc1](https://github.com/thi-ng/umbrella/commit/8831cc1))
-- update applyTransforms(), add support for 3D shapes/transforms ([91be2ec](https://github.com/thi-ng/umbrella/commit/91be2ec))
-- add/update internal helpers ([10a73f2](https://github.com/thi-ng/umbrella/commit/10a73f2))
-- add/update bounds() impls and fitIntoBounds2/3() types/signatures ([e7a0b5c](https://github.com/thi-ng/umbrella/commit/e7a0b5c))
-- add/update asPolygon()/asPolyline() / vertices() impls/types/signatures ([3ba9714](https://github.com/thi-ng/umbrella/commit/3ba9714))
-- add/update resample()/simplify()/subdivCurve() impls ([1682577](https://github.com/thi-ng/umbrella/commit/1682577))
-- add/update splitAt()/splitArcLength() impls/types ([e6f9e64](https://github.com/thi-ng/umbrella/commit/e6f9e64))
-- add/update clipConvex()/convexHull() impls/types ([a6215c7](https://github.com/thi-ng/umbrella/commit/a6215c7))
-- add shape types support for flip() ([9628c7b](https://github.com/thi-ng/umbrella/commit/9628c7b))
-- add shape types support for arcLength() & center() ([2a9af0d](https://github.com/thi-ng/umbrella/commit/2a9af0d))
-- add Group3 shape type, update pkg exports ([1646263](https://github.com/thi-ng/umbrella/commit/1646263))
-- add sector() path builder ([807b5f1](https://github.com/thi-ng/umbrella/commit/807b5f1))
-- update SVG default attribs & handling ([f80f67a](https://github.com/thi-ng/umbrella/commit/f80f67a))
+- add/update rotate, scale, translate, transform ops (signatures & type support, impls) ([cb04a96](https://codeberg.org/thi.ng/umbrella/commit/cb04a96))
+- add rotateAroundAxis(), add rotateX/Y/Z() ops ([8831cc1](https://codeberg.org/thi.ng/umbrella/commit/8831cc1))
+- update applyTransforms(), add support for 3D shapes/transforms ([91be2ec](https://codeberg.org/thi.ng/umbrella/commit/91be2ec))
+- add/update internal helpers ([10a73f2](https://codeberg.org/thi.ng/umbrella/commit/10a73f2))
+- add/update bounds() impls and fitIntoBounds2/3() types/signatures ([e7a0b5c](https://codeberg.org/thi.ng/umbrella/commit/e7a0b5c))
+- add/update asPolygon()/asPolyline() / vertices() impls/types/signatures ([3ba9714](https://codeberg.org/thi.ng/umbrella/commit/3ba9714))
+- add/update resample()/simplify()/subdivCurve() impls ([1682577](https://codeberg.org/thi.ng/umbrella/commit/1682577))
+- add/update splitAt()/splitArcLength() impls/types ([e6f9e64](https://codeberg.org/thi.ng/umbrella/commit/e6f9e64))
+- add/update clipConvex()/convexHull() impls/types ([a6215c7](https://codeberg.org/thi.ng/umbrella/commit/a6215c7))
+- add shape types support for flip() ([9628c7b](https://codeberg.org/thi.ng/umbrella/commit/9628c7b))
+- add shape types support for arcLength() & center() ([2a9af0d](https://codeberg.org/thi.ng/umbrella/commit/2a9af0d))
+- add Group3 shape type, update pkg exports ([1646263](https://codeberg.org/thi.ng/umbrella/commit/1646263))
+- add sector() path builder ([807b5f1](https://codeberg.org/thi.ng/umbrella/commit/807b5f1))
+- update SVG default attribs & handling ([f80f67a](https://codeberg.org/thi.ng/umbrella/commit/f80f67a))
   - update setSvgDefaultAttribs() to allow merging
-- add/update splitAt() & splitNearPoint() impls ([1851b1d](https://github.com/thi-ng/umbrella/commit/1851b1d))
-- add planeFromRay() ([c44d8da](https://github.com/thi-ng/umbrella/commit/c44d8da))
-- add 2d line impl for classifyPoint() ([92e54ea](https://github.com/thi-ng/umbrella/commit/92e54ea))
-- fix [#429](https://github.com/thi-ng/umbrella/issues/429), add polygon support for classifyPoint() ([b56ecc1](https://github.com/thi-ng/umbrella/commit/b56ecc1))
+- add/update splitAt() & splitNearPoint() impls ([1851b1d](https://codeberg.org/thi.ng/umbrella/commit/1851b1d))
+- add planeFromRay() ([c44d8da](https://codeberg.org/thi.ng/umbrella/commit/c44d8da))
+- add 2d line impl for classifyPoint() ([92e54ea](https://codeberg.org/thi.ng/umbrella/commit/92e54ea))
+- fix [#429](https://github.com/thi-ng/umbrella/issues/429), add polygon support for classifyPoint() ([b56ecc1](https://codeberg.org/thi.ng/umbrella/commit/b56ecc1))
   - refactor plane impl
-- add/update subdivCurve() type support, args & impls ([6233379](https://github.com/thi-ng/umbrella/commit/6233379))
-- update AABB & Rect ctors to clamp size to zero ([7cec7d2](https://github.com/thi-ng/umbrella/commit/7cec7d2))
-- add convolve() w/ impls for poly/polyline (incl. 3d versions) ([b682d34](https://github.com/thi-ng/umbrella/commit/b682d34))
+- add/update subdivCurve() type support, args & impls ([6233379](https://codeberg.org/thi.ng/umbrella/commit/6233379))
+- update AABB & Rect ctors to clamp size to zero ([7cec7d2](https://codeberg.org/thi.ng/umbrella/commit/7cec7d2))
+- add convolve() w/ impls for poly/polyline (incl. 3d versions) ([b682d34](https://codeberg.org/thi.ng/umbrella/commit/b682d34))
   - also re-export kernel presets (KERNEL_BOX, KERNEL_TRIANGLE, KERNEL_GAUSSIAN)
-- update convolve(), add ComplexPolygon support ([bfaa0aa](https://github.com/thi-ng/umbrella/commit/bfaa0aa))
-- add/update/fix type info, docs & impls for various ops ([d5ccb1a](https://github.com/thi-ng/umbrella/commit/d5ccb1a))
-- update convolve(), add group support ([00bdc66](https://github.com/thi-ng/umbrella/commit/00bdc66))
-- add Dummy shape type to wrap arbitrary hiccup data ([b6e18bc](https://github.com/thi-ng/umbrella/commit/b6e18bc))
-- add various dummy op impls for Dummy shape type ([05eeb9f](https://github.com/thi-ng/umbrella/commit/05eeb9f))
-- add arcLength(), area() default impls (return 0) ([f2a30bf](https://github.com/thi-ng/umbrella/commit/f2a30bf))
-- add TESSELLATE_EDGE_SPLIT_THRESHOLD() tessellator ([1d8feff](https://github.com/thi-ng/umbrella/commit/1d8feff))
-- add new tessellators presets ([95d6f70](https://github.com/thi-ng/umbrella/commit/95d6f70))
+- update convolve(), add ComplexPolygon support ([bfaa0aa](https://codeberg.org/thi.ng/umbrella/commit/bfaa0aa))
+- add/update/fix type info, docs & impls for various ops ([d5ccb1a](https://codeberg.org/thi.ng/umbrella/commit/d5ccb1a))
+- update convolve(), add group support ([00bdc66](https://codeberg.org/thi.ng/umbrella/commit/00bdc66))
+- add Dummy shape type to wrap arbitrary hiccup data ([b6e18bc](https://codeberg.org/thi.ng/umbrella/commit/b6e18bc))
+- add various dummy op impls for Dummy shape type ([05eeb9f](https://codeberg.org/thi.ng/umbrella/commit/05eeb9f))
+- add arcLength(), area() default impls (return 0) ([f2a30bf](https://codeberg.org/thi.ng/umbrella/commit/f2a30bf))
+- add TESSELLATE_EDGE_SPLIT_THRESHOLD() tessellator ([1d8feff](https://codeberg.org/thi.ng/umbrella/commit/1d8feff))
+- add new tessellators presets ([95d6f70](https://codeberg.org/thi.ng/umbrella/commit/95d6f70))
   - add TESSELLATE_TRI_FAN_SPLIT
   - add TESSELLATE_TRI_FAN_SPLIT_THRESHOLD
-- add tessellation post-processing helpers ([7687975](https://github.com/thi-ng/umbrella/commit/7687975))
+- add tessellation post-processing helpers ([7687975](https://codeberg.org/thi.ng/umbrella/commit/7687975))
   - add graphFromTessellation()
   - add edgesFromTessellation()
   - add edgePointsFromTessellation()
   - update deps (adjacency)
   - update pkg exports/meta
-- add smoothPolygon()/smoothPolyline() ([217a8c2](https://github.com/thi-ng/umbrella/commit/217a8c2))
-- add warpPoint(), add docs ([bf91ff3](https://github.com/thi-ng/umbrella/commit/bf91ff3))
-- add internal __ensurePCLike() helper ([7306b35](https://github.com/thi-ng/umbrella/commit/7306b35))
-- update tessellate(), add `TESSELLATE_TRI_FAN_BOUNDARY` ([1c0d1ce](https://github.com/thi-ng/umbrella/commit/1c0d1ce))
-- add AABB impl for `asPolygon()` ([16e005c](https://github.com/thi-ng/umbrella/commit/16e005c))
-- update/extend subdivCurve() shape type support ([b389db1](https://github.com/thi-ng/umbrella/commit/b389db1))
+- add smoothPolygon()/smoothPolyline() ([217a8c2](https://codeberg.org/thi.ng/umbrella/commit/217a8c2))
+- add warpPoint(), add docs ([bf91ff3](https://codeberg.org/thi.ng/umbrella/commit/bf91ff3))
+- add internal __ensurePCLike() helper ([7306b35](https://codeberg.org/thi.ng/umbrella/commit/7306b35))
+- update tessellate(), add `TESSELLATE_TRI_FAN_BOUNDARY` ([1c0d1ce](https://codeberg.org/thi.ng/umbrella/commit/1c0d1ce))
+- add AABB impl for `asPolygon()` ([16e005c](https://codeberg.org/thi.ng/umbrella/commit/16e005c))
+- update/extend subdivCurve() shape type support ([b389db1](https://codeberg.org/thi.ng/umbrella/commit/b389db1))
   - add docs
   - add example
-- update subdivCurve() to reflect new API, update kernel presets ([b715d43](https://github.com/thi-ng/umbrella/commit/b715d43))
+- update subdivCurve() to reflect new API, update kernel presets ([b715d43](https://codeberg.org/thi.ng/umbrella/commit/b715d43))
   - update/rename subdiv kernels to reflect upstream changes (cd69dd4e20)
   - update subdivCurve() impls
   - update docs
-- add `ICopyTransformed` interface & impls for various shape types ([35781b2](https://github.com/thi-ng/umbrella/commit/35781b2))
-- update/extend/simplify resample() impls ([c13c37a](https://github.com/thi-ng/umbrella/commit/c13c37a))
-- update/extend/simplify convolve() impls, fix kernel naming ([5907a2a](https://github.com/thi-ng/umbrella/commit/5907a2a))
-- add AABBLike.min(), fix AABBLike.offset() impls ([a4dec6b](https://github.com/thi-ng/umbrella/commit/a4dec6b))
-- add centerOfWeight(), centroidOfBounds(), update centroid() ([9048aac](https://github.com/thi-ng/umbrella/commit/9048aac))
+- add `ICopyTransformed` interface & impls for various shape types ([35781b2](https://codeberg.org/thi.ng/umbrella/commit/35781b2))
+- update/extend/simplify resample() impls ([c13c37a](https://codeberg.org/thi.ng/umbrella/commit/c13c37a))
+- update/extend/simplify convolve() impls, fix kernel naming ([5907a2a](https://codeberg.org/thi.ng/umbrella/commit/5907a2a))
+- add AABBLike.min(), fix AABBLike.offset() impls ([a4dec6b](https://codeberg.org/thi.ng/umbrella/commit/a4dec6b))
+- add centerOfWeight(), centroidOfBounds(), update centroid() ([9048aac](https://codeberg.org/thi.ng/umbrella/commit/9048aac))
   - update centroid() impls for complex poly & poly, moved to centerOfWeight()
   - update centroid() to support more types
   - update pkg exports
-- add/update iterator impls, add IEmpty impls ([0a15df5](https://github.com/thi-ng/umbrella/commit/0a15df5))
+- add/update iterator impls, add IEmpty impls ([0a15df5](https://codeberg.org/thi.ng/umbrella/commit/0a15df5))
   - update ComplexPolygon
   - update Path/Path3
-- update asPolygon() / asPolyline() ([80b8d9a](https://github.com/thi-ng/umbrella/commit/80b8d9a))
+- update asPolygon() / asPolyline() ([80b8d9a](https://codeberg.org/thi.ng/umbrella/commit/80b8d9a))
   - add support for more types
   - dedupe impls
-- update pathFromCubics() closed shape check ([10a7558](https://github.com/thi-ng/umbrella/commit/10a7558))
+- update pathFromCubics() closed shape check ([10a7558](https://codeberg.org/thi.ng/umbrella/commit/10a7558))
   - use eqDelta() to check if path is closed
-- update splitAt()/splitNearPoint() ([d863cdd](https://github.com/thi-ng/umbrella/commit/d863cdd))
+- update splitAt()/splitNearPoint() ([d863cdd](https://codeberg.org/thi.ng/umbrella/commit/d863cdd))
   - add support for more shape types
   - dedupe internals
-- add IPath, update Path/Path3 impls ([eb7a97d](https://github.com/thi-ng/umbrella/commit/eb7a97d))
-- merge 2D/3D versions of pathFromCubics() & normalizedPath() ([159cd56](https://github.com/thi-ng/umbrella/commit/159cd56))
+- add IPath, update Path/Path3 impls ([eb7a97d](https://codeberg.org/thi.ng/umbrella/commit/eb7a97d))
+- merge 2D/3D versions of pathFromCubics() & normalizedPath() ([159cd56](https://codeberg.org/thi.ng/umbrella/commit/159cd56))
   - add PathConstructor type
   - update pathFromCubics() & normalizedPath()
   - migrate fns to separate files
@@ -223,58 +223,58 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- fix path `__samples` attrib handling in asPolygon() & asPolyline() impls ([3d7bd8c](https://github.com/thi-ng/umbrella/commit/3d7bd8c))
-- update various transform op impls for ComplexPolygon ([1e12707](https://github.com/thi-ng/umbrella/commit/1e12707))
+- fix path `__samples` attrib handling in asPolygon() & asPolyline() impls ([3d7bd8c](https://codeberg.org/thi.ng/umbrella/commit/3d7bd8c))
+- update various transform op impls for ComplexPolygon ([1e12707](https://codeberg.org/thi.ng/umbrella/commit/1e12707))
   - minor other internal refactoring
-- update attrib checks in applyTransforms() ([a19f7be](https://github.com/thi-ng/umbrella/commit/a19f7be))
-- fix vertices() impl for Polygon3 ([a968737](https://github.com/thi-ng/umbrella/commit/a968737))
-- update pathFromCubics to mark path as closed if needed ([c95b5a8](https://github.com/thi-ng/umbrella/commit/c95b5a8))
-- fix typo in centroid() dispatch table ([f1f986b](https://github.com/thi-ng/umbrella/commit/f1f986b))
-- rename KERNEL_TRIANGLE, fix pkg exports ([ed776ed](https://github.com/thi-ng/umbrella/commit/ed776ed))
+- update attrib checks in applyTransforms() ([a19f7be](https://codeberg.org/thi.ng/umbrella/commit/a19f7be))
+- fix vertices() impl for Polygon3 ([a968737](https://codeberg.org/thi.ng/umbrella/commit/a968737))
+- update pathFromCubics to mark path as closed if needed ([c95b5a8](https://codeberg.org/thi.ng/umbrella/commit/c95b5a8))
+- fix typo in centroid() dispatch table ([f1f986b](https://codeberg.org/thi.ng/umbrella/commit/f1f986b))
+- rename KERNEL_TRIANGLE, fix pkg exports ([ed776ed](https://codeberg.org/thi.ng/umbrella/commit/ed776ed))
 
 #### ⏱ Performance improvements
 
-- update rotate() impls to reuse precomputed matrices ([00e33f0](https://github.com/thi-ng/umbrella/commit/00e33f0))
-- internal update shape attrib copying ([fe0609a](https://github.com/thi-ng/umbrella/commit/fe0609a))
+- update rotate() impls to reuse precomputed matrices ([00e33f0](https://codeberg.org/thi.ng/umbrella/commit/00e33f0))
+- internal update shape attrib copying ([fe0609a](https://codeberg.org/thi.ng/umbrella/commit/fe0609a))
   - rename __copyAttribsRaw => __copyAttribs
   - avoid extraneous fn calls
 
 #### ♻️ Refactoring
 
-- update offset() & union() ops/signatures ([a943342](https://github.com/thi-ng/umbrella/commit/a943342))
-- rename sector() => asSector(), minor refactor ([d1fb9bf](https://github.com/thi-ng/umbrella/commit/d1fb9bf))
-- minor internal updates asPolygon() ([599572e](https://github.com/thi-ng/umbrella/commit/599572e))
-- rename Dummy => Extra (dummy() => extra()) ([beb4bf0](https://github.com/thi-ng/umbrella/commit/beb4bf0))
+- update offset() & union() ops/signatures ([a943342](https://codeberg.org/thi.ng/umbrella/commit/a943342))
+- rename sector() => asSector(), minor refactor ([d1fb9bf](https://codeberg.org/thi.ng/umbrella/commit/d1fb9bf))
+- minor internal updates asPolygon() ([599572e](https://codeberg.org/thi.ng/umbrella/commit/599572e))
+- rename Dummy => Extra (dummy() => extra()) ([beb4bf0](https://codeberg.org/thi.ng/umbrella/commit/beb4bf0))
   - update various op impls
   - update pkg exports
-- update group to use GroupAttribs ([6f913ff](https://github.com/thi-ng/umbrella/commit/6f913ff))
-- update SVGDocAttribs ([102bb5c](https://github.com/thi-ng/umbrella/commit/102bb5c))
+- update group to use GroupAttribs ([6f913ff](https://codeberg.org/thi.ng/umbrella/commit/6f913ff))
+- update SVGDocAttribs ([102bb5c](https://codeberg.org/thi.ng/umbrella/commit/102bb5c))
   - remove `__prec` (now part of base`Attribs`)
-- dedupe 2d/3d versions of pathFromCubics(), normalizedPath() ([da8ed42](https://github.com/thi-ng/umbrella/commit/da8ed42))
-- simplify `applyTransforms()` for groups ([d1f5873](https://github.com/thi-ng/umbrella/commit/d1f5873))
-- simplify various shape transform ops & impls ([ba32846](https://github.com/thi-ng/umbrella/commit/ba32846))
+- dedupe 2d/3d versions of pathFromCubics(), normalizedPath() ([da8ed42](https://codeberg.org/thi.ng/umbrella/commit/da8ed42))
+- simplify `applyTransforms()` for groups ([d1f5873](https://codeberg.org/thi.ng/umbrella/commit/d1f5873))
+- simplify various shape transform ops & impls ([ba32846](https://codeberg.org/thi.ng/umbrella/commit/ba32846))
   - better re-use of impls for `PCLike` types
   - remove obsolete internal helpers
-- simplify subdivCurve() impls ([e978fab](https://github.com/thi-ng/umbrella/commit/e978fab))
-- minor internal updates ([644a478](https://github.com/thi-ng/umbrella/commit/644a478))
-- minor update complex poly hiccup serialization ([b394842](https://github.com/thi-ng/umbrella/commit/b394842))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-- minor updates splitAt()/splitNearPoint() ([3e65f82](https://github.com/thi-ng/umbrella/commit/3e65f82))
-- update proximity() to accept optional distance fn ([df7aef2](https://github.com/thi-ng/umbrella/commit/df7aef2))
-- dedupe union() impls ([c1880c8](https://github.com/thi-ng/umbrella/commit/c1880c8))
-- dedupe path impls for scale()/translate() ([b20cb32](https://github.com/thi-ng/umbrella/commit/b20cb32))
+- simplify subdivCurve() impls ([e978fab](https://codeberg.org/thi.ng/umbrella/commit/e978fab))
+- minor internal updates ([644a478](https://codeberg.org/thi.ng/umbrella/commit/644a478))
+- minor update complex poly hiccup serialization ([b394842](https://codeberg.org/thi.ng/umbrella/commit/b394842))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
+- minor updates splitAt()/splitNearPoint() ([3e65f82](https://codeberg.org/thi.ng/umbrella/commit/3e65f82))
+- update proximity() to accept optional distance fn ([df7aef2](https://codeberg.org/thi.ng/umbrella/commit/df7aef2))
+- dedupe union() impls ([c1880c8](https://codeberg.org/thi.ng/umbrella/commit/c1880c8))
+- dedupe path impls for scale()/translate() ([b20cb32](https://codeberg.org/thi.ng/umbrella/commit/b20cb32))
 
-### [7.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@7.0.1) (2024-05-09)
+### [7.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@7.0.1) (2024-05-09)
 
 #### 🩹 Bug fixes
 
-- update arc() arg defaults, add docs ([cc57a57](https://github.com/thi-ng/umbrella/commit/cc57a57))
+- update arc() arg defaults, add docs ([cc57a57](https://codeberg.org/thi.ng/umbrella/commit/cc57a57))
 
-# [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@7.0.0) (2024-05-08)
+# [7.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@7.0.0) (2024-05-08)
 
 #### 🛑 Breaking changes
 
-- update Path to support sub-paths (holes), update impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([9329d27](https://github.com/thi-ng/umbrella/commit/9329d27))
+- update Path to support sub-paths (holes), update impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([9329d27](https://codeberg.org/thi.ng/umbrella/commit/9329d27))
 - BREAKING CHANGE: update path related ctors & functions
   - add `subPaths` argument for Path ctor/factory fn
   - rename `Path.add()` => `Path.addSegments()`
@@ -290,39 +290,39 @@ and/or version bumps of transitive dependencies.
     - translate()
     - transform()
     - transformVertices()
-- update asPolyline(), add support for multiple boundaries ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([0616b96](https://github.com/thi-ng/umbrella/commit/0616b96))
+- update asPolyline(), add support for multiple boundaries ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([0616b96](https://codeberg.org/thi.ng/umbrella/commit/0616b96))
 - BREAKING CHANGE: update asPolygon() to return array of polylines
   - add/update impls for complexpoly & path to produce multiple results
   - update other internal callsites
   - update tests
-- update `Path` closing logic ([ce3a922](https://github.com/thi-ng/umbrella/commit/ce3a922))
+- update `Path` closing logic ([ce3a922](https://codeberg.org/thi.ng/umbrella/commit/ce3a922))
 - BREAKING CHANGE: update `Path` closing logic, `Path.closed` now a readonly property
   - add `Path.closed()` getter
   - add `Path.close()` to add a `Z`-type segment, check if not closed already
   - update `Path.addSegments()` to check each segment, throw error if path already closed
   - refactor `PathBuilder.closePath()`
-- add asPolygon() support for complexpoly & path ([e3c9f20](https://github.com/thi-ng/umbrella/commit/e3c9f20))
+- add asPolygon() support for complexpoly & path ([e3c9f20](https://codeberg.org/thi.ng/umbrella/commit/e3c9f20))
 - BREAKING CHANGE: update asPolygon() to return array of polygons (rather than single only)
   - add support for complexpoly & path (incl. sub-shapes, holes)
   - refactor internal call sites
-- update asPath(), add AsPathOpts ([ef0ebdf](https://github.com/thi-ng/umbrella/commit/ef0ebdf))
+- update asPath(), add AsPathOpts ([ef0ebdf](https://codeberg.org/thi.ng/umbrella/commit/ef0ebdf))
 - BREAKING CHANGE: update asPath() args, add AsPathOpts as 2nd arg
   - add option for using only linear path segments (no cubics)
   - update impls for complexpoly & other polygon types
-- update Path & PathBuilder.close() ([b2134c2](https://github.com/thi-ng/umbrella/commit/b2134c2))
+- update Path & PathBuilder.close() ([b2134c2](https://codeberg.org/thi.ng/umbrella/commit/b2134c2))
 - BREAKING CHANGE: rename `PathBuilder.closePath()` => `PathBuilder.close()`
   - update `Path.close()` to return path itself
-- rewrite roundedRect() to allow individual corner radii ([a4817aa](https://github.com/thi-ng/umbrella/commit/a4817aa))
+- rewrite roundedRect() to allow individual corner radii ([a4817aa](https://codeberg.org/thi.ng/umbrella/commit/a4817aa))
 - BREAKING CHANGE: update roundedRect() radius handling to allow individual corner radii
   - update docs
   - add tests
 
 #### 🚀 Features
 
-- initial import ComplexPolygon & impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([ded007c](https://github.com/thi-ng/umbrella/commit/ded007c))
+- initial import ComplexPolygon & impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([ded007c](https://codeberg.org/thi.ng/umbrella/commit/ded007c))
   - add complexPolygon() factory fn
   - add bounds() & centroid() impls
-- add ops for complex polygons ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([35ce854](https://github.com/thi-ng/umbrella/commit/35ce854))
+- add ops for complex polygons ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([35ce854](https://codeberg.org/thi.ng/umbrella/commit/35ce854))
   - add implementations for:
     - arcLength()
     - area()
@@ -342,52 +342,52 @@ and/or version bumps of transitive dependencies.
     - translate()
     - vertices()
   - add tests
-- add proximity() ([5d5951c](https://github.com/thi-ng/umbrella/commit/5d5951c))
-- update `vertices()` impl for `Path`, incl. sub-path vertices ([824067f](https://github.com/thi-ng/umbrella/commit/824067f))
-- update simplify() default threshold ([bdba298](https://github.com/thi-ng/umbrella/commit/bdba298))
-- add arcLength() for Path, refactor complexpoly impl ([d133bbe](https://github.com/thi-ng/umbrella/commit/d133bbe))
-- add/update asCubic() impls for complex poly & path ([7f9e927](https://github.com/thi-ng/umbrella/commit/7f9e927))
-- update pathFromCubics() to auto-create sub-paths if needed ([1170e45](https://github.com/thi-ng/umbrella/commit/1170e45))
-- add closestPoint() impl for Path ([f0cf2f1](https://github.com/thi-ng/umbrella/commit/f0cf2f1))
-- add pointInside() impl for Polyline ([d10bf43](https://github.com/thi-ng/umbrella/commit/d10bf43))
-- add centroid() & convexHull() impl for Path ([76aa229](https://github.com/thi-ng/umbrella/commit/76aa229))
-- add complexPolygonFromPath() ([cd526f1](https://github.com/thi-ng/umbrella/commit/cd526f1))
-- update PathBuilder.close(), fix attrib handling ([e68d0bc](https://github.com/thi-ng/umbrella/commit/e68d0bc))
+- add proximity() ([5d5951c](https://codeberg.org/thi.ng/umbrella/commit/5d5951c))
+- update `vertices()` impl for `Path`, incl. sub-path vertices ([824067f](https://codeberg.org/thi.ng/umbrella/commit/824067f))
+- update simplify() default threshold ([bdba298](https://codeberg.org/thi.ng/umbrella/commit/bdba298))
+- add arcLength() for Path, refactor complexpoly impl ([d133bbe](https://codeberg.org/thi.ng/umbrella/commit/d133bbe))
+- add/update asCubic() impls for complex poly & path ([7f9e927](https://codeberg.org/thi.ng/umbrella/commit/7f9e927))
+- update pathFromCubics() to auto-create sub-paths if needed ([1170e45](https://codeberg.org/thi.ng/umbrella/commit/1170e45))
+- add closestPoint() impl for Path ([f0cf2f1](https://codeberg.org/thi.ng/umbrella/commit/f0cf2f1))
+- add pointInside() impl for Polyline ([d10bf43](https://codeberg.org/thi.ng/umbrella/commit/d10bf43))
+- add centroid() & convexHull() impl for Path ([76aa229](https://codeberg.org/thi.ng/umbrella/commit/76aa229))
+- add complexPolygonFromPath() ([cd526f1](https://codeberg.org/thi.ng/umbrella/commit/cd526f1))
+- update PathBuilder.close(), fix attrib handling ([e68d0bc](https://codeberg.org/thi.ng/umbrella/commit/e68d0bc))
   - only insert closing line segment if needed
   - copy attribs for each new path
   - add docs
-- add opt attribs for `pathFromSvg()` ([2da31f6](https://github.com/thi-ng/umbrella/commit/2da31f6))
+- add opt attribs for `pathFromSvg()` ([2da31f6](https://codeberg.org/thi.ng/umbrella/commit/2da31f6))
   - update docs
   - add/update tests
-- add scaleWithCenter() ([e328494](https://github.com/thi-ng/umbrella/commit/e328494))
-- add complexpoly & path support for `clipConvex()` ([7665dc1](https://github.com/thi-ng/umbrella/commit/7665dc1))
+- add scaleWithCenter() ([e328494](https://codeberg.org/thi.ng/umbrella/commit/e328494))
+- add complexpoly & path support for `clipConvex()` ([7665dc1](https://codeberg.org/thi.ng/umbrella/commit/7665dc1))
 
 #### 🩹 Bug fixes
 
-- update vertices() ([2afc05e](https://github.com/thi-ng/umbrella/commit/2afc05e))
+- update vertices() ([2afc05e](https://codeberg.org/thi.ng/umbrella/commit/2afc05e))
   - update impl for points, poly, polyline to return shallow copy of point array if no opts given
 
 #### ♻️ Refactoring
 
-- update withAttribs(), make new attribs optional ([688e1bf](https://github.com/thi-ng/umbrella/commit/688e1bf))
-- update geom examples (recent API changes) ([f0f5ea7](https://github.com/thi-ng/umbrella/commit/f0f5ea7))
-- update area() impl for Path ([0960817](https://github.com/thi-ng/umbrella/commit/0960817))
-- update/simplify asPath() impls ([cbc71bb](https://github.com/thi-ng/umbrella/commit/cbc71bb))
-- update centroid() for complexpoly ([58ac296](https://github.com/thi-ng/umbrella/commit/58ac296))
-  - re-use migrated fn from [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/main/packages/geom-poly-utils)
-- update path segment transformations ([88b2c40](https://github.com/thi-ng/umbrella/commit/88b2c40))
+- update withAttribs(), make new attribs optional ([688e1bf](https://codeberg.org/thi.ng/umbrella/commit/688e1bf))
+- update geom examples (recent API changes) ([f0f5ea7](https://codeberg.org/thi.ng/umbrella/commit/f0f5ea7))
+- update area() impl for Path ([0960817](https://codeberg.org/thi.ng/umbrella/commit/0960817))
+- update/simplify asPath() impls ([cbc71bb](https://codeberg.org/thi.ng/umbrella/commit/cbc71bb))
+- update centroid() for complexpoly ([58ac296](https://codeberg.org/thi.ng/umbrella/commit/58ac296))
+  - re-use migrated fn from [@thi.ng/geom-poly-utils](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-poly-utils)
+- update path segment transformations ([88b2c40](https://codeberg.org/thi.ng/umbrella/commit/88b2c40))
 
-### [6.1.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.1.7) (2024-04-20)
+### [6.1.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.1.7) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([2d72859](https://github.com/thi-ng/umbrella/commit/2d72859))
+- update type usage ([2d72859](https://codeberg.org/thi.ng/umbrella/commit/2d72859))
 
-## [6.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.1.0) (2024-03-21)
+## [6.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.1.0) (2024-03-21)
 
 #### 🚀 Features
 
-- update intersects(), support more shape types ([21ce0d4](https://github.com/thi-ng/umbrella/commit/21ce0d4))
+- update intersects(), support more shape types ([21ce0d4](https://codeberg.org/thi.ng/umbrella/commit/21ce0d4))
   - add IntersectOpts & as optional arg
     - update impl for ray-poly/ray-polyline
   - add support for new shape pairings:
@@ -395,41 +395,41 @@ and/or version bumps of transitive dependencies.
     - line-polyline
     - ray-line
     - ray-group
-- update intersects(), add line-group support ([1e270fa](https://github.com/thi-ng/umbrella/commit/1e270fa))
+- update intersects(), add line-group support ([1e270fa](https://codeberg.org/thi.ng/umbrella/commit/1e270fa))
   - add line-group impl
   - refactor/simplify ray-group impl
 
-### [6.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.0.6) (2023-12-03)
+### [6.0.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.6) (2023-12-03)
 
 #### 🩹 Bug fixes
 
-- fix [#431](https://github.com/thi-ng/umbrella/issues/431) update Path.withAttribs() impl ([eaad1cd](https://github.com/thi-ng/umbrella/commit/eaad1cd))
+- fix [#431](https://github.com/thi-ng/umbrella/issues/431) update Path.withAttribs() impl ([eaad1cd](https://codeberg.org/thi.ng/umbrella/commit/eaad1cd))
   - keep closed state of new path the same as original
 
-### [6.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.0.2) (2023-11-09)
+### [6.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.2) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-# [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@6.0.0) (2023-11-01)
+# [6.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.0) (2023-11-01)
 
 #### 🛑 Breaking changes
 
-- update tessellate() for groups, update return type ([1bb1752](https://github.com/thi-ng/umbrella/commit/1bb1752))
+- update tessellate() for groups, update return type ([1bb1752](https://codeberg.org/thi.ng/umbrella/commit/1bb1752))
 - BREAKING CHANGE: update tessellate() for groups, update return type to Iterable
 
-### [5.2.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@5.2.13) (2023-10-27)
+### [5.2.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.2.13) (2023-10-27)
 
 #### ♻️ Refactoring
 
-- update vector imports ([5884c2b](https://github.com/thi-ng/umbrella/commit/5884c2b))
+- update vector imports ([5884c2b](https://codeberg.org/thi.ng/umbrella/commit/5884c2b))
 
-## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@5.2.0) (2023-08-29)
+## [5.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.2.0) (2023-08-29)
 
 #### 🚀 Features
 
-- update various shape ctors to accept iterables ([ae0cf5b](https://github.com/thi-ng/umbrella/commit/ae0cf5b))
+- update various shape ctors to accept iterables ([ae0cf5b](https://codeberg.org/thi.ng/umbrella/commit/ae0cf5b))
   - update shared APC ctor
   - update other shape ctors: BPatch, Group, Path
   - add assertions to verify vertex counts in these ctors:
@@ -440,25 +440,25 @@ and/or version bumps of transitive dependencies.
     - Quadratic
     - Triangle
 
-## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@5.1.0) (2023-08-06)
+## [5.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.1.0) (2023-08-06)
 
 #### 🚀 Features
 
-- update API for various shape types ([3a45c5f](https://github.com/thi-ng/umbrella/commit/3a45c5f))
+- update API for various shape types ([3a45c5f](https://codeberg.org/thi.ng/umbrella/commit/3a45c5f))
   - add IClear impls for APC, Group, Path
   - add .add() methods for APC, Group, Polygon, Polyline
   - update Path.add() to accept multiple args
 
-# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@5.0.0) (2023-04-08)
+# [5.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.0.0) (2023-04-08)
 
 #### 🛑 Breaking changes
 
-- update asSVG() bleed handling ([cf3eafb](https://github.com/thi-ng/umbrella/commit/cf3eafb))
+- update asSVG() bleed handling ([cf3eafb](https://codeberg.org/thi.ng/umbrella/commit/cf3eafb))
 - BREAKING CHANGE: rename `bleed` attrib to `__bleed`
   - for consistency, keep all control attribs prefixed as `__xxx`
   - add asSvg() support for `__prec`
   - update docs
-- update splitArcLength() group handling ([6b97085](https://github.com/thi-ng/umbrella/commit/6b97085))
+- update splitArcLength() group handling ([6b97085](https://codeberg.org/thi.ng/umbrella/commit/6b97085))
 - BREAKING CHANGE: update splitArcLength() group handling & return type
   - update group handling to form sub-groups of predictable length
     (e.g. grouping shorter shapes and/or splitting longer shapes until desired arc length is reached)
@@ -468,13 +468,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update inscribedSquare/Hex() args, add attribs ([317f630](https://github.com/thi-ng/umbrella/commit/317f630))
+- update inscribedSquare/Hex() args, add attribs ([317f630](https://codeberg.org/thi.ng/umbrella/commit/317f630))
 
-## [4.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.4.0) (2023-03-24)
+## [4.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.4.0) (2023-03-24)
 
 #### 🚀 Features
 
-- avoid recursive application of __samples attrib ([189446d](https://github.com/thi-ng/umbrella/commit/189446d))
+- avoid recursive application of __samples attrib ([189446d](https://codeberg.org/thi.ng/umbrella/commit/189446d))
   - add internal __copyAttribsNoSamples() helper
   - update implementations for:
     - asPolygon()
@@ -483,22 +483,22 @@ and/or version bumps of transitive dependencies.
     - resample()
     - splitArcLength()
   - update Group ctor to make attribs optional
-- add/expose subdiv & tessellation presets ([0f79c6d](https://github.com/thi-ng/umbrella/commit/0f79c6d))
-  - re-export aliases for subdivCurve() from [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/main/packages/geom-subdiv-curve) (as `SUBDIV_XXX`...)
-  - re-export aliases for tessellate() from [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/main/packages/geom-tessellate) (as `TESSELLATE_XXX`...)
+- add/expose subdiv & tessellation presets ([0f79c6d](https://codeberg.org/thi.ng/umbrella/commit/0f79c6d))
+  - re-export aliases for subdivCurve() from [@thi.ng/geom-subdiv-curve](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-subdiv-curve) (as `SUBDIV_XXX`...)
+  - re-export aliases for tessellate() from [@thi.ng/geom-tessellate](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-tessellate) (as `TESSELLATE_XXX`...)
 
-## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.3.0) (2023-03-22)
-
-#### 🚀 Features
-
-- add splitArclength() ([906a326](https://github.com/thi-ng/umbrella/commit/906a326))
-- add spiral() polyline factory fn ([572e0ef](https://github.com/thi-ng/umbrella/commit/572e0ef))
-
-## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.2.0) (2023-01-10)
+## [4.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.3.0) (2023-03-22)
 
 #### 🚀 Features
 
-- update vertices() for circle, ellipse, group ([9ff890a](https://github.com/thi-ng/umbrella/commit/9ff890a))
+- add splitArclength() ([906a326](https://codeberg.org/thi.ng/umbrella/commit/906a326))
+- add spiral() polyline factory fn ([572e0ef](https://codeberg.org/thi.ng/umbrella/commit/572e0ef))
+
+## [4.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.2.0) (2023-01-10)
+
+#### 🚀 Features
+
+- update vertices() for circle, ellipse, group ([9ff890a](https://codeberg.org/thi.ng/umbrella/commit/9ff890a))
   - add support for SamplingOpts.start (circle/ellipse)
   - add SamplingOpts support for groups
   - migrate internal helpers

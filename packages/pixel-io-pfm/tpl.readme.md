@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 Similar to the [NetPBM
-formats](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm),
+formats](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-netpbm),
 the [Portable FloatMap image format](https://pauldebevec.com/Research/HDR/PFM/)
 is extremely simple, uncompressed and mainly interesting for development
 purposes & interchange (e.g. for use with Intel's [Open Image Denoise CLI

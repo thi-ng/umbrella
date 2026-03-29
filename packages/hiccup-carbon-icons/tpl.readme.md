@@ -7,7 +7,7 @@
 This package provides the full set of IBM's [Carbon
 icons](https://github.com/IBM/carbon-icons) in hiccup format (i.e. as Javascript
 encoded SVG), counting in at ~1100 and ready to be used within any
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 supporting scenario.
 
 Each icon is defined in its own source file and can be imported individually.
@@ -19,7 +19,7 @@ e.g. `withSize(DOWNLOAD, "12px")`.
 
 All icons can be previewed here: [contact
 sheet](https://demo.thi.ng/umbrella/hiccup-carbon-icons/). ([Source
-code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons/tools/contact-sheet.ts))
+code](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-carbon-icons/tools/contact-sheet.ts))
 
 {{meta.status}}
 
@@ -70,7 +70,7 @@ checkout of both the original carbon and the umbrella mono repos.
 # install pre-requisites
 yarn global add svgo
 
-git clone https://github.com/thi-ng/umbrella.git
+git clone https://codeberg.org/thi.ng/umbrella.git
 
 # build entire umbrella repo
 cd umbrella

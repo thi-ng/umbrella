@@ -4,7 +4,7 @@
 
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-dither.jpg)
 
 {{pkg.description}}
 

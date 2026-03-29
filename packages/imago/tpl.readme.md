@@ -11,7 +11,7 @@ CLojure/Java-based image processor from 2014...
 
 In this new TypeScript version all image I/O and processing is delegated to
 [sharp](https://sharp.pixelplumbing.com) and
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel).
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 ### Basic example
 
@@ -30,7 +30,7 @@ The following pipeline performs these steps (in sequence):
 - crop center square region
 - output as JPEG thumbnail (and record in outputs)
 - compute
-  [blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash)
+  [blurhash](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/blurhash)
   (and record in outputs)
 
 ```json tangle:export/readme-example1.json
@@ -145,7 +145,7 @@ Cropping a part of the image
 ### dither
 
 Supported dither modes from
-[thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel-dither):
+[thi.ng/pixel-dither](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-dither):
 
 - "atkinson"
 - "burkes"
@@ -212,7 +212,7 @@ File output in any of these formats:
 - webp
 
 Alternatively, a
-[blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash) of
+[blurhash](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/blurhash) of
 the image can be computed and stored in the outputs. In this case, no file will
 be written.
 
@@ -306,7 +306,7 @@ The `ref` option/reference side can take the following values (default: `both`):
 In some operations positioning or alignment can be abstractly stated via one of
 the following gravity values:
 
-![diagram of the 9 possible gravity directions](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imago/gravity.png)
+![diagram of the 9 possible gravity directions](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/imago/gravity.png)
 
 ## Metadata handling
 

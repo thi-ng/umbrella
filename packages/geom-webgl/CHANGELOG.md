@@ -11,27 +11,27 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-webgl@0.1.0) (2024-06-21)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-webgl@0.1.0) (2024-06-21)
 
 #### 🚀 Features
 
-- import as new pkg ([75842ae](https://github.com/thi-ng/umbrella/commit/75842ae))
-- add UV generators, update asWebGLModel() & opts ([6222d98](https://github.com/thi-ng/umbrella/commit/6222d98))
+- import as new pkg ([75842ae](https://codeberg.org/thi.ng/umbrella/commit/75842ae))
+- add UV generators, update asWebGLModel() & opts ([6222d98](https://codeberg.org/thi.ng/umbrella/commit/6222d98))
   - add generateUVPointIndex()
   - add generateUVBounds2()
   - update asWebGLModel() to return array of model specs
   - update tessellation opts/handling
   - update deps
-- add 3d shape support, update default tessellator ([7fb0e90](https://github.com/thi-ng/umbrella/commit/7fb0e90))
+- add 3d shape support, update default tessellator ([7fb0e90](https://codeberg.org/thi.ng/umbrella/commit/7fb0e90))
   - add `asWebGLModel()` impls for: AABB, Polygon3, Quad3, Triangle3
   - use TESSELLATE_TRI_FAN_BOUNDARY as new default tessellator
   - update `defModel()` to support 3D geometry
 
 #### 🩹 Bug fixes
 
-- merge group options ([6ab7774](https://github.com/thi-ng/umbrella/commit/6ab7774))
-- update group attrib handling ([5be3a28](https://github.com/thi-ng/umbrella/commit/5be3a28))
+- merge group options ([6ab7774](https://codeberg.org/thi.ng/umbrella/commit/6ab7774))
+- update group attrib handling ([5be3a28](https://codeberg.org/thi.ng/umbrella/commit/5be3a28))
 
 #### ♻️ Refactoring
 
-- remove geom-api dep, update imports ([1a3ebca](https://github.com/thi-ng/umbrella/commit/1a3ebca))
+- remove geom-api dep, update imports ([1a3ebca](https://codeberg.org/thi.ng/umbrella/commit/1a3ebca))

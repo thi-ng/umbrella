@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/matrices](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-matrices.svg?07e7fd3b)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/matrices](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-matrices.svg?07e7fd3b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -43,7 +44,7 @@ Matrix & quaternion operations for 2D/3D geometry processing.
 
 This package provides 160+ matrix & quaternion operations for 2D/3D
 geometry processing and acts as companion package for
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors).
+[@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors).
 Like with the vectors package, most functions are defined as
 multi-method dispatching to optimized implementations based on matrix
 size (which themselves are exposed for direct use too).
@@ -57,14 +58,14 @@ sensible).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmatrices%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bmatrices%5D)
 
 ## Related packages
 
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
+- [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
+- [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
+- [@thi.ng/vector-pools](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 
 ## Installation
 
@@ -96,39 +97,39 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.19 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 18 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                                                  | Live demo                                                    | Source                                                                                    |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>                 | (Re)Constructing the thi.ng logo using a 2D signed-distance field                            | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-sdf-logo)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-attrib-pool.jpg" width="240"/>        | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers                | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-attrib-pool) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>             | Converting thi.ng/geom shape types for WebGL                                                 | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export                         | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>                   | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/>                | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang               | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                | [Demo](https://demo.thi.ng/umbrella/scenegraph/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>              | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>                  | Minimal shader graph developed during livestream #2                                          | [Demo](https://demo.thi.ng/umbrella/shader-graph/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD                        | [Demo](https://demo.thi.ng/umbrella/simd-plot/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)              |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>                  | Entity Component System w/ 100k 3D particles                                                 | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)                | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)                |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>                   | 3D wireframe textmode demo                                                                   | [Demo](https://demo.thi.ng/umbrella/text-canvas/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/unbiased-normals.png" width="240"/>              | Visual comparison of biased vs. unbiased normal vectors projected on the surface of a sphere | [Demo](https://demo.thi.ng/umbrella/unbiased-normals/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/unbiased-normals)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>                    | 3D arcball controller to rotate the camera view of a colored cube                            | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-arcball)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>                    | WebGL multi-colored cube mesh                                                                | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>                 | WebGL cube maps with async texture loading                                                   | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>                    | WebGL instancing, animated grid                                                              | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>                    | WebGL MSDF text rendering & particle system                                                  | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)             |
+| Screenshot                                                                                                                                   | Description                                                                                  | Live demo                                                    | Source                                                                                     |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-sdf-logo.jpg" width="240"/>                 | (Re)Constructing the thi.ng logo using a 2D signed-distance field                            | [Demo](https://demo.thi.ng/umbrella/geom-sdf-logo/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-sdf-logo)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-webgl-attrib-pool.jpg" width="240"/>        | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers                | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-webgl-attrib-pool) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>             | Converting thi.ng/geom shape types for WebGL                                                 | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-webgl-basics)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export                         | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ifs-fractal.jpg" width="240"/>                   | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ifs-fractal)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-geom.jpg" width="240"/>                | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang               | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-geom)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                                                | [Demo](https://demo.thi.ng/umbrella/scenegraph/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph-image.png" width="240"/>              | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph-image)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-graph.jpg" width="240"/>                  | Minimal shader graph developed during livestream #2                                          | [Demo](https://demo.thi.ng/umbrella/shader-graph/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-graph)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD                        | [Demo](https://demo.thi.ng/umbrella/simd-plot/)              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/simd-plot)              |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/soa-ecs-100k.png" width="240"/>                  | Entity Component System w/ 100k 3D particles                                                 | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)                | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/soa-ecs)                |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/text-canvas.png" width="240"/>                   | 3D wireframe textmode demo                                                                   | [Demo](https://demo.thi.ng/umbrella/text-canvas/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/text-canvas)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/unbiased-normals.png" width="240"/>              | Visual comparison of biased vs. unbiased normal vectors projected on the surface of a sphere | [Demo](https://demo.thi.ng/umbrella/unbiased-normals/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/unbiased-normals)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cube.png" width="240"/>                    | 3D arcball controller to rotate the camera view of a colored cube                            | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-arcball)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cube.png" width="240"/>                    | WebGL multi-colored cube mesh                                                                | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-cube)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cubemap.jpg" width="240"/>                 | WebGL cube maps with async texture loading                                                   | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-cubemap)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-grid.jpg" width="240"/>                    | WebGL instancing, animated grid                                                              | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-grid)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-msdf.jpg" width="240"/>                    | WebGL MSDF text rendering & particle system                                                  | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-msdf)             |
 
 ## API
 

@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.2.84](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-fsm@2.2.84) (2024-04-20)
+### [2.2.84](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-fsm@2.2.84) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([3a72b97](https://github.com/thi-ng/umbrella/commit/3a72b97))
+- update type usage ([3a72b97](https://codeberg.org/thi.ng/umbrella/commit/3a72b97))
 
-### [2.2.82](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-fsm@2.2.82) (2024-04-08)
-
-#### ♻️ Refactoring
-
-- update reducer handling due to updates in [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/main/packages/transducers) pkg ([855bcba](https://github.com/thi-ng/umbrella/commit/855bcba))
-
-### [2.2.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-fsm@2.2.45) (2023-11-09)
+### [2.2.82](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-fsm@2.2.82) (2024-04-08)
 
 #### ♻️ Refactoring
 
-- update all tests (packages T-Z) ([020ef6c](https://github.com/thi-ng/umbrella/commit/020ef6c))
+- update reducer handling due to updates in [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/transducers) pkg ([855bcba](https://codeberg.org/thi.ng/umbrella/commit/855bcba))
+
+### [2.2.45](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-fsm@2.2.45) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages T-Z) ([020ef6c](https://codeberg.org/thi.ng/umbrella/commit/020ef6c))

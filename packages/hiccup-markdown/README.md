@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/hiccup-markdown](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-hiccup-markdown.svg?1af87372)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/hiccup-markdown](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-hiccup-markdown.svg?1af87372)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Parser](#parser)
@@ -45,13 +46,13 @@
 
 ## About
 
-Markdown parser & serializer from/to Hiccup format. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+Markdown parser & serializer from/to Hiccup format. This is a support package for [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup).
 
 **⚠️ IMPORTANT: With v3.0.0 the parser implementation underwent a complete
 rewrite (with breaking changes, but lots of improvements). ⚠️**
 
 This package provides both a customizable
-[Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 parser and an extensible Hiccup-to-Markdown converter.
 
 ## Parser
@@ -97,7 +98,7 @@ details/examples...**
 
 In addition to the **mandatory language hint**, code blocks support optional
 user defined headers/metadata. Items will be separated by spaces (e.g. see
-[@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle)
+[@thi.ng/tangle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/tangle)
 for concrete use cases).
 
 (Note: the GFM codeblock fences are only shown escaped here to avoid GH
@@ -137,7 +138,7 @@ transformer. The default handler merely creates an element like this:
 ```
 
 **Tip:** Use a
-[`defmulti()`](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+[`defmulti()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
 polymorphic function as tag transformer to elegantly handle multiple types of
 custom blocks (in an easily extensible manner).
 
@@ -382,7 +383,7 @@ Not (yet) supported:
 
 Also, other element types can be supported by adding a new tag specific
 implementation to the exported `serializeElement`
-[multi-method](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
+[multi-method](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti).
 See source code for reference.
 
 ### Usage examples
@@ -518,11 +519,11 @@ More info [here](http://thi.ng/hiccup-markdown).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-markdown%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bhiccup-markdown%5D)
 
 ## Related packages
 
-- [@thi.ng/markdown-table](https://github.com/thi-ng/umbrella/tree/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
+- [@thi.ng/markdown-table](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
 
 ## Installation
 
@@ -550,34 +551,34 @@ For Node.js REPL:
 const md = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.62 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.63 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/emoji](https://github.com/thi-ng/umbrella/tree/develop/packages/emoji)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/emoji](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/emoji)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/text-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                             | Description                                                        | Live demo                                            | Source                                                                            |
-|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Markdown to Hiccup to HTML parser / transformer                    | [Demo](https://demo.thi.ng/umbrella/markdown/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>  | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images) |
+| Screenshot                                                                                                                     | Description                                                        | Live demo                                            | Source                                                                             |
+|:-------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/markdown-parser.jpg" width="240"/> | Markdown to Hiccup to HTML parser / transformer                    | [Demo](https://demo.thi.ng/umbrella/markdown/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/markdown)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/>  | Responsive image gallery with tag-based Jaccard similarity ranking | [Demo](https://demo.thi.ng/umbrella/related-images/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images) |
 
 ## API
 

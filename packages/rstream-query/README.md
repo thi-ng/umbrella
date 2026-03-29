@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-query](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-query.svg?66de0786)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/rstream-query](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-rstream-query.svg?66de0786)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-query.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Current features](#current-features)
@@ -27,7 +28,7 @@
 
 ## About
 
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 based [triple store](https://en.wikipedia.org/wiki/Triplestore) &
 reactive query engine with declarative query specs related to
 [Datalog](https://en.wikipedia.org/wiki/Datalog) /
@@ -49,9 +50,9 @@ feature is currently WIP).
 - Dynamic & declarative dataflow graph construction via high-level data
   specs and/or functions
 - Entirely based on stream abstractions provided by
-  [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+  [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 - All data transformations done using dynamically composed
-  [tranducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+  [tranducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 - Query optimizations
 - Extensive re-use of existing sub-query results (via subscriptions)
 - Interim result de-duplication / dataflow gates
@@ -61,12 +62,12 @@ feature is currently WIP).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-query%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brstream-query%5D)
 
 This project is currently still in early development and intended as a
 continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
 this time built on the streaming primitives provided by
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream).
 
 ## Installation
 
@@ -98,28 +99,28 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/rstream-dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-dot)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/> | Triple store query results & sortable table | [Demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query) |
+| Screenshot                                                                                                                  | Description                                 | Live demo                                          | Source                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/triple-query.png" width="240"/> | Triple store query results & sortable table | [Demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/triple-query) |
 
 ## API
 
@@ -234,11 +235,11 @@ generated dataflow topology then looks as follows:
   transformed to produce the final solution set and post-process it
 
 Btw. The diagram has been generated using
-[@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot)
+[@thi.ng/rstream-dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-dot)
 and can be recreated by calling `store.toDot()` (for the above example)
 
 The source code for the above example is
-[here](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query/test/example.ts)
+[here](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-query/test/example.ts)
 
 (Many) more features forthcoming...
 

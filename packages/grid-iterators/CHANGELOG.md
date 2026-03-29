@@ -11,72 +11,72 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [4.0.144](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.144) (2025-12-03)
+### [4.0.144](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.144) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [4.0.75](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.75) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- dedupe interleave logic/iteration, add tests ([7bc9f7f](https://github.com/thi-ng/umbrella/commit/7bc9f7f))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-- internal update floodFill() ([3af4715](https://github.com/thi-ng/umbrella/commit/3af4715))
-
-### [4.0.71](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.71) (2024-04-20)
+### [4.0.75](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.75) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update type usage ([a3afff7](https://github.com/thi-ng/umbrella/commit/a3afff7))
+- dedupe interleave logic/iteration, add tests ([7bc9f7f](https://codeberg.org/thi.ng/umbrella/commit/7bc9f7f))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
+- internal update floodFill() ([3af4715](https://codeberg.org/thi.ng/umbrella/commit/3af4715))
 
-### [4.0.54](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.54) (2024-02-22)
-
-#### ♻️ Refactoring
-
-- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
-
-### [4.0.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.30) (2023-11-09)
+### [4.0.71](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.71) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update type usage ([a3afff7](https://codeberg.org/thi.ng/umbrella/commit/a3afff7))
 
-### [4.0.21](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.21) (2023-10-11)
+### [4.0.54](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.54) (2024-02-22)
 
 #### ♻️ Refactoring
 
-- minor update columns2d() ([7ecb207](https://github.com/thi-ng/umbrella/commit/7ecb207))
+- update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
 
-# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.0) (2023-04-08)
+### [4.0.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.30) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+### [4.0.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.21) (2023-10-11)
+
+#### ♻️ Refactoring
+
+- minor update columns2d() ([7ecb207](https://codeberg.org/thi.ng/umbrella/commit/7ecb207))
+
+# [4.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@4.0.0) (2023-04-08)
 
 #### 🛑 Breaking changes
 
-- add/rename types/opts ([bc3ea21](https://github.com/thi-ng/umbrella/commit/bc3ea21))
+- add/rename types/opts ([bc3ea21](https://codeberg.org/thi.ng/umbrella/commit/bc3ea21))
 - BREAKING CHANGE: rename various option types (add 2D/3D suffixes)
 
 #### 🚀 Features
 
-- add filter predicates ([81abf60](https://github.com/thi-ng/umbrella/commit/81abf60))
+- add filter predicates ([81abf60](https://codeberg.org/thi.ng/umbrella/commit/81abf60))
   - add isDiagonal/Alt() filters
 
 #### 🩹 Bug fixes
 
-- fix imports ([353bc3d](https://github.com/thi-ng/umbrella/commit/353bc3d))
+- fix imports ([353bc3d](https://codeberg.org/thi.ng/umbrella/commit/353bc3d))
 
-## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.1.0) (2023-03-25)
+## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/grid-iterators@3.1.0) (2023-03-25)
 
 #### 🚀 Features
 
-- add diagonalSlopeX/Y() ([f63dc6e](https://github.com/thi-ng/umbrella/commit/f63dc6e))
+- add diagonalSlopeX/Y() ([f63dc6e](https://codeberg.org/thi.ng/umbrella/commit/f63dc6e))
   - add diagonal iterators with configurable slope (X & Y versions)
   - update pkg deps
 
 #### ♻️ Refactoring
 
-- update diagonalEnds2d() ([e20bf7b](https://github.com/thi-ng/umbrella/commit/e20bf7b))
+- update diagonalEnds2d() ([e20bf7b](https://codeberg.org/thi.ng/umbrella/commit/e20bf7b))
   - add `all` option to include first & last points
-- extract DiagonalSlopeOpts ([e08857d](https://github.com/thi-ng/umbrella/commit/e08857d))
-- update diagonalEnds2d() opts ([d14458a](https://github.com/thi-ng/umbrella/commit/d14458a))
+- extract DiagonalSlopeOpts ([e08857d](https://codeberg.org/thi.ng/umbrella/commit/e08857d))
+- update diagonalEnds2d() opts ([d14458a](https://codeberg.org/thi.ng/umbrella/commit/d14458a))
   - make `all` optional

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/emoji](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-emoji.svg?2371a385)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/emoji](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-emoji.svg?2371a385)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/emoji.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [References](#references)
@@ -39,7 +40,7 @@ character...
 ### References
 
 The
-[index](https://github.com/thi-ng/umbrella/blob/develop/packages/emoji/src/emoji.ts)
+[index](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/emoji/src/emoji.ts)
 is based on the one used by
 [node-emoji](https://raw.githubusercontent.com/omnidan/node-emoji/master/lib/emoji.json)
 (which itself is sourced from the [js-emoji](https://github.com/iamcal/js-emoji)
@@ -52,7 +53,7 @@ underscores (`_`).
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bemoji%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bemoji%5D)
 
 ## Installation
 

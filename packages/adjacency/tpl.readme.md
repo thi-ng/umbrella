@@ -131,6 +131,6 @@ graph.removeEdge(0, 1);
 
 GraphViz visualization of the above example graph:
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/adjacency/readme.png)
+![example graph](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/adjacency/readme.png)
 
 <!-- include ../../assets/tpl/footer.md -->

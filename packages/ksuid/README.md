@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/ksuid](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-ksuid.svg?111522b1)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/ksuid](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-ksuid.svg?111522b1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ksuid.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [CLI usage](#cli-usage)
@@ -46,7 +47,7 @@ creation of [ULIDs](https://github.com/ulid/spec):
 | Configurable RNG source<sup>(3)</sup> | ✅                                | ✅                      |
 
 - <sup>(1)</sup> See
-  [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
+  [@thi.ng/base-n](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/base-n)
   for alternatives
 - <sup>(2)</sup> With the default offset, the max. supported date for `KSUID32` is 2156-10-20T18:54:55Z
 - <sup>(3)</sup> Default: `window.crypto`, `Math.random` as fallback
@@ -58,7 +59,7 @@ as byte arrays or base-N encoded strings. For the latter, the JS runtime MUST
 support
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 
-![KSUID bit layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ksuid/ksuid.png)
+![KSUID bit layout diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/ksuid/ksuid.png)
 
 ### CLI usage
 
@@ -78,7 +79,7 @@ npx @thi.ng/ksuid 8
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bksuid%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bksuid%5D)
 
 ### Breaking changes
 
@@ -92,9 +93,9 @@ implementations already used milliseconds.
 
 ## Related packages
 
-- [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/83/85, support for bigints and encoding/decoding of byte arrays
-- [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen) - Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
+- [@thi.ng/base-n](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base8/16/32/36/58/62/64/83/85, support for bigints and encoding/decoding of byte arrays
+- [@thi.ng/idgen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/idgen) - Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
@@ -126,10 +127,10 @@ Package sizes (brotli'd, pre-treeshake): ESM: 990 bytes
 
 ## Dependencies
 
-- [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/base-n](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/base-n)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 ## API
 

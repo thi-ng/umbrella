@@ -32,7 +32,7 @@
 
 This package only contains constants, no actual code. Please see [source
 code for full list
-provided](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes/src/).
+provided](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/prefixes/src/).
 
 **Note:** some namespace URIs exist in two flavors - for RDF vocab and
 as XML namespace. The latter versions are always prefixed with `XML_`,
@@ -48,7 +48,7 @@ XML_XSD // http://www.w3.org/2001/XMLSchema
 ### Usage with @thi.ng/hiccup
 
 All current
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 consumers/processors support [RDFa](https://www.w3.org/TR/rdfa-core/)
 attributes and specifically allow the `prefix` attrib value to be given
 as object of prefixes. This allows for very compact prefix definitions

@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > This package has been deprecated and superseded by
-> [@thi.ng/parse](https://github.com/thi-ng/umbrella/blob/develop/packages/parse/).
+> [@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse/).
 
 <!-- toc -->
 
@@ -44,24 +44,24 @@ also support optional user callbacks, which are executed when a match
 was made and are responsible for state transitions, state update and
 production of any result values.
 
-- [`alts()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/alts.ts)
-- [`altsLit()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/alts-lit.ts)
-- [`always()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/always.ts)
-- [`lit()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/lit.ts)
-- [`never()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/never.ts)
-- [`not()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/not.ts)
-- [`range()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/range.ts) (plus multiple presets)
-- [`repeat()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/repeat.ts)
-- [`seq()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/seq.ts)
-- [`str()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/str.ts)
-- [`until()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/until.ts)
+- [`alts()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/alts.ts)
+- [`altsLit()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/alts-lit.ts)
+- [`always()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/always.ts)
+- [`lit()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/lit.ts)
+- [`never()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/never.ts)
+- [`not()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/not.ts)
+- [`range()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/range.ts) (plus multiple presets)
+- [`repeat()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/repeat.ts)
+- [`seq()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/seq.ts)
+- [`str()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/str.ts)
+- [`until()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/until.ts)
 
 See docs strings in `/src` folder for now.
 
 ### FSM transducer
 
 The
-[`fsm()`](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm/src/fsm.ts)
+[`fsm()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fsm/src/fsm.ts)
 function is a Finite-state machine transducer / iterator with support
 for single lookahead values. Takes an object of `states` and their
 matchers, an arbitrary context object and an `initial` state ID.

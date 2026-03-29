@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/colored-noise](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-colored-noise.svg?c5c90855)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/colored-noise](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-colored-noise.svg?c5c90855)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/colored-noise.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Blue noise](#blue-noise)
@@ -45,7 +46,7 @@ spectrums / histograms (averaged 1000 runs @ 256 samples each). Each noise gen
 is configurable in terms of number of internal RNG states, value range (default:
 `[-1..1)` interval, always centered around 0) and the actual backing PRNG
 implementation (default: `Math.random`, see
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 for alternatives).
 
 Code ported from Java, C & Clojure implementations and other
@@ -57,7 +58,7 @@ In alphabetical order:
 ### Blue noise
 
 High-pass filtered noise (opposite of [red](#red-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/blue.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/blue.ts)
 
 ```text
 blue2
@@ -119,7 +120,7 @@ blue32
 
 Band-pass filtered noise (interleaved blue noise, opposite of
 [violet](#violet-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/green.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/green.ts)
 
 ```text
 green4
@@ -166,7 +167,7 @@ green32
 ### Pink noise
 
 Exponential decay power curve (1/f) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/pink.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/pink.ts)
 
 ```text
 pink4
@@ -215,7 +216,7 @@ pink32
 ### Red / brown noise
 
 Low-pass filtered noise (opposite of [blue](#blue-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/red.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/red.ts)
 
 ```text
 red4
@@ -265,7 +266,7 @@ red32
 
 Band-stop filtered noise (interleaved red noise, opposite of
 [green](#green-noise)) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/violet.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/violet.ts)
 
 ```text
 violet2
@@ -327,7 +328,7 @@ violet32
 ### White noise
 
 Uniform distribution (unfiltered output from source PRNG) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/white.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/src/white.ts)
 
 ```text
 white
@@ -349,13 +350,13 @@ white
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolored-noise%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bcolored-noise%5D)
 
 ## Related packages
 
-- [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp) - Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils
-- [@thi.ng/lowdisc](https://github.com/thi-ng/umbrella/tree/develop/packages/lowdisc) - n-dimensional low-discrepancy sequence generators/iterators
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
+- [@thi.ng/dsp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp) - Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils
+- [@thi.ng/lowdisc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lowdisc) - n-dimensional low-discrepancy sequence generators/iterators
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
@@ -387,19 +388,19 @@ Package sizes (brotli'd, pre-treeshake): ESM: 494 bytes
 
 ## Dependencies
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                             | Description                                                           | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>       | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/> | Drawing to floating point offscreen / multi-pass shader pipeline      | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo) |
+| Screenshot                                                                                                                     | Description                                                           | Live demo                                             | Source                                                                              |
+|:-------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------|:------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/simd-plot.png" width="240"/>       | Fitting, transforming & plotting 10k data points per frame using SIMD | [Demo](https://demo.thi.ng/umbrella/simd-plot/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/simd-plot)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-float-fbo.jpg" width="240"/> | Drawing to floating point offscreen / multi-pass shader pipeline      | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-float-fbo) |
 
 ## API
 
@@ -408,7 +409,7 @@ directory are using this package:
 TODO
 
 See
-[/tools](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/tools/)
+[/tools](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/colored-noise/tools/)
 for usage examples...
 
 ```ts
@@ -453,7 +454,7 @@ writeFileSync(
 );
 ```
 
-![Result waveform with spectrum](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/colored-noise/hihat-green.png)
+![Result waveform with spectrum](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/colored-noise/hihat-green.png)
 
 ## Authors
 

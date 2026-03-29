@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.121](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-poly@2.1.121) (2024-03-21)
+### [2.1.121](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-clip-poly@2.1.121) (2024-03-21)
 
 #### ♻️ Refactoring
 
-- minor updates ([1a38846](https://github.com/thi-ng/umbrella/commit/1a38846))
+- minor updates ([1a38846](https://codeberg.org/thi.ng/umbrella/commit/1a38846))
 
-### [2.1.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-poly@2.1.86) (2023-11-09)
+### [2.1.86](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-clip-poly@2.1.86) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pointfree-lang](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pointfree-lang.svg?587e6428)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pointfree-lang](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pointfree-lang.svg?587e6428)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -48,11 +49,11 @@
 Experimental language layer with compact
 [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
 style syntax for
-[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree),
+[@thi.ng/pointfree](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree),
 an ES6 embedded DSL for concatenative programming:
 
 - [PegJS](https://pegjs.org/) based
-  [grammar](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang/src/grammar.pegjs)
+  [grammar](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree-lang/src/grammar.pegjs)
   & parser
 - untyped, interpreted, but with AOT compilation of user defined words
 - hyperstatic word definitions
@@ -69,7 +70,7 @@ an ES6 embedded DSL for concatenative programming:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpointfree-lang%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpointfree-lang%5D)
 
 ## Installation
 
@@ -101,26 +102,26 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.71 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
-- [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/args](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/args)
+- [@thi.ng/bench](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/bench)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/pointfree](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                            | Description                                                                    | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/>  | Generate SVG using pointfree DSL                                               |                                                      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)  |
+| Screenshot                                                                                                                    | Description                                                                    | Live demo                                            | Source                                                                             |
+|:------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-geom) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-svg.png" width="240"/>  | Generate SVG using pointfree DSL                                               |                                                      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-svg)  |
 
 ## Command line usage
 
@@ -352,7 +353,7 @@ drastically. In this DSL (and most aspects also in @thi.ng/pointfree):
 
 As in Forth, comments are enclosed in `( ... )`. If the comment body
 includes the `--` string, it's marked as a [stack effect
-comment](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects).
+comment](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree#about-stack-effects).
 The first stack comment of a word is added to the [word's metadata](#word-metadata) in
 preparation for future tooling additions.
 
@@ -384,7 +385,7 @@ additional ones: `*?$%&/|~<>=._+-`. However, digits are not allowed as
 first char.
 
 All 100+ built-in words defined by
-[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
+[@thi.ng/pointfree](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree)
 are available by default with the following additional aliases (which
 aren't valid names in the ES6 context):
 
@@ -450,7 +451,7 @@ Will result in `100`.
 
 There're no formatting rules enforced (yet, but under consideration).
 However, it's strongly encouraged to include [stack effect
-comments](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects)
+comments](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pointfree#about-stack-effects)
 as shown in the examples above.
 
 Word definitions MUST be terminated with `;`.

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/block-fs](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-block-fs.svg?75cee12f)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/block-fs](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-block-fs.svg?75cee12f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/block-fs.svg)](https://www.npmjs.com/package/@thi.ng/block-fs)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/block-fs.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Storage providers](#storage-providers)
@@ -102,14 +103,14 @@ entries/sizes. The default [`Entry`
 implementation](https://docs.thi.ng/umbrella/block-fs/classes/Entry.html)
 requires 64 bytes.
 
-![Memory layout diagram for a single directory entry](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/direntry-01.png)
+![Memory layout diagram for a single directory entry](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/block-fs/direntry-01.png)
 
 #### File blocks
 
 Files are stored as linked lists of blocks, with the first few bytes of each
 block reserved for linkage and number of data bytes in the block.
 
-![Memory layout diagram for a single file block](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/block-layout-01.png)
+![Memory layout diagram for a single file block](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/block-fs/block-layout-01.png)
 
 The number of bytes effectively available for data depends on the configured
 block size and the max. number of blocks in the storage backend. For example, a
@@ -121,14 +122,14 @@ data.
 The following diagram shows a block which links to block ID 0x1234 and uses the
 full 253 (0xfd in hex) bytes of data available:
 
-![Memory layout diagram for a single file block](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/block-layout-02.png)
+![Memory layout diagram for a single file block](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/block-fs/block-layout-02.png)
 
 The last block of a file uses a special sentinel marker to indicate that no
 other blocks follow. This sentinel value again depends on the configured max.
 block count, and in this example is 0xffff. This example block only stores 64
 (0x40 in hex) bytes of data, with the remainder zeroed out.
 
-![Memory layout diagram for a sentinel file block](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/block-fs/block-layout-03.png)
+![Memory layout diagram for a sentinel file block](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/block-fs/block-layout-03.png)
 
 ### Command line app
 
@@ -266,7 +267,7 @@ Main:
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bblock-fs%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bblock-fs%5D)
 
 ## Installation
 
@@ -298,18 +299,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.33 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/args](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/args)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/bitfield](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/bitfield)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/mime](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

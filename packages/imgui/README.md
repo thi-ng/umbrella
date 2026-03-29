@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/imgui](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-imgui.svg?224bad78)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/imgui](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-imgui.svg?224bad78)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imgui.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Current features](#current-features)
@@ -34,16 +35,16 @@
 
 Immediate mode GUI with flexible state handling & data only shape output.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/imgui/imgui-all.png)
 
 Currently still somewhat bare-bones, but already usable & customizable
 [immediate mode GUI](https://github.com/ocornut/imgui#references)
 implementation, primarily for
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
+[@thi.ng/hdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-canvas)
 /
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 and
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
+[@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl),
 however with no direct dependency on either and only outputting data structures.
 
 IMGUI components are largely ephemeral and expressed as simple
@@ -56,7 +57,7 @@ interaction produced a change. Additionally, each component produces a
 number of shapes & text labels, all of which are collected internally
 and are, from the user's POV, a mere side effect. At the end of the
 update cycle IMGUI produces a tree of
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 compatible elements, which can be easily converted into other formats
 (incl. SVG).
 
@@ -75,7 +76,7 @@ published, pending ongoing development in other packages...*
 - Re-usable hover & activation behaviors (for creating new components)
 - Fully keyboard controllable & Tab-focus switching / highlighting
 - All built-in components based on
-  [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+  [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
   shape primitives
 
 ### Available components / widgets
@@ -140,7 +141,7 @@ if (res !== undefined) STATE.resetIn("foo", res);
 ### Layout support
 
 Most component functions exist in two versions: Using a
-[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)-compatible
+[@thi.ng/layout](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/layout)-compatible
 grid layout manager or not (e.g. `dial` vs. `dialRaw`). The latter
 versions are more "low-level" & verbose to use, but offer complete
 layout freedom and are re-used by other component types.
@@ -148,9 +149,9 @@ layout freedom and are re-used by other component types.
 The components in this package not needing a layout manager are only
 expecting a `ILayout` or `IGridLayout` interface, allowing for custom
 implementations. Furthermore / alternatively, the
-[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
+[@thi.ng/layout](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/layout)
 package also defines a [`LayoutBox`
-interface](https://github.com/thi-ng/umbrella/tree/develop/packages/imgui/src/api.ts),
+interface](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/imgui/src/api.ts),
 which can be passed instead and too is the type `ILayout`
 implementations are expected to produce when allocating space for a
 component.
@@ -159,7 +160,7 @@ The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/grid-layout.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/layout/grid-layout.png)
 
 The code producing this structure:
 
@@ -222,7 +223,7 @@ The entire UI is fully keyboard controllable, built-in behaviors:
 | `Alt+Left/Right`            | Textfield        | Move cursor to prev/next word |
 
 More complex behaviors can be achieved in user land. E.g. in the
-[demo](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui/),
+[demo](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui/),
 holding down `Alt` whilst adjusting a slider or dial group will set all
 values uniformly...
 
@@ -243,13 +244,13 @@ Some of the most obvious missing features:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bimgui%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bimgui%5D)
 
 ## Related packages
 
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
-- [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
-- [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
+- [@thi.ng/hdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
+- [@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
+- [@thi.ng/rdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas) and declarative canvas drawing
 
 ## Installation
 
@@ -275,29 +276,29 @@ Package sizes (brotli'd, pre-treeshake): ESM: 7.48 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
-- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
-- [@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/ramp](https://github.com/thi-ng/umbrella/tree/develop/packages/ramp)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
+- [@thi.ng/geom-isec](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-isec)
+- [@thi.ng/layout](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/layout)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/ramp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/ramp)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                          | Description                                | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>    | Interactive inverse FFT toy synth          | [Demo](https://demo.thi.ng/umbrella/fft-synth/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>       | Canvas based Immediate Mode GUI components | [Demo](https://demo.thi.ng/umbrella/imgui/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/> | Minimal IMGUI usage example                | [Demo](https://demo.thi.ng/umbrella/imgui-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics) |
+| Screenshot                                                                                                                  | Description                                | Live demo                                          | Source                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fft-synth.png" width="240"/>    | Interactive inverse FFT toy synth          | [Demo](https://demo.thi.ng/umbrella/fft-synth/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/imgui/imgui-all.png" width="240"/>       | Canvas based Immediate Mode GUI components | [Demo](https://demo.thi.ng/umbrella/imgui/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/imgui-basics.png" width="240"/> | Minimal IMGUI usage example                | [Demo](https://demo.thi.ng/umbrella/imgui-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui-basics) |
 
 ## API
 

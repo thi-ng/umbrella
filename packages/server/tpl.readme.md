@@ -14,7 +14,7 @@ implementations.
 
 - Declarative & parametric routing (incl. validation and coercion of route
   params)
-	- Uses [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/develop/packages/router) as implementation
+	- Uses [@thi.ng/router](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/router) as implementation
 - Multiple HTTP methods per route
 	- Built-in HTTP OPTIONS handler for listing available route methods
 	- Fallback HTTP HEAD to GET method (if available)
@@ -40,7 +40,7 @@ See
 [`Interceptor`](https://docs.thi.ng/umbrella/server/interfaces/Interceptor.html)
 for more details.
 
-![Diagram illustrating interceptor processing order](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/server/server-interceptors.png)
+![Diagram illustrating interceptor processing order](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/server/server-interceptors.png)
 
 #### Available interceptors
 

@@ -1,6 +1,6 @@
 # webgl-cubemap
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-cubemap.jpg)
 
 WebGL 360˚ panorama / cube map example. Images by [Emil
 Persson](http://www.humus.name/index.php?page=Textures).
@@ -14,7 +14,7 @@ By default, the demo uses WebGL 1. To switch to WebGL2, replace the
 [Live demo](http://demo.thi.ng/umbrella/webgl-cubemap/)
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

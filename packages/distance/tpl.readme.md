@@ -34,7 +34,7 @@ distance values. The following preset metrics are provided too:
 Neighborhoods can be used to select n-D spatial items around a given target
 location and an optional catchment radius (infinite by default). Neighborhoods
 also use one of the given distance metrics and implement the widely used
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
+[`IDeref`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/deref.ts)
 interface to obtain the final query results.
 
 Custom neighborhood selections can be defined via the
@@ -54,7 +54,7 @@ proximity.
 An `INeighborhood` implementation for K-nearest neighbor queries around a given
 target location, initial query radius and `IDistance` metric to determine
 proximity. The K-nearest neighbors will be accumulated via an internal
-[heap](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps) and
+[heap](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/heaps) and
 results can be optionally returned in order of proximity (via `.deref()` or
 `.values()`). For K=1 it will be more efficient to use `Nearest` to avoid the
 additional overhead.
@@ -69,7 +69,7 @@ will be accumulated in order of processing via an internal array.
 
 Work is underway integrating this approach into the spatial indexing data
 structures provided by the
-[@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
+[@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
 package.
 
 {{repo.supportPackages}}

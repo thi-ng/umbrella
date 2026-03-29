@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/timestep](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-timestep.svg?5087f691)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/timestep](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-timestep.svg?5087f691)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/timestep.svg)](https://www.npmjs.com/package/@thi.ng/timestep)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/timestep.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Managing fixed timestep updates](#managing-fixed-timestep-updates)
@@ -136,11 +137,11 @@ after 1 second (25 frames)...
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btimestep%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btimestep%5D)
 
 ## Related packages
 
-- [@thi.ng/boids](https://github.com/thi-ng/umbrella/tree/develop/packages/boids) - n-dimensional boids simulation with modular behavior system
+- [@thi.ng/boids](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/boids) - n-dimensional boids simulation with modular behavior system
 
 ## Installation
 
@@ -172,21 +173,21 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.02 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                         | Description                                                    | Live demo                                         | Source                                                                         |
-|:-------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/boid-basics.png" width="240"/> | Basic 2D boid simulation and spatial indexing neighbor lookups | [Demo](https://demo.thi.ng/umbrella/boid-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/boid-basics) |
+| Screenshot                                                                                                                 | Description                                                    | Live demo                                         | Source                                                                          |
+|:---------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/boid-basics.png" width="240"/> | Basic 2D boid simulation and spatial indexing neighbor lookups | [Demo](https://demo.thi.ng/umbrella/boid-basics/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/boid-basics) |
 
 ## API
 

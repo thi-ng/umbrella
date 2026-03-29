@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/lispy](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-lispy.svg?a9b3f1f7)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/lispy](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-lispy.svg?a9b3f1f7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lispy.svg)](https://www.npmjs.com/package/@thi.ng/lispy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lispy.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Core language features](#core-language-features)
@@ -46,7 +47,7 @@ Lightweight, extensible, interpreted Lisp-style DSL for embedding in other proje
 > [!NOTE]
 > This DSL implementation has been extracted as standalone package from
 > existing work/examples bundled in the thi.ng/umbrella monorepo (i.e.
-> [lispy-repl](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl))
+> [lispy-repl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl))
 
 ## Core language features
 
@@ -193,7 +194,7 @@ passing a custom environment to
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blispy%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Blispy%5D)
 
 ## Installation
 
@@ -225,27 +226,27 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.99 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
-- [@thi.ng/sexpr](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/object-utils](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/object-utils)
+- [@thi.ng/sexpr](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sexpr)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                        | Description                                               | Live demo                                        | Source                                                                        |
-|:------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/lispy-repl.png" width="240"/> | Browser REPL for a Lispy S-expression based mini language | [Demo](https://demo.thi.ng/umbrella/lispy-repl/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/lispy-repl) |
+| Screenshot                                                                                                                | Description                                               | Live demo                                        | Source                                                                         |
+|:--------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------|:-------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/lispy-repl.png" width="240"/> | Browser REPL for a Lispy S-expression based mini language | [Demo](https://demo.thi.ng/umbrella/lispy-repl/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/lispy-repl) |
 
 ## API
 
@@ -253,7 +254,7 @@ directory is using this package:
 
 > [!NOTE]
 > Please also see
-> [/tests](https://github.com/thi-ng/umbrella/blob/develop/packages/lispy/test)
+> [/tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lispy/test)
 > for more small code examples..
 
 ```ts tangle:export/readme-1.ts

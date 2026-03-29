@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > This package has been deprecated, re-distributed & migrated to other packages,
 > most notably
-> [@thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom).
+> [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 <!-- toc -->
 

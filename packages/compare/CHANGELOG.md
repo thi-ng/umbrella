@@ -11,33 +11,33 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.5.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.5.3) (2026-03-08)
+### [2.5.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/compare@2.5.3) (2026-03-08)
 
 #### ⏱ Performance improvements
 
-- add fast paths for `composeComparators()`, add tests ([1e01866](https://github.com/thi-ng/umbrella/commit/1e01866))
-- simplify `compareByKey` impls ([eb5b92d](https://github.com/thi-ng/umbrella/commit/eb5b92d))
+- add fast paths for `composeComparators()`, add tests ([1e01866](https://codeberg.org/thi.ng/umbrella/commit/1e01866))
+- simplify `compareByKey` impls ([eb5b92d](https://codeberg.org/thi.ng/umbrella/commit/eb5b92d))
 
-## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.5.0) (2026-03-07)
-
-#### 🚀 Features
-
-- add `composeComparators()` helper ([c814dbe](https://github.com/thi-ng/umbrella/commit/c814dbe))
-
-## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.4.0) (2024-08-10)
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/compare@2.5.0) (2026-03-07)
 
 #### 🚀 Features
 
-- add compareLex(), add tests ([015687c](https://github.com/thi-ng/umbrella/commit/015687c))
+- add `composeComparators()` helper ([c814dbe](https://codeberg.org/thi.ng/umbrella/commit/c814dbe))
 
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.3.0) (2024-03-29)
-
-#### 🚀 Features
-
-- add compareLengthAsc/Desc(), refactor, add docs ([49dab9e](https://github.com/thi-ng/umbrella/commit/49dab9e))
-
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compare@2.2.0) (2023-09-15)
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/compare@2.4.0) (2024-08-10)
 
 #### 🚀 Features
 
-- add comparison operators/predicates ([5a627b1](https://github.com/thi-ng/umbrella/commit/5a627b1))
+- add compareLex(), add tests ([015687c](https://codeberg.org/thi.ng/umbrella/commit/015687c))
+
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/compare@2.3.0) (2024-03-29)
+
+#### 🚀 Features
+
+- add compareLengthAsc/Desc(), refactor, add docs ([49dab9e](https://codeberg.org/thi.ng/umbrella/commit/49dab9e))
+
+## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/compare@2.2.0) (2023-09-15)
+
+#### 🚀 Features
+
+- add comparison operators/predicates ([5a627b1](https://codeberg.org/thi.ng/umbrella/commit/5a627b1))

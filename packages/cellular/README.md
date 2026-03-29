@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/cellular](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-cellular.svg?22eefd20)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/cellular](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-cellular.svg?22eefd20)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cellular.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Neighborhoods](#neighborhoods)
@@ -34,7 +35,7 @@
 
 ## About
 
-![Custom cellular automata w/ 7-neighborhood & 128 states](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png)
+![Custom cellular automata w/ 7-neighborhood & 128 states](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hero.png)
 
 Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc..
 
@@ -138,12 +139,12 @@ supported. The same limit applies to the number of CA configs given.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcellular%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bcellular%5D)
 
 ## Related packages
 
-- [@thi.ng/lsys](https://github.com/thi-ng/umbrella/tree/develop/packages/lsys) - Functional, extensible L-System architecture w/ support for probabilistic rules
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
+- [@thi.ng/lsys](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/lsys) - Functional, extensible L-System architecture w/ support for probabilistic rules
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
 
 ## Installation
 
@@ -175,12 +176,12 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.45 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -230,7 +231,7 @@ writeFileSync("export/out.ppm", asPPM(img));
 
 Result:
 
-![1D Wolfram CA, rule 73](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/wolfram-73.png)
+![1D Wolfram CA, rule 73](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/wolfram-73.png)
 
 ### Custom kernels & multiple rules
 
@@ -297,9 +298,9 @@ writeFileSync("export/out.ppm", asPPM(img));
 
 | 1st CA only                                                                                       | 2nd CA only                                                                                     |
 |---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-a.png)       | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-b.png)     |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-a.png)       | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-b.png)     |
 | Hybrid (stripe pattern)                                                                           | Hybrid (noise)                                                                                  |
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-pattern.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-noise.png) |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-pattern.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hybrid-noise.png) |
 
 ## Authors
 

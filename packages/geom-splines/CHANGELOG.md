@@ -11,29 +11,29 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.3.41](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@2.3.41) (2025-04-16)
+### [2.3.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-splines@2.3.41) (2025-04-16)
 
 #### ♻️ Refactoring
 
-- minor internal optimizations (vector ops) ([08c58f6](https://github.com/thi-ng/umbrella/commit/08c58f6))
+- minor internal optimizations (vector ops) ([08c58f6](https://codeberg.org/thi.ng/umbrella/commit/08c58f6))
 
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@2.3.0) (2024-06-21)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-splines@2.3.0) (2024-06-21)
 
 #### 🚀 Features
 
-- add cubicHobby() curve fitting ([1cefc37](https://github.com/thi-ng/umbrella/commit/1cefc37))
+- add cubicHobby() curve fitting ([1cefc37](https://codeberg.org/thi.ng/umbrella/commit/1cefc37))
 
 #### ⏱ Performance improvements
 
-- update cubicHobby2() ([33bb393](https://github.com/thi-ng/umbrella/commit/33bb393))
+- update cubicHobby2() ([33bb393](https://codeberg.org/thi.ng/umbrella/commit/33bb393))
 
 #### ♻️ Refactoring
 
-- remove geom-api dep, update imports ([eab7bb9](https://github.com/thi-ng/umbrella/commit/eab7bb9))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- remove geom-api dep, update imports ([eab7bb9](https://codeberg.org/thi.ng/umbrella/commit/eab7bb9))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.2.61](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@2.2.61) (2023-11-09)
+### [2.2.61](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-splines@2.2.61) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/mime](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-mime.svg?1c54a22a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/mime](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-mime.svg?1c54a22a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/mime.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -34,7 +35,7 @@
 
 All MIME type mappings are based on [mime-db](https://github.com/jshttp/mime-db)
 (2023-02-17). For filesize reasons only [a small selected
-number](https://github.com/thi-ng/umbrella/blob/develop/packages/mime/tools/convert.ts#L7)
+number](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime/tools/convert.ts#L7)
 of [vendor MIME types](https://www.rfc-editor.org/rfc/rfc4288#section-3.2) (aka
 `*/vnd.*`) are included. Most of the omitted ones are fairly obscure anyway, so
 likely not problematic...
@@ -46,11 +47,11 @@ original DB, as well as some preference overrides.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmime%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bmime%5D)
 
 ## Related packages
 
-- [@thi.ng/dl-asset](https://github.com/thi-ng/umbrella/tree/develop/packages/dl-asset) - Canvas, video recording & file asset download helpers for web apps
+- [@thi.ng/dl-asset](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dl-asset) - Canvas, video recording & file asset download helpers for web apps
 
 ## Installation
 
@@ -87,19 +88,19 @@ None
 ## Usage examples
 
 Eight projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                                                 | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/>  | Interactive image processing (adaptive threshold)                           | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>            | Interactive & reactive image blurhash generator                             | [Demo](https://demo.thi.ng/umbrella/blurhash/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>     | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>       | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-waveform.jpg" width="240"/>      | RGB waveform image analysis                                                 | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-waveform)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>        | Basic usage of the declarative rdom-forms generator                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>        | Multi-layer vectorization & dithering of bitmap images                      | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/> | rdom & WebGL-based image channel editor                                     | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-channel-mixer) |
+| Screenshot                                                                                                                         | Description                                                                 | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/adaptive-threshold.png" width="240"/>  | Interactive image processing (adaptive threshold)                           | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/adaptive-threshold)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/blurhash.jpg" width="240"/>            | Interactive & reactive image blurhash generator                             | [Demo](https://demo.thi.ng/umbrella/blurhash/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/blurhash)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>     | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/>       | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-waveform.jpg" width="240"/>      | RGB waveform image analysis                                                 | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-waveform)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-formgen.jpg" width="240"/>        | Basic usage of the declarative rdom-forms generator                         | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>        | Multi-layer vectorization & dithering of bitmap images                      | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/> | rdom & WebGL-based image channel editor                                     | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-channel-mixer) |
 
 ## API
 
@@ -194,7 +195,7 @@ isCompressible(preferredType("mp4"))
 ```
 
 Additional configuration options are available in the
-[`tools/convert.ts`](https://github.com/thi-ng/umbrella/blob/develop/packages/mime/tools/convert.ts)
+[`tools/convert.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime/tools/convert.ts)
 script.
 
 ## Authors

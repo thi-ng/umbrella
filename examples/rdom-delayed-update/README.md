@@ -1,6 +1,6 @@
 # rdom-delayed-update
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-delayed-update.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-delayed-update.jpg)
 
 Bare-bones example demonstrating different ways to implement a dashboard of
 dynamically loaded images, each w/ its own preload state...
@@ -11,8 +11,8 @@ dynamically loaded images, each w/ its own preload state...
 
 Please refer to the instructions on the wiki:
 
-- [Development](https://github.com/thi-ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
-- [Production build](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+- [Development](https://codeberg.org/thi.ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
+- [Production build](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 
 ## Authors
 

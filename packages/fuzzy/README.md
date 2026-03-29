@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/fuzzy](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-fuzzy.svg?1e243dac)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/fuzzy](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-fuzzy.svg?1e243dac)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fuzzy.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Features](#features)
@@ -38,7 +39,7 @@ Fuzzy logic operators & configurable rule inferencing engine.
 - Fully type checked
 - Fuzzy set domain shaping & composition functions (incl. negated / inverse)
 - Various [T-norms &
-  S-norms](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts),
+  S-norms](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy/src/tnorms.ts),
   incl. parametric versions
 - Rules with multiple inputs/outputs and arbitrary term combinators (i.e.
   T-norms). Syntax sugar for common `and`/`or` rules.
@@ -49,7 +50,7 @@ Fuzzy logic operators & configurable rule inferencing engine.
 - Linguistic variable creation and term/set classification for given domain
   values
 - Fuzzy set visualization (via
-  [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz))
+  [@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz))
 
 ### References / Further reading
 
@@ -65,11 +66,11 @@ Fuzzy logic operators & configurable rule inferencing engine.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bfuzzy%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bfuzzy%5D)
 
 ## Support packages
 
-- [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz) - Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy)
+- [@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz) - Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy)
 
 ## Installation
 
@@ -101,8 +102,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.62 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -111,7 +112,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 [Generated API docs](https://docs.thi.ng/umbrella/fuzzy/)
 
 (See
-[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy/test) for
+[tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy/test) for
 more usage examples).
 
 ### Fuzzy set generators & combinators
@@ -140,11 +141,11 @@ overlapping) fuzzy sets within a given value domain. The can be used standalone
 or as inputs/outputs in rules (further below).
 
 The
-[@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
+[@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz)
 package provides utilities to visualize the fuzzy sets of an L-var.
 
 ![fuzzy set visualization of the example
-l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
+l-var](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/temperature-lvar-2.svg)
 
 ```ts
 import {
@@ -192,7 +193,7 @@ Example taken from Franck Dernoncourt's [Introduction to Fuzzy
 Logic](https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic):
 
 ![fuzzy set illustration from F.Dernoncourt's
-tutorial](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/fuzzy-matrix-dernoncourt.png)
+tutorial](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/fuzzy-matrix-dernoncourt.png)
 
 ```ts
 import {
@@ -263,7 +264,7 @@ Note: The results are slightly different than those in the textbook example, due
 to different `gaussian` fuzzy sets used for the `service` L-var.
 
 Using `instrumentStrategy()` from the upcoming
-[@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
+[@thi.ng/fuzzy-viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy-viz)
 package, we can also visualize the final, transformed fuzzy sets used to compute
 crisp results and highlight the position of the crisp result value.
 
@@ -355,7 +356,7 @@ Just for illustration purposes (and using a different example), SVG output can
 be obtained by merely switching to another instrumentation function (here
 `fuzzySetToSvg()`):
 
-![fuzzySetToSvg() visualization example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/strategy-viz.svg)
+![fuzzySetToSvg() visualization example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/strategy-viz.svg)
 
 ## Authors
 

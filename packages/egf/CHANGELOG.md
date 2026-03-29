@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.6.205](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.6.205) (2026-02-07)
+### [0.6.205](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/egf@0.6.205) (2026-02-07)
 
 #### ♻️ Refactoring
 
-- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://github.com/thi-ng/umbrella/commit/3abbddf))
+- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [0.6.200](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.6.200) (2025-12-03)
-
-#### ♻️ Refactoring
-
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
-
-### [0.6.128](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.6.128) (2024-06-21)
+### [0.6.200](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/egf@0.6.200) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [0.6.124](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.6.124) (2024-04-20)
-
-#### ♻️ Refactoring
-
-- update type usage ([38c729d](https://github.com/thi-ng/umbrella/commit/38c729d))
-
-### [0.6.106](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.6.106) (2024-02-22)
+### [0.6.128](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/egf@0.6.128) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update all `node:*` imports ([c71a526](https://github.com/thi-ng/umbrella/commit/c71a526))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
+
+### [0.6.124](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/egf@0.6.124) (2024-04-20)
+
+#### ♻️ Refactoring
+
+- update type usage ([38c729d](https://codeberg.org/thi.ng/umbrella/commit/38c729d))
+
+### [0.6.106](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/egf@0.6.106) (2024-02-22)
+
+#### ♻️ Refactoring
+
+- update all `node:*` imports ([c71a526](https://codeberg.org/thi.ng/umbrella/commit/c71a526))

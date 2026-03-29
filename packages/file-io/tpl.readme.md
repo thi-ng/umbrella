@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 Most functions in this package have optional support for the
-[`ILogger`](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+[`ILogger`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
 logging interface.
 
 ## Available functions

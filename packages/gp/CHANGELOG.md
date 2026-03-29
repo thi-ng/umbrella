@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.4.115](https://github.com/thi-ng/umbrella/tree/@thi.ng/gp@0.4.115) (2024-04-20)
+### [0.4.115](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/gp@0.4.115) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([6d17d91](https://github.com/thi-ng/umbrella/commit/6d17d91))
+- update type usage ([6d17d91](https://codeberg.org/thi.ng/umbrella/commit/6d17d91))
 
-### [0.4.76](https://github.com/thi-ng/umbrella/tree/@thi.ng/gp@0.4.76) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-
-### [0.4.55](https://github.com/thi-ng/umbrella/tree/@thi.ng/gp@0.4.55) (2023-08-12)
+### [0.4.76](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/gp@0.4.76) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update .probability() call sites in various pkgs ([c8c8141](https://github.com/thi-ng/umbrella/commit/c8c8141))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+### [0.4.55](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/gp@0.4.55) (2023-08-12)
+
+#### ♻️ Refactoring
+
+- update .probability() call sites in various pkgs ([c8c8141](https://codeberg.org/thi.ng/umbrella/commit/c8c8141))

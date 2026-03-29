@@ -1,23 +1,15 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/iterators](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-iterators.svg?0c3536b7)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/iterators](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-iterators.svg?0c3536b7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iterators.svg)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
-> [!NOTE]
-> This is one of 190 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
-> and anti-framework.
->
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
-
 > [!IMPORTANT]
 > This package has been deprecated and most of the provided functionality has
 > been superseded by
-> [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+> [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 - [About](#about)
 - [Status](#status)
@@ -88,11 +80,11 @@ Clojure inspired, composable ES6 iterators & generators.
 
 **DEPRECATED** - superseded by other package(s)
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Biterators%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Biterators%5D+in%3Atitle)
 
 ## Related packages
 
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
 
 ## Installation
 
@@ -124,9 +116,9 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 ## API
 
@@ -548,7 +540,7 @@ similar speeds (up to `cacheLimit` divergence). The cache is shared by
 given `cacheLimit`, the other forks will lose intermediate values. If in
 doubt, increase the cache limit to a higher value (default 16). The
 cache uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+[@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons)
 to avoid unnecessary copying during window sliding.
 
 ```ts

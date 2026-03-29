@@ -33,9 +33,9 @@
 ### Linguistic variable visualization
 
 Generate an SVG visualization of all fuzzy sets defined in a [linguistic
-variable](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy#linguistic-variables):
+variable](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy#linguistic-variables):
 
-![fuzzy set visualization of the example l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
+![fuzzy set visualization of the example l-var](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/temperature-lvar-2.svg)
 
 ```ts tangle:export/readme-svg.ts
 import { invSigmoid, sigmoid, trapezoid, variable } from "@thi.ng/fuzzy";
@@ -109,6 +109,6 @@ strategy.clear();
 Using `fuzzySetToHiccup()`/`fuzzySetToSvg()` visualizations like below can be
 created following the same pattern as above:
 
-![fuzzySetToSvg() visualization example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/strategy-viz.svg)
+![fuzzySetToSvg() visualization example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/fuzzy/strategy-viz.svg)
 
 <!-- include ../../assets/tpl/footer.md -->

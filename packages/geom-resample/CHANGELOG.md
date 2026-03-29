@@ -11,44 +11,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@3.0.0) (2024-06-21)
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-resample@3.0.0) (2024-06-21)
 
 #### 🛑 Breaking changes
 
-- migrate types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api) ([2a61784](https://github.com/thi-ng/umbrella/commit/2a61784))
-- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/main/packages/geom-api)
+- migrate types from [@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-api) ([2a61784](https://codeberg.org/thi.ng/umbrella/commit/2a61784))
+- BREAKING CHANGE: migrate/internalize types from [@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-api)
   - add/migrate SamplingOpts, DEFAULT_SAMPLES, setDefaultSamples()
   - update imports
   - update deps
 
-### [2.3.50](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.3.50) (2024-04-20)
+### [2.3.50](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-resample@2.3.50) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update type usage ([28c96bb](https://github.com/thi-ng/umbrella/commit/28c96bb))
+- update type usage ([28c96bb](https://codeberg.org/thi.ng/umbrella/commit/28c96bb))
 
-### [2.3.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.3.43) (2024-03-21)
-
-#### ♻️ Refactoring
-
-- minor internal updates ([843788f](https://github.com/thi-ng/umbrella/commit/843788f))
-
-### [2.3.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.3.8) (2023-11-09)
+### [2.3.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-resample@2.3.43) (2024-03-21)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- minor internal updates ([843788f](https://codeberg.org/thi.ng/umbrella/commit/843788f))
 
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.3.0) (2023-10-12)
+### [2.3.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-resample@2.3.8) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-resample@2.3.0) (2023-10-12)
 
 #### 🚀 Features
 
-- add Sampler.extractRange() ([f3b0fbc](https://github.com/thi-ng/umbrella/commit/f3b0fbc))
+- add Sampler.extractRange() ([f3b0fbc](https://codeberg.org/thi.ng/umbrella/commit/f3b0fbc))
 
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.2.0) (2023-01-10)
+## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-resample@2.2.0) (2023-01-10)
 
 #### 🚀 Features
 
-- add sampleUniformX/Y() fns ([88f9ec5](https://github.com/thi-ng/umbrella/commit/88f9ec5))
-  - update deps (add [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/main/packages/geom-isec))
+- add sampleUniformX/Y() fns ([88f9ec5](https://codeberg.org/thi.ng/umbrella/commit/88f9ec5))
+  - update deps (add [@thi.ng/geom-isec](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-isec))
   - update pkg

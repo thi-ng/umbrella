@@ -8,9 +8,9 @@
 objects and serialization to DOT format.
 
 Provides several
-[interfaces](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/src/api.ts)
+[interfaces](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot/src/api.ts)
 covering a large subset of GraphViz options and
-[functions](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/src/serialize.ts)
+[functions](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot/src/serialize.ts)
 to serialize whole graphs (incl. subgraphs), nodes or edges. Supports
 both directed and undirected graphs.
 
@@ -42,10 +42,10 @@ details.
 
 {{pkg.docs}}
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dot/dot-example.png)
+![example graph](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dot/dot-example.png)
 
 The source code of this example is also available in
-[/test/example.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/test/example.ts).
+[/test/example.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot/test/example.ts).
 
 ```ts
 import { serializeGraph } from "@thi.ng/dot";

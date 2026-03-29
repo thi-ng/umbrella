@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/rstream-gestures](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-rstream-gestures.svg?6cd449bb)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/rstream-gestures](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-rstream-gestures.svg?6cd449bb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -34,13 +35,13 @@
 
 ## About
 
-Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a support package for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
+Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a support package for [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream).
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-gestures%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Brstream-gestures%5D)
 
 ### Breaking changes
 
@@ -60,8 +61,8 @@ rewrite of `gestureStream()` and new event data formats.
 
 ## Related packages
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
+- [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) compatible
 
 ## Installation
 
@@ -93,39 +94,39 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 17 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                  | Description                                                       | Live demo                                                 | Source                                                                                 |
-|:----------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png" width="240"/>          | Canvas based dial widget                                          | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/>    | Interactive visualization of closest points on ellipses           | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>            | Interactive inverse FFT toy synth                                 | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg" width="240"/>             | Doodle w/ K-nearest neighbor search result visualization          | [Demo](https://demo.thi.ng/umbrella/geom-knn/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/>        | K-nearest neighbor search in an hash grid                         | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png" width="240"/>     | Mouse gesture / stroke analysis, simplification, corner detection | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gesture-analysis)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/>     | Interactive pattern drawing demo using transducers                | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>               | Canvas based Immediate Mode GUI components                        | [Demo](https://demo.thi.ng/umbrella/imgui/)               | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)               |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/>         | Minimal IMGUI usage example                                       | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>           | Worker based, interactive Mandelbrot visualization                | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)          |
-|                                                                                                                             | Basic rstream-gestures multi-touch demo                           | [Demo](https://demo.thi.ng/umbrella/multitouch/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>             | Minimal rstream dataflow graph                                    | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/> | Basic 2D scenegraph example with pan/zoom functionality           | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-pan-zoom) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>         | Minimal shader graph developed during livestream #2               | [Demo](https://demo.thi.ng/umbrella/shader-graph/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>         | Multi-layer vectorization & dithering of bitmap images            | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>           | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-arcball)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>  | rdom & WebGL-based image channel editor                           | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-channel-mixer) |
+| Screenshot                                                                                                                          | Description                                                       | Live demo                                                 | Source                                                                                  |
+|:------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/canvas-dial.png" width="240"/>          | Canvas based dial widget                                          | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/canvas-dial)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ellipse-proximity.png" width="240"/>    | Interactive visualization of closest points on ellipses           | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ellipse-proximity)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fft-synth.png" width="240"/>            | Interactive inverse FFT toy synth                                 | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn.jpg" width="240"/>             | Doodle w/ K-nearest neighbor search result visualization          | [Demo](https://demo.thi.ng/umbrella/geom-knn/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-knn-hash.jpg" width="240"/>        | K-nearest neighbor search in an hash grid                         | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-knn-hash)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/gesture-analysis.png" width="240"/>     | Mouse gesture / stroke analysis, simplification, corner detection | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gesture-analysis)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/>     | Interactive pattern drawing demo using transducers                | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-draw)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/imgui/imgui-all.png" width="240"/>               | Canvas based Immediate Mode GUI components                        | [Demo](https://demo.thi.ng/umbrella/imgui/)               | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui)               |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/imgui-basics.png" width="240"/>         | Minimal IMGUI usage example                                       | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui-basics)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mandelbrot.jpg" width="240"/>           | Worker based, interactive Mandelbrot visualization                | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mandelbrot)          |
+|                                                                                                                                     | Basic rstream-gestures multi-touch demo                           | [Demo](https://demo.thi.ng/umbrella/multitouch/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/multitouch)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rs-dflow.png" width="240"/>             | Minimal rstream dataflow graph                                    | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-dataflow)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph-pan-zoom.avif" width="240"/> | Basic 2D scenegraph example with pan/zoom functionality           | [Demo](https://demo.thi.ng/umbrella/scenegraph-pan-zoom/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph-pan-zoom) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-graph.jpg" width="240"/>         | Minimal shader graph developed during livestream #2               | [Demo](https://demo.thi.ng/umbrella/shader-graph/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-graph)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>         | Multi-layer vectorization & dithering of bitmap images            | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cube.png" width="240"/>           | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-arcball)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>  | rdom & WebGL-based image channel editor                           | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-channel-mixer) |
 
 ## API
 
@@ -144,7 +145,7 @@ All native events are abstracted into one of the following event types:
 ### GestureEvent
 
 The stream emits
-[`GestureEvent`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-gestures/src/api.ts#L37)
+[`GestureEvent`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-gestures/src/api.ts#L37)
 objects of:
 
 - **type** - Current translated/abstracted event type (`GestureType`)
@@ -184,7 +185,7 @@ objects of:
 ### GestureStreamOpts
 
 See the
-[`GestureStreamOpts`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-gestures/src/api.ts#L74)
+[`GestureStreamOpts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-gestures/src/api.ts#L74)
 config options for further details.
 
 ### Basic usage

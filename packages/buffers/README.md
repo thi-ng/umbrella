@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/buffers](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-buffers.svg?d167ce16)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-buffers.svg?d167ce16)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/buffers.svg)](https://www.npmjs.com/package/@thi.ng/buffers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/buffers.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Buffering behaviors](#buffering-behaviors)
@@ -48,7 +49,7 @@ interface:
 - [`sliding`](https://docs.thi.ng/umbrella/buffers/functions/sliding.html):
   Sliding window ring buffer. Whilst the buffer is at full capacity, new
   writes will first expunge the oldest buffered value (similar to [LRU
-  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
   behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/buffers/functions/dropping.html):
   Dropping value ring buffer. Whilst the buffer is at full capacity, new writes
@@ -58,7 +59,7 @@ interface:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbuffers%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bbuffers%5D)
 
 ## Installation
 
@@ -90,8 +91,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 611 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

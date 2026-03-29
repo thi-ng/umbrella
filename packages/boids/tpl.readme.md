@@ -48,7 +48,7 @@ recommended to use a compatible spatial acceleration structure such as
 [`HashGrid2` or
 `HashGrid3`](https://docs.thi.ng/umbrella/geom-accel/classes/HashGrid2.html#queryNeighborhood)
 from the [@thi.ng/geom-accel
-package](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel).
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel).
 For cases where this isn't needed, the
 [`noAccel`](https://docs.thi.ng/umbrella/boids/functions/noAccel.html) dummy
 implementation of this interface can be used... In all cases, an acceleration

@@ -1,11 +1,11 @@
 # Cellular automata
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/cellular-automata.png)
 
 [Live demo](https://demo.thi.ng/umbrella/cellular-automata/)
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Example configurations

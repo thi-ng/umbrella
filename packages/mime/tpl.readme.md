@@ -8,7 +8,7 @@
 
 All MIME type mappings are based on [mime-db](https://github.com/jshttp/mime-db)
 (2023-02-17). For filesize reasons only [a small selected
-number](https://github.com/thi-ng/umbrella/blob/develop/packages/mime/tools/convert.ts#L7)
+number](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime/tools/convert.ts#L7)
 of [vendor MIME types](https://www.rfc-editor.org/rfc/rfc4288#section-3.2) (aka
 `*/vnd.*`) are included. Most of the omitted ones are fairly obscure anyway, so
 likely not problematic...
@@ -129,7 +129,7 @@ isCompressible(preferredType("mp4"))
 ```
 
 Additional configuration options are available in the
-[`tools/convert.ts`](https://github.com/thi-ng/umbrella/blob/develop/packages/mime/tools/convert.ts)
+[`tools/convert.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime/tools/convert.ts)
 script.
 
 <!-- include ../../assets/tpl/footer.md -->

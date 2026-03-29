@@ -6,7 +6,7 @@ Barebones example showing how one could use the hdom user context object
 to store component local state without requiring higher-order component
 functions...
 
-Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
+Please refer to the [example build instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
 ## Authors
 

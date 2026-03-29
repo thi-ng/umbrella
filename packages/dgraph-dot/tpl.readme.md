@@ -7,9 +7,9 @@
 {{pkg.description}}
 
 This package acts as optional glue layer between the
-[@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
+[@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
 and
-[@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot)
+[@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot)
 packages. The latter is used to perform the actual
 [Graphviz](https://graphviz.org) serialization. Please consult its
 readme & source code for visualization options.
@@ -70,6 +70,6 @@ console.log(toDot(graph, { id: (node) => node }));
 ```
 
 (Also see
-[tests](https://github.com/thi-ng/umbrella/blob/develop/packages/dgraph-dot/test/index.ts))
+[tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph-dot/test/index.ts))
 
 <!-- include ../../assets/tpl/footer.md -->

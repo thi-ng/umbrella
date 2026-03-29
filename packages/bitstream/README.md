@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/bitstream](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-bitstream.svg?8d393058)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/bitstream](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-bitstream.svg?8d393058)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitstream.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -34,12 +35,12 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbitstream%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bbitstream%5D)
 
 ## Related packages
 
-- [@thi.ng/range-coder](https://github.com/thi-ng/umbrella/tree/develop/packages/range-coder) - Binary data range encoder / decoder
-- [@thi.ng/rle-pack](https://github.com/thi-ng/umbrella/tree/develop/packages/rle-pack) - Binary run-length encoding packer w/ flexible repeat bit widths and a naive RLE encoder/decoder for arrays of arbitrary typed values
+- [@thi.ng/range-coder](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/range-coder) - Binary data range encoder / decoder
+- [@thi.ng/rle-pack](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rle-pack) - Binary run-length encoding packer w/ flexible repeat bit widths and a naive RLE encoder/decoder for arrays of arbitrary typed values
 
 ## Installation
 
@@ -71,7 +72,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.40 KB
 
 ## Dependencies
 
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 ## API
 

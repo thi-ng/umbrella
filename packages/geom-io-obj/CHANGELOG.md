@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.3.128](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-io-obj@0.3.128) (2024-06-21)
+### [0.3.128](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-io-obj@0.3.128) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [0.3.82](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-io-obj@0.3.82) (2023-11-09)
+### [0.3.82](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-io-obj@0.3.82) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

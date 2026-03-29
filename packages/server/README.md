@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/server](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-server.svg?ab80455e)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/server](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-server.svg?ab80455e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/server.svg)](https://www.npmjs.com/package/@thi.ng/server)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/server.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Main features](#main-features)
@@ -41,7 +42,7 @@ implementations.
 
 - Declarative & parametric routing (incl. validation and coercion of route
   params)
-    - Uses [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/develop/packages/router) as implementation
+    - Uses [@thi.ng/router](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/router) as implementation
 - Multiple HTTP methods per route
     - Built-in HTTP OPTIONS handler for listing available route methods
     - Fallback HTTP HEAD to GET method (if available)
@@ -67,7 +68,7 @@ See
 [`Interceptor`](https://docs.thi.ng/umbrella/server/interfaces/Interceptor.html)
 for more details.
 
-![Diagram illustrating interceptor processing order](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/server/server-interceptors.png)
+![Diagram illustrating interceptor processing order](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/server/server-interceptors.png)
 
 #### Available interceptors
 
@@ -136,7 +137,7 @@ and example below for more details.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bserver%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bserver%5D)
 
 ## Installation
 
@@ -168,20 +169,20 @@ Package sizes (brotli'd, pre-treeshake): ESM: 6.34 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/leaky-bucket](https://github.com/thi-ng/umbrella/tree/develop/packages/leaky-bucket)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
-- [@thi.ng/router](https://github.com/thi-ng/umbrella/tree/develop/packages/router)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
-- [@thi.ng/uuid](https://github.com/thi-ng/umbrella/tree/develop/packages/uuid)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/leaky-bucket](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/leaky-bucket)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/mime](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/mime)
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
+- [@thi.ng/router](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/router)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/timestamp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/timestamp)
+- [@thi.ng/uuid](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/uuid)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

@@ -11,55 +11,55 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [3.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.8.0) (2025-12-03)
+## [3.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.8.0) (2025-12-03)
 
 #### 🚀 Features
 
-- add integer predicates ([ea6f8f8](https://github.com/thi-ng/umbrella/commit/ea6f8f8))
+- add integer predicates ([ea6f8f8](https://codeberg.org/thi.ng/umbrella/commit/ea6f8f8))
   - add `isNegativeInt()` / `isNonPositiveInt()`
   - add `isPositiveInt()` / `isNonNegativeInt()`
-- add more granular typed array checks ([43388f3](https://github.com/thi-ng/umbrella/commit/43388f3))
+- add more granular typed array checks ([43388f3](https://codeberg.org/thi.ng/umbrella/commit/43388f3))
   - add `isIntArray()`, `isUintArray()`, `isFloatArray()`
 
-### [3.7.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.7.16) (2025-08-07)
+### [3.7.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.7.16) (2025-08-07)
 
 #### 🩹 Bug fixes
 
-- fix [#540](https://github.com/thi-ng/umbrella/issues/540), update hasCrypto() & hasWASM() checks ([a626425](https://github.com/thi-ng/umbrella/commit/a626425))
+- fix [#540](https://github.com/thi-ng/umbrella/issues/540), update hasCrypto() & hasWASM() checks ([a626425](https://codeberg.org/thi.ng/umbrella/commit/a626425))
   - use `self` vs `window` to include worker support
 
-## [3.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.7.0) (2025-02-21)
+## [3.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.7.0) (2025-02-21)
 
 #### 🚀 Features
 
-- add `isDarkMode()` ([c42a738](https://github.com/thi-ng/umbrella/commit/c42a738))
+- add `isDarkMode()` ([c42a738](https://codeberg.org/thi.ng/umbrella/commit/c42a738))
 
-### [3.6.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.6.19) (2025-01-14)
+### [3.6.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.6.19) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.6.0) (2024-04-08)
-
-#### 🚀 Features
-
-- add optional generics for collection checks ([8d55530](https://github.com/thi-ng/umbrella/commit/8d55530))
-
-## [3.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.5.0) (2024-02-22)
+## [3.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.6.0) (2024-04-08)
 
 #### 🚀 Features
 
-- add isArrayBufferLike(), isArrayBufferView() ([652a1d2](https://github.com/thi-ng/umbrella/commit/652a1d2))
+- add optional generics for collection checks ([8d55530](https://codeberg.org/thi.ng/umbrella/commit/8d55530))
 
-### [3.4.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.4.7) (2023-11-09)
+## [3.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.5.0) (2024-02-22)
+
+#### 🚀 Features
+
+- add isArrayBufferLike(), isArrayBufferView() ([652a1d2](https://codeberg.org/thi.ng/umbrella/commit/652a1d2))
+
+### [3.4.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.4.7) (2023-11-09)
 
 #### 🩹 Bug fixes
 
-- update isTypedArray() to return boolean ([2c0f72f](https://github.com/thi-ng/umbrella/commit/2c0f72f))
+- update isTypedArray() to return boolean ([2c0f72f](https://codeberg.org/thi.ng/umbrella/commit/2c0f72f))
 
-## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.4.0) (2023-08-04)
+## [3.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.4.0) (2023-08-04)
 
 #### 🚀 Features
 
-- add isGenerator() ([af8ffb3](https://github.com/thi-ng/umbrella/commit/af8ffb3))
+- add isGenerator() ([af8ffb3](https://codeberg.org/thi.ng/umbrella/commit/af8ffb3))

@@ -11,27 +11,27 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [5.1.147](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@5.1.147) (2025-01-14)
+### [5.1.147](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdom-components@5.1.147) (2025-01-14)
 
 #### ♻️ Refactoring
 
-- use optional chaining & nullish coalescing ([c5a0a13](https://github.com/thi-ng/umbrella/commit/c5a0a13))
+- use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [5.1.120](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@5.1.120) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- rename various rest args to be more semantically meaningful ([8088a56](https://github.com/thi-ng/umbrella/commit/8088a56))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [5.1.116](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@5.1.116) (2024-04-20)
+### [5.1.120](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdom-components@5.1.120) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update type usage ([981e943](https://github.com/thi-ng/umbrella/commit/981e943))
+- rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [5.1.76](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@5.1.76) (2023-11-09)
+### [5.1.116](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdom-components@5.1.116) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update type usage ([981e943](https://codeberg.org/thi.ng/umbrella/commit/981e943))
+
+### [5.1.76](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdom-components@5.1.76) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

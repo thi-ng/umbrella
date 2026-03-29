@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/lsys](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-lsys.svg?48d6b1df)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/lsys](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-lsys.svg?48d6b1df)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lsys.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -49,7 +50,7 @@ Planned features:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blsys%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Blsys%5D)
 
 ### Blog posts
 
@@ -85,14 +86,14 @@ Package sizes (brotli'd, pre-treeshake): ESM: 728 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compose)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -102,8 +103,8 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 | Examples                                                                                    |                                                                                             |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-0.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-1.png) |
-| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-2.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-3.png) |
+| ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-0.png) | ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-1.png) |
+| ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-2.png) | ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-3.png) |
 
 ```ts tangle:export/readme-1.ts
 import { expand, interpret, turtle2d, TURTLE_IMPL_2D } from "@thi.ng/lsys";
@@ -150,7 +151,7 @@ stochastic features, e.g. randomization of growth direction and
 stochastic branch termination. This enables the creation of more organic
 looking structures, like shown in the following example:
 
- ![stochastic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-tree.png)
+ ![stochastic L-system](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-tree.png)
 
 ```ts tangle:export/readme-2.ts
 import { expand, interpret, turtle2d, TURTLE_IMPL_2D } from "@thi.ng/lsys";

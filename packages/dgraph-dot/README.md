@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/dgraph-dot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-dgraph-dot.svg?9e975615)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/dgraph-dot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-dgraph-dot.svg?9e975615)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph-dot.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -25,12 +26,12 @@
 
 ## About
 
-Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph).
+Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph).
 
 This package acts as optional glue layer between the
-[@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
+[@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
 and
-[@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot)
+[@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot)
 packages. The latter is used to perform the actual
 [Graphviz](https://graphviz.org) serialization. Please consult its
 readme & source code for visualization options.
@@ -39,7 +40,7 @@ readme & source code for visualization options.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdgraph-dot%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdgraph-dot%5D)
 
 ## Installation
 
@@ -71,21 +72,21 @@ Package sizes (brotli'd, pre-treeshake): ESM: 226 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
-- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph)
+- [@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                                                                    | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus) |
+| Screenshot                                                                                                                        | Description                                                                    | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/> | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus) |
 
 ## API
 
@@ -123,7 +124,7 @@ console.log(toDot(graph, { id: (node) => node }));
 ```
 
 (Also see
-[tests](https://github.com/thi-ng/umbrella/blob/develop/packages/dgraph-dot/test/index.ts))
+[tests](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph-dot/test/index.ts))
 
 ## Authors
 

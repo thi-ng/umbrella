@@ -8,7 +8,7 @@
 
 This package provides 160+ matrix & quaternion operations for 2D/3D
 geometry processing and acts as companion package for
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors).
+[@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors).
 Like with the vectors package, most functions are defined as
 multi-method dispatching to optimized implementations based on matrix
 size (which themselves are exposed for direct use too).

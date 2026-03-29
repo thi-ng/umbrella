@@ -14,13 +14,13 @@ identifiers for different output formats.
 
 The format constants provided by this package are _primarily_ (not exclusively)
 aimed at being used with the
-[@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
+[@thi.ng/text-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas)
 package. The text canvas stores all characters in a `Uint32Array` with the lower
 16 bits used for the UTF-16 code and the upper 16 bits for **abitrary**
 formatting data.
 
 The [format
-IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/src/api.ts#L146)
+IDs](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-format/src/api.ts#L146)
 provided here are tailored for some of the included ANSI & HTML formatters, but
 users are free to choose use any other interpretation (but then will also need
 to implement a custom string formatter impl).
@@ -94,7 +94,7 @@ flags (e.g. bold, underline etc.) **cannot be used**. Instead, use the
 [`format256()`](https://docs.thi.ng/umbrella/text-format/functions/format256.html)
 function to create a format ID based on given FG, BG colors.
 
-![ANSI256 color pallette](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/ansi256.png)
+![ANSI256 color pallette](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/text-canvas/ansi256.png)
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 
@@ -111,7 +111,7 @@ available.
 
 These formats are primarily intended for image display, see the
 [@thi.ng/text-canvas
-readme](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/README.md#image-functions)
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas/README.md#image-functions)
 for usage examples...
 
 ### Ad-hoc formatting of strings

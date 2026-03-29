@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-io-netpbm](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-io-netpbm.svg?b88db016)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-io-netpbm](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-io-netpbm.svg?b88db016)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-io-netpbm.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -25,12 +26,12 @@
 
 ## About
 
-Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 This package can read & write binary
 [NetPBM](https://en.wikipedia.org/wiki/Netpbm) image formats from byte
 arrays/buffers to
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 pixel buffers (aka `PackedBuffer`).
 
 |      Source format | Destination format    | Rec. file extension<sup>(1)</sup> |
@@ -50,7 +51,7 @@ size and other meta data (from comments), without parsing the full image.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-io-netpbm%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-io-netpbm%5D)
 
 ## Installation
 
@@ -82,21 +83,21 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                          | Description                                            | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap) |
+| Screenshot                                                                                                                  | Description                                            | Live demo                                          | Source                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap) |
 
 ## API
 

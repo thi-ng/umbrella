@@ -11,45 +11,45 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@1.2.0) (2025-04-16)
+## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@1.2.0) (2025-04-16)
 
 #### 🚀 Features
 
-- add project credits in generated HTML header ([da63079](https://github.com/thi-ng/umbrella/commit/da63079))
+- add project credits in generated HTML header ([da63079](https://codeberg.org/thi.ng/umbrella/commit/da63079))
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@1.1.0) (2025-02-11)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@1.1.0) (2025-02-11)
 
 #### 🚀 Features
 
-- update CLI wrapper ([c92991c](https://github.com/thi-ng/umbrella/commit/c92991c))
+- update CLI wrapper ([c92991c](https://codeberg.org/thi.ng/umbrella/commit/c92991c))
   - check if `bun` is available, otherwise fallback to `node`
 
-### [0.3.129](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@0.3.129) (2024-06-21)
+### [0.3.129](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@0.3.129) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [0.3.125](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@0.3.125) (2024-04-20)
-
-#### ♻️ Refactoring
-
-- update type usage ([33c1085](https://github.com/thi-ng/umbrella/commit/33c1085))
-
-### [0.3.107](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@0.3.107) (2024-02-22)
+### [0.3.125](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@0.3.125) (2024-04-20)
 
 #### ♻️ Refactoring
 
-- update all `node:*` imports ([c71a526](https://github.com/thi-ng/umbrella/commit/c71a526))
+- update type usage ([33c1085](https://codeberg.org/thi.ng/umbrella/commit/33c1085))
 
-### [0.3.81](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@0.3.81) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-
-### [0.3.63](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdiff@0.3.63) (2023-08-27)
+### [0.3.107](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@0.3.107) (2024-02-22)
 
 #### ♻️ Refactoring
 
-- minor update doctype ([2d63bcc](https://github.com/thi-ng/umbrella/commit/2d63bcc))
+- update all `node:*` imports ([c71a526](https://codeberg.org/thi.ng/umbrella/commit/c71a526))
+
+### [0.3.81](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@0.3.81) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+### [0.3.63](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hdiff@0.3.63) (2023-08-27)
+
+#### ♻️ Refactoring
+
+- minor update doctype ([2d63bcc](https://codeberg.org/thi.ng/umbrella/commit/2d63bcc))

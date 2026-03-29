@@ -11,17 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.4.0) (2025-11-13)
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hex@2.4.0) (2025-11-13)
 
 #### 🚀 Features
 
-- add printHexdump(), update hexdump(), add docs ([2216b87](https://github.com/thi-ng/umbrella/commit/2216b87))
+- add printHexdump(), update hexdump(), add docs ([2216b87](https://codeberg.org/thi.ng/umbrella/commit/2216b87))
   - add syntax sugar `printHexdump()`
   - make args optional
   - add docs & code examples
 
-### [2.3.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/hex@2.3.19) (2023-11-09)
+### [2.3.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hex@2.3.19) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

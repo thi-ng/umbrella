@@ -6,7 +6,7 @@ Minimal example demonstrating use of dynamic hdom user context values,
 here used for app-wide theme switching.
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

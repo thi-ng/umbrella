@@ -1,11 +1,11 @@
 # Todo list with undo/redo
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/todo-list.png)
 
 [Live demo here](https://demo.thi.ng/umbrella/todo-list/)
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

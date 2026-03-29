@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/lowdisc](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-lowdisc.svg?54818180)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/lowdisc](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-lowdisc.svg?54818180)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lowdisc.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Halton](#halton)
@@ -43,7 +44,7 @@ Configurable basis for each dimension:
 
 `haltonND([2,3])`
 
-![2D Halton(2,3) sequence](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lowdisc/ld-halton-small.gif)
+![2D Halton(2,3) sequence](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lowdisc/ld-halton-small.gif)
 
 ### Kronecker
 
@@ -51,7 +52,7 @@ Configurable basis for each dimension:
 
 `kroneckerND([1 / 2 ** 0.5, 1 / 5 ** 0.5])`
 
-![2D Kronecker sequence (Golden ratio)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lowdisc/ld-kronecker-small.gif)
+![2D Kronecker sequence (Golden ratio)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lowdisc/ld-kronecker-small.gif)
 
 ### R<sub>2</sub> recurrence
 
@@ -60,18 +61,18 @@ Based on Kronecker with each dimension's base automatically derived from the
 
 `plasticND(2)`
 
-![2D R2 recurrence sequence](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lowdisc/ld-plastic-small.gif)
+![2D R2 recurrence sequence](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lowdisc/ld-plastic-small.gif)
 
 ## Status
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blowdisc%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Blowdisc%5D)
 
 ## Related packages
 
-- [@thi.ng/poisson](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson) - nD Stratified grid and Poisson-disc sampling w/ support for spatial density functions and custom PRNGs
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
+- [@thi.ng/poisson](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/poisson) - nD Stratified grid and Poisson-disc sampling w/ support for spatial density functions and custom PRNGs
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
@@ -103,18 +104,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 458 bytes
 
 ## Dependencies
 
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 ## Usage examples
 
 Two projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                | Live demo                                              | Source                                                                              |
-|:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/quasi-lattice.png" width="240"/>     | Quasi-random lattice generator                             | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/quasi-lattice)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-scatter-plot) |
+| Screenshot                                                                                                                       | Description                                                | Live demo                                              | Source                                                                               |
+|:---------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/quasi-lattice.png" width="240"/>     | Quasi-random lattice generator                             | [Demo](https://demo.thi.ng/umbrella/quasi-lattice/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/quasi-lattice)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-scatter-plot.avif" width="240"/> | Interactive scatter & line plot of low-discrepancy samples | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-scatter-plot) |
 
 ## API
 

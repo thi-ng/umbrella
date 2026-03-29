@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-flow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-flow.svg?b1308a49)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-flow](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-flow.svg?b1308a49)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-flow.svg)](https://www.npmjs.com/package/@thi.ng/pixel-flow)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-flow.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Alogrithm description](#alogrithm-description)
@@ -26,7 +27,7 @@
 
 ## About
 
-Naive, lightweight CPU-based dense optical flow implementation. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+Naive, lightweight CPU-based dense optical flow implementation. This is a support package for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 This package is a TypeScript port of an old 2008 Processing project,
 implementing a homemade [Optical
@@ -62,7 +63,7 @@ smoothing of the field (configurable) and minimize jittering.
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-flow%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-flow%5D)
 
 ## Installation
 
@@ -94,20 +95,20 @@ Package sizes (brotli'd, pre-treeshake): ESM: 851 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                           | Description                                      | Live demo                                          | Source                                                                          |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/> | Optical flow analysis of web cam or video inputs | [Demo](https://demo.thi.ng/umbrella/optical-flow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow) |
+| Screenshot                                                                                                                   | Description                                      | Live demo                                          | Source                                                                           |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/optical-flow.avif" width="240"/> | Optical flow analysis of web cam or video inputs | [Demo](https://demo.thi.ng/umbrella/optical-flow/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/optical-flow) |
 
 ## API
 

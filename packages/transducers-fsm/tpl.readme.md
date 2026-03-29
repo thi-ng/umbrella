@@ -18,7 +18,7 @@ transformation pipeline.
 {{meta.status}}
 
 This package might be merged with (or deprecated by) the newer
-[@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
+[@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse)
 package.
 
 {{repo.supportPackages}}
@@ -42,7 +42,7 @@ package.
 ## Usage examples
 
 For a real world example, the
-[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax)
+[@thi.ng/sax](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sax)
 package provides a SAX-like XML parser transducer, built around the FSM
 provided here.
 

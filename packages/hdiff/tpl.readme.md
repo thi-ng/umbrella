@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-![screenshot of example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdiff/hdiff.png)
+![screenshot of example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/hdiff/hdiff.png)
 
 [Live example](https://demo.thi.ng/umbrella/hdiff/)
 
@@ -61,7 +61,7 @@ Signature: `computeDiff(a: string, b: string) => any[]`
 
 Takes two strings and performs line-based diff, then formats result as
 tree of HTML elements in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 format.
 
 The generated format only uses the following data attributes:
@@ -84,6 +84,6 @@ HTML document as string.
 Signature: `compileTheme(theme: Theme) => string`
 
 Compiles a theme config into a complete CSS stylesheet string (using
-[@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)).
+[@thi.ng/hiccup-css](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-css)).
 
 <!-- include ../../assets/tpl/footer.md -->

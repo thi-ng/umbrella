@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api-schedule](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api-schedule.svg?a0090c2a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/wasm-api-schedule](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-wasm-api-schedule.svg?a0090c2a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-schedule.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-schedule)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-schedule.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -25,7 +26,7 @@
 
 ## About
 
-Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps. This is a support package for [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api).
 
 The package provides a WASM bridge API and abstraction for scheduling function
 calls via:
@@ -80,16 +81,16 @@ schedule.cancel(listenerID);
 reference](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html).
 
 Also see the
-[zig-counter](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-counter/)
+[zig-counter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-counter/)
 and
-[zig-todo-list](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-todo-list/)
+[zig-todo-list](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list/)
 example projects for more advanced usage...
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-schedule%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bwasm-api-schedule%5D)
 
 ## Installation
 
@@ -115,22 +116,22 @@ Package sizes (brotli'd, pre-treeshake): ESM: 561 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                           | Description                                                        | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/>   | Simple Zig/WASM click counter DOM component                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-webgl.avif" width="240"/>    | Basic Zig/WebAssembly WebGL demo                                   | [Demo](https://demo.thi.ng/umbrella/zig-webgl/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-webgl)     |
+| Screenshot                                                                                                                   | Description                                                        | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-counter.png" width="240"/>   | Simple Zig/WASM click counter DOM component                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-counter)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-webgl.avif" width="240"/>    | Basic Zig/WebAssembly WebGL demo                                   | [Demo](https://demo.thi.ng/umbrella/zig-webgl/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-webgl)     |
 
 ## API
 

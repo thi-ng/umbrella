@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/shader-ast-stdlib](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-shader-ast-stdlib.svg?29e3203a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/shader-ast-stdlib](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-shader-ast-stdlib.svg?29e3203a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-stdlib.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -49,12 +50,12 @@
 
 ## About
 
-Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
+Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast).
 
 A growing collection (currently ~230) of useful functions & higher order
 constructs (incl. meta programming approaches) for GPU / shader programming,
 acting as optional standard library for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+[@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
 based workflows.
 
 These functions can be imported like normal TS/JS functions and (in TS) are
@@ -81,13 +82,13 @@ Reference:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bshader-ast-stdlib%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bshader-ast-stdlib%5D)
 
 ## Related packages
 
-- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl) - Customizable GLSL codegen for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
-- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-js) - Customizable JS codegen, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
+- [@thi.ng/shader-ast-glsl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-glsl) - Customizable GLSL codegen for [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
+- [@thi.ng/shader-ast-js](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-js) - Customizable JS codegen, compiler & runtime for [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
+- [@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation
 
@@ -119,33 +120,33 @@ Package sizes (brotli'd, pre-treeshake): ESM: 13.98 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 14 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                   | Description                                                              | Live demo                                                 | Source                                                                                 |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>        | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas        | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg" width="240"/>       | 2D canvas shader emulation                                               | [Demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-canvas2d) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-easings.png" width="240"/>    | Shader-AST meta-programming techniques for animated function plots       | [Demo](https://demo.thi.ng/umbrella/shader-ast-easings/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-easings)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-noise.jpg" width="240"/>      | HOF shader procedural noise function composition                         | [Demo](https://demo.thi.ng/umbrella/shader-ast-noise/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> | WebGL & JS canvas2D raymarch shader cross-compilation                    | [Demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-raymarch) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-sdf2d.jpg" width="240"/>      | WebGL & JS canvas 2D SDF                                                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-sdf2d/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-sdf2d)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-tunnel.jpg" width="240"/>     | WebGL & Canvas2D textured tunnel shader                                  | [Demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-tunnel)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/>    | Fork-join worker-based raymarch renderer (JS/CPU only)                   | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>      | Interactive ridge-line plot                                              | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)     |
-|                                                                                                                              | Minimal multi-pass / GPGPU example                                       | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-shadertoy.jpg" width="240"/>       | Shadertoy-like WebGL setup                                               | [Demo](https://demo.thi.ng/umbrella/webgl-shadertoy/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-shadertoy)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg" width="240"/>            | WebGL screenspace ambient occlusion                                      | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>   | Interactively drawing to & reading from a WebGL offscreen render texture | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-texture-paint) |
+| Screenshot                                                                                                                           | Description                                                              | Live demo                                                 | Source                                                                                  |
+|:-------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ascii-raymarch.jpg" width="240"/>        | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas        | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ascii-raymarch)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/shader-ast/shader-ast-01.jpg" width="240"/>       | 2D canvas shader emulation                                               | [Demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-canvas2d) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-easings.png" width="240"/>    | Shader-AST meta-programming techniques for animated function plots       | [Demo](https://demo.thi.ng/umbrella/shader-ast-easings/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-easings)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-evo)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-noise.jpg" width="240"/>      | HOF shader procedural noise function composition                         | [Demo](https://demo.thi.ng/umbrella/shader-ast-noise/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-noise)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> | WebGL & JS canvas2D raymarch shader cross-compilation                    | [Demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-raymarch) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-sdf2d.jpg" width="240"/>      | WebGL & JS canvas 2D SDF                                                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-sdf2d/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-sdf2d)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-tunnel.jpg" width="240"/>     | WebGL & Canvas2D textured tunnel shader                                  | [Demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-tunnel)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-workers.jpg" width="240"/>    | Fork-join worker-based raymarch renderer (JS/CPU only)                   | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-workers)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>      | Interactive ridge-line plot                                              | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)     |
+|                                                                                                                                      | Minimal multi-pass / GPGPU example                                       | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-multipass)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-shadertoy.jpg" width="240"/>       | Shadertoy-like WebGL setup                                               | [Demo](https://demo.thi.ng/umbrella/webgl-shadertoy/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-shadertoy)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-ssao.jpg" width="240"/>            | WebGL screenspace ambient occlusion                                      | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-ssao)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>   | Interactively drawing to & reading from a WebGL offscreen render texture | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-texture-paint) |
 
 ## API
 
@@ -258,7 +259,7 @@ gl_Position = ((proj * (view * model)) * vec4(position, 1.0));
 ### Generated fragment shader
 
 The `fragColor` output variable is auto-created by
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
+[@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl)
 if no other output vars are defined. For WebGL v1 this is defined as an
 alias for `gl_FragColor`...
 
@@ -303,7 +304,7 @@ dependencies are resolved and emitted in the correct topological order
 during later code generation.
 
 Below is the main shader code of the [Simplex noise
-example](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise).
+example](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-noise).
 
 ```ts
 import { add, defn, float, ret, sym, vec2, vec3, vec4 } from "@thi.ng/shader-ast";
@@ -342,7 +343,7 @@ several other HOFs from this library to drastically simplify user code.
 
 ### Color
 
-[/src/color](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/color/)
+[/src/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/color/)
 
 - `ACESFilm` (tone mapping)
 - `cosineGradient`
@@ -358,7 +359,7 @@ several other HOFs from this library to drastically simplify user code.
 
 Use the `porterDuff` higher order function to define new blend modes.
 See
-[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+[@thi.ng/porter-duff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/porter-duff)
 for reference.
 
 12 standard PD operators for `vec4` RGBA colors:
@@ -380,7 +381,7 @@ Related:
 
 ### Fog
 
-[/src/fog](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/fog/)
+[/src/fog](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/fog/)
 
 - `fogLinear`
 - `fogExp`
@@ -388,14 +389,14 @@ Related:
 
 ### Intersection tests
 
-[/src/isec](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/isec/)
+[/src/isec](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/isec/)
 
 - `isPointInCircle`
 - `isPointInRect`
 
 ### Lighting
 
-[/src/light](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/light/)
+[/src/light](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/light/)
 
 - `lambert`
 - `halfLambert`
@@ -404,7 +405,7 @@ Related:
 
 ### Math
 
-[/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/)
+[/src/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/math/)
 
 - `additive`
 - `cartesian2` / `cartesian3`
@@ -426,7 +427,7 @@ Related:
 
 ### Easing functions
 
-[/src/math/easing.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/easing.ts)
+[/src/math/easing.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/math/easing.ts)
 
 - `easeInBack` / `easeOutBack` / `easeInOutBack`
 - `easeInBounce` / `easeOutBounce` / `easeInOutBounce`
@@ -441,13 +442,13 @@ Related:
 
 ### Oscillators
 
-[/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/osc.ts)
+[/src/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/math/osc.ts)
 
 - `sinOsc` / `sawOsc` / `triOsc` / `rectOsc`
 
 ### Matrix operations
 
-[/src/matrix](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/matrix/)
+[/src/matrix](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/matrix/)
 
 - `lookat`
 - `transformMVP`
@@ -458,7 +459,7 @@ Related:
 
 ### Noise / randomness
 
-[/src/noise](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/noise/)
+[/src/noise](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/noise/)
 
 - `fbmNoiseVec34`
 - `hash2` / `hash3`
@@ -474,7 +475,7 @@ Related:
 
 ### Raymarching
 
-[/src/raymarch](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/raymarch/)
+[/src/raymarch](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/raymarch/)
 
 - `raymarchAO`
 - `raymarchDir`
@@ -484,13 +485,13 @@ Related:
 
 ### Screen coordinates
 
-[/src/screen](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/screen/)
+[/src/screen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/screen/)
 
 - `aspectCorrectedUV`
 
 ### Signed Distance Fields
 
-[/src/sdf](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/sdf/)
+[/src/sdf](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/sdf/)
 
 #### Primitives
 
@@ -535,7 +536,7 @@ Related:
 
 ### Texture lookups
 
-[/src/tex](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/tex/)
+[/src/tex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/tex/)
 
 - `indexToCoord` / `coordToIndex`
 - `indexToUV` / `uvToIndex`
@@ -544,7 +545,7 @@ Related:
 
 ### Visualization
 
-[/src/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/viz/)
+[/src/viz](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast-stdlib/src/viz/)
 
 - `functionDomainMapper`
 - `functionSampler`

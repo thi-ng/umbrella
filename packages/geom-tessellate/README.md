@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-tessellate](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-tessellate.svg?03f4de89)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-tessellate](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-tessellate.svg?03f4de89)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-tessellate.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Tessellators](#tessellators)
@@ -36,7 +37,7 @@
 
 ## About
 
-2D/3D convex polygon tessellators. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+2D/3D convex polygon tessellators. This is a support package for [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 ### Tessellators
 
@@ -48,13 +49,13 @@ triangle, square, hexagon and octagon.
 
 #### Ear cut
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/ear-cut.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/ear-cut.png)
 
-- [earCut](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/earcut.ts)
+- [earCut](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/earcut.ts)
 
 ##### Complex polygons
 
-- [earCutComplex](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/earcut-complex.ts)
+- [earCutComplex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/earcut-complex.ts)
 
 Higher order tessellator for concave polygons and/or polygons with holes...
 
@@ -62,48 +63,48 @@ TODO add comments, credits & example
 
 #### Edge split
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/edge-split.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/edge-split.png)
 
-- [edgeSplit](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/edge-split.ts)
+- [edgeSplit](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/edge-split.ts)
 
 #### Inset
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/inset.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/inset.png)
 
-- [inset](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/inset.ts)
+- [inset](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/inset.ts)
 
 Higher order tessellator with configurable inset distance (normalized) toward
 centroid and option to keep center polygon (empty by default).
 
 #### Quad fan
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/quad-fan.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/quad-fan.png)
 
-- [quadFan](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/quad-fan.ts)
+- [quadFan](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/quad-fan.ts)
 
 #### Rim triangles
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/rim-tris.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/rim-tris.png)
 
-- [rimTris](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/rim-tris.ts)
+- [rimTris](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/rim-tris.ts)
 
 #### Tri fan (with boundary point)
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/tri-fan-boundary.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/tri-fan-boundary.png)
 
-- [triFanBoundary](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/tri-fan-boundary.ts)
+- [triFanBoundary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/tri-fan-boundary.ts)
 
 #### Tri fan (with centroid)
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/tri-fan.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/tri-fan.png)
 
-- [triFan](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/tri-fan.ts)
+- [triFan](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/tri-fan.ts)
 
 #### Tri fan (with edge splitting)
 
-![diagram of tessellated polygons](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-tessellate/tri-fan-split.png)
+![diagram of tessellated polygons](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-tessellate/tri-fan-split.png)
 
-- [triFanSplit](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/tri-fan-split.ts)
+- [triFanSplit](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-tessellate/src/tri-fan-split.ts)
 
 ### The `ITessellation` interface & implementation
 
@@ -125,7 +126,7 @@ Currently, there're two implementations available:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-tessellate%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-tessellate%5D)
 
 ## Installation
 
@@ -157,29 +158,29 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.32 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
-- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
-- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
+- [@thi.ng/geom-isec](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-isec)
+- [@thi.ng/geom-poly-utils](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-poly-utils)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/morton](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/morton)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                            | Description                                                                    | Live demo                                            | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-hexgrid.png" width="240"/>   | Hex grid generation & tessellations                                            | [Demo](https://demo.thi.ng/umbrella/geom-hexgrid/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-hexgrid)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png" width="240"/>             | Animated, recursive polygon tessellations                                      | [Demo](https://demo.thi.ng/umbrella/geom-tessel/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-geom) |
+| Screenshot                                                                                                                    | Description                                                                    | Live demo                                            | Source                                                                             |
+|:------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-hexgrid.png" width="240"/>   | Hex grid generation & tessellations                                            | [Demo](https://demo.thi.ng/umbrella/geom-hexgrid/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-hexgrid)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/geom/tessel.png" width="240"/>             | Animated, recursive polygon tessellations                                      | [Demo](https://demo.thi.ng/umbrella/geom-tessel/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-tessel)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pointfree-geom.jpg" width="240"/> | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-geom) |
 
 ## API
 

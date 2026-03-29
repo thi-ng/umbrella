@@ -1,6 +1,6 @@
 # fft-synth
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/fft-synth.png)
 
 [Live demo](http://demo.thi.ng/umbrella/fft-synth/)
 
@@ -10,10 +10,10 @@ frequency bins and delay line with pitch shift.
 The "sequencer" (click the "Auto mode" button to enable) uses a weighted
 random function to prioritize lower frequency bins. You can change the
 weighting function in
-[automode.ts](https://github.com/thi-ng/umbrella/blob/develop/examples/fft-synth/src/automode.ts).The
+[automode.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth/src/automode.ts).The
 delay line doesn't store samples, but entire spectrums. Delay period is
 currently hard coded to 80 frames (see
-[audio.ts](https://github.com/thi-ng/umbrella/blob/develop/examples/fft-synth/src/audio.ts)).
+[audio.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth/src/audio.ts)).
 
 Some explanations for various parameters / controls:
 
@@ -35,7 +35,7 @@ If you come up with interesting combinations, please send a screenshot
 and I might add some presets.
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

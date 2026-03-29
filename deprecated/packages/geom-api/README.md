@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-api](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-api.svg?c0b50d1e)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-api](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-api.svg?c0b50d1e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-api.svg)
@@ -9,7 +9,7 @@
 > [!IMPORTANT]
 > This package has been deprecated, re-distributed & migrated to other packages,
 > most notably
-> [@thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom).
+> [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 - [About](#about)
 - [Status](#status)
@@ -21,13 +21,13 @@
 
 ## About
 
-Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) packages.
+Shared type & interface declarations for [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom) packages.
 
 ## Status
 
 **DEPRECATED** - superseded by other package(s)
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-api%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-api%5D+in%3Atitle)
 
 ## Installation
 
@@ -59,8 +59,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 234 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 ## API
 

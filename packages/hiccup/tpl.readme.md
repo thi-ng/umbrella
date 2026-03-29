@@ -17,9 +17,9 @@ easily *composable* components for static serialization to HTML & friends.
 This library is suitable for any SGML-style (HTML/XML/SVG/RSS/Atom etc.)
 serialization, including static website/asset generation, server side rendering
 etc. For interactive use cases, please see companion packages
-[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+[@thi.ng/rdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom)
 (or the older, now unmaintained
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom))
 and their various support packages.
 
 ### Features
@@ -277,9 +277,9 @@ serialize([div, {id: "foo"}, "bar"]);
 ### SVG generation, generators & lazy composition
 
 Also see
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
+[@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg)
 and
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 for related (and more advanced) functionality.
 
 ```ts tangle:export/readme-circles.js
@@ -442,7 +442,7 @@ Re-formatted HTML output:
 ### Component objects
 
 The sibling library
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
 supports components with basic life cycle methods (init, render, release). To
 support serialization of hdom component trees, hiccup too supports such
 components since version 2.0.0. For static serialization only the `render`
@@ -463,7 +463,7 @@ behavior of individual elements / tree branches:
 
 - **`__escape`** - boolean flag to enable/disable entity escaping
 - **`__skip`** - if true, skips serialization (also used by
-  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
+  [@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom))
 - **`__serialize`** - if false, skips serialization (hiccup only)
 
 ```js

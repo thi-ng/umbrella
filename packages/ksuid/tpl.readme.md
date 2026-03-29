@@ -22,7 +22,7 @@ creation of [ULIDs](https://github.com/ulid/spec):
 | Configurable RNG source<sup>(3)</sup> | ✅                                | ✅                      |
 
 - <sup>(1)</sup> See
-  [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
+  [@thi.ng/base-n](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/base-n)
   for alternatives
 - <sup>(2)</sup> With the default offset, the max. supported date for `KSUID32` is 2156-10-20T18:54:55Z
 - <sup>(3)</sup> Default: `window.crypto`, `Math.random` as fallback
@@ -34,7 +34,7 @@ as byte arrays or base-N encoded strings. For the latter, the JS runtime MUST
 support
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 
-![KSUID bit layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ksuid/ksuid.png)
+![KSUID bit layout diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/ksuid/ksuid.png)
 
 ### CLI usage
 

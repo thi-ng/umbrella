@@ -131,7 +131,7 @@ router.start();
 The below benchmarks are ported from
 [router-benchmark](https://github.com/delvedor/router-benchmark), showing
 **highly competitive** results for this package. The
-[benchmark](https://github.com/thi-ng/umbrella/blob/develop/packages/router/bench/index.ts)
+[benchmark](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/router/bench/index.ts)
 itself can be run from the repo root like so:
 
 ```bash

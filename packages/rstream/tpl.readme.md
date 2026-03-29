@@ -283,7 +283,7 @@ s.next(42);
 
 - [reactive()](https://docs.thi.ng/umbrella/rstream/functions/reactive.html) - syntax sugar for `stream()` with initial value
 - [fromAtom()](https://docs.thi.ng/umbrella/rstream/functions/fromAtom.html) - streams from value changes in atoms/cursors
-- [fromChannel()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-csp) - CSP channel to stream conversion
+- [fromChannel()](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-csp) - CSP channel to stream conversion
 - [fromEvent()](https://docs.thi.ng/umbrella/rstream/functions/fromEvent.html) - events
 - [fromDOMEvent()](https://docs.thi.ng/umbrella/rstream/functions/fromDOMEvent.html) - DOM events
 - [fromInterval()](https://docs.thi.ng/umbrella/rstream/functions/fromInterval.html) - interval based counters
@@ -295,7 +295,7 @@ s.next(42);
 - [fromPromises()](https://docs.thi.ng/umbrella/rstream/functions/fromPromises.html) - results from multiple promise
 - [fromRAF()](https://docs.thi.ng/umbrella/rstream/functions/fromRAF.html) - requestAnimationFrame() counter (w/ node fallback)
 - [fromTuple()](https://docs.thi.ng/umbrella/rstream/functions/fromTuple.html) - tuple/vector per-component streams
-- [fromView()](https://docs.thi.ng/umbrella/rstream/functions/fromView.html) - derived view value changes (see [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom))
+- [fromView()](https://docs.thi.ng/umbrella/rstream/functions/fromView.html) - derived view value changes (see [@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom))
 - [fromWorker()](https://docs.thi.ng/umbrella/rstream/functions/fromWorker.html) - messages received from worker
 - [toggle()](https://docs.thi.ng/umbrella/rstream/functions/toggle.html) - on/off switch-like stream
 - [trigger()](https://docs.thi.ng/umbrella/rstream/functions/trigger.html) - one-off events
@@ -392,7 +392,7 @@ m.next(true);
 
 Docs: [merge()](https://docs.thi.ng/umbrella/rstream/functions/merge.html)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-merge.png)
+![diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rstream/rstream-merge.png)
 
 Returns a new `StreamMerge` instance, a subscription type consuming inputs from
 multiple inputs and passing received values on to any subscribers. Input streams
@@ -483,7 +483,7 @@ a.next("abc");
 
 Docs: [sync()](https://docs.thi.ng/umbrella/rstream/functions/sync.html)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sync.png)
+![diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rstream/rstream-sync.png)
 
 Similar to `StreamMerge` above, but with extra synchronization of inputs. Before
 emitting any new values, `StreamSync` collects values until at least one has
@@ -526,7 +526,7 @@ to `false`.
 The synchronization is done via the
 [`partitionSync()`](https://docs.thi.ng/umbrella/transducers/functions/partitionSync-1.html)
 transducer from the
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 package. See this function's docs for further details.
 
 See
@@ -539,7 +539,7 @@ for further reference of the various behavior options.
 
 Docs: [pubsub()](https://docs.thi.ng/umbrella/rstream/functions/pubsub-1.html)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-pubsub.png)
+![diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rstream/rstream-pubsub.png)
 
 Topic based stream splitter. Applies `topic` function to each received value and
 only forwards it to child subscriptions for returned topic. The actual topic
@@ -611,7 +611,7 @@ fromIterable([1, 2, 3, 4]).subscribe(bisect((x) => !!(x & 1), odd, even));
 
 Docs: [sidechainPartition()](https://docs.thi.ng/umbrella/rstream/functions/sidechainPartition-1.html)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sidechain-partition.png)
+![diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rstream/rstream-sidechain-partition.png)
 
 Buffers values from `src` until side chain fires, then emits buffer (unless
 empty) and repeats process until either input is done. By default, the value
@@ -658,7 +658,7 @@ syncRAF(
 
 Docs: [sidechainToggle()](https://docs.thi.ng/umbrella/rstream/functions/sidechainToggle-1.html)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sidechain-toggle.png)
+![diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rstream/rstream-sidechain-toggle.png)
 
 Filters values from input based on values received from side chain. By default,
 the value read from the side chain is ignored, however the optional predicate
@@ -717,7 +717,7 @@ side.next(1);
 
 Docs: [forkJoin()](https://docs.thi.ng/umbrella/rstream/functions/forkJoin.html)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-forkjoin.png)
+![diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rstream/rstream-forkjoin.png)
 
 ##### worker.ts
 
@@ -791,7 +791,7 @@ Create value stream from worker messages.
 ### Error handling
 
 **Detailed information, discussion & diagrams about the new error handling can
-be found in [this issue](https://github.com/thi-ng/umbrella/issues/281)**
+be found in [this issue](https://codeberg.org/thi.ng/umbrella/issues/281)**
 
 The `ISubscriber` interface supports optional error handlers which will be
 called if code in the `next()` or `done()` handlers throws an error. If no error

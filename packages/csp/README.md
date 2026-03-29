@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/csp](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-csp.svg?83a7775a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/csp](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-csp.svg?83a7775a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csp.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [What is CSP?](#what-is-csp)
@@ -61,7 +62,7 @@ channels are blocking on both the reader and writer side.
 ### Buffering behaviors
 
 The following channel buffer types/behaviors are included (from the
-[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
+[thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers)
 package), all accepting a max. capacity and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/buffers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
@@ -79,7 +80,7 @@ interface required by the channel:
   Sliding window ring buffer. Writes to the channel are **never** blocking!
   Whilst the buffer is at full capacity, new writes will first expunge the
   oldest buffered value (similar to [LRU
-  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
   behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/buffers/functions/dropping.html):
   Dropping value ring buffer. Writes to the channel are **never** blocking!
@@ -124,13 +125,13 @@ are the key building blocks for CSP.
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcsp%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bcsp%5D)
 
 ## Related packages
 
-- [@thi.ng/fibers](https://github.com/thi-ng/umbrella/tree/develop/packages/fibers) - Process hierarchies & operators for cooperative multitasking
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
-- [@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
+- [@thi.ng/fibers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fibers) - Process hierarchies & operators for cooperative multitasking
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+- [@thi.ng/transducers-async](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
 
 ## Installation
 
@@ -162,23 +163,23 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.80 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                     | Description                                                                  | Live demo                                     | Source                                                                     |
-|:---------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------|:---------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/csp-bus) |
+| Screenshot                                                                                                             | Description                                                                  | Live demo                                     | Source                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------|:----------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/csp-bus.png" width="240"/> | CSP channel-based event handling, async transducers & reactive UI components | [Demo](https://demo.thi.ng/umbrella/csp-bus/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/csp-bus) |
 
 ## API
 

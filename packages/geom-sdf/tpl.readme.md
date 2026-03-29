@@ -37,7 +37,7 @@ const f = asSDF(group({}, [circle([-50, 0], 100), circle([50, 0], 100)]));
 
 ### Supported thi.ng/geom shape types
 
-([shape type descriptions](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/README.md#shape-types))
+([shape type descriptions](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/README.md#shape-types))
 
 - circle
 - complexPoly (polygon w/ holes)
@@ -74,11 +74,11 @@ group({ __sdf: { combine: "diff", chamfer: 50 }}, [
 
 | Operator | Union                                                                                                    | Difference                                                                                              | Intersection                                                                                            |
 |----------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| default  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-union.png)    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-diff.png)    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-isec.png)    |
-| chamfer  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-union.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-diff.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-isec.png) |
-| round    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-union.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-diff.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-isec.png)   |
-| smooth   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-union.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-diff.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-isec.png)  |
-| steps    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-union.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-diff.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-isec.png)   |
+| default  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-none-union.png)    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-none-diff.png)    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-none-isec.png)    |
+| chamfer  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-chamfer-union.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-chamfer-diff.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-chamfer-isec.png) |
+| round    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-round-union.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-round-diff.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-round-isec.png)   |
+| smooth   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-smooth-union.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-smooth-diff.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-smooth-isec.png)  |
+| steps    | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-steps-union.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-steps-diff.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/combine-steps-isec.png)   |
 
 
 ### SDF discretization, sampling & domain modifiers
@@ -98,10 +98,10 @@ support custom modfifiers. The table below illustrates a few examples effects:
 
 | Modifier          |                                                                                                     |                                                                                                     |                                                                                                     |
 |-------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| `repeat2()`       | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-01.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-02.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-03.png) |
-| `repeatGrid2()`   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-01.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-02.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-03.png)   |
-| `repeatMirror2()` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-01.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-02.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-03.png) |
-| `repeatPolar2()`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-01.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-02.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-03.png)  |
+| `repeat2()`       | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-repeat-01.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-repeat-02.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-repeat-03.png) |
+| `repeatGrid2()`   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-grid-01.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-grid-02.png)   | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-grid-03.png)   |
+| `repeatMirror2()` | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-mirror-01.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-mirror-02.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-mirror-03.png) |
+| `repeatPolar2()`  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-polar-01.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-polar-02.png)  | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/domain-polar-03.png)  |
 
 {{meta.status}}
 
@@ -190,8 +190,8 @@ Results:
 
 | `circle()`                                                                                                                   | `rect()`                                                                                                                          |
 |------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| ![metaballs based on circles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs.png)       | ![metaballs based on rectangles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect.png)    |
+| ![metaballs based on circles](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs.png)       | ![metaballs based on rectangles](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs-rect.png)    |
 | `circle()` (smooth)                                                                                                          | `rect()` (smooth)                                                                                                                 |
-| ![metaballs w/ smooth union](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-smooth.png) | ![metaballs w/ smooth union](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect-smooth.png) |
+| ![metaballs w/ smooth union](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs-smooth.png) | ![metaballs w/ smooth union](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-sdf/metaballs-rect-smooth.png) |
 
 <!-- include ../../assets/tpl/footer.md -->

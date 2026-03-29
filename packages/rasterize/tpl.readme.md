@@ -9,9 +9,9 @@
 The functions in this package can be used with any
 [`IGrid2D`](https://docs.thi.ng/umbrella/api/interfaces/IGrid2D.html) compatible
 grid/image type (e.g. those provided by
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 or
-[@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)).
+[@thi.ng/text-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/text-canvas)).
 
 Currently the following functions are available. All of them support [custom
 shader-like](#custom-shaders) functions to produce "pixel" values.
@@ -95,7 +95,7 @@ const img = floatBuffer(W, W);
 drawCircle(img, W/2, W/2, W/2 - 4, defUVGradient(W, W), true);
 ```
 
-![result image: circle with gradient fill](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rasterize/uv-circle.png)
+![result image: circle with gradient fill](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/rasterize/uv-circle.png)
 
 {{meta.status}}
 

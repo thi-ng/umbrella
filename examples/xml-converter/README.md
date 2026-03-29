@@ -1,32 +1,32 @@
 # xml-converter
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/xml-converter.png)
 
 [Live demo](http://demo.thi.ng/umbrella/xml-converter/)
 
 This example uses
-[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax)
+[@thi.ng/sax](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sax)
 to convert XML/HTML/SVG syntax into
-[hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 / JSON syntax and provides several options to filter the parsed tree and
 control the resulting output format.
 
 ## Dataflow
 
 This diagram illustrates the
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 dataflow topology used by the browser app:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter-dflow.png)
+![dataflow](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/xml-converter-dflow.png)
 
 ## Browser version
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 **IMPORTANT:** Please also see the [troubleshooting
-note](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions#troubleshooting)
+note](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions#troubleshooting)
 and temporary workaround for this example.
 
 ## CLI version

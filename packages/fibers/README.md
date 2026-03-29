@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/fibers](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-fibers.svg?a3831651)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/fibers](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-fibers.svg?a3831651)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fibers.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Basic usage](#basic-usage)
@@ -139,7 +140,7 @@ The following operators act as basic composition helpers to construct more elabo
 ### Composition via transducers
 
 The [@thi.ng/transducers
-package](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 can be very helpful to create complex fiber setups, for example:
 
 ```ts tangle:export/readme-2.ts
@@ -205,7 +206,7 @@ values are being read, essentially a memory management issue).
 #### Buffering behaviors
 
 The following channel buffer types/behaviors are included (from the
-[thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers) package), all accepting a max. capacity
+[thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers) package), all accepting a max. capacity
 and all implementing the
 [IReadWriteBuffer](https://docs.thi.ng/umbrella/fibers/interfaces/IReadWriteBuffer.html)
 interface required by the channel:
@@ -223,7 +224,7 @@ interface required by the channel:
   Sliding window ring buffer. Writes to the channel are **never** blocking!
   Whilst the buffer is at full capacity, new writes will first expunge the
   oldest buffered value (similar to [LRU
-  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
   behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/fibers/functions/dropping.html):
   Dropping value ring buffer. Writes to the channel are **never** blocking!
@@ -370,12 +371,12 @@ if (res !== undefined) {
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bfibers%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bfibers%5D)
 
 ## Related packages
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
-- [@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
+- [@thi.ng/csp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/csp) - Primitives & operators for Communicating Sequential Processes based on async/await and async iterables
+- [@thi.ng/transducers-async](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-async) - Async versions of various highly composable transducers, reducers and iterators
 
 ## Installation
 
@@ -407,34 +408,34 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.43 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/timestamp](https://github.com/thi-ng/umbrella/tree/develop/packages/timestamp)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/idgen](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/idgen)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/timestamp](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/timestamp)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Eight projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                                                             | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>    | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>      | Fiber-based cooperative multitasking basics                                                             | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-unique-edges.png" width="240"/> | Iterating the unique edges of a tessellation                                                            | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-unique-edges) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>       | Barnsley fern IFS fractal renderer                                                                      | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mastodon-feed.jpg" width="240"/>     | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mastodon-feed)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>       | Animated, iterative polygon subdivisions & visualization                                                | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>    | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>      | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)      |
+| Screenshot                                                                                                                       | Description                                                                                             | Live demo                                               | Source                                                                                |
+|:---------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ascii-raymarch.jpg" width="240"/>    | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                                       | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ascii-raymarch)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fiber-basics.png" width="240"/>      | Fiber-based cooperative multitasking basics                                                             | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fiber-basics)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-unique-edges.png" width="240"/> | Iterating the unique edges of a tessellation                                                            | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-unique-edges) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ifs-fractal.jpg" width="240"/>       | Barnsley fern IFS fractal renderer                                                                      | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ifs-fractal)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/mastodon-feed.jpg" width="240"/>     | Mastodon API feed reader with support for different media types, fullscreen media modal, HTML rewriting | [Demo](https://demo.thi.ng/umbrella/mastodon-feed/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/mastodon-feed)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-subdiv.jpg" width="240"/>       | Animated, iterative polygon subdivisions & visualization                                                | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/>    | Responsive image gallery with tag-based Jaccard similarity ranking                                      | [Demo](https://demo.thi.ng/umbrella/related-images/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/render-audio.png" width="240"/>      | Generative audio synth offline renderer and WAV file export                                             | [Demo](https://demo.thi.ng/umbrella/render-audio/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/render-audio)      |
 
 ## API
 

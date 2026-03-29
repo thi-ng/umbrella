@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/cache](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-cache.svg?4dc85e1d)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-cache.svg?4dc85e1d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cache.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Available strategies](#available-strategies)
@@ -54,11 +55,11 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcache%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bcache%5D)
 
 ## Related packages
 
-- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
+- [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative) - ES Map/Set-compatible implementations with customizable equality semantics & supporting operations
 
 ## Installation
 
@@ -90,20 +91,20 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                              | Description                                                          | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/> | Filterable commit log UI w/ minimal server to provide commit history | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr) |
+| Screenshot                                                                                                                      | Description                                                          | Live demo                                              | Source                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-table-ssr.png" width="240"/> | Filterable commit log UI w/ minimal server to provide commit history | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-table-ssr) |
 
 ## API
 

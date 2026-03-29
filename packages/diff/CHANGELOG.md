@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [5.1.111](https://github.com/thi-ng/umbrella/tree/@thi.ng/diff@5.1.111) (2025-12-03)
+### [5.1.111](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/diff@5.1.111) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [5.1.70](https://github.com/thi-ng/umbrella/tree/@thi.ng/diff@5.1.70) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [5.1.67](https://github.com/thi-ng/umbrella/tree/@thi.ng/diff@5.1.67) (2024-04-20)
+### [5.1.70](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/diff@5.1.70) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update type usage ([b5d8bb6](https://github.com/thi-ng/umbrella/commit/b5d8bb6))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
+
+### [5.1.67](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/diff@5.1.67) (2024-04-20)
+
+#### ♻️ Refactoring
+
+- update type usage ([b5d8bb6](https://codeberg.org/thi.ng/umbrella/commit/b5d8bb6))

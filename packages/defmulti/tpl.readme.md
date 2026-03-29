@@ -190,7 +190,7 @@ baz.impls(); // Set { "c", "a", "b" }
 ```
 
 Also see the WIP package
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 for a concreate realworld usage example.
 
 ### defmultiN()
@@ -251,7 +251,7 @@ visit([{a: 1, b: ["foo", "bar", null, 42]}])
 ```
 
 See
-[/test/index.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti/test/index.ts)
+[/test/index.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti/test/index.ts)
 for a variation of this example.
 
 
@@ -306,7 +306,7 @@ To facilitate better introspection of dynamically constructed/added `defmulti()`
 implementations (with possibly deep hierarchies of dispatch values), we can
 utilize the `.dependencies()` method to extract all dispatch value relationships
 and use these to build [dependency
-graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph), which
+graph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph), which
 then can also be visualized.
 
 ```ts
@@ -339,6 +339,6 @@ console.log(toDot(defDGraph(fn.dependencies()), { id: (id) => id }));
 // }
 ```
 
-![Graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/defmulti/readme.dot.svg)
+![Graphviz output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/defmulti/readme.dot.svg)
 
 <!-- include ../../assets/tpl/footer.md -->

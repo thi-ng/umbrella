@@ -11,63 +11,63 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.1.86](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.1.86) (2025-12-03)
+### [3.1.86](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@3.1.86) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [3.1.47](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.1.47) (2025-02-21)
+### [3.1.47](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@3.1.47) (2025-02-21)
 
 #### ♻️ Refactoring
 
-- switch use of `Promise` to `MaybePromise` ([59b3ae1](https://github.com/thi-ng/umbrella/commit/59b3ae1))
+- switch use of `Promise` to `MaybePromise` ([59b3ae1](https://codeberg.org/thi.ng/umbrella/commit/59b3ae1))
   - update `ILifeCycle` and `ComponentFactory` to not require async
   - update tests
 
-## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.1.0) (2024-03-09)
+## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@3.1.0) (2024-03-09)
 
 #### 🚀 Features
 
-- add start/stop logging ([97af706](https://github.com/thi-ng/umbrella/commit/97af706))
+- add start/stop logging ([97af706](https://codeberg.org/thi.ng/umbrella/commit/97af706))
 
-### [3.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.0.3) (2024-02-16)
+### [3.0.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@3.0.3) (2024-02-16)
 
 #### ♻️ Refactoring
 
-- update LOGGER handling ([a11f2a8](https://github.com/thi-ng/umbrella/commit/a11f2a8))
+- update LOGGER handling ([a11f2a8](https://codeberg.org/thi.ng/umbrella/commit/a11f2a8))
 
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@3.0.0) (2024-02-01)
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@3.0.0) (2024-02-01)
 
 #### 🛑 Breaking changes
 
-- Async component factories ([998409d](https://github.com/thi-ng/umbrella/commit/998409d))
+- Async component factories ([998409d](https://codeberg.org/thi.ng/umbrella/commit/998409d))
 - BREAKING CHANGE: Component factory functions are async now
   - add async System.init()
   - update System ctor
   - add/update docs
   - update tests
 
-## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@2.3.0) (2024-01-31)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@2.3.0) (2024-01-31)
 
 #### 🚀 Features
 
-- update ILifecycle, add system arg ([89d341a](https://github.com/thi-ng/umbrella/commit/89d341a))
+- update ILifecycle, add system arg ([89d341a](https://codeberg.org/thi.ng/umbrella/commit/89d341a))
   - add/update tests
 
-## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@2.2.0) (2024-01-30)
+## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@2.2.0) (2024-01-30)
 
 #### 🚀 Features
 
-- update start/stop logic ([71f2dc5](https://github.com/thi-ng/umbrella/commit/71f2dc5))
+- update start/stop logic ([71f2dc5](https://codeberg.org/thi.ng/umbrella/commit/71f2dc5))
   - update System.start() to stop already started components if current
   component startup failed
   - update System.stop() to only return true if _all_ components did shutdown
   - update docs
   - add tests
 
-### [2.1.80](https://github.com/thi-ng/umbrella/tree/@thi.ng/system@2.1.80) (2023-11-09)
+### [2.1.80](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/system@2.1.80) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

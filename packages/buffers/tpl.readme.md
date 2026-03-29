@@ -27,7 +27,7 @@ interface:
 - [`sliding`](https://docs.thi.ng/umbrella/buffers/functions/sliding.html):
   Sliding window ring buffer. Whilst the buffer is at full capacity, new
   writes will first expunge the oldest buffered value (similar to [LRU
-  cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+  cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
   behavior). Read behavior is the same as for `fifo`.
 - [`dropping`](https://docs.thi.ng/umbrella/buffers/functions/dropping.html):
   Dropping value ring buffer. Whilst the buffer is at full capacity, new writes

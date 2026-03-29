@@ -44,7 +44,7 @@ The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/readme-grid.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/layout/readme-grid.png)
 
 The code producing this layout (incl. the visualization itself):
 
@@ -141,7 +141,7 @@ IMPORTANT: As with GridLayout, nested layouts **MUST** be completed first before
 requesting new cells (aka `LayoutBoxes`) from a parent, otherwise unintended
 overlaps will occur.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/readme-stacked.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/layout/readme-stacked.png)
 
 The code producing this layout (incl. the visualization itself):
 

@@ -46,8 +46,8 @@ Planned features:
 
 | Examples                                                                                    |                                                                                             |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-0.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-1.png) |
-| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-2.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-3.png) |
+| ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-0.png) | ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-1.png) |
+| ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-2.png) | ![example](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-3.png) |
 
 ```ts tangle:export/readme-1.ts
 import { expand, interpret, turtle2d, TURTLE_IMPL_2D } from "@thi.ng/lsys";
@@ -94,7 +94,7 @@ stochastic features, e.g. randomization of growth direction and
 stochastic branch termination. This enables the creation of more organic
 looking structures, like shown in the following example:
 
- ![stochastic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-tree.png)
+ ![stochastic L-system](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/lsys/lsys-tree.png)
 
 ```ts tangle:export/readme-2.ts
 import { expand, interpret, turtle2d, TURTLE_IMPL_2D } from "@thi.ng/lsys";

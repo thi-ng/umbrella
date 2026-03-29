@@ -1,11 +1,11 @@
 # json-components
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/json-components.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/json-components.jpg)
 
 [Live demo](https://demo.thi.ng/umbrella/json-components/)
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

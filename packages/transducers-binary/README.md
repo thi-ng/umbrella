@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-binary](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers-binary.svg?259d5d4d)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transducers-binary](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transducers-binary.svg?259d5d4d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -33,10 +34,10 @@
 
 ## About
 
-Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 Like the transducers and reducers defined in
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers),
 all functions defined in this package too accept an optional input
 iterable for direct use.
 
@@ -44,13 +45,13 @@ iterable for direct use.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-binary%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransducers-binary%5D)
 
 ## Related packages
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 100+ assorted binary / bitwise operations, conversions, utilities, lookup tables
-- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
-- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary) - 100+ assorted binary / bitwise operations, conversions, utilities, lookup tables
+- [@thi.ng/bitstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/unionstruct](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 
 ## Installation
 
@@ -82,27 +83,27 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.51 KB
 
 ## Dependencies
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/compose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compose)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/hex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hex)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 ## Usage examples
 
 Five projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                               | Description                                                                              | Live demo                                               | Source                                                                               |
-|:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>       | Figlet-style bitmap font creation with transducers                                       | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/> | 2D transducer based cellular automata                                                    | [Demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>  | Parser grammar livecoding editor/playground & codegen                                    | [Demo](https://demo.thi.ng/umbrella/parse-playground/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/procedural-text.jpg" width="240"/>   | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation | [Demo](https://demo.thi.ng/umbrella/procedural-text/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/procedural-text)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>           | 1D Wolfram automata with OBJ point cloud export                                          | [Demo](https://demo.thi.ng/umbrella/wolfram/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)           |
+| Screenshot                                                                                                                       | Description                                                                              | Live demo                                               | Source                                                                                |
+|:---------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/bitmap-font.gif" width="240"/>       | Figlet-style bitmap font creation with transducers                                       | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/bitmap-font)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/cellular-automata.png" width="240"/> | 2D transducer based cellular automata                                                    | [Demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/cellular-automata) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/parse-playground.png" width="240"/>  | Parser grammar livecoding editor/playground & codegen                                    | [Demo](https://demo.thi.ng/umbrella/parse-playground/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/parse-playground)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/procedural-text.jpg" width="240"/>   | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation | [Demo](https://demo.thi.ng/umbrella/procedural-text/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/wolfram.png" width="240"/>           | 1D Wolfram automata with OBJ point cloud export                                          | [Demo](https://demo.thi.ng/umbrella/wolfram/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/wolfram)           |
 
 ## API
 
@@ -133,7 +134,7 @@ import { Smush32 } from "@thi.ng/random";
 
 This is a higher-order transducer, purely composed from other
 transducers. [See code
-here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/hex-dump.ts).
+here](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/hex-dump.ts).
 
 ```ts
 import { hexDump } from "@thi.ng/transducers-binary";
@@ -149,7 +150,7 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 ### Structured byte buffer construction
 
 The
-[`bytes()`](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/bytes.ts)
+[`bytes()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/bytes.ts)
 reducer transforms a stream of declarative data definitions (optionally
 with Little-Endian encoding) into an `Uint8Array`.
 
@@ -214,7 +215,7 @@ console.log(
 ```
 
 Extended to transform longer strings (taken from the [bitmap-font
-example](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font),
+example](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/bitmap-font),
 [live demo](https://demo.thi.ng/umbrella/bitmap-font/)):
 
 ```js
@@ -315,17 +316,17 @@ tx.transduce(tx.comp(base64Decode(), utf8Decode()), tx.str(), buf);
 
 ### Transducers
 
-- [base64Decode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/base64.ts)
-- [base64Encode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/base64.ts)
-- [bits](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/bits.ts)
-- [hexDump](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/hex-dump.ts)
-- [partitionBits](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/partition-bits.ts)
-- [utf8Decode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/utf8.ts)
-- [utf8Encode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/utf8.ts)
+- [base64Decode](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/base64.ts)
+- [base64Encode](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/base64.ts)
+- [bits](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/bits.ts)
+- [hexDump](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/hex-dump.ts)
+- [partitionBits](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/partition-bits.ts)
+- [utf8Decode](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/utf8.ts)
+- [utf8Encode](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/utf8.ts)
 
 ### Reducers
 
-- [bytes](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/bytes.ts)
+- [bytes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/bytes.ts)
 
 ## Authors
 

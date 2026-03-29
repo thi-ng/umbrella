@@ -1,10 +1,10 @@
 # hiccup-canvas-arcs
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-arcs.jpg)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/hiccup-canvas-arcs.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/hiccup-canvas-arcs/)
 
-Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
+Please refer to the [example build instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
 ## Authors
 

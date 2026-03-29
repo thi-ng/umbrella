@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/grid-iterators](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-grid-iterators.svg?10cce11a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/grid-iterators](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-grid-iterators.svg?10cce11a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/grid-iterators.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Columns](#columns)
@@ -50,101 +51,101 @@ clipping, filling, processing in general:
 
 ### Columns
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/columns2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/columns2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/columns.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/columns.ts)
 
 Also see the filtered version
-[`columnEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/column-ends.ts),
+[`columnEnds2d()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/column-ends.ts),
 which only includes the end points of each column.
 
 ### Diagonal (45 degrees)
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonal2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/diagonal2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/diagonal.ts)
 
 Also see the filtered version
-[`diagonalEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal-ends.ts),
+[`diagonalEnds2d()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/diagonal-ends.ts),
 which only includes the end points of the diagonals.
 
 ### Diagonal with configurable slope
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonalslopex-small.gif)
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonalslopey-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/diagonalslopex-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/diagonalslopey-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal-slope.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/diagonal-slope.ts)
 
 ### Hilbert curve
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/hilbert2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/hilbert2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hilbert.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/hilbert.ts)
 
 ### Interleave columns
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleavecolumns2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/interleavecolumns2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/interleave.ts)
 
 Supports custom strides... example uses `step = 4`
 
 ### Interleave rows
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleaverows2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/interleaverows2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/interleave.ts)
 
 Supports custom strides... example uses `step = 4`
 
 ### Random
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/random2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/random2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/random.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/random.ts)
 
 Supports custom PRNG implementations via `IRandom` interface defined in
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 
 ### Rows
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/rows2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/rows2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/rows.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/rows.ts)
 
 Also see the filtered version
-[`rowEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/row-ends.ts),
+[`rowEnds2d()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/row-ends.ts),
 which only includes the end points of each row.
 
 ### Outward spiral
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/spiral2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/spiral2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/spiral.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/spiral.ts)
 
 ### Z-curve
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zcurve2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/zcurve2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zcurve.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/zcurve.ts)
 
 ### Zigzag columns
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagcolumns2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/zigzagcolumns2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-columns.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/zigzag-columns.ts)
 
 ### Zigzag diagonal
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagdiagonal2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/zigzagdiagonal2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-diagonal.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/zigzag-diagonal.ts)
 
 ### Zigzag rows
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagrows2d-small.gif)
+![anim](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/zigzagrows2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-rows.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/zigzag-rows.ts)
 
 Some functions have been ported from [Christopher
 Kulla](https://fpsunflower.github.io/ckulla/)'s Java-based [Sunflow
@@ -152,7 +153,7 @@ renderer](https://sunflow.sf.net).
 
 For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 ### Mirror symmetries & arbitrary coordinate transformations
 
@@ -210,22 +211,22 @@ img
 Additionally, the following shape iterators are available, all also with
 optional clipping:
 
-- [circle](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/circle.ts) (Bresenham)
-- [hline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
-- [vline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
-- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/line.ts) (Bresenham)
+- [circle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/circle.ts) (Bresenham)
+- [hline](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/hvline.ts)
+- [vline](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/hvline.ts)
+- [line](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators/src/line.ts) (Bresenham)
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgrid-iterators%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgrid-iterators%5D)
 
 ## Related packages
 
-- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton) - Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions
-- [@thi.ng/rasterize](https://github.com/thi-ng/umbrella/tree/develop/packages/rasterize) - Headless 2D shape drawing, filling & rasterization for arbitrary targets/purposes (no canvas required)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
+- [@thi.ng/morton](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/morton) - Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions
+- [@thi.ng/rasterize](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rasterize) - Headless 2D shape drawing, filling & rasterization for arbitrary targets/purposes (no canvas required)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers) - Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations
 
 ## Installation
 
@@ -257,28 +258,28 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.67 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/bitfield](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/bitfield)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/morton](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/morton)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                         | Description                                            | Live demo                                                         | Source                                                                                         |
-|:-----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>              | Visualization of different grid iterator strategies    | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)              |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions                  | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-css-image-transition) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)                | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)                |
+| Screenshot                                                                                                                                 | Description                                            | Live demo                                                         | Source                                                                                          |
+|:-------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------|:------------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/grid-iterators.png" width="240"/>              | Visualization of different grid iterator strategies    | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/grid-iterators)              |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-css-image-transition.jpg" width="240"/> | Generating pure CSS image transitions                  | [Demo](https://demo.thi.ng/umbrella/hiccup-css-image-transition/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-css-image-transition) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>                | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)                | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)                |
 
 ## API
 

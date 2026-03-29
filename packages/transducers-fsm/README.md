@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-fsm](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers-fsm.svg?f037ded1)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transducers-fsm](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transducers-fsm.svg?f037ded1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-fsm.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 **Update 12/2022: This package is considered completed and no longer being
 updated with new features.**
@@ -32,7 +33,7 @@ updated with new features.**
 
 ## About
 
-Transducer-based Finite State Machine transformer. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Transducer-based Finite State Machine transformer. This is a support package for [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 This package provides a single function, a general purpose [Finite State
 Machine](https://en.wikipedia.org/wiki/Finite-state_machine) transducer,
@@ -44,15 +45,15 @@ transformation pipeline.
 
 **COMPLETED** - no further development planned
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-fsm%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransducers-fsm%5D)
 
 This package might be merged with (or deprecated by) the newer
-[@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
+[@thi.ng/parse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/parse)
 package.
 
 ## Related packages
 
-- [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
+- [@thi.ng/sax](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
 
 ## Installation
 
@@ -84,25 +85,25 @@ Package sizes (brotli'd, pre-treeshake): ESM: 213 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                                | Description                                                                                | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-key-sequences) |
+| Screenshot                                                                                                                        | Description                                                                                | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-key-sequences.jpg" width="240"/> | rstream & transducer-based FSM for converting key event sequences into high-level commands | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences) |
 
 ## Usage examples
 
 For a real world example, the
-[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax)
+[@thi.ng/sax](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sax)
 package provides a SAX-like XML parser transducer, built around the FSM
 provided here.
 

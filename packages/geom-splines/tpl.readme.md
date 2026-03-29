@@ -54,7 +54,7 @@ points.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-uni.png) |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-cp-uni.png) |
 
 #### Poly vertices as break points
 
@@ -65,6 +65,6 @@ each vertex corner, taking into the convexity of each poly vertex.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-uni.png) |
+| ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom/geom-splines-bp-uni.png) |
 
 <!-- include ../../assets/tpl/footer.md -->

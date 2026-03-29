@@ -5,7 +5,7 @@
 ## About
 
 Various implementations of the [@thi.ng/api
-`ISeq`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/seq.ts)
+`ISeq`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/api/seq.ts)
 interface / sequence abstraction and related tooling (inspired by
 Clojure). Think of `ISeq`s as readonly sequential views & cursors of an
 underlying (not necessarily sequential) collection...
@@ -118,7 +118,7 @@ Since the entire approach is interface based, sequences can be defined
 for any custom datatype (preferably via the
 [ISeqable](https://docs.thi.ng/umbrella/api/interfaces/ISeqable.html)
 interface), for example here using
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons):
+[@thi.ng/dcons](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dcons):
 
 ```ts
 import { dcons } from "@thi.ng/dcons";

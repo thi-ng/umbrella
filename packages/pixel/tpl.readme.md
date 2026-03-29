@@ -20,7 +20,7 @@
 - Buffer-to-buffer blitting w/ automatic format conversion
 - Buffer-to-canvas blitting (incl. offscreen canvas support)
 - Buffer-to-buffer blending w/ [Porter-Duff
-  operators](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+  operators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/porter-duff)
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
@@ -137,9 +137,9 @@ const img = src.resize(1024, 256, "cubic");
 
 | Filter      |                                                                                                                                          |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| `"nearest"` | ![resized image w/ nearest neighbor sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-nearest.png) |
-| `"linear"`  | ![resized image w/ bilinear sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-bilinear.jpg)        |
-| `"cubic"`   | ![resized image w/ bicubic sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-bicubic.jpg)          |
+| `"nearest"` | ![resized image w/ nearest neighbor sampling](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/resize-nearest.png) |
+| `"linear"`  | ![resized image w/ bilinear sampling](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/resize-bilinear.jpg)        |
+| `"cubic"`   | ![resized image w/ bicubic sampling](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/resize-bicubic.jpg)          |
 
 {{meta.status}}
 

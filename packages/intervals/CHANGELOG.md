@@ -11,8 +11,8 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [4.2.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/intervals@4.2.43) (2023-11-09)
+### [4.2.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/intervals@4.2.43) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

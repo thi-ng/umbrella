@@ -267,7 +267,7 @@ $eval(`
 ```
 
 See
-[test/](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr/test/)
+[test/](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sexpr/test/)
 for a more in-depth version of this example...
 
 ### Custom syntax

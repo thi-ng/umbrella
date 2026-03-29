@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 ![example distance field comparison for three different
-metrics](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt.png)
+metrics](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/distance-transform/dt.png)
 
 This package provides a function to transform a binary(-like) input grid/image
 into a distance field using a provided distance metric (default: Eucledian). Any
@@ -20,7 +20,7 @@ Based on: ["A general algorithm for computing Distance Transforms in linear
 time"](http://www.cs.rug.nl/~roe/publications/dt.pdf), A. Meijster, J.B.T.M.
 Roerdink and W.H. Hesselink
 
-![3d visualization](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt3d.png)
+![3d visualization](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/distance-transform/dt3d.png)
 
 Example of distance maps being utilized for 3D surface detailing.<br/>
 Image credits: (c) 2017 Karsten Schmidt
@@ -50,9 +50,9 @@ Image credits: (c) 2017 Karsten Schmidt
 {{pkg.docs}}
 
 This small example uses functionality from the
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 and
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+[@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
 packages...
 
 ```ts

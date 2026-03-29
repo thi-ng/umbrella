@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-io-pfm](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-io-pfm.svg?856edcaa)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-io-pfm](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-io-pfm.svg?856edcaa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-io-pfm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-pfm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-io-pfm.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -24,10 +25,10 @@
 
 ## About
 
-Portable FloatMap image format support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+Portable FloatMap image format support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 Similar to the [NetPBM
-formats](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm),
+formats](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-netpbm),
 the [Portable FloatMap image format](https://pauldebevec.com/Research/HDR/PFM/)
 is extremely simple, uncompressed and mainly interesting for development
 purposes & interchange (e.g. for use with Intel's [Open Image Denoise CLI
@@ -37,7 +38,7 @@ tools](https://github.com/OpenImageDenoise/oidn)).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-io-pfm%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-io-pfm%5D)
 
 ## Installation
 
@@ -69,8 +70,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 694 bytes
 
 ## Dependencies
 
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 
 ## API
 

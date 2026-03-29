@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/ramp/readme.png)
 
 This package can perform keyframe interpolation for ramps of numeric values,
 n-dimensional vectors and nested objects of the same. It provides several

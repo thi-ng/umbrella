@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/memoize](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-memoize.svg?27d4079c)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/memoize](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-memoize.svg?27d4079c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/memoize.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Available memoization functions](#available-memoization-functions)
@@ -37,9 +38,9 @@ functions with arbitrary arguments and custom result caching using ES6
 Map API like implementations. Unlike native ES6 Maps, **the
 implementations MUST support value, not just referential, equality
 semantics** (e.g. those provided by
-[@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative))
+[@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative))
 or
-[@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)).
+[@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)).
 The latter also support automatically pruning of memoization caches,
 based on different strategies. See doc strings for further details.
 
@@ -57,11 +58,11 @@ based on different strategies. See doc strings for further details.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmemoize%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bmemoize%5D)
 
 ## Related packages
 
-- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache) - In-memory cache implementations with ES6 Map-like API and different eviction strategies
+- [@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache) - In-memory cache implementations with ES6 Map-like API and different eviction strategies
 
 ## Installation
 
@@ -93,21 +94,21 @@ Package sizes (brotli'd, pre-treeshake): ESM: 507 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Three projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                           | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-|                                                                                                                            | Isolated, component-local DOM updates                 | [Demo](https://demo.thi.ng/umbrella/hdom-local-render/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-local-render)   |
-|                                                                                                                            | Basic rstream-gestures multi-touch demo               | [Demo](https://demo.thi.ng/umbrella/multitouch/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet) |
+| Screenshot                                                                                                                         | Description                                           | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+|                                                                                                                                    | Isolated, component-local DOM updates                 | [Demo](https://demo.thi.ng/umbrella/hdom-local-render/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-local-render)   |
+|                                                                                                                                    | Basic rstream-gestures multi-touch demo               | [Demo](https://demo.thi.ng/umbrella/multitouch/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/multitouch)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-spreadsheet) |
 
 ## API
 

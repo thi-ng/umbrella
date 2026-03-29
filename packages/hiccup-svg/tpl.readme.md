@@ -27,9 +27,9 @@ svg({}, circle([0, 0], 100, { fill: "red" }));
 
 Since v2.0.0 this package provides a conversion utility to translate the more
 compact syntax used by
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 and
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 shape trees (designed for more performant realtime / canvas drawing) into a SVG
 serializable hiccup format.
 
@@ -98,7 +98,7 @@ Interpreted as float RGB(A):
 
 `{ fill: [1, 0.8, 0.6, 0.4] }` => `{ fill: "rgba(255,204,153,0.40)" }`
 
-##### [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) values
+##### [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color) values
 
 Converted to CSS color strings:
 
@@ -164,7 +164,7 @@ fs.writeFileSync(
 ```
 
 Minimal example showing SVG conversion of a hiccup-canvas scene (also see
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 for another compatible approach):
 
 ```ts

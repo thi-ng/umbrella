@@ -172,7 +172,7 @@ const btFixed = button("theme.button", { attribs: { style: { width: "8rem" } } }
 const app = (ctx) =>
     ["div", ctx.theme.body,
         [bt, { onclick: () => alert("toggle") }, "Toggle"],
-        [bt, { href: "https://github.com/thi-ng/umbrella" }, "External"],
+        [bt, { href: "https://codeberg.org/thi.ng/umbrella" }, "External"],
         [btFixed, { onclick: () => alert("hi"), selected: true }, "Selected"],
         [btFixed, { disabled: true }, "Disabled"] ];
 

@@ -35,12 +35,12 @@ some additional drawing utilities to minimize boilerplate & WASM/JS cross-callin
 
 ### Zig bindings
 
-- [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-canvas/zig/api.zig)
-- [lib.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-canvas/zig/lib.zig)
+- [api.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas/zig/api.zig)
+- [lib.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas/zig/lib.zig)
 
 ### Minimal example
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/wasm-api-canvas/readme.png)
+![example output](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/wasm-api-canvas/readme.png)
 
 ```zig
 const canvas2d = @import("wasm-api-canvas");

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/leb128](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-leb128.svg?ef6255a3)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/leb128](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-leb128.svg?ef6255a3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/leb128.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Breaking changes](#breaking-changes)
@@ -34,7 +35,7 @@ The WASM binary (~860 bytes) is embedded as base64 string in the
 TypeScript source to make it easier to use in both browser & node
 environments. The source code of the actual implementation (written in
 [Zig](https://ziglang.org)) is included in
-[/zig/leb128.zig](https://github.com/thi-ng/umbrella/tree/develop/packages/leb128/zig/leb128.zig)
+[/zig/leb128.zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/leb128/zig/leb128.zig)
 
 All public functions throw an error if the WASM module could not be
 initialized.
@@ -61,7 +62,7 @@ Furthermore, all values to be encoded/decoded are cast to i64/u64 range now.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bleb128%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bleb128%5D)
 
 ## Installation
 
@@ -93,8 +94,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
 
 ## Dependencies
 
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 ## API
 

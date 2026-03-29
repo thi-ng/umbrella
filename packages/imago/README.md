@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/imago](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-imago.svg?e5ca4d48)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/imago](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-imago.svg?e5ca4d48)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imago.svg)](https://www.npmjs.com/package/@thi.ng/imago)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imago.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Basic example](#basic-example)
@@ -59,7 +60,7 @@ CLojure/Java-based image processor from 2014...
 
 In this new TypeScript version all image I/O and processing is delegated to
 [sharp](https://sharp.pixelplumbing.com) and
-[@thi.ng/pixel](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel).
+[@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 ### Basic example
 
@@ -78,7 +79,7 @@ The following pipeline performs these steps (in sequence):
 - crop center square region
 - output as JPEG thumbnail (and record in outputs)
 - compute
-  [blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash)
+  [blurhash](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/blurhash)
   (and record in outputs)
 
 ```json tangle:export/readme-example1.json
@@ -193,7 +194,7 @@ Cropping a part of the image
 ### dither
 
 Supported dither modes from
-[thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/blob/develop/packages/pixel-dither):
+[thi.ng/pixel-dither](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-dither):
 
 - "atkinson"
 - "burkes"
@@ -260,7 +261,7 @@ File output in any of these formats:
 - webp
 
 Alternatively, a
-[blurhash](https://github.com/thi-ng/umbrella/blob/develop/packages/blurhash) of
+[blurhash](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/blurhash) of
 the image can be computed and stored in the outputs. In this case, no file will
 be written.
 
@@ -330,7 +331,7 @@ Auto-rotate, rotate by angle and/or flip image along x/y
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bimago%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bimago%5D)
 
 ## Positions & sizes
 
@@ -352,7 +353,7 @@ The `ref` option/reference side can take the following values (default: `both`):
 In some operations positioning or alignment can be abstractly stated via one of
 the following gravity values:
 
-![diagram of the 9 possible gravity directions](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imago/gravity.png)
+![diagram of the 9 possible gravity directions](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/imago/gravity.png)
 
 ## Metadata handling
 
@@ -385,18 +386,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 5.33 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/blurhash](https://github.com/thi-ng/umbrella/tree/develop/packages/blurhash)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/object-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/object-utils)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither)
-- [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/blurhash](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/blurhash)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/date](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/date)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/object-utils](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/object-utils)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/pixel-dither](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-dither)
+- [@thi.ng/prefixes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/prefixes)
 - [sharp](https://sharp.pixelplumbing.com)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)

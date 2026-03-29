@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/webgl-msdf](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-webgl-msdf.svg?8275abd5)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/webgl-msdf](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-webgl-msdf.svg?8275abd5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-msdf.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -25,11 +26,11 @@
 
 ## About
 
-Multi-channel SDF font rendering & basic text layout for WebGL. This is a support package for [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl).
+Multi-channel SDF font rendering & basic text layout for WebGL. This is a support package for [@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl).
 
 This package provides [multi-channel SDF font
 rendering](https://github.com/Chlumsky/msdfgen) capabilities for
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
+[@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl),
 incl. optional support for basic text alignment, vertex colors (e.g. for
 multi-color text), and shader options to draw outlines for each
 character. Furthermore, the key GLSL functions are provided as shader
@@ -44,7 +45,7 @@ McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwebgl-msdf%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bwebgl-msdf%5D)
 
 ## Installation
 
@@ -70,24 +71,24 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.57 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vector-pools](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vector-pools)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
+- [@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
-|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/> | WebGL MSDF text rendering & particle system | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf) |
+| Screenshot                                                                                                                | Description                                 | Live demo                                        | Source                                                                         |
+|:--------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:-------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-msdf.jpg" width="240"/> | WebGL MSDF text rendering & particle system | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-msdf) |
 
 ## API
 

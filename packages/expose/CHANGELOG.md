@@ -11,17 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.2.3) (2023-11-09)
+### [1.2.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/expose@1.2.3) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.2.0) (2023-10-24)
+## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/expose@1.2.0) (2023-10-24)
 
 #### 🚀 Features
 
-- update import.meta.env check ([#425](https://github.com/thi-ng/umbrella/issues/425)) ([c8aa353](https://github.com/thi-ng/umbrella/commit/c8aa353))
+- update import.meta.env check ([#425](https://github.com/thi-ng/umbrella/issues/425)) ([c8aa353](https://codeberg.org/thi.ng/umbrella/commit/c8aa353))
   - also check for `import.meta.env.UMBRELLA_GLOBALS` for non-ViteJS tooling
   - btw. this is **not** a fix for the esbuild issue in [#425](https://github.com/thi-ng/umbrella/issues/425)
   (but part of its solution posted in comments)

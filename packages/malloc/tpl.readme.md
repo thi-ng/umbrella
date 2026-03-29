@@ -22,14 +22,14 @@ allocation of typed arrays and reduce GC pressure. See
 
 Since v4.1.0, all internal allocator state is stored in the
 `ArrayBuffer` itself (thanks to the [initial idea & work done by
-@Bnaya](https://github.com/thi-ng/umbrella/pull/153)). This change
+@Bnaya](https://codeberg.org/thi.ng/umbrella/pulls/153)). This change
 allows the `ArrayBuffer` (or `SharedArrayBuffer`) being passed to
 workers and/or the entire memory state being easily serialized/restored
 to/from local storage.
 
 The new memory layout is as follows:
 
-![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/malloc-layout.png)
+![Memory layout diagram](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/malloc-layout.png)
 
 ### Free block compaction / coalescing
 
@@ -43,14 +43,14 @@ The following diagrams show the different stages of this behavior:
 
 In this example we start with three allocated neighboring blocks:
 
-![Block compaction (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-01.png)
+![Block compaction (initial layout)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/compact-01.png)
 
 **Non-continuous free blocks**
 
 After freeing the first & last blocks, the free blocks are linked via
 their `next` pointers, but still occupy non-continuous memory regions.
 
-![Block compaction (non-continuous)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-02.png)
+![Block compaction (non-continuous)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/compact-02.png)
 
 **Single compacted free block**
 
@@ -63,7 +63,7 @@ pointer to the beginning of that block and considers it blank space that
 way (essentially a merge with the remaining free/unallocated space of
 the array buffer).
 
-![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-03.png)
+![Block compaction (result)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/compact-03.png)
 
 ### Block splitting
 
@@ -80,12 +80,12 @@ This behavior too is enabled by default, but can be turned off via the
 
 Initial example layout:
 
-![Block splitting (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-01.png)
+![Block splitting (initial layout)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/split-01.png)
 
 Layout after allocating only a smaller size than the free block's
 capacity:
 
-![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-02.png)
+![Block splitting (result)](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/malloc/split-02.png)
 
 {{meta.status}}
 
@@ -196,7 +196,7 @@ and instead of byte size, expects number of elements. Returns `null`, if
 allocation failed.
 
 Types are referred to via the `Type` enum in the base
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/typedarray.ts)
+[@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/typedarray.ts)
 package, e.g. `Type.F64`:
 
 `U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`
@@ -275,7 +275,7 @@ const b = pool.reallocArray(a2, 8);
 ## Benchmarks
 
 Benchmark
-([source](https://github.com/thi-ng/umbrella/blob/develop/packages/malloc/bench/index.js))
+([source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/malloc/bench/index.js))
 comparing against raw typed array construction of different sizes:
 
 ```bash

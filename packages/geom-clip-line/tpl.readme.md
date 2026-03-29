@@ -8,7 +8,7 @@
 
 Current implementation is partially based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj). Also see
-[@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-clip-poly)
+[@thi.ng/geom-clip-poly](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-clip-poly)
 sister package.
 
 The following main functions are provided:

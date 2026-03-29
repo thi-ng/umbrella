@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.3.123](https://github.com/thi-ng/umbrella/tree/@thi.ng/markdown-table@0.3.123) (2024-06-21)
+### [0.3.123](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.123) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [0.3.78](https://github.com/thi-ng/umbrella/tree/@thi.ng/markdown-table@0.3.78) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-
-### [0.3.54](https://github.com/thi-ng/umbrella/tree/@thi.ng/markdown-table@0.3.54) (2023-08-04)
+### [0.3.78](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.78) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- minor internal updates ([5165d05](https://github.com/thi-ng/umbrella/commit/5165d05))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+### [0.3.54](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.54) (2023-08-04)
+
+#### ♻️ Refactoring
+
+- minor internal updates ([5165d05](https://codeberg.org/thi.ng/umbrella/commit/5165d05))

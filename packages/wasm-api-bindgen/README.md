@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/wasm-api-bindgen](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-wasm-api-bindgen.svg?73258d56)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/wasm-api-bindgen](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-wasm-api-bindgen.svg?73258d56)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-bindgen.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Data bindings & code generators](#data-bindings--code-generators)
@@ -51,7 +52,7 @@
 
 ## About
 
-Polyglot bindings code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Polyglot bindings code generators (TS/JS, Zig, C11) for hybrid WebAssembly projects. This is a support package for [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api).
 
 Without any additional help, current data exchange between a WebAssembly module
 and the JS/TS host application is restricted to simple numeric values. Not even
@@ -74,7 +75,7 @@ These code generators derive their outputs from a single source of truth, a user
 provided JSON file of shared type definitions and optional additional
 configuration, e.g. to configure string behavior and/or provide custom user code
 to inject into the generated source code. Please see the
-[@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/)
+[@thi.ng/wasm-api-dom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom/)
 support package for a more thorough realworld example...
 
 ### Code independence
@@ -83,11 +84,11 @@ Even though these code generators are published as part of the group of
 thi.ng/wasm-api packages, there are **no runtime dependencies for the generated
 native WASM side code**. For C/Zig compilation, only the boilerplate type definition headers are required:
 
-- [C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
-- [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/zig/lib.zig)
+- [C/C++](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
+- [Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/zig/lib.zig)
 
 However, the generated TypeScript types will depend on the core
-[thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+[thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api)
 infrastructure, but that should be expected, since that kind of re-use is the
 entire purpose of that parent package.
 
@@ -245,9 +246,9 @@ are required, set `const` field option to `false`.
 This is the default behavior/implementation for `string`:
 
 See
-[C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
+[C/C++](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
 and
-[Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/zig/lib.zig)
+[Zig](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/zig/lib.zig)
 types for definitions of `StringPtr` and `ConstStringPtr` et al...
 
 | Base type | Tag     | Length | Const | Equiv Zig type signature | Description                         |
@@ -314,7 +315,7 @@ pub const ConstFooSlice = extern struct { ptr: *const Foo; len: usize; };
 ```
 
 For convenience, the supplied Zig [slice
-polyfill](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/zig/lib.zig)
+polyfill](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/zig/lib.zig)
 also provides coercion functions to/from native slice types...
 
 The TypeScript codegen will emit slices as JS arrays and doesn't support direct
@@ -458,7 +459,7 @@ pub const TestType = enum(i32) {
 The package provides a detailed schema to aid the authoring of type definitions
 (and provide inline documentation) via editors with JSON schema integration. The
 schema is distributed as part of the package and located in
-[`/schema/wasm-api-types.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/schema/wasm-api-types.json).
+[`/schema/wasm-api-types.json`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/schema/wasm-api-types.json).
 
 For VSCode, you can [add this snippet to your workspace
 settings](https://code.visualstudio.com/Docs/languages/json#_mapping-to-a-schema-in-the-workspace)
@@ -476,7 +477,7 @@ to apply the schema to any `typedefs.json` files:
 ## CLI generator
 
 The package includes a [small CLI
-wrapper](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/src/cli.ts)
+wrapper](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-bindgen/src/cli.ts)
 to invoke the code generator(s) from JSON type definitions and to write the
 generated source code(s) to different files:
 
@@ -796,7 +797,7 @@ zig build-exe \
 
 Alternatively, use Zig's native build system with the [build file bundled with
 the thi.ng/wasm-api main
-package](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/README.md#using-the-zig-build-system)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/README.md#using-the-zig-build-system)
 and which is being used by various example projects in this repo...
 
 ### Runtime example
@@ -847,14 +848,14 @@ getters/setters](#omitting-getters--setters)...
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-bindgen%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bwasm-api-bindgen%5D)
 
 ## Related packages
 
-- [@thi.ng/wasm-api-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas) - HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications
-- [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom) - Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications
-- [@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule) - Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps
-- [@thi.ng/wasm-api-webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-webgl) - WebGL bridge API for hybrid TypeScript & WASM (Zig) applications
+- [@thi.ng/wasm-api-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-canvas) - HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications
+- [@thi.ng/wasm-api-dom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-dom) - Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications
+- [@thi.ng/wasm-api-schedule](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-schedule) - Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps
+- [@thi.ng/wasm-api-webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api-webgl) - WebGL bridge API for hybrid TypeScript & WASM (Zig) applications
 
 ## Installation
 
@@ -886,31 +887,31 @@ Package sizes (brotli'd, pre-treeshake): ESM: 6.26 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/args](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/args)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/file-io](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/file-io)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/wasm-api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                           | Description                                                        | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list) |
+| Screenshot                                                                                                                   | Description                                                        | Live demo                                           | Source                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/zig-todo-list) |
 
 ## API
 
@@ -919,7 +920,7 @@ directory is using this package:
 TODO
 
 Please also see further examples in the [@thi.ng/wasm-api main
-readme](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api) and
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api) and
 the various (commented) example projects linked above.
 
 ## Authors

@@ -9,14 +9,14 @@
 ### From hdom to rdom: Reactive UIs without virtual DOMs
 
 In many ways this package is the direct successor of
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom),
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom),
 which for several years was my preferred way of building UIs. _hdom_ eschewed
 using a virtual DOM to represent and maintain a dynamic tree of (UI) components
 and instead only required a previous and current component tree in
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 format (aka nested, plain JS arrays w/ optional support for embedded other JS
 data types, like ES6 iterables, [@thi.ng/api
-interfaces](https://github.com/thi-ng/umbrella/tree/develop/packages/api), etc.)
+interfaces](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api), etc.)
 to perform its UI updates. Yet, whilst hiccup trees are plain, simple, user
 defined data structures, which can be very easily composed without any
 libraries, _hdom_ itself was still heavily influenced by the general vDOM
@@ -31,8 +31,8 @@ value changes directly target underlying DOM nodes without having to resort to
 any other intermediate processing (no diffing, vDOM updates etc.).
 _@thi.ng/rdom_ is entirely vDOM-free. It supports declarative component
 definitions via
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup),
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup),
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream),
 ES6 classes, direct DOM manipulation (incl. provided helpers) and/or any mixture
 of these approaches.**
 
@@ -54,9 +54,9 @@ situations. Whilst targetting a standard JS DOM by default, each component can
 decide for itself what kind of target data structure (apart from a browser DOM)
 it manages. _rdom_ components themselves have **no mandatory** knowledge of a
 browser DOM. As an example, similar to
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas),
+[@thi.ng/hdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas),
 the
-[@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas)
+[@thi.ng/rdom-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rdom-canvas)
 wrapper provides a component which subscribes to a stream of hiccup-based scene
 descriptions (trees) and then translates each scene-value into HTML Canvas API
 draw calls.
@@ -78,10 +78,10 @@ reasons.
 
 Because _rdom_ itself relies for most reactive features, stream composition and
 reactive value transformations on other packages, i.e.
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
-[@thi.ng/transducers-async](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-async)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream),
+[@thi.ng/transducers-async](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-async)
 and
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
+[@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers),
 please consult the docs for these packages to learn more about the available
 constructs and patterns. Most of _rdom_ only deals with either subscribing to
 reactive values, async iterables and/or wrapping/transforming existing
@@ -95,9 +95,9 @@ auto-wrap such values embedded in an hiccup tree.
 
 For the sake of deduplication of functionality and to keep the number of
 dependencies to a minimum, direct
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
+[@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/atom)
 integration has been removed in favor of using relevant
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 constructs, which can be used as lightweight adapters, i.e.:
 
 - [`fromAtom()`](https://docs.thi.ng/umbrella/rstream/functions/fromAtom.html)
@@ -156,7 +156,7 @@ code examples:
 ### Event handlers for reactive streams
 
 Currently, reactive rdom components are based on
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+[@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream)
 subscriptions. To create a feedback loop between those reactive state values and
 their subscribed UI components, input event handlers need to feed any user
 changes back to those reactive state(s). To reduce boilerplate for these tasks,
@@ -189,8 +189,8 @@ $compile(["input", {
 name.subscribe(trace("name:"));
 ```
 
-Click counter using [thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) and
-[thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers):
+Click counter using [thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) and
+[thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers):
 
 ```ts
 import { $compile, $inputTrigger } from "@thi.ng/rdom";
@@ -217,7 +217,7 @@ Work is underway to better support [built-in
 AsyncIterables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols)
 (possibly entirely in-lieu of rstream constructs). Currently, they can only be
 directly used for simple text or attribute values (also see the [rdom-async
-example](https://github.com/thi-ng/umbrella/blob/develop/examples/rdom-async)):
+example](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-async)):
 
 ```ts
 import { $compile } from "@thi.ng/rdom";

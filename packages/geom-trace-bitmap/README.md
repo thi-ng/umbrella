@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-trace-bitmap](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-trace-bitmap.svg?0454d29d)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-trace-bitmap](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-trace-bitmap.svg?0454d29d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-trace-bitmap.svg)](https://www.npmjs.com/package/@thi.ng/geom-trace-bitmap)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-trace-bitmap.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -27,7 +28,7 @@
 
 ## About
 
-Bitmap image to hairline vector and point cloud conversions. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+Bitmap image to hairline vector and point cloud conversions. This is a support package for [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 This package provides an extensible setup to extract user selectable
 single-pixel width line segments in horizontal, vertical and diagonal (45°)
@@ -44,12 +45,12 @@ and example below for details.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-trace-bitmap%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-trace-bitmap%5D)
 
 ## Related packages
 
-- [@thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw) - Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
+- [@thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-axidraw) - Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
 
 ## Installation
 
@@ -81,24 +82,24 @@ Package sizes (brotli'd, pre-treeshake): ESM: 996 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators)
-- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/grid-iterators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators)
+- [@thi.ng/matrices](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/matrices)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                          | Description                                            | Live demo                                          | Source                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap) |
+| Screenshot                                                                                                                  | Description                                            | Live demo                                          | Source                                                                           |
+|:----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap) |
 
 ## API
 
@@ -109,7 +110,7 @@ TODO
 ### Basic usage
 
 For brevity, this example uses
-[thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm)
+[thi.ng/pixel-io-netpbm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-netpbm)
 to load an image in PGM format. For that image format,  the `read()` function
 returns a [thi.ng/pixel
 IntBuffer](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) using the

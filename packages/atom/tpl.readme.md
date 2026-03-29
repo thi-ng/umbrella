@@ -26,7 +26,7 @@ reactive updates from performed state changes.
 
 ## Temporary restrictions
 
-Due to a change of inferencing rules in TypeScript 4.3 with regards to tuples, the `IReset` and `ISwap` interface definitions in this package had to be updated and removed support for lookup path lengths > 6. This change is expected to be temporary only and is tracked by [#303](https://github.com/thi-ng/umbrella/issues/303).
+Due to a change of inferencing rules in TypeScript 4.3 with regards to tuples, the `IReset` and `ISwap` interface definitions in this package had to be updated and removed support for lookup path lengths > 6. This change is expected to be temporary only and is tracked by [#303](https://codeberg.org/thi.ng/umbrella/issues/303).
 
 ## Breaking changes
 
@@ -54,7 +54,7 @@ now considered the defacto way to create new instances are generally
 starting to be provided more consistently across the umbrella ecosystem.
 All of them use the `def` prefix, e.g. `defAtom()`, `defCursor()` etc.
 `Unsafe` versions exist for some types too. [More
-info](https://github.com/thi-ng/umbrella/issues/210)
+info](https://codeberg.org/thi.ng/umbrella/issues/210)
 
 #### Deprecated
 
@@ -128,7 +128,7 @@ a.reset(42);
 When `Atom`-like containers are used to wrap nested object values, the
 `resetIn()` / `swapIn()` methods can be used to directly update nested
 values. These updates are handled via immutable setters provided by
-[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths).
+[@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths).
 
 ```ts
 import { defAtom } from "@thi.ng/atom";
@@ -285,7 +285,7 @@ itself is type checked and MUST be compatible with the type of the
 parent state (or use `defCursorUnsafe()` as fallback, see [breaking
 changes](#breaking-changes)). The path is then compiled into a [getter
 and
-setter](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+setter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
 to allow cursors to be used like atoms and update the parent state in an
 immutable manner (i.e. producing an optimized copy with structural
 sharing of the original (as much as possible)) - see further details
@@ -434,7 +434,7 @@ x === 0
 
 Atoms & views are useful tools for keeping state outside UI components.
 Here's an example of a tiny
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
 web app, demonstrating how to use derived views to switch the UI for
 different application states / modules.
 
@@ -445,13 +445,13 @@ larger app we'd want to avoid the use of global variables (apart from
 
 For a more advanced / realworld usage pattern, check the related [event
 handling
-package](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors)
 and bundled
-[examples](https://github.com/thi-ng/umbrella/tree/develop/examples/).
+[examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/).
 
 This example is also available in standalone form:
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
 
 ```ts
 import type { Nullable, Path } from "@thi.ng/api";

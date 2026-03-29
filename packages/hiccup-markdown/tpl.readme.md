@@ -10,7 +10,7 @@
 rewrite (with breaking changes, but lots of improvements). ⚠️**
 
 This package provides both a customizable
-[Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 parser and an extensible Hiccup-to-Markdown converter.
 
 ## Parser
@@ -56,7 +56,7 @@ details/examples...**
 
 In addition to the **mandatory language hint**, code blocks support optional
 user defined headers/metadata. Items will be separated by spaces (e.g. see
-[@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle)
+[@thi.ng/tangle](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/tangle)
 for concrete use cases).
 
 (Note: the GFM codeblock fences are only shown escaped here to avoid GH
@@ -96,7 +96,7 @@ transformer. The default handler merely creates an element like this:
 ```
 
 **Tip:** Use a
-[`defmulti()`](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+[`defmulti()`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
 polymorphic function as tag transformer to elegantly handle multiple types of
 custom blocks (in an easily extensible manner).
 
@@ -341,7 +341,7 @@ Not (yet) supported:
 
 Also, other element types can be supported by adding a new tag specific
 implementation to the exported `serializeElement`
-[multi-method](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
+[multi-method](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti).
 See source code for reference.
 
 ### Usage examples

@@ -14,7 +14,7 @@ extracted from the [@thi.ng/pixel](https://thi.ng/pixel) package.
 The package provides several methods to extract the dominant colors from a given image:
 
 - [`dominantColorsKmeans()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsKmeans.html)
-uses [k-means clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
+uses [k-means clustering](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/k-means)
 - [`dominantColorsMeanCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMeanCut.html)
 - [`dominantColorsMedianCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMedianCut.html)
 
@@ -27,11 +27,11 @@ in the image).
 Also see the [dominant colors example project & online
 tool](https://demo.thi.ng/umbrella/dominant-colors/) based on this function.
 Furthermore, the
-[thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes)
+[thi.ng/color-palettes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color-palettes)
 package provides 200+ curated color themes extracted from images using this
 function...
 
-![Example image & extracted dominant colors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/dominant-colors-01.jpg)
+![Example image & extracted dominant colors](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/dominant-colors-01.jpg)
 
 <small>Picture credit: [/u/kristophershinn](https://www.reddit.com/r/EarthPorn/comments/j3z0f6/fall_in_yosemite_valley_oc3186_3983/)</small>
 

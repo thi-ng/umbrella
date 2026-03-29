@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel.svg?fdc39d3a)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel.svg?fdc39d3a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Integer pixel formats](#integer-pixel-formats)
@@ -49,7 +50,7 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
 - Buffer-to-buffer blitting w/ automatic format conversion
 - Buffer-to-canvas blitting (incl. offscreen canvas support)
 - Buffer-to-buffer blending w/ [Porter-Duff
-  operators](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+  operators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/porter-duff)
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
@@ -166,35 +167,35 @@ const img = src.resize(1024, 256, "cubic");
 
 | Filter      |                                                                                                                                          |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| `"nearest"` | ![resized image w/ nearest neighbor sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-nearest.png) |
-| `"linear"`  | ![resized image w/ bilinear sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-bilinear.jpg)        |
-| `"cubic"`   | ![resized image w/ bicubic sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-bicubic.jpg)          |
+| `"nearest"` | ![resized image w/ nearest neighbor sampling](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/resize-nearest.png) |
+| `"linear"`  | ![resized image w/ bilinear sampling](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/resize-bilinear.jpg)        |
+| `"cubic"`   | ![resized image w/ bicubic sampling](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/resize-bicubic.jpg)          |
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel%5D)
 
 ## Support packages
 
-- [@thi.ng/pixel-analysis](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-analysis) - Image color & feature analysis utilities
-- [@thi.ng/pixel-convolve](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-convolve) - Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation
-- [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
-- [@thi.ng/pixel-dominant-colors](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dominant-colors) - k-means based dominant color extraction from images/pixel buffers
-- [@thi.ng/pixel-flow](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-flow) - Naive, lightweight CPU-based dense optical flow implementation
-- [@thi.ng/pixel-io-geotiff](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-geotiff) - GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/pixel-io-pfm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-pfm) - Portable FloatMap image format support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/pixel-io-tiff](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-tiff) - Basic TIFF image format support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+- [@thi.ng/pixel-analysis](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-analysis) - Image color & feature analysis utilities
+- [@thi.ng/pixel-convolve](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-convolve) - Extensible bitmap image convolution, kernel presets, normal map & image pyramid generation
+- [@thi.ng/pixel-dither](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
+- [@thi.ng/pixel-dominant-colors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-dominant-colors) - k-means based dominant color extraction from images/pixel buffers
+- [@thi.ng/pixel-flow](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-flow) - Naive, lightweight CPU-based dense optical flow implementation
+- [@thi.ng/pixel-io-geotiff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-geotiff) - GeoTIFF reader support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/pixel-io-netpbm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/pixel-io-pfm](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-pfm) - Portable FloatMap image format support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/pixel-io-tiff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel-io-tiff) - Basic TIFF image format support for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
 
 ## Related packages
 
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
-- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
-- [@thi.ng/rasterize](https://github.com/thi-ng/umbrella/tree/develop/packages/rasterize) - Headless 2D shape drawing, filling & rasterization for arbitrary targets/purposes (no canvas required)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
+- [@thi.ng/color](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
+- [@thi.ng/porter-duff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
+- [@thi.ng/rasterize](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rasterize) - Headless 2D shape drawing, filling & rasterization for arbitrary targets/purposes (no canvas required)
+- [@thi.ng/shader-ast](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
+- [@thi.ng/webgl](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation
 
@@ -226,50 +227,50 @@ Package sizes (brotli'd, pre-treeshake): ESM: 7.53 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/canvas)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/canvas)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/porter-duff](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/porter-duff)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 27 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                                                  | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/> | Interactive image processing (adaptive threshold)                                            | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>     | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                            | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/blurhash.jpg" width="240"/>           | Interactive & reactive image blurhash generator                                              | [Demo](https://demo.thi.ng/umbrella/blurhash/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/blurhash)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>    | Color palette generation via dominant color extraction from uploaded images                  | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-terrain-viz.jpg" width="240"/>   | 2.5D hidden line visualization of digital elevation files (DEM)                              | [Demo](https://demo.thi.ng/umbrella/geom-terrain-viz/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-terrain-viz)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ifs-fractal.jpg" width="240"/>        | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ifs-fractal)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>      | Optical flow analysis of web cam or video inputs                                             | [Demo](https://demo.thi.ng/umbrella/optical-flow/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>          | Pixel buffer manipulations                                                                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>  | Matrix-based image color adjustments                                                         | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg" width="240"/>       | Showcase of various dithering algorithms                                                     | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-dither)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>    | Randomized 4-point 2D color gradient image generator                                         | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>      | Image dithering and remapping using indexed palettes                                         | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-normal-map.jpg" width="240"/>   | Normal map creation/conversion basics                                                        | [Demo](https://demo.thi.ng/umbrella/pixel-normal-map/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-normal-map)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>      | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                             | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-waveform.jpg" width="240"/>     | RGB waveform image analysis                                                                  | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-waveform)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poisson-image.avif" width="240"/>     | Image-based Poisson-disk sampling                                                            | [Demo](https://demo.thi.ng/umbrella/poisson-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poisson-image)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/>    | Port-Duff image compositing / alpha blending                                                 | [Demo](https://demo.thi.ng/umbrella/porter-duff/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/>    | Steering behavior drawing with alpha-blended shapes                                          | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-formgen.jpg" width="240"/>       | Basic usage of the declarative rdom-forms generator                                          | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-formgen)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/related-images.jpg" width="240"/>     | Responsive image gallery with tag-based Jaccard similarity ranking                           | [Demo](https://demo.thi.ng/umbrella/related-images/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/related-images)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>   | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-tunnel.jpg" width="240"/>  | WebGL & Canvas2D textured tunnel shader                                                      | [Demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-tunnel)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                                       | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/>  | Textmode image warping w/ 16bit color output                                                 | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>       | Multi-layer vectorization & dithering of bitmap images                                       | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/unbiased-normals.png" width="240"/>   | Visual comparison of biased vs. unbiased normal vectors projected on the surface of a sphere | [Demo](https://demo.thi.ng/umbrella/unbiased-normals/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/unbiased-normals)   |
-|                                                                                                                           | Minimal multi-pass / GPGPU example                                                           | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)    |
+| Screenshot                                                                                                                        | Description                                                                                  | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/adaptive-threshold.png" width="240"/> | Interactive image processing (adaptive threshold)                                            | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/adaptive-threshold) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ascii-raymarch.jpg" width="240"/>     | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas                            | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ascii-raymarch)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/blurhash.jpg" width="240"/>           | Interactive & reactive image blurhash generator                                              | [Demo](https://demo.thi.ng/umbrella/blurhash/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/blurhash)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>    | Color palette generation via dominant color extraction from uploaded images                  | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-terrain-viz.jpg" width="240"/>   | 2.5D hidden line visualization of digital elevation files (DEM)                              | [Demo](https://demo.thi.ng/umbrella/geom-terrain-viz/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-terrain-viz)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ifs-fractal.jpg" width="240"/>        | Barnsley fern IFS fractal renderer                                                           | [Demo](https://demo.thi.ng/umbrella/ifs-fractal/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ifs-fractal)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/optical-flow.avif" width="240"/>      | Optical flow analysis of web cam or video inputs                                             | [Demo](https://demo.thi.ng/umbrella/optical-flow/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/optical-flow)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/pixel/pixel-basics.png" width="240"/>          | Pixel buffer manipulations                                                                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-basics)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>  | Matrix-based image color adjustments                                                         | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-colormatrix)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-dither.jpg" width="240"/>       | Showcase of various dithering algorithms                                                     | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-dither)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-gradients.jpg" width="240"/>    | Randomized 4-point 2D color gradient image generator                                         | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-gradients)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-indexed.jpg" width="240"/>      | Image dithering and remapping using indexed palettes                                         | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-indexed)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-normal-map.jpg" width="240"/>   | Normal map creation/conversion basics                                                        | [Demo](https://demo.thi.ng/umbrella/pixel-normal-map/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-normal-map)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/>      | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                             | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-waveform.jpg" width="240"/>     | RGB waveform image analysis                                                                  | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-waveform)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poisson-image.avif" width="240"/>     | Image-based Poisson-disk sampling                                                            | [Demo](https://demo.thi.ng/umbrella/poisson-image/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poisson-image)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/porter-duff/porter-duff2.png" width="240"/>    | Port-Duff image compositing / alpha blending                                                 | [Demo](https://demo.thi.ng/umbrella/porter-duff/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/porter-duff)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rasterize-blend.jpg" width="240"/>    | Steering behavior drawing with alpha-blended shapes                                          | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rasterize-blend)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-formgen.jpg" width="240"/>       | Basic usage of the declarative rdom-forms generator                                          | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/related-images.jpg" width="240"/>     | Responsive image gallery with tag-based Jaccard similarity ranking                           | [Demo](https://demo.thi.ng/umbrella/related-images/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/related-images)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/scenegraph-image.png" width="240"/>   | 2D scenegraph & image map based geometry manipulation                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/scenegraph-image)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-tunnel.jpg" width="240"/>  | WebGL & Canvas2D textured tunnel shader                                                      | [Demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-tunnel)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                                       | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-workers) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/text-canvas-image.png" width="240"/>  | Textmode image warping w/ 16bit color output                                                 | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/text-canvas-image)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>       | Multi-layer vectorization & dithering of bitmap images                                       | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/unbiased-normals.png" width="240"/>   | Visual comparison of biased vs. unbiased normal vectors projected on the surface of a sphere | [Demo](https://demo.thi.ng/umbrella/unbiased-normals/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/unbiased-normals)   |
+|                                                                                                                                   | Minimal multi-pass / GPGPU example                                                           | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-multipass)    |
 
 ## API
 

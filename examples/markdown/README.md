@@ -5,10 +5,10 @@ This example is showcasing some features of the Markdown parser of
 bottom half is showing a realtime preview of the source document in the other
 half.
 
-![screenshot of markdown editor w/ preview](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg "screenshot")
+![screenshot of markdown editor w/ preview](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/markdown-parser.jpg "screenshot")
 
 [Live demo](https://demo.thi.ng/umbrella/markdown/) |
-[Source code](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)
+[Source code](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/markdown)
 
 ## Syntax features & extensions
 
@@ -22,7 +22,7 @@ formatting, but not other block elements (e.g. lists):
 >> — Stephen Hawking
 >
 > Images in blockquotes are ok too:\
-> ![foo](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zcurve2d-small.gif)
+> ![foo](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/grid-iterators/zcurve2d-small.gif)
 >
 > etc.
 
@@ -152,7 +152,7 @@ Just checkout that metadata...
 |:-----------------:|------------------------------------------------------------------------------------------------|
 | Column alignments | :white_check_mark: supported                                                                   |
 |  Inline formats   | :white_check_mark: _supported and **nestable**_                                                |
-|      Images       | ![C-SCAPE](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png) |
+|      Images       | ![C-SCAPE](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/cellular/hero.png) |
 |       Links       | :white_check_mark: [supported](#links)                                                         |
 |                   |                                                                                                |
 |    Unsupported    | :x: linebreaks                                                                                 |
@@ -162,11 +162,11 @@ Just checkout that metadata...
 ## Onwards!
 
 Please see the [package
-readme](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-markdown/README.md)
+readme](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-markdown/README.md)
 & [API docs](https://docs.thi.ng/umbrella/hiccup-markdown/) for further details.
 If you've got any questions, please use the [thi.ng/umbrella discussion
 forum](https://github.com/thi-ng/umbrella/discussions) or [issue
-tracker](https://github.com/thi-ng/umbrella/issues)...
+tracker](https://codeberg.org/thi.ng/umbrella/issues)...
 
 ---
 

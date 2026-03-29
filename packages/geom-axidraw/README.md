@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/geom-axidraw](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-geom-axidraw.svg?a2db6741)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-geom-axidraw.svg?a2db6741)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-axidraw.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Supported shape types](#supported-shape-types)
@@ -34,11 +35,11 @@
 
 ## About
 
-Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands. This is a support package for [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom).
 
 This package only deals with the (bi-directional) conversion aspects between
 geometry and plotter commands. The
-[@thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
+[@thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw)
 package is responsible for the actual plotter output...
 
 ### Supported shape types
@@ -68,7 +69,7 @@ package is responsible for the actual plotter output...
 ### AxiDraw specific shape attributes
 
 All
-[thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/)
+[thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/)
 shape types have support for arbitrary attributes. Different support packages
 can then utilize these attribs to customize usage or behaviors. In this case,
 any package-specific attribs must be stored under the `__axi` key:
@@ -136,14 +137,14 @@ supplied
 function, which also takes several options to customize the resulting output.
 One of the [examples](#clipping) below is demonstrating basic usage.
 
-![Example draw command visualization based on the code example in this readme](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-axidraw/readme-commands.png)
+![Example draw command visualization based on the code example in this readme](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-axidraw/readme-commands.png)
 
 ### Basic usage & examples
 
 The main function of this package is the polymorphic function
 [`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html),
 which converts any of the supported shape types into an iterable of
-[thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
+[thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw)
 drawing commands. This conversion happens **semi-lazily** (via generator
 functions) to minimize memory usage and spread out the computational load of the
 conversions.
@@ -286,11 +287,11 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-axidraw%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-axidraw%5D)
 
 ## Related packages
 
-- [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/axidraw) - Minimal AxiDraw plotter/drawing machine controller for Node.js
+- [@thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw) - Minimal AxiDraw plotter/drawing machine controller for Node.js
 
 ## Installation
 
@@ -322,17 +323,17 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.52 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/axidraw)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
-- [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
-- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
+- [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel)
+- [@thi.ng/geom-clip-line](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-clip-line)
+- [@thi.ng/geom-isec](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-isec)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

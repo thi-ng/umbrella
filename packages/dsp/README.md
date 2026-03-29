@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/dsp](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-dsp.svg?4adb57cd)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/dsp](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-dsp.svg?4adb57cd)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -52,7 +53,7 @@ Partially ported from other thi.ng projects (e.g.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdsp%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdsp%5D)
 
 Even though this library is now at v2.0.0 and still retains most of the features
 from earlier versions, all recently added features (IGen's, IProc's, composition
@@ -62,11 +63,11 @@ of ongoing experiments, some aspects might be ported to WASM.
 
 ## Support packages
 
-- [@thi.ng/dsp-io-wav](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp-io-wav) - WAV file format generation
+- [@thi.ng/dsp-io-wav](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp-io-wav) - WAV file format generation
 
 ## Related packages
 
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math) - Assorted common math functions & utilities
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math) - Assorted common math functions & utilities
 
 ## Installation
 
@@ -98,32 +99,32 @@ Package sizes (brotli'd, pre-treeshake): ESM: 7.56 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Nine projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                                              | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>           | Interactive inverse FFT toy synth                                        | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>        | Fiber-based cooperative multitasking basics                              | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>         | Polygon to cubic curve conversion & visualization                        | [Demo](https://demo.thi.ng/umbrella/poly-spline/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/>     | Steering behavior drawing with alpha-blended shapes                      | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/>  | Minimal rdom-canvas animation                                            | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-canvas-basics)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/render-audio.png" width="240"/>        | Generative audio synth offline renderer and WAV file export              | [Demo](https://demo.thi.ng/umbrella/render-audio/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/render-audio)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg" width="240"/>       | WebGL cube maps with async texture loading                               | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg" width="240"/>          | WebGL screenspace ambient occlusion                                      | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-texture-paint.jpg" width="240"/> | Interactively drawing to & reading from a WebGL offscreen render texture | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-texture-paint) |
+| Screenshot                                                                                                                         | Description                                                              | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fft-synth.png" width="240"/>           | Interactive inverse FFT toy synth                                        | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fiber-basics.png" width="240"/>        | Fiber-based cooperative multitasking basics                              | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fiber-basics)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-spline.png" width="240"/>         | Polygon to cubic curve conversion & visualization                        | [Demo](https://demo.thi.ng/umbrella/poly-spline/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-spline)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rasterize-blend.jpg" width="240"/>     | Steering behavior drawing with alpha-blended shapes                      | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rasterize-blend)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/>  | Minimal rdom-canvas animation                                            | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-canvas-basics)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/render-audio.png" width="240"/>        | Generative audio synth offline renderer and WAV file export              | [Demo](https://demo.thi.ng/umbrella/render-audio/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/render-audio)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-cubemap.jpg" width="240"/>       | WebGL cube maps with async texture loading                               | [Demo](https://demo.thi.ng/umbrella/webgl-cubemap/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-cubemap)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-ssao.jpg" width="240"/>          | WebGL screenspace ambient occlusion                                      | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-ssao)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-texture-paint.jpg" width="240"/> | Interactively drawing to & reading from a WebGL offscreen render texture | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-texture-paint) |
 
 ## API
 
@@ -132,7 +133,7 @@ directory are using this package:
 ### IGen
 
 The following unit generators are infinite data sources based on the [`IGen`
-interface](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/api.ts)
+interface](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/api.ts)
 with most being resettable too. The interface is similar to ES6 iterators in
 that the next value can be obtained by calling `.next()`, however since `IGen`s
 are always infinite, there's no need to [wrap the result
@@ -142,7 +143,7 @@ implement `Symbol.iterator` and so can actually be used as standard iterables as
 well.
 
 `IGen` also implements the
-[`IDeref`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
+[`IDeref`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api/src/api/deref.ts)
 interface to obtain the gen's current (last generated) value.
 
 ```ts
@@ -197,36 +198,36 @@ import { take } from "@thi.ng/transducers";
 // ]
 ```
 
-- [add](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - adder
-- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/adsr.ts) - timebased ADSR / AD envelope generator
-- [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/alt.ts) - alternating values
-- [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/const.ts) - constant value
-- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/cosine.ts) - trig-free cosine osc
-- [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/curve.ts) - timebased exponential gain/decay (factory for `madd`)
-- [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse.ts) - impulse gen
-- [impulseTrain](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse-train.ts) - timebased cyclic impulse
-- [line](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/line.ts) - timebased line gen (factory for `add`)
-- [madd](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/madd.ts) - multiply-adder
-- [mul](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/mul.ts) - multiplier (exponential gain/decay)
-- [pinkNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/pink-noise.ts) - configurable pink noise (1/f power spectrum)
-- [reciprocal](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
-- [sincos](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sincos.ts) - trig-free sin/cos LFO
-- [sweep](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sweep.ts) - freq sweep gen w/ phase accumulation for oscillators
-- [whiteNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/white-noise.ts) - white noise
+- [add](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/add.ts) - adder
+- [adsr](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/adsr.ts) - timebased ADSR / AD envelope generator
+- [alt](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/alt.ts) - alternating values
+- [constant](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/const.ts) - constant value
+- [cosine](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/cosine.ts) - trig-free cosine osc
+- [curve](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/curve.ts) - timebased exponential gain/decay (factory for `madd`)
+- [impulse](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/impulse.ts) - impulse gen
+- [impulseTrain](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/impulse-train.ts) - timebased cyclic impulse
+- [line](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/line.ts) - timebased line gen (factory for `add`)
+- [madd](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/madd.ts) - multiply-adder
+- [mul](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/mul.ts) - multiplier (exponential gain/decay)
+- [pinkNoise](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/pink-noise.ts) - configurable pink noise (1/f power spectrum)
+- [reciprocal](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
+- [sincos](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/sincos.ts) - trig-free sin/cos LFO
+- [sweep](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/sweep.ts) - freq sweep gen w/ phase accumulation for oscillators
+- [whiteNoise](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/white-noise.ts) - white noise
 
 #### Higher order generators
 
-- [mapG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/mapg.ts) - `IGen` composition / transformation (1-4 inputs)
-- [addG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/addg.ts) - higher-order adder
-- [product](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/product.ts) - product of input gens
-- [sum](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sum.ts) - sum of input gens
+- [mapG](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/mapg.ts) - `IGen` composition / transformation (1-4 inputs)
+- [addG](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/addg.ts) - higher-order adder
+- [product](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/product.ts) - product of input gens
+- [sum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/sum.ts) - sum of input gens
 
 #### Oscillators
 
 ##### IGen wrappers
 
-- [osc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc.ts) - arbitrary function oscillator w/ modulation support
-- [modOsc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc.ts) - FM / FMAM oscillator builder
+- [osc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc.ts) - arbitrary function oscillator w/ modulation support
+- [modOsc](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc.ts) - FM / FMAM oscillator builder
 
 ```ts
 import { osc, modOsc, saw, sin } from "@thi.ng/dsp";
@@ -258,22 +259,22 @@ fmam.take(FS)
 
 Diagram of the FM/AM osc with some low pass filters applied:
 
-![FM/AM waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmam-osc.png)
+![FM/AM waveform](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/fmam-osc.png)
 
 ##### Stateless oscillator functions
 
-- [additive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
-- [dsf](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-dsf.ts)
-- [mix](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-mix.ts)
-- [parabolic](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-parabolic.ts)
-- [rect](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-rect.ts)
-- [saw](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-saw.ts)
-- [sawAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
-- [squareAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
-- [squareSin](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-square-sin.ts)
-- [sin](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-sin.ts)
-- [tri](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-tri.ts)
-- [wavetable](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-wavetable.ts)
+- [additive](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-additive.ts)
+- [dsf](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-dsf.ts)
+- [mix](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-mix.ts)
+- [parabolic](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-parabolic.ts)
+- [rect](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-rect.ts)
+- [saw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-saw.ts)
+- [sawAdditive](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-additive.ts)
+- [squareAdditive](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-additive.ts)
+- [squareSin](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-square-sin.ts)
+- [sin](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-sin.ts)
+- [tri](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-tri.ts)
+- [wavetable](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/osc-wavetable.ts)
 
 ### IProc
 
@@ -285,16 +286,16 @@ where `x` is the next input to be processed.
 The package also provides several approaches to compose multi-step processing
 pipelines (see section further below). Furthermore, all implementations in this
 package implement the [@thi.ng/transducers `IXform`
-interface](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/README.md#IXform-interface)
+interface](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers/README.md#IXform-interface)
 and so can be directly used in transducer pipelines too.
 
 Additional higher order `IProc` implementations:
 
-- [bounce](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/bounce.ts) - sum multiple inputs
-- [mix](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/mix.ts) - linear interpolation of 2 inputs
-- [multiplex](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/multiplex.ts) - process 1 input into multiple outs
-- [pipe](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/pipe.ts) - `IGen` & multiple `IProc` pipeline setup
-- [serial](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/serial.ts) - serial processing of multiple `IProc`
+- [bounce](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/bounce.ts) - sum multiple inputs
+- [mix](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/mix.ts) - linear interpolation of 2 inputs
+- [multiplex](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/multiplex.ts) - process 1 input into multiple outs
+- [pipe](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/pipe.ts) - `IGen` & multiple `IProc` pipeline setup
+- [serial](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/serial.ts) - serial processing of multiple `IProc`
 
 ```ts
 import { comp, push, take, transduce } from "@thi.ng/transducers";
@@ -334,7 +335,7 @@ fs.writeFileSync("sig.raw", Buffer.from(sig.buffer));
 ```
 
 Use the [@thi.ng/dsp-io-wav
-package](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp-io-wav/)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp-io-wav/)
 to export as WAV, or alternatively use `ffmpeg` for conversion:
 
 ```bash
@@ -347,31 +348,31 @@ The following diagrams show various combinations of oscillator signals and their
 filtered responses (with different cutoff/center frequencies).
 
 All diagrams were generated with [this
-script](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/tools/generate-diagrams.ts).
+script](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/tools/generate-diagrams.ts).
 
 The following filter types / functions are available:
 
 ##### 1-pole
 
-- [`onepoleLP`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/onepole.ts) - low pass, 6dB/oct falloff
-- [`dcBlock`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/dcblock.ts) - high pass, 6dB/oct falloff
-- [`allpass`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/allpass.ts) - allpass (-90° phase shift @ center freq)
+- [`onepoleLP`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/onepole.ts) - low pass, 6dB/oct falloff
+- [`dcBlock`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/dcblock.ts) - high pass, 6dB/oct falloff
+- [`allpass`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/allpass.ts) - allpass (-90° phase shift @ center freq)
 
 Low pass:
 
-![LPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-1pole-lpf.png)
+![LPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-1pole-lpf.png)
 
 DC blocker:
 
-![DC block response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-dcblock.png)
+![DC block response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-dcblock.png)
 
 Allpass:
 
-![Allpass response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-allpass1.png)
+![Allpass response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-allpass1.png)
 
 ##### Biquad
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/biquad.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/biquad.ts)
 
 - `biquadLP` - low pass, 12dB/oct falloff, resonance
 - `biquadHP` - high pass, 12dB/oct falloff, resonance
@@ -385,35 +386,35 @@ Allpass:
 
 Low pass:
 
-![LPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-lpf.png)
+![LPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-lpf.png)
 
 High pass:
 
-![HPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-hpf.png)
+![HPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-hpf.png)
 
 Band pass:
 
-![BPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-bpf.png)
+![BPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-bpf.png)
 
 Notch:
 
-![Notch response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-notch.png)
+![Notch response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-notch.png)
 
 Peak (gain = 6dB):
 
-![Peak response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-peak.png)
+![Peak response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-peak.png)
 
 Low shelf (gain = -6dB):
 
-![Lo-shelf response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-lsh.png)
+![Lo-shelf response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-lsh.png)
 
 High shelf (gain = -6dB):
 
-![Hi-shelf response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-hsh.png)
+![Hi-shelf response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-bq-hsh.png)
 
 ##### State variable filter
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/svf.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/svf.ts)
 
 - `svfLP` - low pass, resonance
 - `svfHP` - high pass, resonance
@@ -426,32 +427,32 @@ High shelf (gain = -6dB):
 
 Low pass:
 
-![LPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-lpf.png)
+![LPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-svf-lpf.png)
 
 High pass:
 
-![HPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-hpf.png)
+![HPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-svf-hpf.png)
 
 Band pass:
 
-![BPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-bpf.png)
+![BPF response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-svf-bpf.png)
 
 Notch:
 
-![Notch response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-notch.png)
+![Notch response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-svf-notch.png)
 
 Peak (gain = 6dB):
 
-![Peak response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-peak.png)
+![Peak response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-svf-peak.png)
 
 Allpass:
 
-![Allpass response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-all.png)
+![Allpass response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-svf-all.png)
 
 #### Filter responses
 
 Using the [Filter response
-utils](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-response.ts),
+utils](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/filter-response.ts),
 the following filter types can be evaluated for analyzing their impact on
 specific frequencies (or frequency bands). Any type implementing
 [`IFilter`](https://docs.thi.ng/umbrella/dsp/interfaces/FilterConfig.html) can
@@ -492,11 +493,11 @@ const resp = freqRange(0, 0.5, 256).map((f) => filterResponse(coeffs, f));
 
 Basic filter response plot:
 
-![Filter response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/bq-notch-resp.png)
+![Filter response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/bq-notch-resp.png)
 
 #### Delay
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/delay.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/delay.ts)
 
 Ringbuffer / delay line for arbitrary values and support for single & multi-taps
 at any relative positions. Useful fundamental building block for various other
@@ -504,21 +505,21 @@ effects, filters etc.
 
 #### Feedback delay
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/feedback-delay.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/feedback-delay.ts)
 
 Variation of `delay()` which adds a portion of the delayed value to each new
 input and stores result in delay line.
 
 #### Filtered feedback delay
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-delay.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/filter-delay.ts)
 
 Variation of `feedbackDelay()` which processes feedback via given filter /
 `IProc`, e.g. to create dub style filter delays.
 
 #### Wave shaping
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/waveshaper.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/waveshaper.ts)
 
 This operator remaps inputs via a user provided function. The following shaping
 functions are provided:
@@ -532,19 +533,19 @@ Desmos](https://www.desmos.com/calculator/hg4i7o836i) to experiment.
 
 Acrtan:
 
-![Tan response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-wshape-tan.png)
+![Tan response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-wshape-tan.png)
 
 Sigmoid:
 
-![Sigmoid response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-wshape-sigmoid.png)
+![Sigmoid response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-wshape-sigmoid.png)
 
 Sine:
 
-![Sine response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-wshape-sin.png)
+![Sine response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-wshape-sin.png)
 
 #### Foldback distortion
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/foldback.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/foldback.ts)
 
 Recursively folds input into `[-thresh .. +thresh]` interval and amplifies it
 with `amp` (default: 1/thresh).
@@ -552,11 +553,11 @@ with `amp` (default: 1/thresh).
 Use the [interactive calculator @
 Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
-![Foldback response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-foldback.png)
+![Foldback response](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dsp/dsf-foldback.png)
 
 ### FFT
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/fft.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/fft.ts)
 
 - `fft()`
 - `ifft()`
@@ -579,7 +580,7 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 #### Window functions
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/window.ts)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/window.ts)
 
 - `window()`
 - `applyWindow()`
@@ -599,8 +600,8 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 ### Utilities
 
-- [Unit conversions](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/convert.ts)
-- [Filter response](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-response.ts)
+- [Unit conversions](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/convert.ts)
+- [Filter response](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dsp/src/filter-response.ts)
 
 ## Authors
 

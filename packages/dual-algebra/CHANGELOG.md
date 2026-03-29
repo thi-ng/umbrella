@@ -11,15 +11,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.4.72](https://github.com/thi-ng/umbrella/tree/@thi.ng/dual-algebra@0.4.72) (2024-06-21)
+### [0.4.72](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dual-algebra@0.4.72) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- rename various rest args to be more semantically meaningful ([8088a56](https://github.com/thi-ng/umbrella/commit/8088a56))
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [0.4.41](https://github.com/thi-ng/umbrella/tree/@thi.ng/dual-algebra@0.4.41) (2023-11-09)
+### [0.4.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dual-algebra@0.4.41) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))

@@ -11,29 +11,29 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.0.101](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@3.0.101) (2025-12-03)
+### [3.0.101](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@3.0.101) (2025-12-03)
 
 #### ♻️ Refactoring
 
-- update for-loops (use const where possible) ([5ceaf1a](https://github.com/thi-ng/umbrella/commit/5ceaf1a))
+- update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [3.0.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@3.0.24) (2024-06-21)
-
-#### ♻️ Refactoring
-
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
-
-### [3.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@3.0.3) (2024-02-22)
+### [3.0.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@3.0.24) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@3.0.0) (2024-02-19)
+### [3.0.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@3.0.3) (2024-02-22)
+
+#### ♻️ Refactoring
+
+- update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
+
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@3.0.0) (2024-02-19)
 
 #### 🛑 Breaking changes
 
-- add plotting, additive blending/blitting, refactor bar chart fns ([7cd6d41](https://github.com/thi-ng/umbrella/commit/7cd6d41))
+- add plotting, additive blending/blitting, refactor bar chart fns ([7cd6d41](https://codeberg.org/thi.ng/umbrella/commit/7cd6d41))
 - BREAKING CHANGE: swap naming of barChartH/V fns, update args for blit()/blitMask()
   - swap naming of barChartH/V fns:
     - barChartHLines/Str() <=> barChartVLines/Str()
@@ -46,36 +46,36 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- unify plotting function naming ([cb275ae](https://github.com/thi-ng/umbrella/commit/cb275ae))
+- unify plotting function naming ([cb275ae](https://codeberg.org/thi.ng/umbrella/commit/cb275ae))
   - plotBarsV() => plotBarChartV()
   - lineChart() => plotLineChart()
   - migrate line chart fns to plot.ts
 
-### [2.6.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.6.17) (2023-11-09)
+### [2.6.17](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@2.6.17) (2023-11-09)
 
 #### ♻️ Refactoring
 
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [2.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.6.0) (2023-08-24)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@2.6.0) (2023-08-24)
 
 #### 🚀 Features
 
-- add lineChart() & lineChartStr() ([097e00c](https://github.com/thi-ng/umbrella/commit/097e00c))
+- add lineChart() & lineChartStr() ([097e00c](https://codeberg.org/thi.ng/umbrella/commit/097e00c))
 
 #### ♻️ Refactoring
 
-- update bar chart min/max handling ([e45247d](https://github.com/thi-ng/umbrella/commit/e45247d))
+- update bar chart min/max handling ([e45247d](https://codeberg.org/thi.ng/umbrella/commit/e45247d))
   - auto-compute value range if not specified
 
-## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.5.0) (2023-08-14)
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@2.5.0) (2023-08-14)
 
 #### 🚀 Features
 
-- add imageRawFmtOnly() ([1042a40](https://github.com/thi-ng/umbrella/commit/1042a40))
+- add imageRawFmtOnly() ([1042a40](https://codeberg.org/thi.ng/umbrella/commit/1042a40))
 
-### [2.4.40](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.4.40) (2023-03-27)
+### [2.4.40](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-canvas@2.4.40) (2023-03-27)
 
 #### ♻️ Refactoring
 
-- update remaining type imports (TS5.0) in various pkgs ([e0edf26](https://github.com/thi-ng/umbrella/commit/e0edf26))
+- update remaining type imports (TS5.0) in various pkgs ([e0edf26](https://codeberg.org/thi.ng/umbrella/commit/e0edf26))

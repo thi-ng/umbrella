@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/atom](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-atom.svg?e4171739)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/atom](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-atom.svg?e4171739)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -61,11 +62,11 @@ reactive updates from performed state changes.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Batom%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Batom%5D)
 
 ## Temporary restrictions
 
-Due to a change of inferencing rules in TypeScript 4.3 with regards to tuples, the `IReset` and `ISwap` interface definitions in this package had to be updated and removed support for lookup path lengths > 6. This change is expected to be temporary only and is tracked by [#303](https://github.com/thi-ng/umbrella/issues/303).
+Due to a change of inferencing rules in TypeScript 4.3 with regards to tuples, the `IReset` and `ISwap` interface definitions in this package had to be updated and removed support for lookup path lengths > 6. This change is expected to be temporary only and is tracked by [#303](https://codeberg.org/thi.ng/umbrella/issues/303).
 
 ## Breaking changes
 
@@ -93,7 +94,7 @@ now considered the defacto way to create new instances are generally
 starting to be provided more consistently across the umbrella ecosystem.
 All of them use the `def` prefix, e.g. `defAtom()`, `defCursor()` etc.
 `Unsafe` versions exist for some types too. [More
-info](https://github.com/thi-ng/umbrella/issues/210)
+info](https://codeberg.org/thi.ng/umbrella/issues/210)
 
 #### Deprecated
 
@@ -103,9 +104,9 @@ have been removed.
 
 ## Related packages
 
-- [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors) - Interceptor based event bus, side effect & immutable state handling
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths) - Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+- [@thi.ng/interceptors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors) - Interceptor based event bus, side effect & immutable state handling
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths) - Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing
+- [@thi.ng/rstream](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -137,42 +138,42 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.08 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 21 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                 | Description                                                                    | Live demo                                                 | Source                                                                                 |
-|:---------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
-|                                                                                                                            | BMI calculator in a devcards format                                            | [Demo](https://demo.thi.ng/umbrella/devcards/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/devcards)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>           | Interactive inverse FFT toy synth                                              | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)           |
-|                                                                                                                            | Custom dropdown UI component for hdom                                          | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown)       |
-|                                                                                                                            | Custom dropdown UI component w/ fuzzy search                                   | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy) |
-|                                                                                                                            | Using custom hdom context for dynamic UI theming                               | [Demo](https://demo.thi.ng/umbrella/hdom-dyn-context/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dyn-context)    |
-|                                                                                                                            | Hiccup / hdom DOM hydration example                                            | [Demo](https://demo.thi.ng/umbrella/hydrate-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>              | Canvas based Immediate Mode GUI components                                     | [Demo](https://demo.thi.ng/umbrella/imgui/)               | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)               |
-|                                                                                                                            | Basic SPA example with atom-based UI router                                    | [Demo](https://demo.thi.ng/umbrella/login-form/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-klist.png" width="240"/>          | Basic usage of thi.ng/rdom keyed list component wrapper                        | [Demo](https://demo.thi.ng/umbrella/rdom-klist/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-klist)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-router.jpg" width="240"/>         | Basic thi.ng/router usage with thi.ng/rdom components                          | [Demo](https://demo.thi.ng/umbrella/rdom-router/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-router)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png" width="240"/>      | rdom powered SVG graph with draggable nodes                                    | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-svg-nodes)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>    | Animated Voronoi diagram, cubic splines & SVG download                         | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/>       | Complete mini SPA app w/ router & async content loading                        | [Demo](https://demo.thi.ng/umbrella/router-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rs-dflow.png" width="240"/>            | Minimal rstream dataflow graph                                                 | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)    |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>        | Interactive grid generator, SVG generation & export, undo/redo support         | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL                          | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-system-bus.png" width="240"/>  | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-system-bus)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>        | Additive waveform synthesis & SVG visualization with undo/redo                 | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png" width="240"/>           | Obligatory to-do list example with undo/redo                                   | [Demo](https://demo.thi.ng/umbrella/todo-list/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>        | Multi-layer vectorization & dithering of bitmap images                         | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>        | Triple store query results & sortable table                                    | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)        |
+| Screenshot                                                                                                                         | Description                                                                    | Live demo                                                 | Source                                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:----------------------------------------------------------|:----------------------------------------------------------------------------------------|
+|                                                                                                                                    | BMI calculator in a devcards format                                            | [Demo](https://demo.thi.ng/umbrella/devcards/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/devcards)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fft-synth.png" width="240"/>           | Interactive inverse FFT toy synth                                              | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)           |
+|                                                                                                                                    | Custom dropdown UI component for hdom                                          | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown)       |
+|                                                                                                                                    | Custom dropdown UI component w/ fuzzy search                                   | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dropdown-fuzzy) |
+|                                                                                                                                    | Using custom hdom context for dynamic UI theming                               | [Demo](https://demo.thi.ng/umbrella/hdom-dyn-context/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-dyn-context)    |
+|                                                                                                                                    | Hiccup / hdom DOM hydration example                                            | [Demo](https://demo.thi.ng/umbrella/hydrate-basics/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hydrate-basics)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/imgui/imgui-all.png" width="240"/>              | Canvas based Immediate Mode GUI components                                     | [Demo](https://demo.thi.ng/umbrella/imgui/)               | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/imgui)               |
+|                                                                                                                                    | Basic SPA example with atom-based UI router                                    | [Demo](https://demo.thi.ng/umbrella/login-form/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/login-form)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-klist.png" width="240"/>          | Basic usage of thi.ng/rdom keyed list component wrapper                        | [Demo](https://demo.thi.ng/umbrella/rdom-klist/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-klist)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-router.jpg" width="240"/>         | Basic thi.ng/router usage with thi.ng/rdom components                          | [Demo](https://demo.thi.ng/umbrella/rdom-router/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-router)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-svg-nodes.png" width="240"/>      | rdom powered SVG graph with draggable nodes                                    | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-svg-nodes)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rotating-voronoi.jpg" width="240"/>    | Animated Voronoi diagram, cubic splines & SVG download                         | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rotating-voronoi)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/router-basics.jpg" width="240"/>       | Complete mini SPA app w/ router & async content loading                        | [Demo](https://demo.thi.ng/umbrella/router-basics/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/router-basics)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rs-dflow.png" width="240"/>            | Minimal rstream dataflow graph                                                 | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-dataflow)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-grid.jpg" width="240"/>        | Interactive grid generator, SVG generation & export, undo/redo support         | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-spreadsheet.png" width="240"/> | rstream based spreadsheet w/ S-expression formula DSL                          | [Demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-spreadsheet) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rstream-system-bus.png" width="240"/>  | Declarative component-based system with central rstream-based pubsub event bus | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus)  |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/svg-waveform.jpg" width="240"/>        | Additive waveform synthesis & SVG visualization with undo/redo                 | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-waveform)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/todo-list.png" width="240"/>           | Obligatory to-do list example with undo/redo                                   | [Demo](https://demo.thi.ng/umbrella/todo-list/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/todo-list)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>        | Multi-layer vectorization & dithering of bitmap images                         | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/triple-query.png" width="240"/>        | Triple store query results & sortable table                                    | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/triple-query)        |
 
 ## API
 
@@ -222,7 +223,7 @@ a.reset(42);
 When `Atom`-like containers are used to wrap nested object values, the
 `resetIn()` / `swapIn()` methods can be used to directly update nested
 values. These updates are handled via immutable setters provided by
-[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths).
+[@thi.ng/paths](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths).
 
 ```ts
 import { defAtom } from "@thi.ng/atom";
@@ -379,7 +380,7 @@ itself is type checked and MUST be compatible with the type of the
 parent state (or use `defCursorUnsafe()` as fallback, see [breaking
 changes](#breaking-changes)). The path is then compiled into a [getter
 and
-setter](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+setter](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/paths)
 to allow cursors to be used like atoms and update the parent state in an
 immutable manner (i.e. producing an optimized copy with structural
 sharing of the original (as much as possible)) - see further details
@@ -528,7 +529,7 @@ x === 0
 
 Atoms & views are useful tools for keeping state outside UI components.
 Here's an example of a tiny
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
 web app, demonstrating how to use derived views to switch the UI for
 different application states / modules.
 
@@ -539,13 +540,13 @@ larger app we'd want to avoid the use of global variables (apart from
 
 For a more advanced / realworld usage pattern, check the related [event
 handling
-package](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors)
+package](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors)
 and bundled
-[examples](https://github.com/thi-ng/umbrella/tree/develop/examples/).
+[examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/).
 
 This example is also available in standalone form:
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
+[Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
 
 ```ts
 import type { Nullable, Path } from "@thi.ng/api";

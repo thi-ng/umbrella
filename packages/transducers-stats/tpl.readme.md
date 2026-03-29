@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 This package provides a set of
-[transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+[transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 for [technical
 (financial)](https://en.wikipedia.org/wiki/Technical_indicator) and
 statistical analysis and replaces the older
@@ -21,21 +21,21 @@ transforming ES6 iterator (generator) instead of a transducer.
 
 ## Supported indicators
 
-- [Bollinger Bands](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/bollinger.ts)
-- [Donchian Channel](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/donchian.ts)
-- [EMA (Exponential Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/ema.ts)
-- [HMA (Hull Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/hma.ts)
-- [MACD (Moving Average Convergence/Divergence)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/macd.ts)
-- [Momentum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/momentum.ts)
-- [Moving Maximum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/moving-maximum.ts)
-- [Moving Minimum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/moving-minimum.ts)
-- [ROC (Rate of change)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/roc.ts)
-- [RSI (Relative Strength Index)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/rsi.ts)
-- [SD (Standard Deviation)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sd.ts)
-- [SMA (Simple Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sma.ts)
-- [Stochastic oscillator](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/stochastic.ts)
-- [TRIX (Triple smoothed EMA)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/trix.ts)
-- [WMA (Weighted Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/wma.ts)
+- [Bollinger Bands](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/bollinger.ts)
+- [Donchian Channel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/donchian.ts)
+- [EMA (Exponential Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/ema.ts)
+- [HMA (Hull Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/hma.ts)
+- [MACD (Moving Average Convergence/Divergence)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/macd.ts)
+- [Momentum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/momentum.ts)
+- [Moving Maximum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/moving-maximum.ts)
+- [Moving Minimum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/moving-minimum.ts)
+- [ROC (Rate of change)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/roc.ts)
+- [RSI (Relative Strength Index)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/rsi.ts)
+- [SD (Standard Deviation)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/sd.ts)
+- [SMA (Simple Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/sma.ts)
+- [Stochastic oscillator](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/stochastic.ts)
+- [TRIX (Triple smoothed EMA)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/trix.ts)
+- [WMA (Weighted Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/wma.ts)
 
 {{meta.status}}
 

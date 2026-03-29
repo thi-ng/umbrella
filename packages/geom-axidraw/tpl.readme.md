@@ -8,7 +8,7 @@
 
 This package only deals with the (bi-directional) conversion aspects between
 geometry and plotter commands. The
-[@thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
+[@thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw)
 package is responsible for the actual plotter output...
 
 ### Supported shape types
@@ -38,7 +38,7 @@ package is responsible for the actual plotter output...
 ### AxiDraw specific shape attributes
 
 All
-[thi.ng/geom](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/)
+[thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom/)
 shape types have support for arbitrary attributes. Different support packages
 can then utilize these attribs to customize usage or behaviors. In this case,
 any package-specific attribs must be stored under the `__axi` key:
@@ -106,14 +106,14 @@ supplied
 function, which also takes several options to customize the resulting output.
 One of the [examples](#clipping) below is demonstrating basic usage.
 
-![Example draw command visualization based on the code example in this readme](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-axidraw/readme-commands.png)
+![Example draw command visualization based on the code example in this readme](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/geom-axidraw/readme-commands.png)
 
 ### Basic usage & examples
 
 The main function of this package is the polymorphic function
 [`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html),
 which converts any of the supported shape types into an iterable of
-[thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
+[thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/axidraw)
 drawing commands. This conversion happens **semi-lazily** (via generator
 functions) to minimize memory usage and spread out the computational load of the
 conversions.

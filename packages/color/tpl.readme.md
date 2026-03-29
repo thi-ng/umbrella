@@ -112,9 +112,9 @@ Additionally, colors can be created from black body temperatures
 or wavelengths
 ([`wavelengthXyz()`](https://docs.thi.ng/umbrella/color/functions/wavelengthXyz.html)).
 
-![kelvinRgb() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/blackbody.svg)
+![kelvinRgb() result swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/blackbody.svg)
 
-![wavelengthXyz() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/wavelength.svg)
+![wavelengthXyz() result swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/wavelength.svg)
 
 ### Storage & memory mapping
 
@@ -130,12 +130,12 @@ backing memory buffer (e.g. for WASM/WebGL/WebGPU interop, pixel buffers etc.),
 incl. support for arbitrary component strides.
 
 The lightweight class wrappers act similarly to the `Vec2/3/4` wrappers in
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors),
+[@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
 all vector functions.
 
-![Memory diagram of densely packed buffer](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/mapped-colors-01.png)
+![Memory diagram of densely packed buffer](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/mapped-colors-01.png)
 
 ```ts tangle:export/readme2.ts
 import { Hue, css, namedHueRgb, rgb, srgb } from "@thi.ng/color";
@@ -170,7 +170,7 @@ colors[0].deref()
 // [ 1, 0.5, 0, 1 ]
 ```
 
-![Memory diagram of strided & interleaved buffer](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/mapped-colors-02.png)
+![Memory diagram of strided & interleaved buffer](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/mapped-colors-02.png)
 
 ```ts tangle:export/readme2.ts
 // here we create a *strided* WebGL attrib buffer for 3 points
@@ -274,39 +274,39 @@ and the following color theme (raw samples and chunked & sorted):
 
 | ID        | 100 colors drawn from color range preset                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------|
-| `bright`  | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-hue.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-mixed.svg)   |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-chunks.svg)  |
-| `cool`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-chunks.svg)    |
-| `dark`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-chunks.svg)    |
-| `fresh`   | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-hue.svg)      |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-mixed.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-chunks.svg)   |
-| `hard`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-chunks.svg)    |
-| `intense` | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-hue.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-mixed.svg)  |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-chunks.svg) |
-| `light`   | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-hue.svg)      |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-mixed.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-chunks.svg)   |
-| `neutral` | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-hue.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-mixed.svg)  |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-chunks.svg) |
-| `soft`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-chunks.svg)    |
-| `warm`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-chunks.svg)    |
-| `weak`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-chunks.svg)    |
+| `bright`  | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-bright-hue.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-bright-mixed.svg)   |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-bright-chunks.svg)  |
+| `cool`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-cool-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-cool-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-cool-chunks.svg)    |
+| `dark`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-dark-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-dark-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-dark-chunks.svg)    |
+| `fresh`   | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-fresh-hue.svg)      |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-fresh-mixed.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-fresh-chunks.svg)   |
+| `hard`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-hard-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-hard-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-hard-chunks.svg)    |
+| `intense` | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-intense-hue.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-intense-mixed.svg)  |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-intense-chunks.svg) |
+| `light`   | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-light-hue.svg)      |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-light-mixed.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-light-chunks.svg)   |
+| `neutral` | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-neutral-hue.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-neutral-mixed.svg)  |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-neutral-chunks.svg) |
+| `soft`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-soft-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-soft-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-soft-chunks.svg)    |
+| `warm`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-warm-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-warm-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-warm-chunks.svg)    |
+| `weak`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-weak-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-weak-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-weak-chunks.svg)    |
 
 Full example:
 
@@ -337,7 +337,7 @@ const doc = svg(
 writeFileSync("swatches-ex01.svg", serialize(doc));
 ```
 
-![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
+![example result color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-ex01.svg)
 
 ### Color theme strategies
 
@@ -358,7 +358,7 @@ console.log(cssColors(analogStrategy("#f60")));
 // [ "#ff6600", "#ff2c63", "#c58f00" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/analog-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/analog-strategy.svg)
 
 #### Split-analog colors
 
@@ -371,7 +371,7 @@ console.log(cssColors(splitAnalogStrategy("#f60")));
 // [ "#ff6600", "#00bcd4", "#00a6ff", "#c58f00" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-analog-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/split-analog-strategy.svg)
 
 #### Complementary colors
 
@@ -384,7 +384,7 @@ console.log(cssColors(complementaryStrategy("#f60")));
 // [ "#ff6600", "#00b6ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/complementary-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/complementary-strategy.svg)
 
 #### Split-complementary colors
 
@@ -397,7 +397,7 @@ console.log(cssColors(splitComplementaryStrategy("#f60")));
 // [ "#ff6600", "#00bcd4", "#00a6ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-complementary-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/split-complementary-strategy.svg)
 
 #### Monochrome colors
 
@@ -410,7 +410,7 @@ console.log(cssColors(monochromeStrategy("#f60")));
 // [ "#490000", "#880000", "#d44100", "#ff872d", "#ffce71" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/monochrome-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/monochrome-strategy.svg)
 
 #### Triadic colors
 
@@ -423,7 +423,7 @@ console.log(cssColors(triadicStrategy("#f60")));
 // [ "#ff6600", "#00bb7e", "#7f88ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/triadic-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/triadic-strategy.svg)
 
 #### Tetradic colors
 
@@ -436,7 +436,7 @@ console.log(cssColors(tetradicStrategy("#f60")));
 // [ "#ff6600", "#75a800", "#00b6ff", "#7f88ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/tetradic-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/tetradic-strategy.svg)
 
 ### Color sorting & distance
 
@@ -482,7 +482,7 @@ const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 sort(colors, proximity(lch("#fff"), distCIEDE2000()));
 ```
 
-![sorted color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex02.svg)
+![sorted color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-ex02.svg)
 
 #### Sorting memory-mapped colors
 
@@ -493,7 +493,7 @@ BUT instead sorts the apparent order by swapping the contents of the backing
 memory.
 
 See the [pixel sorting
-example](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)
+example](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)
 for a concrete use case...
 
 ```ts tangle:export/readme-sort-buffer.ts
@@ -547,7 +547,7 @@ delegates to type specific strategies. See
 [`GradientOpts`](https://docs.thi.ng/umbrella/color/interfaces/GradientOpts.html)
 for details.
 
-![LCH example gradient](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/lch-gradient.svg)
+![LCH example gradient](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/lch-gradient.svg)
 
 ```ts tangle:export/readme-multi-color-gradient.ts
 import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
@@ -587,32 +587,32 @@ writeFileSync(
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/src/cosine-gradients.ts)):
 
 | Preview                                                                                                                                       | Gradient ID             |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
-| ![gradient: blue-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-cyan.png)                         | `blue-cyan`             |
-| ![gradient: blue-magenta-orange](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-magenta-orange.png)     | `blue-magenta-orange`   |
-| ![gradient: blue-white-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-white-red.png)               | `blue-white-red`        |
-| ![gradient: cyan-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-cyan-magenta.png)                   | `cyan-magenta`          |
-| ![gradient: green-blue-orange](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-blue-orange.png)         | `green-blue-orange`     |
-| ![gradient: green-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-cyan.png)                       | `green-cyan`            |
-| ![gradient: green-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-magenta.png)                 | `green-magenta`         |
-| ![gradient: green-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-red.png)                         | `green-red`             |
-| ![gradient: heat1](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-heat1.png)                                 | `heat1`                 |
-| ![gradient: magenta-green](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-magenta-green.png)                 | `magenta-green`         |
-| ![gradient: orange-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-orange-blue.png)                     | `orange-blue`           |
-| ![gradient: orange-magenta-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-orange-magenta-blue.png)     | `orange-magenta-blue`   |
-| ![gradient: purple-orange-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-purple-orange-cyan.png)       | `purple-orange-cyan`    |
-| ![gradient: rainbow1](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow1.png)                           | `rainbow1`              |
-| ![gradient: rainbow2](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow2.png)                           | `rainbow2`              |
-| ![gradient: rainbow3](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow3.png)                           | `rainbow3`              |
-| ![gradient: rainbow4](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow4.png)                           | `rainbow4`              |
-| ![gradient: red-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-red-blue.png)                           | `red-blue`              |
-| ![gradient: yellow-green-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-green-blue.png)         | `yellow-green-blue`     |
-| ![gradient: yellow-magenta-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-magenta-cyan.png)     | `yellow-magenta-cyan`   |
-| ![gradient: yellow-purple-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-purple-magenta.png) | `yellow-purple-magenta` |
-| ![gradient: yellow-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-red.png)                       | `yellow-red`            |
+| ![gradient: blue-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-blue-cyan.png)                         | `blue-cyan`             |
+| ![gradient: blue-magenta-orange](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-blue-magenta-orange.png)     | `blue-magenta-orange`   |
+| ![gradient: blue-white-red](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-blue-white-red.png)               | `blue-white-red`        |
+| ![gradient: cyan-magenta](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-cyan-magenta.png)                   | `cyan-magenta`          |
+| ![gradient: green-blue-orange](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-blue-orange.png)         | `green-blue-orange`     |
+| ![gradient: green-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-cyan.png)                       | `green-cyan`            |
+| ![gradient: green-magenta](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-magenta.png)                 | `green-magenta`         |
+| ![gradient: green-red](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-red.png)                         | `green-red`             |
+| ![gradient: heat1](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-heat1.png)                                 | `heat1`                 |
+| ![gradient: magenta-green](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-magenta-green.png)                 | `magenta-green`         |
+| ![gradient: orange-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-orange-blue.png)                     | `orange-blue`           |
+| ![gradient: orange-magenta-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-orange-magenta-blue.png)     | `orange-magenta-blue`   |
+| ![gradient: purple-orange-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-purple-orange-cyan.png)       | `purple-orange-cyan`    |
+| ![gradient: rainbow1](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow1.png)                           | `rainbow1`              |
+| ![gradient: rainbow2](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow2.png)                           | `rainbow2`              |
+| ![gradient: rainbow3](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow3.png)                           | `rainbow3`              |
+| ![gradient: rainbow4](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow4.png)                           | `rainbow4`              |
+| ![gradient: red-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-red-blue.png)                           | `red-blue`              |
+| ![gradient: yellow-green-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-green-blue.png)         | `yellow-green-blue`     |
+| ![gradient: yellow-magenta-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-magenta-cyan.png)     | `yellow-magenta-cyan`   |
+| ![gradient: yellow-purple-magenta](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-purple-magenta.png) | `yellow-purple-magenta` |
+| ![gradient: yellow-red](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-red.png)                       | `yellow-red`            |
 
 ##### Two-color cosine gradients
 
@@ -698,7 +698,7 @@ console.log(gradient.map((x) => css(x)));
 ### RGB color transformations
 
 RGB [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
+transformations](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/src/transform.ts),
 including parametric preset transforms:
 
 - brightness

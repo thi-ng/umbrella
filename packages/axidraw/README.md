@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/axidraw](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-axidraw.svg?64f7660b)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/axidraw](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-axidraw.svg?64f7660b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/axidraw.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Declarative vs. imperative](#declarative-vs-imperative)
@@ -40,14 +41,14 @@
 
 Minimal AxiDraw plotter/drawing machine controller for Node.js.
 
-![AXI-SCAPE #000](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/axidraw/axiscape-1280.jpg)
+![AXI-SCAPE #000](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/axidraw/axiscape-1280.jpg)
 
 <small>AXI-SCAPE \#000, 12-layer watercolor painting/plot of cellular automata, © 2023 Karsten Schmidt</small>
 
 This package provides a super-lightweight alternative to control an [AxiDraw
 plotter](https://axidraw.com/) directly from Node.js, using a small custom set
 of medium/high-level drawing commands. Structurally, these custom commands are
-[thi.ng/hiccup](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/)-like
+[thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup/)-like
 S-expressions, which can be easily serialized to/from JSON and are translated to
 the native [EBB commands](https://evil-mad.github.io/EggBot/ebb.html) for the
 plotter.
@@ -58,7 +59,7 @@ Due to AxiDraw's lack of G-Code support, most other available AxiDraw support
 libraries are providing only a purely imperative API to control the machine. In
 contrast, this package utilizes a more declarative approach, also very much
 following the pattern of other packages in the
-[thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo, which allows
+[thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) monorepo, which allows
 (geometry) data to be inspected, augmented, converted/transformed, serialized up
 until the very last moment before being sent to the machine for physical
 output...
@@ -81,28 +82,28 @@ The bounding rect can be either defined by a tuple of `[[minX,minY],
 default value is DIN A3 landscape.
 
 If given as paper size (e.g. via
-[thi.ng/units](https://github.com/thi-ng/umbrella/blob/develop/packages/units/)
+[thi.ng/units](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/units/)
 presets), the actual units used to define these dimensions are irrelevant and
 will be automatically converted.
 
 [List of paper
-sizes/presets](https://github.com/thi-ng/umbrella/blob/develop/packages/units/README.md#constants)
+sizes/presets](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/units/README.md#constants)
 
 ### Path planning
 
 Path planning is considered a higher level operation than what's addressed by
 this package and is therefore out of scope. The
-[thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
+[thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-axidraw)
 provides some configurable point & shape sorting functions, but this is an
 interim solution and a full path/route planning facility is currently still
 outstanding and awaiting to be ported from other projects.
 
 ### thi.ng/geom support
 
-The [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+The [thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 package provides numerous shape types & operations to generate & transform
 geometry. Additionally,
-[thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
+[thi.ng/geom-axidraw](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-axidraw)
 can act as bridge API and provides the polymorphic
 [`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html)
 function to convert single shapes or entire shape groups/hierarchies directly
@@ -114,7 +115,7 @@ more details and examples.
 This package does **not** provide any direct conversions from SVG or any other
 geometry format. But again, whilst not containing a full SVG parser (at current
 only single paths can be parsed), the family of
-[thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 packages provides numerous shape types & operations which can be directly
 utilized to output generated geometry together with this package...
 
@@ -177,7 +178,7 @@ These metrics include:
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Baxidraw%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Baxidraw%5D)
 
 ## Installation
 
@@ -201,16 +202,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.27 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/units](https://github.com/thi-ng/umbrella/tree/develop/packages/units)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compose)
+- [@thi.ng/date](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/date)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/logger](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/logger)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/units](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/units)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 - [serialport](git://github.com/serialport/node-serialport.git)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)

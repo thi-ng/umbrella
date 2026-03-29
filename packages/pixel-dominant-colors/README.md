@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/pixel-dominant-colors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-pixel-dominant-colors.svg?60875ef0)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/pixel-dominant-colors](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-pixel-dominant-colors.svg?60875ef0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-dominant-colors.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dominant-colors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-dominant-colors.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
   - [Dominant color extraction](#dominant-color-extraction)
@@ -26,7 +27,7 @@
 
 ## About
 
-k-means based dominant color extraction from images/pixel buffers. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+k-means based dominant color extraction from images/pixel buffers. This is a support package for [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel).
 
 This package contains functionality which was previously part of and has been
 extracted from the [@thi.ng/pixel](https://thi.ng/pixel) package.
@@ -36,7 +37,7 @@ extracted from the [@thi.ng/pixel](https://thi.ng/pixel) package.
 The package provides several methods to extract the dominant colors from a given image:
 
 - [`dominantColorsKmeans()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsKmeans.html)
-uses [k-means clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
+uses [k-means clustering](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/k-means)
 - [`dominantColorsMeanCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMeanCut.html)
 - [`dominantColorsMedianCut()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColorsMedianCut.html)
 
@@ -49,11 +50,11 @@ in the image).
 Also see the [dominant colors example project & online
 tool](https://demo.thi.ng/umbrella/dominant-colors/) based on this function.
 Furthermore, the
-[thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes)
+[thi.ng/color-palettes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color-palettes)
 package provides 200+ curated color themes extracted from images using this
 function...
 
-![Example image & extracted dominant colors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/dominant-colors-01.jpg)
+![Example image & extracted dominant colors](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/pixel/dominant-colors-01.jpg)
 
 <small>Picture credit: [/u/kristophershinn](https://www.reddit.com/r/EarthPorn/comments/j3z0f6/fall_in_yosemite_valley_oc3186_3983/)</small>
 
@@ -98,7 +99,7 @@ console.log(clusters);
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-dominant-colors%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bpixel-dominant-colors%5D)
 
 ## Installation
 
@@ -130,22 +131,22 @@ Package sizes (brotli'd, pre-treeshake): ESM: 381 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/k-means](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/k-means)
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 One project in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory is using this package:
 
-| Screenshot                                                                                                             | Description                                                                 | Live demo                                             | Source                                                                             |
-|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/> | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors) |
+| Screenshot                                                                                                                     | Description                                                                 | Live demo                                             | Source                                                                              |
+|:-------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/> | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors) |
 
 ## API
 

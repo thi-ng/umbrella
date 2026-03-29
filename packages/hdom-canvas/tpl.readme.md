@@ -7,10 +7,10 @@
 {{pkg.description}}
 
 This package provides a [re-usable canvas
-component](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas/src/index.ts#L66),
+component](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom-canvas/src/index.ts#L66),
 which accepts child nodes defining a scene tree of different shape types
 in standard
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+[@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 syntax/format (i.e. nested arrays) and then translates these into canvas
 API draw calls during the hdom update process / cycle.
 
@@ -19,7 +19,7 @@ API draw calls during the hdom update process / cycle.
 ### BREAKING CHANGES 3.0.0
 
 The actual tree traversal & drawing has been extracted to the new
-[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
+[@thi.ng/hiccup-canvas](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas)
 package for better re-usability, also outside without hdom.
 
 {{repo.supportPackages}}
@@ -57,7 +57,7 @@ start(() => {
 ```
 
 Usage with
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)
 shape primitives:
 
 ```ts
@@ -86,7 +86,7 @@ start(() => {
 
 The package provides a `canvas` component which uses the branch-local
 behavior implementation feature of
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+[@thi.ng/hdom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom)
 v5.0.0 to support virtual SVG-like shape elements / components. These
 are defined as part of the main UI component tree just like any other
 component, but are then translated into canvas API draw commands during
@@ -96,7 +96,7 @@ the user context object as first arg, just like normal hdom components.
 Shape components are expressed in standard hiccup syntax (or as objects
 implementing the `IToHiccup()` interface, like the shape types provided
 by
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)),
+[@thi.ng/geom](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom)),
 and with the following...
 
 ### Restrictions & behavior controls
@@ -167,7 +167,7 @@ further details.
 Even though the element names & syntax are *very similar* to SVG
 elements, for performance reasons all geometry data given to each shape
 remains un-stringified (only styling attributes are). However, the
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
+[@thi.ng/hiccup-svg](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg)
 package provides a `convertTree()` function which takes the arguably
 more "raw" shape format used by hdom-canvas and converts an entire shape
 tree into SVG compatible & serializable format. Note: the tree MUST
@@ -213,7 +213,7 @@ serialize(
 ## Supported shape types
 
 Please see the [@thi.ng/hiccup-canvas
-README](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas/README.md#supported-shape-types)
+README](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-canvas/README.md#supported-shape-types)
 for the full list of supported shapes, gradients, attributes, colors and
 transformations.
 

@@ -11,58 +11,58 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.1.195](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.195) (2026-02-07)
+### [2.1.195](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.195) (2026-02-07)
 
 #### ♻️ Refactoring
 
-- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://github.com/thi-ng/umbrella/commit/3abbddf))
+- replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [2.1.176](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.176) (2025-08-04)
-
-#### ♻️ Refactoring
-
-- add required typedarray generics (TS5.9) ([e394ce8](https://github.com/thi-ng/umbrella/commit/e394ce8))
-
-### [2.1.121](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.121) (2024-06-21)
+### [2.1.176](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.176) (2025-08-04)
 
 #### ♻️ Refactoring
 
-- enforce uniform naming convention of internal functions ([56992b2](https://github.com/thi-ng/umbrella/commit/56992b2))
+- add required typedarray generics (TS5.9) ([e394ce8](https://codeberg.org/thi.ng/umbrella/commit/e394ce8))
 
-### [2.1.115](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.115) (2024-04-08)
-
-#### ♻️ Refactoring
-
-- update reducer handling due to updates in [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/main/packages/transducers) pkg ([907c961](https://github.com/thi-ng/umbrella/commit/907c961))
-
-### [2.1.109](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.109) (2024-03-18)
+### [2.1.121](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.121) (2024-06-21)
 
 #### ♻️ Refactoring
 
-- remove obsolete spread ops ([04e5207](https://github.com/thi-ng/umbrella/commit/04e5207))
+- enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.1.100](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.100) (2024-02-22)
-
-#### ♻️ Refactoring
-
-- update object destructuring in all pkgs & examples ([f36aeb0](https://github.com/thi-ng/umbrella/commit/f36aeb0))
-
-### [2.1.79](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.79) (2023-11-24)
+### [2.1.115](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.115) (2024-04-08)
 
 #### ♻️ Refactoring
 
-- update utf8 fns ([9e8cf2d](https://github.com/thi-ng/umbrella/commit/9e8cf2d))
-  - deprecate utf8Length() (migrated to [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/main/packages/strings))
+- update reducer handling due to updates in [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/transducers) pkg ([907c961](https://codeberg.org/thi.ng/umbrella/commit/907c961))
 
-### [2.1.76](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.76) (2023-11-09)
-
-#### ♻️ Refactoring
-
-- update all tests (packages A-S) ([e3085e4](https://github.com/thi-ng/umbrella/commit/e3085e4))
-- update all tests (packages T-Z) ([020ef6c](https://github.com/thi-ng/umbrella/commit/020ef6c))
-
-### [2.1.55](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-binary@2.1.55) (2023-08-12)
+### [2.1.109](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.109) (2024-03-18)
 
 #### ♻️ Refactoring
 
-- update .probability() call sites in various pkgs ([c8c8141](https://github.com/thi-ng/umbrella/commit/c8c8141))
+- remove obsolete spread ops ([04e5207](https://codeberg.org/thi.ng/umbrella/commit/04e5207))
+
+### [2.1.100](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.100) (2024-02-22)
+
+#### ♻️ Refactoring
+
+- update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
+
+### [2.1.79](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.79) (2023-11-24)
+
+#### ♻️ Refactoring
+
+- update utf8 fns ([9e8cf2d](https://codeberg.org/thi.ng/umbrella/commit/9e8cf2d))
+  - deprecate utf8Length() (migrated to [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/strings))
+
+### [2.1.76](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.76) (2023-11-09)
+
+#### ♻️ Refactoring
+
+- update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+- update all tests (packages T-Z) ([020ef6c](https://codeberg.org/thi.ng/umbrella/commit/020ef6c))
+
+### [2.1.55](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-binary@2.1.55) (2023-08-12)
+
+#### ♻️ Refactoring
+
+- update .probability() call sites in various pkgs ([c8c8141](https://codeberg.org/thi.ng/umbrella/commit/c8c8141))

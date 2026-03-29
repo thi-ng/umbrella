@@ -6,7 +6,7 @@ This example demonstrates how to hydrate a pre-created HTML DOM (e.g.
 server-side rendering) client-side.
 
 Please refer to the [example build
-instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+instructions](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 on the wiki.
 
 ## Authors

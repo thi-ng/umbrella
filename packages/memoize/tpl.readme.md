@@ -11,9 +11,9 @@ functions with arbitrary arguments and custom result caching using ES6
 Map API like implementations. Unlike native ES6 Maps, **the
 implementations MUST support value, not just referential, equality
 semantics** (e.g. those provided by
-[@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative))
+[@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/associative))
 or
-[@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)).
+[@thi.ng/cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache)).
 The latter also support automatically pruning of memoization caches,
 based on different strategies. See doc strings for further details.
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/color](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-color.svg?38e130f4)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/color](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-color.svg?38e130f4)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-clj)
 
@@ -153,9 +154,9 @@ Additionally, colors can be created from black body temperatures
 or wavelengths
 ([`wavelengthXyz()`](https://docs.thi.ng/umbrella/color/functions/wavelengthXyz.html)).
 
-![kelvinRgb() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/blackbody.svg)
+![kelvinRgb() result swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/blackbody.svg)
 
-![wavelengthXyz() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/wavelength.svg)
+![wavelengthXyz() result swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/wavelength.svg)
 
 ### Storage & memory mapping
 
@@ -171,12 +172,12 @@ backing memory buffer (e.g. for WASM/WebGL/WebGPU interop, pixel buffers etc.),
 incl. support for arbitrary component strides.
 
 The lightweight class wrappers act similarly to the `Vec2/3/4` wrappers in
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors),
+[@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
 all vector functions.
 
-![Memory diagram of densely packed buffer](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/mapped-colors-01.png)
+![Memory diagram of densely packed buffer](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/mapped-colors-01.png)
 
 ```ts tangle:export/readme2.ts
 import { Hue, css, namedHueRgb, rgb, srgb } from "@thi.ng/color";
@@ -211,7 +212,7 @@ colors[0].deref()
 // [ 1, 0.5, 0, 1 ]
 ```
 
-![Memory diagram of strided & interleaved buffer](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/mapped-colors-02.png)
+![Memory diagram of strided & interleaved buffer](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/mapped-colors-02.png)
 
 ```ts tangle:export/readme2.ts
 // here we create a *strided* WebGL attrib buffer for 3 points
@@ -315,39 +316,39 @@ and the following color theme (raw samples and chunked & sorted):
 
 | ID        | 100 colors drawn from color range preset                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------------------------------|
-| `bright`  | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-hue.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-mixed.svg)   |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-chunks.svg)  |
-| `cool`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-chunks.svg)    |
-| `dark`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-chunks.svg)    |
-| `fresh`   | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-hue.svg)      |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-mixed.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-chunks.svg)   |
-| `hard`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-chunks.svg)    |
-| `intense` | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-hue.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-mixed.svg)  |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-chunks.svg) |
-| `light`   | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-hue.svg)      |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-mixed.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-chunks.svg)   |
-| `neutral` | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-hue.svg)    |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-mixed.svg)  |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-chunks.svg) |
-| `soft`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-chunks.svg)    |
-| `warm`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-chunks.svg)    |
-| `weak`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-hue.svg)       |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-mixed.svg)     |
-|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-chunks.svg)    |
+| `bright`  | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-bright-hue.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-bright-mixed.svg)   |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-bright-chunks.svg)  |
+| `cool`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-cool-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-cool-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-cool-chunks.svg)    |
+| `dark`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-dark-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-dark-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-dark-chunks.svg)    |
+| `fresh`   | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-fresh-hue.svg)      |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-fresh-mixed.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-fresh-chunks.svg)   |
+| `hard`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-hard-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-hard-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-hard-chunks.svg)    |
+| `intense` | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-intense-hue.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-intense-mixed.svg)  |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-intense-chunks.svg) |
+| `light`   | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-light-hue.svg)      |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-light-mixed.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-light-chunks.svg)   |
+| `neutral` | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-neutral-hue.svg)    |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-neutral-mixed.svg)  |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-neutral-chunks.svg) |
+| `soft`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-soft-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-soft-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-soft-chunks.svg)    |
+| `warm`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-warm-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-warm-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-warm-chunks.svg)    |
+| `weak`    | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-weak-hue.svg)       |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-weak-mixed.svg)     |
+|           | ![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-range-weak-chunks.svg)    |
 
 Full example:
 
@@ -378,7 +379,7 @@ const doc = svg(
 writeFileSync("swatches-ex01.svg", serialize(doc));
 ```
 
-![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
+![example result color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-ex01.svg)
 
 ### Color theme strategies
 
@@ -399,7 +400,7 @@ console.log(cssColors(analogStrategy("#f60")));
 // [ "#ff6600", "#ff2c63", "#c58f00" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/analog-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/analog-strategy.svg)
 
 #### Split-analog colors
 
@@ -412,7 +413,7 @@ console.log(cssColors(splitAnalogStrategy("#f60")));
 // [ "#ff6600", "#00bcd4", "#00a6ff", "#c58f00" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-analog-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/split-analog-strategy.svg)
 
 #### Complementary colors
 
@@ -425,7 +426,7 @@ console.log(cssColors(complementaryStrategy("#f60")));
 // [ "#ff6600", "#00b6ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/complementary-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/complementary-strategy.svg)
 
 #### Split-complementary colors
 
@@ -438,7 +439,7 @@ console.log(cssColors(splitComplementaryStrategy("#f60")));
 // [ "#ff6600", "#00bcd4", "#00a6ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/split-complementary-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/split-complementary-strategy.svg)
 
 #### Monochrome colors
 
@@ -451,7 +452,7 @@ console.log(cssColors(monochromeStrategy("#f60")));
 // [ "#490000", "#880000", "#d44100", "#ff872d", "#ffce71" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/monochrome-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/monochrome-strategy.svg)
 
 #### Triadic colors
 
@@ -464,7 +465,7 @@ console.log(cssColors(triadicStrategy("#f60")));
 // [ "#ff6600", "#00bb7e", "#7f88ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/triadic-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/triadic-strategy.svg)
 
 #### Tetradic colors
 
@@ -477,7 +478,7 @@ console.log(cssColors(tetradicStrategy("#f60")));
 // [ "#ff6600", "#75a800", "#00b6ff", "#7f88ff" ]
 ```
 
-![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/tetradic-strategy.svg)
+![color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/tetradic-strategy.svg)
 
 ### Color sorting & distance
 
@@ -523,7 +524,7 @@ const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 sort(colors, proximity(lch("#fff"), distCIEDE2000()));
 ```
 
-![sorted color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex02.svg)
+![sorted color swatches](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/swatches-ex02.svg)
 
 #### Sorting memory-mapped colors
 
@@ -534,7 +535,7 @@ BUT instead sorts the apparent order by swapping the contents of the backing
 memory.
 
 See the [pixel sorting
-example](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)
+example](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)
 for a concrete use case...
 
 ```ts tangle:export/readme-sort-buffer.ts
@@ -588,7 +589,7 @@ delegates to type specific strategies. See
 [`GradientOpts`](https://docs.thi.ng/umbrella/color/interfaces/GradientOpts.html)
 for details.
 
-![LCH example gradient](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/lch-gradient.svg)
+![LCH example gradient](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/lch-gradient.svg)
 
 ```ts tangle:export/readme-multi-color-gradient.ts
 import { lch, multiColorGradient, swatchesH } from "@thi.ng/color";
@@ -628,32 +629,32 @@ writeFileSync(
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/src/cosine-gradients.ts)):
 
 | Preview                                                                                                                                       | Gradient ID             |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
-| ![gradient: blue-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-cyan.png)                         | `blue-cyan`             |
-| ![gradient: blue-magenta-orange](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-magenta-orange.png)     | `blue-magenta-orange`   |
-| ![gradient: blue-white-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-white-red.png)               | `blue-white-red`        |
-| ![gradient: cyan-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-cyan-magenta.png)                   | `cyan-magenta`          |
-| ![gradient: green-blue-orange](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-blue-orange.png)         | `green-blue-orange`     |
-| ![gradient: green-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-cyan.png)                       | `green-cyan`            |
-| ![gradient: green-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-magenta.png)                 | `green-magenta`         |
-| ![gradient: green-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-red.png)                         | `green-red`             |
-| ![gradient: heat1](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-heat1.png)                                 | `heat1`                 |
-| ![gradient: magenta-green](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-magenta-green.png)                 | `magenta-green`         |
-| ![gradient: orange-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-orange-blue.png)                     | `orange-blue`           |
-| ![gradient: orange-magenta-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-orange-magenta-blue.png)     | `orange-magenta-blue`   |
-| ![gradient: purple-orange-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-purple-orange-cyan.png)       | `purple-orange-cyan`    |
-| ![gradient: rainbow1](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow1.png)                           | `rainbow1`              |
-| ![gradient: rainbow2](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow2.png)                           | `rainbow2`              |
-| ![gradient: rainbow3](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow3.png)                           | `rainbow3`              |
-| ![gradient: rainbow4](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow4.png)                           | `rainbow4`              |
-| ![gradient: red-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-red-blue.png)                           | `red-blue`              |
-| ![gradient: yellow-green-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-green-blue.png)         | `yellow-green-blue`     |
-| ![gradient: yellow-magenta-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-magenta-cyan.png)     | `yellow-magenta-cyan`   |
-| ![gradient: yellow-purple-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-purple-magenta.png) | `yellow-purple-magenta` |
-| ![gradient: yellow-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-red.png)                       | `yellow-red`            |
+| ![gradient: blue-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-blue-cyan.png)                         | `blue-cyan`             |
+| ![gradient: blue-magenta-orange](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-blue-magenta-orange.png)     | `blue-magenta-orange`   |
+| ![gradient: blue-white-red](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-blue-white-red.png)               | `blue-white-red`        |
+| ![gradient: cyan-magenta](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-cyan-magenta.png)                   | `cyan-magenta`          |
+| ![gradient: green-blue-orange](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-blue-orange.png)         | `green-blue-orange`     |
+| ![gradient: green-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-cyan.png)                       | `green-cyan`            |
+| ![gradient: green-magenta](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-magenta.png)                 | `green-magenta`         |
+| ![gradient: green-red](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-green-red.png)                         | `green-red`             |
+| ![gradient: heat1](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-heat1.png)                                 | `heat1`                 |
+| ![gradient: magenta-green](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-magenta-green.png)                 | `magenta-green`         |
+| ![gradient: orange-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-orange-blue.png)                     | `orange-blue`           |
+| ![gradient: orange-magenta-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-orange-magenta-blue.png)     | `orange-magenta-blue`   |
+| ![gradient: purple-orange-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-purple-orange-cyan.png)       | `purple-orange-cyan`    |
+| ![gradient: rainbow1](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow1.png)                           | `rainbow1`              |
+| ![gradient: rainbow2](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow2.png)                           | `rainbow2`              |
+| ![gradient: rainbow3](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow3.png)                           | `rainbow3`              |
+| ![gradient: rainbow4](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-rainbow4.png)                           | `rainbow4`              |
+| ![gradient: red-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-red-blue.png)                           | `red-blue`              |
+| ![gradient: yellow-green-blue](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-green-blue.png)         | `yellow-green-blue`     |
+| ![gradient: yellow-magenta-cyan](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-magenta-cyan.png)     | `yellow-magenta-cyan`   |
+| ![gradient: yellow-purple-magenta](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-purple-magenta.png) | `yellow-purple-magenta` |
+| ![gradient: yellow-red](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color/gradient-yellow-red.png)                       | `yellow-red`            |
 
 ##### Two-color cosine gradients
 
@@ -739,7 +740,7 @@ console.log(gradient.map((x) => css(x)));
 ### RGB color transformations
 
 RGB [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
+transformations](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/src/transform.ts),
 including parametric preset transforms:
 
 - brightness
@@ -763,16 +764,16 @@ efficient application.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bcolor%5D)
 
 ## Support packages
 
-- [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 200+ image based color themes & composable theme query filters
+- [@thi.ng/color-palettes](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color-palettes) - Collection of 200+ image based color themes & composable theme query filters
 
 ## Related packages
 
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
+- [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 
 ## Installation
 
@@ -804,58 +805,58 @@ Package sizes (brotli'd, pre-treeshake): ESM: 15.79 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/arrays](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/arrays)
+- [@thi.ng/binary](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/binary)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
+- [@thi.ng/compose](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compose)
+- [@thi.ng/defmulti](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/defmulti)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
+- [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/random)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
+- [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 28 projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                           | Description                                                                      | Live demo                                                    | Source                                                                                    |
-|:-------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/boid-basics.png" width="240"/>                   | Basic 2D boid simulation and spatial indexing neighbor lookups                   | [Demo](https://demo.thi.ng/umbrella/boid-basics/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/boid-basics)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold | [Demo](https://demo.thi.ng/umbrella/color-contrast/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-contrast)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                              | [Demo](https://demo.thi.ng/umbrella/color-themes/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                |                                                              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images      | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                                      | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fiber-basics)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-complex-poly.png" width="240"/>             | Shape conversions & operations using polygons with holes                         | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-complex-poly)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-csv-piechart.png" width="240"/>             | Piechart visualization of CSV data                                               | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-csv-piechart)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-unique-edges.png" width="240"/>             | Iterating the unique edges of a tessellation                                     | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-unique-edges)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-attrib-pool.jpg" width="240"/>        | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers    | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-attrib-pool) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>             | Converting thi.ng/geom shape types for WebGL                                     | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-webgl-basics)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>                | Visualization of different grid iterator strategies                              | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export             | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                                | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hiccup-canvas-basics)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/>                    | k-means clustering visualization                                                 | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)             | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz)             |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>             | Matrix-based image color adjustments                                             | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-colormatrix)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-gradients.jpg" width="240"/>               | Randomized 4-point 2D color gradient image generator                             | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-gradients)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>                 | Image dithering and remapping using indexed palettes                             | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>                 | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                 | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                         | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-subdiv)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-reactive-svg.jpg" width="240"/>             | Animated SVG elements with reactive attributes                                   | [Demo](https://demo.thi.ng/umbrella/rdom-reactive-svg/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-reactive-svg)      |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/>            | Fork-join worker-based raymarch renderer (JS/CPU only)                           | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD            | [Demo](https://demo.thi.ng/umbrella/simd-plot/)              | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/simd-plot)              |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/stacked-layout.png" width="240"/>                | Responsive & reactively computed stacked column layout                           | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/stacked-layout)         |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                           | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)           |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/tsne-colors.avif" width="240"/>                  | Animated t-SNE visualization of 4D data                                          | [Demo](https://demo.thi.ng/umbrella/tsne-colors/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/tsne-colors)            |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                      | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/viz-ridge-lines)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>           | Interactively drawing to & reading from a WebGL offscreen render texture         | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-texture-paint)    |
+| Screenshot                                                                                                                                   | Description                                                                      | Live demo                                                    | Source                                                                                     |
+|:---------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:-------------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/boid-basics.png" width="240"/>                   | Basic 2D boid simulation and spatial indexing neighbor lookups                   | [Demo](https://demo.thi.ng/umbrella/boid-basics/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/boid-basics)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold | [Demo](https://demo.thi.ng/umbrella/color-contrast/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-contrast)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                              | [Demo](https://demo.thi.ng/umbrella/color-themes/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-themes)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                |                                                              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/commit-heatmap)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images      | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/fiber-basics.png" width="240"/>                  | Fiber-based cooperative multitasking basics                                      | [Demo](https://demo.thi.ng/umbrella/fiber-basics/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fiber-basics)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-complex-poly.png" width="240"/>             | Shape conversions & operations using polygons with holes                         | [Demo](https://demo.thi.ng/umbrella/geom-complex-poly/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-complex-poly)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-csv-piechart.png" width="240"/>             | Piechart visualization of CSV data                                               | [Demo](https://demo.thi.ng/umbrella/geom-csv-piechart/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-csv-piechart)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-unique-edges.png" width="240"/>             | Iterating the unique edges of a tessellation                                     | [Demo](https://demo.thi.ng/umbrella/geom-unique-edges/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-unique-edges)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-webgl-attrib-pool.jpg" width="240"/>        | Augmenting thi.ng/geom shapes for WebGL, using instancing & attribute buffers    | [Demo](https://demo.thi.ng/umbrella/geom-webgl-attrib-pool/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-webgl-attrib-pool) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/geom-webgl-basics.jpg" width="240"/>             | Converting thi.ng/geom shape types for WebGL                                     | [Demo](https://demo.thi.ng/umbrella/geom-webgl-basics/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/geom-webgl-basics)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/grid-iterators.png" width="240"/>                | Visualization of different grid iterator strategies                              | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/grid-iterators)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export             | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/hiccup-canvas-basics.png" width="240"/>          | Basic hiccup-based canvas drawing                                                | [Demo](https://demo.thi.ng/umbrella/hiccup-canvas-basics/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hiccup-canvas-basics)   |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/kmeans-viz.jpg" width="240"/>                    | k-means clustering visualization                                                 | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/kmeans-viz)             |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-colormatrix.jpg" width="240"/>             | Matrix-based image color adjustments                                             | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-colormatrix)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-gradients.jpg" width="240"/>               | Randomized 4-point 2D color gradient image generator                             | [Demo](https://demo.thi.ng/umbrella/pixel-gradients/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-gradients)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-indexed.jpg" width="240"/>                 | Image dithering and remapping using indexed palettes                             | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-indexed)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/pixel-sorting.png" width="240"/>                 | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                 | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/poly-subdiv.jpg" width="240"/>                   | Animated, iterative polygon subdivisions & visualization                         | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/rdom-reactive-svg.jpg" width="240"/>             | Animated SVG elements with reactive attributes                                   | [Demo](https://demo.thi.ng/umbrella/rdom-reactive-svg/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-reactive-svg)      |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-workers.jpg" width="240"/>            | Fork-join worker-based raymarch renderer (JS/CPU only)                           | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-workers)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/simd-plot.png" width="240"/>                     | Fitting, transforming & plotting 10k data points per frame using SIMD            | [Demo](https://demo.thi.ng/umbrella/simd-plot/)              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/simd-plot)              |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/stacked-layout.png" width="240"/>                | Responsive & reactively computed stacked column layout                           | [Demo](https://demo.thi.ng/umbrella/stacked-layout/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/stacked-layout)         |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/trace-bitmap.jpg" width="240"/>                  | Multi-layer vectorization & dithering of bitmap images                           | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/trace-bitmap)           |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/tsne-colors.avif" width="240"/>                  | Animated t-SNE visualization of 4D data                                          | [Demo](https://demo.thi.ng/umbrella/tsne-colors/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/tsne-colors)            |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/viz-ridge-lines.avif" width="240"/>              | Interactive ridge-line plot                                                      | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>           | Interactively drawing to & reading from a WebGL offscreen render texture         | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-texture-paint)    |
 
 ## API
 

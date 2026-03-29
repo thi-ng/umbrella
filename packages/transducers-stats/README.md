@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/transducers-stats](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-transducers-stats.svg?8b85e2e5)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/transducers-stats](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-transducers-stats.svg?8b85e2e5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-stats.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Supported indicators](#supported-indicators)
@@ -26,10 +27,10 @@
 
 ## About
 
-Transducers for statistical / technical analysis. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Transducers for statistical / technical analysis. This is a support package for [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers).
 
 This package provides a set of
-[transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+[transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 for [technical
 (financial)](https://en.wikipedia.org/wiki/Technical_indicator) and
 statistical analysis and replaces the older
@@ -43,27 +44,27 @@ transforming ES6 iterator (generator) instead of a transducer.
 
 ## Supported indicators
 
-- [Bollinger Bands](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/bollinger.ts)
-- [Donchian Channel](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/donchian.ts)
-- [EMA (Exponential Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/ema.ts)
-- [HMA (Hull Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/hma.ts)
-- [MACD (Moving Average Convergence/Divergence)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/macd.ts)
-- [Momentum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/momentum.ts)
-- [Moving Maximum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/moving-maximum.ts)
-- [Moving Minimum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/moving-minimum.ts)
-- [ROC (Rate of change)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/roc.ts)
-- [RSI (Relative Strength Index)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/rsi.ts)
-- [SD (Standard Deviation)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sd.ts)
-- [SMA (Simple Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sma.ts)
-- [Stochastic oscillator](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/stochastic.ts)
-- [TRIX (Triple smoothed EMA)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/trix.ts)
-- [WMA (Weighted Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/wma.ts)
+- [Bollinger Bands](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/bollinger.ts)
+- [Donchian Channel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/donchian.ts)
+- [EMA (Exponential Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/ema.ts)
+- [HMA (Hull Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/hma.ts)
+- [MACD (Moving Average Convergence/Divergence)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/macd.ts)
+- [Momentum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/momentum.ts)
+- [Moving Maximum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/moving-maximum.ts)
+- [Moving Minimum](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/moving-minimum.ts)
+- [ROC (Rate of change)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/roc.ts)
+- [RSI (Relative Strength Index)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/rsi.ts)
+- [SD (Standard Deviation)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/sd.ts)
+- [SMA (Simple Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/sma.ts)
+- [Stochastic oscillator](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/stochastic.ts)
+- [TRIX (Triple smoothed EMA)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/trix.ts)
+- [WMA (Weighted Moving Average)](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-stats/src/wma.ts)
 
 ## Status
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-stats%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Btransducers-stats%5D)
 
 ## Installation
 
@@ -95,26 +96,26 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.74 KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/buffers](https://github.com/thi-ng/umbrella/tree/develop/packages/buffers)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/buffers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/buffers)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
+- [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
 Four projects in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
-| Screenshot                                                                                                                | Description                                                            | Live demo                                                | Source                                                                                |
-|:--------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ascii-raymarch.jpg" width="240"/>     | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas      | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ascii-raymarch)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>       | Basic crypto-currency candle chart with multiple moving averages plots | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/optical-flow.avif" width="240"/>      | Optical flow analysis of web cam or video inputs                       | [Demo](https://demo.thi.ng/umbrella/optical-flow/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/optical-flow)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
+| Screenshot                                                                                                                        | Description                                                            | Live demo                                                | Source                                                                                 |
+|:----------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:---------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/ascii-raymarch.jpg" width="240"/>     | ASCII art raymarching with thi.ng/shader-ast & thi.ng/text-canvas      | [Demo](https://demo.thi.ng/umbrella/ascii-raymarch/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ascii-raymarch)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/crypto-chart.png" width="240"/>       | Basic crypto-currency candle chart with multiple moving averages plots | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/optical-flow.avif" width="240"/>      | Optical flow analysis of web cam or video inputs                       | [Demo](https://demo.thi.ng/umbrella/optical-flow/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/optical-flow)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-workers) |
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
-<!-- Please see: https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md#changes-to-readme-files -->
-# ![@thi.ng/dot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-dot.svg?a41a297b)
+<!-- Please see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#changes-to-readme-files -->
+# ![@thi.ng/dot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-dot.svg?a41a297b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dot.svg)
@@ -8,11 +8,12 @@
 
 > [!NOTE]
 > This is one of 214 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo
+> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
 > and anti-framework.
 >
-> 🚀 Please help me to work full-time on these projects by [sponsoring me on
-> GitHub](https://github.com/sponsors/postspectacular). Thank you! ❤️
+> 🚀 Please help me to work full-time on these projects by [sponsoring
+> me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
+> Thank you! ❤️
 
 - [About](#about)
 - [Status](#status)
@@ -29,9 +30,9 @@
 objects and serialization to DOT format.
 
 Provides several
-[interfaces](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/src/api.ts)
+[interfaces](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot/src/api.ts)
 covering a large subset of GraphViz options and
-[functions](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/src/serialize.ts)
+[functions](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot/src/serialize.ts)
 to serialize whole graphs (incl. subgraphs), nodes or edges. Supports
 both directed and undirected graphs.
 
@@ -43,12 +44,12 @@ details.
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdot%5D+in%3Atitle)
+[Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bdot%5D)
 
 ## Related packages
 
-- [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) - Type-agnostic directed acyclic graph (DAG) & graph operations
+- [@thi.ng/adjacency](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/adjacency) - Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs
+- [@thi.ng/dgraph](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dgraph) - Type-agnostic directed acyclic graph (DAG) & graph operations
 
 ## Installation
 
@@ -80,8 +81,8 @@ Package sizes (brotli'd, pre-treeshake): ESM: 671 bytes
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
@@ -89,10 +90,10 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 [Generated API docs](https://docs.thi.ng/umbrella/dot/)
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dot/dot-example.png)
+![example graph](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/dot/dot-example.png)
 
 The source code of this example is also available in
-[/test/example.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/test/example.ts).
+[/test/example.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/dot/test/example.ts).
 
 ```ts
 import { serializeGraph } from "@thi.ng/dot";
