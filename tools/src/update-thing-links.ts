@@ -15,6 +15,8 @@ import { join, sep } from "node:path";
 import { LOGGER, type Package } from "./api.js";
 import { S3_OPTS } from "./aws-config.js";
 
+const BASE_URL = "https://codeberg.org/thi.ng/umbrella/src/branch";
+
 const CACHE_CTRL = `max-age=${durationAs("s", DAY * 30)}`;
 
 const baseDir = "./packages";
@@ -76,7 +78,7 @@ for (let f of pkgDirs) {
 				}),
 				meta({
 					"http-equiv": "refresh",
-					content: `0; url=https://github.com/thi-ng/umbrella/tree/${branch}/${root}packages/${id}#readme`,
+					content: `0; url=${BASE_URL}/${branch}/${root}packages/${id}#readme`,
 				}),
 				title({}, pkg.name)
 			)

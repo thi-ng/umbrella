@@ -359,7 +359,7 @@ scene.transform(
 		[
 			"a.link",
 			{
-				href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes",
+				href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-shapes",
 			},
 			"Source code",
 		],

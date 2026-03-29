@@ -26,7 +26,7 @@ const OFFSET = R * 0.8;
 // number of target clusters
 const K = SYSTEM.minmaxInt(2, 25);
 // color themes
-// see: https://github.com/thi-ng/umbrella/blob/develop/packages/color/README.md#color-theme-generation
+// see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/README.md#color-theme-generation
 const THEME = [...colorsFromRange("hard", { num: K })];
 
 // generates points scattered in given radius around pos

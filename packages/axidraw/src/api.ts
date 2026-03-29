@@ -118,7 +118,7 @@ export interface AxiDrawOpts {
 	 * be based on `[0,0]`.
 	 *
 	 * List of paper sizes/presets:
-	 * https://github.com/thi-ng/umbrella/blob/develop/packages/units/README.md#constants
+	 * https://docs.thi.ng/umbrella/units/#constants
 	 *
 	 * Also see {@link AxiDrawOpts.unitsPerInch}
 	 *

@@ -168,7 +168,12 @@ const app = (ctx: any) => [
 	[
 		"p",
 		[bt, { onclick: toggleTheme }, "Toggle"],
-		[bt, { href: "https://github.com/thi-ng/umbrella" }, icon, "External"],
+		[
+			bt,
+			{ href: "https://codeberg.org/thi.ng/umbrella" },
+			icon,
+			"External",
+		],
 		[btFixed, { onclick: () => alert("hi"), selected: true }, "Selected"],
 		[btFixed, { disabled: true }, "Disabled"],
 	],
@@ -177,7 +182,7 @@ const app = (ctx: any) => [
 		"Please see ",
 		[
 			link,
-			"https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-components/adr/0003-component-configuration-via-context.md",
+			"https://codeberg.org/thi.ng/umbrella/src/develop/packages/hdom-components/adr/0003-component-configuration-via-context.md",
 			"ADR-0003",
 		],
 		" for details of this approach.",
@@ -186,7 +191,7 @@ const app = (ctx: any) => [
 		"p",
 		[
 			link,
-			"https://github.com/thi-ng/umbrella/blob/develop/examples/hdom-theme-adr-0003",
+			"https://codeberg.org/thi.ng/umbrella/src/develop/examples/hdom-theme-adr-0003",
 			"Source",
 		],
 	],

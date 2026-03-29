@@ -7,14 +7,15 @@ export interface Item {
 }
 
 export const EXAMPLE_BASE_URL =
-	"https://github.com/thi-ng/umbrella/tree/develop/examples";
+	"https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples";
 
 export const DEMO_BASE_URL = "https://demo.thi.ng/umbrella";
 
 export const ASSET_BASE_URL =
-	"https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets";
+	"https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets";
 
-export const GLOSSARY_URL = "https://github.com/thi-ng/umbrella/wiki/Glossary#";
+export const GLOSSARY_URL =
+	"https://codeberg.org/thi.ng/umbrella/wiki/Glossary#";
 
 export const DOCS_BASE_URL = "https://docs.thi.ng/umbrella";
 

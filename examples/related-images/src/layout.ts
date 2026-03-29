@@ -12,7 +12,7 @@ interface LayoutOpts {
 }
 
 // based on and expanded version of the eponymous function in the "stacked-layout"
-// example: https://github.com/thi-ng/umbrella/blob/develop/examples/stacked-layout
+// example: https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/stacked-layout
 //
 // this new version adds several improvements & options to better align the
 // vertical column offsets and returns an object with the main layout function

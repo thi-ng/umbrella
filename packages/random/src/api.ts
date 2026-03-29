@@ -9,7 +9,7 @@ export interface INorm {
 	 * Not to be confused with the {@link normal} distribution function. The
 	 * name here refers to "normalized".
 	 *
-	 * Also see: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * Also see: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 *
 	 * @param scale - default 1
 	 */
@@ -20,7 +20,7 @@ export interface INorm {
 	 * the `(-min..min)` range). Both `min` and `max` MUST be >= 0.
 	 *
 	 * @remarks
-	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * See: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 *
 	 * @param min
 	 * @param max
@@ -33,14 +33,14 @@ export interface IRandom extends INorm {
 	 * Returns unsigned 32bit int in `[0,0xffffffff]` interval.
 	 *
 	 * @remarks
-	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * See: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 */
 	int(): number;
 	/**
 	 * Returns float in `[0,max)` interval.
 	 *
 	 * @remarks
-	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * See: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 *
 	 * @param max - default 1
 	 */
@@ -56,7 +56,7 @@ export interface IRandom extends INorm {
 	 * Returns float in `[min,max)` interval.
 	 *
 	 * @remarks
-	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * See: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 *
 	 * @param min -
 	 * @param max -
@@ -66,7 +66,7 @@ export interface IRandom extends INorm {
 	 * Returns int in **signed** integer `[min,max)` interval.
 	 *
 	 * @remarks
-	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * See: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 *
 	 * @param min -
 	 * @param max -
@@ -76,7 +76,7 @@ export interface IRandom extends INorm {
 	 * Returns int in **unsigned** integer `[min,max)` interval.
 	 *
 	 * @remarks
-	 * See: https://github.com/thi-ng/umbrella/wiki/Glossary#interval
+	 * See: https://codeberg.org/thi.ng/umbrella/wiki/Glossary#interval
 	 *
 	 * @param min -
 	 * @param max -

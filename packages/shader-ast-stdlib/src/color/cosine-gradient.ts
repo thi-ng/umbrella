@@ -19,7 +19,7 @@ import {
  * References:
  *
  * - https://iquilezles.org/articles/palettes/
- * - https://github.com/thi-ng/umbrella/tree/develop/packages/color#cosine-gradients
+ * - https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color#cosine-gradients
  *
  * @example
  * ```ts

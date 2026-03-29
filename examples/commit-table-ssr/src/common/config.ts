@@ -34,7 +34,7 @@ export const ctx: AppContext = {
 	repo: {
 		name: "thi.ng/umbrella",
 		path: ".",
-		url: "https://github.com/thi-ng/umbrella",
+		url: "https://codeberg.org/thi.ng/umbrella",
 	},
 	ui: {
 		body: { class: "sans-serif vh-100" },

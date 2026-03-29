@@ -17,6 +17,7 @@ export const initConfig = (configPath: string, pkgPath: string) => {
 		root,
 		meta,
 		assetURL: `${conf.assetURL}/${meta.branch}/assets`,
-		branchURL: `${conf.repoURL}/tree/${meta.branch}`,
+		branchURL: `${conf.repoURL}/src/branch/${meta.branch}`,
+		issuesURL: `${conf.repoURL}/issues`,
 	};
 };

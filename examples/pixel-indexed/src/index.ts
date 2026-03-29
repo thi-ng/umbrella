@@ -34,7 +34,7 @@ const processImage = (buf: IntBuffer, id: number) => {
 const buf = intBufferFromImage(img, ARGB8888).scale(0.5, "cubic");
 
 // another version using a preset palette
-// see https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes#all-themes
+// see https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color-palettes#all-themes
 const themes = range(NUM_THEMES)[Symbol.iterator]();
 const addImage = () => {
 	const next = themes.next();

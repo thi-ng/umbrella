@@ -172,7 +172,7 @@ export const invAlphaCut =
  *
  * - [Interactive graph](https://www.desmos.com/calculator/pnq6kqzfb5)
  * - https://en.wikipedia.org/wiki/T-norm
- * - https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts
+ * - https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/fuzzy/src/tnorms.ts
  *
  * @example
  * ```ts

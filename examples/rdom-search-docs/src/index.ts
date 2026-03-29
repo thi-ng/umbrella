@@ -14,9 +14,9 @@ import { Pagination, pageControls } from "./pagination.js";
 import { search, type SearchIndex } from "./search.js";
 
 const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";
-const REPO_URL = "https://github.com/thi-ng/umbrella/";
-const BASE_URL = `${REPO_URL}blob/develop/packages/`;
-const SRC_URL = `${REPO_URL}/tree/develop/examples/rdom-search-docs`;
+const REPO_URL = "https://codeberg.org/thi.ng/umbrella/";
+const BASE_URL = `${REPO_URL}src/branch/develop/packages/`;
+const SRC_URL = `${REPO_URL}src/branch/develop/examples/rdom-search-docs`;
 const INITIAL_QUERY = "api";
 const PAGE_SIZE = 25;
 

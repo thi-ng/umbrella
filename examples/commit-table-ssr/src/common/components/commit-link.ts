@@ -12,6 +12,6 @@ import { link } from "./link.js";
  */
 export const commitLink = (ctx: AppContext, sha: string, body: string) => [
 	link,
-	{ ...ctx.ui.link, href: `${ctx.repo.url}/commit/${sha}` },
+	{ ...ctx.ui.link, href: `${ctx.repo.url}/commit/${sha}`, target: "_blank" },
 	body,
 ];

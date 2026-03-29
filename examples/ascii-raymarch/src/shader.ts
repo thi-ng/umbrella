@@ -43,7 +43,7 @@ import {
 
 // apart from very minor adjustments, this raymarching shader is the same as
 // used in this example:
-// https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-raymarch
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-raymarch
 
 // scene definition for raymarch function. uses SDF primitive functions
 // included in "standard library" bundled with shader-ast pkg

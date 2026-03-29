@@ -5,7 +5,8 @@ import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
 import { LOGGER, META_FIELD, type Package } from "./api.js";
 import { shortName } from "./partials/package.js";
 
-const REPO_URL = "https://github.com/thi-ng/umbrella/blob/develop/packages";
+const REPO_URL =
+	"https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages";
 const NPM_URL = "https://www.npmjs.com/package";
 const BADGE_URL = "https://img.shields.io/npm/v";
 const BASE_DIR = "./packages/";

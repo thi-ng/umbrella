@@ -15,7 +15,7 @@ import { DEFAULT_DOC } from "../common/config.js";
  * unless it's part of string values.
  *
  * See here for more reference:
- * https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup
+ * https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup
  *
  * @param doc -
  */

@@ -128,7 +128,7 @@ const app = (main: StreamSync<any, any>) => {
 		[
 			"a.db.link",
 			{
-				href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw",
+				href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-canvas-draw",
 			},
 			"Source code",
 		],

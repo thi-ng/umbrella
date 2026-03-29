@@ -83,7 +83,7 @@ export const utf8Decode = (buf: Uint8Array, start: number, num: number) => {
  *
  * Based on:
  *
- * - https://github.com/thi-ng/umbrella/blob/main/packages/transducers-binary/src/utf8.ts
+ * - https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/transducers-binary/src/utf8.ts
  * - https://gist.github.com/pascaldekloe/62546103a1576803dade9269ccf76330
  *
  * @param buf

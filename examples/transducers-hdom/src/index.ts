@@ -23,7 +23,7 @@ const app = ({ ticks, clicks }: any) => [
 			[
 				"a.link.white",
 				{
-					href: "https://github.com/thi-ng/umbrella/tree/develop/examples/transducers-hdom/",
+					href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/transducers-hdom/",
 				},
 				"Source code",
 			],

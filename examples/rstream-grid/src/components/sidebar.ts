@@ -28,12 +28,12 @@ export const sidebar = (ctx: AppContext, ...specs: SliderOpts[]) => {
 			ctx.ui.footer,
 			[
 				link,
-				"https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid",
+				"https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-grid",
 				"Source",
 			],
 			["br"],
 			"Made with ",
-			[link, "https://github.com/thi-ng/umbrella/", "@thi.ng/umbrella"],
+			[link, "https://codeberg.org/thi.ng/umbrella/", "@thi.ng/umbrella"],
 		],
 	];
 };

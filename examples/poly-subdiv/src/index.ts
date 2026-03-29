@@ -49,7 +49,7 @@ const MIN_AREA = 100;
 // max polygon area
 const MAX_AREA = 1000;
 // choose a cosine-gradient preset for tinting polygons
-// https://github.com/thi-ng/umbrella/blob/develop/packages/color/README.md#cosine-gradients
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/README.md#cosine-gradients
 const GRADIENT = COSINE_GRADIENTS["orange-magenta-blue"];
 
 // function to split a polygon from a random point on its longest edge

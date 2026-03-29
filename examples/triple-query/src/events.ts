@@ -2,7 +2,7 @@
 // best practice tip: define event & effect names as consts or enums
 // and avoid hardcoded strings for more safety and easier refactoring
 // also see pre-defined event handlers & interceptors:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/api.ts#L31
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors/src/api.ts#L31
 
 export const ADD_CITY = "add-city";
 export const ADD_COUNTRY = "add-country";

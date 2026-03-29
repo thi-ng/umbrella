@@ -44,7 +44,7 @@ const doc = html(
 				anchor(
 					".link.b.black.hover-blue",
 					{
-						href: "https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons",
+						href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-carbon-icons",
 					},
 					"@thi.ng/hiccup-carbon-icons"
 				),

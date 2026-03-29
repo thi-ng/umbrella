@@ -308,7 +308,7 @@ export interface IWasmMemoryAccess {
  *
  * @remarks
  * Zig API:
- * https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
+ * https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/wasm-api/zig/lib.zig
  */
 export interface CoreAPI extends WebAssembly.ModuleImports {
 	printI8: Fn<number, void>;

@@ -23,7 +23,7 @@ import { clamp } from "./clamp.js";
 
 /**
  * Preset cosine gradient definitions. See previews at:
- * https://github.com/thi-ng/umbrella/tree/develop/packages/color#cosine-gradients
+ * https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color#cosine-gradients
  *
  * @remarks
  * See http://dev.thi.ng/gradients/ for a gradient designer. Note: unlike the

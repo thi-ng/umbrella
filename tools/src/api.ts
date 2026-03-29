@@ -28,6 +28,7 @@ export interface BaseConfig {
 	bannerBasePath: string;
 	demoURL: string;
 	docURL: string;
+	issuesURL: string;
 	exampleDir: string;
 	mainAuthor: string;
 	license: string;

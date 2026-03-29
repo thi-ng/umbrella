@@ -110,7 +110,7 @@ export const packageStatus = (
 		"",
 		link(
 			"Search or submit any issues for this package",
-			`https://github.com/thi-ng/umbrella/issues?q=%5B${name}%5D+in%3Atitle`
+			`${config.issuesURL}?q=%5B${name}%5D`
 		),
 	].join("\n");
 };

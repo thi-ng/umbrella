@@ -46,7 +46,7 @@ const app = <any>{
 			[
 				"a.db.mt3.link",
 				{
-					href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-skip",
+					href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-skip",
 				},
 				"Source code",
 			],

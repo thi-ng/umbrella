@@ -93,7 +93,7 @@ export type AsCubicFn = {
  * - {@link Triangle3}
  *
  * Shape types supporting custom conversion options (see
- * [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines#cubic-curve-conversion-from-polygons--polylines)
+ * [@thi.ng/geom-splines](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-splines#cubic-curve-conversion-from-polygons-polylines)
  * for more details):
  *
  * - {@link Group} (only used for eligible children)

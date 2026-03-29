@@ -211,7 +211,7 @@ start(() => {
 			[
 				"a",
 				{
-					href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2",
+					href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/hdom-benchmark2",
 				},
 				"Source",
 			],

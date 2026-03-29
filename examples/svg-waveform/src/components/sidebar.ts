@@ -26,14 +26,14 @@ export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
 			ctx.ui.footer,
 			[
 				link,
-				"https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform",
+				"https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/svg-waveform",
 				"Source",
 			],
 			["br"],
 			"Made with ",
 			[
 				link,
-				"https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
+				"https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom",
 				"@thi.ng/hdom",
 			],
 		],

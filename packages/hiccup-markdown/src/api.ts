@@ -9,7 +9,7 @@ import type { ParseState } from "@thi.ng/parse";
  * provides default implementations for all to generate minimal hiccup output.
  *
  * See the [markdown example
- * project](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)
+ * project](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/markdown)
  * for how these can be customized.
  *
  * @remarks
@@ -350,7 +350,7 @@ export interface ParseOpts {
 	 *
 	 * @remarks
 	 * Reference:
-	 * - https://github.com/thi-ng/umbrella/blob/develop/packages/strings/src/entities.ts
+	 * - https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings/src/entities.ts
 	 *
 	 * @defaultValue false
 	 */

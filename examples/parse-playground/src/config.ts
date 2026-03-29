@@ -3,7 +3,7 @@ import type { IObjectOf } from "@thi.ng/api";
 import type { EditorOpts } from "@thi.ng/rdom-components";
 import type { CodeTemplate, Status } from "./api.js";
 
-const REPO_URL = "https://github.com/thi-ng/umbrella/tree/develop/";
+const REPO_URL = "https://codeberg.org/thi.ng/umbrella/src/branch/develop/";
 export const DOC_URL = REPO_URL + "packages/parse#readme";
 export const SRC_URL = REPO_URL + "examples/parse-playground";
 

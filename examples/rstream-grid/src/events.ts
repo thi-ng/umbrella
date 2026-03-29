@@ -4,7 +4,7 @@ import { EV_REDO, EV_UNDO } from "@thi.ng/interceptors";
 // best practice tip: define event & effect names as consts or enums
 // and avoid hardcoded strings for more safety and easier refactoring
 // also see pre-defined event handlers & interceptors:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/api.ts#L31
+// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/interceptors/src/api.ts#L31
 
 export const UNDO = EV_UNDO;
 export const REDO = EV_REDO;

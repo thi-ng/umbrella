@@ -72,7 +72,7 @@ const app = (main: StreamSync<any, any>) => {
 			],
 			// visualize
 			// the __diff & __normalize control attribs are used to optimize drawing perf
-			// see: https://github.com/thi-ng/umbrella/tree/develop/packages/hdom#behavior-control-attributes
+			// see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom#behavior-control-attributes
 			[
 				_canvas,
 				{ width, height, __diff: false, __normalize: false },

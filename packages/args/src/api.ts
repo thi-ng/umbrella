@@ -324,7 +324,7 @@ export interface CommandCtx<OPTS extends BASE, BASE extends object> {
 	/**
 	 * `NO_COLOR`-aware text formatting presets. If color output is NOT disabled
 	 * via the `NO_COLOR` env var, this defaults to
-	 * [`PRESET_ANSI16`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/README.md),
+	 * [`PRESET_ANSI16`](https://docs.thi.ng/umbrella/text-format/variables/PRESET_ANSI16.html),
 	 * otherwise `PRESET_NONE` (i.e. same API, but ignoring any color requests).
 	 *
 	 * See https://no-color.org for context.

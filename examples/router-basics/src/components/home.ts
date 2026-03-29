@@ -17,7 +17,7 @@ export function home(ctx: AppContext) {
 			[
 				externalLink,
 				ctx.ui.bodyLink,
-				"https://github.com/thi-ng/umbrella",
+				"https://codeberg.org/thi.ng/umbrella/",
 				"@thi.ng/umbrella",
 			],
 			" libraries.",

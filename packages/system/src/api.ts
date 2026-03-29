@@ -28,7 +28,7 @@ export interface ILifecycle<T extends SystemMap<T> = any> {
 	 */
 	stop?(sys: System<T>): MaybePromise<boolean>;
 	// allow extension and disable weak type detection
-	// https://github.com/thi-ng/umbrella/issues/247#issuecomment-687196363
+	// https://codeberg.org/thi.ng/umbrella/issues/247#issuecomment-985729
 	[id: string]: any;
 }
 

@@ -512,7 +512,7 @@ sync({
 					"a",
 					{
 						class: `mr3 b link ${theme.body}`,
-						href: "https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart/",
+						href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart/",
 					},
 					"Source",
 				],

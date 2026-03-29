@@ -158,7 +158,7 @@ const createViz = ({
 				showLines
 					? linePlot(data, {
 							// configure to the gradient defined above
-							// see: https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-svg/README.md#automatic-attribute-conversions
+							// see: https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup-svg/README.md#automatic-attribute-conversions
 							attribs: { stroke: "$grad", weight: 0.5 },
 						})
 					: () => () => null,

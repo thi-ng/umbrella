@@ -10,7 +10,7 @@ import {
 	zip,
 } from "@thi.ng/transducers";
 
-// see https://github.com/thi-ng/umbrella/blob/develop/packages/color/README.md#cosine-gradients
+// see https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/README.md#cosine-gradients
 
 const cosColor = (
 	dc: number[],

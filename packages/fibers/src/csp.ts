@@ -223,7 +223,7 @@ export const lifo = <T>(cap: number) => new LIFOBuffer<T>(cap);
  * With this implementation, writes to the channel are **never** blocking!
  * Whilst the buffer is at full capacity, new writes will first expunge the
  * oldest buffered value (similar to [LRU
- * cache](https://github.com/thi-ng/umbrella/blob/develop/packages/cache/README.md#lru)
+ * cache](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/cache/README.md#lru)
  * behavior). Read behavior is the same as for {@link fifo}.
  *
  * Also see {@link dropping} for alternative behavior.

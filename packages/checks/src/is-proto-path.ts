@@ -28,7 +28,7 @@ export const isIllegalKey = (x: any) => ILLEGAL_KEYS.has(x);
  * delimiter and each item checked as is (same way array paths are handled).
  *
  * Original discussion here, implementation updated to be more encompassing:
- * https://github.com/thi-ng/umbrella/pull/273
+ * https://codeberg.org/thi.ng/umbrella/pulls/273
  *
  * Also see {@link isIllegalKey}.
  *

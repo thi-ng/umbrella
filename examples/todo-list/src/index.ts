@@ -97,7 +97,7 @@ const header = [
 		[
 			"a",
 			{
-				href: "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
+				href: "https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hdom",
 			},
 			"@thi.ng/hdom",
 		],

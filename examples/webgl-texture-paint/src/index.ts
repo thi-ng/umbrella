@@ -150,7 +150,7 @@ const update = (x: number, y: number) => {
 	// set mouse/brush position (Y axis is flipped in WebGL)
 	unis.mousePos = [x - left, height - (y - top)];
 	// pick random color from a range preset
-	// https://github.com/thi-ng/umbrella/blob/develop/packages/color/README.md#color-theme-generation
+	// https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/color/README.md#color-theme-generation
 	unis.color = srgb(colorFromRange("warm")).buf;
 	// use a sine oscillator to vary brush size over time
 	unis.radius = sin(performance.now(), 5e-4, 0.04, 0.1);

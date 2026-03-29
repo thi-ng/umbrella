@@ -29,7 +29,7 @@ const RECENT_ID = 220;
 
 const BASE_URL =
 	process.argv[2] !== "--local"
-		? "https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes"
+		? "https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/color-palettes"
 		: ".";
 
 const R = 24;

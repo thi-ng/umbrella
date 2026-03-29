@@ -15,8 +15,8 @@ export function contact(ctx: AppContext) {
 		[
 			"p",
 			[
-				["https://github.com/thi-ng/umbrella", "GitHub"],
-				["https://twitter.com/toxi", "Twitter"],
+				["https://codeberg.org/thi.ng/umbrella/", "Codeberg"],
+				["https://mastodon.thi.ng/@toxi", "Mastodon"],
 				["https://medium.com/@thi.ng", "Medium"],
 			].map((link) => [externalLink, ctx.ui.contact.link, ...link]),
 		],

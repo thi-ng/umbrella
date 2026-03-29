@@ -10,7 +10,7 @@ type Commit = [string, string, string];
 type Package = [string, string];
 
 const LOGO = _logo;
-const REPO_BASE = "https://github.com/thi-ng/umbrella/";
+const REPO_BASE = "https://codeberg.org/thi.ng/umbrella/";
 const COMMITS = <Commit[]>_commits;
 const PACKAGES = <Package[]>_packages;
 
@@ -48,7 +48,7 @@ const repoLink = (_: any, sha: string, body: any) => [
 
 const packageLink = (_: any, name: any) => [
 	"a.link.blue",
-	{ href: `${REPO_BASE}tree/develop/packages/${name.substring(8)}` },
+	{ href: `${REPO_BASE}src/develop/packages/${name.substring(8)}` },
 	name,
 ];
 
