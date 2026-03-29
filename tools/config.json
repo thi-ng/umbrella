@@ -1,8 +1,8 @@
 {
-	"repoURL": "https://github.com/thi-ng/umbrella",
-	"userURL": "https://github.com",
-	"assetURL": "https://raw.githubusercontent.com/thi-ng/umbrella",
-	"bannerURL": "https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-",
+	"repoURL": "https://codeberg.org/thi.ng/umbrella",
+	"userURL": "https://codeberg.org",
+	"assetURL": "https://codeberg.org/thi.ng/umbrella/media/branch/develop",
+	"bannerURL": "https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-",
 	"bannerBasePath": "../../assets/banners/thing-",
 	"demoURL": "https://demo.thi.ng/umbrella",
 	"docURL": "https://docs.thi.ng/umbrella",

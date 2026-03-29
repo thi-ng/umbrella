@@ -1,6 +1,8 @@
 {
 	"$schema": "https://typedoc.org/schema.json",
 	"entryPoints": ["src/index.ts"],
+	"gitRemote": "codeberg",
+	"sourceLinkTemplate": "https://codeberg.org/thi.ng/umbrella/src/commit/{gitRevision}/{path}#L{line}",
 	"excludeInternal": true,
 	"excludePrivate": true,
 	"highlightLanguages": [
