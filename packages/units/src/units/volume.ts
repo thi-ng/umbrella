@@ -9,6 +9,8 @@ export const km3 = defUnit("km3", "cubic kilometer", pow(km, 3));
 export const l = defUnit("l", "liter", mul(m3, 1e-3, true));
 export const cl = defUnit("cl", "centiliter", prefix("c", l));
 export const ml = defUnit("ml", "milliliter", prefix("m", l));
+/** 1 ml = 20 drops */
+export const drop = defUnit("drop", "drop", mul(ml, 1 / 20));
 
 export const gal = defUnit("gal", "imperial gallon", mul(l, 4.54609));
 export const pt = defUnit("pt", "imperial pint", mul(gal, 1 / 8));
