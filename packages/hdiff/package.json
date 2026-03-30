@@ -9,7 +9,7 @@
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"url": "git+https://codeberg.org/thi.ng/umbrella.git",
 		"directory": "packages/hdiff"
 	},
 	"homepage": "https://thi.ng/hdiff",

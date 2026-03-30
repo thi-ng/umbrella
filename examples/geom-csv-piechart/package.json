@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"description": "Piechart visualization of CSV data",
-	"repository": "https://github.com/thi-ng/umbrella",
+	"repository": "https://codeberg.org/thi.ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
 	"scripts": {

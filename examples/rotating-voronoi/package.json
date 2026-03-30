@@ -3,7 +3,7 @@
 	"private": true,
 	"description": "Animated Voronoi diagram, cubic splines & SVG download",
 	"version": "0.0.1",
-	"repository": "https://github.com/thi-ng/umbrella",
+	"repository": "https://codeberg.org/thi.ng/umbrella",
 	"author": "Alberto Massa <nootropic.kint@gmail.com>",
 	"license": "Apache-2.0",
 	"keywords": [

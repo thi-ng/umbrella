@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"description": "Self-modifying, animated typographic grid with emergent complex patterns",
-	"repository": "https://github.com/thi-ng/umbrella",
+	"repository": "https://codeberg.org/thi.ng/umbrella",
 	"author": "Nicolas Lebrun <nclslbrn@gmail.com>",
 	"license": "Apache-2.0",
 	"scripts": {

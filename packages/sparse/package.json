@@ -7,7 +7,7 @@
 	"typings": "./index.d.ts",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"url": "git+https://codeberg.org/thi.ng/umbrella.git",
 		"directory": "packages/sparse"
 	},
 	"homepage": "https://thi.ng/sparse",

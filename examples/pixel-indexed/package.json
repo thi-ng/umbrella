@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.1",
 	"description": "Image dithering and remapping using indexed palettes",
-	"repository": "https://github.com/thi-ng/umbrella",
+	"repository": "https://codeberg.org/thi.ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
 	"scripts": {

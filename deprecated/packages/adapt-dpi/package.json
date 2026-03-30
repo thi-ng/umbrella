@@ -8,7 +8,7 @@
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
+		"url": "https://codeberg.org/thi.ng/umbrella.git"
 	},
 	"homepage": "https://thi.ng/adapt-dpi",
 	"funding": [
