@@ -14,13 +14,13 @@ export const drop = defUnit("drop", "drop", mul(ml, 1 / 20));
 
 export const gal = defUnit("gal", "imperial gallon", mul(l, 4.54609));
 export const pt = defUnit("pt", "imperial pint", mul(gal, 1 / 8));
-export const floz = defUnit("fl oz", "imperial fluid ounce", mul(gal, 1 / 160));
+export const floz = defUnit("fl_oz", "imperial fluid ounce", mul(gal, 1 / 160));
 
-export const us_gal = defUnit("us gal", "us gallon", mul(l, 3.785411784));
-export const us_pt = defUnit("us pt", "us pint", mul(us_gal, 1 / 8));
-export const us_cup = defUnit("us cup", "us cup", mul(us_gal, 1 / 16));
+export const us_gal = defUnit("us_gal", "us gallon", mul(l, 3.785411784));
+export const us_pt = defUnit("us_pt", "us pint", mul(us_gal, 1 / 8));
+export const us_cup = defUnit("us_cup", "us cup", mul(us_gal, 1 / 16));
 export const us_floz = defUnit(
-	"us fl oz",
+	"us_fl_oz",
 	"us fluid ounce",
 	mul(us_gal, 1 / 128)
 );
