@@ -64,7 +64,7 @@ cat << EOF > "$MODULE"/package.json
 	"version": "0.0.1",
 	"private": true,
 	"description": "TODO",
-	"repository": "https://github.com/thi-ng/umbrella",
+	"repository": "https://codeberg.org/thi.ng/umbrella",
 	"author": "$AUTHOR <$EMAIL>",
 	"license": "Apache-2.0",
 	"scripts": {
@@ -79,7 +79,7 @@ cat << EOF > "$MODULE"/package.json
 	"devDependencies": {
 		"@thi.ng/meta-css": "workspace:^",
 		"typescript": "^5.9.3",
-		"vite": "^7.2.4"
+		"vite": "^7.3.1"
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
@@ -135,7 +135,7 @@ cat << EOF > "$MODULE"/index.html
 </head>
 <body>
 	<div id="app"></div>
-	<div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
+	<div><a class="link" href="https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/$1">Source code</a></div>
 	<script type="module" src="/src/index.ts"></script>
 </body>
 </html>
@@ -145,7 +145,7 @@ echo "writing README.md..."
 cat << EOF > "$MODULE"/README.md
 # $1
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/$1.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/$1.png)
 
 [Live demo](http://demo.thi.ng/umbrella/$1/)
 
@@ -153,8 +153,8 @@ cat << EOF > "$MODULE"/README.md
 
 Please refer to the instructions on the wiki:
 
-- [Development](https://github.com/thi-ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
-- [Production build](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+- [Development](https://codeberg.org/thi.ng/umbrella/wiki/Development-mode-for-examples-using-thi.ng-meta%E2%80%90css)
+- [Production build](https://codeberg.org/thi.ng/umbrella/wiki/Example-build-instructions)
 
 ## Authors
 
@@ -162,7 +162,7 @@ Please refer to the instructions on the wiki:
 
 ## License
 
-&copy; 2024 $AUTHOR // Apache Software License 2.0
+&copy; 2026 $AUTHOR // Apache Software License 2.0
 EOF
 
 echo "refreshing monorepo index..."
