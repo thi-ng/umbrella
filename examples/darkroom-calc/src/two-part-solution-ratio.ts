@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { num, selectNum, str } from "@thi.ng/rdom-forms";
 import { reactive, sync } from "@thi.ng/rstream";
 import { range as $range } from "@thi.ng/transducers";

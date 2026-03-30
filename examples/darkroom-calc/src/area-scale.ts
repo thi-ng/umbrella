@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { num, range, str } from "@thi.ng/rdom-forms";
 import { reactive, sync } from "@thi.ng/rstream";
 import { calculator, result, VOLUME_LIST } from "./common.js";

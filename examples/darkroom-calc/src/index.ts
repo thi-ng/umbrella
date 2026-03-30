@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { div, h1 } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { compileForm, container } from "@thi.ng/rdom-forms";

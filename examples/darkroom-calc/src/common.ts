@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isString } from "@thi.ng/checks";
 import { para, pre } from "@thi.ng/hiccup-html";
 import { parse } from "@thi.ng/hiccup-markdown";
