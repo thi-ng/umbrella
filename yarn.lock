@@ -679,6 +679,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/darkroom-calc@workspace:examples/darkroom-calc":
+  version: 0.0.0-use.local
+  resolution: "@example/darkroom-calc@workspace:examples/darkroom-calc"
+  dependencies:
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-markdown": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-forms": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.9.3"
+    vite: "npm:^7.3.1"
+  languageName: unknown
+  linkType: soft
+
 "@example/devcards@workspace:examples/devcards":
   version: 0.0.0-use.local
   resolution: "@example/devcards@workspace:examples/devcards"

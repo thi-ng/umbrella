@@ -1,0 +1,59 @@
+{
+	"name": "@example/darkroom-calc",
+	"version": "0.0.1",
+	"private": true,
+	"description": "TODO",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "yarn css:build && yarn start:only",
+		"start:only": "vite --host --open",
+		"dev": "mprocs 'yarn css:watch' 'yarn start:only'",
+		"css:watch": "../../node_modules/.bin/metacss develop --bundle --watch --pretty --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
+		"css:build": "../../node_modules/.bin/metacss develop --bundle --out-specs css/framework.json --out-css css/style.css --force @css/includes.txt ../../packages/meta-css/specs/*.mcss.json css/*.mcss.json css/*.mcss",
+		"build": "yarn css:build && tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"@thi.ng/meta-css": "workspace:^",
+		"typescript": "^5.9.3",
+		"vite": "^7.3.1"
+	},
+	"dependencies": {
+		"@thi.ng/checks": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/hiccup-markdown": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-forms": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"hiccup-html",
+			"hiccup-markdown",
+			"rdom",
+			"rdom-forms",
+			"rstream",
+			"transducers"
+		],
+		"screenshot": "examples/darkroom-calc.avif"
+	},
+	"keywords": [
+		"browser",
+		"calculator",
+		"example",
+		"darkroom",
+		"form",
+		"math",
+		"rdom",
+		"reactive",
+		"transducer",
+		"tool",
+		"ui"
+	]
+}

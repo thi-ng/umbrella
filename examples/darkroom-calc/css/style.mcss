@@ -1,0 +1,52 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+// also see component-specific *.mcss files in /src folder
+
+:root {
+	bg-color=#eee
+	text-color=#333
+	code-bg-color=#ddd
+	result-bg-color=#ddd
+	result-color=#06f
+	link-color=#000
+
+	dark:bg-color=#000
+	dark:text-color=#ccc
+	dark:code-bg-color=#333
+	dark:result-bg-color=#333
+	dark:result-color=#fa0
+	link-color=#fff
+}
+
+body {
+	system-sans-serif ma3
+	bg-color(bg-color) color(text-color)
+}
+
+#app { mb4 }
+
+a:link { color(link-color) }
+
+h1 { ls--1 }
+
+fieldset { mb4 }
+
+legend { ph2 b }
+
+label {
+	db b mb2
+	{
+		.desc { db f7 normal }
+	}
+}
+
+div.input { mb3 }
+
+.vlabel { db }
+
+input[type=text], input[type=range], input[type=number], select { pa2 w-100 }
+
+input.result { bg-color(result-bg-color) color(result-color) o-100 b f3 bw0 }
+
+code { ph1 bg-color(code-bg-color) }
