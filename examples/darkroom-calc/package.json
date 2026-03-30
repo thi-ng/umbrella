@@ -2,7 +2,7 @@
 	"name": "@example/darkroom-calc",
 	"version": "0.0.1",
 	"private": true,
-	"description": "TODO",
+	"description": "Useful small calculators for darkroom processing",
 	"repository": "https://codeberg.org/thi.ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",

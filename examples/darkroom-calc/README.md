@@ -1,6 +1,6 @@
 # darkroom-calc
 
-![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/darkroom-calc.png)
+![screenshot](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/darkroom-calc.avif)
 
 [Live demo](http://demo.thi.ng/umbrella/darkroom-calc/)
 
