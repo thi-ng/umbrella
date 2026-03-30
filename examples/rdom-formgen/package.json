@@ -48,7 +48,9 @@
 	"keywords": [
 		"browser",
 		"example",
+		"form",
 		"hiccup",
+		"rdom",
 		"reactive",
 		"ui"
 	]

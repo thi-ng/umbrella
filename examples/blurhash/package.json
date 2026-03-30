@@ -38,6 +38,7 @@
 		"decode",
 		"encode",
 		"example",
+		"form",
 		"image",
 		"interactive",
 		"io",

@@ -62,6 +62,7 @@
 		"cursor",
 		"dsl",
 		"example",
+		"form",
 		"interactive",
 		"plot",
 		"reactive",

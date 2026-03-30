@@ -59,6 +59,7 @@
 		"dsl",
 		"example",
 		"export",
+		"form",
 		"generator",
 		"parser",
 		"reactive",
