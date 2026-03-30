@@ -68,7 +68,7 @@ cat << EOF > "$MODULE"/package.json
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/thi-ng/umbrella.git",
+		"url": "git+https://codeberg.org/thi.ng/umbrella.git",
 		"directory": "packages/$1"
 	},
 	"homepage": "https://thi.ng/$1",
@@ -100,7 +100,7 @@ cat << EOF > "$MODULE"/package.json
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.12"
+		"@thi.ng/api": "^8.12.17"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",
