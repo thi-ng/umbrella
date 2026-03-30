@@ -233,7 +233,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-56 projects in this repo's
+57 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -248,6 +248,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/color-contrast.avif" width="240"/>               | Tool to interactively compute & visualize color contrasts against WCAG threshold                        | [Demo](https://demo.thi.ng/umbrella/color-contrast/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-contrast)      |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/color-themes.png" width="240"/>                  | Probabilistic color theme generator                                                                     | [Demo](https://demo.thi.ng/umbrella/color-themes/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/color-themes)        |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots                                  | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/crypto-chart)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/darkroom-calc.avif" width="240"/>                | TODO                                                                                                    | [Demo](https://demo.thi.ng/umbrella/darkroom-calc/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/darkroom-calc)       |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/dominant-colors.png" width="240"/>               | Color palette generation via dominant color extraction from uploaded images                             | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)     |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/fft-synth.png" width="240"/>                     | Interactive inverse FFT toy synth                                                                       | [Demo](https://demo.thi.ng/umbrella/fft-synth/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/fft-synth)           |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/gesture-analysis.png" width="240"/>              | Mouse gesture / stroke analysis, simplification, corner detection                                       | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/gesture-analysis)    |

@@ -148,7 +148,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-Nine projects in this repo's
+10 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -156,6 +156,7 @@ directory are using this package:
 |:-------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:--------------------------------------------------------|:---------------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/big-font.png" width="240"/>          | Large ASCII font text generator using @thi.ng/rdom                          | [Demo](https://demo.thi.ng/umbrella/big-font/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/big-font)          |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/blurhash.jpg" width="240"/>          | Interactive & reactive image blurhash generator                             | [Demo](https://demo.thi.ng/umbrella/blurhash/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/blurhash)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/darkroom-calc.avif" width="240"/>    | TODO                                                                        | [Demo](https://demo.thi.ng/umbrella/darkroom-calc/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/darkroom-calc)     |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/dominant-colors.png" width="240"/>   | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)   | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/dominant-colors)   |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-colormatrix.jpg" width="240"/> | Matrix-based image color adjustments                                        | [Demo](https://demo.thi.ng/umbrella/pixel-colormatrix/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-colormatrix) |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-sorting.png" width="240"/>     | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)     |

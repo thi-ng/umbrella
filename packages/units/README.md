@@ -688,7 +688,7 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.69 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.67 KB
 
 ## Dependencies
 
