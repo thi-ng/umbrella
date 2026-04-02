@@ -16,6 +16,11 @@ const DEFAULTS: any = {
 	fill: "#000",
 	filter: "none",
 	font: "10px sans-serif",
+	fontKerning: "auto",
+	fontStretch: "normal",
+	fontVariantCaps: "normal",
+	imageSmoothingQuality: "low",
+	letterSpacing: "0px",
 	lineCap: "butt",
 	lineJoin: "miter",
 	miterLimit: 10,
@@ -25,7 +30,9 @@ const DEFAULTS: any = {
 	shadowY: 0,
 	smooth: true,
 	stroke: "#000",
+	textRendering: "auto",
 	weight: 1,
+	wordSpacing: "0px",
 };
 
 const CTX_ATTRIBS: IObjectOf<string> = {
@@ -41,6 +48,11 @@ const CTX_ATTRIBS: IObjectOf<string> = {
 	fillRule: "fillRule",
 	filter: "filter",
 	font: "font",
+	fontKerning: "fontKerning",
+	fontStretch: "fontStretch",
+	fontVariantCaps: "fontVariantCaps",
+	imageSmoothingQuality: "imageSmoothingQuality",
+	letterSpacing: "letterSpacing",
 	lineCap: "lineCap",
 	lineJoin: "lineJoin",
 	miterLimit: "miterLimit",
@@ -50,7 +62,9 @@ const CTX_ATTRIBS: IObjectOf<string> = {
 	shadowY: "shadowOffsetY",
 	smooth: "imageSmoothingEnabled",
 	stroke: "strokeStyle",
+	textRendering: "textRendering",
 	weight: "lineWidth",
+	wordSpacing: "wordSpacing",
 };
 
 /** @internal */
