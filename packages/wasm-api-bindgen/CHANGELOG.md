@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,58 +11,62 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.2.62](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.62) (2026-02-07)
+### [1.2.62](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.62/packages/wasm-api-bindgen) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [1.2.57](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.57) (2025-12-03)
+### [1.2.57](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.57/packages/wasm-api-bindgen) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [1.2.45](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.45) (2025-09-26)
+### [1.2.45](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.45/packages/wasm-api-bindgen) (2025-09-26)
 
 #### ♻️ Refactoring
 
 - update CLI arg specs ([7c43dac](https://codeberg.org/thi.ng/umbrella/commit/7c43dac))
 
-### [1.2.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.42) (2025-09-25)
+### [1.2.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.42/packages/wasm-api-bindgen) (2025-09-25)
 
 #### ♻️ Refactoring
 
 - simplify CLI impl via cliApp() wrapper ([f0ca0a9](https://codeberg.org/thi.ng/umbrella/commit/f0ca0a9))
 
-### [1.2.40](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.40) (2025-09-02)
+### [1.2.40](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.40/packages/wasm-api-bindgen) (2025-09-02)
 
 #### 🩹 Bug fixes
 
 - update zig function pointer callconv ([5cfd515](https://codeberg.org/thi.ng/umbrella/commit/5cfd515))
   - use `callconv(.c)` (older format now deprecated in 0.15.1)
 
-### [1.2.36](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.36) (2025-08-06)
+#### 🧪 Tests
+
+- update test snapshots ([d64b498](https://codeberg.org/thi.ng/umbrella/commit/d64b498))
+
+### [1.2.36](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.36/packages/wasm-api-bindgen) (2025-08-06)
 
 #### ♻️ Refactoring
 
 - update CLI internals ([51a7659](https://codeberg.org/thi.ng/umbrella/commit/51a7659))
 
-## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.0) (2025-02-11)
+## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.2.0/packages/wasm-api-bindgen) (2025-02-11)
 
 #### 🚀 Features
 
 - update CLI wrapper ([cbbb33f](https://codeberg.org/thi.ng/umbrella/commit/cbbb33f))
   - check if `bun` is available, otherwise fallback to `node`
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.1.0) (2025-01-10)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@1.1.0/packages/wasm-api-bindgen) (2025-01-10)
 
 #### 🚀 Features
 
 - update generated TS default imports ([b9ffe90](https://codeberg.org/thi.ng/umbrella/commit/b9ffe90))
   - update test snapshots
 
-## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.8.0) (2024-11-10)
+## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.8.0/packages/wasm-api-bindgen) (2024-11-10)
 
 #### 🚀 Features
 
@@ -77,7 +81,7 @@ and/or version bumps of transitive dependencies.
   - coalesce pointer & string var declarations
   - update test snapshots
 
-### [0.7.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.7.9) (2024-11-09)
+### [0.7.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.7.9/packages/wasm-api-bindgen) (2024-11-09)
 
 #### ♻️ Refactoring
 
@@ -86,7 +90,7 @@ and/or version bumps of transitive dependencies.
     if type collection uses strings
   - update test snapshots
 
-## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.7.0) (2024-08-21)
+## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.7.0/packages/wasm-api-bindgen) (2024-08-21)
 
 #### 🚀 Features
 
@@ -100,7 +104,11 @@ and/or version bumps of transitive dependencies.
   - don't add prefix for external types
   - add naming convention helper fns
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.6.0) (2024-08-18)
+#### 🧪 Tests
+
+- add external type tests ([d60b3e2](https://codeberg.org/thi.ng/umbrella/commit/d60b3e2))
+
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.6.0/packages/wasm-api-bindgen) (2024-08-18)
 
 #### 🚀 Features
 
@@ -119,7 +127,11 @@ and/or version bumps of transitive dependencies.
     - address needs to be divided based on type size
   - update test snapshots
 
-### [0.5.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.5.5) (2024-06-21)
+#### 🧪 Tests
+
+- update test snapshots ([8500cc7](https://codeberg.org/thi.ng/umbrella/commit/8500cc7))
+
+### [0.5.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.5.5/packages/wasm-api-bindgen) (2024-06-21)
 
 #### ♻️ Refactoring
 
@@ -128,7 +140,7 @@ and/or version bumps of transitive dependencies.
   - update TS & Zig code gens
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.5.0) (2024-04-22)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.5.0/packages/wasm-api-bindgen) (2024-04-22)
 
 #### 🚀 Features
 
@@ -137,43 +149,52 @@ and/or version bumps of transitive dependencies.
   - update docs
   - update test snapshots
 
-### [0.4.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.69) (2024-04-20)
+### [0.4.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.69/packages/wasm-api-bindgen) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([1c4a3c3](https://codeberg.org/thi.ng/umbrella/commit/1c4a3c3))
 
-### [0.4.52](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.52) (2024-02-22)
+### [0.4.52](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.52/packages/wasm-api-bindgen) (2024-02-22)
 
 #### ♻️ Refactoring
 
 - update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
 
-### [0.4.51](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.51) (2024-02-22)
+### [0.4.51](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.51/packages/wasm-api-bindgen) (2024-02-22)
 
 #### ♻️ Refactoring
 
 - update all `node:*` imports ([c71a526](https://codeberg.org/thi.ng/umbrella/commit/c71a526))
 
-### [0.4.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.28) (2023-11-09)
+### [0.4.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.28/packages/wasm-api-bindgen) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages T-Z) ([020ef6c](https://codeberg.org/thi.ng/umbrella/commit/020ef6c))
 
-### [0.4.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.5) (2023-06-29)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.4.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.5/packages/wasm-api-bindgen) (2023-06-29)
 
 #### ♻️ Refactoring
 
 - Zig v0.11-dev syntax updates ([dea00ff](https://codeberg.org/thi.ng/umbrella/commit/dea00ff))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.0) (2023-03-27)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.4.0/packages/wasm-api-bindgen) (2023-03-27)
 
 #### 🚀 Features
 
 - update codegen for TS 5.0 ([93bf2e2](https://codeberg.org/thi.ng/umbrella/commit/93bf2e2))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.3.0) (2023-02-05)
+#### 🧪 Tests
+
+- update all tests (mainly imports) ([63a85f9](https://codeberg.org/thi.ng/umbrella/commit/63a85f9))
+
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-bindgen@0.3.0/packages/wasm-api-bindgen) (2023-02-05)
 
 #### 🚀 Features
 
@@ -183,3 +204,7 @@ and/or version bumps of transitive dependencies.
 
 - add missing Field.skip check ([ac43440](https://codeberg.org/thi.ng/umbrella/commit/ac43440))
   - update generateField() in TypeScript gen
+
+#### 🧪 Tests
+
+- update test fixtures ([eb0c249](https://codeberg.org/thi.ng/umbrella/commit/eb0c249))

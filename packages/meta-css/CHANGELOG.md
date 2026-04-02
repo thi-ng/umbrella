@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,31 +11,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.19.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.41) (2025-12-03)
+### [0.19.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.41/packages/meta-css) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [0.19.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.28) (2025-09-26)
+### [0.19.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.28/packages/meta-css) (2025-09-26)
 
 #### ♻️ Refactoring
 
 - update CLI arg specs ([34596a3](https://codeberg.org/thi.ng/umbrella/commit/34596a3))
 
-### [0.19.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.21) (2025-08-06)
+### [0.19.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.21/packages/meta-css) (2025-08-06)
 
 #### ♻️ Refactoring
 
 - update CLI internals ([c91e873](https://codeberg.org/thi.ng/umbrella/commit/c91e873))
 
-### [0.19.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.2) (2025-06-27)
+### [0.19.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.2/packages/meta-css) (2025-06-27)
 
 #### ♻️ Refactoring
 
 - minor update CLI wrapper ([e0b0c34](https://codeberg.org/thi.ng/umbrella/commit/e0b0c34))
 
-## [0.19.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.0) (2025-06-26)
+## [0.19.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.0/packages/meta-css) (2025-06-26)
 
 #### 🚀 Features
 
@@ -55,7 +55,7 @@ and/or version bumps of transitive dependencies.
   - all color ops using `oklch()` now
 - add `font-family()` tpl fn ([38c65d4](https://codeberg.org/thi.ng/umbrella/commit/38c65d4))
 
-## [0.18.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.18.0) (2025-02-11)
+## [0.18.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.18.0/packages/meta-css) (2025-02-11)
 
 #### 🚀 Features
 
@@ -64,13 +64,13 @@ and/or version bumps of transitive dependencies.
   - update CLI args (add metacss pkg dir)
   - update readme
 
-### [0.17.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.8) (2025-01-14)
+### [0.17.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.8/packages/meta-css) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [0.17.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.4) (2024-12-13)
+### [0.17.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.4/packages/meta-css) (2024-12-13)
 
 #### 🩹 Bug fixes
 
@@ -78,7 +78,7 @@ and/or version bumps of transitive dependencies.
   - use more strict regexp to check for var assignment
   - update tests
 
-### [0.17.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.3) (2024-12-12)
+### [0.17.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.3/packages/meta-css) (2024-12-12)
 
 #### 🩹 Bug fixes
 
@@ -86,7 +86,7 @@ and/or version bumps of transitive dependencies.
   - update `__parseMediaQueryToken()`
   - add/update tests
 
-## [0.17.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.0) (2024-11-24)
+## [0.17.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.17.0/packages/meta-css) (2024-11-24)
 
 #### 🚀 Features
 
@@ -110,7 +110,7 @@ and/or version bumps of transitive dependencies.
   - update framework version
   - update readme
 
-### [0.16.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.16.1) (2024-11-15)
+### [0.16.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.16.1/packages/meta-css) (2024-11-15)
 
 #### 🩹 Bug fixes
 
@@ -119,7 +119,7 @@ and/or version bumps of transitive dependencies.
     `var2=var(--var1)` style assignments
   - update tests
 
-## [0.16.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.16.0) (2024-11-15)
+## [0.16.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.16.0/packages/meta-css) (2024-11-15)
 
 #### 🚀 Features
 
@@ -128,61 +128,61 @@ and/or version bumps of transitive dependencies.
   - add/update tests
 - add/update framework specs ([7069752](https://codeberg.org/thi.ng/umbrella/commit/7069752))
 
-### [0.15.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.15.11) (2024-11-13)
+### [0.15.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.15.11/packages/meta-css) (2024-11-13)
 
 #### 🩹 Bug fixes
 
 - fix `fill()` template spec ([9151d85](https://codeberg.org/thi.ng/umbrella/commit/9151d85))
 
-## [0.15.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.15.0) (2024-08-28)
+## [0.15.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.15.0/packages/meta-css) (2024-08-28)
 
 #### 🚀 Features
 
 - update font-family tpl ([56dd1d3](https://codeberg.org/thi.ng/umbrella/commit/56dd1d3))
 
-## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.14.0) (2024-08-18)
+## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.14.0/packages/meta-css) (2024-08-18)
 
 #### 🚀 Features
 
 - add shadow templates ([5a1b3f9](https://codeberg.org/thi.ng/umbrella/commit/5a1b3f9))
 
-## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.13.0) (2024-08-13)
+## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.13.0/packages/meta-css) (2024-08-13)
 
 #### 🚀 Features
 
 - add `br-pill` variations ([c293f5f](https://codeberg.org/thi.ng/umbrella/commit/c293f5f))
 
-### [0.12.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.12.2) (2024-06-21)
+### [0.12.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.12.2/packages/meta-css) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.12.0) (2024-04-26)
+## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.12.0/packages/meta-css) (2024-04-26)
 
 #### 🚀 Features
 
 - add color-scheme, light-dark() and appearance rules/tpls ([5f90a48](https://codeberg.org/thi.ng/umbrella/commit/5f90a48))
 
-### [0.11.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.11.1) (2024-04-20)
+### [0.11.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.11.1/packages/meta-css) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([1455b8f](https://codeberg.org/thi.ng/umbrella/commit/1455b8f))
 
-## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.11.0) (2024-04-11)
+## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.11.0/packages/meta-css) (2024-04-11)
 
 #### 🚀 Features
 
 - add/update CSS rule specs ([dfab906](https://codeberg.org/thi.ng/umbrella/commit/dfab906))
 
-### [0.10.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.10.3) (2024-04-08)
+### [0.10.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.10.3/packages/meta-css) (2024-04-08)
 
 #### ♻️ Refactoring
 
 - update reducer handling due to updates in [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/transducers) pkg ([6eba744](https://codeberg.org/thi.ng/umbrella/commit/6eba744))
 
-## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.10.0) (2024-03-27)
+## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.10.0/packages/meta-css) (2024-03-27)
 
 #### 🚀 Features
 
@@ -192,7 +192,7 @@ and/or version bumps of transitive dependencies.
 - add `doc` command, update script aliases ([943b7d7](https://codeberg.org/thi.ng/umbrella/commit/943b7d7))
 - add CSS scoping option, internal refactor ([d7286c5](https://codeberg.org/thi.ng/umbrella/commit/d7286c5))
 
-## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.9.0) (2024-03-21)
+## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.9.0/packages/meta-css) (2024-03-21)
 
 #### 🚀 Features
 
@@ -200,7 +200,7 @@ and/or version bumps of transitive dependencies.
 - add/update CSS specs/templates ([468877b](https://codeberg.org/thi.ng/umbrella/commit/468877b))
 - add CSS specs/templates, update readme ([febe609](https://codeberg.org/thi.ng/umbrella/commit/febe609))
 
-### [0.8.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.8.1) (2024-03-18)
+### [0.8.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.8.1/packages/meta-css) (2024-03-18)
 
 #### 🩹 Bug fixes
 
@@ -213,7 +213,7 @@ and/or version bumps of transitive dependencies.
 
 - rename fill/stroke specs, update color ops docs ([731ad15](https://codeberg.org/thi.ng/umbrella/commit/731ad15))
 
-## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.8.0) (2024-03-17)
+## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.8.0/packages/meta-css) (2024-03-17)
 
 #### 🚀 Features
 
@@ -260,13 +260,13 @@ and/or version bumps of transitive dependencies.
   - update color(), bg-color(), border-color(), fill(), stroke()
     - now accepting full var name as arg, rather than just an index
 
-### [0.7.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.7.5) (2024-02-22)
+### [0.7.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.7.5/packages/meta-css) (2024-02-22)
 
 #### ♻️ Refactoring
 
 - update all `node:*` imports ([c71a526](https://codeberg.org/thi.ng/umbrella/commit/c71a526))
 
-## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.7.0) (2024-02-10)
+## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.7.0/packages/meta-css) (2024-02-10)
 
 #### 🚀 Features
 
@@ -275,13 +275,13 @@ and/or version bumps of transitive dependencies.
   - add `develop` command as combined workflow wrapper
   - extract & re-use file watching setup
 
-### [0.6.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.6.1) (2024-01-26)
+### [0.6.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.6.1/packages/meta-css) (2024-01-26)
 
 #### ♻️ Refactoring
 
 - update file watchers ([bb4d661](https://codeberg.org/thi.ng/umbrella/commit/bb4d661))
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.6.0) (2024-01-23)
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.6.0/packages/meta-css) (2024-01-23)
 
 #### 🚀 Features
 
@@ -295,20 +295,24 @@ and/or version bumps of transitive dependencies.
   - update CLI arg specs/re-use
 - merge bundle & convert cmds ([a2187cb](https://codeberg.org/thi.ng/umbrella/commit/a2187cb))
 
-### [0.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.5.1) (2023-12-31)
+### [0.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.5.1/packages/meta-css) (2023-12-31)
 
 #### ♻️ Refactoring
 
 - update spec format (key & variations) ([f7f2d09](https://codeberg.org/thi.ng/umbrella/commit/f7f2d09))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.5.0) (2023-12-28)
+#### 🧪 Tests
+
+- update tests ([eeeb594](https://codeberg.org/thi.ng/umbrella/commit/eeeb594))
+
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.5.0/packages/meta-css) (2023-12-28)
 
 #### 🚀 Features
 
 - add supported for quoted fns ([5d8e2fc](https://codeberg.org/thi.ng/umbrella/commit/5d8e2fc))
 - update generate cmd input handling ([c156762](https://codeberg.org/thi.ng/umbrella/commit/c156762))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.4.0) (2023-12-26)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.4.0/packages/meta-css) (2023-12-26)
 
 #### 🚀 Features
 
@@ -316,27 +320,27 @@ and/or version bumps of transitive dependencies.
 - support parametric units in generator specs ([004a23d](https://codeberg.org/thi.ng/umbrella/commit/004a23d))
 - add support for hiccup-css declarations ([cd2ceca](https://codeberg.org/thi.ng/umbrella/commit/cd2ceca))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.3.0) (2023-12-22)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.3.0/packages/meta-css) (2023-12-22)
 
 #### 🚀 Features
 
 - update convert cmd ([d0275ce](https://codeberg.org/thi.ng/umbrella/commit/d0275ce))
   - add --eval option to convert from string arg
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.2.0) (2023-12-21)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.2.0/packages/meta-css) (2023-12-21)
 
 #### 🚀 Features
 
 - update specs/format, simplify generate, update tests ([394ba09](https://codeberg.org/thi.ng/umbrella/commit/394ba09))
 - update specs format, add support for user data ([7e3ec01](https://codeberg.org/thi.ng/umbrella/commit/7e3ec01))
 
-### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.1.1) (2023-12-18)
+### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.1.1/packages/meta-css) (2023-12-18)
 
 #### ♻️ Refactoring
 
 - update export cmd args ([7a2feaf](https://codeberg.org/thi.ng/umbrella/commit/7a2feaf))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.1.0) (2023-12-18)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.1.0/packages/meta-css) (2023-12-18)
 
 #### 🚀 Features
 
@@ -357,3 +361,7 @@ and/or version bumps of transitive dependencies.
 #### 🩹 Bug fixes
 
 - resolve out file path ([6e7f7dd](https://codeberg.org/thi.ng/umbrella/commit/6e7f7dd))
+
+#### 🧪 Tests
+
+- add generator tests ([8b323d9](https://codeberg.org/thi.ng/umbrella/commit/8b323d9))

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-webgl@0.1.0) (2024-06-21)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-webgl@0.1.0/packages/geom-webgl) (2024-06-21)
 
 #### 🚀 Features
 

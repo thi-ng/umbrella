@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.8.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.8.2) (2025-12-03)
+### [2.8.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.8.2/packages/mime) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.8.0) (2025-11-25)
+## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.8.0/packages/mime) (2025-11-25)
 
 #### 🚀 Features
 
@@ -27,13 +27,13 @@ and/or version bumps of transitive dependencies.
   - update preferred .m4a, .ts, .wav mappings
   - update preferrd `video/quicktime` mapping (.mov)
 
-## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.7.0) (2025-01-29)
+## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.7.0/packages/mime) (2025-01-29)
 
 #### 🚀 Features
 
 - add `preferredTypeForPath()` syntax sugar ([872808f](https://codeberg.org/thi.ng/umbrella/commit/872808f))
 
-## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.6.0) (2024-03-06)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.6.0/packages/mime) (2024-03-06)
 
 #### 🚀 Features
 
@@ -43,28 +43,41 @@ and/or version bumps of transitive dependencies.
 
 - revert jpeg extension overrides ([cc8ee6f](https://codeberg.org/thi.ng/umbrella/commit/cc8ee6f))
 
-## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.5.0) (2024-02-17)
+#### 🧪 Tests
+
+- revert jpeg test case ([e25e135](https://codeberg.org/thi.ng/umbrella/commit/e25e135))
+
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.5.0/packages/mime) (2024-02-17)
 
 #### 🚀 Features
 
 - update DB conversion, mime types & compression handling ([d67499c](https://codeberg.org/thi.ng/umbrella/commit/d67499c))
 - update generated DB, add isCompressible() ([3875d3b](https://codeberg.org/thi.ng/umbrella/commit/3875d3b))
 
-## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.4.0) (2024-02-16)
+#### 🧪 Tests
+
+- add tests ([1c138ef](https://codeberg.org/thi.ng/umbrella/commit/1c138ef))
+
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.4.0/packages/mime) (2024-02-16)
 
 #### 🚀 Features
 
 - force lowercase file extension in preferredType() ([2cb0f1f](https://codeberg.org/thi.ng/umbrella/commit/2cb0f1f))
   - update docs
 
-## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.3.0) (2023-12-09)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.3.0/packages/mime) (2023-12-09)
 
 #### 🚀 Features
 
 - add MIME_IMAGE_COMMON preset ([7afba57](https://codeberg.org/thi.ng/umbrella/commit/7afba57))
 
-### [2.2.27](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.2.27) (2023-11-09)
+### [2.2.27](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/mime@2.2.27/packages/mime) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))

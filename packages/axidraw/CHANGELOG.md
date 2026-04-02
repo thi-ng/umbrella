@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,31 +11,43 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.1.166](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.166) (2026-02-07)
+### [1.1.166](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.166/packages/axidraw) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [1.1.161](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.161) (2025-12-03)
+### [1.1.161](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.161/packages/axidraw) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [1.1.123](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.123) (2025-04-16)
+### [1.1.123](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.123/packages/axidraw) (2025-04-16)
 
 #### ♻️ Refactoring
 
 - minor internal optimizations (vector ops) ([adfebba](https://codeberg.org/thi.ng/umbrella/commit/adfebba))
 
-### [1.1.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.59) (2024-02-22)
+### [1.1.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.59/packages/axidraw) (2024-02-22)
 
 #### ♻️ Refactoring
 
 - update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.0) (2023-03-22)
+### [1.1.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.42/packages/axidraw) (2023-12-18)
+
+#### 🧪 Tests
+
+- update speed settings to accelerate test ([37f46fb](https://codeberg.org/thi.ng/umbrella/commit/37f46fb))
+
+### [1.1.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.34/packages/axidraw) (2023-11-09)
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.1.0/packages/axidraw) (2023-03-22)
 
 #### 🚀 Features
 
@@ -67,7 +79,7 @@ and/or version bumps of transitive dependencies.
 - update bounds handling/clamping ([7850ed6](https://codeberg.org/thi.ng/umbrella/commit/7850ed6))
   - precalc scale factor & bounds in ctor
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.0.0) (2023-03-19)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@1.0.0/packages/axidraw) (2023-03-19)
 
 #### 🛑 Breaking changes
 
@@ -99,7 +111,11 @@ and/or version bumps of transitive dependencies.
   - update all imports
   - update pkg exports map
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@0.5.0) (2023-02-05)
+#### 🧪 Tests
+
+- update tests ([490b509](https://codeberg.org/thi.ng/umbrella/commit/490b509))
+
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@0.5.0/packages/axidraw) (2023-02-05)
 
 #### 🚀 Features
 
@@ -110,7 +126,7 @@ and/or version bumps of transitive dependencies.
 - add [@thi.ng/date](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/date) dependency ([bd35a9e](https://codeberg.org/thi.ng/umbrella/commit/bd35a9e))
   required by axidraw.ts
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@0.4.0) (2023-01-10)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/axidraw@0.4.0/packages/axidraw) (2023-01-10)
 
 #### 🚀 Features
 

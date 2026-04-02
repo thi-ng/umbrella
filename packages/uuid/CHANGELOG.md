@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,9 +11,9 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/uuid@1.1.0) (2024-07-22)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/uuid@1.1.0/packages/uuid) (2024-07-22)
 
 #### 🚀 Features
 
-- import as new pkg ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([4ca1750](https://codeberg.org/thi.ng/umbrella/commit/4ca1750))
+- import as new pkg ([#486](https://codeberg.org/thi.ng/umbrella/issues/486)) ([4ca1750](https://codeberg.org/thi.ng/umbrella/commit/4ca1750))
   - migrate UUID functions from [@thi.ng/random](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/random) pkg

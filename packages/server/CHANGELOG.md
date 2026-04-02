@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,44 +11,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.12.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.22) (2026-01-23)
+### [0.12.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.22/packages/server) (2026-01-23)
 
 #### ♻️ Refactoring
 
 - add ParsedFormData, fix parseSearchParams(), add docs/tests ([f9899f7](https://codeberg.org/thi.ng/umbrella/commit/f9899f7))
 
-### [0.12.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.19) (2025-12-03)
+### [0.12.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.19/packages/server) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [0.12.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.6) (2025-09-25)
+### [0.12.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.6/packages/server) (2025-09-25)
 
 #### 🩹 Bug fixes
 
 - update cacheControl() ([21b48a4](https://codeberg.org/thi.ng/umbrella/commit/21b48a4))
   - don't set field if its value is false
 
-### [0.12.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.5) (2025-09-01)
+### [0.12.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.5/packages/server) (2025-09-01)
 
 #### ♻️ Refactoring
 
 - fix type import ([8e90657](https://codeberg.org/thi.ng/umbrella/commit/8e90657))
 
-## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.0) (2025-08-04)
+## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.12.0/packages/server) (2025-08-04)
 
 #### 🚀 Features
 
 - add `SessionOpts.onInvalid` callback ([83c15ee](https://codeberg.org/thi.ng/umbrella/commit/83c15ee))
 
-## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.11.0) (2025-06-05)
+## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.11.0/packages/server) (2025-06-05)
 
 #### 🚀 Features
 
 - force expire session cookie if invalid session ([ac6c208](https://codeberg.org/thi.ng/umbrella/commit/ac6c208))
 
-## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.10.0) (2025-04-16)
+## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.10.0/packages/server) (2025-04-16)
 
 #### 🚀 Features
 
@@ -57,7 +57,7 @@ and/or version bumps of transitive dependencies.
     - this stops maliciously contructed requests via HTTP `request-target`
   - add docs
 
-## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.9.0) (2025-03-22)
+## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.9.0/packages/server) (2025-03-22)
 
 #### 🚀 Features
 
@@ -70,7 +70,7 @@ and/or version bumps of transitive dependencies.
   - add `pathFilterASCII()` and `pathMaxLength()` filter predicates
   - use `pathFilterASCII()` as default filter
 
-## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.8.0) (2025-03-13)
+## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.8.0/packages/server) (2025-03-13)
 
 #### 🚀 Features
 
@@ -79,7 +79,7 @@ and/or version bumps of transitive dependencies.
 - add `rejectUserAgents()` interceptor ([de0c373](https://codeberg.org/thi.ng/umbrella/commit/de0c373))
   - add UA presets for AI bots & scrapers
 
-## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.7.0) (2025-03-09)
+## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.7.0/packages/server) (2025-03-09)
 
 #### 🚀 Features
 
@@ -88,7 +88,7 @@ and/or version bumps of transitive dependencies.
   - update/simplify `RateLimiter` interceptor
   - update deps
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.6.0) (2025-02-21)
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.6.0/packages/server) (2025-02-21)
 
 #### 🚀 Features
 
@@ -100,7 +100,7 @@ and/or version bumps of transitive dependencies.
   - update tests
 - add/update `ServerOpts` ([23b5321](https://codeberg.org/thi.ng/umbrella/commit/23b5321))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.5.0) (2025-02-19)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.5.0/packages/server) (2025-02-19)
 
 #### 🚀 Features
 
@@ -114,7 +114,7 @@ and/or version bumps of transitive dependencies.
 - rename `serverSession()` => `sessionInterceptor()` ([2ada168](https://codeberg.org/thi.ng/umbrella/commit/2ada168))
   - add docs
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.4.0) (2025-02-10)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.4.0/packages/server) (2025-02-10)
 
 #### 🚀 Features
 
@@ -144,14 +144,22 @@ and/or version bumps of transitive dependencies.
   - process default HTTP OPTIONS handler asap
   - in both cases no interceptors will be run anymore
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.3.0) (2025-02-02)
+#### 🧪 Tests
+
+- update tests (signed cookies) ([8af9f48](https://codeberg.org/thi.ng/umbrella/commit/8af9f48))
+
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.3.0/packages/server) (2025-02-02)
 
 #### 🚀 Features
 
 - add more HTTP error response methods ([5731ff3](https://codeberg.org/thi.ng/umbrella/commit/5731ff3))
 - add ServerResponse, IPv6 support ([22f64c5](https://codeberg.org/thi.ng/umbrella/commit/22f64c5))
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.2.0) (2025-01-30)
+#### 🧪 Tests
+
+- add tests ([1522193](https://codeberg.org/thi.ng/umbrella/commit/1522193))
+
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.2.0/packages/server) (2025-01-30)
 
 #### 🚀 Features
 
@@ -167,7 +175,7 @@ and/or version bumps of transitive dependencies.
   - update pkg exports
   - update tests
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.1.0) (2025-01-29)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/server@0.1.0/packages/server) (2025-01-29)
 
 #### 🚀 Features
 

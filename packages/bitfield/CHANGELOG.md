@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:01Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/bitfield@2.4.0) (2025-04-01)
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/bitfield@2.4.0/packages/bitfield) (2025-04-01)
 
 #### 🚀 Features
 
@@ -24,7 +24,13 @@ and/or version bumps of transitive dependencies.
 - update `firstZero()`/`firstOne()`, add tests ([c553021](https://codeberg.org/thi.ng/umbrella/commit/c553021))
   - add special handling/masking of start byte
 
-## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/bitfield@2.3.0) (2023-10-18)
+### [2.3.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/bitfield@2.3.5/packages/bitfield) (2023-11-09)
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/bitfield@2.3.0/packages/bitfield) (2023-10-18)
 
 #### 🚀 Features
 
@@ -36,3 +42,7 @@ and/or version bumps of transitive dependencies.
 - update BitField ctor, BitMatrix.row() ([e1c2f73](https://codeberg.org/thi.ng/umbrella/commit/e1c2f73))
   - add opt BitField ctor arg for pre-existing backing buffer
   - update BitMatrix.row() to add `viewOnly` arg allowing to re-use storage
+
+#### 🧪 Tests
+
+- add tests ([507fb28](https://codeberg.org/thi.ng/umbrella/commit/507fb28))

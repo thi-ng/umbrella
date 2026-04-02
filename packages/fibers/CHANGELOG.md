@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.67](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.67) (2025-12-03)
+### [1.0.67](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.67/packages/fibers) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [1.0.26](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.26) (2025-01-14)
+### [1.0.26](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.26/packages/fibers) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [1.0.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.24) (2024-12-27)
+### [1.0.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.24/packages/fibers) (2024-12-27)
 
 #### ♻️ Refactoring
 
 - update timestamp handling ([d0a7922](https://codeberg.org/thi.ng/umbrella/commit/d0a7922))
   - update deps & imports
 
-### [1.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.1) (2024-04-20)
+### [1.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.1/packages/fibers) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([9df7cb0](https://codeberg.org/thi.ng/umbrella/commit/9df7cb0))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.0) (2024-04-11)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.0/packages/fibers) (2024-04-11)
 
 #### 🛑 Breaking changes
 
@@ -47,7 +47,7 @@ and/or version bumps of transitive dependencies.
   - update docs
   - update readme
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.6.0) (2023-11-09)
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.6.0/packages/fibers) (2023-11-09)
 
 #### 🚀 Features
 
@@ -57,25 +57,34 @@ and/or version bumps of transitive dependencies.
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.5.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.5.5) (2023-10-18)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.5.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.5.5/packages/fibers) (2023-10-18)
 
 #### 🩹 Bug fixes
 
 - add opts arg for untilPromise() ([acf5ddf](https://codeberg.org/thi.ng/umbrella/commit/acf5ddf))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.5.0) (2023-09-17)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.5.0/packages/fibers) (2023-09-17)
 
 #### 🚀 Features
 
 - add asPromise() fiber-to-promise conversion ([29fc86f](https://codeberg.org/thi.ng/umbrella/commit/29fc86f))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.4.0) (2023-09-06)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.4.0/packages/fibers) (2023-09-06)
 
 #### 🚀 Features
 
 - add timeSliceIterable() ([fe13b03](https://codeberg.org/thi.ng/umbrella/commit/fe13b03))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.3.0) (2023-08-14)
+#### 🧪 Tests
+
+- update tests (timeouts) ([d9eba59](https://codeberg.org/thi.ng/umbrella/commit/d9eba59))
+
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.3.0/packages/fibers) (2023-08-14)
 
 #### 🚀 Features
 
@@ -83,7 +92,7 @@ and/or version bumps of transitive dependencies.
   - use `setImmediate()` as default for non-browser env
   - update tests
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.2.0) (2023-08-10)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.2.0/packages/fibers) (2023-08-10)
 
 #### 🚀 Features
 
@@ -110,13 +119,13 @@ and/or version bumps of transitive dependencies.
 - minor update all() ([52836a8](https://codeberg.org/thi.ng/umbrella/commit/52836a8))
 - update arg types in various ops ([cb3c253](https://codeberg.org/thi.ng/umbrella/commit/cb3c253))
 
-### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.1.1) (2023-08-05)
+### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.1.1/packages/fibers) (2023-08-05)
 
 #### 🩹 Bug fixes
 
 - update dependencies ([c92ad43](https://codeberg.org/thi.ng/umbrella/commit/c92ad43))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.1.0) (2023-08-04)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@0.1.0/packages/fibers) (2023-08-04)
 
 #### 🚀 Features
 

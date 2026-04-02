@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,24 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.3.123](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.123) (2024-06-21)
+### [0.3.123](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.123/packages/markdown-table) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [0.3.78](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.78) (2023-11-09)
+### [0.3.78](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.78/packages/markdown-table) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.3.54](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.54) (2023-08-04)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.3.54](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/markdown-table@0.3.54/packages/markdown-table) (2023-08-04)
 
 #### ♻️ Refactoring
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-23T15:42:07Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.13.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.4) (2026-03-23)
+### [0.13.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.5/packages/column-store) (2026-04-02)
+
+#### 🧪 Tests
+
+- fix bitmap tests ([102443a](https://codeberg.org/thi.ng/umbrella/commit/102443a))
+
+### [0.13.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.4/packages/column-store) (2026-03-23)
 
 #### 🧪 Tests
 
 - add bitmap tests (remove row) ([b62937b](https://codeberg.org/thi.ng/umbrella/commit/b62937b))
 
-### [0.13.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.2) (2026-03-18)
-
-#### 📖 Documentation
-
-- regen readmes ([ccd412f](https://codeberg.org/thi.ng/umbrella/commit/ccd412f))
-
-### [0.13.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.1) (2026-03-15)
+### [0.13.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.1/packages/column-store) (2026-03-15)
 
 #### 🩹 Bug fixes
 
@@ -31,7 +31,7 @@ and/or version bumps of transitive dependencies.
   - queries without terms operate on ALL rows and still respect sort & limit criteria
   - add tests
 
-## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.0) (2026-03-15)
+## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.0/packages/column-store) (2026-03-15)
 
 #### 🚀 Features
 
@@ -40,11 +40,7 @@ and/or version bumps of transitive dependencies.
   - add `QueryResult` type
   - add tests
 
-#### 📖 Documentation
-
-- update readme, update pkg meta ([afbb07a](https://codeberg.org/thi.ng/umbrella/commit/afbb07a))
-
-## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.12.0) (2026-03-11)
+## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.12.0/packages/column-store) (2026-03-11)
 
 #### 🚀 Features
 
@@ -57,19 +53,13 @@ and/or version bumps of transitive dependencies.
 
 - update const use in for-of loops ([f90c1d1](https://codeberg.org/thi.ng/umbrella/commit/f90c1d1))
 
-### [0.11.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.11.4) (2026-03-11)
-
-#### 📖 Documentation
-
-- regen readmes ([4c471e6](https://codeberg.org/thi.ng/umbrella/commit/4c471e6))
-
-### [0.11.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.11.2) (2026-03-07)
+### [0.11.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.11.2/packages/column-store) (2026-03-07)
 
 #### 🩹 Bug fixes
 
 - update query limit handling, add tests ([142ff30](https://codeberg.org/thi.ng/umbrella/commit/142ff30))
 
-## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.11.0) (2026-03-07)
+## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.11.0/packages/column-store) (2026-03-07)
 
 #### 🚀 Features
 
@@ -78,15 +68,11 @@ and/or version bumps of transitive dependencies.
   - add tests
 - add getRows()/getPartialRows(), add tests ([72b4511](https://codeberg.org/thi.ng/umbrella/commit/72b4511))
 
-#### 📖 Documentation
-
-- regen readmes ([6e7b540](https://codeberg.org/thi.ng/umbrella/commit/6e7b540))
-
 #### 🧪 Tests
 
 - add tests ([d953b6e](https://codeberg.org/thi.ng/umbrella/commit/d953b6e))
 
-### [0.10.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.10.1) (2026-03-03)
+### [0.10.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.10.1/packages/column-store) (2026-03-03)
 
 #### 🩹 Bug fixes
 
@@ -97,7 +83,7 @@ and/or version bumps of transitive dependencies.
 
 - update AND query ops, add more tests ([d0e20da](https://codeberg.org/thi.ng/umbrella/commit/d0e20da))
 
-## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.10.0) (2026-03-02)
+## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.10.0/packages/column-store) (2026-03-02)
 
 #### 🚀 Features
 
@@ -111,22 +97,17 @@ and/or version bumps of transitive dependencies.
 
 - add tests ([ad62481](https://codeberg.org/thi.ng/umbrella/commit/ad62481))
 
-## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.9.0) (2026-03-01)
+## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.9.0/packages/column-store) (2026-03-01)
 
 #### 🚀 Features
 
 - add query predicates (syntax sugar) ([a9e7b89](https://codeberg.org/thi.ng/umbrella/commit/a9e7b89))
 
-#### 📖 Documentation
-
-- update readme, add diagram ([3ba4594](https://codeberg.org/thi.ng/umbrella/commit/3ba4594))
-- update readme ([3c13d60](https://codeberg.org/thi.ng/umbrella/commit/3c13d60))
-
 #### 🧪 Tests
 
 - remove old tests ([5cd0f1d](https://codeberg.org/thi.ng/umbrella/commit/5cd0f1d))
 
-## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.8.0) (2026-02-28)
+## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.8.0/packages/column-store) (2026-02-28)
 
 #### 🚀 Features
 
@@ -135,7 +116,7 @@ and/or version bumps of transitive dependencies.
   - add `AColumn` iterator impl
   - add tests
 
-### [0.7.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.7.1) (2026-02-28)
+### [0.7.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.7.1/packages/column-store) (2026-02-28)
 
 #### ⏱ Performance improvements
 
@@ -144,16 +125,12 @@ and/or version bumps of transitive dependencies.
   - update all query ops to iterate via ctx/bitfield
   - add short-circuit to fail query if current op produced no results
 
-#### 📖 Documentation
-
-- update readme ([79d1a40](https://codeberg.org/thi.ng/umbrella/commit/79d1a40))
-
 #### 🧪 Tests
 
 - add tests ([c4c1f6b](https://codeberg.org/thi.ng/umbrella/commit/c4c1f6b))
 - add tests ([d566795](https://codeberg.org/thi.ng/umbrella/commit/d566795))
 
-## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.7.0) (2026-02-26)
+## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.7.0/packages/column-store) (2026-02-26)
 
 #### 🚀 Features
 
@@ -167,30 +144,20 @@ and/or version bumps of transitive dependencies.
 
 - split tests into separate files ([87629b3](https://codeberg.org/thi.ng/umbrella/commit/87629b3))
 
-### [0.6.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.6.1) (2026-02-25)
+### [0.6.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.6.1/packages/column-store) (2026-02-25)
 
 #### 🩹 Bug fixes
 
 - internal update `updateBitmap()`, use currect row keys for index ([f8a1c21](https://codeberg.org/thi.ng/umbrella/commit/f8a1c21))
   - add `Table.load()` tests (which are using this function)
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.6.0) (2026-02-25)
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.6.0/packages/column-store) (2026-02-25)
 
 #### 🚀 Features
 
 - add `IColumn.lastIndexOf()`, add `Bitfield.last()`, update column types ([6fce8c0](https://codeberg.org/thi.ng/umbrella/commit/6fce8c0))
 
-#### 📖 Documentation
-
-- update readme ([11e3261](https://codeberg.org/thi.ng/umbrella/commit/11e3261))
-
-### [0.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.5.1) (2026-02-25)
-
-#### 📖 Documentation
-
-- update readme ([c196802](https://codeberg.org/thi.ng/umbrella/commit/c196802))
-
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.5.0) (2026-02-25)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.5.0/packages/column-store) (2026-02-25)
 
 #### 🚀 Features
 
@@ -206,17 +173,11 @@ and/or version bumps of transitive dependencies.
   - add/update tests
 - add column type check for `valueRange()` op ([58f235f](https://codeberg.org/thi.ng/umbrella/commit/58f235f))
 
-#### 📖 Documentation
-
-- update readme ([0237220](https://codeberg.org/thi.ng/umbrella/commit/0237220))
-- regen readmes ([ed3bb4e](https://codeberg.org/thi.ng/umbrella/commit/ed3bb4e))
-- update/extend readme (new query ops) ([4126772](https://codeberg.org/thi.ng/umbrella/commit/4126772))
-
 #### 🧪 Tests
 
 - update tests ([572b24a](https://codeberg.org/thi.ng/umbrella/commit/572b24a))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.4.0) (2026-02-13)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.4.0/packages/column-store) (2026-02-13)
 
 #### 🚀 Features
 
@@ -229,7 +190,7 @@ and/or version bumps of transitive dependencies.
 
 - add tests ([bc7ac38](https://codeberg.org/thi.ng/umbrella/commit/bc7ac38))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.3.0) (2026-02-13)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.3.0/packages/column-store) (2026-02-13)
 
 #### 🚀 Features
 
@@ -239,12 +200,7 @@ and/or version bumps of transitive dependencies.
   - update query results to include `__row` ID
   - update tests
 
-#### 📖 Documentation
-
-- update readme ([76bb8fa](https://codeberg.org/thi.ng/umbrella/commit/76bb8fa))
-- update readme ([35b0104](https://codeberg.org/thi.ng/umbrella/commit/35b0104))
-
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.2.0) (2026-02-12)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.2.0/packages/column-store) (2026-02-12)
 
 #### 🚀 Features
 
@@ -259,23 +215,17 @@ and/or version bumps of transitive dependencies.
 
 - migrate/dedupe LIMITS, update RLE handling ([6b9f916](https://codeberg.org/thi.ng/umbrella/commit/6b9f916))
 
-#### 📖 Documentation
-
-- update readme (vector types, precision, RLE etc.) ([3392f7e](https://codeberg.org/thi.ng/umbrella/commit/3392f7e))
-- regen readmes ([8515e11](https://codeberg.org/thi.ng/umbrella/commit/8515e11))
-- update readme (vector) ([1c16e92](https://codeberg.org/thi.ng/umbrella/commit/1c16e92))
-
 #### 🧪 Tests
 
 - add query & RLE tests for all column types ([345c87b](https://codeberg.org/thi.ng/umbrella/commit/345c87b))
 
-### [0.1.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.1.3) (2026-02-08)
+### [0.1.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.1.3/packages/column-store) (2026-02-08)
 
 #### 🧪 Tests
 
 - start importing tests ([023a3cf](https://codeberg.org/thi.ng/umbrella/commit/023a3cf))
 
-### [0.1.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.1.2) (2026-02-08)
+### [0.1.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.1.2/packages/column-store) (2026-02-08)
 
 #### 🩹 Bug fixes
 
@@ -295,11 +245,7 @@ and/or version bumps of transitive dependencies.
   - rename `ArrayColumn` => `TupleColumn`
   - rename `DictArrayColumn` => `DictTupleColumn`
 
-#### 📖 Documentation
-
-- update readme ([a87c237](https://codeberg.org/thi.ng/umbrella/commit/a87c237))
-
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.1.0) (2026-02-07)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.1.0/packages/column-store) (2026-02-07)
 
 #### 🚀 Features
 
@@ -359,14 +305,3 @@ and/or version bumps of transitive dependencies.
 - rename FLAG_ENUM => FLAG_DICT ([de9b00f](https://codeberg.org/thi.ng/umbrella/commit/de9b00f))
 - rename dict-based column types ([5a5b5ba](https://codeberg.org/thi.ng/umbrella/commit/5a5b5ba))
 - update typedarray colum value validation ([2b14435](https://codeberg.org/thi.ng/umbrella/commit/2b14435))
-
-#### 📖 Documentation
-
-- update readme and pkg meta, add code examples ([bc4df0d](https://codeberg.org/thi.ng/umbrella/commit/bc4df0d))
-- update/extend readme ([7d617a3](https://codeberg.org/thi.ng/umbrella/commit/7d617a3))
-- update/fix readme ([a8709f9](https://codeberg.org/thi.ng/umbrella/commit/a8709f9))
-- update readme ([5861202](https://codeberg.org/thi.ng/umbrella/commit/5861202))
-- update readme, add doc links, snippets ([ddc7d78](https://codeberg.org/thi.ng/umbrella/commit/ddc7d78))
-- update readme ([5a6994f](https://codeberg.org/thi.ng/umbrella/commit/5a6994f))
-- update readme ([f99167f](https://codeberg.org/thi.ng/umbrella/commit/f99167f))
-- update readme, add RLE docs ([9d9fad1](https://codeberg.org/thi.ng/umbrella/commit/9d9fad1))

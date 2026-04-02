@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:01Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/emoji@0.2.0) (2024-08-10)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/emoji@0.2.0/packages/emoji) (2024-08-10)
 
 #### 🚀 Features
 
 - add replaceNames(), add test ([a9726c8](https://codeberg.org/thi.ng/umbrella/commit/a9726c8))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/emoji@0.1.0) (2023-02-27)
+### [0.1.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/emoji@0.1.13/packages/emoji) (2023-11-09)
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/emoji@0.1.0/packages/emoji) (2023-02-27)
 
 #### 🚀 Features
 

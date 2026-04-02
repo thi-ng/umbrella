@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.18.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.18.16) (2024-06-21)
+### [0.18.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.18.16/packages/shader-ast-stdlib) (2024-06-21)
 
 #### ♻️ Refactoring
 
@@ -19,7 +19,7 @@ and/or version bumps of transitive dependencies.
 - redefine hash fns via HOF templates ([d143855](https://codeberg.org/thi.ng/umbrella/commit/d143855))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [0.18.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.18.0) (2024-03-07)
+## [0.18.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.18.0/packages/shader-ast-stdlib) (2024-03-07)
 
 #### 🚀 Features
 
@@ -27,7 +27,7 @@ and/or version bumps of transitive dependencies.
 - add packedNormal2(), refactor normal2() ([6f6dc1d](https://codeberg.org/thi.ng/umbrella/commit/6f6dc1d))
 - add branches() n-ary helper fn & docs ([74f32ba](https://codeberg.org/thi.ng/umbrella/commit/74f32ba))
 
-## [0.17.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.17.0) (2024-03-06)
+## [0.17.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.17.0/packages/shader-ast-stdlib) (2024-03-06)
 
 #### 🚀 Features
 
@@ -44,37 +44,42 @@ and/or version bumps of transitive dependencies.
 
 - simplify callsites of addSelf/mulSelf etc. ([efa1f8d](https://codeberg.org/thi.ng/umbrella/commit/efa1f8d))
 
-### [0.16.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.28) (2024-02-22)
+### [0.16.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.28/packages/shader-ast-stdlib) (2024-02-22)
 
 #### ♻️ Refactoring
 
 - update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
 
-### [0.16.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.22) (2024-02-06)
+### [0.16.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.22/packages/shader-ast-stdlib) (2024-02-06)
 
 #### ♻️ Refactoring
 
 - use shader type consts ([039a0bf](https://codeberg.org/thi.ng/umbrella/commit/039a0bf))
 
-### [0.16.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.4) (2023-11-09)
+### [0.16.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.4/packages/shader-ast-stdlib) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.16.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.1) (2023-10-27)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.16.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.1/packages/shader-ast-stdlib) (2023-10-27)
 
 #### 🩹 Bug fixes
 
 - fix pkg exports ([20d5d2d](https://codeberg.org/thi.ng/umbrella/commit/20d5d2d))
 
-## [0.16.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.0) (2023-10-27)
+## [0.16.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.16.0/packages/shader-ast-stdlib) (2023-10-27)
 
 #### 🚀 Features
 
 - add trunc(), modulo(), foldback01() ([d3ab3e6](https://codeberg.org/thi.ng/umbrella/commit/d3ab3e6))
 
-## [0.15.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.15.0) (2023-10-25)
+## [0.15.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.15.0/packages/shader-ast-stdlib) (2023-10-25)
 
 #### 🚀 Features
 
@@ -87,32 +92,32 @@ and/or version bumps of transitive dependencies.
 
 - optimize aspectCorrectedUV2() ([733331a](https://codeberg.org/thi.ng/umbrella/commit/733331a))
 
-### [0.14.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.14.20) (2023-10-24)
+### [0.14.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.14.20/packages/shader-ast-stdlib) (2023-10-24)
 
 #### ♻️ Refactoring
 
 - use hoc function to define easing functions ([2b2c451](https://codeberg.org/thi.ng/umbrella/commit/2b2c451))
 
-## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.14.0) (2023-07-14)
+## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.14.0/packages/shader-ast-stdlib) (2023-07-14)
 
 #### 🚀 Features
 
 - add smootherStep() ([859fa5d](https://codeberg.org/thi.ng/umbrella/commit/859fa5d))
 
-### [0.13.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.13.15) (2023-05-11)
+### [0.13.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.13.15/packages/shader-ast-stdlib) (2023-05-11)
 
 #### ♻️ Refactoring
 
 - re-use interned type constants ([f6fcbc5](https://codeberg.org/thi.ng/umbrella/commit/f6fcbc5))
 
-### [0.13.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.13.14) (2023-05-05)
+### [0.13.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.13.14/packages/shader-ast-stdlib) (2023-05-05)
 
 #### 🩹 Bug fixes
 
-- fix [#399](https://github.com/thi-ng/umbrella/issues/399) update HOF function naming ([f4b62d7](https://codeberg.org/thi.ng/umbrella/commit/f4b62d7))
+- fix [#399](https://codeberg.org/thi.ng/umbrella/issues/399) update HOF function naming ([f4b62d7](https://codeberg.org/thi.ng/umbrella/commit/f4b62d7))
   - ensure generated HOFs are using unique names to allow multiple instances
 
-## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.13.0) (2023-01-10)
+## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/shader-ast-stdlib@0.13.0/packages/shader-ast-stdlib) (2023-01-10)
 
 #### 🚀 Features
 

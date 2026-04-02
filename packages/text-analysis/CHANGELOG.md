@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.4.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.4.7) (2025-07-20)
+### [0.4.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.4.7/packages/text-analysis) (2025-07-20)
 
 #### 🩹 Bug fixes
 
-- fix [#532](https://github.com/thi-ng/umbrella/issues/532), fix centralTermsVec() ([6e19974](https://codeberg.org/thi.ng/umbrella/commit/6e19974))
+- fix [#532](https://codeberg.org/thi.ng/umbrella/issues/532), fix centralTermsVec() ([6e19974](https://codeberg.org/thi.ng/umbrella/commit/6e19974))
   - update non-zero check
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.4.0) (2025-06-18)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.4.0/packages/text-analysis) (2025-06-18)
 
 #### 🚀 Features
 
@@ -29,20 +29,20 @@ and/or version bumps of transitive dependencies.
 - minor update kmeansDense() ([ebd5618](https://codeberg.org/thi.ng/umbrella/commit/ebd5618))
   - internal use `lookupUnsafe()`
 
-### [0.3.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.3.1) (2025-06-15)
+### [0.3.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.3.1/packages/text-analysis) (2025-06-15)
 
 #### 🩹 Bug fixes
 
 - update pkg exports ([ea72b9f](https://codeberg.org/thi.ng/umbrella/commit/ea72b9f))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.3.0) (2025-06-15)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.3.0/packages/text-analysis) (2025-06-15)
 
 #### 🚀 Features
 
 - update kmeansDense ([d35b6bd](https://codeberg.org/thi.ng/umbrella/commit/d35b6bd))
   - update results to include original `docs` for each cluster
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.2.0) (2025-06-14)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.2.0/packages/text-analysis) (2025-06-14)
 
 #### 🚀 Features
 
@@ -55,7 +55,7 @@ and/or version bumps of transitive dependencies.
 
 - update imports/exports ([a44be87](https://codeberg.org/thi.ng/umbrella/commit/a44be87))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.1.0) (2025-06-09)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/text-analysis@0.1.0/packages/text-analysis) (2025-06-09)
 
 #### 🚀 Features
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,44 +11,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.6.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.32) (2025-12-03)
+### [0.6.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.32/packages/block-fs) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [0.6.18](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.18) (2025-09-26)
+### [0.6.18](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.18/packages/block-fs) (2025-09-26)
 
 #### ♻️ Refactoring
 
 - update CLI arg specs ([691ea5d](https://codeberg.org/thi.ng/umbrella/commit/691ea5d))
 
-### [0.6.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.11) (2025-08-06)
+### [0.6.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.11/packages/block-fs) (2025-08-06)
 
 #### ♻️ Refactoring
 
 - update CLI internals ([53d5820](https://codeberg.org/thi.ng/umbrella/commit/53d5820))
 
-### [0.6.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.3) (2025-07-12)
+### [0.6.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.3/packages/block-fs) (2025-07-12)
 
 #### 🩹 Bug fixes
 
 - update block count calculation (CLI convert cmd) ([95cee85](https://codeberg.org/thi.ng/umbrella/commit/95cee85))
 
-### [0.6.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.2) (2025-07-12)
+### [0.6.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.2/packages/block-fs) (2025-07-12)
 
 #### ♻️ Refactoring
 
 - minor updates CLI commands ([9a394b1](https://codeberg.org/thi.ng/umbrella/commit/9a394b1))
 
-### [0.6.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.1) (2025-07-12)
+### [0.6.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.1/packages/block-fs) (2025-07-12)
 
 #### 🩹 Bug fixes
 
 - fix tree output in CLI list cmd, update deps ([8d33970](https://codeberg.org/thi.ng/umbrella/commit/8d33970))
   - update entry sorting for tree output to avoid order edge cases w/ prev approach
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.0) (2025-07-11)
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.6.0/packages/block-fs) (2025-07-11)
 
 #### 🚀 Features
 
@@ -58,26 +58,26 @@ and/or version bumps of transitive dependencies.
 
 - split out CLI cmds to own files, fix tree display ([8665244](https://codeberg.org/thi.ng/umbrella/commit/8665244))
 
-### [0.5.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.5.3) (2025-06-27)
+### [0.5.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.5.3/packages/block-fs) (2025-06-27)
 
 #### ♻️ Refactoring
 
 - minor update CLI wrapper ([8138d88](https://codeberg.org/thi.ng/umbrella/commit/8138d88))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.5.0) (2025-06-18)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.5.0/packages/block-fs) (2025-06-18)
 
 #### 🚀 Features
 
 - update block count estimation, add more logging ([02c8037](https://codeberg.org/thi.ng/umbrella/commit/02c8037))
 
-### [0.4.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.4.1) (2025-04-16)
+### [0.4.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.4.1/packages/block-fs) (2025-04-16)
 
 #### ♻️ Refactoring
 
 - update Entry memory layout ([b5416bd](https://codeberg.org/thi.ng/umbrella/commit/b5416bd))
   - move block start & end ID locations
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.4.0) (2025-04-06)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.4.0/packages/block-fs) (2025-04-06)
 
 #### 🚀 Features
 
@@ -91,7 +91,7 @@ and/or version bumps of transitive dependencies.
   - add support for multiple include/exclude regexps in `convert` command
   - add `--quiet` flag to disable logging
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.3.0) (2025-04-02)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.3.0/packages/block-fs) (2025-04-02)
 
 #### 🚀 Features
 
@@ -115,7 +115,7 @@ and/or version bumps of transitive dependencies.
 
 - update sentinel block ID ([51a1e44](https://codeberg.org/thi.ng/umbrella/commit/51a1e44))
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.2.0) (2025-04-02)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.2.0/packages/block-fs) (2025-04-02)
 
 #### 🚀 Features
 
@@ -127,7 +127,7 @@ and/or version bumps of transitive dependencies.
   - internal refactoring (`this` destructuring)
   - add docs
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.1.0) (2025-04-01)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/block-fs@0.1.0/packages/block-fs) (2025-04-01)
 
 #### 🚀 Features
 

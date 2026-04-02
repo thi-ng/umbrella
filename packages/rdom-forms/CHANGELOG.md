@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-18T21:46:05Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@1.1.0) (2026-03-18)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@1.1.0/packages/rdom-forms) (2026-03-18)
 
 #### 🚀 Features
 
 - add support for non-subscription based values ([dc38812](https://codeberg.org/thi.ng/umbrella/commit/dc38812))
 
-### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@1.0.2) (2025-01-10)
+### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@1.0.2/packages/rdom-forms) (2025-01-10)
 
 #### 🩹 Bug fixes
 
 - update `Num` element spec ([33b1f67](https://codeberg.org/thi.ng/umbrella/commit/33b1f67))
   - allow `any` as `step` value
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.4.0) (2024-10-05)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.4.0/packages/rdom-forms) (2024-10-05)
 
 #### 🚀 Features
 
@@ -33,19 +33,19 @@ and/or version bumps of transitive dependencies.
   - don't generate event handlers if widget spec has no `value` option
   - always apply user provided attribs (incl. event handlers) last
 
-### [0.3.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.3.1) (2024-03-28)
+### [0.3.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.3.1/packages/rdom-forms) (2024-03-28)
 
 #### 🩹 Bug fixes
 
 - fix multiFile() handling/detection ([5339339](https://codeberg.org/thi.ng/umbrella/commit/5339339))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.3.0) (2024-03-27)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.3.0/packages/rdom-forms) (2024-03-27)
 
 #### 🚀 Features
 
 - add hidden(), reset() & submit() field types ([3304ee4](https://codeberg.org/thi.ng/umbrella/commit/3304ee4))
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.2.0) (2023-12-11)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.2.0/packages/rdom-forms) (2023-12-11)
 
 #### 🚀 Features
 
@@ -57,7 +57,7 @@ and/or version bumps of transitive dependencies.
 
 - fix trigger() event handler ([9faaf26](https://codeberg.org/thi.ng/umbrella/commit/9faaf26))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.1.0) (2023-12-09)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@0.1.0/packages/rdom-forms) (2023-12-09)
 
 #### 🚀 Features
 

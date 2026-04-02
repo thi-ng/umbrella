@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,25 +11,25 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.49](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.49) (2025-09-01)
+### [1.0.49](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.49/packages/wasm-api-schedule) (2025-09-01)
 
 #### ♻️ Refactoring
 
 - internal restructure of generated types ([aaa0207](https://codeberg.org/thi.ng/umbrella/commit/aaa0207))
 
-### [1.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.9) (2024-11-10)
+### [1.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.9/packages/wasm-api-schedule) (2024-11-10)
 
 #### ♻️ Refactoring
 
 - regenerate typescript bindings ([07e939a](https://codeberg.org/thi.ng/umbrella/commit/07e939a))
 
-### [1.0.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.8) (2024-11-09)
+### [1.0.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.8/packages/wasm-api-schedule) (2024-11-09)
 
 #### ♻️ Refactoring
 
 - regenerate typescript sources ([9055e0e](https://codeberg.org/thi.ng/umbrella/commit/9055e0e))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.0) (2024-08-18)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@1.0.0/packages/wasm-api-schedule) (2024-08-18)
 
 #### 🛑 Breaking changes
 
@@ -41,13 +41,18 @@ and/or version bumps of transitive dependencies.
 
 - add RAF schedule type, add now() ([47bff01](https://codeberg.org/thi.ng/umbrella/commit/47bff01))
 
-### [0.3.47](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@0.3.47) (2023-11-09)
+### [0.3.47](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@0.3.47/packages/wasm-api-schedule) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.3.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@0.3.20) (2023-03-27)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.3.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-schedule@0.3.20/packages/wasm-api-schedule) (2023-03-27)
 
 #### ♻️ Refactoring
 

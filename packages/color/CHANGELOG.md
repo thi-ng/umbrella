@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,25 +11,25 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [5.8.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.10) (2026-02-07)
+### [5.8.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.10/packages/color) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [5.8.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.5) (2025-12-03)
+### [5.8.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.5/packages/color) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [5.8.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.1) (2025-10-28)
+### [5.8.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.1/packages/color) (2025-10-28)
 
 #### ♻️ Refactoring
 
 - update writeSVG() helper ([df320cc](https://codeberg.org/thi.ng/umbrella/commit/df320cc))
 
-## [5.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.0) (2025-10-25)
+## [5.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.8.0/packages/color) (2025-10-25)
 
 #### 🚀 Features
 
@@ -45,19 +45,23 @@ and/or version bumps of transitive dependencies.
     - `squareStrategy`
 - add `cssColors()` helper ([2c080a3](https://codeberg.org/thi.ng/umbrella/commit/2c080a3))
 
-### [5.7.33](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.7.33) (2025-04-16)
+### [5.7.33](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.7.33/packages/color) (2025-04-16)
 
 #### ♻️ Refactoring
 
 - minor internal updates (imports) ([269c8ae](https://codeberg.org/thi.ng/umbrella/commit/269c8ae))
 
-### [5.7.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.7.4) (2024-09-16)
+#### 🧪 Tests
+
+- update `random` test consts ([42cbe9d](https://codeberg.org/thi.ng/umbrella/commit/42cbe9d))
+
+### [5.7.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.7.4/packages/color) (2024-09-16)
 
 #### 🩹 Bug fixes
 
 - update pkg exports ([f5f733f](https://codeberg.org/thi.ng/umbrella/commit/f5f733f))
 
-## [5.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.7.0) (2024-08-19)
+## [5.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.7.0/packages/color) (2024-08-19)
 
 #### 🚀 Features
 
@@ -66,7 +70,7 @@ and/or version bumps of transitive dependencies.
   - update css() to use current configured default instead of CSS_LEVEL3
   - add/update docs
 
-### [5.6.47](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.47) (2024-06-29)
+### [5.6.47](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.47/packages/color) (2024-06-29)
 
 #### 🩹 Bug fixes
 
@@ -74,7 +78,7 @@ and/or version bumps of transitive dependencies.
   - interpret sole int arg as sRGB, **not** as linear RGB
   - add tests
 
-### [5.6.46](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.46) (2024-06-21)
+### [5.6.46](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.46/packages/color) (2024-06-21)
 
 #### ♻️ Refactoring
 
@@ -83,58 +87,71 @@ and/or version bumps of transitive dependencies.
 - dedupe types for isBlack/Gray/White() fns ([a00705d](https://codeberg.org/thi.ng/umbrella/commit/a00705d))
 - minor dedupe lab/lch CSS serialization ([19df487](https://codeberg.org/thi.ng/umbrella/commit/19df487))
 
-### [5.6.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.42) (2024-04-20)
+### [5.6.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.42/packages/color) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([39494f2](https://codeberg.org/thi.ng/umbrella/commit/39494f2))
 
-### [5.6.40](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.40) (2024-04-08)
+### [5.6.40](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.40/packages/color) (2024-04-08)
 
 #### ♻️ Refactoring
 
 - update reducer handling ([5b445a7](https://codeberg.org/thi.ng/umbrella/commit/5b445a7))
 
-### [5.6.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.24) (2024-02-23)
+### [5.6.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.24/packages/color) (2024-02-23)
 
 #### 🩹 Bug fixes
 
 - allow base color opt in colorFromRange() ([4e7e7fe](https://codeberg.org/thi.ng/umbrella/commit/4e7e7fe))
 - fix/update readme code examples, tangle all ([6eb48ac](https://codeberg.org/thi.ng/umbrella/commit/6eb48ac))
 
-## [5.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.0) (2023-11-12)
+## [5.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.6.0/packages/color) (2023-11-12)
 
 #### 🚀 Features
 
 - update temperatureMat() ([eaacfa0](https://codeberg.org/thi.ng/umbrella/commit/eaacfa0))
   - add (optional) 2nd green/magenta axis to existing blue/yellow
 
-### [5.5.27](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.27) (2023-10-27)
+### [5.5.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.30/packages/color) (2023-11-09)
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [5.5.27](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.27/packages/color) (2023-10-27)
 
 #### ♻️ Refactoring
 
 - update vector imports ([95f1d64](https://codeberg.org/thi.ng/umbrella/commit/95f1d64))
 
-### [5.5.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.19) (2023-09-19)
+### [5.5.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.19/packages/color) (2023-09-19)
 
 #### ♻️ Refactoring
 
 - update hiccup/SVG generators ([37c532f](https://codeberg.org/thi.ng/umbrella/commit/37c532f))
 
-### [5.5.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.5) (2023-07-14)
+### [5.5.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.5/packages/color) (2023-07-14)
 
 #### ♻️ Refactoring
 
 - update swatches() return type ([ba73557](https://codeberg.org/thi.ng/umbrella/commit/ba73557))
 
-## [5.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.0) (2023-04-19)
+## [5.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.5.0/packages/color) (2023-04-19)
 
 #### 🚀 Features
 
 - add TypedColor.xyz 3-channel accessor, update all impls ([c62e0ee](https://codeberg.org/thi.ng/umbrella/commit/c62e0ee))
 - add mostSimilar() ([8cfc36d](https://codeberg.org/thi.ng/umbrella/commit/8cfc36d))
 
-## [5.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.4.0) (2023-03-02)
+### [5.4.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.4.6/packages/color) (2023-03-27)
+
+#### 🧪 Tests
+
+- update all tests (mainly imports) ([63a85f9](https://codeberg.org/thi.ng/umbrella/commit/63a85f9))
+
+## [5.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.4.0/packages/color) (2023-03-02)
 
 #### 🚀 Features
 
@@ -172,7 +189,7 @@ and/or version bumps of transitive dependencies.
   - extract internal helpers
   - update/fix channel scale factors
 
-## [5.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.3.0) (2023-02-10)
+## [5.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/color@5.3.0/packages/color) (2023-02-10)
 
 #### 🚀 Features
 

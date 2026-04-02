@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.14.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.14.3) (2025-12-03)
+### [2.14.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.14.3/packages/arrays) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [2.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.14.0) (2025-11-13)
+## [2.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.14.0/packages/arrays) (2025-11-13)
 
 #### 🚀 Features
 
 - add `findLastSequence()`, add tests ([3a3364f](https://codeberg.org/thi.ng/umbrella/commit/3a3364f))
 
-### [2.13.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.13.3) (2025-07-15)
+### [2.13.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.13.3/packages/arrays) (2025-07-15)
 
 #### ♻️ Refactoring
 
@@ -31,14 +31,14 @@ and/or version bumps of transitive dependencies.
   - update `ensureArray()`/`ensureArrayLike()`
   - update `ensureIterable()`
 
-## [2.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.13.0) (2025-06-18)
+## [2.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.13.0/packages/arrays) (2025-06-18)
 
 #### 🚀 Features
 
 - add filterAll() ([91791ba](https://codeberg.org/thi.ng/umbrella/commit/91791ba))
   - add docs & code example
 
-## [2.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.12.0) (2025-06-14)
+## [2.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.12.0/packages/arrays) (2025-06-14)
 
 #### 🚀 Features
 
@@ -48,7 +48,7 @@ and/or version bumps of transitive dependencies.
 
 - minor update swizzle() ([84d3aba](https://codeberg.org/thi.ng/umbrella/commit/84d3aba))
 
-## [2.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.11.0) (2025-04-30)
+## [2.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.11.0/packages/arrays) (2025-04-30)
 
 #### 🚀 Features
 
@@ -58,11 +58,11 @@ and/or version bumps of transitive dependencies.
 
 - minor update arg types ([52900ef](https://codeberg.org/thi.ng/umbrella/commit/52900ef))
 
-### [2.10.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.10.11) (2025-01-17)
+### [2.10.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.10.11/packages/arrays) (2025-01-17)
 
 #### 🩹 Bug fixes
 
-- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([21a4c41](https://codeberg.org/thi.ng/umbrella/commit/21a4c41))
+- fix [#495](https://codeberg.org/thi.ng/umbrella/issues/495), update shuffleRange() ([21a4c41](https://codeberg.org/thi.ng/umbrella/commit/21a4c41))
   - fix/undo [8cbfc7b0c8](https://codeberg.org/thi.ng/umbrella/commit/8cbfc7b0c8)
   - update loop type & condition to skip last iteration
   - switch back to using `rnd.minmax()`
@@ -70,11 +70,11 @@ and/or version bumps of transitive dependencies.
 
 #### ⏱ Performance improvements
 
-- fix [#495](https://github.com/thi-ng/umbrella/issues/495), update shuffleRange() ([8cbfc7b](https://codeberg.org/thi.ng/umbrella/commit/8cbfc7b))
+- fix [#495](https://codeberg.org/thi.ng/umbrella/issues/495), update shuffleRange() ([8cbfc7b](https://codeberg.org/thi.ng/umbrella/commit/8cbfc7b))
   - update loop to skip last iteration (obsolete)
   - use `rnd.minmaxInt()` to compute swap index
 
-## [2.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.10.0) (2024-08-18)
+## [2.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.10.0/packages/arrays) (2024-08-18)
 
 #### 🚀 Features
 
@@ -82,20 +82,20 @@ and/or version bumps of transitive dependencies.
   - add missing node check/assertion
   - update `deps` fn to incl. node ID as 2nd arg
 
-### [2.9.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.7) (2024-06-21)
+### [2.9.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.7/packages/arrays) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.9.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.4) (2024-04-20)
+### [2.9.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.4/packages/arrays) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([35eddc8](https://codeberg.org/thi.ng/umbrella/commit/35eddc8))
 
-## [2.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.0) (2024-03-28)
+## [2.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.9.0/packages/arrays) (2024-03-28)
 
 #### 🚀 Features
 
@@ -111,26 +111,32 @@ and/or version bumps of transitive dependencies.
 - update findSequence() ([f9e3c29](https://codeberg.org/thi.ng/umbrella/commit/f9e3c29))
   - reverse inner scan direction
 
-## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.8.0) (2024-02-19)
+## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.8.0/packages/arrays) (2024-02-19)
 
 #### 🚀 Features
 
 - add blitPred1d() predicate version of blit1d() ([c13c4f9](https://codeberg.org/thi.ng/umbrella/commit/c13c4f9))
 
-## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.7.0) (2023-10-27)
+### [2.7.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.7.3/packages/arrays) (2023-11-09)
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+
+## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.7.0/packages/arrays) (2023-10-27)
 
 #### 🚀 Features
 
 - add rotate(), rotateTyped() ([c1d322e](https://codeberg.org/thi.ng/umbrella/commit/c1d322e))
 
-## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.6.0) (2023-10-05)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.6.0/packages/arrays) (2023-10-05)
 
 #### 🚀 Features
 
 - add argMin()/argMax() ([33512ec](https://codeberg.org/thi.ng/umbrella/commit/33512ec))
 - add selectThresholdMin/Max() fns ([de9ba50](https://codeberg.org/thi.ng/umbrella/commit/de9ba50))
 
-### [2.5.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.5.15) (2023-08-04)
+### [2.5.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/arrays@2.5.15/packages/arrays) (2023-08-04)
 
 #### ♻️ Refactoring
 

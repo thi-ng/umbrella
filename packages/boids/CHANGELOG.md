@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.1.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.10) (2025-06-19)
+### [1.1.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.10/packages/boids) (2025-06-19)
 
 #### ⏱ Performance improvements
 
@@ -19,32 +19,32 @@ and/or version bumps of transitive dependencies.
   - hoist local vars in hotspots
   - update Radial.setRadius() to avoid distance calc if possible
 
-### [1.1.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.4) (2025-05-12)
+### [1.1.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.4/packages/boids) (2025-05-12)
 
 #### ⏱ Performance improvements
 
 - add Boid.force, update blendedBehaviorUpdate() ([dbb3178](https://codeberg.org/thi.ng/umbrella/commit/dbb3178))
   - pre-allocate force vector to avoid re-allocations for every frame
 
-### [1.1.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.3) (2025-05-09)
+### [1.1.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.3/packages/boids) (2025-05-09)
 
 #### 🩹 Bug fixes
 
 - off-by-one error in cohesion() ([e93b66c](https://codeberg.org/thi.ng/umbrella/commit/e93b66c))
 
-### [1.1.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.2) (2025-05-08)
+### [1.1.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.2/packages/boids) (2025-05-08)
 
 #### 🩹 Bug fixes
 
 - update cohesion(), count used neighbors only ([9eef80c](https://codeberg.org/thi.ng/umbrella/commit/9eef80c))
 
-### [1.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.1) (2025-05-08)
+### [1.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.1/packages/boids) (2025-05-08)
 
 #### 🩹 Bug fixes
 
 - update cohesion(), use filter predicate ([66d219b](https://codeberg.org/thi.ng/umbrella/commit/66d219b))
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.0) (2025-05-08)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.1.0/packages/boids) (2025-05-08)
 
 #### 🚀 Features
 
@@ -59,19 +59,19 @@ and/or version bumps of transitive dependencies.
   - rename `.limitSteer()` => `.limitForce()`
   - add docs
 
-### [1.0.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.0.34) (2024-06-21)
+### [1.0.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.0.34/packages/boids) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - dedupe wrap2/3() internals ([6ca4b99](https://codeberg.org/thi.ng/umbrella/commit/6ca4b99))
 
-### [1.0.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.0.30) (2024-04-20)
+### [1.0.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.0.30/packages/boids) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([abad151](https://codeberg.org/thi.ng/umbrella/commit/abad151))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.0.0) (2024-01-23)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@1.0.0/packages/boids) (2024-01-23)
 
 #### 🛑 Breaking changes
 
@@ -102,13 +102,17 @@ and/or version bumps of transitive dependencies.
 
 - update separation() behavior neighbor lookup ([c8ece89](https://codeberg.org/thi.ng/umbrella/commit/c8ece89))
 
-### [0.1.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@0.1.3) (2023-11-09)
+### [0.1.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@0.1.3/packages/boids) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@0.1.0) (2023-10-27)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/boids@0.1.0/packages/boids) (2023-10-27)
 
 #### 🚀 Features
 

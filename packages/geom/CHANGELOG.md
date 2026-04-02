@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [8.3.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.14) (2026-02-07)
+### [8.3.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.14/packages/geom) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [8.3.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.9) (2025-12-03)
+### [8.3.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.9/packages/geom) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [8.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.0) (2025-10-24)
+## [8.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.3.0/packages/geom) (2025-10-24)
 
 #### 🚀 Features
 
 - add basic `offset()` support for convex polygons ([fe51702](https://codeberg.org/thi.ng/umbrella/commit/fe51702))
   - add/update docs
 
-## [8.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.2.0) (2025-07-20)
+## [8.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.2.0/packages/geom) (2025-07-20)
 
 #### 🚀 Features
 
 - update SVGDocAttribs, update docs ([7e4a252](https://codeberg.org/thi.ng/umbrella/commit/7e4a252))
 
-### [8.1.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.39) (2025-04-16)
+### [8.1.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.39/packages/geom) (2025-04-16)
 
 #### 🩹 Bug fixes
 
@@ -50,32 +50,32 @@ and/or version bumps of transitive dependencies.
 
 - minor internal optimizations (vector ops) ([c51b0de](https://codeberg.org/thi.ng/umbrella/commit/c51b0de))
 
-### [8.1.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.22) (2025-01-14)
+### [8.1.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.22/packages/geom) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [8.1.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.11) (2024-10-05)
+### [8.1.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.11/packages/geom) (2024-10-05)
 
 #### ♻️ Refactoring
 
 - add explicit type casts (TS5.6.2) ([dcbdd60](https://codeberg.org/thi.ng/umbrella/commit/dcbdd60))
 
-## [8.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.0) (2024-08-10)
+## [8.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.1.0/packages/geom) (2024-08-10)
 
 #### 🚀 Features
 
 - add circle inversion functions ([bb3a322](https://codeberg.org/thi.ng/umbrella/commit/bb3a322))
   - add invertCircle(), invertCirclePoint()
 
-### [8.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.0.1) (2024-06-29)
+### [8.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.0.1/packages/geom) (2024-06-29)
 
 #### 🩹 Bug fixes
 
 - add missing pkg exports ([7ec144f](https://codeberg.org/thi.ng/umbrella/commit/7ec144f))
 
-# [8.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.0.0) (2024-06-21)
+# [8.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@8.0.0/packages/geom) (2024-06-21)
 
 #### 🛑 Breaking changes
 
@@ -161,7 +161,7 @@ and/or version bumps of transitive dependencies.
 - add/update splitAt() & splitNearPoint() impls ([1851b1d](https://codeberg.org/thi.ng/umbrella/commit/1851b1d))
 - add planeFromRay() ([c44d8da](https://codeberg.org/thi.ng/umbrella/commit/c44d8da))
 - add 2d line impl for classifyPoint() ([92e54ea](https://codeberg.org/thi.ng/umbrella/commit/92e54ea))
-- fix [#429](https://github.com/thi-ng/umbrella/issues/429), add polygon support for classifyPoint() ([b56ecc1](https://codeberg.org/thi.ng/umbrella/commit/b56ecc1))
+- fix [#429](https://codeberg.org/thi.ng/umbrella/issues/429), add polygon support for classifyPoint() ([b56ecc1](https://codeberg.org/thi.ng/umbrella/commit/b56ecc1))
   - refactor plane impl
 - add/update subdivCurve() type support, args & impls ([6233379](https://codeberg.org/thi.ng/umbrella/commit/6233379))
 - update AABB & Rect ctors to clamp size to zero ([7cec7d2](https://codeberg.org/thi.ng/umbrella/commit/7cec7d2))
@@ -264,17 +264,21 @@ and/or version bumps of transitive dependencies.
 - dedupe union() impls ([c1880c8](https://codeberg.org/thi.ng/umbrella/commit/c1880c8))
 - dedupe path impls for scale()/translate() ([b20cb32](https://codeberg.org/thi.ng/umbrella/commit/b20cb32))
 
-### [7.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@7.0.1) (2024-05-09)
+#### 🧪 Tests
+
+- add/update tests ([89cff45](https://codeberg.org/thi.ng/umbrella/commit/89cff45))
+
+### [7.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@7.0.1/packages/geom) (2024-05-09)
 
 #### 🩹 Bug fixes
 
 - update arc() arg defaults, add docs ([cc57a57](https://codeberg.org/thi.ng/umbrella/commit/cc57a57))
 
-# [7.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@7.0.0) (2024-05-08)
+# [7.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@7.0.0/packages/geom) (2024-05-08)
 
 #### 🛑 Breaking changes
 
-- update Path to support sub-paths (holes), update impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([9329d27](https://codeberg.org/thi.ng/umbrella/commit/9329d27))
+- update Path to support sub-paths (holes), update impls ([#464](https://codeberg.org/thi.ng/umbrella/issues/464)) ([9329d27](https://codeberg.org/thi.ng/umbrella/commit/9329d27))
 - BREAKING CHANGE: update path related ctors & functions
   - add `subPaths` argument for Path ctor/factory fn
   - rename `Path.add()` => `Path.addSegments()`
@@ -290,7 +294,7 @@ and/or version bumps of transitive dependencies.
     - translate()
     - transform()
     - transformVertices()
-- update asPolyline(), add support for multiple boundaries ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([0616b96](https://codeberg.org/thi.ng/umbrella/commit/0616b96))
+- update asPolyline(), add support for multiple boundaries ([#464](https://codeberg.org/thi.ng/umbrella/issues/464)) ([0616b96](https://codeberg.org/thi.ng/umbrella/commit/0616b96))
 - BREAKING CHANGE: update asPolygon() to return array of polylines
   - add/update impls for complexpoly & path to produce multiple results
   - update other internal callsites
@@ -319,10 +323,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- initial import ComplexPolygon & impls ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([ded007c](https://codeberg.org/thi.ng/umbrella/commit/ded007c))
+- initial import ComplexPolygon & impls ([#464](https://codeberg.org/thi.ng/umbrella/issues/464)) ([ded007c](https://codeberg.org/thi.ng/umbrella/commit/ded007c))
   - add complexPolygon() factory fn
   - add bounds() & centroid() impls
-- add ops for complex polygons ([#464](https://github.com/thi-ng/umbrella/issues/464)) ([35ce854](https://codeberg.org/thi.ng/umbrella/commit/35ce854))
+- add ops for complex polygons ([#464](https://codeberg.org/thi.ng/umbrella/issues/464)) ([35ce854](https://codeberg.org/thi.ng/umbrella/commit/35ce854))
   - add implementations for:
     - arcLength()
     - area()
@@ -377,13 +381,18 @@ and/or version bumps of transitive dependencies.
   - re-use migrated fn from [@thi.ng/geom-poly-utils](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-poly-utils)
 - update path segment transformations ([88b2c40](https://codeberg.org/thi.ng/umbrella/commit/88b2c40))
 
-### [6.1.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.1.7) (2024-04-20)
+#### 🧪 Tests
+
+- add path tests ([041dc86](https://codeberg.org/thi.ng/umbrella/commit/041dc86))
+- add tests ([4aafa78](https://codeberg.org/thi.ng/umbrella/commit/4aafa78))
+
+### [6.1.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.1.7/packages/geom) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([2d72859](https://codeberg.org/thi.ng/umbrella/commit/2d72859))
 
-## [6.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.1.0) (2024-03-21)
+## [6.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.1.0/packages/geom) (2024-03-21)
 
 #### 🚀 Features
 
@@ -399,33 +408,38 @@ and/or version bumps of transitive dependencies.
   - add line-group impl
   - refactor/simplify ray-group impl
 
-### [6.0.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.6) (2023-12-03)
+### [6.0.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.6/packages/geom) (2023-12-03)
 
 #### 🩹 Bug fixes
 
-- fix [#431](https://github.com/thi-ng/umbrella/issues/431) update Path.withAttribs() impl ([eaad1cd](https://codeberg.org/thi.ng/umbrella/commit/eaad1cd))
+- fix [#431](https://codeberg.org/thi.ng/umbrella/issues/431) update Path.withAttribs() impl ([eaad1cd](https://codeberg.org/thi.ng/umbrella/commit/eaad1cd))
   - keep closed state of new path the same as original
 
-### [6.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.2) (2023-11-09)
+### [6.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.2/packages/geom) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-# [6.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.0) (2023-11-01)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+# [6.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@6.0.0/packages/geom) (2023-11-01)
 
 #### 🛑 Breaking changes
 
 - update tessellate() for groups, update return type ([1bb1752](https://codeberg.org/thi.ng/umbrella/commit/1bb1752))
 - BREAKING CHANGE: update tessellate() for groups, update return type to Iterable
 
-### [5.2.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.2.13) (2023-10-27)
+### [5.2.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.2.13/packages/geom) (2023-10-27)
 
 #### ♻️ Refactoring
 
 - update vector imports ([5884c2b](https://codeberg.org/thi.ng/umbrella/commit/5884c2b))
 
-## [5.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.2.0) (2023-08-29)
+## [5.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.2.0/packages/geom) (2023-08-29)
 
 #### 🚀 Features
 
@@ -440,7 +454,7 @@ and/or version bumps of transitive dependencies.
     - Quadratic
     - Triangle
 
-## [5.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.1.0) (2023-08-06)
+## [5.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.1.0/packages/geom) (2023-08-06)
 
 #### 🚀 Features
 
@@ -449,7 +463,7 @@ and/or version bumps of transitive dependencies.
   - add .add() methods for APC, Group, Polygon, Polyline
   - update Path.add() to accept multiple args
 
-# [5.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.0.0) (2023-04-08)
+# [5.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@5.0.0/packages/geom) (2023-04-08)
 
 #### 🛑 Breaking changes
 
@@ -470,7 +484,7 @@ and/or version bumps of transitive dependencies.
 
 - update inscribedSquare/Hex() args, add attribs ([317f630](https://codeberg.org/thi.ng/umbrella/commit/317f630))
 
-## [4.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.4.0) (2023-03-24)
+## [4.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.4.0/packages/geom) (2023-03-24)
 
 #### 🚀 Features
 
@@ -487,14 +501,14 @@ and/or version bumps of transitive dependencies.
   - re-export aliases for subdivCurve() from [@thi.ng/geom-subdiv-curve](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-subdiv-curve) (as `SUBDIV_XXX`...)
   - re-export aliases for tessellate() from [@thi.ng/geom-tessellate](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/geom-tessellate) (as `TESSELLATE_XXX`...)
 
-## [4.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.3.0) (2023-03-22)
+## [4.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.3.0/packages/geom) (2023-03-22)
 
 #### 🚀 Features
 
 - add splitArclength() ([906a326](https://codeberg.org/thi.ng/umbrella/commit/906a326))
 - add spiral() polyline factory fn ([572e0ef](https://codeberg.org/thi.ng/umbrella/commit/572e0ef))
 
-## [4.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.2.0) (2023-01-10)
+## [4.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom@4.2.0/packages/geom) (2023-01-10)
 
 #### 🚀 Features
 

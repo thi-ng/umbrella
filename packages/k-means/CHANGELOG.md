@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@2.0.0) (2025-06-24)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@2.0.0/packages/k-means) (2025-06-24)
 
 #### 🛑 Breaking changes
 
@@ -25,7 +25,7 @@ and/or version bumps of transitive dependencies.
 
 - add meanCut/medianCut() ([867889d](https://codeberg.org/thi.ng/umbrella/commit/867889d))
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@1.1.0) (2025-06-14)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@1.1.0/packages/k-means) (2025-06-14)
 
 #### 🚀 Features
 
@@ -33,13 +33,13 @@ and/or version bumps of transitive dependencies.
   - add KMeansOpts.exponent
   - update doc strings
 
-### [0.7.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.7.10) (2024-10-05)
+### [0.7.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.7.10/packages/k-means) (2024-10-05)
 
 #### ♻️ Refactoring
 
 - add explicit type casts (TS5.6.2) ([dcbdd60](https://codeberg.org/thi.ng/umbrella/commit/dcbdd60))
 
-## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.7.0) (2024-07-25)
+## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.7.0/packages/k-means) (2024-07-25)
 
 #### 🚀 Features
 
@@ -48,25 +48,30 @@ and/or version bumps of transitive dependencies.
   - add KMeansInit type alias
   - update handling in `kmeans()`
 
-### [0.6.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.89) (2024-06-21)
+### [0.6.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.89/packages/k-means) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [0.6.85](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.85) (2024-04-20)
+### [0.6.85](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.85/packages/k-means) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([5966258](https://codeberg.org/thi.ng/umbrella/commit/5966258))
 
-### [0.6.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.43) (2023-11-09)
+### [0.6.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.43/packages/k-means) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.0) (2023-02-10)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/k-means@0.6.0/packages/k-means) (2023-02-10)
 
 #### 🚀 Features
 
@@ -74,3 +79,7 @@ and/or version bumps of transitive dependencies.
   - use u32 array for internal cluster assignments
   - remove attempt to start new cluster if one became unused
   - update buildClusters to filter out empty
+
+#### 🧪 Tests
+
+- add tests ([196b41f](https://codeberg.org/thi.ng/umbrella/commit/196b41f))

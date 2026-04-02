@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:01Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@1.1.0) (2025-11-19)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@1.1.0/packages/canvas) (2025-11-19)
 
 #### 🚀 Features
 
@@ -19,13 +19,13 @@ and/or version bumps of transitive dependencies.
   - store orig size & DPR in data attributes
   - update docstring
 
-### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@1.0.2) (2025-01-14)
+### [1.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@1.0.2/packages/canvas) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.5.0) (2024-08-10)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.5.0/packages/canvas) (2024-08-10)
 
 #### 🚀 Features
 
@@ -33,26 +33,26 @@ and/or version bumps of transitive dependencies.
   - update readmes
   - cc @nkint :)
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.4.0) (2024-08-01)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.4.0/packages/canvas) (2024-08-01)
 
 #### 🚀 Features
 
 - add offscreenCanvas2d() & OffscreenCanvasContext ([ec59f5c](https://codeberg.org/thi.ng/umbrella/commit/ec59f5c))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.3.0) (2024-08-01)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.3.0/packages/canvas) (2024-08-01)
 
 #### 🚀 Features
 
 - extend CanvasContext and related functions to support OffscreenCanvas for better performance in web workers ([56d0985](https://codeberg.org/thi.ng/umbrella/commit/56d0985))
   refactor(pixel): update canvas handling in pixel module to accommodate OffscreenCanvas for improved rendering capabilities
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.2.0) (2024-01-26)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.2.0/packages/canvas) (2024-01-26)
 
 #### 🚀 Features
 
 - add imageCanvas() ([2d6a988](https://codeberg.org/thi.ng/umbrella/commit/2d6a988))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.1.0) (2023-12-19)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/canvas@0.1.0/packages/canvas) (2023-12-19)
 
 #### 🚀 Features
 

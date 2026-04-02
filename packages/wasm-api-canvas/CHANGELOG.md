@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,31 +11,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.52](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.52) (2025-09-01)
+### [1.0.52](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.52/packages/wasm-api-canvas) (2025-09-01)
 
 #### ♻️ Refactoring
 
 - internal restructure of generated types ([245f919](https://codeberg.org/thi.ng/umbrella/commit/245f919))
 
-### [1.0.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.34) (2025-04-06)
+### [1.0.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.34/packages/wasm-api-canvas) (2025-04-06)
 
 #### 🩹 Bug fixes
 
 - fix `putPixelRegionGray()` ([c5b198d](https://codeberg.org/thi.ng/umbrella/commit/c5b198d))
 
-### [1.0.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.10) (2024-11-10)
+### [1.0.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.10/packages/wasm-api-canvas) (2024-11-10)
 
 #### ♻️ Refactoring
 
 - regenerate typescript bindings ([07e939a](https://codeberg.org/thi.ng/umbrella/commit/07e939a))
 
-### [1.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.9) (2024-11-09)
+### [1.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.9/packages/wasm-api-canvas) (2024-11-09)
 
 #### ♻️ Refactoring
 
 - regenerate typescript sources ([9055e0e](https://codeberg.org/thi.ng/umbrella/commit/9055e0e))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.0) (2024-08-18)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@1.0.0/packages/wasm-api-canvas) (2024-08-18)
 
 #### 🛑 Breaking changes
 
@@ -48,19 +48,24 @@ and/or version bumps of transitive dependencies.
 - regen types, minor restructure ([27655a3](https://codeberg.org/thi.ng/umbrella/commit/27655a3))
 - minor update dependency lookup ([d10f2a5](https://codeberg.org/thi.ng/umbrella/commit/d10f2a5))
 
-### [0.1.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@0.1.41) (2023-11-09)
+### [0.1.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@0.1.41/packages/wasm-api-canvas) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.1.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@0.1.12) (2023-03-27)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.1.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@0.1.12/packages/wasm-api-canvas) (2023-03-27)
 
 #### ♻️ Refactoring
 
 - update generated imports ([d149d62](https://codeberg.org/thi.ng/umbrella/commit/d149d62))
 
-### [0.1.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@0.1.4) (2023-02-05)
+### [0.1.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-canvas@0.1.4/packages/wasm-api-canvas) (2023-02-05)
 
 #### ♻️ Refactoring
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,32 +11,37 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.2.112](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.112) (2025-12-03)
+### [3.2.112](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.112/packages/interceptors) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [3.2.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.59) (2024-06-21)
+### [3.2.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.59/packages/interceptors) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [3.2.56](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.56) (2024-04-20)
+### [3.2.56](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.56/packages/interceptors) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([d051405](https://codeberg.org/thi.ng/umbrella/commit/d051405))
 
-### [3.2.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.42) (2024-02-16)
+### [3.2.42](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.42/packages/interceptors) (2024-02-16)
 
 #### ♻️ Refactoring
 
 - update LOGGER handling ([df5c874](https://codeberg.org/thi.ng/umbrella/commit/df5c874))
 
-### [3.2.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.24) (2023-11-09)
+### [3.2.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/interceptors@3.2.24/packages/interceptors) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))

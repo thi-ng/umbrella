@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.0.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@2.0.20) (2025-12-03)
+### [2.0.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@2.0.20/packages/pixel-analysis) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@2.0.0) (2025-07-30)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@2.0.0/packages/pixel-analysis) (2025-07-30)
 
 #### 🛑 Breaking changes
 
@@ -30,13 +30,17 @@ and/or version bumps of transitive dependencies.
   - rename `computeHueRange()` => `hueRange()`
   - update deps
 
-### [1.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.1.1) (2025-07-27)
+#### 🧪 Tests
+
+- fix tests ([c114fed](https://codeberg.org/thi.ng/umbrella/commit/c114fed))
+
+### [1.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.1.1/packages/pixel-analysis) (2025-07-27)
 
 #### 🩹 Bug fixes
 
 - update/fix weightedLuma result ([19d818c](https://codeberg.org/thi.ng/umbrella/commit/19d818c))
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.1.0) (2025-07-27)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.1.0/packages/pixel-analysis) (2025-07-27)
 
 #### 🚀 Features
 
@@ -51,7 +55,11 @@ and/or version bumps of transitive dependencies.
   - add `computeHueRange()`
 - update `analyzeFeatures()`, add `FeatureAnalysisResult` ([e276eb8](https://codeberg.org/thi.ng/umbrella/commit/e276eb8))
 
-### [1.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.0.1) (2025-07-24)
+#### 🧪 Tests
+
+- add/ tests ([0a6f056](https://codeberg.org/thi.ng/umbrella/commit/0a6f056))
+
+### [1.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.0.1/packages/pixel-analysis) (2025-07-24)
 
 #### 🩹 Bug fixes
 
@@ -60,7 +68,7 @@ and/or version bumps of transitive dependencies.
 - update hue standard deviation ([9b0ea02](https://codeberg.org/thi.ng/umbrella/commit/9b0ea02))
   - return normalized hue SD (not in radians)
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.0.0) (2025-07-24)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@1.0.0/packages/pixel-analysis) (2025-07-24)
 
 #### 🛑 Breaking changes
 
@@ -77,13 +85,17 @@ and/or version bumps of transitive dependencies.
   - add `TemperatureResult`
   - update `analyzeColors()`, `derivedColorsResult()`
 
-### [0.4.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.4.1) (2025-07-15)
+#### 🧪 Tests
+
+- add/update tests ([12b3db3](https://codeberg.org/thi.ng/umbrella/commit/12b3db3))
+
+### [0.4.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.4.1/packages/pixel-analysis) (2025-07-15)
 
 #### ♻️ Refactoring
 
 - extract `derivedColorsResults()` ([c8fb4ed](https://codeberg.org/thi.ng/umbrella/commit/c8fb4ed))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.4.0) (2025-07-14)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.4.0/packages/pixel-analysis) (2025-07-14)
 
 #### 🚀 Features
 
@@ -91,14 +103,14 @@ and/or version bumps of transitive dependencies.
   - add `AnalysisOpts.prec`
   - update `analyzeColors()`
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.3.0) (2025-06-24)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.3.0/packages/pixel-analysis) (2025-06-24)
 
 #### 🚀 Features
 
 - update dominant color extraction ([58c7ea5](https://codeberg.org/thi.ng/umbrella/commit/58c7ea5))
   - add `AnalysisOpts.dominantFn`
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.2.0) (2025-06-02)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.2.0/packages/pixel-analysis) (2025-06-02)
 
 #### 🚀 Features
 
@@ -107,7 +119,7 @@ and/or version bumps of transitive dependencies.
   - update args to accept int buffers
   - add tests
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.1.0) (2025-05-28)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/pixel-analysis@0.1.0/packages/pixel-analysis) (2025-05-28)
 
 #### 🚀 Features
 

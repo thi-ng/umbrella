@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,15 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.1.122](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream-csp@3.1.122) (2024-04-25)
+### [3.1.122](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream-csp@3.1.122/packages/rstream-csp) (2024-04-25)
 
 #### ♻️ Refactoring
 
 - minor internal update to reflect new [@thi.ng/csp](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/csp) API ([bbb33c3](https://codeberg.org/thi.ng/umbrella/commit/bbb33c3))
   - update tests
 
-### [3.1.80](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream-csp@3.1.80) (2023-11-09)
+### [3.1.80](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream-csp@3.1.80/packages/rstream-csp) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))

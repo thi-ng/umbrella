@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.7.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.7.14) (2025-01-10)
+### [2.7.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.7.14/packages/hiccup-html) (2025-01-10)
 
 #### 🩹 Bug fixes
 
 - update `InputNumericAttribs` ([68a49aa](https://codeberg.org/thi.ng/umbrella/commit/68a49aa))
   - allow `any` as `step` value
 
-## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.7.0) (2024-07-08)
+## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.7.0/packages/hiccup-html) (2024-07-08)
 
 #### 🚀 Features
 
@@ -31,13 +31,13 @@ and/or version bumps of transitive dependencies.
   - add: menu(), object(), output(), search()
   - add new element specific attrib types
 
-### [2.6.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.6.3) (2024-05-08)
+### [2.6.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.6.3/packages/hiccup-html) (2024-05-08)
 
 #### 🩹 Bug fixes
 
 - update IFrameAttribs.sandbox ([b7d4cb8](https://codeberg.org/thi.ng/umbrella/commit/b7d4cb8))
 
-## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.6.0) (2024-04-20)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.6.0/packages/hiccup-html) (2024-04-20)
 
 #### 🚀 Features
 
@@ -47,33 +47,44 @@ and/or version bumps of transitive dependencies.
 
 - update type usage ([ac691f8](https://codeberg.org/thi.ng/umbrella/commit/ac691f8))
 
-## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.5.0) (2024-03-27)
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.5.0/packages/hiccup-html) (2024-03-27)
 
 #### 🚀 Features
 
 - add inputReset() & inputSubmit() ([2b9cde0](https://codeberg.org/thi.ng/umbrella/commit/2b9cde0))
 
-## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.4.0) (2024-01-23)
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.4.0/packages/hiccup-html) (2024-01-23)
 
 #### 🚀 Features
 
 - add slot() element factory ([c7612a4](https://codeberg.org/thi.ng/umbrella/commit/c7612a4))
 
-## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.3.0) (2023-12-09)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.3.0/packages/hiccup-html) (2023-12-09)
 
 #### 🚀 Features
 
 - update Attribs.class type, allow string array ([e82c3b4](https://codeberg.org/thi.ng/umbrella/commit/e82c3b4))
 
-### [2.2.33](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.2.33) (2023-11-09)
+### [2.2.33](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.2.33/packages/hiccup-html) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [2.2.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.2.21) (2023-08-22)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [2.2.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.2.21/packages/hiccup-html) (2023-08-22)
 
 #### 🩹 Bug fixes
 
 - update height handling in metaViewport() ([f142348](https://codeberg.org/thi.ng/umbrella/commit/f142348))
   - add ViewportOpts docstrings
+
+### [2.2.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-html@2.2.12/packages/hiccup-html) (2023-03-27)
+
+#### 🧪 Tests
+
+- update all tests (mainly imports) ([63a85f9](https://codeberg.org/thi.ng/umbrella/commit/63a85f9))

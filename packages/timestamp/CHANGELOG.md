@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,14 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.1.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/timestamp@1.1.16) (2025-07-20)
+### [1.1.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/timestamp@1.1.16/packages/timestamp) (2025-07-20)
 
 #### 🩹 Bug fixes
 
-- update timeDiff() type coercions, add tests, fix [#536](https://github.com/thi-ng/umbrella/issues/536) ([c426413](https://codeberg.org/thi.ng/umbrella/commit/c426413))
+- update timeDiff() type coercions, add tests, fix [#536](https://codeberg.org/thi.ng/umbrella/issues/536) ([c426413](https://codeberg.org/thi.ng/umbrella/commit/c426413))
   - also fixes downstream issue with [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/transducers) partitionTime()
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/timestamp@1.1.0) (2024-12-27)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/timestamp@1.1.0/packages/timestamp) (2024-12-27)
 
 #### 🚀 Features
 

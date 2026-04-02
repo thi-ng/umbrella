@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.9) (2025-12-03)
+### [2.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.9/packages/trie) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.0) (2025-08-11)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.0/packages/trie) (2025-08-11)
 
 #### 🛑 Breaking changes
 
@@ -38,15 +38,15 @@ and/or version bumps of transitive dependencies.
 - update internals ([065cc27](https://codeberg.org/thi.ng/umbrella/commit/065cc27))
   - remove obsolete size/count in MultiTrie
 
-### [1.1.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@1.1.10) (2025-01-14)
+### [1.1.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@1.1.10/packages/trie) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@1.1.0) (2024-07-22)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@1.1.0/packages/trie) (2024-07-22)
 
 #### 🚀 Features
 
-- import as new package ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([a2007af](https://codeberg.org/thi.ng/umbrella/commit/a2007af))
+- import as new package ([#486](https://codeberg.org/thi.ng/umbrella/issues/486)) ([a2007af](https://codeberg.org/thi.ng/umbrella/commit/a2007af))
   - extract `MultiTrie` & `TrieMap` from [@thi.ng/associative](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/associative)

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.3.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.59) (2025-12-03)
+### [2.3.59](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.59/packages/cache) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [2.3.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.12) (2024-10-31)
+### [2.3.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.12/packages/cache) (2024-10-31)
 
 #### ♻️ Refactoring
 
 - add MapLike interface to loosen Map impls ([603c76c](https://codeberg.org/thi.ng/umbrella/commit/603c76c))
 
-## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.0) (2024-07-28)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.3.0/packages/cache) (2024-07-28)
 
 #### 🚀 Features
 
@@ -33,19 +33,19 @@ and/or version bumps of transitive dependencies.
   - add/update docs
   - update readme
 
-### [2.2.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.11) (2024-04-20)
+### [2.2.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.11/packages/cache) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([a3833d0](https://codeberg.org/thi.ng/umbrella/commit/a3833d0))
 
-### [2.2.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.1) (2024-03-11)
+### [2.2.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.1/packages/cache) (2024-03-11)
 
 #### 🩹 Bug fixes
 
 - fix regression, all ctor args optional again ([54e6b37](https://codeberg.org/thi.ng/umbrella/commit/54e6b37))
 
-## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.0) (2024-03-11)
+## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.2.0/packages/cache) (2024-03-11)
 
 #### 🚀 Features
 
@@ -58,20 +58,25 @@ and/or version bumps of transitive dependencies.
   - add tests
   - add docs
 
-### [2.1.106](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.106) (2024-03-11)
+### [2.1.106](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.106/packages/cache) (2024-03-11)
 
 #### 🩹 Bug fixes
 
 - fix ICache.get() return type, add docs ([d9f98f7](https://codeberg.org/thi.ng/umbrella/commit/d9f98f7))
 
-### [2.1.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.89) (2024-01-26)
+### [2.1.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.89/packages/cache) (2024-01-26)
 
 #### 🩹 Bug fixes
 
 - attempt to add element bigger than "maxsize" blocks addition of any new elements to the cache ([3c855ef](https://codeberg.org/thi.ng/umbrella/commit/3c855ef))
 
-### [2.1.76](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.76) (2023-11-09)
+### [2.1.76](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/cache@2.1.76/packages/cache) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))

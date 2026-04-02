@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [7.1.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.1.21) (2025-12-03)
+### [7.1.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.1.21/packages/associative) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [7.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.1.0) (2025-07-10)
+## [7.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.1.0/packages/associative) (2025-07-10)
 
 #### 🚀 Features
 
@@ -28,38 +28,38 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update all Map/Set private state and `toString()` impls ([#505](https://github.com/thi-ng/umbrella/issues/505)) ([aef32a9](https://codeberg.org/thi.ng/umbrella/commit/aef32a9))
+- update all Map/Set private state and `toString()` impls ([#505](https://codeberg.org/thi.ng/umbrella/issues/505)) ([aef32a9](https://codeberg.org/thi.ng/umbrella/commit/aef32a9))
   - use private class properties instead of WeakMap to strore internal state
   - replace `__inspectable` with `__tostringMixin`
   - update code examples
 
-### [7.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.0.2) (2024-07-25)
+### [7.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.0.2/packages/associative) (2024-07-25)
 
 #### 🩹 Bug fixes
 
 - add explicit return type for `first()` ([8a53ee0](https://codeberg.org/thi.ng/umbrella/commit/8a53ee0))
 
-# [7.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.0.0) (2024-07-22)
+# [7.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@7.0.0/packages/associative) (2024-07-22)
 
 #### 🛑 Breaking changes
 
-- restructure & split-up package ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([8e59a63](https://codeberg.org/thi.ng/umbrella/commit/8e59a63))
+- restructure & split-up package ([#486](https://codeberg.org/thi.ng/umbrella/issues/486)) ([8e59a63](https://codeberg.org/thi.ng/umbrella/commit/8e59a63))
 - BREAKING CHANGE: restructure & split-up package, update readme
   - remove obsolete source files
   - update pkg exports
-- migrate/remove SortedMap/Set, sortedObject() ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([9f4143a](https://codeberg.org/thi.ng/umbrella/commit/9f4143a))
+- migrate/remove SortedMap/Set, sortedObject() ([#486](https://codeberg.org/thi.ng/umbrella/issues/486)) ([9f4143a](https://codeberg.org/thi.ng/umbrella/commit/9f4143a))
 - BREAKING CHANGE: migrate/remove SortedMap/Set, sortedObject()
   - migrate `SortedMap`/`SortedSet` to [@thi.ng/sorted-map](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/sorted-map) pkg
   - migrate `sortedObject()` to [@thi.ng/object-utils](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/object-utils)
   - remove obsolete source files
   - remove obsolete deps
   - update readme
-- migrate/remove sparse set features ([#486](https://github.com/thi-ng/umbrella/issues/486)) ([db2957c](https://codeberg.org/thi.ng/umbrella/commit/db2957c))
+- migrate/remove sparse set features ([#486](https://codeberg.org/thi.ng/umbrella/issues/486)) ([db2957c](https://codeberg.org/thi.ng/umbrella/commit/db2957c))
 - BREAKING CHANGE: migrate sparse set features to [@thi.ng/sparse-set](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/sparse-set) pkg
   - remove obsolete files
   - update pkg
 
-### [6.3.61](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.61) (2024-06-21)
+### [6.3.61](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.61/packages/associative) (2024-06-21)
 
 #### ♻️ Refactoring
 
@@ -67,31 +67,35 @@ and/or version bumps of transitive dependencies.
 - dedupe BidirIndex deletion & iteration, update tests ([3c11a44](https://codeberg.org/thi.ng/umbrella/commit/3c11a44))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [6.3.57](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.57) (2024-04-20)
+### [6.3.57](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.57/packages/associative) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([6274bf1](https://codeberg.org/thi.ng/umbrella/commit/6274bf1))
 
-### [6.3.55](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.55) (2024-04-08)
+### [6.3.55](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.55/packages/associative) (2024-04-08)
 
 #### ♻️ Refactoring
 
 - update reducer handling due to updates in [@thi.ng/transducers](https://codeberg.org/thi.ng/umbrella/src/branch/main/packages/transducers) pkg ([2c7a18a](https://codeberg.org/thi.ng/umbrella/commit/2c7a18a))
 
-### [6.3.18](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.18) (2023-11-09)
+### [6.3.18](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.18/packages/associative) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [6.3.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.2) (2023-08-27)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+
+### [6.3.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.2/packages/associative) (2023-08-27)
 
 #### ♻️ Refactoring
 
 - update internal types (TS 5.2 update) ([3f686d0](https://codeberg.org/thi.ng/umbrella/commit/3f686d0))
 
-## [6.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.0) (2023-08-22)
+## [6.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.3.0/packages/associative) (2023-08-22)
 
 #### 🚀 Features
 
@@ -102,29 +106,29 @@ and/or version bumps of transitive dependencies.
 
 - update arg types and generics for selectKeys()/withoutKeys() ([4fa9ea1](https://codeberg.org/thi.ng/umbrella/commit/4fa9ea1))
 
-### [6.2.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.2.43) (2023-08-12)
+### [6.2.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.2.43/packages/associative) (2023-08-12)
 
 #### ♻️ Refactoring
 
 - update .probability() call sites in various pkgs ([c8c8141](https://codeberg.org/thi.ng/umbrella/commit/c8c8141))
 
-### [6.2.25](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.2.25) (2023-02-10)
+### [6.2.25](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.2.25/packages/associative) (2023-02-10)
 
 #### 🩹 Bug fixes
 
-- [#375](https://github.com/thi-ng/umbrella/issues/375) update .set() for existing keys ([4c1da10](https://codeberg.org/thi.ng/umbrella/commit/4c1da10))
+- [#375](https://codeberg.org/thi.ng/umbrella/issues/375) update .set() for existing keys ([4c1da10](https://codeberg.org/thi.ng/umbrella/commit/4c1da10))
   - when updating existing keys, add missing value propagation
     for intermediate nodes
   - add tests
-- [#375](https://github.com/thi-ng/umbrella/issues/375) fix SortedMap.delete(), add fuzz test ([ccbdfeb](https://codeberg.org/thi.ng/umbrella/commit/ccbdfeb))
+- [#375](https://codeberg.org/thi.ng/umbrella/issues/375) fix SortedMap.delete(), add fuzz test ([ccbdfeb](https://codeberg.org/thi.ng/umbrella/commit/ccbdfeb))
   - fix issue which caused lane corruption and detached heads
   - add fuzz test repeatedly setting/deleting keys
 
-### [6.2.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.2.24) (2023-02-05)
+### [6.2.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/associative@6.2.24/packages/associative) (2023-02-05)
 
 #### 🩹 Bug fixes
 
-- [#375](https://github.com/thi-ng/umbrella/issues/375) major update/rewrite SortedMap impl ([d5f793a](https://codeberg.org/thi.ng/umbrella/commit/d5f793a))
+- [#375](https://codeberg.org/thi.ng/umbrella/issues/375) major update/rewrite SortedMap impl ([d5f793a](https://codeberg.org/thi.ng/umbrella/commit/d5f793a))
   - update Node impl to use 4-way linkage
   - simplify .set()/.delete() impls
   - remove obsolete SortedMapOpts.capacity

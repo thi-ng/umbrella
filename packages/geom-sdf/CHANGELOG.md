@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:01Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,32 +11,32 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.68](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.68) (2026-02-07)
+### [1.0.68](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.68/packages/geom-sdf) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [1.0.63](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.63) (2025-12-03)
+### [1.0.63](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.63/packages/geom-sdf) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [1.0.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.15) (2025-03-10)
+### [1.0.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.15/packages/geom-sdf) (2025-03-10)
 
 #### 🩹 Bug fixes
 
 - update return types (TS5.8.2) ([541db4c](https://codeberg.org/thi.ng/umbrella/commit/541db4c))
 
-### [0.4.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.4.2) (2024-06-21)
+### [0.4.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.4.2/packages/geom-sdf) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - remove geom-api dep, update imports ([9b6464d](https://codeberg.org/thi.ng/umbrella/commit/9b6464d))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.4.0) (2024-05-08)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.4.0/packages/geom-sdf) (2024-05-08)
 
 #### 🚀 Features
 
@@ -50,7 +50,7 @@ and/or version bumps of transitive dependencies.
 - add/update asSDF() impls for ComplexPoly & Path ([3337a0e](https://codeberg.org/thi.ng/umbrella/commit/3337a0e))
   - update docs
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.3.0) (2024-01-23)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.3.0/packages/geom-sdf) (2024-01-23)
 
 #### 🚀 Features
 
@@ -61,13 +61,18 @@ and/or version bumps of transitive dependencies.
   - update withSDFAttribs()
   - add/update docstrings
 
-### [0.2.81](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.2.81) (2023-11-09)
+### [0.2.81](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.2.81/packages/geom-sdf) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.2.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.2.69) (2023-09-25)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.2.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@0.2.69/packages/geom-sdf) (2023-09-25)
 
 #### 🩹 Bug fixes
 

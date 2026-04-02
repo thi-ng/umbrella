@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.7.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.74) (2025-12-03)
+### [2.7.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.74/packages/hiccup-css) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [2.7.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.10) (2024-06-21)
+### [2.7.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.10/packages/hiccup-css) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.0) (2024-03-21)
+## [2.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.0/packages/hiccup-css) (2024-03-21)
 
 #### 🚀 Features
 
@@ -42,13 +42,13 @@ and/or version bumps of transitive dependencies.
 - minor updates ([ac9032d](https://codeberg.org/thi.ng/umbrella/commit/ac9032d))
   - internal updates animation() & withScope()
 
-## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.6.0) (2024-02-12)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.6.0/packages/hiccup-css) (2024-02-12)
 
 #### 🚀 Features
 
 - add more unit formatters ([36ab478](https://codeberg.org/thi.ng/umbrella/commit/36ab478))
 
-## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.5.0) (2024-02-06)
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.5.0/packages/hiccup-css) (2024-02-06)
 
 #### 🚀 Features
 
@@ -56,13 +56,13 @@ and/or version bumps of transitive dependencies.
   - update to support more than just from/to keyframe args
   - if given more space them equally across [0,100] interval
 
-## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.4.0) (2024-01-23)
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.4.0/packages/hiccup-css) (2024-01-23)
 
 #### 🚀 Features
 
 - add appendStyleSheet(), update injectStyleSheet() ([1eccb38](https://codeberg.org/thi.ng/umbrella/commit/1eccb38))
 
-### [2.3.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.3.4) (2023-12-22)
+### [2.3.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.3.4/packages/hiccup-css) (2023-12-22)
 
 #### 🩹 Bug fixes
 
@@ -70,7 +70,7 @@ and/or version bumps of transitive dependencies.
   - wrap sub-query in parens
   - update tests
 
-## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.3.0) (2023-12-18)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.3.0/packages/hiccup-css) (2023-12-18)
 
 #### 🚀 Features
 
@@ -81,13 +81,18 @@ and/or version bumps of transitive dependencies.
 - update conditional formatting ([f126005](https://codeberg.org/thi.ng/umbrella/commit/f126005))
   - add tests
 
-### [2.2.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.2.14) (2023-11-09)
+### [2.2.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.2.14/packages/hiccup-css) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.2.0) (2023-09-02)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+## [2.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.2.0/packages/hiccup-css) (2023-09-02)
 
 #### 🚀 Features
 
@@ -105,18 +110,18 @@ and/or version bumps of transitive dependencies.
   - update AnimationOpts
   - use Keyframe type for args
 
-### [2.1.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.1.39) (2023-02-17)
+### [2.1.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.1.39/packages/hiccup-css) (2023-02-17)
 
 #### 🩹 Bug fixes
 
-- update px() & ms() units [#383](https://github.com/thi-ng/umbrella/issues/383) ([e590d3f](https://codeberg.org/thi.ng/umbrella/commit/e590d3f))
+- update px() & ms() units [#383](https://codeberg.org/thi.ng/umbrella/issues/383) ([e590d3f](https://codeberg.org/thi.ng/umbrella/commit/e590d3f))
   - remove pixel rounding
   - use signed flooring for ms()
 
-### [2.1.37](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.1.37) (2023-02-10)
+### [2.1.37](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.1.37/packages/hiccup-css) (2023-02-10)
 
 #### 🩹 Bug fixes
 
 - allow negative values for px ([340d542](https://codeberg.org/thi.ng/umbrella/commit/340d542))
   Swap use of unsigned shift for OR `0`
-  Fixes issue [#383](https://github.com/thi-ng/umbrella/issues/383)
+  Fixes issue [#383](https://codeberg.org/thi.ng/umbrella/issues/383)

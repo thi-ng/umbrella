@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,32 +11,39 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [4.7.102](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.102) (2026-02-07)
+### [4.7.102](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.102/packages/dsp) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [4.7.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.34) (2024-06-21)
+### [4.7.34](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.34/packages/dsp) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [4.7.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.30) (2024-04-20)
+### [4.7.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.30/packages/dsp) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([86be0c3](https://codeberg.org/thi.ng/umbrella/commit/86be0c3))
 
-## [4.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.0) (2023-12-28)
+## [4.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.7.0/packages/dsp) (2023-12-28)
 
 #### 🚀 Features
 
 - add squareSin() oscillator ([f7f1b1a](https://codeberg.org/thi.ng/umbrella/commit/f7f1b1a))
 
-## [4.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.6.0) (2023-09-28)
+### [4.6.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.6.11/packages/dsp) (2023-11-09)
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+## [4.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.6.0/packages/dsp) (2023-09-28)
 
 #### 🚀 Features
 
@@ -54,27 +61,31 @@ and/or version bumps of transitive dependencies.
 
 - simplify pipe() to reuse serial() ([90910bc](https://codeberg.org/thi.ng/umbrella/commit/90910bc))
 
-## [4.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.5.0) (2023-09-15)
+#### 🧪 Tests
+
+- add delay tests ([2db3d2d](https://codeberg.org/thi.ng/umbrella/commit/2db3d2d))
+
+## [4.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.5.0/packages/dsp) (2023-09-15)
 
 #### 🚀 Features
 
 - update saw/squareAdditive() ([d11488c](https://codeberg.org/thi.ng/umbrella/commit/d11488c))
   - add opt arg to disable Gibbs-effect handling
 
-## [4.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.4.0) (2023-08-24)
+## [4.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.4.0/packages/dsp) (2023-08-24)
 
 #### 🚀 Features
 
 - update modOsc() fmod arg type ([06b0e38](https://codeberg.org/thi.ng/umbrella/commit/06b0e38))
   - allow numbers as constant freq offset
 
-### [4.3.17](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.3.17) (2023-08-04)
+### [4.3.17](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.3.17/packages/dsp) (2023-08-04)
 
 #### ♻️ Refactoring
 
 - update `identity` usage in various pkgs ([b6db053](https://codeberg.org/thi.ng/umbrella/commit/b6db053))
 
-## [4.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.3.0) (2023-01-10)
+## [4.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/dsp@4.3.0/packages/dsp) (2023-01-10)
 
 #### 🚀 Features
 

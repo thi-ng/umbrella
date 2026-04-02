@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-io-tiff",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Basic TIFF image format support for @thi.ng/pixel",
 	"type": "module",
 	"module": "./index.js",
@@ -40,10 +40,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.17",
-		"@thi.ng/binary": "^3.6.6",
-		"@thi.ng/errors": "^2.6.6",
-		"@thi.ng/pixel": "^7.5.26"
+		"@thi.ng/api": "^8.12.18",
+		"@thi.ng/binary": "^3.6.7",
+		"@thi.ng/errors": "^2.6.7",
+		"@thi.ng/pixel": "^7.5.27"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

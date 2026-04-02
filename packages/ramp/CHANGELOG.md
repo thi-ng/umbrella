@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,16 +11,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [3.3.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.3.12) (2024-12-13)
+### [3.3.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.3.12/packages/ramp) (2024-12-13)
 
 #### 🩹 Bug fixes
 
-- fix [#494](https://github.com/thi-ng/umbrella/issues/494), update time index search ([39a504b](https://codeberg.org/thi.ng/umbrella/commit/39a504b))
+- fix [#494](https://codeberg.org/thi.ng/umbrella/issues/494), update time index search ([39a504b](https://codeberg.org/thi.ng/umbrella/commit/39a504b))
   - update `Ramp.timeIndex()`
   - add tests
   - thanks to @robertoranon for reporting
 
-## [3.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.3.0) (2024-09-05)
+## [3.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.3.0/packages/ramp) (2024-09-05)
 
 #### 🚀 Features
 
@@ -29,13 +29,13 @@ and/or version bumps of transitive dependencies.
   - add `EASING_N` / `EASING_V`
   - update pkg exports
 
-## [3.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.2.0) (2024-08-28)
+## [3.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.2.0/packages/ramp) (2024-08-28)
 
 #### 🚀 Features
 
 - add IRamp.removeStopAtIndex() ([05c965f](https://codeberg.org/thi.ng/umbrella/commit/05c965f))
 
-### [3.1.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.1.24) (2024-06-21)
+### [3.1.24](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.1.24/packages/ramp) (2024-06-21)
 
 #### ♻️ Refactoring
 
@@ -44,7 +44,7 @@ and/or version bumps of transitive dependencies.
   - update Group.samples() & Ramp.samples()
 - dedupe nested() min/max impls ([02e1479](https://codeberg.org/thi.ng/umbrella/commit/02e1479))
 
-## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.1.0) (2024-02-19)
+## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.1.0/packages/ramp) (2024-02-19)
 
 #### 🚀 Features
 
@@ -54,7 +54,7 @@ and/or version bumps of transitive dependencies.
   - update docs
   - update pkg exports
 
-# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.0.0) (2024-02-12)
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@3.0.0/packages/ramp) (2024-02-12)
 
 #### 🛑 Breaking changes
 
@@ -84,8 +84,13 @@ and/or version bumps of transitive dependencies.
   - extract IReadonlyRamp, update IRamp
   - update/fix IRamp.addStopAt() to .setStopAt()
 
-### [2.1.83](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@2.1.83) (2023-11-09)
+### [2.1.83](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/ramp@2.1.83/packages/ramp) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
+
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))

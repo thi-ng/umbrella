@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,31 +11,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [6.9.95](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.95) (2026-02-07)
+### [6.9.95](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.95/packages/webgl) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [6.9.90](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.90) (2025-12-03)
+### [6.9.90](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.90/packages/webgl) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [6.9.88](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.88) (2025-11-25)
+### [6.9.88](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.88/packages/webgl) (2025-11-25)
 
 #### ♻️ Refactoring
 
 - update `compileModel()` to also accept array of model specs ([bf43a0c](https://codeberg.org/thi.ng/umbrella/commit/bf43a0c))
 
-### [6.9.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.30) (2025-01-14)
+### [6.9.30](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.30/packages/webgl) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [6.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.0) (2024-06-21)
+## [6.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.9.0/packages/webgl) (2024-06-21)
 
 #### 🚀 Features
 
@@ -50,13 +50,13 @@ and/or version bumps of transitive dependencies.
 
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [6.8.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.8.12) (2024-04-20)
+### [6.8.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.8.12/packages/webgl) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([f584c7c](https://codeberg.org/thi.ng/umbrella/commit/f584c7c))
 
-## [6.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.8.0) (2024-03-09)
+## [6.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.8.0/packages/webgl) (2024-03-09)
 
 #### 🚀 Features
 
@@ -66,7 +66,7 @@ and/or version bumps of transitive dependencies.
 
 - update readPixels() args ([458e7ff](https://codeberg.org/thi.ng/umbrella/commit/458e7ff))
 
-## [6.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.7.0) (2024-03-06)
+## [6.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.7.0/packages/webgl) (2024-03-06)
 
 #### 🚀 Features
 
@@ -76,57 +76,62 @@ and/or version bumps of transitive dependencies.
   - update texture & shader init
   - update MultipassOpts
 
-### [6.6.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.32) (2024-02-22)
+### [6.6.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.32/packages/webgl) (2024-02-22)
 
 #### ♻️ Refactoring
 
 - update object destructuring in all pkgs & examples ([f36aeb0](https://codeberg.org/thi.ng/umbrella/commit/f36aeb0))
 
-### [6.6.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.28) (2024-02-16)
+### [6.6.28](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.28/packages/webgl) (2024-02-16)
 
 #### ♻️ Refactoring
 
 - update LOGGER handling ([744ebed](https://codeberg.org/thi.ng/umbrella/commit/744ebed))
 
-### [6.6.26](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.26) (2024-02-06)
+### [6.6.26](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.26/packages/webgl) (2024-02-06)
 
 #### ♻️ Refactoring
 
 - use shader type consts ([e9f8c4c](https://codeberg.org/thi.ng/umbrella/commit/e9f8c4c))
 
-### [6.6.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.6) (2023-11-09)
+### [6.6.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.6/packages/webgl) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [6.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.0) (2023-10-25)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+## [6.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.6.0/packages/webgl) (2023-10-25)
 
 #### 🚀 Features
 
 - update DefShaderOpts & defShader() ([800318f](https://codeberg.org/thi.ng/umbrella/commit/800318f))
   - add `logger` option to use temp. logger for compiled GLSL output
 
-## [6.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.5.0) (2023-09-19)
+## [6.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.5.0/packages/webgl) (2023-09-19)
 
 #### 🚀 Features
 
 - update clearCanvas(), add defaultViewport() ([a7b47a2](https://codeberg.org/thi.ng/umbrella/commit/a7b47a2))
 
-### [6.4.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.4.20) (2023-08-31)
+### [6.4.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.4.20/packages/webgl) (2023-08-31)
 
 #### ♻️ Refactoring
 
 - update PassUniforms ([e79ae16](https://codeberg.org/thi.ng/umbrella/commit/e79ae16))
   - allow `resolution` uniform to also be ivec2/uvec2
 
-### [6.4.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.4.6) (2023-06-09)
+### [6.4.6](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.4.6/packages/webgl) (2023-06-09)
 
 #### 🩹 Bug fixes
 
 - fix arg types for defBuffer()/compileAttribPool() ([71a9e16](https://codeberg.org/thi.ng/umbrella/commit/71a9e16))
 
-## [6.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.4.0) (2023-04-19)
+## [6.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.4.0/packages/webgl) (2023-04-19)
 
 #### 🚀 Features
 
@@ -137,7 +142,7 @@ and/or version bumps of transitive dependencies.
   - add `resize` handler to result which can later be called to
     resize the canvas (with DPR) and update the GL viewport
 
-## [6.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.3.0) (2023-02-05)
+## [6.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/webgl@6.3.0/packages/webgl) (2023-02-05)
 
 #### 🚀 Features
 

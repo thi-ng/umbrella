@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-format-image",
-	"version": "0.1.8",
+	"version": "0.1.9",
 	"description": "Bitmap image formatting for CLI/Terminal",
 	"type": "module",
 	"module": "./index.js",
@@ -40,7 +40,7 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/imago": "^1.6.3"
+		"@thi.ng/imago": "^1.6.4"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

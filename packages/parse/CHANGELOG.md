@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.6.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.6.43) (2026-02-07)
+### [2.6.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.6.43/packages/parse) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [2.6.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.6.39) (2025-12-03)
+### [2.6.39](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.6.39/packages/parse) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.6.0) (2025-01-21)
+## [2.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.6.0/packages/parse) (2025-01-21)
 
 #### 🚀 Features
 
@@ -42,7 +42,7 @@ and/or version bumps of transitive dependencies.
 - update grammar rule compilation ([8341af6](https://codeberg.org/thi.ng/umbrella/commit/8341af6))
   - avoid `dynamic()` wrapper for grammar rules which don't require it (to avoid extraneous indirection)
 
-## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.5.0) (2025-01-17)
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.5.0/packages/parse) (2025-01-17)
 
 #### 🚀 Features
 
@@ -60,13 +60,18 @@ and/or version bumps of transitive dependencies.
   - update `ParseContext.start()`
   - update `check()` combinator impl
 
-### [2.4.64](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.64) (2025-01-14)
+#### 🧪 Tests
+
+- minor updates ([d6d703f](https://codeberg.org/thi.ng/umbrella/commit/d6d703f))
+- update tests ([08d5558](https://codeberg.org/thi.ng/umbrella/commit/08d5558))
+
+### [2.4.64](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.64/packages/parse) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - various minor updates ([42ce3f6](https://codeberg.org/thi.ng/umbrella/commit/42ce3f6))
 
-### [2.4.52](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.52) (2024-08-29)
+### [2.4.52](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.52/packages/parse) (2024-08-29)
 
 #### ⏱ Performance improvements
 
@@ -75,27 +80,38 @@ and/or version bumps of transitive dependencies.
   - minor update scope transforms
   - update tests
 
-### [2.4.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.43) (2024-06-21)
+### [2.4.43](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.43/packages/parse) (2024-06-21)
 
 #### ♻️ Refactoring
 
 - rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-### [2.4.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.5) (2023-11-09)
+### [2.4.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.5/packages/parse) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.0) (2023-09-19)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+## [2.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.4.0/packages/parse) (2023-09-19)
 
 #### 🚀 Features
 
 - add ParseContext.peakDepth, update recursion limit ([0a2b7db](https://codeberg.org/thi.ng/umbrella/commit/0a2b7db))
 
-## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.3.0) (2023-09-06)
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.3.0/packages/parse) (2023-09-06)
 
 #### 🚀 Features
 
 - add altS() combinator ([52c76ca](https://codeberg.org/thi.ng/umbrella/commit/52c76ca))
+
+### [2.2.31](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/parse@2.2.31/packages/parse) (2023-03-27)
+
+#### 🧪 Tests
+
+- update all tests (mainly imports) ([63a85f9](https://codeberg.org/thi.ng/umbrella/commit/63a85f9))

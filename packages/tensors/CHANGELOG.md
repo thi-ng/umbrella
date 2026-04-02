@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.11.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.11.8) (2026-03-11)
+### [0.11.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.11.8/packages/tensors) (2026-03-11)
 
 #### ♻️ Refactoring
 
 - update const use in for-of loops ([c768f87](https://codeberg.org/thi.ng/umbrella/commit/c768f87))
 
-## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.11.0) (2026-02-22)
+## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.11.0/packages/tensors) (2026-02-22)
 
 #### 🚀 Features
 
@@ -27,19 +27,19 @@ and/or version bumps of transitive dependencies.
 
 - add ITensor0/1/2/3/4, update ITensor, update all ops signatures ([0be6c13](https://codeberg.org/thi.ng/umbrella/commit/0be6c13))
 
-### [0.10.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.10.14) (2026-02-07)
+### [0.10.14](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.10.14/packages/tensors) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [0.10.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.10.9) (2025-12-03)
+### [0.10.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.10.9/packages/tensors) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.10.0) (2025-09-01)
+## [0.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.10.0/packages/tensors) (2025-09-01)
 
 #### 🚀 Features
 
@@ -52,7 +52,7 @@ and/or version bumps of transitive dependencies.
     - `SAMPLE_LANCZOS` (higher order)
   - add `resample1/2/3()` fns
 
-## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.9.0) (2025-08-16)
+## [0.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.9.0/packages/tensors) (2025-08-16)
 
 #### 🚀 Features
 
@@ -61,14 +61,14 @@ and/or version bumps of transitive dependencies.
   - update HOF tensor op generators
   - add/update tests
 
-## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.8.0) (2025-07-10)
+## [0.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.8.0/packages/tensors) (2025-07-10)
 
 #### 🚀 Features
 
 - add `step()`/`smoothStep()` variations ([b433462](https://codeberg.org/thi.ng/umbrella/commit/b433462))
 - add ITensor.crop() ([77e294d](https://codeberg.org/thi.ng/umbrella/commit/77e294d))
 
-## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.7.0) (2025-07-09)
+## [0.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.7.0/packages/tensors) (2025-07-09)
 
 #### 🚀 Features
 
@@ -79,7 +79,11 @@ and/or version bumps of transitive dependencies.
 
 - migrate `asTensor()` to convert.ts ([fcb83c5](https://codeberg.org/thi.ng/umbrella/commit/fcb83c5))
 
-## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.6.0) (2025-06-05)
+#### 🧪 Tests
+
+- add tests ([ddfd69d](https://codeberg.org/thi.ng/umbrella/commit/ddfd69d))
+
+## [0.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.6.0/packages/tensors) (2025-06-05)
 
 #### 🚀 Features
 
@@ -87,7 +91,7 @@ and/or version bumps of transitive dependencies.
   - add optional `complete` fn to produce/transform final result (reducer like)
 - add mean() tensor op ([2f15d21](https://codeberg.org/thi.ng/umbrella/commit/2f15d21))
 
-## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.5.0) (2025-05-28)
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.5.0/packages/tensors) (2025-05-28)
 
 #### 🚀 Features
 
@@ -101,14 +105,14 @@ and/or version bumps of transitive dependencies.
 - add `applyKernel()`, add/update kernel presets ([b8c2a7a](https://codeberg.org/thi.ng/umbrella/commit/b8c2a7a))
 - add `fromFloatBuffer()` conversion ([d78a0d3](https://codeberg.org/thi.ng/umbrella/commit/d78a0d3))
 
-## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.4.0) (2025-05-12)
+## [0.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.4.0/packages/tensors) (2025-05-12)
 
 #### 🚀 Features
 
 - add release() handling for tensors ([da06312](https://codeberg.org/thi.ng/umbrella/commit/da06312))
 - add data type support for range() options ([90d02bc](https://codeberg.org/thi.ng/umbrella/commit/90d02bc))
 
-## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.3.0) (2025-05-08)
+## [0.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.3.0/packages/tensors) (2025-05-08)
 
 #### 🚀 Features
 
@@ -127,7 +131,7 @@ and/or version bumps of transitive dependencies.
 
 - update range() impl (w/o dependencies) ([ce89d71](https://codeberg.org/thi.ng/umbrella/commit/ce89d71))
 
-## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.2.0) (2025-05-02)
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.2.0/packages/tensors) (2025-05-02)
 
 #### 🚀 Features
 
@@ -152,7 +156,7 @@ and/or version bumps of transitive dependencies.
 - internal updates dot(), identity(), select() ([c0ed334](https://codeberg.org/thi.ng/umbrella/commit/c0ed334))
 - update top() return type ([dcab223](https://codeberg.org/thi.ng/umbrella/commit/dcab223))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.1.0) (2025-04-30)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tensors@0.1.0/packages/tensors) (2025-04-30)
 
 #### 🚀 Features
 

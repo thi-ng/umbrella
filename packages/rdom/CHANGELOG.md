@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,38 +11,38 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.7.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.74) (2026-02-07)
+### [1.7.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.74/packages/rdom) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [1.7.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.69) (2025-12-03)
+### [1.7.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.69/packages/rdom) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [1.7.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.19) (2025-01-14)
+### [1.7.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.19/packages/rdom) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [1.7.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.13) (2024-11-24)
+### [1.7.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.13/packages/rdom) (2024-11-24)
 
 #### ⏱ Performance improvements
 
 - minor update `$el()`, avoid object spread for null attribs ([a970b79](https://codeberg.org/thi.ng/umbrella/commit/a970b79))
 
-### [1.7.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.5) (2024-10-03)
+### [1.7.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.5/packages/rdom) (2024-10-03)
 
 #### ⏱ Performance improvements
 
 - internal update __setAttrib() ([15ed31d](https://codeberg.org/thi.ng/umbrella/commit/15ed31d))
   - only lookup property setters if value non-nullish
 
-### [1.7.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.4) (2024-09-22)
+### [1.7.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.4/packages/rdom) (2024-09-22)
 
 #### 🩹 Bug fixes
 
@@ -50,7 +50,7 @@ and/or version bumps of transitive dependencies.
   - also skip cursor pos update for readonly elements
   - fix textarea handling
 
-### [1.7.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.3) (2024-09-19)
+### [1.7.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.3/packages/rdom) (2024-09-19)
 
 #### 🩹 Bug fixes
 
@@ -58,38 +58,38 @@ and/or version bumps of transitive dependencies.
   - don't update selection (cursor pos) when updating disabled elements
     - workaround for Safari focus issue
 
-## [1.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.0) (2024-08-28)
+## [1.7.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.0/packages/rdom) (2024-08-28)
 
 #### 🚀 Features
 
 - support setting CSS vars via $style() ([81169ee](https://codeberg.org/thi.ng/umbrella/commit/81169ee))
 
-## [1.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.6.0) (2024-08-10)
+## [1.6.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.6.0/packages/rdom) (2024-08-10)
 
 #### 🚀 Features
 
 - add `$inputToggle()` HOF event handler ([50e0c29](https://codeberg.org/thi.ng/umbrella/commit/50e0c29))
 
-### [1.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.5.1) (2024-07-06)
+### [1.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.5.1/packages/rdom) (2024-07-06)
 
 #### 🩹 Bug fixes
 
-- update $compile() handling of embedded functions ([#477](https://github.com/thi-ng/umbrella/issues/477)) ([5ac2831](https://codeberg.org/thi.ng/umbrella/commit/5ac2831))
+- update $compile() handling of embedded functions ([#477](https://codeberg.org/thi.ng/umbrella/issues/477)) ([5ac2831](https://codeberg.org/thi.ng/umbrella/commit/5ac2831))
   - add fn checks & branches to call embedded fn and compile its result
   - update docs
 
-## [1.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.5.0) (2024-07-03)
+## [1.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.5.0/packages/rdom) (2024-07-03)
 
 #### 🚀 Features
 
 - add support for no-arg fns in child positions ([6327fd3](https://codeberg.org/thi.ng/umbrella/commit/6327fd3))
   - update `$tree()` to support no-arg functions in child positions
 
-### [1.4.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.4.1) (2024-06-21)
+### [1.4.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.4.1/packages/rdom) (2024-06-21)
 
 #### 🩹 Bug fixes
 
-- fix [#469](https://github.com/thi-ng/umbrella/issues/469), update setAttrib() `class` handling ([6cf8c56](https://codeberg.org/thi.ng/umbrella/commit/6cf8c56))
+- fix [#469](https://codeberg.org/thi.ng/umbrella/issues/469), update setAttrib() `class` handling ([6cf8c56](https://codeberg.org/thi.ng/umbrella/commit/6cf8c56))
   - use `el.setAttribute()` to be compatible w/ SVG elements
     - https://developer.mozilla.org/en-US/docs/Web/API/Element/className#notes
 
@@ -98,20 +98,20 @@ and/or version bumps of transitive dependencies.
 - rename various rest args to be more semantically meaningful ([8088a56](https://codeberg.org/thi.ng/umbrella/commit/8088a56))
 - enforce uniform naming convention of internal functions ([56992b2](https://codeberg.org/thi.ng/umbrella/commit/56992b2))
 
-## [1.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.4.0) (2024-05-08)
+## [1.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.4.0/packages/rdom) (2024-05-08)
 
 #### 🚀 Features
 
 - add rdom-klist example project, update readmes ([cd458ac](https://codeberg.org/thi.ng/umbrella/commit/cd458ac))
 - add rdom-klist example project, update readmes ([531437f](https://codeberg.org/thi.ng/umbrella/commit/531437f))
 
-### [1.3.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.3.3) (2024-04-26)
+### [1.3.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.3.3/packages/rdom) (2024-04-26)
 
 #### 🩹 Bug fixes
 
 - update $compile() async-iterable attrib handling ([f977556](https://codeberg.org/thi.ng/umbrella/commit/f977556))
 
-## [1.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.3.0) (2024-04-20)
+## [1.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.3.0/packages/rdom) (2024-04-20)
 
 #### 🚀 Features
 
@@ -126,7 +126,7 @@ and/or version bumps of transitive dependencies.
 
 - update type usage ([56d5747](https://codeberg.org/thi.ng/umbrella/commit/56d5747))
 
-## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.2.0) (2024-04-11)
+## [1.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.2.0/packages/rdom) (2024-04-11)
 
 #### 🚀 Features
 
@@ -134,13 +134,13 @@ and/or version bumps of transitive dependencies.
   - add/build cache of property setters
   - update setAttrib() to prioritize setters and only fallback to attributes
 
-## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.1.0) (2024-02-10)
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.1.0/packages/rdom) (2024-02-10)
 
 #### 🚀 Features
 
 - add $toggleClasses() DOM util ([31d19b1](https://codeberg.org/thi.ng/umbrella/commit/31d19b1))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.0.0) (2024-01-23)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.0.0/packages/rdom) (2024-01-23)
 
 #### 🛑 Breaking changes
 
@@ -149,31 +149,31 @@ and/or version bumps of transitive dependencies.
   various DOM update fn signatures
   - remove scheduler support since never used (other than
     default/dummy `NullScheduler`) and `RAFScheduler` logic is
-    better handled via `synRAF()` or similar (also see [#402](https://github.com/thi-ng/umbrella/issues/402))
+    better handled via `synRAF()` or similar (also see [#402](https://codeberg.org/thi.ng/umbrella/issues/402))
   - update IComponent.mount() signature to use `ParentNode
     as type for `parent` arg, e.g. to support use w/ `ShadowRoot`
   - update various DOM update fns with same parent arg type
   - update all utility components/wrappers
 
-## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.14.0) (2023-12-28)
+## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.14.0/packages/rdom) (2023-12-28)
 
 #### 🚀 Features
 
 - add $lazy() component wrapper ([5ad3856](https://codeberg.org/thi.ng/umbrella/commit/5ad3856))
 
-### [0.13.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.13.4) (2023-12-11)
+### [0.13.4](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.13.4/packages/rdom) (2023-12-11)
 
 #### ♻️ Refactoring
 
 - update boolean attrib handling in setAttrib() ([96a21ab](https://codeberg.org/thi.ng/umbrella/commit/96a21ab))
 
-### [0.13.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.13.3) (2023-12-09)
+### [0.13.3](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.13.3/packages/rdom) (2023-12-09)
 
 #### 🩹 Bug fixes
 
 - fix updateValueAttrib() for some input types ([81facee](https://codeberg.org/thi.ng/umbrella/commit/81facee))
 
-## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.13.0) (2023-11-12)
+## [0.13.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.13.0/packages/rdom) (2023-11-12)
 
 #### 🚀 Features
 
@@ -181,25 +181,30 @@ and/or version bumps of transitive dependencies.
 - update $compile() to support existing DOM elements ([859521a](https://codeberg.org/thi.ng/umbrella/commit/859521a))
 - update $attribs() to return element ([1f82021](https://codeberg.org/thi.ng/umbrella/commit/1f82021))
 
-### [0.12.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.12.21) (2023-11-09)
+### [0.12.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.12.21/packages/rdom) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.12.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.12.13) (2023-10-18)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.12.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.12.13/packages/rdom) (2023-10-18)
 
 #### 🩹 Bug fixes
 
 - update $text() to set el.textContent, simplify ([7cd6cc0](https://codeberg.org/thi.ng/umbrella/commit/7cd6cc0))
 
-## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.12.0) (2023-08-22)
+## [0.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.12.0/packages/rdom) (2023-08-22)
 
 #### 🚀 Features
 
 - update $text() handling of undefined values ([55faa71](https://codeberg.org/thi.ng/umbrella/commit/55faa71))
 
-## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.11.0) (2023-04-08)
+## [0.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@0.11.0/packages/rdom) (2023-04-08)
 
 #### 🚀 Features
 

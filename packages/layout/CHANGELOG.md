@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,13 +11,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [4.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@4.1.0) (2026-01-16)
+## [4.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@4.1.0/packages/layout) (2026-01-16)
 
 #### 🚀 Features
 
 - add GridLayout.currX/Y/Col/Row() accessors ([1c6f413](https://codeberg.org/thi.ng/umbrella/commit/1c6f413))
 
-# [4.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@4.0.0) (2025-07-26)
+# [4.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@4.0.0/packages/layout) (2025-07-26)
 
 #### 🛑 Breaking changes
 
@@ -28,37 +28,42 @@ and/or version bumps of transitive dependencies.
   - update `GridLayout` and `StackedLayout` impls
   - add/update docs
 
-## [3.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.2.0) (2025-07-22)
+## [3.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.2.0/packages/layout) (2025-07-22)
 
 #### 🚀 Features
 
 - add `.height` getter ([a0188a6](https://codeberg.org/thi.ng/umbrella/commit/a0188a6))
 
-### [3.1.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.1.11) (2025-01-14)
+### [3.1.11](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.1.11/packages/layout) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.1.0) (2024-08-13)
+## [3.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.1.0/packages/layout) (2024-08-13)
 
 #### 🚀 Features
 
 - add StackedLayout.isEqualized() ([b93702c](https://codeberg.org/thi.ng/umbrella/commit/b93702c))
 
-### [3.0.37](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.0.37) (2024-04-20)
+### [3.0.37](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.0.37/packages/layout) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([ec30ca2](https://codeberg.org/thi.ng/umbrella/commit/ec30ca2))
 
-### [3.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.0.2) (2023-11-09)
+### [3.0.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.0.2/packages/layout) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.0.0) (2023-10-30)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/layout@3.0.0/packages/layout) (2023-10-30)
 
 #### 🛑 Breaking changes
 

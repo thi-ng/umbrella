@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.1.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.15) (2025-06-03)
+### [0.1.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.15/packages/tsne) (2025-06-03)
 
 #### ⏱ Performance improvements
 
@@ -20,19 +20,19 @@ and/or version bumps of transitive dependencies.
   - skip gradient update if same rows
   - use destructured Math fns
 
-### [0.1.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.9) (2025-04-16)
+### [0.1.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.9/packages/tsne) (2025-04-16)
 
 #### ♻️ Refactoring
 
 - minor internal updates ([52958dd](https://codeberg.org/thi.ng/umbrella/commit/52958dd))
 
-### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.1) (2025-02-20)
+### [0.1.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.1/packages/tsne) (2025-02-20)
 
 #### ⏱ Performance improvements
 
 - more efficient use of vector ops ([af07e27](https://codeberg.org/thi.ng/umbrella/commit/af07e27))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.0) (2025-02-19)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/tsne@0.1.0/packages/tsne) (2025-02-19)
 
 #### 🚀 Features
 

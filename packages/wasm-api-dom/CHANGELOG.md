@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-19T12:29:04Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,20 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [2.0.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.13) (2025-12-03)
+### [2.0.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.13/packages/wasm-api-dom) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-### [2.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.1) (2025-09-02)
+### [2.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.1/packages/wasm-api-dom) (2025-09-02)
 
 #### 🩹 Bug fixes
 
 - update function pointer types ([3e5ea93](https://codeberg.org/thi.ng/umbrella/commit/3e5ea93))
   - update/fix `callconv(.c)`
 
-# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.0) (2025-09-01)
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.0/packages/wasm-api-dom) (2025-09-01)
 
 #### 🛑 Breaking changes
 
@@ -33,26 +33,26 @@ and/or version bumps of transitive dependencies.
   - `usenamespace` deprecated in Zig 0.15.1, so earlier struct/namespace merging not possible anymore
   - instead, sub-namespaces exposed via: `events`, `fullscreen`, `types`
 
-### [1.0.18](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.18) (2025-01-14)
+### [1.0.18](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.18/packages/wasm-api-dom) (2025-01-14)
 
 #### ♻️ Refactoring
 
 - use optional chaining & nullish coalescing ([c5a0a13](https://codeberg.org/thi.ng/umbrella/commit/c5a0a13))
 
-### [1.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.9) (2024-11-10)
+### [1.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.9/packages/wasm-api-dom) (2024-11-10)
 
 #### ♻️ Refactoring
 
 - regenerate typescript bindings ([07e939a](https://codeberg.org/thi.ng/umbrella/commit/07e939a))
 - regenerate TS bindings ([c540cb4](https://codeberg.org/thi.ng/umbrella/commit/c540cb4))
 
-### [1.0.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.8) (2024-11-09)
+### [1.0.8](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.8/packages/wasm-api-dom) (2024-11-09)
 
 #### ♻️ Refactoring
 
 - regenerate typescript sources ([9055e0e](https://codeberg.org/thi.ng/umbrella/commit/9055e0e))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.0) (2024-08-18)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@1.0.0/packages/wasm-api-dom) (2024-08-18)
 
 #### 🛑 Breaking changes
 
@@ -67,39 +67,44 @@ and/or version bumps of transitive dependencies.
 
 - regenerate types ([ef98da6](https://codeberg.org/thi.ng/umbrella/commit/ef98da6))
 
-### [0.11.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.89) (2024-04-22)
+### [0.11.89](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.89/packages/wasm-api-dom) (2024-04-22)
 
 #### ♻️ Refactoring
 
 - minor zig v0.12.0 updates ([ee4f117](https://codeberg.org/thi.ng/umbrella/commit/ee4f117))
 - minor zig v0.12.0 updates ([aaaa4e8](https://codeberg.org/thi.ng/umbrella/commit/aaaa4e8))
 
-### [0.11.88](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.88) (2024-04-20)
+### [0.11.88](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.88/packages/wasm-api-dom) (2024-04-20)
 
 #### ♻️ Refactoring
 
 - update type usage ([2f77b8b](https://codeberg.org/thi.ng/umbrella/commit/2f77b8b))
 
-### [0.11.49](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.49) (2023-11-09)
+### [0.11.49](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.49/packages/wasm-api-dom) (2023-11-09)
 
 #### ♻️ Refactoring
 
 - update all tests (packages A-S) ([e3085e4](https://codeberg.org/thi.ng/umbrella/commit/e3085e4))
 
-### [0.11.25](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.25) (2023-06-29)
+#### 🧪 Tests
+
+- update/refactor tests to use bun test runner ([8f6edb1](https://codeberg.org/thi.ng/umbrella/commit/8f6edb1))
+- update/rename test files/imports (still many broken) ([1cb3c49](https://codeberg.org/thi.ng/umbrella/commit/1cb3c49))
+
+### [0.11.25](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.25/packages/wasm-api-dom) (2023-06-29)
 
 #### ♻️ Refactoring
 
 - Zig v0.11-dev syntax updates ([325bf98](https://codeberg.org/thi.ng/umbrella/commit/325bf98))
 
-### [0.11.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.20) (2023-03-27)
+### [0.11.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.20/packages/wasm-api-dom) (2023-03-27)
 
 #### ♻️ Refactoring
 
 - update generated imports ([8982c0b](https://codeberg.org/thi.ng/umbrella/commit/8982c0b))
 - update imports (TS5.0) ([5d006cc](https://codeberg.org/thi.ng/umbrella/commit/5d006cc))
 
-### [0.11.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.12) (2023-02-05)
+### [0.11.12](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@0.11.12/packages/wasm-api-dom) (2023-02-05)
 
 #### ♻️ Refactoring
 

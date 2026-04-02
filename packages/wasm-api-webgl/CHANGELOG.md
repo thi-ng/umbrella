@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-03-07T10:29:02Z
+- **Last updated**: 2026-04-02T10:52:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,19 +11,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@1.0.21) (2026-02-07)
+### [1.0.21](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@1.0.21/packages/wasm-api-webgl) (2026-02-07)
 
 #### ♻️ Refactoring
 
 - replace deprecated `unsupported()` call sites in all pkgs ([3abbddf](https://codeberg.org/thi.ng/umbrella/commit/3abbddf))
 
-### [1.0.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@1.0.15) (2025-12-03)
+### [1.0.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@1.0.15/packages/wasm-api-webgl) (2025-12-03)
 
 #### ♻️ Refactoring
 
 - update for-loops (use const where possible) ([5ceaf1a](https://codeberg.org/thi.ng/umbrella/commit/5ceaf1a))
 
-# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@1.0.0) (2025-09-01)
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@1.0.0/packages/wasm-api-webgl) (2025-09-01)
 
 #### 🛑 Breaking changes
 
@@ -32,20 +32,20 @@ and/or version bumps of transitive dependencies.
   - `usenamespace` syntax deprecated in Zig 0.15.1, so earlier struct/namespace merging not possible anymore
   - instead, generated types exposed via `types` (e.g. `gl.ShaderSpec` => `gl.types.ShaderSpec`)
 
-### [0.1.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@0.1.16) (2024-11-10)
+### [0.1.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@0.1.16/packages/wasm-api-webgl) (2024-11-10)
 
 #### ♻️ Refactoring
 
 - regenerate typescript bindings ([07e939a](https://codeberg.org/thi.ng/umbrella/commit/07e939a))
 - regenerate TS bindings ([c540cb4](https://codeberg.org/thi.ng/umbrella/commit/c540cb4))
 
-### [0.1.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@0.1.15) (2024-11-09)
+### [0.1.15](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@0.1.15/packages/wasm-api-webgl) (2024-11-09)
 
 #### ♻️ Refactoring
 
 - regenerate typescript sources ([9055e0e](https://codeberg.org/thi.ng/umbrella/commit/9055e0e))
 
-## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@0.1.0) (2024-08-18)
+## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-webgl@0.1.0/packages/wasm-api-webgl) (2024-08-18)
 
 #### 🚀 Features
 
