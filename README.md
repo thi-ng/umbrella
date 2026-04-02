@@ -1,5 +1,7 @@
 ![thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/banners/thing-umbrella-masthead.jpg)
 
+## Project migrated to [Codeberg](https://codeberg.org/thi.ng/umbrella). The original Github repo is now just a readonly mirror and will be deleted later this year.
+
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thi-ng/umbrella/test.yml?branch=main)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
 [![Become a sponsor](https://img.shields.io/badge/github-sponsor-yellow.svg)](https://github.com/sponsors/postspectacular/)
 [![Become a patron](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/thing_umbrella)
@@ -283,10 +285,7 @@ tracker](https://codeberg.org/thi.ng/umbrella/issues). If you'd like to contribu
 in other ways, please first read [this document](./CONTRIBUTING.md).
 
 In general, we welcome contributions of all kinds (docs, examples, bug fixes,
-feature requests, [financial
-contributions](https://github.com/sponsors/postspectacular/) etc.). You can find
-a detailed overview for contributors here:
-[CONTRIBUTING.md](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md).
+feature requests, [financial contributions](./CONTRIBUTING.md#donations) etc.)
 
 **Note: The default branch for this repo is `develop` and all PRs should be
 based on this branch. This too means, the README files on this branch _might_
@@ -312,16 +311,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-03-23
+As of: 2026-04-02
 
-| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
-|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/column-store`](./packages/column-store)       | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store)       | [changelog](./packages/column-store/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup`](./packages/hiccup)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)                   | [changelog](./packages/hiccup/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom-forms`](./packages/rdom-forms)           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)           | [changelog](./packages/rdom-forms/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rstream`](./packages/rstream)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)                 | [changelog](./packages/rstream/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)                 | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                 | [changelog](./packages/strings/CHANGELOG.md)         |
+| Status                                           | Package                               | Version                                                                                                     | Changelog                                   |
+|:-------------------------------------------------|:--------------------------------------|:------------------------------------------------------------------------------------------------------------|:--------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/ksuid`](./packages/ksuid)   | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)   | [changelog](./packages/ksuid/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/random`](./packages/random) | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random) | [changelog](./packages/random/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/units`](./packages/units)   | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)   | [changelog](./packages/units/CHANGELOG.md)  |
 
 ### Algorithms & data structures
 
