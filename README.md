@@ -2,8 +2,8 @@
 
 ## Project migrated to [Codeberg](https://codeberg.org/thi.ng/umbrella). The original Github repo is now just a readonly mirror and will be deleted later this year.
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thi-ng/umbrella/test.yml?branch=main)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
-[![Become a sponsor](https://img.shields.io/badge/github-sponsor-yellow.svg)](https://github.com/sponsors/postspectacular/)
+[![Donate on Liberapay](https://img.shields.io/badge/liberapay-donate-yellow.svg)](https://liberapay.com/thi.ng/)
+[![Become a GitHub sponsor](https://img.shields.io/badge/github-sponsor-yellow.svg)](https://github.com/sponsors/postspectacular/)
 [![Become a patron](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/thing_umbrella)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
