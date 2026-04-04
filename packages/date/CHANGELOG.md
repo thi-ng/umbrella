@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-02T10:52:06Z
+- **Last updated**: 2026-04-04T22:34:44Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/date@2.8.0/packages/date) (2026-04-04)
+
+#### 🚀 Features
+
+- update/fix formatters, update default locale ([c1d81f2](https://codeberg.org/thi.ng/umbrella/commit/c1d81f2))
+  - update format presets: `FMT_dMyyyy`, `FMT_dMMMyyyy`, `FMT_HHmm`, `FMT_hm`, `FMT_HHmmss`, `FMT_hms`
+    - use correct locale-specific separators (e.g. `/HM`, `/DM` etc.)
+  - add `/MS` minute-second separator & formatter
+  - add tests
 
 ### [2.7.19](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/date@2.7.19/packages/date) (2024-06-21)
 
