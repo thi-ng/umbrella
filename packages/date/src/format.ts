@@ -152,6 +152,10 @@ export const FORMATTERS: Record<string, FormatFn> = {
 	 */
 	"/HM": () => LOCALE.sepHM,
 	/**
+	 * Current {@link LOCALE}'s minute-second separator.
+	 */
+	"/MS": () => LOCALE.sepMS,
+	/**
 	 * Current {@link LOCALE}'s month-year separator.
 	 */
 	"/MY": () => LOCALE.sepMY,
@@ -227,23 +231,23 @@ export const FMT_MMMdyyyy = defFormat(["MMM", " ", "d", " ", "yyyy"]);
 /**
  * Format preset, e.g. `19.9.2020`
  */
-export const FMT_dMyyyy = defFormat(["d", "~", "M", "~", "yyyy"]);
+export const FMT_dMyyyy = defFormat(["d", "/DM", "M", "/MY", "yyyy"]);
 /**
  * Format preset, e.g. `19 Sep 2020`
  */
-export const FMT_dMMMyyyy = defFormat(["d", "~~", "MMM", " ", "yyyy"]);
+export const FMT_dMMMyyyy = defFormat(["d", "/DM", "MMM", " ", "yyyy"]);
 /**
  * Format preset, e.g. `17:08`
  */
-export const FMT_HHmm = defFormat(["HH", ":", "mm"]);
+export const FMT_HHmm = defFormat(["HH", "/HM", "mm"]);
 /**
  * Format preset, e.g. `5:08 PM`
  */
-export const FMT_hm = defFormat(["h", ":", "mm", " ", "A"]);
+export const FMT_hm = defFormat(["h", "/HM", "mm", " ", "A"]);
 /**
  * Format preset, e.g. `17:08:01`
  */
-export const FMT_HHmmss = defFormat(["HH", ":", "mm", ":", "ss"]);
+export const FMT_HHmmss = defFormat(["HH", "/HM", "mm", "/MS", "ss"]);
 /**
  * Format preset, e.g. `170801`
  */
@@ -251,7 +255,7 @@ export const FMT_HHmmss_ALT = defFormat(["HH", "mm", "ss"]);
 /**
  * Format preset, e.g. `5:08:01 PM`
  */
-export const FMT_hms = defFormat(["h", ":", "mm", ":", "ss", " ", "A"]);
+export const FMT_hms = defFormat(["h", "/HM", "mm", "/MS", "ss", " ", "A"]);
 /**
  * Format preset, e.g. `20200919-170801`
  */

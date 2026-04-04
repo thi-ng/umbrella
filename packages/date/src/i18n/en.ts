@@ -21,7 +21,6 @@ export const EN_SHORT: LocaleSpec = {
 		"Dec",
 	],
 	days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-	sepHM: ".",
 	date: ["dd", "/DM", "MM", "/MY", "yyyy"],
 	time: ["h", "/HM", "mm", " ", "a"],
 	units: {
@@ -69,7 +68,6 @@ export const EN_LONG: LocaleSpec = {
 	],
 	sepDM: " ",
 	sepMY: " ",
-	sepHM: ".",
 	time: ["h", "/HM", "mm", " ", "a"],
 	units: {
 		y: { s: "year", p: "years" },

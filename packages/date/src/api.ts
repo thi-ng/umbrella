@@ -101,6 +101,12 @@ export interface Locale {
 	 */
 	sepHM: string;
 	/**
+	 * Separator between minute & second
+	 *
+	 * @defaultValue ":"
+	 */
+	sepMS: string;
+	/**
 	 * Singular & plural versions of various date/time units.
 	 */
 	units: Record<Precision, LocaleUnit>;

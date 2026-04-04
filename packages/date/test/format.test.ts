@@ -35,6 +35,9 @@ test("formatters", () => {
 	check(["ss"], "04", "16");
 	check(["S"], "5", "17");
 	check(["yyyy", "-", "MM", "-", "dd"], "2020-09-01", "1996-12-13");
+	check(["dd", "/DM", "MM", "/MY", "yy"], "01/09/20", "13/12/96");
+	check(["HH", "/HM", "mm", "/MS", "ss"], "02:03:04", "14:15:16");
+	check(["h", "/HM", "mm", "A"], "2:03AM", "2:15PM");
 	expect(defFormat(["Z", "/", "ZZ"])(Date.UTC(2021, 0), true)).toBe(
 		"-00:00/Z"
 	);

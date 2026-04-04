@@ -11,6 +11,7 @@ const __prepLocale = (spec: LocaleSpec): Locale => {
 		sepDM: "/",
 		sepMY: "/",
 		sepHM: ":",
+		sepMS: ":",
 		date: ["E", "/ED", "d", "/DM", "MMM", "/MY", "yyyy"],
 		time: ["H", "/HM", "mm"],
 		...spec,
