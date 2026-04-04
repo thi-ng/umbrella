@@ -314,6 +314,7 @@ string literal, prefix the term with `\\`.
 | `/DM`  | Locale-specific day-month separator         |
 | `/MY`  | Locale-specific month-year separator        |
 | `/HM`  | Locale-specific hour-minute separator       |
+| `/MS`  | Locale-specific minute-second separator     |
 
 <small>(Format IDs somewhat based on Java's
 [SimpleDateFormat](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/text/SimpleDateFormat.html))</small>
