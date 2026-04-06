@@ -447,37 +447,46 @@ export function* splitLine(line: string) {
 	let depth = 0;
 	let args = 0;
 	let str = false;
+	let strArg = false;
 	for (let i = 0; i < end; i++) {
 		const c = line[i];
-		if (c === '"' && !(depth || args)) {
-			if (str) {
-				yield line.substring(from, i + 1);
-				from = -1;
-				str = false;
-			} else {
-				str = true;
+		if (c === '"') {
+			if (!(depth || args)) {
+				if (str) {
+					yield line.substring(from, i + 1);
+					from = -1;
+					str = false;
+				} else {
+					str = true;
+				}
 			}
-		} else if (c === " " || c === "\t") {
-			if (!(depth || args || str) && from >= 0) {
-				yield line.substring(from, i);
-				from = -1;
+			if (args) {
+				strArg = !strArg;
 			}
-		} else if (c === "{" || c === "}") {
-			if (from >= 0) yield line.substring(from, i);
-			yield c;
-			from = -1;
-		} else if (c === "(") {
-			depth++;
-		} else if (c === ")") {
-			if (--depth < 0) illegalArgs(`invalid nesting in line: '${line}'`);
-		} else if (c === "[") {
-			if (from < 0) from = i;
-			args++;
-		} else if (c === "]") {
-			if (--args < 0)
-				illegalArgs(`invalid arg nesting in line: '${line}'`);
-		} else if (from < 0) {
-			from = i;
+		} else if (!strArg) {
+			if (c === " " || c === "\t") {
+				if (!(depth || args || str) && from >= 0) {
+					yield line.substring(from, i);
+					from = -1;
+				}
+			} else if (c === "{" || c === "}") {
+				if (from >= 0) yield line.substring(from, i);
+				yield c;
+				from = -1;
+			} else if (c === "(") {
+				depth++;
+			} else if (c === ")") {
+				if (--depth < 0)
+					illegalArgs(`invalid nesting in line: '${line}'`);
+			} else if (c === "[") {
+				if (from < 0) from = i;
+				args++;
+			} else if (c === "]") {
+				if (--args < 0)
+					illegalArgs(`invalid arg nesting in line: '${line}'`);
+			} else if (from < 0) {
+				from = i;
+			}
 		}
 	}
 	if (str) illegalArgs("string literals must be fully on a single line");

@@ -128,6 +128,16 @@ test("split line", () => {
 	expect([...splitLine("a-[b [c]]")]).toEqual(["a-[b [c]]"]);
 	expect([...splitLine(`a="b,c"`)]).toEqual([`a="b,c"`]);
 	expect([...splitLine(`a-["b,c"]`)]).toEqual([`a-["b,c"]`]);
+	expect([...splitLine(`a-[[]]`)]).toEqual([`a-[[]]`]);
+	expect([...splitLine(`a-[()]`)]).toEqual([`a-[()]`]);
+	expect([...splitLine(`a-["("]`)]).toEqual([`a-["("]`]);
+	expect([...splitLine(`a-[")"]`)]).toEqual([`a-[")"]`]);
+	expect([...splitLine(`a-["["]`)]).toEqual([`a-["["]`]);
+	expect([...splitLine(`a-["]"]`)]).toEqual([`a-["]"]`]);
+	expect([...splitLine(`a-["{] (\t"]`)]).toEqual([`a-["{] (\t"]`]);
+	expect([...splitLine(`a-["}"]`)]).toEqual([`a-["}"]`]);
+	expect([...splitLine(`a-["""("]`)]).toEqual([`a-["""("]`]);
+	expect(() => [...splitLine(`a-[""(]`)]).toThrow();
 	expect(() => [...splitLine("f(a,b))")]).toThrow();
 	expect(() => [...splitLine("a, b {f(a,b}")]).toThrow();
 	expect(() => [...splitLine("a-[b [c]")]).toThrow();
