@@ -10,6 +10,7 @@ import {
 	SECOND,
 	YEAR,
 	type FormatFn,
+	type Formatter,
 	type MaybeDate,
 	type Precision,
 } from "./api.js";
@@ -194,8 +195,8 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * @param fmt -
  */
 export const defFormat =
-	(fmt: (string | FormatFn)[]) =>
-	(x: MaybeDate = Date.now(), utc = false) => {
+	(fmt: (string | FormatFn)[]): Formatter =>
+	(x = Date.now(), utc = false) => {
 		let d = ensureDate(x);
 		utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
 		return fmt

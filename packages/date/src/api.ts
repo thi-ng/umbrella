@@ -199,6 +199,11 @@ export const PERIODS: Record<Period, number> = {
 
 export type FormatFn = Fn2<Date, boolean, string>;
 
+/**
+ * A function returned by {@link defFormat}.
+ */
+export type Formatter = (x?: MaybeDate, utc?: boolean) => string;
+
 export type MaybeDate = DateTime | Date | number | string;
 
 /**
