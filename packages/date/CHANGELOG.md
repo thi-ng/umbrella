@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-04T22:34:44Z
+- **Last updated**: 2026-04-06T13:53:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.8.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/date@2.8.1/packages/date) (2026-04-06)
+
+#### ♻️ Refactoring
+
+- add `Formatter` type alias ([269d6cc](https://codeberg.org/thi.ng/umbrella/commit/269d6cc))
 
 ## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/date@2.8.0/packages/date) (2026-04-04)
 
