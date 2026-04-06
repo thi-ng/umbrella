@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-02T10:52:06Z
+- **Last updated**: 2026-04-06T14:46:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.19.57](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.57/packages/meta-css) (2026-04-06)
+
+#### 🩹 Bug fixes
+
+- fix delimiter handling in string args ([5e5de42](https://codeberg.org/thi.ng/umbrella/commit/5e5de42))
+  - update/fix `splitLine()` (convert cmd)
+  - add/update tests
 
 ### [0.19.41](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/meta-css@0.19.41/packages/meta-css) (2025-12-03)
 
