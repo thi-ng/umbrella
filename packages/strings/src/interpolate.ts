@@ -33,7 +33,10 @@ export const interpolate = (src: string, ...args: any[]) =>
 
 /**
  * Similar to {@link interpolate}, but uses alphanumeric placeholders in the
- * template string and an object of values for the stated keys.
+ * template string and an object of values for the stated keys. Unless
+ * `ignoreMissing` is true (default: false), referencing a missing key will
+ * throw an error. If `ignoreMissing` is true a referenced missing key will
+ * remain as is (i.e. un-interpolated).
  *
  * @example
  * ```ts tangle:../export/interpolate-keys.ts
@@ -41,19 +44,30 @@ export const interpolate = (src: string, ...args: any[]) =>
  *
  * console.log(
  *   interpolateKeys(
- *     "let {id}: {type} = {val};",
- *     { id: "a", type: "number", val: 42 }
+ *     "let {id}: {type} = {val};", { id: "a", type: "number", val: 42 }
  *   )
  * );
  * // "let a: number = 42;"
+ *
+ * console.log(
+ *   interpolateKeys("{id} = {missing}", { id: "abc" }, true)
+ * );
+ * // "abc = {missing}"
  * ```
  *
  * @param src -
  * @param keys -
+ * @param ignoreMissing -
  */
-export const interpolateKeys = (src: string, keys: IObjectOf<NumOrString>) =>
-	src.replace(TPL_K, (_, id) =>
+export const interpolateKeys = (
+	src: string,
+	keys: IObjectOf<NumOrString>,
+	ignoreMissing = false
+) =>
+	src.replace(TPL_K, (match, id) =>
 		keys[id] != undefined
 			? String(keys[id])
-			: illegalArgs(`missing key: ${id}`)
+			: ignoreMissing
+				? match
+				: illegalArgs(`missing key: ${id}`)
 	);

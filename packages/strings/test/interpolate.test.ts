@@ -8,6 +8,8 @@ test("basic", () => {
 	);
 });
 
-test("invalid key", () => {
+test("missing key", () => {
+	expect(interpolateKeys("{a}", {}, true)).toBe("{a}");
+	expect(() => interpolateKeys("{a}", {}, false)).toThrow();
 	expect(() => interpolateKeys("{a}", {})).toThrow();
 });
