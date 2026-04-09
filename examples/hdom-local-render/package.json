@@ -25,7 +25,7 @@
 	},
 	"devDependencies": {
 		"typescript": "^5.9.3",
-		"vite": "^7.3.1"
+		"vite": "^7.3.2"
 	},
 	"thi.ng": {
 		"readme": [
