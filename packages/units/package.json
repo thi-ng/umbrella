@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/units",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Extensible SI unit creation, conversions, quantities & calculations (incl. Lisp-like DSL and ~170 predefined units & constants)",
 	"type": "module",
 	"module": "./index.js",
@@ -44,7 +44,7 @@
 		"@thi.ng/checks": "^3.8.8",
 		"@thi.ng/equiv": "^2.1.107",
 		"@thi.ng/errors": "^2.6.7",
-		"@thi.ng/sexpr": "^1.1.27"
+		"@thi.ng/sexpr": "^1.1.28"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

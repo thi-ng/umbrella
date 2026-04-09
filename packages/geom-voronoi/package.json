@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-voronoi",
-	"version": "2.3.157",
+	"version": "2.3.158",
 	"description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
 	"type": "module",
 	"module": "./index.js",
@@ -41,15 +41,15 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.18",
-		"@thi.ng/bitfield": "^2.4.33",
+		"@thi.ng/bitfield": "^2.4.34",
 		"@thi.ng/checks": "^3.8.8",
-		"@thi.ng/geom-clip-line": "^2.3.172",
-		"@thi.ng/geom-clip-poly": "^2.1.214",
-		"@thi.ng/geom-isec": "^4.0.82",
-		"@thi.ng/geom-poly-utils": "^3.1.19",
+		"@thi.ng/geom-clip-line": "^2.3.173",
+		"@thi.ng/geom-clip-poly": "^2.1.215",
+		"@thi.ng/geom-isec": "^4.0.83",
+		"@thi.ng/geom-poly-utils": "^3.1.20",
 		"@thi.ng/math": "^5.15.7",
 		"@thi.ng/quad-edge": "^3.1.116",
-		"@thi.ng/vectors": "^8.6.26"
+		"@thi.ng/vectors": "^8.6.27"
 	},
 	"devDependencies": {
 		"esbuild": "^0.27.2",

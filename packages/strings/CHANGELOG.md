@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-02T10:52:06Z
+- **Last updated**: 2026-04-09T11:46:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.12.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/strings@3.12.0/packages/strings) (2026-04-09)
+
+#### 🚀 Features
+
+- update missing key handling in `interpolateKeys()` ([e3b6ccf](https://codeberg.org/thi.ng/umbrella/commit/e3b6ccf))
+  - add optional arg to ignore missing keys
+  - add tests
+  - update docs
 
 ## [3.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/strings@3.11.0/packages/strings) (2026-03-21)
 
