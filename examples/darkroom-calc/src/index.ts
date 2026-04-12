@@ -3,6 +3,8 @@ import { div, h1 } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { compileForm, container } from "@thi.ng/rdom-forms";
 import { areaScale } from "./area-scale.js";
+import { dilutionConcentration } from "./dilution-concentration.js";
+import { dilutionVolume } from "./dilution-volume.js";
 import { solutionAddition } from "./solution-addition.js";
 import { twoPartSolutionRatio } from "./two-part-solution-ratio.js";
 
@@ -15,6 +17,8 @@ $compile(
 				{},
 				areaScale(),
 				twoPartSolutionRatio(),
+				dilutionVolume(),
+				dilutionConcentration(),
 				solutionAddition()
 			),
 			{
