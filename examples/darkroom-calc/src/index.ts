@@ -8,11 +8,15 @@ import { dilutionVolume } from "./dilution-volume.js";
 import { solutionAddition } from "./solution-addition.js";
 import { twoPartSolutionRatio } from "./two-part-solution-ratio.js";
 
-// all calculators here are based on reactive form fields
-// we're using thi.ng/rstream & thi.ng/rdom-forms to produce & compile
-// these form field specs (plain objects) into thi.ng/hiccup
-// elements/tags (nested JS arrays), which are then compiled into actual
-// reactive DOM elements by thi.ng/rdom's main `$compile()`
+// all calculators here are based on reactive form fields. we're using
+// thi.ng/rstream for reactivity and thi.ng/rdom-forms to produce & compile
+// these form field specs (plain objects) into thi.ng/hiccup elements/tags
+// (nested JS arrays), which are then compiled into actual reactive DOM elements
+// by thi.ng/rdom's main `$compile()`
+
+// any value changes done by the user then only trigger specific, pin-point
+// calculations and UI updates to show new results. any action only triggers the
+// minimum amount of work needed to reflect the new state
 $compile(
 	div(
 		{},
@@ -20,6 +24,7 @@ $compile(
 		compileForm(
 			container(
 				{},
+				// list of calculators (each one becomes a <fieldset>)
 				areaScale(),
 				twoPartSolutionRatio(),
 				dilutionVolume(),
