@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
-import { num, selectNum, str } from "@thi.ng/rdom-forms";
+import { selectNum } from "@thi.ng/rdom-forms";
 import { reactive, sync } from "@thi.ng/rstream";
-import { range as $range } from "@thi.ng/transducers";
-import { calculator, result, VOLUME_LIST } from "./common.js";
+import { calculator, result, volume } from "./common.js";
 
 export const twoPartSolutionRatio = () => {
 	const v = reactive(16);
 	const k = reactive(1);
+	// combine reactive values and compute results
 	const b = sync({ src: { v, k } }).map(({ v, k }) =>
 		Math.round(v / (1 + k))
 	);
@@ -15,17 +15,12 @@ export const twoPartSolutionRatio = () => {
 	return calculator(
 		{
 			title: "Two-part solution ratio",
-			desc: "For a total volume `V` of a two-part solution with target A:B ratio `K`, compute how many units are needed of both `A` and `B`:",
+			desc:
+				"For a total volume `V` of a two-part solution with target A:B " +
+				"ratio`K`, compute how many units are needed of both `A` and `B`:",
 			formula: `A = V - B\nB = V / (1 + K)`,
 		},
-		num({
-			label: "V",
-			desc: "Total volume",
-			min: 1,
-			max: 1000,
-			list: VOLUME_LIST,
-			value: v,
-		}),
+		volume("V", "Total volume", v),
 		selectNum({
 			label: "K",
 			desc: "Target A:B ratio",
