@@ -22,6 +22,8 @@
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Static HTML/SVG generation](#static-htmlsvg-generation)
+  - [Usage with thi.ng/rdom](#usage-with-thingrdom)
 - [Icon conversion process](#icon-conversion-process)
 - [Authors](#authors)
 - [License](#license)
@@ -104,12 +106,55 @@ directory are using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/hiccup-carbon-icons/)
 
-```ts
+### Static HTML/SVG generation
+
+```js tangle:export/readme-serialize.js
+import { WARNING_FILLED, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { DOCTYPE_HTML, serialize } from "@thi.ng/hiccup";
+
+// component function
+const iconButton = (icon, href, label) =>
+    ["a", { href },
+        ["span.icon", {}, withSize(icon, "1rem")],
+        label];
+
+const doc = [
+    DOCTYPE_HTML,
+    ["html",
+        ["body", iconButton(WARNING_FILLED, "/warning", "Do not click!")]
+    ]
+];
+
+const html = serialize(doc);
+
+console.log(html);
+```
+
+Resulting output (reformatted for clarity):
+
+```html
+<html>
+    <body>
+        <a href="/warning">
+            <span class="icon">
+                <svg viewBox="0 0 32 32" width="1rem" height="1rem">
+                    <path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2m-1.1 6h2.2v11h-2.2zM16 25c-.8 0-1.5-.7-1.5-1.5S15.2 22 16 22s1.5.7 1.5 1.5S16.8 25 16 25"/>
+                </svg>
+            </span>
+            Do not click!
+        </a>
+    </body>
+</html>
+```
+
+### Usage with thi.ng/rdom
+
+```js tangle:export/readme-rdom.js
 import { CODE, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { $compile } from "@thi.ng/rdom";
 
-// hiccup component function
-const iconButton = (icon, onclick, label?) =>
+// component function
+const iconButton = (icon, onclick, label) =>
     ["a", { onclick, href: "#" },
         ["span.icon", {}, withSize(icon, "1rem")],
         label];
