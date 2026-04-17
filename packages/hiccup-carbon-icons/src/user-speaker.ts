@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#USER_SPEAKER
  */
 // prettier-ignore
-export const USER_SPEAKER = svg(
-    ["path", { d: "M29.415 19L27.7 17.285A2.97 2.97 0 0028 16a3 3 0 10-3 3 2.97 2.97 0 001.286-.3L28 20.414V28h-6v-3a7.008 7.008 0 00-7-7H9a7.008 7.008 0 00-7 7v5h28v-9.586A1.988 1.988 0 0029.415 19zM4 25a5.006 5.006 0 015-5h6a5.006 5.006 0 015 5v3H4z" }],
-    ["path", { d: "M12 4a5 5 0 11-5 5 5 5 0 015-5m0-2a7 7 0 107 7 7 7 0 00-7-7z" }]
+export const USER_SPEAKER: any[] = svg(
+path("M29.415 19 27.7 17.285A3 3 0 0 0 28 16a3 3 0 1 0-3 3 3 3 0 0 0 1.286-.3L28 20.414V28h-6v-3a7.01 7.01 0 0 0-7-7H9a7.01 7.01 0 0 0-7 7v5h28v-9.586A2 2 0 0 0 29.415 19M4 25a5.006 5.006 0 0 1 5-5h6a5.006 5.006 0 0 1 5 5v3H4Z"),
+path("M12 4a5 5 0 1 1-5 5 5 5 0 0 1 5-5m0-2a7 7 0 1 0 7 7 7 7 0 0 0-7-7"),
 );

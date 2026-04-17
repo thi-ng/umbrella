@@ -1,0 +1,51 @@
+// SPDX-License-Identifier: Apache-2.0
+import { circle, path, svg } from "./_svg.js";
+
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ASSET_DIGITAL_TWIN
+ */
+// prettier-ignore
+export const ASSET_DIGITAL_TWIN: any[] = svg(
+circle(25, 7, 2),
+path("M12 23a3 3 0 1 1 3-3 3.003 3.003 0 0 1-3 3m0-4a1 1 0 1 0 1 1 1 1 0 0 0-1-1"),
+circle(12, 14, 1),
+circle(17.909, 5.705, 1),
+circle(9.787, 9.907, 1),
+circle(12.495, 8.506, 1),
+circle(15.201, 7.105, 1),
+circle(4.696, 13.187, 1),
+circle(2.133, 21.631, 1),
+circle(3.079, 24.516, 1),
+circle(4.848, 26.982, 1),
+circle(7.272, 28.81, 1),
+circle(2.098, 18.596, 1),
+circle(2.979, 15.691, 1),
+circle(7.081, 11.308, 1),
+circle(20.616, 4.304, 1),
+circle(23.323, 2.903, 1),
+circle(28.988, 8.89, 1),
+circle(27.587, 11.596, 1),
+circle(26.186, 14.303, 1),
+circle(24.784, 17.01, 1),
+circle(23.383, 19.717, 1),
+circle(21.982, 22.424, 1),
+circle(18.637, 27.464, 1),
+circle(16.092, 29.122, 1),
+circle(13.166, 29.932, 1),
+circle(10.133, 29.825, 1),
+circle(20.572, 25.125, 1),
+circle(28.893, 3.24, 1),
+circle(26.188, 2.004, 1),
+circle(12, 26, 1),
+circle(6, 20, 1),
+circle(18, 20, 1),
+circle(6.804, 17, 1),
+circle(17.196, 23, 1),
+circle(9, 25.196, 1),
+circle(15, 14.804, 1),
+circle(9, 14.804, 1),
+circle(15, 25.196, 1),
+circle(6.804, 23, 1),
+circle(17.196, 17, 1),
+circle(30, 6.026, 1),
+);

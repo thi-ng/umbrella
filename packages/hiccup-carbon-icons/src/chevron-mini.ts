@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CHEVRON_MINI
  */
 // prettier-ignore
-export const CHEVRON_MINI = svg(
-    ["path", { d: "M31 19v12H19z" }]
+export const CHEVRON_MINI: any[] = svg(
+path("M31 19v12H19z"),
 );

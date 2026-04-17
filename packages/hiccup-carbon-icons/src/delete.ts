@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DELETE
  */
 // prettier-ignore
-export const DELETE = svg(
-    ["path", { d: "M12 12h2v12h-2zM18 12h2v12h-2z" }],
-    ["path", { d: "M4 6v2h2v20a2 2 0 002 2h16a2 2 0 002-2V8h2V6zm4 22V8h16v20zM12 2h8v2h-8z" }]
+export const DELETE: any[] = svg(
+path("M29 26H12a1 1 0 0 1-.707-.293l-9-9a1 1 0 0 1 0-1.414l9-9A1 1 0 0 1 12 6h17a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1m-16.586-2H28V8H12.414l-8 8z"),
+path("M20.414 16 25 11.414 23.586 10 19 14.586 14.414 10 13 11.414 17.586 16 13 20.586 14.414 22 19 17.414 23.586 22 25 20.586z"),
 );

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CREDENTIALS
  */
 // prettier-ignore
-export const CREDENTIALS = svg(
-    ["path", { d: "M16 22a4 4 0 10-4-4 4 4 0 004 4zm0-6a2 2 0 11-2 2 2 2 0 012-2zM14 6h4v2h-4z" }],
-    ["path", { d: "M24 2H8a2.002 2.002 0 00-2 2v24a2.002 2.002 0 002 2h16a2.003 2.003 0 002-2V4a2.002 2.002 0 00-2-2zm-4 26h-8v-2a1 1 0 011-1h6a1 1 0 011 1zm2 0v-2a3 3 0 00-3-3h-6a3 3 0 00-3 3v2H8V4h16v24z" }]
+export const CREDENTIALS: any[] = svg(
+path("M16 22a4 4 0 1 0-4-4 4 4 0 0 0 4 4m0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2M14 6h4v2h-4z"),
+path("M24 2H8a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h16a2.003 2.003 0 0 0 2-2V4a2 2 0 0 0-2-2m-4 26h-8v-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Zm2 0v-2a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3v2H8V4h16v24Z"),
 );

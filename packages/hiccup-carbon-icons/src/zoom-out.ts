@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ZOOM_OUT
  */
 // prettier-ignore
-export const ZOOM_OUT = svg(
-    ["path", { d: "M9 13h10v2H9z" }],
-    ["path", { d: "M22.45 21A10.87 10.87 0 0025 14a11 11 0 10-11 11 10.87 10.87 0 007-2.55L28.59 30 30 28.59zM14 23a9 9 0 119-9 9 9 0 01-9 9z" }]
+export const ZOOM_OUT: any[] = svg(
+path("M8 12h10v2H8z"),
+path("M21.448 20A10.86 10.86 0 0 0 24 13a11 11 0 1 0-11 11 10.86 10.86 0 0 0 7-2.552L27.586 29 29 27.586ZM13 22a9 9 0 1 1 9-9 9.01 9.01 0 0 1-9 9"),
 );

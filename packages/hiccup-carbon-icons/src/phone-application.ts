@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: Apache-2.0
+import { path, svg } from "./_svg.js";
+
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#PHONE_APPLICATION
+ */
+// prettier-ignore
+export const PHONE_APPLICATION: any[] = svg(
+path("M26 2h4v4h-4zM26 8h4v4h-4zM20 2h4v4h-4zM20 8h4v4h-4zM25 30h-.17C5.18 28.87 2.39 12.29 2 7.23a3 3 0 0 1 2.761-3.221Q4.88 4 5 4h5.27a2 2 0 0 1 1.86 1.26L13.65 9a2 2 0 0 1-.44 2.16l-2.13 2.15a9.36 9.36 0 0 0 7.58 7.6l2.17-2.15a2 2 0 0 1 2.17-.41l3.77 1.51A2 2 0 0 1 28 21.72V27a3 3 0 0 1-3 3M5 6a1 1 0 0 0-1.003.997q0 .041.003.083C4.46 13 7.41 27 24.94 28a1 1 0 0 0 1.058-.938L26 27v-5.28l-3.77-1.51-2.87 2.85-.48-.06C10.18 21.91 9 13.21 9 13.12l-.06-.48 2.84-2.87L10.28 6Z"),
+);

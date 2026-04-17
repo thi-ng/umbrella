@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ALIGN_HORIZONTAL_LEFT
  */
 // prettier-ignore
-export const ALIGN_HORIZONTAL_LEFT = svg(
-    ["path", { d: "M26 26H11a2.002 2.002 0 01-2-2v-4a2.002 2.002 0 012-2h15a2.002 2.002 0 012 2v4a2.002 2.002 0 01-2 2zm0-6.001L11 20v4h15zM18 14h-7a2.002 2.002 0 01-2-2V8a2.002 2.002 0 012-2h7a2.002 2.002 0 012 2v4a2.002 2.002 0 01-2 2zm0-6.001L11 8v4h7zM4 2h2v28H4z" }]
+export const ALIGN_HORIZONTAL_LEFT: any[] = svg(
+path("M26 26H11a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2m0-6.001L11 20v4h15ZM18 14h-7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2m0-6.001L11 8v4h7ZM4 2h2v28H4z"),
 );

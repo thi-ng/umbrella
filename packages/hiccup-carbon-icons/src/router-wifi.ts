@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: Apache-2.0
+import { circle, path, svg } from "./_svg.js";
+
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ROUTER_WIFI
+ */
+// prettier-ignore
+export const ROUTER_WIFI: any[] = svg(
+circle(16, 13.5, 1.5),
+path("M19.536 10.465a5 5 0 0 0-7.072 0L11.05 9.05a7 7 0 0 1 9.9 0Z"),
+path("M23.071 6.929a10 10 0 0 0-14.142 0L7.515 5.514a12 12 0 0 1 16.97 0ZM21 25l-5 5-5-5 1.409-1.419L15 26.153V19h2v7.206l2.591-2.625zM24 11l-5 5 5 5 1.419-1.409L22.847 17H30v-2h-7.206l2.625-2.591zM8 11l5 5-5 5-1.419-1.409L9.153 17H2v-2h7.206l-2.625-2.591z"),
+);

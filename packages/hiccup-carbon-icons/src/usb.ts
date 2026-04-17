@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#USB
  */
 // prettier-ignore
-export const USB = svg(
-    ["path", { d: "M24 15V6a2 2 0 00-2-2H10a2 2 0 00-2 2v9a2 2 0 00-2 2v11h2V17h16v11h2V17a2 2 0 00-2-2zM10 6h12v9H10z" }],
-    ["path", { d: "M12 10h3v2h-3zM17 10h3v2h-3z" }]
+export const USB: any[] = svg(
+path("M24 15V6a2 2 0 0 0-2-2H10a2 2 0 0 0-2 2v9a2 2 0 0 0-2 2v11h2V17h16v11h2V17a2 2 0 0 0-2-2M10 6h12v9H10Z"),
+path("M12 10h3v2h-3zM17 10h3v2h-3z"),
 );

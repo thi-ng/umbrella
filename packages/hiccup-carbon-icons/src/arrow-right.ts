@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ARROW_RIGHT
  */
 // prettier-ignore
-export const ARROW_RIGHT = svg(
-    ["path", { d: "M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z" }]
+export const ARROW_RIGHT: any[] = svg(
+path("m18 6-1.43 1.393L24.15 15H4v2h20.15l-7.58 7.573L18 26l10-10z"),
 );

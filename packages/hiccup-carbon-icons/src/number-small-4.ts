@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#NUMBER_SMALL_4
  */
 // prettier-ignore
-export const NUMBER_SMALL_4 = svg(
-    ["path", { d: "M17 11v4h-2v-4h-2v6h4v4h2V11h-2z" }]
+export const NUMBER_SMALL_4: any[] = svg(
+path("M17 11v4h-2v-4h-2v6h4v4h2V11z"),
 );

@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#MINIMIZE
  */
 // prettier-ignore
-export const MINIMIZE = svg(
-    ["path", { d: "M6 17v2h5.59L2 28.58 3.41 30 13 20.41V26h2v-9H6zM30 3.42L28.59 2 19 11.59V6h-2v9h9v-2h-5.59L30 3.42z" }]
+export const MINIMIZE: any[] = svg(
+path("M4 18v2h6.586L2 28.582 3.414 30 12 21.414V28h2V18zM30 3.416 28.592 2 20 10.586V4h-2v10h10v-2h-6.586z"),
 );

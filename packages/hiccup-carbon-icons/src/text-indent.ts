@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#TEXT_INDENT
  */
 // prettier-ignore
-export const TEXT_INDENT = svg(
-    ["path", { d: "M14 6h14v2H14zM14 12h14v2H14zM7 18h21v2H7zM7 24h21v2H7zM4 13.59L7.29 10 4 6.41 5.42 5l4.62 5-4.62 5L4 13.59z" }]
+export const TEXT_INDENT: any[] = svg(
+path("M14 6h14v2H14zM14 12h14v2H14zM7 18h21v2H7zM7 24h21v2H7zM4 13.59 7.29 10 4 6.41 5.42 5l4.62 5-4.62 5z"),
 );

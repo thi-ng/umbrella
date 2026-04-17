@@ -1,21 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { path, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ALARM_SUBTRACT
  */
 // prettier-ignore
-export const ALARM_SUBTRACT = svg(
-    ["path", { d: "M16 28a11 11 0 1111-11 11 11 0 01-11 11zm0-20a9 9 0 109 9 9 9 0 00-9-9z" }],
-    ["path",
-        {
-            d: "M3.96 5.5h5.07v2H3.96z",
-            transform: "rotate(-45.06 6.502 6.497)",
-        }],
-    ["path",
-        {
-            d: "M24.5 3.96h2v5.07h-2z",
-            transform: "rotate(-44.94 25.5 6.498)",
-        }],
-    ["path", { d: "M11 16h10v2H11z" }]
+export const ALARM_SUBTRACT: any[] = svg(
+path("M16 28a11 11 0 1 1 11-11 11 11 0 0 1-11 11m0-20a9 9 0 1 0 9 9 9 9 0 0 0-9-9"),
+path("m4 7.592 3.582-3.589 1.415 1.413-3.58 3.589zM23 5.407l1.415-1.413 3.581 3.59-1.415 1.412z"),
+path("M11 16h10v2H11z"),
 );

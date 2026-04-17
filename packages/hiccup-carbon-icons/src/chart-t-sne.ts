@@ -1,93 +1,23 @@
 // SPDX-License-Identifier: Apache-2.0
-import { svg } from "./_svg.js";
+import { circle, svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CHART_T_SNE
  */
 // prettier-ignore
-export const CHART_T_SNE = svg(
-    ["circle",
-        {
-            r: 2,
-            cy: 20,
-            cx: 10,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 28,
-            cx: 10,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 14,
-            cx: 10,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 4,
-            cx: 28,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 6,
-            cx: 22,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 10,
-            cx: 28,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 12,
-            cx: 20,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 22,
-            cx: 28,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 28,
-            cx: 26,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 26,
-            cx: 20,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 20,
-            cx: 22,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 4,
-            cx: 16,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 24,
-            cx: 4,
-        }],
-    ["circle",
-        {
-            r: 2,
-            cy: 16,
-            cx: 4,
-        }]
+export const CHART_T_SNE: any[] = svg(
+circle(10, 20, 2),
+circle(10, 28, 2),
+circle(10, 14, 2),
+circle(28, 4, 2),
+circle(22, 6, 2),
+circle(28, 10, 2),
+circle(20, 12, 2),
+circle(28, 22, 2),
+circle(26, 28, 2),
+circle(20, 26, 2),
+circle(22, 20, 2),
+circle(16, 4, 2),
+circle(4, 24, 2),
+circle(4, 16, 2),
 );
