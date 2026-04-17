@@ -311,13 +311,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-04-09
+As of: 2026-04-17
 
-| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
-|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)         | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)         | [changelog](./packages/date/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/meta-css`](./packages/meta-css) | [![version](https://img.shields.io/npm/v/@thi.ng/meta-css.svg)](https://www.npmjs.com/package/@thi.ng/meta-css) | [changelog](./packages/meta-css/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)   | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)   | [changelog](./packages/strings/CHANGELOG.md)  |
+| Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
+|:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-carbon-icons`](./packages/hiccup-carbon-icons) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons) | [changelog](./packages/hiccup-carbon-icons/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
