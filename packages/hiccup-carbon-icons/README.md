@@ -28,16 +28,17 @@
 
 ## About
 
-This package provides the full set of IBM's [Carbon
-icons](https://github.com/IBM/carbon-icons) in hiccup format (i.e. as Javascript
-encoded SVG), counting in at ~1100 and ready to be used within any
+This package provides a filtered set of 2222 of IBM's [Carbon
+icons](https://github.com/carbon-design-system/carbon) in hiccup format (i.e. as
+Javascript encoded SVG), counting in at ~2200 and ready to be used within any
 [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup)
 supporting scenario.
 
 Each icon is defined in its own source file and can be imported individually.
 The converted icons are based on the 32x32 pixel versions, but have NO explicit
-size set (only `viewBox` attrib). Use the `withSize()` helper to inject a size,
-e.g. `withSize(DOWNLOAD, "12px")`.
+size set (only `viewBox` attrib). Use the
+[`withSize()`](https://docs.thi.ng/umbrella/hiccup-carbon-icons/functions/withSize.html)
+helper to inject a size, e.g. `withSize(DOWNLOAD, "12px")`.
 
 ## Contact sheet
 
@@ -77,7 +78,7 @@ For Node.js REPL:
 const icons = await import("@thi.ng/hiccup-carbon-icons");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 77.19 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 165.37 KB
 
 ## Dependencies
 
@@ -103,16 +104,19 @@ directory are using this package:
 [Generated API docs](https://docs.thi.ng/umbrella/hiccup-carbon-icons/)
 
 ```ts
-import { renderOnce } from "@thi.ng/hdom";
-import { CODE } from "@thi.ng/hiccup-carbon-icons";
+import { CODE, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { $compile } from "@thi.ng/rdom";
 
-// using tachyons css classes for brevity
+// hiccup component function
 const iconButton = (icon, onclick, label?) =>
     ["a", { onclick, href: "#" },
-        ["span.dib.w1.h1.mr1", icon],
+        ["span.icon", {}, withSize(icon, "1rem")],
         label];
 
-renderOnce(iconButton(CODE, () => alert("hi"), "show me the code"));
+// compile & mount in DOM
+$compile(
+    iconButton(CODE, () => alert("hi"), "show me the code")
+).mount(document.body);
 ```
 
 ## Icon conversion process
