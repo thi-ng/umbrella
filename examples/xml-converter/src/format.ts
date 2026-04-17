@@ -12,9 +12,10 @@ export interface FormatOpts {
 	quote: string;
 	ws: string;
 	trailingComma: boolean;
+	forceQuote?: boolean;
 }
 
-export const DEFAULT_FORMAT: FormatOpts = {
+export const PRETTY_FORMAT: FormatOpts = {
 	indent: 0,
 	tabSize: 4,
 	trailingComma: true,
@@ -34,6 +35,11 @@ export const COMPACT_FORMAT: FormatOpts = {
 	ws: "",
 };
 
+export const JSON_FORMAT: FormatOpts = {
+	...COMPACT_FORMAT,
+	forceQuote: true,
+};
+
 // memoized indentations
 export const spaces = (n: number) => repeat(" ", n);
 
@@ -49,7 +55,7 @@ const classify = (x: any) =>
 
 // wraps attrib name in quotes if needed
 const formatAttrib = (opts: FormatOpts, x: string) =>
-	/^[a-z]+$/i.test(x) ? x : opts.quote + x + opts.quote;
+	!opts.forceQuote && /^[a-z]+$/i.test(x) ? x : opts.quote + x + opts.quote;
 
 // attrib or body value formatter
 const formatVal = (opts: FormatOpts, x: any, indent = true) =>

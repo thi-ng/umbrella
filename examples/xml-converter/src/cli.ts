@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
+import { flag, oneOf, parse, string, strings } from "@thi.ng/args";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { strings, string, flag, parse } from "@thi.ng/args";
 import { convertXML } from "./convert.js";
-import { COMPACT_FORMAT, DEFAULT_FORMAT } from "./format.js";
+import { COMPACT_FORMAT, PRETTY_FORMAT, JSON_FORMAT } from "./format.js";
 import { varName } from "./utils.js";
 
 interface CLIOpts {
@@ -11,7 +11,7 @@ interface CLIOpts {
 	attribs?: string[];
 	var?: string;
 	singleQuote: boolean;
-	pretty: boolean;
+	format: "compact" | "json" | "pretty";
 }
 
 const res = parse<CLIOpts>(
@@ -34,7 +34,12 @@ const res = parse<CLIOpts>(
 			desc: "generate TS export var decl",
 		}),
 		singleQuote: flag({ alias: "s", desc: "use single quotes" }),
-		pretty: flag({ alias: "p", desc: "enable pretty printing" }),
+		format: oneOf({
+			opts: ["compact", "json", "pretty"],
+			alias: "fmt",
+			desc: "enable pretty printing",
+			default: "pretty",
+		}),
 	},
 	process.argv
 );
@@ -48,9 +53,11 @@ const opts = res.result;
 const xmlFile = resolve(res.rest[0]);
 const quote = opts.singleQuote ? `'` : `"`;
 const copts = {
-	format: opts.pretty
-		? { ...DEFAULT_FORMAT, quote, indent: 4 }
-		: { ...COMPACT_FORMAT, quote },
+	format: {
+		compact: { ...COMPACT_FORMAT, quote },
+		pretty: { ...PRETTY_FORMAT, quote, indent: 4 },
+		json: JSON_FORMAT,
+	}[opts.format],
 	removeAttribs: new Set(opts.attribs || []),
 	removeTags: new Set(opts.tags || []),
 };

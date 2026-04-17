@@ -46,13 +46,12 @@ bin/hiccup --help
 #
 # Options:
 #
-#   -V, --version          output the version number
-#   -t, --tags <items>     remove tags from tree
-#   -a, --attribs <items>  remove attribs from tree
-#   -v, --var <name>       generate TS export var declaration
-#   -s, --single-quote     use single quotes
-#   -p, --no-pretty        disable pretty printing
-#   -h, --help             output usage information
+# -s, --single-quote         use single quotes
+#
+# -a NAMES, --attribs NAMES  [multiple] remove attribs from tree
+# -fmt ID, --format ID       enable pretty printing: "compact", "json", "pretty" (default: "pretty")
+# -t NAMES, --tags NAMES     [multiple] remove tags from tree
+# -v NAME, --var NAME        generate TS export var decl
 
 # Example file
 cat << EOF > foo.svg

@@ -3,7 +3,7 @@ import { reactive, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { convertXML } from "./convert.js";
-import { COMPACT_FORMAT, DEFAULT_FORMAT } from "./format.js";
+import { COMPACT_FORMAT, PRETTY_FORMAT } from "./format.js";
 import { app, UI } from "./ui.js";
 import { xformAsSet } from "./utils.js";
 
@@ -37,7 +37,7 @@ const formatOpts = sync({
 		prettyPrint: inputs.prettyPrint,
 	},
 	xform: map((opts: any) => ({
-		...(opts.prettyPrint ? DEFAULT_FORMAT : COMPACT_FORMAT),
+		...(opts.prettyPrint ? PRETTY_FORMAT : COMPACT_FORMAT),
 		trailingComma: opts.trailingComma,
 		quote: opts.doubleQuote ? `"` : `'`,
 	})),

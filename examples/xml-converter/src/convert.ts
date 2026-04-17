@@ -11,7 +11,7 @@ import {
 	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { DEFAULT_FORMAT, format, type FormatOpts } from "./format.js";
+import { PRETTY_FORMAT, format, type FormatOpts } from "./format.js";
 
 export interface ConversionOpts {
 	format: FormatOpts;
@@ -20,7 +20,7 @@ export interface ConversionOpts {
 }
 
 export const DEFAULT_OPTS: ConversionOpts = {
-	format: DEFAULT_FORMAT,
+	format: PRETTY_FORMAT,
 	removeAttribs: new Set(),
 	removeTags: new Set(),
 };
@@ -31,7 +31,7 @@ export const convertXML = (src: string, opts: Partial<ConversionOpts> = {}) => {
 		...DEFAULT_OPTS,
 		...opts,
 	});
-	return format({ ...DEFAULT_FORMAT, ...opts.format }, "", tree);
+	return format({ ...PRETTY_FORMAT, ...opts.format }, "", tree);
 };
 
 // parses given XMLish string using @thi.ng/sax transducer into a
