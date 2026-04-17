@@ -73,6 +73,7 @@ console.log(html);
 Resulting output (reformatted for clarity):
 
 ```html
+<!DOCTYPE html>
 <html>
 	<body>
 		<a href="/warning">
