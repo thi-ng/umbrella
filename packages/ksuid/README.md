@@ -123,7 +123,7 @@ For Node.js REPL:
 const ksuid = await import("@thi.ng/ksuid");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 990 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 989 bytes
 
 ## Dependencies
 

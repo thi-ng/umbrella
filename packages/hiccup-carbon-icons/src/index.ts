@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 export * from "./_svg.js";
 export * from "./4k-filled.js";
 export * from "./4k.js";

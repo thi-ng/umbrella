@@ -69,7 +69,7 @@ For Node.js REPL:
 const heaps = await import("@thi.ng/heaps");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.00 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.01 KB
 
 ## Dependencies
 

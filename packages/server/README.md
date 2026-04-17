@@ -165,7 +165,7 @@ For Node.js REPL:
 const ser = await import("@thi.ng/server");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.34 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.35 KB
 
 ## Dependencies
 

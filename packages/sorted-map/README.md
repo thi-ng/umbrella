@@ -154,7 +154,7 @@ For Node.js REPL:
 const sm = await import("@thi.ng/sorted-map");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.91 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.92 KB
 
 ## Dependencies
 

@@ -86,7 +86,7 @@ None
 
 ## Usage examples
 
-Six projects in this repo's
+Seven projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -98,6 +98,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-web-components.png" width="240"/> | Defining & using basic Web Components (with shadow DOM) via @thi.ng/rdom & @thi.ng/meta-css | [Demo](https://demo.thi.ng/umbrella/rdom-web-components/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-web-components) |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rstream-system-bus.png" width="240"/>  | Declarative component-based system with central rstream-based pubsub event bus              | [Demo](https://demo.thi.ng/umbrella/rstream-system-bus/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rstream-system-bus)  |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/thing-browser.avif" width="240"/>      | Tree-based UI to find & explore thi.ng projects via their associated keywords               | [Demo](https://demo.thi.ng/umbrella/thing-browser/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/thing-browser)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/xml-converter.png" width="240"/>       | XML/HTML/SVG to hiccup/JS conversion                                                        | [Demo](https://demo.thi.ng/umbrella/xml-converter/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/xml-converter)       |
 
 ## API
 

@@ -404,7 +404,7 @@ For Node.js REPL:
 const fib = await import("@thi.ng/fibers");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.43 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
 
 ## Dependencies
 

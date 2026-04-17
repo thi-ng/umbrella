@@ -88,7 +88,7 @@ For Node.js REPL:
 const idgen = await import("@thi.ng/idgen");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB
 
 ## Dependencies
 
