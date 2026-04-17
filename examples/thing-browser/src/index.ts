@@ -2,7 +2,7 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { partial } from "@thi.ng/compose";
-import { BACK_TO_TOP, LAUNCH } from "@thi.ng/hiccup-carbon-icons";
+import { LAUNCH, UP_TO_TOP } from "@thi.ng/hiccup-carbon-icons";
 import {
 	anchor,
 	button,
@@ -291,7 +291,7 @@ await $compile(
 				title: "back to top",
 				onclick: () => document.getElementById("search")?.focus(),
 			},
-			BACK_TO_TOP
+			UP_TO_TOP
 		)
 	)
 ).mount(document.getElementById("app")!);

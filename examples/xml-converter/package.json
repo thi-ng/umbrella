@@ -18,6 +18,7 @@
 		"@thi.ng/arrays": "workspace:^",
 		"@thi.ng/checks": "workspace:^",
 		"@thi.ng/defmulti": "workspace:^",
+		"@thi.ng/hiccup-carbon-icons": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/sax": "workspace:^",
 		"@thi.ng/strings": "workspace:^",
@@ -32,6 +33,7 @@
 	"thi.ng": {
 		"readme": [
 			"defmulti",
+			"hiccup-carbon-icons",
 			"sax",
 			"strings",
 			"transducers"
@@ -53,6 +55,7 @@
 		"interactive",
 		"json",
 		"reactive",
+		"svg",
 		"syntax",
 		"tool",
 		"transducer",

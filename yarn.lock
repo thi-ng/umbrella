@@ -3321,6 +3321,7 @@ __metadata:
     "@thi.ng/arrays": "workspace:^"
     "@thi.ng/checks": "workspace:^"
     "@thi.ng/defmulti": "workspace:^"
+    "@thi.ng/hiccup-carbon-icons": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/sax": "workspace:^"
     "@thi.ng/strings": "workspace:^"

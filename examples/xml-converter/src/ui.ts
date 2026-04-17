@@ -1,29 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
+import { COPY, withSize } from "@thi.ng/hiccup-carbon-icons";
 import type { ISubscriber } from "@thi.ng/rstream";
 import { mapIndexed } from "@thi.ng/transducers";
 import { handleTab } from "./utils.js";
-
-// converted from:
-// https://github.com/IBM/carbon-icons/blob/develop/src/svg/copy.svg
-const ICON_COPY = [
-	"svg.mr2",
-	{
-		viewBox: "0 0 16 16",
-		width: "0.7rem",
-		height: "0.7rem",
-		stroke: "white",
-	},
-	[
-		"path",
-		{ d: "M1,10H0V2c0-1.1,0.9-2,2-2l8,0l0,1L2,1C1.4,1,1,1.5,1,2L1,10z" },
-	],
-	[
-		"path",
-		{
-			d: "M11,4.2V8h3.8L11,4.2z M15,9h-4c-0.6,0-1-0.4-1-1V4H4.5C4.2,4,4,4.2,4,4.5v10C4,14.8,4.2,15,4.5,15h10 c0.3,0,0.5-0.2,0.5-0.5V9z M11,3c0.1,0,0.3,0.1,0.4,0.1l4.5,4.5C15.9,7.7,16,7.9,16,8v6.5c0,0.8-0.7,1.5-1.5,1.5h-10 C3.7,16,3,15.3,3,14.5v-10C3,3.7,3.7,3,4.5,3H11z",
-		},
-	],
-];
 
 // component styles:
 // this object will be provided as hdom user context to all
@@ -165,7 +144,10 @@ const copyButton = (
 			);
 		},
 	},
-	ICON_COPY,
+	withSize(COPY, "0.7rem", undefined, {
+		class: "mr2",
+		fill: "currentcolor",
+	}),
 	stream.deref() ? "Copied" : "Copy",
 ];
 
