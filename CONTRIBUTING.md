@@ -512,6 +512,12 @@ development & ever-increasing maintenance effort (incl. others outside this
 repo), please consider a financial contribution (anything helps!) via any of the
 following methods:
 
+Preferred:
+
 - [Liberapay](https://liberapay.com/thi.ng)
+- [Stripe](https://donate.stripe.com/14A7sKfE7dzo3D7cz0a7C00)
+
+Alternatives:
+
 - [GitHub Sponsors](https://github.com/sponsors/postspectacular)
 - [Patreon](https://www.patreon.com/thing_umbrella)
