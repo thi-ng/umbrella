@@ -179,6 +179,9 @@
 		"./step": {
 			"default": "./step.js"
 		},
+		"./str": {
+			"default": "./str.js"
+		},
 		"./sync-raf": {
 			"default": "./sync-raf.js"
 		},

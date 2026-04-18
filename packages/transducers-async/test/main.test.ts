@@ -24,6 +24,7 @@ import {
 	sidechain,
 	source,
 	step,
+	str,
 	sync,
 	take,
 	throttle,
@@ -357,6 +358,18 @@ test("step", async (done) => {
 		)(1)
 	).toEqual([1]);
 	done();
+});
+
+test("str", async () => {
+	expect(await str("", [1, 20, 300])).toEqual("120300");
+	expect(await str("-", "abc")).toEqual("a-b-c");
+	expect(
+		await transduce(map(Buffer.from), str("/"), [
+			"abc",
+			[0x31, 0x32, 0x33],
+			"xyz",
+		])
+	).toEqual("abc/123/xyz");
 });
 
 test(
