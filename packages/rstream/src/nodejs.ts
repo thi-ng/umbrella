@@ -1,28 +1,30 @@
 // SPDX-License-Identifier: Apache-2.0
 import { rechunk } from "@thi.ng/transducers/rechunk";
 import type { Readable } from "node:stream";
-import { stream, type Stream } from "./stream.js";
-import type { Subscription } from "./subscription.js";
+import type { ISubscriber, ISubscription } from "./api.js";
+import { stream } from "./stream.js";
 
 /**
- * Adapter bridge from NodeJS streams. Creates and returns a new {@link stream}
- * of type `T` and pipes in data from `stdout` (also assumed to produce data of
- * type `T`). If given, also connects `stderr` to new rstream's error handler.
- * Unless `close` is false, the new stream closes once `stdout` is closed.
+ * Adapter bridge from NodeJS streams. Pipes data from given `stdout` (assumed
+ * to produce data of type `T`) into `ingest` or creates and returns a new
+ * {@link stream}. If given, also connects given `stderr` to `ingest`'s error
+ * handler (if defined). Unless `close` is false, `ingest` closes once `stdout` is closed.
  *
  * @param stdout -
  * @param stderr -
  * @param close -
+ * @param ingest -
  */
 export const fromNodeJS = <T>(
 	stdout: Readable,
 	stderr?: Readable,
-	close = true
-): Stream<T> => {
-	const ingest = stream<T>();
+	close = true,
+	ingest: ISubscriber<T> = stream<T>()
+): ISubscriber<T> => {
 	stdout.on("data", (data) => ingest.next(data));
-	stderr?.on("data", (data) => ingest.error(data));
-	close && stdout.on("close", () => ingest.done());
+	if (stderr && ingest.error)
+		stderr.on("data", (data) => ingest.error!(data));
+	if (close && ingest.done) stdout.on("close", () => ingest.done!());
 	return ingest;
 };
 
@@ -32,8 +34,9 @@ export const fromNodeJS = <T>(
  * breaks by default).
  *
  * @remarks
- * Internally uses https://docs.thi.ng/umbrella/transducers/functions/rechunk.html
- * to rechunk input.
+ * Internally uses
+ * https://docs.thi.ng/umbrella/transducers/functions/rechunk.html to rechunk
+ * input.
  *
  * @example
  * ```ts tangle:../export/lines-from-nodejs.ts
@@ -59,13 +62,15 @@ export const fromNodeJS = <T>(
  * @param stderr -
  * @param re -
  * @param close -
+ * @param ingest -
  */
 export const linesFromNodeJS = (
 	stdout: Readable,
 	stderr?: Readable,
 	re?: RegExp,
-	close?: boolean
+	close?: boolean,
+	ingest?: ISubscription<string, string>
 ) =>
-	<Subscription<string, string>>(
-		fromNodeJS<string>(stdout, stderr, close).transform(rechunk(re))
+	<ISubscription<string, string>>(
+		fromNodeJS<string>(stdout, stderr, close, ingest).transform(rechunk(re))
 	);
