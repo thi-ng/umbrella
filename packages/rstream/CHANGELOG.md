@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-02T10:52:05Z
+- **Last updated**: 2026-04-18T11:32:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream@9.5.0/packages/rstream) (2026-04-18)
+
+#### 🚀 Features
+
+- add optional ingest arg for `fromNodeJS()`/`linesFromNodeJS()` ([dd90b42](https://codeberg.org/thi.ng/umbrella/commit/dd90b42))
 
 ## [9.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream@9.4.0/packages/rstream) (2026-03-18)
 

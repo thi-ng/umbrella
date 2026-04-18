@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-02T10:52:06Z
+- **Last updated**: 2026-04-18T11:32:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-carbon-icons@3.2.0/packages/hiccup-carbon-icons) (2026-04-18)
+
+#### 🚀 Features
+
+- update all icons, add/remove icons ([e03eb5b](https://codeberg.org/thi.ng/umbrella/commit/e03eb5b))
+  - new repo sync with upstream (IBM carbon repo)
+  - update all icon defs (using `path()`, `circle()` helper fns)
+  - new set contains 2222 icons
+- update converter, codegen & contact sheet tools ([d507b62](https://codeberg.org/thi.ng/umbrella/commit/d507b62))
 
 ### [3.1.61](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-carbon-icons@3.1.61/packages/hiccup-carbon-icons) (2024-06-21)
 

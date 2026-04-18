@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-02T10:52:06Z
+- **Last updated**: 2026-04-18T11:32:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-async@0.5.0/packages/transducers-async) (2026-04-18)
+
+#### 🚀 Features
+
+- add `str()` async reducer ([27e0fd2](https://codeberg.org/thi.ng/umbrella/commit/27e0fd2))
+- add `rechunk()` async transducer ([c9ea9e0](https://codeberg.org/thi.ng/umbrella/commit/c9ea9e0))
 
 ### [0.4.37](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/transducers-async@0.4.37/packages/transducers-async) (2025-12-03)
 

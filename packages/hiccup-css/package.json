@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-css",
-	"version": "2.7.86",
+	"version": "2.7.87",
 	"description": "CSS from nested JS data structures",
 	"type": "module",
 	"module": "./index.js",
@@ -40,10 +40,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.18",
-		"@thi.ng/checks": "^3.8.8",
-		"@thi.ng/errors": "^2.6.7",
-		"@thi.ng/transducers": "^9.6.31"
+		"@thi.ng/api": "^8.12.19",
+		"@thi.ng/checks": "^3.8.9",
+		"@thi.ng/errors": "^2.6.8",
+		"@thi.ng/transducers": "^9.6.32"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

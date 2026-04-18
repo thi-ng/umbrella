@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/range-coder",
-	"version": "2.1.123",
+	"version": "2.1.124",
 	"description": "Binary data range encoder / decoder",
 	"type": "module",
 	"module": "./index.js",
@@ -40,10 +40,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/bitstream": "^2.4.45"
+		"@thi.ng/bitstream": "^2.4.46"
 	},
 	"devDependencies": {
-		"@thi.ng/transducers": "^9.6.31",
+		"@thi.ng/transducers": "^9.6.32",
 		"esbuild": "^0.28.0",
 		"typedoc": "^0.28.18",
 		"typescript": "^5.9.3"
