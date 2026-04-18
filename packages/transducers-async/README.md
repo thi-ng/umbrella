@@ -117,7 +117,7 @@ For Node.js REPL:
 const txa = await import("@thi.ng/transducers-async");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.40 KB
 
 ## Dependencies
 
