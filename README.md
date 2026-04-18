@@ -311,11 +311,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-04-17
+As of: 2026-04-18
 
 | Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
 |:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-carbon-icons`](./packages/hiccup-carbon-icons) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons) | [changelog](./packages/hiccup-carbon-icons/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rsteam`](./packages/rsteam)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rsteam.svg)](https://www.npmjs.com/package/@thi.ng/rsteam)                           | [changelog](./packages/rsteam/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers-async`](./packages/transducers-async)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)     | [changelog](./packages/transducers-async/CHANGELOG.md)   |
 
 ### Algorithms & data structures
 
