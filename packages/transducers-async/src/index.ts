@@ -22,6 +22,7 @@ export * from "./pubsub.js";
 export * from "./push.js";
 export * from "./raf.js";
 export * from "./range.js";
+export * from "./rechunk.js";
 export * from "./reduce.js";
 export * from "./repeatedly.js";
 export * from "./run.js";

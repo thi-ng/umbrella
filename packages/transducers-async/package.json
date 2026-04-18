@@ -161,6 +161,9 @@
 		"./range": {
 			"default": "./range.js"
 		},
+		"./rechunk": {
+			"default": "./rechunk.js"
+		},
 		"./reduce": {
 			"default": "./reduce.js"
 		},
