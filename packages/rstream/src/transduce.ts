@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Reduced, Reducer, Transducer } from "@thi.ng/transducers";
 import { isReduced } from "@thi.ng/transducers/reduced";
-import type { ISubscription } from "./api.js";
-import type { Subscription } from "./subscription.js";
+import type { ISubscribable, ISubscription } from "./api.js";
 
 /**
  * Returns a promise which subscribes to given input and transforms
@@ -32,7 +31,7 @@ import type { Subscription } from "./subscription.js";
  * @param init -
  */
 export const transduce = <A, B, C>(
-	src: Subscription<any, A>,
+	src: ISubscribable<A>,
 	xform: Transducer<A, B>,
 	rfn: Reducer<B, C>,
 	init?: C
