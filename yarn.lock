@@ -5837,7 +5837,7 @@ __metadata:
     "@thi.ng/hiccup-css": "npm:^2.7.87"
     "@thi.ng/logger": "npm:^3.3.2"
     "@thi.ng/memoize": "npm:^4.0.43"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/strings": "npm:^3.12.1"
     "@thi.ng/text-format": "npm:^2.2.59"
     "@thi.ng/transducers": "npm:^9.6.32"
@@ -6282,8 +6282,8 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.9"
     "@thi.ng/hiccup-canvas": "npm:^3.2.19"
     "@thi.ng/object-utils": "npm:^1.3.11"
-    "@thi.ng/rdom": "npm:^1.7.86"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rdom": "npm:^1.7.87"
+    "@thi.ng/rstream": "npm:^9.5.1"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
     typescript: "npm:^5.9.3"
@@ -6297,8 +6297,8 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.19"
     "@thi.ng/hiccup-html": "npm:^2.7.51"
     "@thi.ng/object-utils": "npm:^1.3.11"
-    "@thi.ng/rdom": "npm:^1.7.86"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rdom": "npm:^1.7.87"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/strings": "npm:^3.12.1"
     "@thi.ng/transducers": "npm:^9.6.32"
     esbuild: "npm:^0.28.0"
@@ -6315,15 +6315,15 @@ __metadata:
     "@thi.ng/checks": "npm:^3.8.9"
     "@thi.ng/defmulti": "npm:^3.0.96"
     "@thi.ng/hiccup-html": "npm:^2.7.51"
-    "@thi.ng/rdom": "npm:^1.7.86"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rdom": "npm:^1.7.87"
+    "@thi.ng/rstream": "npm:^9.5.1"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rdom@npm:^1.7.86, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
+"@thi.ng/rdom@npm:^1.7.87, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"
   dependencies:
@@ -6333,7 +6333,7 @@ __metadata:
     "@thi.ng/hiccup": "npm:^5.4.4"
     "@thi.ng/paths": "npm:^5.2.38"
     "@thi.ng/prefixes": "npm:^2.3.69"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/strings": "npm:^3.12.1"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
@@ -6387,18 +6387,18 @@ __metadata:
   resolution: "@thi.ng/rstream-csp@workspace:packages/rstream-csp"
   dependencies:
     "@thi.ng/csp": "npm:^3.3.21"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rstream-dot@npm:^3.0.174, @thi.ng/rstream-dot@workspace:^, @thi.ng/rstream-dot@workspace:packages/rstream-dot":
+"@thi.ng/rstream-dot@npm:^3.0.175, @thi.ng/rstream-dot@workspace:^, @thi.ng/rstream-dot@workspace:packages/rstream-dot":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream-dot@workspace:packages/rstream-dot"
   dependencies:
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/strings": "npm:^3.12.1"
     "@thi.ng/transducers": "npm:^9.6.32"
     esbuild: "npm:^0.28.0"
@@ -6414,7 +6414,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.19"
     "@thi.ng/checks": "npm:^3.8.9"
     "@thi.ng/math": "npm:^5.15.8"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/transducers": "npm:^9.6.32"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
@@ -6432,7 +6432,7 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.8"
     "@thi.ng/paths": "npm:^5.2.38"
     "@thi.ng/resolve-map": "npm:^7.1.131"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/transducers": "npm:^9.6.32"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
@@ -6444,7 +6444,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream-log-file@workspace:packages/rstream-log-file"
   dependencies:
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@types/node": "npm:^25.5.2"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
@@ -6459,7 +6459,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.19"
     "@thi.ng/checks": "npm:^3.8.9"
     "@thi.ng/logger": "npm:^3.3.2"
-    "@thi.ng/rstream": "npm:^9.5.0"
+    "@thi.ng/rstream": "npm:^9.5.1"
     "@thi.ng/strings": "npm:^3.12.1"
     "@thi.ng/transducers": "npm:^9.6.32"
     esbuild: "npm:^0.28.0"
@@ -6479,8 +6479,8 @@ __metadata:
     "@thi.ng/errors": "npm:^2.6.8"
     "@thi.ng/logger": "npm:^3.3.2"
     "@thi.ng/math": "npm:^5.15.8"
-    "@thi.ng/rstream": "npm:^9.5.0"
-    "@thi.ng/rstream-dot": "npm:^3.0.174"
+    "@thi.ng/rstream": "npm:^9.5.1"
+    "@thi.ng/rstream-dot": "npm:^3.0.175"
     "@thi.ng/transducers": "npm:^9.6.32"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.18"
@@ -6488,7 +6488,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rstream@npm:^9.5.0, @thi.ng/rstream@workspace:^, @thi.ng/rstream@workspace:packages/rstream":
+"@thi.ng/rstream@npm:^9.5.1, @thi.ng/rstream@workspace:^, @thi.ng/rstream@workspace:packages/rstream":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream@workspace:packages/rstream"
   dependencies:
