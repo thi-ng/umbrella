@@ -89,13 +89,22 @@ export interface InputSubmitAttribs extends InputAttribs {
 	formtarget: StringAttrib;
 }
 
+export interface InputHiddenAttribs extends Pick<
+	InputAttribs,
+	"data" | "form" | "id" | "name" | "value"
+> {
+	type: "hidden";
+}
+
+export const hidden = defElement<Partial<InputHiddenAttribs>, never>("input", {
+	type: "hidden",
+});
+
 export const button = defElement<Partial<InputAttribs>>("button");
 
 export const checkbox = defElement<Partial<InputCheckboxAttribs>, never>(
 	"input",
-	{
-		type: "checkbox",
-	}
+	{ type: "checkbox" }
 );
 
 export const radio = defElement<Partial<InputRadioAttribs>, never>("input", {
@@ -110,14 +119,14 @@ export const inputFile = defElement<Partial<InputFileAttribs>, never>("input", {
 	type: "file",
 });
 
-export const inputPass = defElement<Partial<InputTextAttribs>, never>("input", {
-	type: "password",
-});
-
 export const inputNumber = defElement<Partial<InputNumericAttribs>, never>(
 	"input",
 	{ type: "number" }
 );
+
+export const inputPass = defElement<Partial<InputTextAttribs>, never>("input", {
+	type: "password",
+});
 
 export const inputRange = defElement<Partial<InputNumericAttribs>, never>(
 	"input",
@@ -130,16 +139,12 @@ export const inputReset = defElement<Partial<InputAttribs>, never>("input", {
 
 export const inputSearch = defElement<Partial<InputTextAttribs>, never>(
 	"input",
-	{
-		type: "search",
-	}
+	{ type: "search" }
 );
 
 export const inputSubmit = defElement<Partial<InputSubmitAttribs>, never>(
 	"input",
-	{
-		type: "submit",
-	}
+	{ type: "submit" }
 );
 
 export const inputText = defElement<Partial<InputTextAttribs>, never>("input", {
