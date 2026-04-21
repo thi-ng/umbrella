@@ -13,6 +13,7 @@ import {
 	button,
 	checkbox,
 	fieldset,
+	hidden as $hidden,
 	inputColor,
 	inputFile,
 	inputNumber,
@@ -366,8 +367,8 @@ export const compileForm: MultiFn2<
 		custom: (val) => (<Custom>val).body,
 
 		hidden: ($val) => {
-			const { id, name, value } = <HiddenValue>$val;
-			return inputText({ type: "hidden", id: id ?? name, name, value });
+			const { name, id = name, value } = <HiddenValue>$val;
+			return $hidden({ id, name, value });
 		},
 
 		toggle: ($val, opts) => {
