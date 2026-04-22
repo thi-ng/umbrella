@@ -6,6 +6,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
+import { ROOT } from "@thi.ng/logger/root";
 import type { Reduced, Reducer, Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { map } from "@thi.ng/transducers/map";
@@ -295,13 +296,12 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	}
 
 	protected unhandledError(e: any) {
+		const isNullLogger =
+			LOGGER.parent === NULL_LOGGER ||
+			(LOGGER.parent === ROOT && ROOT.parent === NULL_LOGGER);
 		// ensure error is at least logged to console
 		// even if default NULL_LOGGER is used...
-		(LOGGER.parent !== NULL_LOGGER ? LOGGER : console).warn(
-			this.id,
-			"unhandled error:",
-			e
-		);
+		(isNullLogger ? console : LOGGER).warn(this.id, "unhandled error:", e);
 		this.unsubscribe();
 		this.state = State.ERROR;
 		return false;
