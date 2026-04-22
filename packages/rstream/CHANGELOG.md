@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-19T16:54:34Z
+- **Last updated**: 2026-04-22T19:02:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [9.5.2](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream@9.5.2/packages/rstream) (2026-04-22)
+
+#### 🩹 Bug fixes
+
+- update Subscription.unhandledError() ([9df7ac5](https://codeberg.org/thi.ng/umbrella/commit/9df7ac5))
+  - update `NULL_LOGGER` check to ensure error is logged
+    to console as faillback
 
 ### [9.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rstream@9.5.1/packages/rstream) (2026-04-19)
 

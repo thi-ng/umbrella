@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-18T11:32:55Z
+- **Last updated**: 2026-04-22T19:02:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.1.7](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@1.1.7/packages/rdom-forms) (2026-04-22)
+
+#### ♻️ Refactoring
+
+- minor update hidden form field handling ([e0a654c](https://codeberg.org/thi.ng/umbrella/commit/e0a654c))
 
 ## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-forms@1.1.0/packages/rdom-forms) (2026-03-18)
 
