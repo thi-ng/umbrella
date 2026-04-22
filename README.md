@@ -311,13 +311,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-04-18
+As of: 2026-04-22
 
-| Status                                        | Package                                                         | Version                                                                                                                               | Changelog                                                |
-|:----------------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-carbon-icons`](./packages/hiccup-carbon-icons) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons) | [changelog](./packages/hiccup-carbon-icons/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rsteam`](./packages/rsteam)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rsteam.svg)](https://www.npmjs.com/package/@thi.ng/rsteam)                           | [changelog](./packages/rsteam/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers-async`](./packages/transducers-async)     | [![version](https://img.shields.io/npm/v/@thi.ng/transducers-async.svg)](https://www.npmjs.com/package/@thi.ng/transducers-async)     | [changelog](./packages/transducers-async/CHANGELOG.md)   |
+| Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
+|:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rdom-forms`](./packages/rdom-forms)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)   | [changelog](./packages/rdom-forms/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rstream`](./packages/rstream)         | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)         | [changelog](./packages/rstream/CHANGELOG.md)     |
 
 ### Algorithms & data structures
 
