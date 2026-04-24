@@ -13,3 +13,5 @@ export const Gt = defUnit("Gt", "gigatonne", prefix("G", t));
 
 export const lb = defUnit("lb", "imperial pound", mul(kg, 0.45359237));
 export const st = defUnit("st", "stone", mul(lb, 14));
+
+export const ct = defUnit("ct", "carat", mul(g, 0.2));
