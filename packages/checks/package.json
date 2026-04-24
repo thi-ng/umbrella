@@ -110,6 +110,9 @@
 		"./is-alphanum": {
 			"default": "./is-alphanum.js"
 		},
+		"./is-array-of": {
+			"default": "./is-array-of.js"
+		},
 		"./is-array": {
 			"default": "./is-array.js"
 		},
@@ -133,6 +136,9 @@
 		},
 		"./is-blob": {
 			"default": "./is-blob.js"
+		},
+		"./is-boolean-array": {
+			"default": "./is-boolean-array.js"
 		},
 		"./is-boolean": {
 			"default": "./is-boolean.js"
@@ -215,8 +221,14 @@
 		"./is-null": {
 			"default": "./is-null.js"
 		},
+		"./is-number-array": {
+			"default": "./is-number-array.js"
+		},
 		"./is-number": {
 			"default": "./is-number.js"
+		},
+		"./is-numeric-array": {
+			"default": "./is-numeric-array.js"
 		},
 		"./is-numeric": {
 			"default": "./is-numeric.js"
@@ -226,6 +238,9 @@
 		},
 		"./is-odd": {
 			"default": "./is-odd.js"
+		},
+		"./is-plain-object-array": {
+			"default": "./is-plain-object-array.js"
 		},
 		"./is-plain-object": {
 			"default": "./is-plain-object.js"
@@ -251,8 +266,14 @@
 		"./is-safari": {
 			"default": "./is-safari.js"
 		},
+		"./is-set-of": {
+			"default": "./is-set-of.js"
+		},
 		"./is-set": {
 			"default": "./is-set.js"
+		},
+		"./is-string-array": {
+			"default": "./is-string-array.js"
 		},
 		"./is-string": {
 			"default": "./is-string.js"
