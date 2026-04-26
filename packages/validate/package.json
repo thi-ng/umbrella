@@ -77,9 +77,6 @@
 		"./api": {
 			"default": "./api.js"
 		},
-		"./validate": {
-			"default": "./validate.js"
-		},
 		"./validators": {
 			"default": "./validators.js"
 		}
