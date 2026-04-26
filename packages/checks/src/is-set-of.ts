@@ -6,7 +6,7 @@
  * Uses same semantics as `Array.prototype.every()`, i.e. also returns true if
  * given an empty set.
  *
- * Also see {@link isArrayOf} for arrays.
+ * Also see {@link isArrayOf}, {@link isObjectOf}.
  *
  * @param pred
  */

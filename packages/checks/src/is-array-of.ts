@@ -5,7 +5,7 @@
  * @remarks
  * Uses `Array.prototype.every()` with additional pre-check.
  *
- * Also see {@link isSetOf} for Sets.
+ * Also see {@link isObjectOf}, {@link isSetOf}.
  *
  * @param pred
  */

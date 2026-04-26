@@ -233,6 +233,9 @@
 		"./is-numeric": {
 			"default": "./is-numeric.js"
 		},
+		"./is-object-of": {
+			"default": "./is-object-of.js"
+		},
 		"./is-object": {
 			"default": "./is-object.js"
 		},

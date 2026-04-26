@@ -53,6 +53,7 @@ export * from "./is-number-array.js";
 export * from "./is-numeric.js";
 export * from "./is-numeric-array.js";
 export * from "./is-object.js";
+export * from "./is-object-of.js";
 export * from "./is-odd.js";
 export * from "./is-plain-object.js";
 export * from "./is-plain-object-array.js";
