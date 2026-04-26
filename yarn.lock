@@ -7077,6 +7077,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/validate@workspace:packages/validate":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/validate@workspace:packages/validate"
+  dependencies:
+    "@thi.ng/api": "npm:^8.12.19"
+    "@thi.ng/checks": "npm:^3.8.9"
+    "@thi.ng/errors": "npm:^2.6.8"
+    esbuild: "npm:^0.28.0"
+    typedoc: "npm:^0.28.18"
+    typescript: "npm:^5.9.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/vclock@workspace:packages/vclock":
   version: 0.0.0-use.local
   resolution: "@thi.ng/vclock@workspace:packages/vclock"
