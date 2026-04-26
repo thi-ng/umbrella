@@ -64,7 +64,7 @@
 
 **This project is NOT a framework and all packages can be used in isolation.**
 
-Not including deprecations, this mono-repository is home to 214 individual
+Not including deprecations, this mono-repository is home to 215 individual
 TypeScript libraries/packages/tools and ~185 example projects illustrating their
 usage, currently totalling ~250k SLOC and ~4350 source files... Some of the
 projects have been in regular development since 2015. The monorepo exists in its
@@ -311,13 +311,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-04-22
+As of: 2026-04-26
 
-| Status                                           | Package                                         | Version                                                                                                               | Changelog                                        |
-|:-------------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-html`](./packages/hiccup-html) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html) | [changelog](./packages/hiccup-html/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rdom-forms`](./packages/rdom-forms)   | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-forms.svg)](https://www.npmjs.com/package/@thi.ng/rdom-forms)   | [changelog](./packages/rdom-forms/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/rstream`](./packages/rstream)         | [![version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)         | [changelog](./packages/rstream/CHANGELOG.md)     |
+| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
+|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)     | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)     | [changelog](./packages/checks/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)       | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)       | [changelog](./packages/units/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/validate`](./packages/validate) | [![version](https://img.shields.io/npm/v/@thi.ng/validate.svg)](https://www.npmjs.com/package/@thi.ng/validate) | [changelog](./packages/validate/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
@@ -451,6 +451,7 @@ As of: 2026-04-22
 | [`@thi.ng/timestamp`](./packages/timestamp)       | [![version](https://img.shields.io/npm/v/@thi.ng/timestamp.svg)](https://www.npmjs.com/package/@thi.ng/timestamp)       | [changelog](./packages/timestamp/CHANGELOG.md)    | Timestamp abstraction/wrapper                            |
 | [`@thi.ng/transclude`](./packages/transclude)     | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)     | [changelog](./packages/transclude/CHANGELOG.md)   | Template engine for text document generation             |
 | [`@thi.ng/units`](./packages/units)               | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)               | [changelog](./packages/units/CHANGELOG.md)        | Extensible SI unit conversions                           |
+| [`@thi.ng/validate`](./packages/validate)         | [![version](https://img.shields.io/npm/v/@thi.ng/validate.svg)](https://www.npmjs.com/package/@thi.ng/validate)         | [changelog](./packages/validate/CHANGELOG.md)     | Composable functional data validation                    |
 
 ### Geometry, image & visualization
 
