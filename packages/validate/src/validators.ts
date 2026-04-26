@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray as $isArray } from "@thi.ng/checks/is-array";
 import { isArrayOf as $isArrayOf } from "@thi.ng/checks/is-array-of";
 import { isBoolean as $isBoolean } from "@thi.ng/checks/is-boolean";

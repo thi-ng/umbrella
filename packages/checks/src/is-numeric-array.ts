@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isNumberArray } from "./is-number-array.js";
 import { isTypedArray } from "./is-typedarray.js";
 

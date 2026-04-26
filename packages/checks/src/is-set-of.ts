@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 /**
  * Higher order predicate to check if a given value is a Set of `T`. Takes
  * `pred` to check single items.
