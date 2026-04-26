@@ -100,11 +100,11 @@ cat << EOF > "$MODULE"/package.json
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.17"
+		"@thi.ng/api": "^8.12.19"
 	},
 	"devDependencies": {
-		"esbuild": "^0.27.2",
-		"typedoc": "^0.28.16",
+		"esbuild": "^0.28.0",
+		"typedoc": "^0.28.18",
 		"typescript": "^5.9.3"
 	},
 	"keywords": [
