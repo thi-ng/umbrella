@@ -9,6 +9,7 @@ import { isObjectOf as $isObjectOf } from "@thi.ng/checks/is-object-of";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isRegExp as $isRegExp } from "@thi.ng/checks/is-regexp";
 import { isString as $isString } from "@thi.ng/checks/is-string";
+import { isTypedArray as $isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { defError, type CustomError } from "@thi.ng/errors/deferror";
 import type { Validator } from "./api.js";
 
@@ -70,36 +71,68 @@ export const validator =
 		return true;
 	};
 
-/**
- * Higher order validator. Takes an existing validator and returns an augmented
- * version which also allows value to be nullish.
- *
- * @param validator
- */
-export const optional = ({ coerce, valid, msg }: Validator): Validator => ({
-	coerce,
-	valid: (x) => x == null || valid(x),
-	msg,
-});
-
 /** @internal */
 const __asArray = (v: Validator | Validator[]) => ($isArray(v) ? v : [v]);
 
 /**
- * Higher order validator. Takes a numer of validators and returns a new one
- * which will apply the validators in given order, but return when the first one
- * succeeds and only fails if all of the validators failed.
+ * Higher order validator. Takes existing validator(s) and returns an augmented
+ * version which also allows values to be nullish. If more than one validator is
+ * given, they're first combined via {@link every}.
  *
- * @param validators
+ * @param first
+ * @param rest
  */
-export const oneOf = (validators: (Validator | Validator[])[]): Validator => {
+export const optional = (first: Validator, ...rest: Validator[]): Validator => {
+	const { coerce, valid, msg } = rest.length ? every(first, ...rest) : first;
+	return {
+		coerce,
+		valid: (x) => x == null || valid(x),
+		msg,
+	};
+};
+
+/**
+ * Higher order validator. Takes existing validator and optional error message.
+ * Returns an augmented validator which applies logical negation of the original
+ * validator.
+ *
+ * @param validator
+ * @param msg
+ */
+export const not = (
+	{ coerce, valid, msg: $msg }: Validator,
+	msg?: Validator["msg"]
+): Validator => ({
+	coerce,
+	valid: (x) => {
+		try {
+			return !valid(x);
+		} catch (e) {
+			return true;
+		}
+	},
+	msg: msg ?? $msg,
+});
+
+/**
+ * Higher order validator. Takes one or more validators and returns a new one
+ * which will apply the validators in given order, and return successfully with
+ * the first one passed and only fails if **none** of the validators passed.
+ *
+ * @param first
+ * @param rest
+ */
+export const some = (
+	first: Validator | Validator[],
+	...rest: (Validator | Validator[])[]
+): Validator => {
 	let lastMsg: string | undefined;
 	return {
 		valid: (x: any) => {
 			lastMsg = undefined;
-			for (let v of validators) {
+			for (let $v of [first, ...rest]) {
 				try {
-					return validator(...__asArray(v))(x);
+					return validator(...__asArray($v))(x);
 				} catch (e) {
 					lastMsg =
 						(<CustomError>e).origMessage ?? (<Error>e).message;
@@ -110,6 +143,23 @@ export const oneOf = (validators: (Validator | Validator[])[]): Validator => {
 		msg: () => lastMsg ?? "invalid value",
 	};
 };
+
+/**
+ * Higher order validator. Takes a number of validators and returns a new one
+ * which will apply the validators in given order, and only returns success if
+ * **all** of the validators passed.
+ *
+ * @remarks
+ * Essentially the same as {@link validator}, but returns a {@link Validator}
+ * object (presumably for further composition) instead of a predicate function
+ * to apply directly.
+ *
+ * @param first
+ * @param rest
+ */
+export const every = (first: Validator, ...rest: Validator[]): Validator => ({
+	valid: (x) => validator(first, ...rest)(x),
+});
 
 /**
  * Returns validator to check if value is undefined.
@@ -189,22 +239,62 @@ export const isArrayOf = (
 	msg: msg ?? `required array value`,
 });
 
+export const isTypedArray = (msg?: Validator["msg"]): Validator => ({
+	valid: $isTypedArray,
+	msg: msg ?? `required typed array value`,
+});
+
+/**
+ * Returns validator to check if value is a `Uint8Array`.
+ *
+ * @param msg
+ */
+export const isU8Array = (msg?: Validator["msg"]): Validator => ({
+	valid: (x) => x instanceof Uint8Array,
+	msg: msg ?? `required byte array value`,
+});
+
+/**
+ * Returns validator to ensure given `keys` are present in an object, optionally
+ * also checks their values are `nonNullish` (default: false). If `onlyKeys` is
+ * true (default: false), the validator also checks that no other keys are
+ * defined in the object.
+ *
+ * @param keys
+ * @param nonNullish
+ * @param onlyKeys
+ * @param msg
+ */
 export const hasRequiredKeys = (
 	keys: string[],
+	nonNullish = false,
+	onlyKeys = false,
 	msg?: Validator["msg"]
 ): Validator => ({
 	valid: (x) => {
-		const $keys = new Set(Object.keys(x));
-		return keys.every((k) => $keys.has(k));
+		if (onlyKeys) __onlyKeys(keys, x);
+		return keys.every((k) => k in x && (nonNullish ? x[k] != null : true));
 	},
-	msg: msg ?? `required keys: ${keys.join(", ")}`,
+	msg:
+		msg ??
+		`required keys: ${keys.join(", ")}${nonNullish ? " (must be non-nullish)" : ""}`,
 });
 
+/**
+ * Takes object of validators to check values of different keys in an object.
+ * Returns validator which applies all checks, optionally also ensures no other
+ * keys are defined (if `onlyKeys` is true, default: false).
+ *
+ * @param validators
+ * @param onlyKeys
+ */
 export const hasKeysOf = (
-	validators: Record<PropertyKey, Validator | Validator[]>
+	validators: Record<PropertyKey, Validator | Validator[]>,
+	onlyKeys = false
 ): Validator => ({
 	valid: (x: any) => {
 		if (x == null) return false;
+		if (onlyKeys) __onlyKeys(Object.keys(validators), x);
 		for (let [key, v] of Object.entries(validators)) {
 			try {
 				validator(...__asArray(v))(x[key]);
@@ -218,6 +308,14 @@ export const hasKeysOf = (
 		return true;
 	},
 });
+
+/** @internal */
+const __onlyKeys = (keys: string[], x: any) => {
+	for (let k in x) {
+		if (!keys.includes(k))
+			throw new ValidationError(`key: ${k} not allowed`);
+	}
+};
 
 /**
  * Returns validator to check if value is one of the given options.
