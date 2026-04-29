@@ -8,7 +8,7 @@ export interface Validator {
 	coerce?: Fn<any, any>;
 	/**
 	 * Validation predicate. If the function returns false, the
-	 * {@link volidator} wrapper will throw an error.
+	 * {@link validator} wrapper will throw an error.
 	 */
 	valid: Predicate<any>;
 	/**
