@@ -90,13 +90,17 @@ try {
 - [`isPositive()`](https://docs.thi.ng/umbrella/validate/functions/isPositive.html)
 - [`isRegExp()`](https://docs.thi.ng/umbrella/validate/functions/isRegExp.html)
 - [`isString()`](https://docs.thi.ng/umbrella/validate/functions/isString.html)
+- [`isTypedArray()`](https://docs.thi.ng/umbrella/validate/functions/isTypedArray.html)
+- [`isU8Array()`](https://docs.thi.ng/umbrella/validate/functions/isU8Array.html)
 - [`isUndefined()`](https://docs.thi.ng/umbrella/validate/functions/isUndefined.html)
 - [`matchesRegexp()`](https://docs.thi.ng/umbrella/validate/functions/matchesRegexp.html)
 
 ### Combinators
 
-- [`oneOf()`](https://docs.thi.ng/umbrella/validate/functions/oneOf.html)
+- [`every()`](https://docs.thi.ng/umbrella/validate/functions/every.html)
+- [`not()`](https://docs.thi.ng/umbrella/validate/functions/not.html)
 - [`optional()`](https://docs.thi.ng/umbrella/validate/functions/optional.html)
+- [`some()`](https://docs.thi.ng/umbrella/validate/functions/some.html)
 
 ## Status
 
@@ -130,7 +134,7 @@ For Node.js REPL:
 const val = await import("@thi.ng/validate");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1021 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.19 KB
 
 ## Dependencies
 
