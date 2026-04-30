@@ -1,23 +1,25 @@
 // SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
 import {
+	every,
 	hasKeysOf,
+	hasPatternKeysOf,
+	hasRequiredKeys,
+	hasRequiredPatternKeys,
 	isArray,
 	isArrayOf,
 	isInRange,
 	isLength,
+	isMinLength,
 	isMinMaxLength,
 	isNumber,
 	isObject,
-	some,
-	isString,
-	optional,
-	validator,
-	isMinLength,
-	every,
 	isPositive,
+	isString,
 	not,
-	hasRequiredKeys,
+	optional,
+	some,
+	validator,
 } from "../src/index.js";
 
 test("optional", () => {
@@ -72,6 +74,7 @@ test("isArrayOf", () => {
 
 test("hasRequiredKeys (object)", () => {
 	expect(validator(hasRequiredKeys(["a"]))({ a: null })).toBeTrue();
+
 	expect(() => validator(hasRequiredKeys(["a"]))({})).toThrow();
 	expect(() =>
 		validator(hasRequiredKeys(["a"], true))({ a: null })
@@ -101,7 +104,53 @@ test("hasKeysOf (object)", () => {
 	expect(fn({ a: 1, b: ["a", "b"], c: "" })).toBeTrue();
 	expect(fn({ a: 1, b: ["a", "b"], c: null })).toBeTrue();
 	expect(fn({ a: 1, b: ["a", "b"] })).toBeTrue();
+
+	expect(() => fn({})).toThrow();
 	expect(() => fn({ a: 1, b: ["a", "b"], c: {} })).toThrow();
 	expect(() => fn({ a: 1, b: ["a", "b"], c: 1 })).toThrow();
 	expect(() => fn({ a: 1, b: ["a", "b"], d: 1 })).toThrow();
+});
+
+test("hasRequiredPatternKeys", () => {
+	expect(
+		validator(hasRequiredPatternKeys(/^id\d+$/))({ id1: null })
+	).toBeTrue();
+	expect(
+		validator(hasRequiredPatternKeys(/^id\d+$/))({ id123: 1 })
+	).toBeTrue();
+
+	expect(() =>
+		validator(hasRequiredPatternKeys(/^id\d+$/, true))({})
+	).toThrow();
+	expect(() =>
+		validator(hasRequiredPatternKeys(/^id\d+$/, true, true))({
+			id1: 1,
+			a: 1,
+		})
+	).toThrow();
+});
+
+test("hasPatternKeysOf", () => {
+	const fn = validator(hasPatternKeysOf(/^id\d+$/, isNumber()));
+	const fn2 = validator(
+		hasPatternKeysOf(/^id\d+$/, [isNumber(), isPositive()], true)
+	);
+	const fn3 = validator(
+		every(
+			isObject(),
+			// only allow keys matching pattern
+			hasRequiredPatternKeys(/^(id|title)\d+/, true, true),
+			hasPatternKeysOf(/^id\d+$/, isNumber()),
+			hasPatternKeysOf(/^title\d$/, isString())
+		)
+	);
+	expect(fn({ id1: 1, id123: 123, a: "a" })).toBeTrue();
+
+	expect(() => fn2({ id1: "1" })).toThrow("number");
+	expect(() => fn2({ id1: -1 })).toThrow("positive");
+	expect(() => fn2({ a: 1 })).toThrow("not allowed");
+
+	expect(fn3({ id1: 1, title1: "" })).toBeTrue();
+	expect(() => fn3({ title1: 1 })).toThrow("string");
+	expect(() => fn3({ title1: "", a: 1 })).toThrow("not allowed");
 });

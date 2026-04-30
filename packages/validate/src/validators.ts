@@ -3,7 +3,7 @@ import { isArray as $isArray } from "@thi.ng/checks/is-array";
 import { isArrayOf as $isArrayOf } from "@thi.ng/checks/is-array-of";
 import { isBoolean as $isBoolean } from "@thi.ng/checks/is-boolean";
 import { isDate as $isDate } from "@thi.ng/checks/is-date";
-import { isFunction } from "@thi.ng/checks/is-function";
+import { isFunction as $isFunction } from "@thi.ng/checks/is-function";
 import { isNumber as $isNumber } from "@thi.ng/checks/is-number";
 import { isObjectOf as $isObjectOf } from "@thi.ng/checks/is-object-of";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -64,7 +64,7 @@ export const validator =
 		for (let { coerce, valid, msg } of validators) {
 			if (coerce) x = coerce(x);
 			if (!valid(x)) {
-				if (isFunction(msg)) msg = msg(x);
+				if ($isFunction(msg)) msg = msg(x);
 				throw new ValidationError(msg ?? "failed validation");
 			}
 		}
@@ -73,6 +73,16 @@ export const validator =
 
 /** @internal */
 const __asArray = (v: Validator | Validator[]) => ($isArray(v) ? v : [v]);
+
+/**
+ * Utility validator which always passes.
+ */
+export const ALWAYS: Validator = { valid: () => true };
+
+/**
+ * Utility validator which always fails.
+ */
+export const NEVER: Validator = { valid: () => false };
 
 /**
  * Higher order validator. Takes existing validator(s) and returns an augmented
@@ -181,6 +191,19 @@ export const isNullish = (msg?: Validator["msg"]): Validator => ({
 	msg: msg ?? `expected nullish value`,
 });
 
+export const isArray = (msg?: Validator["msg"]): Validator => ({
+	valid: $isArray,
+	msg: msg ?? `required array value`,
+});
+
+export const isArrayOf = (
+	validators: Validator | Validator[],
+	msg?: Validator["msg"]
+): Validator => ({
+	valid: $isArrayOf(validator(...__asArray(validators))),
+	msg: msg ?? `required array value`,
+});
+
 export const isBoolean = (msg?: Validator["msg"]): Validator => ({
 	valid: $isBoolean,
 	msg: msg ?? `required boolean value`,
@@ -201,14 +224,24 @@ export const isDate = (msg?: Validator["msg"]): Validator => ({
 	msg: msg ?? `required date value`,
 });
 
+export const isFunction = (msg?: Validator["msg"]): Validator => ({
+	valid: $isFunction,
+	msg: msg ?? `required function value`,
+});
+
 export const isRegExp = (msg?: Validator["msg"]): Validator => ({
 	valid: $isRegExp,
 	msg: msg ?? `required regexp value`,
 });
 
+/**
+ * Returns validator which checks that given value is a plain object (not class).
+ *
+ * @param msg
+ */
 export const isObject = (msg?: Validator["msg"]): Validator => ({
 	valid: isPlainObject,
-	msg: msg ?? `required object value`,
+	msg: msg ?? `required plain object value`,
 });
 
 /**
@@ -224,19 +257,6 @@ export const isObjectOf = (
 ): Validator => ({
 	valid: $isObjectOf(validator(...__asArray(validators))),
 	msg: msg ?? `required object value`,
-});
-
-export const isArray = (msg?: Validator["msg"]): Validator => ({
-	valid: $isArray,
-	msg: msg ?? `required array value`,
-});
-
-export const isArrayOf = (
-	validators: Validator | Validator[],
-	msg?: Validator["msg"]
-): Validator => ({
-	valid: $isArrayOf(validator(...__asArray(validators))),
-	msg: msg ?? `required array value`,
 });
 
 export const isTypedArray = (msg?: Validator["msg"]): Validator => ({
@@ -277,7 +297,7 @@ export const hasRequiredKeys = (
 	},
 	msg:
 		msg ??
-		`required keys: ${keys.join(", ")}${nonNullish ? " (must be non-nullish)" : ""}`,
+		`required keys: ${keys.join(", ")}${nonNullish ? " (values must be non-nullish)" : ""}`,
 });
 
 /**
@@ -293,15 +313,14 @@ export const hasKeysOf = (
 	onlyKeys = false
 ): Validator => ({
 	valid: (x: any) => {
-		if (x == null) return false;
 		if (onlyKeys) __onlyKeys(Object.keys(validators), x);
-		for (let [key, v] of Object.entries(validators)) {
+		for (let k in validators) {
 			try {
-				validator(...__asArray(v))(x[key]);
+				validator(...__asArray(validators[k]))(x[k]);
 			} catch (e) {
 				throw new ValidationError(
 					((<CustomError>e).origMessage ?? (<Error>e).message) +
-						` (key: ${key})`
+						` (key: ${k})`
 				);
 			}
 		}
@@ -309,16 +328,70 @@ export const hasKeysOf = (
 	},
 });
 
+export const hasRequiredPatternKeys = (
+	pattern: RegExp,
+	nonNullish = false,
+	onlyKeys = false,
+	msg?: Validator["msg"]
+): Validator => ({
+	valid: (x: any) => {
+		let found = false;
+		for (let k in x) {
+			if (pattern.test(k)) {
+				if (nonNullish && x[k] == null) return false;
+				found = true;
+			} else if (onlyKeys) {
+				__disallowedKey(k);
+			}
+		}
+		return found;
+	},
+	msg:
+		msg ??
+		`required pattern keys: ${pattern}${nonNullish ? " (values must be non-nullish)" : ""}`,
+});
+
+export const hasPatternKeysOf = (
+	pattern: RegExp,
+	validators: Validator | Validator[],
+	onlyKeys = false
+): Validator => {
+	const fn = validator(...__asArray(validators));
+	return {
+		valid: (x: any) => {
+			for (let k in x) {
+				if (pattern.test(k)) {
+					try {
+						fn(x[k]);
+					} catch (e) {
+						throw new ValidationError(
+							((<CustomError>e).origMessage ??
+								(<Error>e).message) + ` (key: ${k})`
+						);
+					}
+				} else if (onlyKeys) {
+					__disallowedKey(k);
+				}
+			}
+			return true;
+		},
+	};
+};
+
 /** @internal */
 const __onlyKeys = (keys: string[], x: any) => {
 	for (let k in x) {
-		if (!keys.includes(k))
-			throw new ValidationError(`key: ${k} not allowed`);
+		if (!keys.includes(k)) __disallowedKey(k);
 	}
 };
 
+const __disallowedKey = (key: string) => {
+	throw new ValidationError(`key: ${key} not allowed`);
+};
+
 /**
- * Returns validator to check if value is one of the given options.
+ * Returns validator to check if value is one of the given options. Values are
+ * checked via `opts.includes(x)`.
  *
  * @param opts
  * @param msg
