@@ -109,11 +109,9 @@ $compile(
 		// `listItems` and transforms each item into a <div>.
 		// $klist() is similar to $list(), but uses unique item information to
 		// determine if an item has changed (or changed position in the list)
-		$klist(
-			listItems,
-			"div.relative.w-100",
-			{},
-			({ w, h, id, item }) =>
+		$klist(listItems, {
+			el: "div.relative.w-100",
+			item: ({ w, h, id, item }) =>
 				div(
 					".absolute.flex.items-center",
 					{
@@ -138,7 +136,7 @@ $compile(
 					div(".w-100.tc", {}, `#${id}`, br(), `${w} x ${h}`)
 				),
 			// lookup function for each item's unique key/ID
-			(x) => x.item.id
-		)
+			key: (x) => x.item.id,
+		})
 	)
 ).mount(document.getElementById("app")!);

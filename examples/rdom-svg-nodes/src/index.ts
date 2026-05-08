@@ -41,14 +41,16 @@ $compile(
 			// e.g. [a,b,c,d] => [[a,b],[b,c],[c,d]]
 			$db.map((pts) => [...partition(2, 1, pts)]),
 			// list wrapper element & its attribs
-			"g",
-			{ stroke: "#00f" },
-			// list item constructor (here an SVG line)
-			([a, b]) => line(a, b),
-			// value based equivalence predicate
-			// applied to raw values from stream (here point pairs)
-			// item ctors are only called if predicate returns false
-			equivArrayLike
+			{
+				el: "g",
+				attribs: { stroke: "#00f" },
+				// list item constructor (here an SVG line)
+				item: ([a, b]) => line(a, b),
+				// value based equivalence predicate
+				// applied to raw values from stream (here point pairs)
+				// item ctors are only called if predicate returns false
+				equiv: equivArrayLike,
+			}
 		),
 		// reactive list of circles
 		$list(
@@ -56,19 +58,21 @@ $compile(
 			// (needed to determine point selection in mouse event handler)
 			$db.map((pts) => [...indexed(0, pts)]),
 			// list wrapper element & its attribs
-			"g",
-			{ fill: "#00f" },
-			// list items here are SVG circles
-			// update selection & point position in atom on mouse click
-			([i, p]) =>
-				circle(p, R, {
-					onmousedown: (e: MouseEvent) => {
-						clicked = i;
-						db.resetIn([i], [e.clientX, e.clientY]);
-					},
-				}),
-			// value based equivalence predicate
-			equivArrayLike
+			{
+				el: "g",
+				attribs: { fill: "#00f" },
+				// list items here are SVG circles
+				// update selection & point position in atom on mouse click
+				item: ([i, p]) =>
+					circle(p, R, {
+						onmousedown: (e: MouseEvent) => {
+							clicked = i;
+							db.resetIn([i], [e.clientX, e.clientY]);
+						},
+					}),
+				// value based equivalence predicate
+				equiv: equivArrayLike,
+			}
 		),
 		$replace(
 			$db.map((x) =>

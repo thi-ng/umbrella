@@ -280,10 +280,14 @@ await $compile(
 				return `${n} ${inflect("project", n)}`;
 			})
 		),
-		$list(tagInitials, "div#initials", {}, ([id, tag]) =>
-			anchor({ href: `#${tag}` }, id)
-		),
-		$list(searchResults, "div", {}, (tag) => branch(PKGS, [tag])),
+		$list(tagInitials, {
+			el: "div#initials",
+			item: ([id, tag]) => anchor({ href: `#${tag}` }, id),
+		}),
+		$list(searchResults, {
+			el: "div",
+			item: (tag) => branch(PKGS, [tag]),
+		}),
 		anchor(
 			"#up",
 			{

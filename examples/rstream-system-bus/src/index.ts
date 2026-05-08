@@ -157,14 +157,12 @@ const UI = <ILifecycle<App>>{
 				),
 				// generic and reactive list wrapper component, subscribes to
 				// `counters` and creates a counter UI component for each item
-				$klist(
-					counters,
-					"div",
-					{},
-					(x) => counter(x, config, bus),
+				$klist(counters, {
+					el: "div",
+					item: (x) => counter(x, config, bus),
 					// key function to determine if a counter state has changed
-					(x) => `${x.id}-${x.value}-${x.done}`
-				)
+					key: (x) => `${x.id}-${x.value}-${x.done}`,
+				})
 			)
 		).mount(document.getElementById("app")!);
 		return true;

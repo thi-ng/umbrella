@@ -91,7 +91,10 @@ const gallery = async (route: RouteMatch) =>
 		"Gallery",
 		div({}, "Click on images to enlarge..."),
 		// create a list of thumbnails of the app state's image array
-		$list(fromView(db, { path: ["images"] }), "div#gallery", {}, thumbnail),
+		$list(fromView(db, { path: ["images"] }), {
+			el: "div#gallery",
+			item: thumbnail,
+		}),
 		// add some dummy controls to allow user to add new items or clear the
 		// array of images. the event handlers only update the atom, but the
 		// above `$list()` component will be informed and update accordingly...

@@ -42,7 +42,7 @@ const userThumb = (srcUrl: Promise<string>) =>
 			src: [
 				// preloader image (should be local really)
 				reactive(
-					"https://via.placeholder.com/640x360.png?text=wait+for+it..."
+					"https://dummyimage.com/640x360.png/000/fff/?text=wait+for+it..."
 				),
 				// final image
 				fromPromise(srcUrl),
@@ -85,9 +85,9 @@ class UserComponent extends Component {
 					userThumb(
 						// intentionally delay
 						delayed(
-							`https://via.placeholder.com/640x360.png/${
+							`https://dummyimage.com/640x360.png/${
 								colors.next().value
-							}/fff?text=${this.user.name}`,
+							}/fff/?text=${this.user.name}`,
 							SYSTEM.minmax(0.5, 1) * 2000
 						)
 					),
@@ -103,11 +103,9 @@ class UserComponent extends Component {
 
 // main root component
 $compile(
-	$klist(
-		users,
-		"main",
-		{},
-		(user) => new UserComponent(user),
-		(user) => user.id
-	)
+	$klist(users, {
+		el: "main",
+		item: (user) => new UserComponent(user),
+		key: (user) => user.id,
+	})
 ).mount(document.getElementById("app")!);

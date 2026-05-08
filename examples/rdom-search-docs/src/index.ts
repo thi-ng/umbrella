@@ -107,11 +107,9 @@ class DocSearch extends Component {
 					pageControls(this.pager),
 					// reactive list component of paginated search results
 					// the function arg is used to create new list items if needed
-					$list(
-						this.pager.resultPage,
-						"ul.list.pl0",
-						{},
-						([suffix, file]) => [
+					$list(this.pager.resultPage, {
+						el: "ul.list.pl0",
+						item: ([suffix, file]) => [
 							"li",
 							{},
 							[
@@ -133,8 +131,8 @@ class DocSearch extends Component {
 								},
 								file
 							),
-						]
-					)
+						],
+					})
 				)
 			);
 			this.inner.mount(this.el);

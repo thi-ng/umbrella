@@ -170,7 +170,7 @@ export const gallery = async () => {
 			{},
 			// reactive generalized list component, subscribes to `layoutItems`
 			// and applies `imageItem` component function to item in the list
-			$list(layoutItems, "div", {}, imageItem),
+			$list(layoutItems, { el: "div", item: imageItem }),
 			// footer with reactive vertical position
 			div(
 				".absolute.mv2.h2",

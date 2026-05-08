@@ -121,5 +121,5 @@ export const layerControls = div(
 	{},
 	title("Layers"),
 	button("large", () => addLayer(), "+ add layer"),
-	$list(layerOrder, "div", {}, layerControlsForID)
+	$list(layerOrder, { el: "div", item: layerControlsForID })
 );

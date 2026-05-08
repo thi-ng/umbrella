@@ -91,17 +91,19 @@ $compile(
 			{},
 			items.map((x) => `${x.length} items`)
 		),
-		$list(items, "ul", {}, (x) =>
-			li(
-				{
-					class: isString(x)
-						? "item-string"
-						: x === typing
-							? "item-typing"
-							: "item-default",
-				},
-				x
-			)
-		)
+		$list(items, {
+			el: "ul",
+			item: (x) =>
+				li(
+					{
+						class: isString(x)
+							? "item-string"
+							: x === typing
+								? "item-typing"
+								: "item-default",
+					},
+					x
+				),
+		})
 	)
 ).mount(document.getElementById("app")!);

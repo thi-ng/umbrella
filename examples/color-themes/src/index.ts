@@ -128,9 +128,7 @@ $compile(
 				debouncedParts.map((parts) => Object.entries(parts), {
 					id: "swatches",
 				}),
-				"div",
-				{},
-				themePartControls
+				{ el: "div", item: themePartControls }
 			),
 			// global controls: num swatches, variance, random seed, sorting
 			control(

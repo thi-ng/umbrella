@@ -47,20 +47,21 @@ $compile([
 		$db.map(({ sel, items }) =>
 			items.map((x, i) => <[number, number, string]>[sel, i, x])
 		),
-		"ul",
-		{},
-		([sel, i, x]) => [
-			"li",
-			{
-				style: { color: highlight(sel, i) },
-				onclick: () => selectItem(i),
-				// include key for debug
-				data: { key: `${sel}|${i}|${x}` },
-			},
-			x,
-		],
-		// key is "selection|index|item"
-		(item) => item.join("|")
+		{
+			el: "ul",
+			item: ([sel, i, x]) => [
+				"li",
+				{
+					style: { color: highlight(sel, i) },
+					onclick: () => selectItem(i),
+					// include key for debug
+					data: { key: `${sel}|${i}|${x}` },
+				},
+				x,
+			],
+			// key is "selection|index|item"
+			key: (item) => item.join("|"),
+		}
 	),
 
 	["h2", {}, "Version 2"],
@@ -78,21 +79,22 @@ $compile([
 	// selected has zero influence on its position or content).
 	$klist(
 		$items.map((items) => items.map((x, i) => <[number, string]>[i, x])),
-		"ul",
-		{},
-		([i, x]) => [
-			"li",
-			{
-				// reactive color attrib
-				style: { color: $sel.map((sel) => highlight(sel, i)) },
-				onclick: () => selectItem(i),
-				// include key for debug
-				data: { key: `${i}|${x}` },
-			},
-			x,
-		],
-		// key is only "index|item"
-		(item) => item.join("|")
+		{
+			el: "ul",
+			item: ([i, x]) => [
+				"li",
+				{
+					// reactive color attrib
+					style: { color: $sel.map((sel) => highlight(sel, i)) },
+					onclick: () => selectItem(i),
+					// include key for debug
+					data: { key: `${i}|${x}` },
+				},
+				x,
+			],
+			// key is only "index|item"
+			key: (item) => item.join("|"),
+		}
 	),
 
 	// button to trigger swapping of 2 random list items & update selection if needed

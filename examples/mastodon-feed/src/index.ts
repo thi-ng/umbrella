@@ -126,13 +126,11 @@ $compile(
 		// transforms each item via the `message` component function. the last arg
 		// is the key function which MUST (and here does) produce a unique ID
 		// for each list item.
-		$klist(
-			messages,
-			"div",
-			{},
-			(x) => message(x, mediaSelection),
-			(x) => x.id
-		),
+		$klist(messages, {
+			el: "div",
+			item: (x) => message(x, mediaSelection),
+			key: (x) => x.id,
+		}),
 		// fullscreen media overlay component
 		mediaModal(mediaSelection)
 	)

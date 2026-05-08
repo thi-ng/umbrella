@@ -89,8 +89,9 @@ $compile(
 			{ class: status.map((x) => x.type) },
 			status.map((x) => x.msg)
 		),
-		$list(answers, "ol#answers", {}, (x) =>
-			li({}, anchor({ href: `https://thi.ng/${x}` }, x))
-		)
+		$list(answers, {
+			el: "ol#answers",
+			item: (x) => li({}, anchor({ href: `https://thi.ng/${x}` }, x)),
+		})
 	)
 ).mount(document.getElementById("app")!);

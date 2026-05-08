@@ -115,17 +115,15 @@ $compile(
 		{},
 		// keyed list component wrapper for REPL item stream
 		// see: https://docs.thi.ng/umbrella/rdom/functions/_klist.html
-		$klist(
-			repl,
+		$klist(repl, {
 			// list wrapper element and its attribs
-			"div#repl.flex-grow-1.code.f6.overflow-y-scroll.overflow-x-hidden",
-			{},
+			el: "div#repl.flex-grow-1.code.f6.overflow-y-scroll.overflow-x-hidden",
 			// single list item component function
-			replItem,
+			item: replItem,
 			// item key function/accessor
 			// (used to determine if item needs to be updated)
-			(x) => x.id
-		),
+			key: (x) => x.id,
+		}),
 		// REPL input text field
 		inputText("#input.w-100.bg-black.white.pa2.code.f6.bn", {
 			placeholder: "(input...)",
