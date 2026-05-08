@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn } from "@thi.ng/api";
-import type { ComponentLike, IComponent, NumOrElement } from "./api.js";
+import type { ComponentLike, IComponent, NumOrNode } from "./api.js";
 import { Component } from "./component.js";
 
 /**
@@ -37,7 +37,7 @@ export class $Promise extends Component {
 		super();
 	}
 
-	async mount(parent: ParentNode, index: NumOrElement) {
+	async mount(parent: ParentNode, index: NumOrNode) {
 		try {
 			this.inner = this.$compile(await this.promise);
 		} catch (e) {

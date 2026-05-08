@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
 import { __nextID } from "./idgen.js";
@@ -45,9 +45,9 @@ export const $replace = <T>(src: ISubscribable<T>) =>
 export class Replace<T> extends Component implements IMountWithState<T> {
 	protected parent?: ParentNode;
 	protected inner?: IComponent<T>;
-	protected index?: NumOrElement;
+	protected index?: NumOrNode;
 
-	async mount(parent: ParentNode, index: NumOrElement, val: T) {
+	async mount(parent: ParentNode, index: NumOrNode, val: T) {
 		this.parent = parent;
 		this.index = index;
 		await this.update(val);

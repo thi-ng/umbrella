@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn, Fn2, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
 import { __nextID } from "./idgen.js";
@@ -93,7 +93,7 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 		super();
 	}
 
-	async mount(parent: ParentNode, index: NumOrElement, state: T[]) {
+	async mount(parent: ParentNode, index: NumOrNode, state: T[]) {
 		this.items = [];
 		this.cache = new Map();
 		this.el = this.$el(this.tag, this.attribs, null, parent, index);

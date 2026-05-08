@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn0, Maybe } from "@thi.ng/api";
-import type { ComponentLike, IComponent, NumOrElement } from "./api.js";
+import type { ComponentLike, IComponent, NumOrNode } from "./api.js";
 import { Component } from "./component.js";
 
 /**
@@ -38,7 +38,7 @@ export class $Lazy extends Component {
 		super();
 	}
 
-	async mount(parent: ParentNode, index?: NumOrElement) {
+	async mount(parent: ParentNode, index?: NumOrNode) {
 		this.el = this.$el(this.tag, this.attribs, null, parent, index);
 		this.observer = new IntersectionObserver(([item]) => {
 			if (item.isIntersecting) {

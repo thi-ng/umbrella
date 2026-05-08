@@ -38,7 +38,7 @@ export interface IComponent<T = any> {
 	 */
 	mount(
 		parent: ParentNode,
-		idx?: NumOrElement,
+		idx?: NumOrNode,
 		...args: any[]
 	): Promise<Element>;
 	/**
@@ -72,7 +72,7 @@ export interface IMountWith<T, M> extends IComponent<T> {
 	 * @param index -
 	 * @param state -
 	 */
-	mount(parent: ParentNode, index: NumOrElement, state: M): Promise<Element>;
+	mount(parent: ParentNode, index: NumOrNode, state: M): Promise<Element>;
 
 	/**
 	 * Same like {@link IComponent.update}, but new `state` value arg is
@@ -104,3 +104,5 @@ export type ComponentLike = IComponent | [string, ...(any | null)[]];
 export type Callback = Fn0<void>;
 
 export type NumOrElement = number | Element;
+
+export type NumOrNode = number | Node;

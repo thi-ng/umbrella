@@ -2,7 +2,7 @@
 import type { Maybe, Path } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
-import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
 import { $attribs } from "./dom.js";
 import { $wrapText } from "./wrap.js";
 
@@ -57,7 +57,7 @@ export class $Async<T = any> {
 		protected inner: IMountWithState<Maybe<T>>
 	) {}
 
-	async mount(parent: ParentNode, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrNode = -1) {
 		this.el = await this.inner.mount(parent, index, undefined);
 		(async () => {
 			for await (let x of this.src) {

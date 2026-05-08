@@ -5,7 +5,7 @@ import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import type { ISubscribable } from "@thi.ng/rstream";
 import { __nextID } from "@thi.ng/rstream/idgen";
 import { Subscription } from "@thi.ng/rstream/subscription";
-import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
 import { $attribs } from "./dom.js";
 import { $wrapText } from "./wrap.js";
 
@@ -80,7 +80,7 @@ export class $Sub<T = any> extends Subscription<T, T> {
 		super(undefined, { id: id || `rdom$sub-${__nextID()}` });
 	}
 
-	async mount(parent: ParentNode, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrNode = -1) {
 		return (this.el = await this.inner.mount(
 			parent,
 			index,

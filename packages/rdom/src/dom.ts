@@ -18,7 +18,7 @@ import {
 import { mergeClasses, mergeEmmetAttribs } from "@thi.ng/hiccup/attribs";
 import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
-import type { NumOrElement } from "./api.js";
+import type { NumOrNode } from "./api.js";
 import { isComment, isComponent } from "./checks.js";
 
 /**
@@ -51,7 +51,7 @@ import { isComment, isComponent } from "./checks.js";
 export const $tree = async (
 	tree: any,
 	parent: ParentNode,
-	idx: NumOrElement = -1
+	idx: NumOrNode = -1
 ): Promise<any> =>
 	isArray(tree)
 		? isComment(tree)
@@ -69,7 +69,7 @@ export const $tree = async (
 							? $el("span", null, tree, <HTMLElement>parent, idx)
 							: null;
 
-const $treeElem = (tree: any, parent: ParentNode, idx: NumOrElement) => {
+const $treeElem = (tree: any, parent: ParentNode, idx: NumOrNode) => {
 	const tag = tree[0];
 	// [tag, attribs, ...body]
 	return isString(tag)
@@ -84,7 +84,7 @@ const $treeElem = (tree: any, parent: ParentNode, idx: NumOrElement) => {
 					illegalArgs(`tag: ${tag}`);
 };
 
-const $treeTag = (tree: any, parent: ParentNode, idx: NumOrElement) => {
+const $treeTag = (tree: any, parent: ParentNode, idx: NumOrNode) => {
 	const n = tree.length;
 	const { 0: tag, 1: attribs, 2: body } = tree;
 	if (n === 3 && (isString(body) || isNumber(body))) {
@@ -136,7 +136,7 @@ export const $el = (
 	attribs: any,
 	body?: any,
 	parent?: ParentNode,
-	idx: NumOrElement = -1
+	idx: NumOrNode = -1
 ) => {
 	const match = RE_TAG.exec(tag);
 	if (match) {
@@ -178,7 +178,7 @@ export const $el = (
 export const $comment = (
 	body: string | string[],
 	parent?: ParentNode,
-	idx: NumOrElement = -1
+	idx: NumOrNode = -1
 ) => {
 	const comment = document.createComment(
 		isString(body)
@@ -203,7 +203,7 @@ export const $comment = (
 export const $addChild = (
 	parent: ParentNode,
 	child: Node | Comment,
-	idx: NumOrElement = -1
+	idx: NumOrNode = -1
 ) => {
 	isNumber(idx)
 		? idx < 0 || idx >= parent.children.length
@@ -230,7 +230,7 @@ export const $remove = (el: Element | Comment) => el?.remove();
 export const $moveTo = (
 	newParent: ParentNode,
 	el: Element | Comment,
-	idx: NumOrElement = -1
+	idx: NumOrNode = -1
 ) => {
 	$remove(el);
 	$addChild(newParent, el, idx);

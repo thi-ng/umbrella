@@ -5,7 +5,7 @@ import { isAsyncIterable } from "@thi.ng/checks/is-async-iterable";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isSubscribable } from "@thi.ng/rstream/checks";
-import type { CompiledComponent, IComponent, NumOrElement } from "./api.js";
+import type { CompiledComponent, IComponent, NumOrNode } from "./api.js";
 import { $async, $asyncA } from "./async.js";
 import { isComponent, isElement } from "./checks.js";
 import { $el, $remove, $tree } from "./dom.js";
@@ -106,7 +106,7 @@ const __isComplexComponent = (x: any) => {
 
 /** @internal */
 const __complexComponent = (tree: any[]): CompiledComponent => ({
-	async mount(parent: ParentNode, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrNode = -1) {
 		this.subs = [];
 		const attribs = { ...tree[1] };
 		__walk((x, path) => {
@@ -141,7 +141,7 @@ const __complexComponent = (tree: any[]): CompiledComponent => ({
 
 /** @internal */
 const __basicComponent = (tree: any): CompiledComponent => ({
-	async mount(parent: ParentNode, index: NumOrElement = -1) {
+	async mount(parent: ParentNode, index: NumOrNode = -1) {
 		return (this.el = await $tree(tree, parent, index));
 	},
 	async unmount() {

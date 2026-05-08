@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Maybe, MaybeDeref } from "@thi.ng/api";
-import type { IComponent, NumOrElement } from "./api.js";
+import type { IComponent, NumOrNode } from "./api.js";
 import { $compile } from "./compile.js";
 import {
 	$attribs,
@@ -25,7 +25,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 
 	abstract mount(
 		parent: ParentNode,
-		index?: NumOrElement,
+		index?: NumOrNode,
 		...args: any[]
 	): Promise<Element>;
 
@@ -52,7 +52,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 		attribs?: any,
 		body?: any,
 		parent: Maybe<ParentNode> = this.el,
-		idx?: NumOrElement
+		idx?: NumOrNode
 	) {
 		return $el(tag, attribs, body, parent, idx);
 	}
@@ -68,7 +68,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	$comment(
 		body: string | string[],
 		parent: Maybe<ParentNode> = this.el,
-		idx?: NumOrElement
+		idx?: NumOrNode
 	) {
 		return $comment(body, parent, idx);
 	}
@@ -99,7 +99,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 * @param root
 	 * @param index
 	 */
-	$tree(tree: any, root: ParentNode = this.el!, index?: NumOrElement) {
+	$tree(tree: any, root: ParentNode = this.el!, index?: NumOrNode) {
 		return $tree(tree, root, index);
 	}
 
@@ -176,7 +176,7 @@ export abstract class Component<T = any> implements IComponent<T> {
 	 * @param el
 	 * @param idx
 	 */
-	$moveTo(newParent: ParentNode, el = this.el!, idx?: NumOrElement) {
+	$moveTo(newParent: ParentNode, el = this.el!, idx?: NumOrNode) {
 		$moveTo(newParent, el, idx);
 	}
 }

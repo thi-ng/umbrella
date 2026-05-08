@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { Fn2 } from "@thi.ng/api";
-import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
 import { $compile } from "./compile.js";
 import { $addChild, $html, $remove, $text } from "./dom.js";
 
@@ -13,7 +13,7 @@ const __wrapper =
 	<T>(update: Fn2<HTMLElement | SVGElement, T, void>) =>
 	(tag: string, attribs?: any, body?: T) =>
 		<WrappedComponent<T>>{
-			async mount(parent: ParentNode, index: NumOrElement, state: T) {
+			async mount(parent: ParentNode, index: NumOrNode, state: T) {
 				this.inner = $compile([tag, attribs]);
 				this.el = await (<any>this).inner.mount(parent, index);
 				update(<any>this.el!, state != null ? state : body!);
