@@ -62,16 +62,19 @@
 		"component",
 		"css",
 		"datastructure",
+		"diff",
 		"dom",
 		"hiccup",
 		"html",
 		"lifecycle",
+		"list",
 		"reactive",
 		"rstream",
 		"svg",
 		"tree",
 		"typescript",
-		"ui"
+		"ui",
+		"wrapper"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -81,7 +84,8 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"internal"
 	],
 	"exports": {
 		".": {
@@ -145,6 +149,7 @@
 			"hiccup",
 			"hiccup-html",
 			"hiccup-svg",
+			"rstream",
 			"transducers"
 		],
 		"year": 2020
