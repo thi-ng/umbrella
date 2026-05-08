@@ -266,11 +266,8 @@ $compile(
 
 {{pkg.docs}}
 
-TODO
-
-Currently, documentation only exists in the form of small examples and various
-doc strings (incomplete). I'm working to alleviate this situation ASAP... In
-that respect, PRs are welcome as well!
+Currently, documentation only exists in the form of API docs and 50+ small
+example projects (see above, all commented).
 
 ### Basic usage
 
@@ -332,13 +329,15 @@ const items = reactive([
 $klist(
 	// reactive data source (any rstream subscribable)
 	items,
-	// outer list element & attribs
-	"ul",
-	{ class: "list red" },
-	// list item component constructor
-	(x) => ["li", {}, x.id, ` (${x.val})`],
-	// key function (includes)
-	(x) => `${x.id}-${x.val}`
+	{
+		// outer list element & attribs
+		el: "ul",
+		attribs: { class: "list red" },
+		// list item component constructor
+		item: (x) => ["li", {}, x.id, ` (${x.val})`],
+		// key function (includes)
+		key: (x) => `${x.id}-${x.val}`
+	}
 ).mount(document.body);
 
 // update list:
