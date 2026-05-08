@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-clip-line",
-	"version": "2.3.176",
+	"version": "2.3.177",
 	"description": "2D line clipping (Liang-Barsky)",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.20",
-		"@thi.ng/geom-isec": "^4.0.86",
-		"@thi.ng/vectors": "^8.6.30"
+		"@thi.ng/api": "^8.12.21",
+		"@thi.ng/geom-isec": "^4.0.87",
+		"@thi.ng/vectors": "^8.6.31"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

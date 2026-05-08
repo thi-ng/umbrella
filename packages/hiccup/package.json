@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup",
-	"version": "5.4.5",
+	"version": "5.4.6",
 	"description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
 	"type": "module",
 	"module": "./index.js",
@@ -41,10 +41,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.20",
-		"@thi.ng/checks": "^3.9.0",
-		"@thi.ng/errors": "^2.6.9",
-		"@thi.ng/strings": "^3.12.2"
+		"@thi.ng/api": "^8.12.21",
+		"@thi.ng/checks": "^3.9.1",
+		"@thi.ng/errors": "^2.6.10",
+		"@thi.ng/strings": "^3.12.3"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

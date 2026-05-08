@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-08T11:01:41Z
+- **Last updated**: 2026-05-08T11:54:10Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [1.0.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-components@1.0.74/packages/rdom-components) (2026-05-08)
+### [1.0.75](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom-components@1.0.75/packages/rdom-components) (2026-05-08)
 
 #### ♻️ Refactoring
 
