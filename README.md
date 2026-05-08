@@ -311,13 +311,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-04-26
+As of: 2026-05-08
 
-| Status                                        | Package                                   | Version                                                                                                         | Changelog                                     |
-|:----------------------------------------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)     | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)     | [changelog](./packages/checks/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)       | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)       | [changelog](./packages/units/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/validate`](./packages/validate) | [![version](https://img.shields.io/npm/v/@thi.ng/validate.svg)](https://www.npmjs.com/package/@thi.ng/validate) | [changelog](./packages/validate/CHANGELOG.md) |
+| Status                                           | Package                                                 | Version                                                                                                                       | Changelog                                            |
+|:-------------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/rdom`](./packages/rdom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                       | [changelog](./packages/rdom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/rdom-components`](./packages/rdom-components) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components) | [changelog](./packages/rdom-components/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
