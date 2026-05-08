@@ -40,12 +40,11 @@ export const dynamicDropdown = <T = string, S extends string = string>(
 		label: String,
 		...opts,
 	};
-	return $list<T>(
-		items,
-		"select",
-		{ onchange: $input(sel), ...opts!.attribs },
-		$option(sel, <Required<DropdownOpts<T>>>opts)
-	);
+	return $list<T>(items, {
+		el: "select",
+		attribs: { onchange: $input(sel), ...opts!.attribs },
+		item: $option(sel, <Required<DropdownOpts<T>>>opts),
+	});
 };
 
 /**

@@ -35,26 +35,27 @@ export interface AccordionOpts {
 export const accordion = (
 	src: ISubscription<number, number>,
 	{ attribs, head, sections, error }: AccordionOpts
-) => {
-	return $list(
+) =>
+	$list(
 		src.transform(
 			dedupe(),
 			map((id) => [
 				...map((i) => <const>[i, i === id], range(sections.length)),
 			])
 		),
-		"div",
-		attribs.wrapper,
-		([i, sel]) =>
-			section(
-				sel ? attribs.sectionOn : attribs.sectionOff,
-				head(src, sections[i].title, i, sel),
-				sel
-					? div(
-							attribs.content,
-							$promise(sections[i].content(i), error)
-						)
-					: null
-			)
+		{
+			el: "div",
+			attribs: attribs.wrapper,
+			item: ([i, sel]) =>
+				section(
+					sel ? attribs.sectionOn : attribs.sectionOff,
+					head(src, sections[i].title, i, sel),
+					sel
+						? div(
+								attribs.content,
+								$promise(sections[i].content(i), error)
+							)
+						: null
+				),
+		}
 	);
-};

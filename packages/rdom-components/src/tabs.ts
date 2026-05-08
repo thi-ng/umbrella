@@ -38,9 +38,11 @@ export const tabs = (src: ISubscription<number, number>, opts: TabOpts) => {
 			src.map((id) => [
 				...map((i) => <const>[i, i === id], range(sections.length)),
 			]),
-			"div",
-			attribs!.tab,
-			([i, sel]) => head(src, sections[i].title, i, sel)
+			{
+				el: "div",
+				attribs: attribs!.tab,
+				item: ([i, sel]) => head(src, sections[i].title, i, sel),
+			}
 		),
 		$switch<number>(
 			src.transform(dedupe()),
