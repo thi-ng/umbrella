@@ -2093,6 +2093,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-bare-lists@workspace:examples/rdom-bare-lists":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-bare-lists@workspace:examples/rdom-bare-lists"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: "npm:^5.9.3"
+    vite: "npm:^7.3.2"
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-basics@workspace:examples/rdom-basics":
   version: 0.0.0-use.local
   resolution: "@example/rdom-basics@workspace:examples/rdom-basics"

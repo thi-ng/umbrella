@@ -1,0 +1,31 @@
+// thi.ng/meta-css stylesheet
+// see package readme for more details/usage
+// use `yarn css:build` or `yarn css:watch` to transpile to CSS
+
+body { system-sans-serif ma3 }
+
+#app, .controls { mb3 }
+
+button { mr2 }
+
+.grid {
+	grid grid-cols-3 m:grid-cols-4 l:grid-cols-6 gap3 color-white
+	{
+		.cell { h4 flex align-items-center justify-content-center }
+		.static { bg-color-red }
+		.dynamic { bg-color-blue }
+	}
+}
+
+table { w-100 }
+
+thead, tfoot {
+	bg-color-black
+	{
+		td { color-white }
+	}
+}
+
+tr:nth-child(odd) { bg-color-light-gray }
+
+td { pa2 }
