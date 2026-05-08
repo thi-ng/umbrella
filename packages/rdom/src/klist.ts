@@ -1,11 +1,22 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Fn2, NumOrString } from "@thi.ng/api";
+import type { Fn2, Maybe, NumOrString } from "@thi.ng/api";
+import { isString } from "@thi.ng/checks/is-string";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
+import type {
+	IComponent,
+	IMountWithState,
+	ListBaseOpts,
+	NumOrNode,
+} from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
 import { __nextID } from "./idgen.js";
+import { __initList } from "./internal/list.js";
 import { $subWithID } from "./sub.js";
+
+export interface KListOpts<T> extends ListBaseOpts<T> {
+	key?: Fn2<T, number, NumOrString>;
+}
 
 export interface KListItem {
 	k: NumOrString;
@@ -20,10 +31,17 @@ export interface KListItem {
  * the list.
  *
  * @remarks
- * The given `keyFn` is used to obtain a *unique* key value for each list item
- * obtained from the reactive arrays obtained from `src`. Like a hash, the key
- * value MUST represent an item's *current* value such that if the value
+ * The given `key` function is used to obtain a *unique* key value for each list
+ * item obtained from the reactive arrays obtained from `src`. Like a hash, the
+ * key value MUST represent an item's *current* value such that if the value
  * changes, so does the key.
+ *
+ * See {@link ListBaseOpts} for more details about wrapped vs. bare lists, i.e.
+ * using a list wrapper element for items or attaching list items directly to
+ * this component's parent. Also see this example project to illustrate the
+ * structure/possibilities of bare lists:
+ *
+ * - https://demo.thi.ng/umbrella/rdom-bare-lists/
  *
  * @example
  * ```ts
@@ -35,13 +53,15 @@ export interface KListItem {
  * $klist(
  *   // data source (any rstream subscribable)
  *   items,
- *   // outer list element & attribs
- *   "ul",
- *   { class: "list red" },
- *   // list item component constructor
- *   (x) => ["li", {}, x.id, ` (${x.val})`],
- *   // key function
- *   (x) => `${x.id}-${x.val}`
+ *   {
+ *     // outer list element & attribs
+ *     el: "ul",
+ *     attribs: { class: "list red" },
+ *     // list item component constructor
+ *     item: (x) => ["li", {}, x.id, ` (${x.val})`],
+ *     // key function
+ *     key: (x) => `${x.id}-${x.val}`
+ *   }
  * ).mount(document.body);
  *
  * // update list:
@@ -62,48 +82,34 @@ export interface KListItem {
  * ```
  *
  * @param src -
- * @param tag -
- * @param attribs -
- * @param childCtor -
- * @param keyFn -
+ * @param opts -
  */
-export const $klist = <T>(
-	src: ISubscribable<T[]>,
-	tag: string,
-	attribs: any,
-	childCtor: Fn<T, any>,
-	keyFn?: Fn2<T, number, NumOrString>
-) =>
-	$subWithID(
-		src,
-		new KList<T>(tag, attribs, childCtor, keyFn),
-		__nextID("klist", src)
-	);
+export const $klist = <T>(src: ISubscribable<T[]>, opts: KListOpts<T>) =>
+	$subWithID(src, new KList<T>(opts), __nextID("klist", src));
 
 export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
-	items?: KListItem[] = [];
-	cache?: Map<NumOrString, KListItem>;
+	protected items?: KListItem[] = [];
+	protected cache?: Map<NumOrString, KListItem>;
+	protected anchor?: Comment;
 
-	constructor(
-		protected tag: string,
-		protected attribs: any,
-		protected ctor: Fn<T, any>,
-		protected keyFn: Fn2<T, number, NumOrString> = (_, i) => i
-	) {
+	constructor(protected opts: KListOpts<T>) {
 		super();
 	}
 
 	async mount(parent: ParentNode, index: NumOrNode, state: T[]) {
 		this.items = [];
 		this.cache = new Map();
-		this.el = this.$el(this.tag, this.attribs, null, parent, index);
+		const { el, anchor } = __initList(parent, index, this.opts);
+		this.el = el;
+		this.anchor = anchor;
 		this.update(state);
 		return this.el!;
 	}
 
 	async unmount() {
 		this.items!.forEach((c) => c.v.unmount());
-		this.$remove();
+		if (isString(this.opts.el)) this.$remove();
+		this.anchor?.remove();
 		this.el = undefined;
 		this.items = undefined;
 		this.cache = undefined;
@@ -111,7 +117,12 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 
 	async update(curr: T[]) {
 		if (!curr) return;
-		const { keyFn, items, ctor, cache, el: parent } = this;
+		const {
+			opts: { item: ctor, key: keyFn = (_, i) => i },
+			items,
+			cache,
+			el: parent,
+		} = this;
 		const currItems: KListItem[] = [];
 		const currCache = new Map<NumOrString, KListItem>();
 		const offsets = new Map<NumOrString, number>();
@@ -140,7 +151,7 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 
 		const willMove = new Set<NumOrString>();
 		const didMove = new Set<NumOrString>();
-		let next: Element;
+		let next: Maybe<Node> = this.anchor;
 
 		const insert = async (item: KListItem) => {
 			if (cache!.has(item.k)) {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn0 } from "@thi.ng/api";
+import type { Fn, Fn0 } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
 
 /**
@@ -106,3 +106,29 @@ export type Callback = Fn0<void>;
 export type NumOrElement = number | Element;
 
 export type NumOrNode = number | Node;
+
+/**
+ * Common options for {@link $list} and {@link $klist} components.
+ */
+export interface ListBaseOpts<T> {
+	/**
+	 * Tag name or existing DOM element to use as list container.
+	 *
+	 * If given, the list items will be attached this this element. If given as
+	 * string, an element of that type will be created first. In either case,
+	 * the element can be further customized via {@link ListBaseOpts.attribs}.
+	 *
+	 * If NOT given, the list items will be directly attached to the list
+	 * component's parent element. We call this a "bare" list.
+	 */
+	el?: Element | string;
+	/**
+	 * Element attributes for list container element (only used if
+	 * {@link ListBaseOpts.el} is given).
+	 */
+	attribs?: Record<string, any>;
+	/**
+	 * List item component factory function.
+	 */
+	item: Fn<T, any>;
+}

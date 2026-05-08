@@ -1,11 +1,26 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Fn, Predicate2 } from "@thi.ng/api";
+import type { Predicate2 } from "@thi.ng/api";
+import { isString } from "@thi.ng/checks/is-string";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState, NumOrNode } from "./api.js";
+import type {
+	IComponent,
+	IMountWithState,
+	ListBaseOpts,
+	NumOrNode,
+} from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
 import { __nextID } from "./idgen.js";
+import { __initList } from "./internal/list.js";
 import { $subWithID } from "./sub.js";
+
+export interface ListOpts<T> extends ListBaseOpts<T> {
+	/**
+	 * Equality predicate function to determine if a list item has changed. Uses
+	 * `===` by default.
+	 */
+	equiv?: Predicate2<T>;
+}
 
 /**
  * Creates a generalized and dynamically updating list component from items of
@@ -22,6 +37,13 @@ import { $subWithID } from "./sub.js";
  * a more elaborate diffing mechanism and keying to uniquely identify list items
  * (regardless of their position in the array).
  *
+ * See {@link ListBaseOpts} for more details about wrapped vs. bare lists, i.e.
+ * using a list wrapper element for items or attaching list items directly to
+ * this component's parent. Also see this example project to illustrate the
+ * structure/possibilities of bare lists:
+ *
+ * - https://demo.thi.ng/umbrella/rdom-bare-lists/
+ *
  * @example
  * ```ts
  * import { $list } from "@thi.ng/rdom";
@@ -32,13 +54,15 @@ import { $subWithID } from "./sub.js";
  * $list(
  *   // data source (rstream subsribable)
  *   items,
- *   // outer list element & attribs
- *   "ul",
- *   { class: "list red" },
- *   // list item component constructor
- *   (x) => ["li", {}, x.id],
- *   // optional equality predicate (default this.ng/equiv)
- *   (a, b) => a.id === b.id
+ *   {
+ *     // outer list element & attribs
+ *     el: "ul",
+ *     attribs: { class: "list red" },
+ *     // list item component constructor
+ *     item: (x) => ["li", {}, x.id],
+ *     // optional equality predicate (default this.ng/equiv)
+ *     equiv: (a, b) => a.id === b.id
+ *   }
  * ).mount(document.body);
  *
  * // update list
@@ -51,48 +75,36 @@ import { $subWithID } from "./sub.js";
  * ```
  *
  * @param src -
- * @param tag -
- * @param attribs -
- * @param ctor -
- * @param equiv -
+ * @param opts -
  */
-export const $list = <T>(
-	src: ISubscribable<T[]>,
-	tag: string,
-	attribs: any,
-	ctor: Fn<T, any>,
-	equiv?: Predicate2<T>
-) =>
-	$subWithID(
-		src,
-		new List<T>(tag, attribs, ctor, equiv),
-		__nextID("list", src)
-	);
+export const $list = <T>(src: ISubscribable<T[]>, opts: ListOpts<T>) =>
+	$subWithID(src, new List<T>(opts), __nextID("list", src));
 
 export class List<T> extends Component implements IMountWithState<T[]> {
-	prev?: T[];
-	items?: IComponent[];
+	protected prev?: T[];
+	protected items?: IComponent[];
+	protected anchor?: Comment;
+	protected offset = 0;
+	protected numChildren = -1;
 
-	constructor(
-		protected tag: string,
-		protected attribs: any,
-		protected ctor: Fn<T, IComponent>,
-		protected equiv: Predicate2<T> = (a, b) => a === b
-	) {
+	constructor(protected opts: ListOpts<T>) {
 		super();
 	}
 
 	async mount(parent: ParentNode, index: NumOrNode, state: T[]) {
 		this.prev = [];
 		this.items = [];
-		this.el = this.$el(this.tag, this.attribs, null, parent, index);
+		const { el, anchor } = __initList(parent, index, this.opts);
+		this.el = el;
+		this.anchor = anchor;
 		this.update(state);
 		return this.el;
 	}
 
 	async unmount() {
 		this.items!.forEach((c) => c.unmount());
-		this.$remove();
+		if (isString(this.opts.el)) this.$remove();
+		this.anchor?.remove();
 		this.el = undefined;
 		this.items = undefined;
 		this.prev = undefined;
@@ -100,16 +112,28 @@ export class List<T> extends Component implements IMountWithState<T[]> {
 
 	async update(curr: T[]) {
 		if (!curr) return;
-		const { ctor, equiv, items, prev, el: parent } = this;
+		const {
+			opts: { item: ctor, equiv = (a, b) => a === b },
+			items,
+			prev,
+			el: parent,
+			anchor,
+		} = this;
 		const nb = curr.length;
 		let na = prev!.length;
 		let n = Math.min(na, nb);
+		let offset = this.offset;
+		const children = parent!.childNodes;
+		if (anchor && children.length !== this.numChildren) {
+			this.numChildren = children.length;
+			this.offset = offset = [...children].indexOf(anchor);
+		}
 		for (let i = 0; i < n; i++) {
 			if (!equiv(prev![i], curr[i])) {
 				await items![i].unmount();
 				const val = curr[i];
 				const child = $compile(ctor(val));
-				await child.mount(parent!, i);
+				await child.mount(parent!, i + offset);
 				items![i] = child;
 				prev![i] = val;
 			}
@@ -118,7 +142,7 @@ export class List<T> extends Component implements IMountWithState<T[]> {
 			for (; n < nb; n++) {
 				const val = curr[n];
 				const child = $compile(ctor(val));
-				await child.mount(parent!, -1);
+				await child.mount(parent!, n + offset);
 				items![n] = child;
 				prev![n] = val;
 			}
