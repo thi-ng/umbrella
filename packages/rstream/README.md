@@ -233,7 +233,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-57 projects in this repo's
+58 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -266,6 +266,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pointfree-geom.jpg" width="240"/>                | Live coding playground for 2D geometry generation using @thi.ng/pointfree-lang                          | [Demo](https://demo.thi.ng/umbrella/pointfree-geom/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pointfree-geom)      |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/procedural-text.jpg" width="240"/>               | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)     |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/ramp-scroll-anim.png" width="240"/>              | Scroll-based, reactive, multi-param CSS animation basics                                                | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-scroll-anim)    |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-bare-lists.avif" width="240"/>              | Basic usage of rdom bare list components in multiple scenarios                                          | [Demo](https://demo.thi.ng/umbrella/rdom-bare-lists/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-bare-lists)     |
 |                                                                                                                                      | Demonstates various rdom usage patterns                                                                 | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-basics)         |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-canvas-basics.jpg" width="240"/>            | Minimal rdom-canvas animation                                                                           | [Demo](https://demo.thi.ng/umbrella/rdom-canvas-basics/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-canvas-basics)  |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-delayed-update.jpg" width="240"/>           | Dynamically loaded images w/ preloader state                                                            | [Demo](https://demo.thi.ng/umbrella/rdom-delayed-update/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-delayed-update) |

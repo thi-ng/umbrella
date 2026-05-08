@@ -122,7 +122,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-19 projects in this repo's
+20 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -140,6 +140,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-sorting.png" width="240"/>         | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                         | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)         |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/poly-subdiv.jpg" width="240"/>           | Animated, iterative polygon subdivisions & visualization                                 | [Demo](https://demo.thi.ng/umbrella/poly-subdiv/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/poly-subdiv)           |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/procedural-text.jpg" width="240"/>       | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation | [Demo](https://demo.thi.ng/umbrella/procedural-text/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)       |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-bare-lists.avif" width="240"/>      | Basic usage of rdom bare list components in multiple scenarios                           | [Demo](https://demo.thi.ng/umbrella/rdom-bare-lists/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-bare-lists)       |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-klist.png" width="240"/>            | Basic usage of thi.ng/rdom keyed list component wrapper                                  | [Demo](https://demo.thi.ng/umbrella/rdom-klist/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-klist)            |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/render-audio.png" width="240"/>          | Generative audio synth offline renderer and WAV file export                              | [Demo](https://demo.thi.ng/umbrella/render-audio/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/render-audio)          |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/shader-ast-evo.jpg" width="240"/>        | Evolutionary shader generation using genetic programming                                 | [Demo](https://demo.thi.ng/umbrella/shader-ast-evo/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/shader-ast-evo)        |

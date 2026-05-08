@@ -316,7 +316,7 @@ Browser ESM import:
 
 [JSDelivr documentation](https://www.jsdelivr.com/)
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.53 KB
 
 ## Dependencies
 
@@ -333,7 +333,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-52 projects in this repo's
+53 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -365,6 +365,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/procedural-text.jpg" width="240"/>      | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)     |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/ramp-scroll-anim.png" width="240"/>     | Scroll-based, reactive, multi-param CSS animation basics                                                | [Demo](https://demo.thi.ng/umbrella/ramp-scroll-anim/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/ramp-scroll-anim)    |
 |                                                                                                                             | Basic & barebones usage of async iterables in thi.ng/rdom                                               | [Demo](https://demo.thi.ng/umbrella/rdom-async/)          | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-async)          |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-bare-lists.avif" width="240"/>     | Basic usage of rdom bare list components in multiple scenarios                                          | [Demo](https://demo.thi.ng/umbrella/rdom-bare-lists/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-bare-lists)     |
 |                                                                                                                             | Demonstates various rdom usage patterns                                                                 | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)         | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-basics)         |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-delayed-update.jpg" width="240"/>  | Dynamically loaded images w/ preloader state                                                            | [Demo](https://demo.thi.ng/umbrella/rdom-delayed-update/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-delayed-update) |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-dnd.png" width="240"/>             | rdom drag & drop example                                                                                | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-dnd)            |

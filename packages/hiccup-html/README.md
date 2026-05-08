@@ -308,7 +308,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-34 projects in this repo's
+35 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -332,6 +332,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-sorting.png" width="240"/>        | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                                        | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-sorting)       |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/pixel-waveform.jpg" width="240"/>       | RGB waveform image analysis                                                                             | [Demo](https://demo.thi.ng/umbrella/pixel-waveform/)      | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/pixel-waveform)      |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/procedural-text.jpg" width="240"/>      | Procedural stochastic text generation via custom DSL, parse grammar & AST transformation                | [Demo](https://demo.thi.ng/umbrella/procedural-text/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/procedural-text)     |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-bare-lists.avif" width="240"/>     | Basic usage of rdom bare list components in multiple scenarios                                          | [Demo](https://demo.thi.ng/umbrella/rdom-bare-lists/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-bare-lists)     |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-dnd.png" width="240"/>             | rdom drag & drop example                                                                                | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)            | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-dnd)            |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-formgen.jpg" width="240"/>         | Basic usage of the declarative rdom-forms generator                                                     | [Demo](https://demo.thi.ng/umbrella/rdom-formgen/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-formgen)        |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/rdom-key-sequences.jpg" width="240"/>   | rstream & transducer-based FSM for converting key event sequences into high-level commands              | [Demo](https://demo.thi.ng/umbrella/rdom-key-sequences/)  | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/rdom-key-sequences)  |
