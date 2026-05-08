@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/validate",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Functional, composable, fully extensible, predicate-based value validation with customizable error messages",
 	"type": "module",
 	"module": "./index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/uuid",
-	"version": "1.1.52",
+	"version": "1.1.53",
 	"description": "Fast binary & string-based UUID v4 generation",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/hex": "^2.4.12",
-		"@thi.ng/random": "^4.1.45"
+		"@thi.ng/random": "^4.1.46"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

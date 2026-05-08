@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/metrics",
-	"version": "0.2.28",
+	"version": "0.2.29",
 	"description": "Utilities for computing & aggregating value metrics (mean, median, min/max, sd), incl. support for circular domains",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.20",
 		"@thi.ng/math": "^5.15.9",
-		"@thi.ng/vectors": "^8.6.29"
+		"@thi.ng/vectors": "^8.6.30"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

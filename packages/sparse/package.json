@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/sparse",
-	"version": "1.1.39",
+	"version": "1.1.40",
 	"description": "Sparse vector & matrix implementations",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.20",
 		"@thi.ng/errors": "^2.6.9",
-		"@thi.ng/transducers": "^9.6.33"
+		"@thi.ng/transducers": "^9.6.34"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

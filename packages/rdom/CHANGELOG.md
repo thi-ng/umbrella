@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-04-26T16:37:53Z
+- **Last updated**: 2026-05-08T11:01:41Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [2.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@2.0.0/packages/rdom) (2026-05-08)
+
+#### 🛑 Breaking changes
+
+- update `$list`, `$klist` components to support bare/unwrapped lists ([7c25fed](https://codeberg.org/thi.ng/umbrella/commit/7c25fed))
+- BREAKING CHANGE: update `$list`, `$klist` component arguments, use options object
+  - add `ListBaseOpts`, `ListOpts`, `KListOpts`
+  - update list component impls to support "bare" lists (where list
+    items are directly attached to list component's parent w/o introducing
+    further nesting)
+  - add/update docs
+
+#### ♻️ Refactoring
+
+- add `NumOrNode` type, replace `NumOrElement` with new type everywhere ([f932e41](https://codeberg.org/thi.ng/umbrella/commit/f932e41))
 
 ### [1.7.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/rdom@1.7.74/packages/rdom) (2026-02-07)
 

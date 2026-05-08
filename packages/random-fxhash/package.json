@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/random-fxhash",
-	"version": "0.3.109",
+	"version": "0.3.110",
 	"description": "@thi.ng/random compatible wrapper & utilities for fxhash's PRNG",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.20",
 		"@thi.ng/base-n": "^2.7.65",
-		"@thi.ng/random": "^4.1.45"
+		"@thi.ng/random": "^4.1.46"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",
