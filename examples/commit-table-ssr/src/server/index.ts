@@ -46,8 +46,8 @@ const server = createServer(async (req, res) => {
 						req.url,
 						readText(resolve(__dirname, "../../index.html"), LOGGER)
 					);
-					res.writeHead(200)
-						.setHeader("Content-Type", "text/html")
+					res.setHeader("Content-Type", "text/html")
+						.writeHead(200)
 						.end(template);
 				} catch (e) {
 					vite.ssrFixStacktrace(<Error>e);
@@ -61,9 +61,9 @@ const server = createServer(async (req, res) => {
 					ctx.repo.path,
 					getCommits
 				);
-				res.setHeader("Content-Type", "application/json").end(
-					JSON.stringify(commits)
-				);
+				res.setHeader("Content-Type", "application/json")
+					.writeHead(200)
+					.end(JSON.stringify(commits));
 			}
 			break;
 		case "/ssr":
