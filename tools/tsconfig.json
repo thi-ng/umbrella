@@ -2,8 +2,10 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"outDir": "../build",
+		"rootDir": "./src",
 		"noUnusedLocals": false,
-		"noUnusedParameters": false
+		"noUnusedParameters": false,
+		"types": ["node"]
 	},
 	"include": ["./**/*.ts"]
 }

@@ -49,8 +49,8 @@
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",
-		"typedoc": "^0.28.18",
-		"typescript": "^5.9.3"
+		"typedoc": "^0.28.19",
+		"typescript": "^6.0.3"
 	},
 	"keywords": [
 		"32bit",

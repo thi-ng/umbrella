@@ -3,5 +3,8 @@
 	"version": "0.0.1",
 	"private": true,
 	"description": "This module provides some build-related tools for @thi.ng/umbrella",
-	"type": "module"
+	"type": "module",
+	"devDependencies": {
+		"@types/node": "^25.6.2"
+	}
 }

@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"module": "nodenext",
 		"moduleResolution": "nodenext",
-		"outDir": "."
+		"outDir": ".",
+		"rootDir": "./src",
+		"types": ["node"]
 	},
 	"include": ["./src/**/*.ts"]
 }

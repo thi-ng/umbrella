@@ -44,10 +44,10 @@
 		"@thi.ng/api": "^8.12.21"
 	},
 	"devDependencies": {
-		"assemblyscript": "0.28.13",
+		"assemblyscript": "0.28.17",
 		"esbuild": "^0.28.0",
-		"typedoc": "^0.28.18",
-		"typescript": "^5.9.3"
+		"typedoc": "^0.28.19",
+		"typescript": "^6.0.3"
 	},
 	"keywords": [
 		"acceleration",

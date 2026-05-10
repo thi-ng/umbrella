@@ -2,7 +2,9 @@
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"outDir": ".",
-		"noImplicitThis": false
+		"noImplicitThis": false,
+		"rootDir": "./src",
+		"types": ["node"]
 	},
 	"include": ["./src/**/*.ts"]
 }
