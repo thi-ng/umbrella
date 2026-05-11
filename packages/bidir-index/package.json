@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bidir-index",
-	"version": "1.5.7",
+	"version": "1.5.8",
 	"description": "Bi-directional index mapping arbitrary keys to numeric IDs & vice versa",
 	"type": "module",
 	"module": "./index.js",
@@ -40,8 +40,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.21",
-		"@thi.ng/checks": "^3.9.1"
+		"@thi.ng/api": "^8.12.22",
+		"@thi.ng/checks": "^3.9.2"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",
