@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-11T08:37:37Z
+- **Last updated**: 2026-05-12T08:24:02Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.0.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.22/packages/trie) (2026-05-12)
+
+#### 🩹 Bug fixes
+
+- update/fix `MultiTrie` iterator return types ([ce8ca66](https://codeberg.org/thi.ng/umbrella/commit/ce8ca66))
 
 ### [2.0.9](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.9/packages/trie) (2025-12-03)
 

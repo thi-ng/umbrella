@@ -4623,7 +4623,7 @@ __metadata:
     "@thi.ng/prefixes": "npm:^2.3.72"
     "@thi.ng/strings": "npm:^3.12.4"
     "@thi.ng/transducers-binary": "npm:^2.1.210"
-    "@thi.ng/trie": "npm:^2.0.21"
+    "@thi.ng/trie": "npm:^2.0.22"
     "@types/node": "npm:^25.6.2"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.19"
@@ -6836,7 +6836,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/trie@npm:^2.0.21, @thi.ng/trie@workspace:packages/trie":
+"@thi.ng/trie@npm:^2.0.22, @thi.ng/trie@workspace:packages/trie":
   version: 0.0.0-use.local
   resolution: "@thi.ng/trie@workspace:packages/trie"
   dependencies:
