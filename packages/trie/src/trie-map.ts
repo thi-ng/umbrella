@@ -11,6 +11,17 @@ export class TrieMap<T> {
 		pairs && this.into(pairs);
 	}
 
+	get size() {
+		let size = 0;
+		const stack: TrieMap<T>[] = [this];
+		while (stack.length) {
+			const node = stack.pop()!;
+			if (node.val !== undefined) size++;
+			if (node.next) stack.push(...Object.values(node.next));
+		}
+		return size;
+	}
+
 	[Symbol.iterator]() {
 		return this.iterate((key, node) => <Pair<string, T>>[key, node.val]);
 	}

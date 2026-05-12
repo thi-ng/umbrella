@@ -22,6 +22,16 @@ beforeEach(() => {
 	chars.add([..."hej"], "se");
 });
 
+test("size (words)", () => {
+	expect(words.size).toBe(4);
+	expect(words.find(["foo"])!.size).toBe(3);
+	expect(words.find(["foo", "boo"])!.size).toBe(2);
+});
+
+test("size (chars)", () => {
+	expect(chars.size).toBe(7);
+});
+
 test("keys (words)", () => {
 	expect([...words.keys()].sort()).toEqual([
 		["boo", "bar"],

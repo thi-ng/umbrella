@@ -25,6 +25,17 @@ export class MultiTrie<K, V> {
 		pairs && this.into(pairs);
 	}
 
+	get size() {
+		let size = 0;
+		const stack: MultiTrie<K, V>[] = [this];
+		while (stack.length) {
+			const node = stack.pop()!;
+			size += node.vals?.size ?? 0;
+			if (node.next) stack.push(...node.next.values());
+		}
+		return size;
+	}
+
 	[Symbol.iterator]() {
 		return this.iterate((key, node) =>
 			[...node.vals!].map((v) => <Pair<K[], V>>[key, v])

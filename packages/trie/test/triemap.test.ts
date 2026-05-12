@@ -18,6 +18,11 @@ beforeEach(
 		]))
 );
 
+test("size", () => {
+	expect(root.size).toBe(7);
+	expect(root.find("he")!.size).toBe(3);
+});
+
 test("keys", () => {
 	expect(new Set(root.keys())).toEqual(
 		new Set(["hey", "hello", "hallo", "hallo", "hola", "hold", "hej", "ha"])
