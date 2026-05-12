@@ -27,7 +27,7 @@ export class MultiTrie<K, V> {
 
 	[Symbol.iterator]() {
 		return this.iterate((key, node) =>
-			[...node.vals!].map((v) => <Pair<K, V>>[key, v])
+			[...node.vals!].map((v) => <Pair<K[], V>>[key, v])
 		);
 	}
 
@@ -41,7 +41,7 @@ export class MultiTrie<K, V> {
 
 	entries(prefix?: K[], includePrefix = true) {
 		return this.iterate(
-			(key, node) => [...node.vals!].map((v) => <Pair<K, V>>[key, v]),
+			(key, node) => [...node.vals!].map((v) => <Pair<K[], V>>[key, v]),
 			prefix,
 			includePrefix
 		);
@@ -119,7 +119,7 @@ export class MultiTrie<K, V> {
 		node.vals.add(val);
 	}
 
-	into(pairs: Iterable<[K[], V]>) {
+	into(pairs: Iterable<Pair<K[], V>>) {
 		for (const [k, v] of pairs) {
 			this.add(k, v);
 		}
