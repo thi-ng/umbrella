@@ -91,13 +91,13 @@ import { defMultiTrie } from "@thi.ng/trie";
 import { ArraySet } from "@thi.ng/associative";
 
 // init w/ custom value set type (here purely for illustration)
-const t = defMultiTrie<string, string>(null, { values: () => new ArraySet() });
+const t = defMultiTrie<string, number>(null, { values: () => new ArraySet() });
 
 t.add("to be or not to be".split(" "), 1);
 t.add("to be or not to be".split(" "), 2);
 t.add("to be and to live".split(" "), 3);
 
-console.log(t.get("to be or not to be".split(" ")))
+console.log(t.get("to be or not to be".split(" ")));
 // Set(2) { 1, 2 }
 
 console.log(t.knownPrefix(["to", "be", "not"]));
