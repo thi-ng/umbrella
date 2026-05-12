@@ -187,17 +187,15 @@ export class MultiTrie<K, V> {
 	) {
 		const root = this.find(prefix);
 		if (!root) return;
-		const queue: [K[], MultiTrie<K, V>][] = [
+		const stack: [K[], MultiTrie<K, V>][] = [
 			[includePrefix ? prefix : [], root],
 		];
-		while (queue.length) {
-			const [key, node] = queue.pop()!;
+		while (stack.length) {
+			const [key, node] = stack.pop()!;
 			if (node.vals) yield* fn(key, node);
-			queue.push(
-				...[...node.next].map(
-					([k, v]) => <[K[], MultiTrie<any, any>]>[key.concat(k), v]
-				)
-			);
+			for (let [k, v] of node.next) {
+				stack.push([key.concat(k), v]);
+			}
 		}
 	}
 }

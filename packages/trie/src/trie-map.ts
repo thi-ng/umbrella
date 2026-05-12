@@ -141,17 +141,16 @@ export class TrieMap<T> {
 	) {
 		const root = this.find(prefix);
 		if (!root) return;
-		const queue: Pair<string, TrieMap<T>>[] = [
+		const stack: Pair<string, TrieMap<T>>[] = [
 			[includePrefix ? prefix : "", root],
 		];
-		while (queue.length) {
-			const [key, node] = queue.pop()!;
+		while (stack.length) {
+			const [key, node] = stack.pop()!;
 			if (node.val !== undefined) yield fn(key, node);
-			queue.push(
-				...Object.entries(node.next).map(
-					([k, v]) => <Pair<string, TrieMap<T>>>[key + k, v]
-				)
-			);
+			const next = node.next;
+			for (let k in next) {
+				stack.push([key + k, next[k]]);
+			}
 		}
 	}
 }
