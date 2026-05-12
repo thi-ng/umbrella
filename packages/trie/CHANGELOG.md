@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-12T08:24:02Z
+- **Last updated**: 2026-05-12T09:59:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.1.0/packages/trie) (2026-05-12)
+
+#### 🚀 Features
+
+- add `.size` getters, add tests ([604dd99](https://codeberg.org/thi.ng/umbrella/commit/604dd99))
+
+#### ⏱ Performance improvements
+
+- update internal `.iterate()` methods ([7816edc](https://codeberg.org/thi.ng/umbrella/commit/7816edc))
 
 ### [2.0.22](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/trie@2.0.22/packages/trie) (2026-05-12)
 
