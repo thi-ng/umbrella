@@ -6877,13 +6877,18 @@ __metadata:
   resolution: "@thi.ng/units@workspace:packages/units"
   dependencies:
     "@thi.ng/api": "npm:^8.12.22"
+    "@thi.ng/args": "npm:^3.2.20"
     "@thi.ng/checks": "npm:^3.9.2"
+    "@thi.ng/compare": "npm:^2.5.10"
     "@thi.ng/equiv": "npm:^2.1.111"
     "@thi.ng/errors": "npm:^2.6.11"
     "@thi.ng/sexpr": "npm:^1.1.32"
+    "@thi.ng/strings": "npm:^3.12.4"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.19"
     typescript: "npm:^6.0.3"
+  bin:
+    units: bin/units
   languageName: unknown
   linkType: soft
 
