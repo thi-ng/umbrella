@@ -4009,7 +4009,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/axidraw@npm:^1.1.184, @thi.ng/axidraw@workspace:packages/axidraw":
+"@thi.ng/axidraw@npm:^1.1.185, @thi.ng/axidraw@workspace:packages/axidraw":
   version: 0.0.0-use.local
   resolution: "@thi.ng/axidraw@workspace:packages/axidraw"
   dependencies:
@@ -4021,7 +4021,7 @@ __metadata:
     "@thi.ng/logger": "npm:^3.3.5"
     "@thi.ng/math": "npm:^5.15.11"
     "@thi.ng/transducers": "npm:^9.6.36"
-    "@thi.ng/units": "npm:^1.3.2"
+    "@thi.ng/units": "npm:^1.4.0"
     "@thi.ng/vectors": "npm:^8.6.32"
     esbuild: "npm:^0.28.0"
     serialport: "npm:^13.0.0"
@@ -4778,7 +4778,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.22"
     "@thi.ng/arrays": "npm:^2.14.19"
-    "@thi.ng/axidraw": "npm:^1.1.184"
+    "@thi.ng/axidraw": "npm:^1.1.185"
     "@thi.ng/compare": "npm:^2.5.10"
     "@thi.ng/defmulti": "npm:^3.0.99"
     "@thi.ng/geom": "npm:^8.3.30"
@@ -6872,7 +6872,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/units@npm:^1.3.2, @thi.ng/units@workspace:^, @thi.ng/units@workspace:packages/units":
+"@thi.ng/units@npm:^1.4.0, @thi.ng/units@workspace:^, @thi.ng/units@workspace:packages/units":
   version: 0.0.0-use.local
   resolution: "@thi.ng/units@workspace:packages/units"
   dependencies:

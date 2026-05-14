@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-11T08:37:37Z
+- **Last updated**: 2026-05-14T13:28:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/units@1.4.0/packages/units) (2026-05-14)
+
+#### 🚀 Features
+
+- update `defUnit()` to support symbol aliases ([8429746](https://codeberg.org/thi.ng/umbrella/commit/8429746))
+  - add `ALIASES` registry
+  - update `defUnit()` and docs
+  - update various unit definitions
+- add CLI wrapper & commands, update pkg ([c14afb6](https://codeberg.org/thi.ng/umbrella/commit/c14afb6))
+- update CLI usage & list command ([17d9e1f](https://codeberg.org/thi.ng/umbrella/commit/17d9e1f))
 
 ## [1.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/units@1.3.0/packages/units) (2026-04-26)
 
