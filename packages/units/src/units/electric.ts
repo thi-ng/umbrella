@@ -6,7 +6,7 @@ import { coherent, defUnit, div, mul, prefix } from "../unit.js";
 
 export const A = defUnit("A", "ampere", coherent(3));
 export const mA = defUnit("mA", "milliampere", prefix("m", A));
-export const mAh = defUnit("mAh", "milliampere-hour", mul(mA, h));
+export const mAh = defUnit("mAh", "milliampere hour", mul(mA, h));
 
 export const C = defUnit("C", "coulomb", mul(A, s, true));
 

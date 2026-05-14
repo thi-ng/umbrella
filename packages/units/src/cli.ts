@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-import { cliApp, type CommandCtx } from "@thi.ng/args";
+import { cliApp, THING_HEADER, type CommandCtx } from "@thi.ng/args";
 import { compareByKey } from "@thi.ng/compare/keys";
 import { defFormat } from "@thi.ng/strings/format";
 import { padRight } from "@thi.ng/strings/pad-right";
@@ -33,18 +33,24 @@ cliApp<CLIOpts, CommandCtx<CLIOpts, CLIOpts>>({
 				for (let [sym, aliases] of Object.entries(ALIASES).sort(
 					compareByKey(0)
 				)) {
-					if (re && ![...aliases, sym].some((x) => re.test(x)))
+					if (
+						re &&
+						!(
+							re.test(UNITS[sym].name) ||
+							[...aliases, sym].some((x) => re.test(x))
+						)
+					)
 						continue;
 					console.log(fmt(sym, aliases.join(", "), UNITS[sym].name));
 				}
 			},
 		},
 		convert: {
-			desc: "Unit conversion (from to)",
+			desc: "Unit conversion (x srcunit destunit)",
 			opts: {},
-			inputs: 2,
+			inputs: 3,
 			fn: async ({ inputs }) => {
-				console.log($eval(`(${inputs[1]} ${inputs[0]})`));
+				console.log($eval(`(${inputs[2]} ${inputs[0]}${inputs[1]})`));
 			},
 		},
 		calc: {
@@ -57,5 +63,12 @@ cliApp<CLIOpts, CommandCtx<CLIOpts, CLIOpts>>({
 		},
 	},
 	ctx: async (ctx) => ctx,
-	usage: {},
+	usage: {
+		prefix:
+			THING_HEADER(
+				"@thi.ng/units",
+				"1.4.0",
+				"Unit converter & calculator"
+			) + "\n",
+	},
 });
