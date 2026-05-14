@@ -45,6 +45,10 @@
   - [Quantities](#quantities)
     - [Constants](#constants)
 - [Domain-specific language](#domain-specific-language)
+- [CLI usage](#cli-usage)
+  - [Unit calculator](#unit-calculator)
+  - [Unit conversion](#unit-conversion)
+  - [List units](#list-units)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -54,7 +58,7 @@
 
 ## About
 
-Extensible SI unit creation, conversions, quantities & calculations (incl. Lisp-like DSL and ~170 predefined units & constants).
+Extensible SI unit creation, conversions, quantities & calculations, CLI calculator (incl. Lisp-like DSL and ~170 predefined units & constants).
 
 All unit definitions, quantities & conversions are based on the SI unit system &
 concepts described here:
@@ -656,6 +660,70 @@ console.log($eval(`(kg (* 200mm 300mm 0.5in glass))`));
 // 1.905
 ```
 
+## CLI usage
+
+Since v1.4.0 a small CLI is included with the following commands:
+
+```bash
+npx @thi.ng/units
+
+#  █ █   █           │
+# ██ █               │
+#  █ █ █ █   █ █ █ █ │ @thi.ng/units v1.4.0
+#  █ █ █ █ █ █ █ █ █ │ Unit converter & calculator
+#                  █ │
+#                █ █ │
+#
+# Available commands:
+#
+# calc    : Unit calculator (S-expression)
+# convert : Unit conversion (x srcunit destunit)
+# list    : List known units (optionally filtered by given pattern)
+```
+
+### Unit calculator
+
+The `calc` command takes a [DSL S-expression](#domain-specific-language) and
+prints the result (the expression should be wrapped in single quotes):
+
+```bash
+# calculate the weight of a A4 sheet of paper with 320 grams per square meter
+npx @thi.ng/units calc '(g (* 320gsm (area din_a4)))'
+
+# 19.958399999999997
+```
+
+### Unit conversion
+
+The `convert` command takes a quantity, source unit and destination unit, and
+prints the result:
+
+```bash
+# convert 40 degree celsius to fahrenheit
+npx @thi.ng/units convert 40 celsius fahrenheit
+
+# 103.99999999999993
+```
+
+### List units
+
+The `list` command prints out all known units, incl. aliases and full name for
+each unit. THe output can be filtered via optionally given pattern (regexp):
+
+```bash
+# list all units matching `gram`
+npx @thi.ng/units list gram
+
+# symbol    aliases                         name
+# ------------------------------------------------------------------------
+# g         gram                            gram
+# g/m2      gsm, gram_per_square_meter      gram per square meter
+# kg        kilogram                        kilogram
+# kg/m3     kilogram_per_cubic_meter        kilogram per cubic meter
+# mg        milligram                       milligram
+# µg        microgram                       microgram
+```
+
 ## Status
 
 **BETA** - possibly breaking changes forthcoming
@@ -688,15 +756,18 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.93 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
+- [@thi.ng/args](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/args)
 - [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/compare](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/compare)
 - [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
 - [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 - [@thi.ng/sexpr](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/sexpr)
+- [@thi.ng/strings](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/strings)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
