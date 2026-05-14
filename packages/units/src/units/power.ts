@@ -10,5 +10,5 @@ export const MW = defUnit("MW", "megawatt", prefix("M", W));
 export const GW = defUnit("GW", "gigawatt", prefix("G", W));
 export const TW = defUnit("TW", "terawatt", prefix("T", W));
 
-export const Wh = defUnit("Wh", "watt-hour", mul(W, h, true));
-export const kWh = defUnit("kWh", "kilowatt-hour", prefix("k", Wh));
+export const Wh = defUnit("Wh", "watt hour", mul(W, h, true));
+export const kWh = defUnit("kWh", "kilowatt hour", prefix("k", Wh));

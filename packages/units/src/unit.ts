@@ -22,6 +22,13 @@ import {
 export const UNITS: Record<string, NamedUnit> = {};
 
 /**
+ * Cache/registry of all unit symbols defined via {@link defUnit}. The keys of
+ * this object are the canonical symbols of each unit. The values are string
+ * arrays of known aliases.
+ */
+export const ALIASES: Record<string, string[]> = {};
+
+/**
  * Defines a "raw" (anonymous) unit using given dimension(s), scale factor, zero
  * offset and `coherent` flag indicating if the unit is the coherent one for
  * given dimensions and can later be used for deriving prefixed versions (see
@@ -63,26 +70,42 @@ export const dimensionless = (scale: number, offset = 0, coherent = false) =>
 	unit(NONE.dim, scale, offset, coherent);
 
 /**
- * Takes a unit symbol, full unit name and pre-defined {@link Unit} impl and
- * registers it in the {@link UNITS} cache for further lookups by symbol name.
+ * Takes one or multiple unit symbols, full unit name and pre-defined
+ * {@link Unit} impl, then registers unit in the {@link UNITS} cache for further
+ * lookups by given symbol names.
  *
  * @remarks
+ * Since v1.4.0, the unit is also registered under a modified lowercased version
+ * of `name`, where all spaces are being replaced by `_`. All registered aliases
+ * will be stored in {@link ALIASES}.
+ *
  * By default throws an error if attempting to register a unit with an existing
  * symbol. If `force` is true, the existing unit will be overwritten.
  *
- * @param sym
+ * @param syms
  * @param name
  * @param unit
  * @param force
  */
 export const defUnit = (
-	sym: string,
+	syms: string | string[],
 	name: string,
 	unit: Unit,
 	force = false
 ): NamedUnit => {
-	if (UNITS[sym] && !force) illegalArgs(`attempt to override unit: ${sym}`);
-	return (UNITS[sym] = { ...unit, sym, name });
+	const $syms = isArray(syms) ? syms : [syms];
+	assert($syms.length > 0, `require at least one unit symbol`);
+	const $name = name.toLowerCase().replaceAll(" ", "_");
+	if (!$syms.includes($name)) $syms.push($name);
+	const canonical = $syms[0];
+	ALIASES[canonical] = [];
+	for (let sym of $syms) {
+		if (UNITS[sym] && !force)
+			illegalArgs(`attempt to override unit: ${sym}`);
+		UNITS[sym] = { ...unit, sym, name };
+		if (sym !== canonical) ALIASES[canonical].push(sym);
+	}
+	return UNITS[canonical];
 };
 
 /**
@@ -576,8 +599,10 @@ const __oneHot = (x: number) => {
 	return dims;
 };
 
+/** @internal */
 const __qunit = (q: Quantity<any>) => (isArray(q.value) ? q.value[0] : q.value);
 
+/** @internal */
 const __combineQ = (
 	op: (a: Unit, b: Unit) => Unit,
 	a: Quantity<any>,
