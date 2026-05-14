@@ -726,7 +726,7 @@ npx @thi.ng/units list gram
 
 ## Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bunits%5D)
 
