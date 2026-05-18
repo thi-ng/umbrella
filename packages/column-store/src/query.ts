@@ -242,7 +242,10 @@ export class QueryCtx<T extends Row> {
 					`query op: ${term.type} requires a column name given`
 				);
 			}
-			if (!op.fn(this, term, column)) break;
+			if (!op.fn(this, term, column)) {
+				this.clear();
+				break;
+			}
 		}
 		return this;
 	}
