@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-11T08:37:37Z
+- **Last updated**: 2026-05-18T21:08:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.13.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.10/packages/column-store) (2026-05-18)
+
+#### 🩹 Bug fixes
+
+- fix QueryCtx.exec(), clear result bitmask on sub-term failure ([8100c86](https://codeberg.org/thi.ng/umbrella/commit/8100c86))
 
 ### [0.13.5](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.5/packages/column-store) (2026-04-02)
 
