@@ -311,11 +311,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-05-12
+As of: 2026-05-18
 
-| Status                                        | Package                           | Version                                                                                                 | Changelog                                 |
-|:----------------------------------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------|:------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/trie`](./packages/trie) | [![version](https://img.shields.io/npm/v/@thi.ng/trie.svg)](https://www.npmjs.com/package/@thi.ng/trie) | [changelog](./packages/trie/CHANGELOG.md) |
+| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
+|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/column-store`](./packages/column-store) | [![version](https://img.shields.io/npm/v/@thi.ng/column-store.svg)](https://www.npmjs.com/package/@thi.ng/column-store) | [changelog](./packages/column-store/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/trie`](./packages/trie)                 | [![version](https://img.shields.io/npm/v/@thi.ng/trie.svg)](https://www.npmjs.com/package/@thi.ng/trie)                 | [changelog](./packages/trie/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)               | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)               | [changelog](./packages/units/CHANGELOG.md)        |
 
 ### Algorithms & data structures
 
