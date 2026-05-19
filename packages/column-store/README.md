@@ -40,6 +40,7 @@
     - [Predicate-based matchers](#predicate-based-matchers)
     - [Row ranges](#row-ranges)
     - [Value ranges](#value-ranges)
+  - [Nested queries](#nested-queries)
   - [Result order and pagination](#result-order-and-pagination)
   - [Custom operators](#custom-operators)
   - [Result aggregation](#result-aggregation)
@@ -54,7 +55,7 @@
 
 ## About
 
-In-memory column store database with customizable column types, extensible query engine, bitfield indexing for query acceleration, JSON serialization with optional RLE compression.
+In-memory column store database with customizable column types, extensible query engine with support for nested queries, bitfield indexing for query acceleration, JSON serialization with optional RLE compression.
 
 ## Column storage
 
@@ -319,7 +320,8 @@ types](#custom-column-types).
 ## Query engine
 
 The query engine is highly extensible and can be used for executing arbitrarily
-complex queries via chaining of query operators.
+complex queries via chaining of [query operators](#built-in-operators) and
+[nested sub-queries](#nested-queries).
 
 ### Query execution
 
@@ -497,6 +499,29 @@ operator selects rows based on a given column's `start` .. `end` vaulue range
 query.valueRange("id", 100, 109);
 ```
 
+### Nested queries
+
+All of the above query operators accept sub-queries. Alternatively,
+[`.nest()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#nest)
+can be used to add a sub-query term.
+
+Note that **only the query terms of sub-queries are used for nesting**. Any
+limits, offsets or sort criteria configured for sub-queries are ignored!
+Furthermore, a sub-query MUST refer to the same table as the main query,
+otherwise an error will be thrown.
+
+```ts
+// find flights for alice which weren't from given airports and longer than 1000km
+table.query()
+    .where("name", "alice")
+    .nor(
+        // sub-query
+        table.query()
+            .or("departure", ["LHR", "LGW", "LTN"])
+            .matchColumn("distance", (x) => x > 1000)
+    )
+```
+
 ### Result order and pagination
 
 - [`sortBy()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#sortby)
@@ -551,7 +576,7 @@ For Node.js REPL:
 const cs = await import("@thi.ng/column-store");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.58 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.70 KB
 
 ## Dependencies
 

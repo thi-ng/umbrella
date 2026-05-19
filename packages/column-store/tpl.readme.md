@@ -269,7 +269,8 @@ types](#custom-column-types).
 ## Query engine
 
 The query engine is highly extensible and can be used for executing arbitrarily
-complex queries via chaining of query operators.
+complex queries via chaining of [query operators](#built-in-operators) and
+[nested sub-queries](#nested-queries).
 
 ### Query execution
 
@@ -445,6 +446,29 @@ operator selects rows based on a given column's `start` .. `end` vaulue range
 ```ts
 // select rows where ID is in closed [100,109] interval
 query.valueRange("id", 100, 109);
+```
+
+### Nested queries
+
+All of the above query operators accept sub-queries. Alternatively,
+[`.nest()`](https://docs.thi.ng/umbrella/column-store/classes/Query.html#nest)
+can be used to add a sub-query term.
+
+Note that **only the query terms of sub-queries are used for nesting**. Any
+limits, offsets or sort criteria configured for sub-queries are ignored!
+Furthermore, a sub-query MUST refer to the same table as the main query,
+otherwise an error will be thrown.
+
+```ts
+// find flights for alice which weren't from given airports and longer than 1000km
+table.query()
+	.where("name", "alice")
+	.nor(
+		// sub-query
+		table.query()
+			.or("departure", ["LHR", "LGW", "LTN"])
+			.matchColumn("distance", (x) => x > 1000)
+	)
 ```
 
 ### Result order and pagination
