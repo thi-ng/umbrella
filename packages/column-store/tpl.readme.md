@@ -310,17 +310,23 @@ const results = query.exec();
 
 The query engine works by applying a number of [query
 terms](https://docs.thi.ng/umbrella/column-store/interfaces/QueryTerm.html) in
-series, with each step intersecting (aka logical AND) its results with the
-results of the previous step(s), thereby narrowing down the result set.
+series.
 
-For each query term, only the rows already marked (aka pre-selected by
-predecessor query terms) are visited. When a query term does not manage to
-select any rows, the query is terminated. Internally, this selecting and
-intersecting of partial query results is done via bitfields only. There's no
-creation of interim result arrays, nor any full decoding/construction of interim
-row records. The latter only happens for the final result rows and/or when using
-the [`matchRow()` or `matchPartialRow()`](#predicate-based-matchers) query
-operators.
+##### Term intersection
+
+By default, each query term is intersecting (aka logical AND) its own results
+with the results of the previous step(s), thereby narrowing down the result set.
+Alternatively, each term's result set can also be combined via set-union (aka
+logical OR), [discussed further below](#term-union).
+
+When using the default intersection behavior (AND), for each query term, only
+the rows already marked (aka pre-selected by predecessor query terms) are
+visited. When a query term does not manage to select any rows, the query is
+terminated. Internally, this selecting and intersecting of partial query results
+is done via bitfields only. There's no creation of interim result arrays, nor
+any full decoding/construction of interim row records. The latter only happens
+for the final result rows and/or when using the [`matchRow()` or
+`matchPartialRow()`](#predicate-based-matchers) query operators.
 
 When a column has an associated bitfield index (enabled via
 [`FLAG_BITMAP`](#flag_bitmap)), some query operators (see below) are optimized
@@ -339,6 +345,27 @@ table.query()
 ![Diagram showing a list of rows with object values and three columns
 illustrating the narrowing effect of query operators with their partial
 results](https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/column-store/query-narrowing.png)
+
+##### Term union
+
+With the default intersection behavior alone, certain complex query types are
+not possible, e.g. queries selecting alternative matches on multiple columns
+(e.g. `WHERE A = 100 OR B = 10`). For these cases to succeed, individual term
+result sets need to be merged via set-union (aka logical OR).
+
+This alternative merge behavior can be triggered (per term) by supplying an
+optional argument to any of the [built-in query operators](#built-in-operators)
+listed below, for example:
+
+```ts
+// 2-step query representing the condition `WHERE A = 100 OR B = 10`
+// with the B-terms results merged via OR (set-union)
+query.where("a", 100).where("b", 10, "or");
+```
+
+Reminder: Query terms are executed in given order and the default behavior of
+each term is to merge its results via intersection with the existing results,
+thus mixed AND/OR merges are possible.
 
 ### Built-in operators
 
