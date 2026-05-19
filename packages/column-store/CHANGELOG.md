@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-18T21:08:11Z
+- **Last updated**: 2026-05-19T13:41:23Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.14.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.14.0/packages/column-store) (2026-05-19)
+
+#### 🚀 Features
+
+- add support for term result set unions ([b6c9b08](https://codeberg.org/thi.ng/umbrella/commit/b6c9b08))
+  - add `QueryTerm.merge` mode (keep existing default behavior)
+  - update all query ops & internal helpers to support result set unions
+  - update `QueryCtx.mergeMask/mergeInvMask()` to support mask unions
+  - replace `QueryCtx` iterator impl with `QueryCtx.queryRows()` to support mode-specific iteration logic
+  - add/update tests
+- add support for nested queries ([098eaa3](https://codeberg.org/thi.ng/umbrella/commit/098eaa3))
+  - add `nest` query term impl & factory
+  - update built-in where/whereNot/or/nor/and/nand operator signatures & impls to accept sub-queries
+  - add internal `addNestableOp()` helper
+  - add tests
 
 ### [0.13.10](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/column-store@0.13.10/packages/column-store) (2026-05-18)
 
