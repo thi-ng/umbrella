@@ -15,6 +15,7 @@ import type {
 	IColumn,
 	QueryResult,
 	QueryTerm,
+	QueryTermMerge,
 	QueryTermOp,
 	QueryTermOpSpec,
 	Row,
@@ -97,65 +98,83 @@ export class Query<T extends Row> {
 	}
 
 	/** Alias for {@link Query.or} */
-	where = (column: ColumnID<T>, value: any) => this.or(column, value);
+	where = (column: ColumnID<T>, value: any, merge?: QueryTermMerge) =>
+		this.or(column, value, merge);
 
 	/** Alias for {@link Query.nor} */
-	whereNot = (column: ColumnID<T>, value: any) => this.nor(column, value);
+	whereNot = (column: ColumnID<T>, value: any, merge?: QueryTermMerge) =>
+		this.nor(column, value, merge);
 
-	or(column: ColumnID<T>, value: any) {
-		this.terms.push({ type: "or", column, value });
+	or(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
+		this.terms.push({ type: "or", column, value, merge });
 		return this;
 	}
 
-	nor(column: ColumnID<T>, value: any) {
-		this.terms.push({ type: "nor", column, value });
+	nor(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
+		this.terms.push({ type: "nor", column, value, merge });
 		return this;
 	}
 
-	and(column: ColumnID<T>, value: any) {
-		this.terms.push({ type: "and", column, value });
+	and(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
+		this.terms.push({ type: "and", column, value, merge });
 		return this;
 	}
 
-	nand(column: ColumnID<T>, value: any) {
-		this.terms.push({ type: "nand", column, value });
+	nand(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
+		this.terms.push({ type: "nand", column, value, merge });
 		return this;
 	}
 
-	matchColumn(column: ColumnID<T>, pred: Predicate<any>) {
-		this.terms.push({ type: "matchCol", column, value: pred });
+	matchColumn(
+		column: ColumnID<T>,
+		pred: Predicate<any>,
+		merge?: QueryTermMerge
+	) {
+		this.terms.push({ type: "matchCol", column, value: pred, merge });
 		return this;
 	}
 
 	matchPartialRow<K extends ColumnID<T>>(
 		columns: K[],
-		pred: Predicate<Pick<T, K>>
+		pred: Predicate<Pick<T, K>>,
+		merge?: QueryTermMerge
 	) {
 		this.terms.push({
 			type: "matchPartialRow",
 			params: columns,
 			value: pred,
+			merge,
 		});
 		return this;
 	}
 
-	matchRow(pred: Predicate<T>) {
-		this.terms.push({ type: "matchRow", value: pred });
+	matchRow(pred: Predicate<T>, merge?: QueryTermMerge) {
+		this.terms.push({ type: "matchRow", value: pred, merge });
 		return this;
 	}
 
-	valueRange(column: ColumnID<T>, start: any, end?: any) {
+	valueRange(
+		column: ColumnID<T>,
+		start: any,
+		end?: any,
+		merge?: QueryTermMerge
+	) {
 		if (this.table.columns[column].isArray)
 			__columnError(
 				column,
 				`operator not supported with this column type`
 			);
-		this.terms.push({ type: "valueRange", column, value: { start, end } });
+		this.terms.push({
+			type: "valueRange",
+			column,
+			value: { start, end },
+			merge,
+		});
 		return this;
 	}
 
-	rowRange(start = 0, end?: number) {
-		this.terms.push({ type: "rowRange", value: { start, end } });
+	rowRange(start = 0, end?: number, merge?: QueryTermMerge) {
+		this.terms.push({ type: "rowRange", value: { start, end }, merge });
 		return this;
 	}
 
@@ -185,7 +204,7 @@ export class Query<T extends Row> {
 			// iterate in normal row order
 			let n = 0;
 			const max = _offset + _limit;
-			for (const i of ctx) {
+			for (const i of ctx.queryRows()) {
 				if (n >= _offset && n < max) {
 					rows.push(table.getRow(i, false, true)!);
 				}
@@ -209,7 +228,7 @@ export class Query<T extends Row> {
 			// iterate in normal row order
 			let j = 0;
 			const n = _offset + _limit;
-			for (const i of ctx) {
+			for (const i of ctx.queryRows()) {
 				if (j >= _offset) {
 					if (j >= n) return;
 					yield table.getRow(i, false, true)!;
@@ -242,7 +261,7 @@ export class QueryCtx<T extends Row> {
 					`query op: ${term.type} requires a column name given`
 				);
 			}
-			if (!op.fn(this, term, column)) {
+			if (!op.fn(this, term, column) && term.merge !== "or") {
 				this.clear();
 				break;
 			}
@@ -251,13 +270,17 @@ export class QueryCtx<T extends Row> {
 	}
 
 	/**
-	 * If a bitmap is already present, yield iterator of only currently selected
-	 * row IDs, otherwise yields row IDs in `[0,table.length)` range.
+	 * If a bitmap is already present and if given merge mode is not `or`,
+	 * yields iterator of only currently selected row IDs, otherwise yields row
+	 * IDs in `[0,table.length)` range.
 	 */
-	*[Symbol.iterator]() {
-		const n = this.table.length;
-		if (this.bitmap) {
-			yield* new Bitfield(this.bitmap).ones(n);
+	*queryRows(mode?: QueryTermMerge) {
+		const {
+			bitmap,
+			table: { length: n },
+		} = this;
+		if (bitmap && mode !== "or") {
+			yield* new Bitfield(bitmap).ones(n);
 		} else {
 			for (let i = 0; i < n; i++) yield i;
 		}
@@ -265,7 +288,7 @@ export class QueryCtx<T extends Row> {
 
 	*rows() {
 		const table = this.query.table;
-		for (const i of this) yield table.getRow(i, false, true)!;
+		for (const i of this.queryRows()) yield table.getRow(i, false, true)!;
 	}
 
 	clear() {
@@ -286,12 +309,19 @@ export class QueryCtx<T extends Row> {
 	 * context mask.
 	 *
 	 * @param mask
+	 * @param mode
 	 */
-	mergeMask(mask: Uint32Array) {
-		if (this.bitmap) {
-			for (let i = 0, n = this.size; i < n; i++)
-				this.bitmap![i] &= mask[i];
-		} else this.bitmap = mask;
+	mergeMask(mask: Uint32Array, mode?: QueryTermMerge) {
+		if (!this.bitmap) {
+			this.bitmap = mask;
+			return;
+		}
+		const { bitmap, size } = this;
+		if (mode === "or") {
+			for (let i = 0; i < size; i++) bitmap[i] |= mask[i];
+		} else {
+			for (let i = 0; i < size; i++) bitmap[i] &= mask[i];
+		}
 	}
 
 	/**
@@ -301,11 +331,17 @@ export class QueryCtx<T extends Row> {
 	 *
 	 * @param mask
 	 */
-	mergeInvMask(mask: Uint32Array) {
-		if (this.bitmap) {
-			for (let i = 0, n = this.size; i < n; i++)
-				this.bitmap![i] &= mask[i] ^ -1;
-		} else this.bitmap = this.invertMask(mask);
+	mergeInvMask(mask: Uint32Array, mode?: QueryTermMerge) {
+		if (!this.bitmap) {
+			this.bitmap = this.invertMask(mask);
+			return;
+		}
+		const { bitmap, size } = this;
+		if (mode === "or") {
+			for (let i = 0; i < size; i++) bitmap[i] |= mask[i] ^ -1;
+		} else {
+			for (let i = 0; i < size; i++) bitmap[i] &= mask[i] ^ -1;
+		}
 	}
 
 	/**
@@ -336,7 +372,7 @@ const execBitOr: QueryTermOp = (ctx, term, column) => {
 		const b = bitmap.index.get(key)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
-	return __finalizeMask(ctx, mask, term.type === "nor");
+	return __finalizeMask(ctx, mask, term.type === "nor", term.merge);
 };
 
 const execOr: QueryTermOp = (ctx, term, column) => {
@@ -346,14 +382,14 @@ const execOr: QueryTermOp = (ctx, term, column) => {
 		: (row, k) => row === k;
 	let mask: Maybe<Uint32Array>;
 	for (const k of isArray(key) ? key : [key]) {
-		for (const i of ctx) {
+		for (const i of ctx.queryRows(term.merge)) {
 			if (pred(column!.getRowKey(i), k)) {
 				if (!mask) mask = ctx.makeMask();
 				mask[i >>> 5] |= 1 << (i & 31);
 			}
 		}
 	}
-	return __finalizeMask(ctx, mask, term.type === "nor");
+	return __finalizeMask(ctx, mask, term.type === "nor", term.merge);
 };
 
 const delegateOr: QueryTermOp = (ctx, term, column) =>
@@ -389,7 +425,7 @@ const execBitAnd: QueryTermOp = (ctx, term, column) => {
 		const b = bitmap.index.get(key)?.buffer;
 		if (b) mask = ctx.makeMask(b);
 	}
-	return __finalizeMask(ctx, mask, isNeg);
+	return __finalizeMask(ctx, mask, isNeg, term.merge);
 };
 
 const execAnd: QueryTermOp = (ctx, term, column) => {
@@ -402,7 +438,7 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 	let mask: Maybe<Uint32Array>;
 	for (const k of isArray(key) ? key : [key]) {
 		let m: Maybe<Uint32Array>;
-		for (const i of ctx) {
+		for (const i of ctx.queryRows(term.merge)) {
 			if (pred(column!.getRowKey(i), k)) {
 				if (!m) m = ctx.makeMask();
 				m[i >>> 5] |= 1 << (i & 31);
@@ -419,7 +455,7 @@ const execAnd: QueryTermOp = (ctx, term, column) => {
 			} else return false;
 		}
 	}
-	return __finalizeMask(ctx, mask, isNeg);
+	return __finalizeMask(ctx, mask, isNeg, term.merge);
 };
 
 const delegateAnd: QueryTermOp = (ctx, term, column) =>
@@ -433,10 +469,11 @@ const delegateAnd: QueryTermOp = (ctx, term, column) =>
 const __finalizeMask = (
 	ctx: QueryCtx<any>,
 	mask: Maybe<Uint32Array>,
-	isNeg: boolean
+	isNeg: boolean,
+	mode?: QueryTermMerge
 ) => {
 	if (mask) {
-		isNeg ? ctx.mergeInvMask(mask) : ctx.mergeMask(mask);
+		isNeg ? ctx.mergeInvMask(mask, mode) : ctx.mergeMask(mask, mode);
 		return true;
 	} else if (isNeg) {
 		if (!ctx.bitmap) ctx.bitmap = ctx.makeMask(-1);
@@ -456,13 +493,13 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 		fn: (ctx, term, column) => {
 			const pred: Predicate<any> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (const i of ctx) {
+			for (const i of ctx.queryRows(term.merge)) {
 				if (pred(column!.getRow(i))) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
 				}
 			}
-			if (mask) ctx.mergeMask(mask);
+			if (mask) ctx.mergeMask(mask, term.merge);
 			return !!mask;
 		},
 	},
@@ -474,13 +511,13 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const columns = term.params!;
 			const pred: Predicate<Record<string, any>> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (const i of ctx) {
+			for (const i of ctx.queryRows(term.merge)) {
 				if (pred(table.getPartialRow(i, columns, false)!)) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
 				}
 			}
-			if (mask) ctx.mergeMask(mask);
+			if (mask) ctx.mergeMask(mask, term.merge);
 			return !!mask;
 		},
 	},
@@ -491,13 +528,13 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const table = ctx.table;
 			const pred: Predicate<Record<string, any>> = term.value;
 			let mask: Maybe<Uint32Array>;
-			for (const i of ctx) {
+			for (const i of ctx.queryRows(term.merge)) {
 				if (pred(table.getRow(i, false)!)) {
 					if (!mask) mask = ctx.makeMask();
 					mask[i >>> 5] |= 1 << (i & 31);
 				}
 			}
-			if (mask) ctx.mergeMask(mask);
+			if (mask) ctx.mergeMask(mask, term.merge);
 			return !!mask;
 		},
 	},
@@ -511,7 +548,14 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			if (start != null) $start = column!.findIndex((x) => x >= start);
 			if (end != null)
 				$end = column!.findLastIndex((x) => x <= end, $start);
-			return __fillMask(ctx, $start, $end >= 0 ? $end + 1 : $end, max);
+			return __fillMask(
+				ctx,
+				$start,
+				$end >= 0 ? $end + 1 : $end,
+				max,
+				1,
+				term.merge
+			);
 		},
 	},
 
@@ -521,7 +565,7 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 			const max = ctx.table.length;
 			let { start = 0, end = max } = term.value;
 			[start, end] = __clampRange(max, start, end);
-			return __fillMask(ctx, start, end, max);
+			return __fillMask(ctx, start, end, max, 1, term.merge);
 		},
 	},
 };
@@ -531,13 +575,14 @@ const __fillMask = (
 	start: number,
 	end: number,
 	max: number,
-	fill: 0 | 1 = 1
+	fill: 0 | 1 = 1,
+	mode?: QueryTermMerge
 ) => {
 	if (start >= 0 && start < max && end >= 0) {
 		const mask = ctx.makeMask();
 		const bitmap = new Bitfield(mask);
 		bitmap.fill(fill, start, end);
-		ctx.mergeMask(mask);
+		ctx.mergeMask(mask, mode);
 		return true;
 	}
 	return false;

@@ -119,6 +119,13 @@ const checkSingle = (type: string, flags = 0) => {
 
 	expect([...table.query().nor("a", []).nand("a", 111)]).toEqual(ALL);
 	expect([...table.query().nand("a", 111).nor("a", [])]).toEqual(ALL);
+
+	expect([
+		...table
+			.query()
+			.and("a", 101)
+			.matchColumn("a", () => false),
+	]).toEqual([]);
 };
 
 const checkTuple = (flags = 0) => {
@@ -647,6 +654,38 @@ describe("query", () => {
 			total: 4,
 			offset: 0,
 			limit: 2,
+		});
+	});
+
+	describe("merge union", () => {
+		test("basic", () => {
+			const a = new Table({
+				a: { type: "num" },
+				b: { type: "str", cardinality: [0, 10] },
+			});
+			a.addRows([
+				{ a: 100, b: ["a"] },
+				{ a: 101, b: ["a", "b"] },
+			]);
+			expect(
+				a.query().where("a", 100).where("b", "b", "or").exec()
+			).toEqual({
+				results: [
+					{ a: 100, b: ["a"], __row: 0 },
+					{ a: 101, b: ["a", "b"], __row: 1 },
+				],
+				total: 2,
+				offset: 0,
+				limit: Infinity,
+			});
+			expect(
+				a.query().where("a", 100).where("b", "foo", "or").exec()
+			).toEqual({
+				results: [{ a: 100, b: ["a"], __row: 0 }],
+				total: 1,
+				offset: 0,
+				limit: Infinity,
+			});
 		});
 	});
 });

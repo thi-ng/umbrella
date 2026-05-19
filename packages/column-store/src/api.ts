@@ -229,7 +229,22 @@ export interface QueryTerm<T extends Row> {
 	column?: ColumnID<T>;
 	value: any;
 	params?: any;
+	/**
+	 * Result merge mode, i.e. defines how this term's results are merged with
+	 * the existing result set. By default each term forms an intersection (AND)
+	 * with the existing result set, but using `or` mode allows for result
+	 * unions.
+	 *
+	 * @remarks
+	 * The mode can be assigned as optional arg to any of the built-in query
+	 * operator methods in {@link Query}.
+	 *
+	 * @defaultValue "and"
+	 */
+	merge?: QueryTermMerge;
 }
+
+export type QueryTermMerge = "and" | "or";
 
 export type QueryTermOp = Fn3<
 	QueryCtx<any>,
