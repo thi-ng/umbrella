@@ -241,10 +241,12 @@ export interface QueryTerm<T extends Row> {
 	 *
 	 * @defaultValue "and"
 	 */
-	merge?: QueryTermMerge;
+	merge?: ResultMergeOp;
 }
 
-export type QueryTermMerge = "and" | "or";
+export type ResultMergeOp = "and" | "or";
+
+export type NestedResultMergeOp = ResultMergeOp | "nand" | "nor";
 
 export type QueryTermOp = Fn3<
 	QueryCtx<any>,

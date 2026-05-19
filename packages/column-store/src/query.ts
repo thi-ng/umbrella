@@ -13,11 +13,12 @@ import { unsupportedOp } from "@thi.ng/errors/unsupported";
 import type {
 	ColumnID,
 	IColumn,
+	NestedResultMergeOp,
 	QueryResult,
 	QueryTerm,
-	QueryTermMerge,
 	QueryTermOp,
 	QueryTermOpSpec,
+	ResultMergeOp,
 	Row,
 	RowWithMeta,
 } from "./api.js";
@@ -98,37 +99,73 @@ export class Query<T extends Row> {
 	}
 
 	/** Alias for {@link Query.or} */
-	where = (column: ColumnID<T>, value: any, merge?: QueryTermMerge) =>
-		this.or(column, value, merge);
+	where(query: Query<T>): this;
+	where(column: ColumnID<T>, value: any, merge?: ResultMergeOp): this;
+	where(q: Query<T> | ColumnID<T>, ...xs: any[]) {
+		return this.addNestableOp("or", q, xs);
+	}
 
 	/** Alias for {@link Query.nor} */
-	whereNot = (column: ColumnID<T>, value: any, merge?: QueryTermMerge) =>
-		this.nor(column, value, merge);
+	whereNot(query: Query<T>): this;
+	whereNot(column: ColumnID<T>, value: any, merge?: ResultMergeOp): this;
+	whereNot(q: ColumnID<T> | Query<T>, ...xs: any[]) {
+		return this.addNestableOp("nor", q, xs);
+	}
 
-	or(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
-		this.terms.push({ type: "or", column, value, merge });
+	or(query: Query<T>): this;
+	or(column: ColumnID<T>, value: any, merge?: ResultMergeOp): this;
+	or(q: Query<T> | ColumnID<T>, ...xs: any[]) {
+		return this.addNestableOp("or", q, xs);
+	}
+
+	nor(query: Query<T>): this;
+	nor(column: ColumnID<T>, value: any, merge?: ResultMergeOp): this;
+	nor(q: ColumnID<T> | Query<T>, ...xs: any[]) {
+		return this.addNestableOp("nor", q, xs);
+	}
+
+	and(query: Query<T>): this;
+	and(column: ColumnID<T>, value: any, merge?: ResultMergeOp): this;
+	and(q: ColumnID<T> | Query<T>, ...xs: any[]) {
+		return this.addNestableOp("and", q, xs);
+	}
+
+	nand(query: Query<T>): this;
+	nand(column: ColumnID<T>, value: any, merge?: ResultMergeOp): this;
+	nand(q: ColumnID<T> | Query<T>, ...xs: any[]) {
+		return this.addNestableOp("nand", q, xs);
+	}
+
+	protected addNestableOp(
+		op: NestedResultMergeOp,
+		column: ColumnID<T> | Query<T>,
+		[value, merge]: any[]
+	) {
+		if (column instanceof Query) return this.nest(column, op);
+		this.terms.push({
+			type: op,
+			column,
+			value,
+			merge,
+		});
 		return this;
 	}
 
-	nor(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
-		this.terms.push({ type: "nor", column, value, merge });
-		return this;
-	}
-
-	and(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
-		this.terms.push({ type: "and", column, value, merge });
-		return this;
-	}
-
-	nand(column: ColumnID<T>, value: any, merge?: QueryTermMerge) {
-		this.terms.push({ type: "nand", column, value, merge });
+	nest(query: Query<T>, merge?: NestedResultMergeOp) {
+		if (query.table !== this.table) illegalArgs(`sub-query table mismatch`);
+		const invert = merge?.[0] === "n";
+		this.terms.push({
+			type: "nest",
+			value: { query, invert },
+			merge: <ResultMergeOp>(invert ? merge.substring(1) : merge),
+		});
 		return this;
 	}
 
 	matchColumn(
 		column: ColumnID<T>,
 		pred: Predicate<any>,
-		merge?: QueryTermMerge
+		merge?: ResultMergeOp
 	) {
 		this.terms.push({ type: "matchCol", column, value: pred, merge });
 		return this;
@@ -137,7 +174,7 @@ export class Query<T extends Row> {
 	matchPartialRow<K extends ColumnID<T>>(
 		columns: K[],
 		pred: Predicate<Pick<T, K>>,
-		merge?: QueryTermMerge
+		merge?: ResultMergeOp
 	) {
 		this.terms.push({
 			type: "matchPartialRow",
@@ -148,7 +185,7 @@ export class Query<T extends Row> {
 		return this;
 	}
 
-	matchRow(pred: Predicate<T>, merge?: QueryTermMerge) {
+	matchRow(pred: Predicate<T>, merge?: ResultMergeOp) {
 		this.terms.push({ type: "matchRow", value: pred, merge });
 		return this;
 	}
@@ -157,7 +194,7 @@ export class Query<T extends Row> {
 		column: ColumnID<T>,
 		start: any,
 		end?: any,
-		merge?: QueryTermMerge
+		merge?: ResultMergeOp
 	) {
 		if (this.table.columns[column].isArray)
 			__columnError(
@@ -173,7 +210,7 @@ export class Query<T extends Row> {
 		return this;
 	}
 
-	rowRange(start = 0, end?: number, merge?: QueryTermMerge) {
+	rowRange(start = 0, end?: number, merge?: ResultMergeOp) {
 		this.terms.push({ type: "rowRange", value: { start, end }, merge });
 		return this;
 	}
@@ -255,7 +292,8 @@ export class QueryCtx<T extends Row> {
 			let column: Maybe<IColumn>;
 			if (term.column) {
 				column = this.table.columns[term.column];
-				if (!column) illegalArgs(`column: ${String(term.column)}`);
+				if (!column)
+					__columnError(term.column, `missing column in query term`);
 			} else if (QUERY_OPS[term.type].mode !== "row") {
 				illegalArgs(
 					`query op: ${term.type} requires a column name given`
@@ -274,7 +312,7 @@ export class QueryCtx<T extends Row> {
 	 * yields iterator of only currently selected row IDs, otherwise yields row
 	 * IDs in `[0,table.length)` range.
 	 */
-	*queryRows(mode?: QueryTermMerge) {
+	*queryRows(mode?: ResultMergeOp) {
 		const {
 			bitmap,
 			table: { length: n },
@@ -311,7 +349,7 @@ export class QueryCtx<T extends Row> {
 	 * @param mask
 	 * @param mode
 	 */
-	mergeMask(mask: Uint32Array, mode?: QueryTermMerge) {
+	mergeMask(mask: Uint32Array, mode?: ResultMergeOp) {
 		if (!this.bitmap) {
 			this.bitmap = mask;
 			return;
@@ -331,16 +369,16 @@ export class QueryCtx<T extends Row> {
 	 *
 	 * @param mask
 	 */
-	mergeInvMask(mask: Uint32Array, mode?: QueryTermMerge) {
+	mergeInvMask(mask: Uint32Array, mode?: ResultMergeOp) {
 		if (!this.bitmap) {
 			this.bitmap = this.invertMask(mask);
 			return;
 		}
 		const { bitmap, size } = this;
 		if (mode === "or") {
-			for (let i = 0; i < size; i++) bitmap[i] |= mask[i] ^ -1;
+			for (let i = 0; i < size; i++) bitmap[i] |= ~mask[i];
 		} else {
-			for (let i = 0; i < size; i++) bitmap[i] &= mask[i] ^ -1;
+			for (let i = 0; i < size; i++) bitmap[i] &= ~mask[i];
 		}
 	}
 
@@ -470,7 +508,7 @@ const __finalizeMask = (
 	ctx: QueryCtx<any>,
 	mask: Maybe<Uint32Array>,
 	isNeg: boolean,
-	mode?: QueryTermMerge
+	mode?: ResultMergeOp
 ) => {
 	if (mask) {
 		isNeg ? ctx.mergeInvMask(mask, mode) : ctx.mergeMask(mask, mode);
@@ -488,6 +526,17 @@ const QUERY_OPS: Record<string, QueryTermOpSpec> = {
 	nor: { fn: delegateOr },
 	and: { fn: delegateAnd },
 	nand: { fn: delegateAnd },
+
+	nest: {
+		mode: "row",
+		fn: (ctx, term) => {
+			const { query, invert } = <{ query: Query<any>; invert: boolean }>(
+				term.value
+			);
+			const $ctx = new QueryCtx(query).exec();
+			return __finalizeMask(ctx, $ctx.bitmap, invert, term.merge);
+		},
+	},
 
 	matchCol: {
 		fn: (ctx, term, column) => {
@@ -576,7 +625,7 @@ const __fillMask = (
 	end: number,
 	max: number,
 	fill: 0 | 1 = 1,
-	mode?: QueryTermMerge
+	mode?: ResultMergeOp
 ) => {
 	if (start >= 0 && start < max && end >= 0) {
 		const mask = ctx.makeMask();

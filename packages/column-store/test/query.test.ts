@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
-import { describe, expect, test } from "bun:test";
-import { equiv } from "@thi.ng/equiv";
-import { FLAG_BITMAP, FLAG_DICT, Table, ZERO_PLUS } from "../src/index.js";
 import type { NumericArray } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
+import { describe, expect, test } from "bun:test";
+import { FLAG_BITMAP, FLAG_DICT, Table, ZERO_PLUS } from "../src/index.js";
 
 const checkSingle = (type: string, flags = 0) => {
 	const table = new Table<{ a: number }>({ a: { type, flags } });
@@ -686,6 +686,57 @@ describe("query", () => {
 				offset: 0,
 				limit: Infinity,
 			});
+		});
+	});
+
+	describe("nest", () => {
+		const a = new Table({ a: { type: "str", cardinality: [0, 10] } });
+		a.addRows([
+			{ a: ["a", "b"] },
+			{ a: ["b"] },
+			{ a: ["c"] },
+			{ a: ["a"] },
+			{ a: ["d", "c"] },
+			{ a: ["d"] },
+		]);
+
+		test("A OR ((B OR D) NAND C)", () => {
+			expect(
+				a
+					.query()
+					.where("a", "a")
+					.or(a.query().where("a", ["b", "d"]).whereNot("a", "c"))
+					.exec().results
+			).toEqual([
+				{ a: ["a", "b"], __row: 0 },
+				{ a: ["b"], __row: 1 },
+				{ a: ["a"], __row: 3 },
+				{ a: ["d"], __row: 5 },
+			]);
+		});
+
+		test("A NOR (B OR D)", () => {
+			expect(
+				a
+					.query()
+					.where("a", "a")
+					.nor(a.query().where("a", ["b", "d"]))
+					.exec().results
+			).toEqual([
+				{ a: ["a", "b"], __row: 0 },
+				{ a: ["c"], __row: 2 },
+				{ a: ["a"], __row: 3 },
+			]);
+		});
+
+		test("A NAND (B OR D)", () => {
+			expect(
+				a
+					.query()
+					.where("a", "a")
+					.nand(a.query().where("a", ["b", "d"]))
+					.exec().results
+			).toEqual([{ a: ["a"], __row: 3 }]);
 		});
 	});
 });
