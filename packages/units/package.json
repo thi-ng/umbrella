@@ -101,6 +101,7 @@
 	"files": [
 		"./*.js",
 		"./*.d.ts",
+		"bin",
 		"constants",
 		"units"
 	],
