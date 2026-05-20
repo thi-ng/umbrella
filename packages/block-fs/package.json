@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/block-fs",
-	"version": "0.6.51",
+	"version": "0.6.52",
 	"description": "Customizable block-based storage, adapters & file system layer",
 	"type": "module",
 	"module": "./index.js",
@@ -43,18 +43,18 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.22",
-		"@thi.ng/args": "^3.2.20",
-		"@thi.ng/binary": "^3.6.11",
-		"@thi.ng/bitfield": "^2.4.38",
-		"@thi.ng/checks": "^3.9.2",
-		"@thi.ng/compare": "^2.5.10",
-		"@thi.ng/errors": "^2.6.11",
-		"@thi.ng/file-io": "^2.2.34",
-		"@thi.ng/logger": "^3.3.5",
-		"@thi.ng/mime": "^2.8.13",
-		"@thi.ng/random": "^4.1.48",
-		"@thi.ng/strings": "^3.12.4"
+		"@thi.ng/api": "^8.12.23",
+		"@thi.ng/args": "^3.2.21",
+		"@thi.ng/binary": "^3.6.12",
+		"@thi.ng/bitfield": "^2.4.39",
+		"@thi.ng/checks": "^3.9.3",
+		"@thi.ng/compare": "^2.5.11",
+		"@thi.ng/errors": "^2.6.12",
+		"@thi.ng/file-io": "^2.2.35",
+		"@thi.ng/logger": "^3.3.6",
+		"@thi.ng/mime": "^2.8.14",
+		"@thi.ng/random": "^4.1.49",
+		"@thi.ng/strings": "^3.12.5"
 	},
 	"devDependencies": {
 		"@types/node": "^25.6.2",

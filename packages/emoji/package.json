@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/emoji",
-	"version": "1.0.40",
+	"version": "1.0.41",
 	"description": "Bi-directional lookup tables mapping emoji names & their characters",
 	"type": "module",
 	"module": "./index.js",
