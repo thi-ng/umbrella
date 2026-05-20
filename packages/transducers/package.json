@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "9.6.37",
+	"version": "9.6.38",
 	"description": "Collection of ~170 lightweight, composable transducers, reducers, generators, iterators for functional data transformations",
 	"type": "module",
 	"module": "./index.js",
@@ -44,15 +44,15 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.23",
-		"@thi.ng/arrays": "^2.14.20",
-		"@thi.ng/checks": "^3.9.3",
-		"@thi.ng/compare": "^2.5.11",
-		"@thi.ng/compose": "^3.0.60",
-		"@thi.ng/errors": "^2.6.12",
-		"@thi.ng/math": "^5.15.12",
-		"@thi.ng/random": "^4.1.49",
-		"@thi.ng/timestamp": "^1.1.42"
+		"@thi.ng/api": "^8.12.24",
+		"@thi.ng/arrays": "^2.14.21",
+		"@thi.ng/checks": "^3.9.4",
+		"@thi.ng/compare": "^2.5.12",
+		"@thi.ng/compose": "^3.0.61",
+		"@thi.ng/errors": "^2.6.13",
+		"@thi.ng/math": "^5.15.13",
+		"@thi.ng/random": "^4.1.50",
+		"@thi.ng/timestamp": "^1.1.43"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

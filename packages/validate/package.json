@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/validate",
-	"version": "0.3.4",
+	"version": "0.3.5",
 	"description": "Functional, composable, fully extensible, predicate-based value validation with customizable error messages",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.23",
-		"@thi.ng/checks": "^3.9.3",
-		"@thi.ng/errors": "^2.6.12"
+		"@thi.ng/api": "^8.12.24",
+		"@thi.ng/checks": "^3.9.4",
+		"@thi.ng/errors": "^2.6.13"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",
