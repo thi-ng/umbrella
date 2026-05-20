@@ -7,9 +7,11 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 > [!NOTE]
-> This is one of 215 standalone projects, maintained as part
-> of the [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem
-> and anti-framework.
+
+> This is one of 215 standalone projects. LLM-free, human-made and
+> cared for software, maintained as part of the
+> [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
+> anti-framework.
 >
 > 🚀 Please help me to work full-time on these projects by [sponsoring
 > me](https://codeberg.org/thi.ng/umbrella/src/branch/develop/CONTRIBUTING.md#donations).
