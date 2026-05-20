@@ -46,6 +46,9 @@
 
 ## About
 
+This is LLM-free, human-made and cared for software, maintained as an ecosystem
+and anti-framework.
+
 > "A collection of functional programming libraries that can be composed
 > together. Unlike a framework, thi.ng is a suite of instruments and you (the
 > user) must be the composer of. Geared towards versatility, not any specific
