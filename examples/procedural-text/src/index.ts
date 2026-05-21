@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
+import { downloadWithMime } from "@thi.ng/dl-asset";
 import { replaceNames } from "@thi.ng/emoji";
 import { br, button, div, h1, main, para, textArea } from "@thi.ng/hiccup-html";
 import { generate } from "@thi.ng/proctext";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $input, $inputTrigger, $replace } from "@thi.ng/rdom";
 import { staticDropdownAlt } from "@thi.ng/rdom-components";
-import { reactive, resolve, stream } from "@thi.ng/rstream";
+import { reactive, resolve, sidechainTrigger, stream } from "@thi.ng/rstream";
 import { filter, interpose } from "@thi.ng/transducers";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
 import ALICE_BOB from "./stories/alice-bob.txt";
@@ -31,8 +32,9 @@ const initial =
 		: "";
 
 // reactive state values
-// regeneration trigger
+// regeneration triggers
 const regenerate = reactive(true);
+const regenerateCode = reactive(true);
 // story source code (initially idle)
 const storyInput = stream<string>();
 // story template chooser with attached dynamic loader
@@ -55,13 +57,12 @@ storyID.transform(filter((x) => x !== "Custom")).subscribe({
 });
 
 // story generation subscription
-const generated = regenerate
-	.map(async () => {
+const generated = sidechainTrigger(storyInput, regenerate)
+	.map(async (src) => {
 		// check if we have any input, bail if not...
-		const input = storyInput.deref();
-		if (!input) return div();
+		if (!src) return div();
 		// parse input & generate story
-		const result = await generate(input, {
+		const result = await generate(src, {
 			vars: {},
 			rnd: SYSTEM,
 			// missing: (id) => `<MISSING: ${id}>`,
@@ -88,11 +89,35 @@ const generated = regenerate
 
 // add another subscription to update the URL hash with an base64 encoded
 // version of the input...
-regenerate.subscribe({
-	next() {
-		location.hash = base64Encode(
-			new TextEncoder().encode(storyInput.deref() || "")
-		);
+sidechainTrigger(storyInput, regenerate).subscribe({
+	next(src) {
+		location.hash = base64Encode(new TextEncoder().encode(src));
+	},
+});
+
+// generate TypeScript source code and trigger file download
+sidechainTrigger(storyInput, regenerateCode).subscribe({
+	next(src) {
+		const escaped = src.replace(/`/g, "\\`");
+		const code = [
+			`import { generate, type GeneratorContext } from "@thi.ng/proctext";`,
+			"",
+			"/** @internal */",
+			`const SPEC = \`${escaped}\`;`,
+			"",
+			"/**",
+			" * Generates text with given options and returns promise of result object.",
+			" * See https://docs.thi.ng/umbrella/proctext/ for further details.",
+			" *",
+			" * @param opts",
+			" */",
+			"export const generateText = async (opts?: Partial<GeneratorContext>) =>",
+			"\tgenerate(SPEC, opts);",
+		].join("\n");
+		downloadWithMime(`proctext-${Date.now()}.ts`, code, {
+			mime: "text/plain",
+			utf8: true,
+		});
 	},
 });
 
@@ -119,7 +144,11 @@ $compile(
 				oninput: $input(storyInput),
 			}),
 			// regenerate button
-			button({ onclick: $inputTrigger(regenerate) }, "(Re)generate")
+			button({ onclick: $inputTrigger(regenerate) }, "(Re)generate"),
+			button(
+				{ onclick: $inputTrigger(regenerateCode) },
+				"Export as TypeScript"
+			)
 		),
 		// generated result (or error message). contents of that wrapper
 		// component will be completely replaced with each value change

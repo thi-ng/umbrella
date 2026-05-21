@@ -12,7 +12,7 @@ main {
 h1 { f3 ls--1 }
 
 #editor {
-	grid grid-rows(1fr 4rem) gap3
+	grid grid-rows(1fr 3rem 3rem) gap3
 	{
 		textarea { db pa2 bg-color-lightest-blue color-black monospace f6 }
 		button { db bg-color-blue color-white bw0 }
