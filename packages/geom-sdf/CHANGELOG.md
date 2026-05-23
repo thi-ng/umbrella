@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-20T11:18:42Z
+- **Last updated**: 2026-05-23T12:49:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.1.0/packages/geom-sdf) (2026-05-23)
+
+#### 🚀 Features
+
+- fix [#403](https://codeberg.org/thi.ng/umbrella/issues/403), auto-simplify vertices given to `polygon2()`/`polyline2()` ([1af7003](https://codeberg.org/thi.ng/umbrella/commit/1af7003))
+  - apply Douglas-Peucker to remove colinear vertices (also improves SDF performance in some cases)
 
 ### [1.0.68](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-sdf@1.0.68/packages/geom-sdf) (2026-02-07)
 

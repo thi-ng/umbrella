@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-20T11:18:43Z
+- **Last updated**: 2026-05-23T12:49:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.69](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/proctext@1.0.69/packages/proctext) (2026-05-23)
+
+#### 🩹 Bug fixes
+
+- update line comment grammar rule ([75ff4f7](https://codeberg.org/thi.ng/umbrella/commit/75ff4f7))
+  - update to allow empty comment lines (line break directly after initial `#`)
 
 ### [1.0.48](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/proctext@1.0.48/packages/proctext) (2025-12-03)
 
