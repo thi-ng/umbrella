@@ -10,6 +10,7 @@ import { reactive, resolve, sidechainTrigger, stream } from "@thi.ng/rstream";
 import { filter, interpose } from "@thi.ng/transducers";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
 import ALICE_BOB from "./stories/alice-bob.txt";
+import LIBRARY from "./stories/at-the-library.txt";
 import CREATURE from "./stories/creature-gen.txt";
 import DYN_LOOKUP from "./stories/dynamic-lookups.txt";
 import HIDDEN from "./stories/hidden-assignment.txt";
@@ -17,6 +18,7 @@ import MODIFIERS from "./stories/modifiers.txt";
 import NGRAMS from "./stories/ngrams-5.txt";
 
 const STORIES = {
+	"At the library": LIBRARY,
 	"Alice & Bob": ALICE_BOB,
 	Modifiers: MODIFIERS,
 	"Hidden assignments": HIDDEN,
@@ -39,7 +41,7 @@ const regenerateCode = reactive(true);
 const storyInput = stream<string>();
 // story template chooser with attached dynamic loader
 const storyID = reactive<keyof typeof STORIES>(
-	initial ? "Custom" : "Alice & Bob"
+	initial ? "Custom" : "At the library"
 );
 
 storyID.transform(filter((x) => x !== "Custom")).subscribe({

@@ -1,8 +1,3 @@
-# first some variable bindings...
-# var names are enclosed in [...], then followed by possible values (1 per line)
-# each value can also include refs to other vars (via <...>)
-# these refs will be recursively expanded with each use
-
 [name]
 Alice
 Bob
@@ -59,5 +54,3 @@ back home to watch a movie
 <intro>, <hero1=name> and <hero2=name> went to <place> (<remark>). <hero1> did some <activity>, but <hero2> chose to go <activity> instead. Pretty soon, <drama>.
 
 The end.
-
-(See https://thi.ng/proctext for details)

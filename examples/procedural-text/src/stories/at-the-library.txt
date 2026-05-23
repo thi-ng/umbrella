@@ -1,0 +1,334 @@
+# first some variable bindings...
+# var names are enclosed in [...], then followed by possible values (1 per line)
+# each value can also include refs to other vars (via <...>)
+# these refs will be recursively expanded with each use
+# 
+# See https://thi.ng/proctext for details
+
+[noun]
+aerosol
+amalgam
+area
+assembly
+band
+beach
+blast
+boundary
+bureau
+camp
+canyon
+cartel
+castle
+chasm
+city
+climate
+cloud
+coast
+code
+collapse
+complex
+composition
+constraint
+construct
+corner
+country
+cover
+craft
+crystal
+curve
+cycle
+data
+dawn
+delusion
+density
+department
+derivative
+desert
+disc
+division
+domain
+drive
+dusk
+edge
+elixir
+empire
+entanglement
+epoch
+era
+escape
+event
+exchange
+facet
+fall
+fantasy
+farm
+fear
+fiction
+fissure
+foam
+focus
+fold
+foresight
+forest
+form
+fortress
+fracture
+frequency
+frontier
+genesis
+glacier
+glass
+glow
+graph
+ground
+group
+haze
+head
+inversion
+island
+isle
+journey
+land
+lake
+lark
+leap
+line
+linage
+locator
+location
+loop
+method
+mirror
+mission
+module
+mountain
+nebula
+nemesis
+net
+network
+oasis
+oblivion
+obsidian
+ocean
+odyssey
+opcode
+operation
+paradox
+peak
+phantom
+phase
+pitch
+planet
+plateau
+plot
+position
+potion
+power
+prism
+problem
+protection
+protocol
+quadrant
+quest
+radius
+rain
+range
+realm
+receiver
+region
+relativity
+repair
+rift
+ring
+river
+road
+rocket
+science
+sea
+security
+sentinel
+setup
+shimmer
+silk
+site
+sky
+song
+space
+state
+storm
+story
+substitute
+survival
+swamp
+swell
+switch
+symbiosis
+system
+tendency
+team
+time
+theory
+threshold
+transfer
+trauma
+valley
+vapor
+vision
+wall
+waste
+well
+zone
+
+[color]
+azure
+beige
+black
+bronze
+cyan
+emerald
+gold
+iridescent
+navy
+noir
+platinum
+purple
+silver
+translucent
+violet
+
+[adjective]
+<color>
+acidic
+abundant
+alien
+ascetic
+atomic
+baroque
+basic
+boreal
+brilliant
+cold
+connected
+critical
+dark
+deep
+dry
+eastern
+eminent
+extant
+fanatic
+feral
+flat
+flood
+fragile
+frontal
+frozen
+frugal
+hardened
+hidden
+hot
+hypnotic
+invisible
+liminal
+luminous
+lunar
+magnetic
+minimal
+mirror
+mystic
+nordic
+northern
+nuclear
+neural
+organic
+porcelain
+proving
+quantum
+radiant
+radioactive
+radical
+rapid
+rare
+remote
+rough
+rugged
+soft
+solar
+sonic
+spectacular
+spectral
+symmetric
+thermal
+timestretched
+urban
+visual
+western
+wet
+wild
+
+[colorprefix]
+extra
+infra
+sub
+super
+supra
+ultra-
+
+[prefix]
+<colorprefix>
+co-
+de
+equi
+ex-
+hyper
+hypo
+macro
+meta
+micro
+nano
+ortho
+omni
+post-
+pre-
+
+[phrase]
+<noun> <noun>
+<noun> <noun>
+<noun> <noun> <noun>
+<noun> <prefix><noun>
+<noun> <prefix><noun> <noun>
+<colorprefix><color> <noun>
+<colorprefix><color> <noun> <noun>
+<color> <prefix><noun>
+<color> <prefix><noun> <noun>
+<color> <adjective> <noun>
+<adjective> <noun>
+<prefix><adjective> <noun>
+<prefix><adjective> <noun> <noun>
+<prefix><adjective> <prefix><noun> <noun>
+<adjective> <prefix><noun>
+<adjective> <noun> <noun>
+<adjective> <noun> <noun>
+<adjective> <color> <noun>
+<phrase> <noun>
+
+[title]
+'<phrase;cap>'
+
+# main
+
+"Have you got their new book <query=title>?"
+
+"Let me check. Is that the sequel to <title>?"
+
+"What's that?"
+
+"Oh, you've never read the <series=title> series? That's just too bad. It's full of cool ideas like the <ex1=phrase>, <phrase>, or even <phrase>..."
+
+"Dude!"
+
+"Yeah, it's real <phrase>! Absolutely life changing <phrase>! For example, the <ex1> is all about <phrase> and how a <subj=noun>-enforced <adjective> <obj=noun> influenced it. It might sound <adjective>, but there's a decent amount of research about the connections between <subj> causes and <obj> effects."
+
+"Thanks, that sounds interesting! Reminds me a little of <title>, one of the best books I ever read..."
+
+"True, true. In that case, I can warmly recommend <title> instead. It's a good intro to all the <phrase> in the <series> stories. If you give me your number, I can ping you when we'll get <query> here. Sometimes, these things just take a while..."
