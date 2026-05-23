@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
+import { simplify } from "@thi.ng/geom-resample/simplify";
 import { distSq2, type ReadonlyVec } from "@thi.ng/vectors";
 import { sub2 } from "@thi.ng/vectors/sub";
 import type { SDFAttribs, SDFn } from "./api.js";
@@ -92,18 +93,34 @@ export const points2 = (
 	return attribs.bounds ? withBoundingCircle(sdf, pts) : sdf;
 };
 
+/**
+ * Creates a new polygon SDF function for given vertices. Automatically dedupes
+ * vertices and removes colinear ones.
+ *
+ * @param pts
+ * @param attribs
+ */
 export const polygon2 = (
 	pts: ReadonlyVec[],
 	attribs: Partial<SDFAttribs> = {}
 ): SDFn => {
+	pts = simplify(pts, 1e-6, true);
 	const sdf = withSDFAttribs((p) => distPolygon2(p, pts), attribs);
 	return attribs.bounds ? withBoundingCircle(sdf, pts) : sdf;
 };
 
+/**
+ * Creates a new polyline SDF function for given vertices. Automatically dedupes
+ * vertices and removes colinear ones.
+ *
+ * @param pts
+ * @param attribs
+ */
 export const polyline2 = (
 	pts: ReadonlyVec[],
 	attribs: Partial<SDFAttribs> = {}
 ): SDFn => {
+	pts = simplify(pts, 1e-6, false);
 	const sdf = withSDFAttribs((p) => distPolyline2(p, pts), attribs);
 	return attribs.bounds ? withBoundingCircle(sdf, pts) : sdf;
 };
