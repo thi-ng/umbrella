@@ -102,6 +102,12 @@
 	},
 	"thi.ng": {
 		"alias": "m",
+		"blog": [
+			{
+				"title": "Casually PathTracing with WebGPU Part2",
+				"url": "https://www.vaultcg.com/blog/casually-raytracing-in-webgpu-part2/"
+			}
+		],
 		"related": [
 			"grid-iterators",
 			"geom-accel"

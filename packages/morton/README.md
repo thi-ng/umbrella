@@ -20,6 +20,7 @@
 - [About](#about)
 - [Status](#status)
 - [Related packages](#related-packages)
+  - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -50,6 +51,10 @@ References:
 
 - [@thi.ng/grid-iterators](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings
 - [@thi.ng/geom-accel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
+
+### Blog posts
+
+- [Casually PathTracing with WebGPU Part2](https://www.vaultcg.com/blog/casually-raytracing-in-webgpu-part2/)
 
 ## Installation
 
