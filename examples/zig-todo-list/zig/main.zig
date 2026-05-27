@@ -10,7 +10,7 @@ const State = @import("state.zig");
 // only needed for debug builds
 pub fn log(
     comptime _: std.log.Level,
-    comptime _: @Type(.EnumLiteral),
+    comptime _: @EnumLiteral(),
     comptime _: []const u8,
     _: anytype,
 ) void {}

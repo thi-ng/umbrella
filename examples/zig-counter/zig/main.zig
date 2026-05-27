@@ -54,8 +54,8 @@ const Counter = struct {
         // Zig string literals can be auto-coerced to `[*:0]const u8`
         // however, here we're creating a string dynamically and so must ensure
         // the formatted string has explicit zero termination
-        // (aka using bufPrintZ() vs. bufPrint())
-        const label = std.fmt.bufPrintZ(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
+        // (aka using bufPrintSentinel() vs. bufPrint())
+        const label = std.fmt.bufPrintSentinel(&buf, "clicks: {d:0>4}", .{self.clicks}, 0) catch return;
         // update DOM element
         dom.setInnerText(self.elementID, label);
     }
