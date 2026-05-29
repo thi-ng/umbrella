@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 215 standalone projects. LLM-free, human-made and
+> This is one of 216 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -21,6 +21,7 @@
   - [Built-in validators](#built-in-validators)
   - [Combinators](#combinators)
 - [Status](#status)
+- [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -77,11 +78,14 @@ try {
 - [`isBoolean()`](https://docs.thi.ng/umbrella/validate/functions/isBoolean.html)
 - [`isDate()`](https://docs.thi.ng/umbrella/validate/functions/isDate.html)
 - [`isEnum()`](https://docs.thi.ng/umbrella/validate/functions/isEnum.html)
-- [`isInRange()`](https://docs.thi.ng/umbrella/validate/functions/isInRange.html)
+- [`isEqual()`](https://docs.thi.ng/umbrella/validate/functions/isEqual.html)
+- [`isInClosedInterval()`](https://docs.thi.ng/umbrella/validate/functions/isInClosedInterval.html)
+- [`isInOpenInterval()`](https://docs.thi.ng/umbrella/validate/functions/isInOpenInterval.html)
 - [`isLength()`](https://docs.thi.ng/umbrella/validate/functions/isLength.html)
 - [`isMaxLength()`](https://docs.thi.ng/umbrella/validate/functions/isMaxLength.html)
 - [`isMinLength()`](https://docs.thi.ng/umbrella/validate/functions/isMinLength.html)
 - [`isMinMaxLength()`](https://docs.thi.ng/umbrella/validate/functions/isMinMaxLength.html)
+- [`isMultipleOf()`](https://docs.thi.ng/umbrella/validate/functions/isMultipleOf.html)
 - [`isNegative()`](https://docs.thi.ng/umbrella/validate/functions/isNegative.html)
 - [`isNonNegative()`](https://docs.thi.ng/umbrella/validate/functions/isNonNegative.html)
 - [`isNonPositive()`](https://docs.thi.ng/umbrella/validate/functions/isNonPositive.html)
@@ -110,6 +114,10 @@ try {
 
 [Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bvalidate%5D)
 
+## Support packages
+
+- [@thi.ng/validate-schema](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/validate-schema) - TODO
+
 ## Installation
 
 ```bash
@@ -136,7 +144,7 @@ For Node.js REPL:
 const val = await import("@thi.ng/validate");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.34 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.43 KB
 
 ## Dependencies
 
