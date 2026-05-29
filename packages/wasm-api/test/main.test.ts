@@ -115,15 +115,15 @@ test("custom", async (done) => {
 	let ptr = (<CustomAPI>bridge.modules.custom).optPtr;
 	expect(ptr.isNull).toBeTrue();
 	expect(ptr.addr).toBe(0);
-	expect(ptr.base).toBe(0x1000);
+	expect(ptr.base).toBe(0x1008);
 	expect(ptr.length).toBe(0);
 	expect(ptr.deref()).toBe("");
 
 	bridge.exports.test_optStringPtr();
 	ptr = (<CustomAPI>bridge.modules.custom).optPtr;
 	expect(ptr.isNull).toBeFalse();
-	expect(ptr.addr).toBe(0x1008);
-	expect(ptr.base).toBe(0x1004);
+	expect(ptr.addr).toBe(0x1004);
+	expect(ptr.base).toBe(0x1000);
 	expect(ptr.length).toBe(3);
 	expect(ptr.deref()).toBe("foo");
 

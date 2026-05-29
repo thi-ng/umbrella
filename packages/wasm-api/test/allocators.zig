@@ -6,7 +6,7 @@ const std = @import("std");
 var HEAP: [1024]u8 = undefined;
 
 var fba = std.heap.FixedBufferAllocator.init(&HEAP);
-var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+var gpa = std.heap.DebugAllocator(.{}){};
 
 pub var WASM_ALLOCATOR: ?std.mem.Allocator = null;
 
