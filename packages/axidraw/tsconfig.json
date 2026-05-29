@@ -5,6 +5,7 @@
 		"moduleResolution": "nodenext",
 		"outDir": ".",
 		"rootDir": "./src",
+		"tsBuildInfoFile": ".tsbuildinfo",
 		"types": ["node"]
 	},
 	"include": ["./src/**/*.ts"]

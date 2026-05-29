@@ -4,6 +4,7 @@
 		"outDir": ".",
 		"noImplicitThis": false,
 		"rootDir": "./src",
+		"tsBuildInfoFile": ".tsbuildinfo",
 		"types": ["node"]
 	},
 	"include": ["./src/**/*.ts"]
