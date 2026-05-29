@@ -42,6 +42,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.25",
 		"@thi.ng/checks": "^3.9.5",
+		"@thi.ng/equiv": "^2.1.114",
 		"@thi.ng/errors": "^2.6.14"
 	},
 	"devDependencies": {

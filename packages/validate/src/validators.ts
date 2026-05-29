@@ -11,6 +11,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isRegExp as $isRegExp } from "@thi.ng/checks/is-regexp";
 import { isString as $isString } from "@thi.ng/checks/is-string";
 import { isTypedArray as $isTypedArray } from "@thi.ng/checks/is-typedarray";
+import { equiv } from "@thi.ng/equiv";
 import { defError, type CustomError } from "@thi.ng/errors/deferror";
 import type { Validator } from "./api.js";
 
@@ -193,13 +194,14 @@ export const isNullish = (msg?: Validator["msg"]): Validator => ({
 });
 
 /**
- * Returns validator to check if value strictly equals `expected` value.
+ * Returns validator to check if value equals `expected` value (uses
+ * [`equiv()`](https://thi.ng/equiv) for equality checking).
  *
  * @param expected
  * @param msg
  */
 export const isEqual = (expected: any, msg?: Validator["msg"]): Validator => ({
-	valid: (x) => x === expected,
+	valid: (x) => equiv(x, expected),
 	msg: msg ?? `expected: ${expected ?? "null"}`,
 });
 

@@ -6910,6 +6910,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.25"
     "@thi.ng/checks": "npm:^3.9.5"
+    "@thi.ng/equiv": "npm:^2.1.114"
     "@thi.ng/errors": "npm:^2.6.14"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.19"
