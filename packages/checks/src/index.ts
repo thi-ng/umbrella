@@ -42,6 +42,7 @@ export * from "./is-int-string.js";
 export * from "./is-iterable.js";
 export * from "./is-map.js";
 export * from "./is-mobile.js";
+export * from "./is-multiple-of.js";
 export * from "./is-nan.js";
 export * from "./is-negative.js";
 export * from "./is-nil.js";

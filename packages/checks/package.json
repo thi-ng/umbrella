@@ -203,6 +203,9 @@
 		"./is-mobile": {
 			"default": "./is-mobile.js"
 		},
+		"./is-multiple-of": {
+			"default": "./is-multiple-of.js"
+		},
 		"./is-nan": {
 			"default": "./is-nan.js"
 		},
