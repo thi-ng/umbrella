@@ -8,7 +8,7 @@ import {
 	hasRequiredPatternKeys,
 	isArray,
 	isArrayOf,
-	isInRange,
+	isInClosedInterval,
 	isLength,
 	isMinLength,
 	isMinMaxLength,
@@ -59,7 +59,10 @@ test("isMinMaxLength (string)", () => {
 
 test("isArrayOf", () => {
 	const fn = validator(
-		isArrayOf([isArrayOf([isNumber(), isInRange(0, 10)]), isLength(3)])
+		isArrayOf([
+			isArrayOf([isNumber(), isInClosedInterval(0, 10)]),
+			isLength(3),
+		])
 	);
 	expect(
 		fn([
@@ -67,7 +70,7 @@ test("isArrayOf", () => {
 			[2, 3, 4],
 		])
 	).toBeTrue();
-	expect(() => fn([[1, 2, -3]])).toThrow("not in range");
+	expect(() => fn([[1, 2, -3]])).toThrow("not in interval");
 	expect(() => fn([[1, 2]])).toThrow("length");
 	expect(() => fn([["a"]])).toThrow("number");
 });

@@ -4,6 +4,7 @@ import { isArrayOf as $isArrayOf } from "@thi.ng/checks/is-array-of";
 import { isBoolean as $isBoolean } from "@thi.ng/checks/is-boolean";
 import { isDate as $isDate } from "@thi.ng/checks/is-date";
 import { isFunction as $isFunction } from "@thi.ng/checks/is-function";
+import { isMultipleOf as $isMultipleOf } from "@thi.ng/checks/is-multiple-of";
 import { isNumber as $isNumber } from "@thi.ng/checks/is-number";
 import { isObjectOf as $isObjectOf } from "@thi.ng/checks/is-object-of";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -191,6 +192,17 @@ export const isNullish = (msg?: Validator["msg"]): Validator => ({
 	msg: msg ?? `expected nullish value`,
 });
 
+/**
+ * Returns validator to check if value strictly equals `expected` value.
+ *
+ * @param expected
+ * @param msg
+ */
+export const isEqual = (expected: any, msg?: Validator["msg"]): Validator => ({
+	valid: (x) => x === expected,
+	msg: msg ?? `expected: ${expected ?? "null"}`,
+});
+
 export const isArray = (msg?: Validator["msg"]): Validator => ({
 	valid: $isArray,
 	msg: msg ?? `required array value`,
@@ -272,6 +284,23 @@ export const isTypedArray = (msg?: Validator["msg"]): Validator => ({
 export const isU8Array = (msg?: Validator["msg"]): Validator => ({
 	valid: (x) => x instanceof Uint8Array,
 	msg: msg ?? `required byte array value`,
+});
+
+/**
+ * Returns validator to check if value is a number and a multiple of given
+ * `base` (using `eps` tolerance, default: 1e-6).
+ *
+ * @param base
+ * @param eps
+ * @param msg
+ */
+export const isMultipleOf = (
+	base: number,
+	eps?: number,
+	msg?: Validator["msg"]
+): Validator => ({
+	valid: (x) => $isMultipleOf(base, x, eps),
+	msg: msg ?? `required number value, a multiple of ${base}`,
 });
 
 /**
@@ -408,13 +437,25 @@ export const isEnum = <T>(opts: T[], msg?: Validator["msg"]): Validator => ({
  * @param max
  * @param msg
  */
-export const isInRange = <T extends number | string>(
+export const isInClosedInterval = <T extends number | string>(
 	min: T,
 	max: T,
 	msg?: Validator["msg"]
 ): Validator => ({
 	valid: (x) => x >= min && x <= max,
-	msg: msg ?? ((x) => `value ${x} not in range [${min},${max}]`),
+	msg: msg ?? ((x) => `value ${x} not in interval [${min},${max}]`),
+});
+
+/** @deprecated renamed to {@link isInClosedInterval} */
+export const isInRange = isInClosedInterval;
+
+export const isInOpenInterval = <T extends number | string>(
+	min: T,
+	max: T,
+	msg?: Validator["msg"]
+): Validator => ({
+	valid: (x) => x > min && x < max,
+	msg: msg ?? ((x) => `value ${x} not in open interval (${min},${max})`),
 });
 
 export const isPositive = (msg?: Validator["msg"]): Validator => ({
