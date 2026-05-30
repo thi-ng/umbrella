@@ -1,0 +1,87 @@
+{
+	"name": "@thi.ng/validate-schema",
+	"version": "0.0.1",
+	"description": "JSON schema validation layer for @thi.ng/validate",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "git+https://codeberg.org/thi.ng/umbrella.git",
+		"directory": "packages/validate-schema"
+	},
+	"homepage": "https://thi.ng/validate-schema",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		},
+		{
+			"type": "liberapay",
+			"url": "https://liberapay.com/thi.ng"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn build:esbuild && yarn build:decl",
+		"build:decl": "tsc --declaration --emitDeclarationOnly",
+		"build:esbuild": "esbuild --format=esm --platform=neutral --target=es2022 --tsconfig=tsconfig.json --outdir=. src/**/*.ts",
+		"clean": "bun ../../tools/src/clean-package.ts",
+		"doc": "typedoc --options ../../typedoc.json --out doc src/index.ts",
+		"doc:readme": "bun ../../tools/src/module-stats.ts && bun ../../tools/src/readme.ts",
+		"pub": "npm publish --access public",
+		"test": "bun test",
+		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
+	},
+	"dependencies": {
+		"@thi.ng/errors": "^2.6.14",
+		"@thi.ng/validate": "^0.3.6"
+	},
+	"devDependencies": {
+		"esbuild": "^0.28.0",
+		"typedoc": "^0.28.19",
+		"typescript": "^6.0.3"
+	},
+	"keywords": [
+		"json",
+		"schema",
+		"typescript",
+		"validate"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./schema": {
+			"default": "./schema.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/validate",
+		"status": "alpha",
+		"year": 2026
+	}
+}

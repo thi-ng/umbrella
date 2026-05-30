@@ -6904,7 +6904,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/validate@workspace:packages/validate":
+"@thi.ng/validate-schema@workspace:packages/validate-schema":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/validate-schema@workspace:packages/validate-schema"
+  dependencies:
+    "@thi.ng/errors": "npm:^2.6.14"
+    "@thi.ng/validate": "npm:^0.3.6"
+    esbuild: "npm:^0.28.0"
+    typedoc: "npm:^0.28.19"
+    typescript: "npm:^6.0.3"
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/validate@npm:^0.3.6, @thi.ng/validate@workspace:packages/validate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/validate@workspace:packages/validate"
   dependencies:
