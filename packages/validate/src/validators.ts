@@ -228,6 +228,17 @@ export const isNumber = (msg?: Validator["msg"]): Validator => ({
 	msg: msg ?? `required number value`,
 });
 
+/**
+ * Return validator to check if value is an integer (not necessarily in the
+ * 32bit range, but merely if the value has no fractional part).
+ *
+ * @param msg
+ */
+export const isInteger = (msg?: Validator["msg"]): Validator => ({
+	valid: (x) => $isNumber(x) && Math.trunc(x) === x,
+	msg: msg ?? `required integer value`,
+});
+
 export const isString = (msg?: Validator["msg"]): Validator => ({
 	valid: $isString,
 	msg: msg ?? `required string value`,
