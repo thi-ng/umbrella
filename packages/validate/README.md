@@ -81,6 +81,7 @@ try {
 - [`isEqual()`](https://docs.thi.ng/umbrella/validate/functions/isEqual.html)
 - [`isInClosedInterval()`](https://docs.thi.ng/umbrella/validate/functions/isInClosedInterval.html)
 - [`isInOpenInterval()`](https://docs.thi.ng/umbrella/validate/functions/isInOpenInterval.html)
+- [`isInteger()`](https://docs.thi.ng/umbrella/validate/functions/isInteger.html)
 - [`isLength()`](https://docs.thi.ng/umbrella/validate/functions/isLength.html)
 - [`isMaxLength()`](https://docs.thi.ng/umbrella/validate/functions/isMaxLength.html)
 - [`isMinLength()`](https://docs.thi.ng/umbrella/validate/functions/isMinLength.html)
@@ -116,7 +117,7 @@ try {
 
 ## Support packages
 
-- [@thi.ng/validate-schema](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/validate-schema) - TODO
+- [@thi.ng/validate-schema](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/validate-schema) - JSON schema validation layer for [@thi.ng/validate](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/validate)
 
 ## Installation
 
@@ -144,12 +145,13 @@ For Node.js REPL:
 const val = await import("@thi.ng/validate");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.43 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.48 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 - [@thi.ng/checks](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/checks)
+- [@thi.ng/equiv](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/equiv)
 - [@thi.ng/errors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/errors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)

@@ -55,6 +55,7 @@ try {
 - [`isEqual()`](https://docs.thi.ng/umbrella/validate/functions/isEqual.html)
 - [`isInClosedInterval()`](https://docs.thi.ng/umbrella/validate/functions/isInClosedInterval.html)
 - [`isInOpenInterval()`](https://docs.thi.ng/umbrella/validate/functions/isInOpenInterval.html)
+- [`isInteger()`](https://docs.thi.ng/umbrella/validate/functions/isInteger.html)
 - [`isLength()`](https://docs.thi.ng/umbrella/validate/functions/isLength.html)
 - [`isMaxLength()`](https://docs.thi.ng/umbrella/validate/functions/isMaxLength.html)
 - [`isMinLength()`](https://docs.thi.ng/umbrella/validate/functions/isMinLength.html)
