@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { describe, expect, test } from "bun:test";
 import {
+	OK,
 	validateSchema,
 	type AltSchema,
 	type ArraySchema,
@@ -8,75 +9,93 @@ import {
 	type ObjectSchema,
 } from "../src/index.js";
 
+const __error = (...errors: string[]) => ({
+	valid: false,
+	errors: errors.map((msg) => ({ path: [], msg })),
+});
+
+const __errorPath = (path: any[], msg: string) => ({
+	valid: false,
+	errors: [{ path, msg }],
+});
+
 describe("validateSchema", () => {
 	//
 	test("null", () => {
-		expect(validateSchema(null, { type: "null" })).toBeTrue();
-		expect(() => validateSchema(1, { type: "null" })).toThrow("null");
+		expect(validateSchema(null, { type: "null" })).toEqual(OK);
+		expect(validateSchema(1, { type: "null" })).toEqual(
+			__error("expected nullish value")
+		);
 	});
 
 	test("boolean", () => {
-		expect(validateSchema(false, { type: "boolean" })).toBeTrue();
-		expect(validateSchema(true, { type: "boolean" })).toBeTrue();
-		expect(() => validateSchema(1, { type: "boolean" })).toThrow("boolean");
+		expect(validateSchema(false, { type: "boolean" })).toEqual(OK);
+		expect(validateSchema(true, { type: "boolean" })).toEqual(OK);
+		expect(validateSchema(1, { type: "boolean" })).toEqual(
+			__error("required boolean value")
+		);
 	});
 
 	test("number", () => {
-		expect(validateSchema(42, { type: "number" })).toBeTrue();
-		expect(() => validateSchema("42", { type: "number" })).toThrow(
-			"number"
+		expect(validateSchema(42, { type: "number" })).toEqual(OK);
+		expect(validateSchema("42", { type: "number" })).toEqual(
+			__error("required number value")
 		);
-		expect(() =>
+		expect(
 			validateSchema(42, {
 				type: "number",
 				minimum: 100,
 				maximum: 200,
 			})
-		).toThrow("[100,200]");
-		expect(() =>
-			validateSchema(42, { type: "number", minimum: 100 })
-		).toThrow("interval");
-		expect(() =>
-			validateSchema(42, { type: "number", maximum: 10 })
-		).toThrow("interval");
+		).toEqual(__error("value not in closed interval [100,200]"));
+		expect(validateSchema(42, { type: "number", minimum: 100 })).toEqual(
+			__error("value not in closed interval [100,Infinity]")
+		);
+		expect(validateSchema(42, { type: "number", maximum: 10 })).toEqual(
+			__error("value not in closed interval [-Infinity,10]")
+		);
 	});
 
 	test("integer", () => {
-		expect(validateSchema(42, { type: "integer" })).toBeTrue();
-		expect(() => validateSchema(42.2, { type: "integer" })).toThrow(
-			"integer"
+		expect(validateSchema(42, { type: "integer" })).toEqual(OK);
+		expect(validateSchema(42.2, { type: "integer" })).toEqual(
+			__error("required integer value")
 		);
-		expect(() => validateSchema(-0.0000001, { type: "integer" })).toThrow(
-			"integer"
+		expect(validateSchema(-0.0000001, { type: "integer" })).toEqual(
+			__error("required integer value")
 		);
 	});
 
 	test("string", () => {
-		expect(validateSchema("a", { type: "string" })).toBeTrue();
-		expect(() => validateSchema(42, { type: "string" })).toThrow("string");
-		expect(() =>
+		expect(validateSchema("a", { type: "string" })).toEqual(OK);
+		expect(validateSchema(42, { type: "string" })).toEqual(
+			__error("required string value")
+		);
+		expect(
 			validateSchema("abc", {
 				type: "string",
 				minLength: 10,
 				maxLength: 20,
 			})
-		).toThrow("[10,20]");
-		expect(() =>
+		).toEqual(__error("length not in [10,20] range"));
+		expect(
 			validateSchema("abc", { type: "string", minLength: 10 })
-		).toThrow("length");
-		expect(() =>
-			validateSchema("abc", { type: "string", maxLength: 2 })
-		).toThrow("length");
+		).toEqual(__error("required min. length 10"));
+		expect(validateSchema("abc", { type: "string", maxLength: 2 })).toEqual(
+			__error("required max. length 2")
+		);
 	});
 
 	test("multiple types", () => {
 		const schema: AltSchema = {
 			type: ["number", "string", "null"],
 		};
-		expect(validateSchema(42, schema)).toBeTrue();
-		expect(validateSchema("42", schema)).toBeTrue();
-		expect(validateSchema(null, schema)).toBeTrue();
-		expect(() => validateSchema([], schema)).toThrow("type");
+		expect(validateSchema(42, schema)).toEqual(OK);
+		expect(validateSchema("42", schema)).toEqual(OK);
+		expect(validateSchema(null, schema)).toEqual(OK);
+		expect(validateSchema([], schema)).toEqual(
+			__error("value type must be one of: number,string,null")
+		);
 	});
 
 	test("array (prefixItems)", () => {
@@ -85,11 +104,17 @@ describe("validateSchema", () => {
 			prefixItems: [{ type: "number" }, { type: "number" }],
 			items: { type: "string" },
 		};
-		expect(validateSchema([1, 2, "3"], schema)).toBeTrue();
-		expect(validateSchema([1, 2], schema)).toBeTrue();
-		expect(() => validateSchema([1, "2"], schema)).toThrow("number");
-		expect(() => validateSchema([1], schema)).toThrow("length");
-		expect(() => validateSchema([1, 2, 3], schema)).toThrow("string");
+		expect(validateSchema([1, 2, "3"], schema)).toEqual(OK);
+		expect(validateSchema([1, 2], schema)).toEqual(OK);
+		expect(validateSchema([1, "2"], schema)).toEqual(
+			__errorPath([1], "required number value")
+		);
+		expect(validateSchema([1], schema)).toEqual(
+			__error("required min. length 2")
+		);
+		expect(validateSchema([1, 2, 3], schema)).toEqual(
+			__errorPath([2], "required string value")
+		);
 	});
 
 	test("object", () => {
@@ -100,13 +125,27 @@ describe("validateSchema", () => {
 				b: { type: "array", items: { type: "string" } },
 			},
 		};
-		expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toBeTrue();
-		expect(() => validateSchema({ a: "a" }, schema)).toThrow("number");
-		expect(() => validateSchema({ a: 1 }, schema)).toThrow("array");
-		expect(() => validateSchema({ a: 1, b: 2 }, schema)).toThrow("array");
-		expect(() => validateSchema({ a: 1, b: [1, 2] }, schema)).toThrow(
-			"string"
+		expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(OK);
+		expect(validateSchema({ a: "a" }, schema)).toEqual({
+			valid: false,
+			errors: [
+				{ path: ["a"], msg: "required number value" },
+				{ path: ["b"], msg: "required array value" },
+			],
+		});
+		expect(validateSchema({ a: 1 }, schema)).toEqual(
+			__errorPath(["b"], "required array value")
 		);
+		expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(
+			__errorPath(["b"], "required array value")
+		);
+		expect(validateSchema({ a: 1, b: [1, 2] }, schema)).toEqual({
+			valid: false,
+			errors: [
+				{ path: ["b", 0], msg: "required string value" },
+				{ path: ["b", 1], msg: "required string value" },
+			],
+		});
 	});
 
 	test("schema ref", () => {
@@ -123,7 +162,11 @@ describe("validateSchema", () => {
 				num: { type: "number" },
 				str: { type: "string" },
 				nested: { $ref: "#/$defs/str" },
-				anchor: { type: "array", $anchor: "array" },
+				anchor: {
+					type: "array",
+					$anchor: "array",
+					items: { $ref: "#/$defs/str" },
+				},
 				id: { type: "number", $id: "https://example.org/" },
 			},
 		};
@@ -131,7 +174,36 @@ describe("validateSchema", () => {
 			validateSchema({ a: 1, b: "b", c: "c", d: [], e: 2 }, schema, {
 				base: "https://schema.thi.ng/",
 			})
-		).toBeTrue();
+		).toEqual(OK);
+		expect(
+			validateSchema({ d: [1] }, schema, {
+				base: "https://schema.thi.ng/",
+			})
+		).toEqual({
+			valid: false,
+			errors: [
+				{
+					path: ["a"],
+					msg: "required number value",
+				},
+				{
+					path: ["b"],
+					msg: "required string value",
+				},
+				{
+					path: ["c"],
+					msg: "required string value",
+				},
+				{
+					path: ["d", 0],
+					msg: "required string value",
+				},
+				{
+					path: ["e"],
+					msg: "required number value",
+				},
+			],
+		});
 	});
 
 	test("not", () => {
@@ -139,7 +211,10 @@ describe("validateSchema", () => {
 			not: { type: "number", minimum: 0 },
 			type: "number",
 		};
-		expect(validateSchema(-1, schema)).toBeTrue();
-		expect(() => validateSchema(1, schema)).toThrow("fail");
+		expect(validateSchema(-1, schema)).toEqual(OK);
+		expect(validateSchema(1, schema)).toEqual({
+			valid: false,
+			errors: [{ path: [], msg: "expected schema to fail" }],
+		});
 	});
 });

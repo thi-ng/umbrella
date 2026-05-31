@@ -1,4 +1,6 @@
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import type { CustomError } from "@thi.ng/errors";
+import { defError } from "@thi.ng/errors/deferror";
+import type { Validator } from "@thi.ng/validate";
 import {
 	hasRequiredKeys,
 	isArray,
@@ -15,12 +17,12 @@ import {
 	isObject,
 	isString,
 	matchesRegexp,
-	ValidationError,
 	validator,
 } from "@thi.ng/validate/validators";
 import type {
 	AltSchema,
 	ArraySchema,
+	ConstSchema,
 	EnumSchema,
 	JSONSchema,
 	NumberSchema,
@@ -30,12 +32,24 @@ import type {
 	ValidateSchemaCtx,
 } from "./api.js";
 
+export const SchemaError = defError(() => `schema error`);
+
 export const validateSchema = (
 	x: any,
 	schema: JSONSchema,
 	ctx?: Partial<ValidateSchemaCtx>
-) => __validateSchema(x, schema, { base: "", registry: {}, path: [], ...ctx });
+) => {
+	const $ctx = {
+		base: "",
+		registry: {},
+		path: [],
+		errors: [],
+		...ctx,
+	};
+	return { valid: __validateSchema(x, schema, $ctx), errors: $ctx.errors };
+};
 
+/** @internal */
 const __validateSchema = (
 	x: any,
 	schema: JSONSchema,
@@ -48,60 +62,64 @@ const __validateSchema = (
 		ctx = __mergeDefs(ctx, schema.$defs!);
 	}
 	if ("$ref" in schema) {
-		return validateSchemaRef(x, schema, ctx);
+		return __schemaRef(x, schema, ctx);
 	}
 	if ("enum" in schema) {
-		return validator(isEnum(schema.enum))(x);
+		return __enum(x, schema, ctx);
 	}
 	if ("const" in schema) {
-		return validator(isEqual(schema.const))(x);
+		return __const(x, schema, ctx);
 	}
 	if ("not" in schema) {
-		let passed = false;
-		try {
-			passed = __validateSchema(x, schema.not!, ctx);
-		} catch (e) {}
-		if (passed) {
-			throw new ValidationError(
-				__withPath(ctx, "expected schema to fail")
-			);
-		}
+		return __not(x, schema, ctx);
 	}
 	if (Array.isArray(schema.type)) {
-		return validateAltTypes(x, <AltSchema>schema, ctx);
+		return __altTypes(x, <AltSchema>schema, ctx);
 	}
-	return validateType(x, schema, ctx);
+	return __type(x, schema, ctx);
 };
 
-const validateType = (x: any, schema: JSONSchema, ctx: ValidateSchemaCtx) => {
+/** @internal */
+const __validate = (ctx: ValidateSchemaCtx, checks: Validator[], x: any) => {
+	try {
+		return validator(...checks)(x);
+	} catch (e) {
+		__addError(ctx, (<CustomError>e).origMessage);
+		return false;
+	}
+};
+
+/** @internal */
+const __addError = (ctx: ValidateSchemaCtx, msg: string) => {
+	ctx.errors.push({ path: ctx.path.slice(), msg });
+};
+
+/** @internal */
+const __type = (x: any, schema: JSONSchema, ctx: ValidateSchemaCtx) => {
 	const $schema = <Exclude<JSONSchema, AltSchema | EnumSchema | SchemaRef>>(
 		schema
 	);
 	switch ($schema.type) {
 		case "null":
-			return validator(isNullish(__withPath(ctx, "required null value")))(
-				x
-			);
+			return __validate(ctx, [isNullish()], x);
 		case "boolean":
-			return validator(
-				isBoolean(__withPath(ctx, "required boolean value"))
-			)(x);
+			return __validate(ctx, [isBoolean()], x);
 		case "number":
 		case "integer":
-			return validateNumber(x, $schema, ctx);
+			return __number(x, $schema, ctx);
 		case "string":
-			return validateString(x, $schema, ctx);
+			return __string(x, $schema, ctx);
 		case "array":
-			return validateArray(x, $schema, ctx);
+			return __array(x, $schema, ctx);
 		case "object":
-			return validateObject(x, $schema, ctx);
+			return __object(x, $schema, ctx);
 		default:
-			// TODO error wrong type
-			return false;
+			throw new SchemaError("illegal schema type: " + (<any>schema).type);
 	}
 };
 
-const validateSchemaRef = (
+/** @internal */
+const __schemaRef = (
 	x: any,
 	schema: SchemaRef,
 	ctx: ValidateSchemaCtx
@@ -110,36 +128,48 @@ const validateSchemaRef = (
 		? new URL(schema.$ref, ctx.base).toString()
 		: schema.$ref;
 	const refSchema = ctx.registry[ref];
-	if (!refSchema) illegalArgs(__withPath(ctx, "schema ref: " + schema.$ref));
+	if (!refSchema)
+		throw new SchemaError(
+			__withPath(ctx, "invalid schema ref: " + schema.$ref)
+		);
 	return __validateSchema(x, refSchema, ctx);
 };
 
-const validateAltTypes = (
-	x: any,
-	schema: AltSchema,
-	ctx: ValidateSchemaCtx
-) => {
+/** @internal */
+const __altTypes = (x: any, schema: AltSchema, ctx: ValidateSchemaCtx) => {
 	for (let type of schema.type) {
-		try {
-			return __validateSchema(x, <JSONSchema>{ ...schema, type }, ctx);
-		} catch (e) {}
+		if (
+			__validateSchema(x, <JSONSchema>{ ...schema, type }, {
+				...ctx,
+				errors: [],
+			})
+		)
+			return true;
 	}
-	throw new ValidationError(
-		__withPath(ctx, `type must match one of: ${schema.type.join(",")}`)
-	);
+	__addError(ctx, `value type must be one of: ${schema.type.join(",")}`);
+	return false;
 };
 
-const validateNumber = (
-	x: any,
-	schema: NumberSchema,
-	ctx: ValidateSchemaCtx
-) => {
-	schema;
-	const checks = [
-		schema.type === "integer"
-			? isInteger(__withPath(ctx, `required integer value`))
-			: isNumber(__withPath(ctx, `required number value`)),
-	];
+/** @internal */
+const __enum = (x: any, schema: EnumSchema, ctx: ValidateSchemaCtx) =>
+	__validate(ctx, [isEnum(schema.enum)], x);
+
+/** @internal */
+const __const = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) =>
+	__validate(ctx, [isEqual(schema.const)], x);
+
+/** @internal */
+const __not = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
+	if (__validateSchema(x, schema.not!, { ...ctx, errors: [] })) {
+		__addError(ctx, "expected schema to fail");
+		return false;
+	}
+	return true;
+};
+
+/** @internal */
+const __number = (x: any, schema: NumberSchema, ctx: ValidateSchemaCtx) => {
+	const checks = [schema.type === "integer" ? isInteger() : isNumber()];
 	let {
 		multipleOf,
 		minimum: min,
@@ -150,133 +180,83 @@ const validateNumber = (
 	if (min != null || max != null) {
 		min = min ?? -Infinity;
 		max = max ?? Infinity;
-		checks.push(
-			isInClosedInterval(
-				min,
-				max,
-				__withPath(ctx, `value not in closed interval [${min},${max}]`)
-			)
-		);
+		checks.push(isInClosedInterval(min, max));
 	}
 	if (minOpen != null || maxOpen != null) {
 		minOpen = minOpen ?? -Infinity;
 		maxOpen = maxOpen ?? Infinity;
-		checks.push(
-			isInOpenInterval(
-				minOpen,
-				maxOpen,
-				__withPath(ctx, `value not in range [${minOpen},${maxOpen}]`)
-			)
-		);
+		checks.push(isInOpenInterval(minOpen, maxOpen));
 	}
 	if (multipleOf != null) {
-		checks.push(
-			isMultipleOf(
-				multipleOf,
-				undefined,
-				__withPath(
-					ctx,
-					`required number value to be multiple of ${multipleOf}`
-				)
-			)
-		);
+		checks.push(isMultipleOf(multipleOf));
 	}
-	return validator(...checks)(x);
+	return __validate(ctx, checks, x);
 };
 
-const validateString = (
-	x: any,
-	schema: StringSchema,
-	ctx: ValidateSchemaCtx
-) => {
+/** @internal */
+const __string = (x: any, schema: StringSchema, ctx: ValidateSchemaCtx) => {
 	let { pattern, minLength: min, maxLength: max } = schema;
-	const checks = [isString(__withPath(ctx, `required string value`))];
+	const checks = [isString()];
 	if (min != null || max != null) {
 		min = min ?? -Infinity;
 		max = max ?? Infinity;
-		checks.push(
-			isMinMaxLength(
-				min,
-				max,
-				__withPath(ctx, `length in [${min},${max}] range`)
-			)
-		);
+		checks.push(isMinMaxLength(min, max));
 	}
 	if (pattern) {
-		checks.push(
-			matchesRegexp(
-				new RegExp(pattern),
-				__withPath(ctx, `doesn't match pattern: ${pattern}`)
-			)
-		);
+		checks.push(matchesRegexp(new RegExp(pattern)));
 	}
-	return validator(...checks)(x);
+	return __validate(ctx, checks, x);
 };
 
-const validateArray = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
+/** @internal */
+const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 	let {
 		prefixItems,
 		items,
 		minItems = prefixItems?.length ?? 0,
 		maxItems = Infinity,
 	} = schema;
-	const checks = [
-		isArray(__withPath(ctx, `required array value`)),
-		isMinMaxLength(
-			minItems,
-			maxItems,
-			__withPath(
-				ctx,
-				`array length not in [${minItems},${maxItems}] range`
-			)
-		),
-	];
-	validator(...checks)(x);
+	const checks = [isArray(), isMinMaxLength(minItems, maxItems)];
+	let passed = __validate(ctx, checks, x);
+	if (!passed) return false;
 	if (prefixItems) {
 		for (let i = 0; i < prefixItems.length; i++) {
-			__validateSchema(x[i], prefixItems[i], {
-				...ctx,
-				path: [...ctx.path, i],
-			});
+			passed =
+				__validateSchema(x[i], prefixItems[i], {
+					...ctx,
+					path: [...ctx.path, i],
+				}) && passed;
 		}
 	}
 	if (items) {
 		for (let i = prefixItems?.length ?? 0; i < x.length; i++) {
-			__validateSchema(x[i], items, {
-				...ctx,
-				path: [...ctx.path, i],
-			});
+			passed =
+				__validateSchema(x[i], items, {
+					...ctx,
+					path: [...ctx.path, i],
+				}) && passed;
 		}
 	}
-	return true;
+	return passed;
 };
 
-const validateObject = (
-	x: any,
-	schema: ObjectSchema,
-	ctx: ValidateSchemaCtx
-) => {
+/** @internal */
+const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 	const { properties, required } = schema;
-	const checks = [isObject(__withPath(ctx, "require object value"))];
+	const checks = [isObject()];
 	if (required) {
-		checks.push(
-			hasRequiredKeys(
-				required,
-				false,
-				false,
-				__withPath(ctx, `require keys: ${required.join(",")}`)
-			)
-		);
+		checks.push(hasRequiredKeys(required, false, false));
 	}
-	validator(...checks)(x);
+	let passed = __validate(ctx, checks, x);
+	if (!passed) return false;
 	const $ctx = { ...ctx };
 	if (properties) {
 		for (let k in properties) {
 			$ctx.path = [...ctx.path, k];
-			__validateSchema(x[k], properties[k], $ctx);
+			passed = __validateSchema(x[k], properties[k], $ctx) && passed;
 		}
 	}
-	return true;
+	return passed;
 };
 
 /** @internal */

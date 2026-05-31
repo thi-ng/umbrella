@@ -16,7 +16,6 @@ export interface BaseSchema {
 	$defs?: Record<string, JSONSchema>;
 	title?: string;
 	description?: string;
-	const?: any;
 	not?: JSONSchema;
 	allOf?: JSONSchema[];
 	anyOf?: JSONSchema[];
@@ -25,6 +24,10 @@ export interface BaseSchema {
 
 export interface SchemaRef extends BaseSchema {
 	$ref: string;
+}
+
+export interface ConstSchema extends BaseSchema {
+	const?: any;
 }
 
 export interface EnumSchema extends BaseSchema {
@@ -92,4 +95,12 @@ export interface ValidateSchemaCtx {
 	base: string;
 	registry: Record<string, JSONSchema>;
 	path: (number | string)[];
+	errors: ErrorReport[];
 }
+
+export interface ErrorReport {
+	path: (number | string)[];
+	msg: string;
+}
+
+export const OK = Object.freeze({ valid: true, errors: [] });
