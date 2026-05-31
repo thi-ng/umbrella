@@ -456,7 +456,7 @@ export const isInClosedInterval = <T extends number | string>(
 	msg?: Validator["msg"]
 ): Validator => ({
 	valid: (x) => x >= min && x <= max,
-	msg: msg ?? ((x) => `value ${x} not in interval [${min},${max}]`),
+	msg: msg ?? `value not in closed interval [${min},${max}]`,
 });
 
 /** @deprecated renamed to {@link isInClosedInterval} */
@@ -468,7 +468,7 @@ export const isInOpenInterval = <T extends number | string>(
 	msg?: Validator["msg"]
 ): Validator => ({
 	valid: (x) => x > min && x < max,
-	msg: msg ?? ((x) => `value ${x} not in open interval (${min},${max})`),
+	msg: msg ?? `value not in open interval (${min},${max})`,
 });
 
 export const isPositive = (msg?: Validator["msg"]): Validator => ({
@@ -497,22 +497,29 @@ export const isLength = (n: number, msg?: Validator["msg"]): Validator => ({
 
 export const isMinLength = (n: number, msg?: Validator["msg"]): Validator => ({
 	valid: (x) => x?.length >= n,
-	msg: msg ?? `required min. length (${n})`,
+	msg: msg ?? `required min. length ${n}`,
 });
 
 export const isMaxLength = (n: number, msg?: Validator["msg"]): Validator => ({
 	valid: (x) => x?.length <= n,
-	msg: msg ?? `required max. length (${n})`,
+	msg: msg ?? `required max. length ${n}`,
 });
 
 export const isMinMaxLength = (
 	min: number,
 	max: number,
 	msg?: Validator["msg"]
-): Validator => ({
-	valid: (x) => x?.length >= min && x?.length <= max,
-	msg: msg ?? `length not in [${min},${max}] range`,
-});
+): Validator =>
+	min > -Infinity
+		? max < Infinity
+			? {
+					valid: (x) => x?.length >= min && x?.length <= max,
+					msg: msg ?? `length not in [${min},${max}] range`,
+				}
+			: isMinLength(min)
+		: max < Infinity
+			? isMaxLength(max)
+			: ALWAYS;
 
 /**
  * Returns validator to check if value is a string and matches given regexp.
@@ -525,5 +532,5 @@ export const matchesRegexp = (
 	msg?: Validator["msg"]
 ): Validator => ({
 	valid: (x) => $isString(x) && re.test(x),
-	msg: msg ?? `doesn't match pattern`,
+	msg: msg ?? `doesn't match pattern: ${re.source}`,
 });

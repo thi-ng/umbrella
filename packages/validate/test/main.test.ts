@@ -70,7 +70,7 @@ test("isArrayOf", () => {
 			[2, 3, 4],
 		])
 	).toBeTrue();
-	expect(() => fn([[1, 2, -3]])).toThrow("not in interval");
+	expect(() => fn([[1, 2, -3]])).toThrow("not in closed interval");
 	expect(() => fn([[1, 2]])).toThrow("length");
 	expect(() => fn([["a"]])).toThrow("number");
 });
