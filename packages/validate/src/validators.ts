@@ -13,7 +13,7 @@ import { isString as $isString } from "@thi.ng/checks/is-string";
 import { isTypedArray as $isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { equiv } from "@thi.ng/equiv";
 import { defError, type CustomError } from "@thi.ng/errors/deferror";
-import type { Validator } from "./api.js";
+import type { Validator, ValidatorMsg } from "./api.js";
 
 /**
  * Error type thrown by validation functions.
@@ -113,7 +113,7 @@ export const optional = (first: Validator, ...rest: Validator[]): Validator => {
  */
 export const not = (
 	{ coerce, valid, msg: $msg }: Validator,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	coerce,
 	valid: (x) => {
@@ -178,9 +178,9 @@ export const every = (first: Validator, ...rest: Validator[]): Validator => ({
  *
  * @param msg
  */
-export const isUndefined = (msg?: Validator["msg"]): Validator => ({
+export const isUndefined = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x === undefined,
-	msg: msg ?? `expected undefined value`,
+	msg: msg ?? __expectedVal("undefined"),
 });
 
 /**
@@ -188,9 +188,9 @@ export const isUndefined = (msg?: Validator["msg"]): Validator => ({
  *
  * @param msg
  */
-export const isNullish = (msg?: Validator["msg"]): Validator => ({
+export const isNullish = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x === null,
-	msg: msg ?? `expected nullish value`,
+	msg: msg ?? __expectedVal("nullish"),
 });
 
 /**
@@ -200,32 +200,32 @@ export const isNullish = (msg?: Validator["msg"]): Validator => ({
  * @param expected
  * @param msg
  */
-export const isEqual = (expected: any, msg?: Validator["msg"]): Validator => ({
+export const isEqual = (expected: any, msg?: ValidatorMsg): Validator => ({
 	valid: (x) => equiv(x, expected),
-	msg: msg ?? `expected: ${expected ?? "null"}`,
+	msg: msg ?? __expected(expected ?? "null"),
 });
 
-export const isArray = (msg?: Validator["msg"]): Validator => ({
+export const isArray = (msg?: ValidatorMsg): Validator => ({
 	valid: $isArray,
-	msg: msg ?? `required array value`,
+	msg: msg ?? __expectedVal("array"),
 });
 
 export const isArrayOf = (
 	validators: Validator | Validator[],
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: $isArrayOf(validator(...__asArray(validators))),
-	msg: msg ?? `required array value`,
+	msg: msg ?? __expectedVal("array"),
 });
 
-export const isBoolean = (msg?: Validator["msg"]): Validator => ({
+export const isBoolean = (msg?: ValidatorMsg): Validator => ({
 	valid: $isBoolean,
-	msg: msg ?? `required boolean value`,
+	msg: msg ?? __expectedVal("boolean"),
 });
 
-export const isNumber = (msg?: Validator["msg"]): Validator => ({
+export const isNumber = (msg?: ValidatorMsg): Validator => ({
 	valid: $isNumber,
-	msg: msg ?? `required number value`,
+	msg: msg ?? __expectedVal("number"),
 });
 
 /**
@@ -234,29 +234,29 @@ export const isNumber = (msg?: Validator["msg"]): Validator => ({
  *
  * @param msg
  */
-export const isInteger = (msg?: Validator["msg"]): Validator => ({
+export const isInteger = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => $isNumber(x) && Math.trunc(x) === x,
-	msg: msg ?? `required integer value`,
+	msg: msg ?? __expectedVal("integer"),
 });
 
-export const isString = (msg?: Validator["msg"]): Validator => ({
+export const isString = (msg?: ValidatorMsg): Validator => ({
 	valid: $isString,
-	msg: msg ?? `required string value`,
+	msg: msg ?? __expectedVal("string"),
 });
 
-export const isDate = (msg?: Validator["msg"]): Validator => ({
+export const isDate = (msg?: ValidatorMsg): Validator => ({
 	valid: $isDate,
-	msg: msg ?? `required date value`,
+	msg: msg ?? __expectedVal("date"),
 });
 
-export const isFunction = (msg?: Validator["msg"]): Validator => ({
+export const isFunction = (msg?: ValidatorMsg): Validator => ({
 	valid: $isFunction,
-	msg: msg ?? `required function value`,
+	msg: msg ?? __expectedVal("function"),
 });
 
-export const isRegExp = (msg?: Validator["msg"]): Validator => ({
+export const isRegExp = (msg?: ValidatorMsg): Validator => ({
 	valid: $isRegExp,
-	msg: msg ?? `required regexp value`,
+	msg: msg ?? __expectedVal("regexp"),
 });
 
 /**
@@ -264,9 +264,9 @@ export const isRegExp = (msg?: Validator["msg"]): Validator => ({
  *
  * @param msg
  */
-export const isObject = (msg?: Validator["msg"]): Validator => ({
+export const isObject = (msg?: ValidatorMsg): Validator => ({
 	valid: isPlainObject,
-	msg: msg ?? `required plain object value`,
+	msg: msg ?? __expectedVal("object"),
 });
 
 /**
@@ -278,15 +278,15 @@ export const isObject = (msg?: Validator["msg"]): Validator => ({
  */
 export const isObjectOf = (
 	validators: Validator | Validator[],
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: $isObjectOf(validator(...__asArray(validators))),
-	msg: msg ?? `required object value`,
+	msg: msg ?? __expectedVal("object"),
 });
 
-export const isTypedArray = (msg?: Validator["msg"]): Validator => ({
+export const isTypedArray = (msg?: ValidatorMsg): Validator => ({
 	valid: $isTypedArray,
-	msg: msg ?? `required typed array value`,
+	msg: msg ?? __expectedVal(`typed array`),
 });
 
 /**
@@ -294,9 +294,9 @@ export const isTypedArray = (msg?: Validator["msg"]): Validator => ({
  *
  * @param msg
  */
-export const isU8Array = (msg?: Validator["msg"]): Validator => ({
+export const isU8Array = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x instanceof Uint8Array,
-	msg: msg ?? `required byte array value`,
+	msg: msg ?? __expectedVal(`byte array`),
 });
 
 /**
@@ -310,10 +310,10 @@ export const isU8Array = (msg?: Validator["msg"]): Validator => ({
 export const isMultipleOf = (
 	base: number,
 	eps?: number,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x) => $isMultipleOf(base, x, eps),
-	msg: msg ?? `required number value, a multiple of ${base}`,
+	msg: msg ?? __expected(`number value, a multiple of ${base}`),
 });
 
 /**
@@ -331,7 +331,7 @@ export const hasRequiredKeys = (
 	keys: string[],
 	nonNullish = false,
 	onlyKeys = false,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x) => {
 		if (onlyKeys) __onlyKeys(keys, x);
@@ -339,7 +339,9 @@ export const hasRequiredKeys = (
 	},
 	msg:
 		msg ??
-		`required keys: ${keys.join(", ")}${nonNullish ? " (values must be non-nullish)" : ""}`,
+		__expected(
+			`keys: ${keys.join(", ")}${nonNullish ? " (values must be non-nullish)" : ""}`
+		),
 });
 
 /**
@@ -374,7 +376,7 @@ export const hasRequiredPatternKeys = (
 	pattern: RegExp,
 	nonNullish = false,
 	onlyKeys = false,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x: any) => {
 		let found = false;
@@ -390,7 +392,9 @@ export const hasRequiredPatternKeys = (
 	},
 	msg:
 		msg ??
-		`required pattern keys: ${pattern}${nonNullish ? " (values must be non-nullish)" : ""}`,
+		__expected(
+			`pattern keys: ${pattern}${nonNullish ? " (values must be non-nullish)" : ""}`
+		),
 });
 
 export const hasPatternKeysOf = (
@@ -438,9 +442,9 @@ const __disallowedKey = (key: string) => {
  * @param opts
  * @param msg
  */
-export const isEnum = <T>(opts: T[], msg?: Validator["msg"]): Validator => ({
+export const isEnum = <T>(opts: T[], msg?: ValidatorMsg): Validator => ({
 	valid: (x) => opts.includes(x),
-	msg: msg ?? `required value to be one of: ${opts.join(", ")}`,
+	msg: msg ?? __expected(`value to be one of: ${opts.join(", ")}`),
 });
 
 /**
@@ -453,10 +457,10 @@ export const isEnum = <T>(opts: T[], msg?: Validator["msg"]): Validator => ({
 export const isInClosedInterval = <T extends number | string>(
 	min: T,
 	max: T,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x) => x >= min && x <= max,
-	msg: msg ?? `value not in closed interval [${min},${max}]`,
+	msg: msg ?? __expected(`value in closed interval [${min},${max}]`),
 });
 
 /** @deprecated renamed to {@link isInClosedInterval} */
@@ -465,56 +469,56 @@ export const isInRange = isInClosedInterval;
 export const isInOpenInterval = <T extends number | string>(
 	min: T,
 	max: T,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x) => x > min && x < max,
-	msg: msg ?? `value not in open interval (${min},${max})`,
+	msg: msg ?? __expected(`value in open interval (${min},${max})`),
 });
 
-export const isPositive = (msg?: Validator["msg"]): Validator => ({
+export const isPositive = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x > 0,
-	msg: msg ?? `required positive value`,
+	msg: msg ?? __expectedVal("positive"),
 });
 
-export const isNegative = (msg?: Validator["msg"]): Validator => ({
+export const isNegative = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x < 0,
-	msg: msg ?? `required negative number`,
+	msg: msg ?? __expectedVal("negative"),
 });
 
-export const isNonPositive = (msg?: Validator["msg"]): Validator => ({
+export const isNonPositive = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x <= 0,
-	msg: msg ?? `required non-positive value`,
+	msg: msg ?? __expectedVal("non-positive"),
 });
-export const isNonNegative = (msg?: Validator["msg"]): Validator => ({
+export const isNonNegative = (msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x >= 0,
-	msg: msg ?? `required non-negative value`,
+	msg: msg ?? __expectedVal("non-negative"),
 });
 
-export const isLength = (n: number, msg?: Validator["msg"]): Validator => ({
+export const isLength = (n: number, msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x?.length === n,
-	msg: msg ?? `required length (${n})`,
+	msg: msg ?? __expected(`length of ${n}`),
 });
 
-export const isMinLength = (n: number, msg?: Validator["msg"]): Validator => ({
+export const isMinLength = (n: number, msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x?.length >= n,
-	msg: msg ?? `required min. length ${n}`,
+	msg: msg ?? __expected(`min. length ${n}`),
 });
 
-export const isMaxLength = (n: number, msg?: Validator["msg"]): Validator => ({
+export const isMaxLength = (n: number, msg?: ValidatorMsg): Validator => ({
 	valid: (x) => x?.length <= n,
-	msg: msg ?? `required max. length ${n}`,
+	msg: msg ?? __expected(`max. length ${n}`),
 });
 
 export const isMinMaxLength = (
 	min: number,
 	max: number,
-	msg?: Validator["msg"]
+	msg?: ValidatorMsg
 ): Validator =>
 	min > -Infinity
 		? max < Infinity
 			? {
 					valid: (x) => x?.length >= min && x?.length <= max,
-					msg: msg ?? `length not in [${min},${max}] range`,
+					msg: msg ?? __expected(`length in [${min},${max}] range`),
 				}
 			: isMinLength(min)
 		: max < Infinity
@@ -527,10 +531,13 @@ export const isMinMaxLength = (
  * @param re
  * @param msg
  */
-export const matchesRegexp = (
-	re: RegExp,
-	msg?: Validator["msg"]
-): Validator => ({
+export const matchesRegexp = (re: RegExp, msg?: ValidatorMsg): Validator => ({
 	valid: (x) => $isString(x) && re.test(x),
-	msg: msg ?? `doesn't match pattern: ${re.source}`,
+	msg: msg ?? __expected(`pattern: ${re.source}`),
 });
+
+/** @internal */
+const __expected = (x: string) => `expected ${x}`;
+
+/** @internal */
+const __expectedVal = (x: string) => `expected ${x} value`;

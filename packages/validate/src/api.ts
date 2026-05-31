@@ -14,5 +14,7 @@ export interface Validator {
 	/**
 	 * Optional error message (or function to produce such).
 	 */
-	msg?: string | Fn<any, string>;
+	msg?: ValidatorMsg;
 }
+
+export type ValidatorMsg = string | Fn<any, string>;
