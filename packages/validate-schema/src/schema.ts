@@ -237,9 +237,7 @@ const __string = (x: any, schema: StringSchema, ctx: ValidateSchemaCtx) => {
 	let { pattern, minLength: min, maxLength: max } = schema;
 	const checks = [isString()];
 	if (min != null || max != null) {
-		min = min ?? -Infinity;
-		max = max ?? Infinity;
-		checks.push(isMinMaxLength(min, max));
+		checks.push(isMinMaxLength(min ?? 0, max ?? Infinity));
 	}
 	if (pattern) {
 		checks.push(matchesRegexp(new RegExp(pattern)));
@@ -253,7 +251,7 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 		prefixItems,
 		items,
 		minItems = prefixItems?.length ?? 0,
-		maxItems = Infinity,
+		maxItems = items !== false ? Infinity : (prefixItems?.length ?? 0),
 	} = schema;
 	const checks = [isArray(), isMinMaxLength(minItems, maxItems)];
 	let passed = __validate(ctx, checks, x);
@@ -276,6 +274,8 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 				}) && passed;
 		}
 	}
+	// TODO contains
+	// TODO uniqueItems
 	return passed;
 };
 

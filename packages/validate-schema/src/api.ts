@@ -11,12 +11,19 @@ export interface BaseSchema {
 	$schema?: string;
 	$id?: string;
 	$anchor?: string;
+	$comment?: string;
 	$defs?: Record<string, JSONSchema>;
 	$ref?: string;
 
 	type?: SchemaType | SchemaType[];
 	title?: string;
+	default?: any;
 	description?: string;
+	examples?: any[];
+
+	deprecated?: boolean;
+	readOnly?: boolean;
+	writeOnly?: boolean;
 }
 
 export interface JSONSchema extends BaseSchema {
@@ -39,7 +46,7 @@ export interface JSONSchema extends BaseSchema {
 	pattern?: string;
 
 	prefixItems?: JSONSchema[];
-	items?: JSONSchema;
+	items?: JSONSchema | false;
 	minItems?: number;
 	maxItems?: number;
 	uniqueItems?: boolean;

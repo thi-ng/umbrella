@@ -128,6 +128,10 @@ describe("validateSchema", () => {
 		expect(validateSchema([1, 2, 3], schema)).toEqual(
 			__errorPath([2], "expected string value")
 		);
+
+		expect(validateSchema([1, 2, 3], { ...schema, items: false })).toEqual(
+			__error("expected length of 2")
+		);
 	});
 
 	test("object", () => {
@@ -196,6 +200,22 @@ describe("validateSchema", () => {
 		expect(validateSchema({ a: 1 }, schema)).toEqual(
 			__errorPath(["a"], "property not allowed")
 		);
+	});
+
+	test("object additionalProperties", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			properties: { a: { type: "number" } },
+			additionalProperties: { type: "boolean" },
+		};
+		expect(validateSchema({ a: 1, b: false }, schema)).toEqual(OK);
+		expect(validateSchema({ b: false }, schema)).toEqual(OK);
+		expect(validateSchema({ b: 1 }, schema)).toEqual(
+			__errorPath(["b"], "expected boolean value")
+		);
+		expect(
+			validateSchema({ b: 1 }, { ...schema, required: ["a"] })
+		).toEqual(__error("expected keys: a"));
 	});
 
 	test("schema ref", () => {
