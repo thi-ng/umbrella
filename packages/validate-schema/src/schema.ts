@@ -20,11 +20,14 @@ import {
 	validator,
 } from "@thi.ng/validate/validators";
 import type {
+	AllOfSchema,
 	AltSchema,
+	AnyOfSchema,
 	ArraySchema,
 	ConstSchema,
 	EnumSchema,
 	JSONSchema,
+	NotSchema,
 	NumberSchema,
 	ObjectSchema,
 	SchemaRef,
@@ -46,6 +49,7 @@ export const validateSchema = (
 		errors: [],
 		...ctx,
 	};
+	$ctx.registry[$ctx.base + "#"] = schema;
 	return { valid: __validateSchema(x, schema, $ctx), errors: $ctx.errors };
 };
 
@@ -64,20 +68,25 @@ const __validateSchema = (
 	if ("$ref" in schema) {
 		return __schemaRef(x, <SchemaRef>schema, ctx);
 	}
+
+	// reset cycle breaker (only disallow direct $ref chains, without any
+	// concrete intermediate schemas)
+	if (ctx.visited) ctx.visited = [];
+
 	if ("enum" in schema) {
-		return __enum(x, schema, ctx);
+		return __enum(x, <EnumSchema>schema, ctx);
 	}
 	if ("const" in schema) {
-		return __const(x, schema, ctx);
+		return __const(x, <ConstSchema>schema, ctx);
 	}
 	if ("not" in schema) {
-		return __not(x, schema, ctx);
+		return __not(x, <NotSchema>schema, ctx);
 	}
 	if ("anyOf" in schema) {
-		return __anyOf(x, schema, ctx);
+		return __anyOf(x, <AnyOfSchema>schema, ctx);
 	}
 	if ("allOf" in schema) {
-		return __allOf(x, schema, ctx);
+		return __allOf(x, <AllOfSchema>schema, ctx);
 	}
 	if ("type" in schema) {
 		return Array.isArray(schema.type)
@@ -104,23 +113,20 @@ const __addError = (ctx: ValidateSchemaCtx, msg: string) => {
 
 /** @internal */
 const __type = (x: any, schema: JSONSchema, ctx: ValidateSchemaCtx) => {
-	const $schema = <Exclude<JSONSchema, AltSchema | EnumSchema | SchemaRef>>(
-		schema
-	);
-	switch ($schema.type) {
+	switch (schema.type) {
 		case "null":
 			return __validate(ctx, [isNullish()], x);
 		case "boolean":
 			return __validate(ctx, [isBoolean()], x);
 		case "number":
 		case "integer":
-			return __number(x, $schema, ctx);
+			return __number(x, <NumberSchema>schema, ctx);
 		case "string":
-			return __string(x, $schema, ctx);
+			return __string(x, <StringSchema>schema, ctx);
 		case "array":
-			return __array(x, $schema, ctx);
+			return __array(x, <ArraySchema>schema, ctx);
 		case "object":
-			return __object(x, $schema, ctx);
+			return __object(x, <ObjectSchema>schema, ctx);
 		default:
 			throw new SchemaError("illegal schema type: " + (<any>schema).type);
 	}
@@ -175,7 +181,7 @@ const __const = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) =>
 	__validate(ctx, [isEqual(schema.const)], x);
 
 /** @internal */
-const __not = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
+const __not = (x: any, schema: NotSchema, ctx: ValidateSchemaCtx) => {
 	if (__validateSchema(x, schema.not!, { ...ctx, errors: [] })) {
 		__addError(ctx, "expected schema to fail");
 		return false;
@@ -184,7 +190,7 @@ const __not = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
 };
 
 /** @internal */
-const __anyOf = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
+const __anyOf = (x: any, schema: AnyOfSchema, ctx: ValidateSchemaCtx) => {
 	for (let alt of schema.anyOf!) {
 		if (__validateSchema(x, alt, { ...ctx, errors: [] })) return true;
 	}
@@ -193,7 +199,7 @@ const __anyOf = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
 };
 
 /** @internal */
-const __allOf = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
+const __allOf = (x: any, schema: AllOfSchema, ctx: ValidateSchemaCtx) => {
 	for (let alt of schema.allOf!) {
 		if (!__validateSchema(x, alt, ctx)) return false;
 	}
@@ -275,18 +281,48 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 
 /** @internal */
 const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
-	const { properties, required } = schema;
+	const {
+		additionalProperties: additional,
+		patternProperties,
+		properties,
+		required,
+	} = schema;
 	const checks = [isObject()];
-	if (required) {
+	if (required && required.length) {
 		checks.push(hasRequiredKeys(required, false, false));
 	}
 	let passed = __validate(ctx, checks, x);
 	if (!passed) return false;
+
 	const $ctx = { ...ctx };
-	if (properties) {
-		for (let k in properties) {
-			$ctx.path = [...ctx.path, k];
+	let $patterns: Map<RegExp, JSONSchema> | undefined;
+	if (patternProperties) {
+		$patterns = new Map();
+		for (let pk in patternProperties) {
+			$patterns.set(new RegExp(pk), patternProperties[pk]);
+		}
+	}
+	nextProp: for (let k in x) {
+		$ctx.path = [...ctx.path, k];
+		if (properties && k in properties) {
 			passed = __validateSchema(x[k], properties[k], $ctx) && passed;
+			continue;
+		}
+		if ($patterns) {
+			for (const [p, pschema] of $patterns) {
+				if (p.test(k)) {
+					passed = __validateSchema(x[k], pschema, $ctx) && passed;
+					continue nextProp;
+				}
+			}
+		}
+		if (additional === false) {
+			__addError($ctx, "property not allowed");
+			passed = false;
+			continue;
+		}
+		if (additional) {
+			passed = __validateSchema(x[k], additional, $ctx) && passed;
 		}
 	}
 	return passed;

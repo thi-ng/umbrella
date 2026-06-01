@@ -1,14 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { describe, expect, test } from "bun:test";
-import {
-	OK,
-	validateSchema,
-	type AltSchema,
-	type ArraySchema,
-	type NumberSchema,
-	type ObjectSchema,
-	type StringSchema,
-} from "../src/index.js";
+import { OK, validateSchema, type JSONSchema } from "../src/index.js";
 
 const __error = (...errors: string[]) => ({
 	valid: false,
@@ -94,7 +86,7 @@ describe("validateSchema", () => {
 		);
 	});
 	test("string (pattern)", () => {
-		const schema: StringSchema = { type: "string", pattern: "^[A-Z]+$" };
+		const schema: JSONSchema = { type: "string", pattern: "^[A-Z]+$" };
 		expect(validateSchema("ABC", schema)).toEqual(OK);
 		expect(validateSchema("", schema)).toEqual(
 			__error("expected pattern: ^[A-Z]+$")
@@ -108,7 +100,7 @@ describe("validateSchema", () => {
 	});
 
 	test("multiple types", () => {
-		const schema: AltSchema = {
+		const schema: JSONSchema = {
 			type: ["number", "string", "null"],
 		};
 		expect(validateSchema(42, schema)).toEqual(OK);
@@ -120,7 +112,7 @@ describe("validateSchema", () => {
 	});
 
 	test("array (prefixItems)", () => {
-		const schema: ArraySchema = {
+		const schema: JSONSchema = {
 			type: "array",
 			prefixItems: [{ type: "number" }, { type: "number" }],
 			items: { type: "string" },
@@ -139,7 +131,7 @@ describe("validateSchema", () => {
 	});
 
 	test("object", () => {
-		const schema: ObjectSchema = {
+		const schema: JSONSchema = {
 			type: "object",
 			properties: {
 				a: { type: "number" },
@@ -147,15 +139,37 @@ describe("validateSchema", () => {
 			},
 		};
 		expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(OK);
-		expect(validateSchema({ a: "a" }, schema)).toEqual({
+		expect(validateSchema({ a: 1 }, schema)).toEqual(OK);
+		expect(validateSchema({ a: "a" }, schema)).toEqual(
+			__errorPath(["a"], "expected number value")
+		);
+		expect(validateSchema({ b: 2 }, schema)).toEqual(
+			__errorPath(["b"], "expected array value")
+		);
+		expect(validateSchema({ b: [1, 2] }, schema)).toEqual({
 			valid: false,
 			errors: [
-				{ path: ["a"], msg: "expected number value" },
-				{ path: ["b"], msg: "expected array value" },
+				{ path: ["b", 0], msg: "expected string value" },
+				{ path: ["b", 1], msg: "expected string value" },
 			],
 		});
-		expect(validateSchema({ a: 1 }, schema)).toEqual(
-			__errorPath(["b"], "expected array value")
+	});
+
+	test("object required", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			properties: {
+				a: { type: "number" },
+				b: { type: "array", items: { type: "string" } },
+			},
+			required: ["a"],
+		};
+		expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(OK);
+		expect(validateSchema({ a: "a" }, schema)).toEqual(
+			__errorPath(["a"], "expected number value")
+		);
+		expect(validateSchema({ b: 1 }, schema)).toEqual(
+			__error("expected keys: a")
 		);
 		expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(
 			__errorPath(["b"], "expected array value")
@@ -169,8 +183,23 @@ describe("validateSchema", () => {
 		});
 	});
 
+	test("object patternProperties", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			patternProperties: { "^id\\d+": { type: "number" } },
+			additionalProperties: false,
+		};
+		expect(validateSchema({ id1: 1 }, schema)).toEqual(OK);
+		expect(validateSchema({ id1: "1" }, schema)).toEqual(
+			__errorPath(["id1"], "expected number value")
+		);
+		expect(validateSchema({ a: 1 }, schema)).toEqual(
+			__errorPath(["a"], "property not allowed")
+		);
+	});
+
 	test("schema ref", () => {
-		const schema: ObjectSchema = {
+		const schema: JSONSchema = {
 			type: "object",
 			properties: {
 				a: { $ref: "#/$defs/num" },
@@ -196,33 +225,19 @@ describe("validateSchema", () => {
 				base: "https://schema.thi.ng/",
 			})
 		).toEqual(OK);
+		expect(validateSchema({ d: [1] }, schema)).toEqual({
+			valid: false,
+			errors: [{ path: ["d", 0], msg: "expected string value" }],
+		});
 		expect(
-			validateSchema({ d: [1] }, schema, {
-				base: "https://schema.thi.ng/",
-			})
+			validateSchema({ a: "", b: 2, c: 3, d: ["d"], e: "e" }, schema)
 		).toEqual({
 			valid: false,
 			errors: [
-				{
-					path: ["a"],
-					msg: "expected number value",
-				},
-				{
-					path: ["b"],
-					msg: "expected string value",
-				},
-				{
-					path: ["c"],
-					msg: "expected string value",
-				},
-				{
-					path: ["d", 0],
-					msg: "expected string value",
-				},
-				{
-					path: ["e"],
-					msg: "expected number value",
-				},
+				{ path: ["a"], msg: "expected number value" },
+				{ path: ["b"], msg: "expected string value" },
+				{ path: ["c"], msg: "expected string value" },
+				{ path: ["e"], msg: "expected number value" },
 			],
 		});
 	});
@@ -270,8 +285,32 @@ describe("validateSchema", () => {
 		);
 	});
 
+	test("schema recursion", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			properties: {
+				name: { type: "string" },
+				children: {
+					type: "array",
+					items: { $ref: "#" },
+				},
+			},
+		};
+		expect(
+			validateSchema(
+				{
+					name: "a",
+					children: [
+						{ name: "b", children: [{ name: "c", children: [] }] },
+					],
+				},
+				schema
+			)
+		).toEqual(OK);
+	});
+
 	test("not", () => {
-		const schema: NumberSchema = {
+		const schema: JSONSchema = {
 			not: { type: "number", minimum: 0 },
 			type: "number",
 		};
@@ -283,8 +322,7 @@ describe("validateSchema", () => {
 	});
 
 	test("anyOf", () => {
-		// FIXME type
-		const schema: any = {
+		const schema: JSONSchema = {
 			anyOf: [
 				{ type: "number", minimum: 0, maximum: 10 },
 				{ type: "number", minimum: 100, maximum: 200 },
@@ -300,8 +338,7 @@ describe("validateSchema", () => {
 	});
 
 	test("allOf", () => {
-		// FIXME type
-		const schema: any = {
+		const schema: JSONSchema = {
 			allOf: [{ $ref: "#/$defs/num" }, { $ref: "#/$defs/range" }],
 			$defs: {
 				num: { type: "number" },

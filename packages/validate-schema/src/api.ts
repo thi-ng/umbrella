@@ -1,14 +1,3 @@
-export type JSONSchema =
-	| AltSchema
-	| NullSchema
-	| BooleanSchema
-	| NumberSchema
-	| StringSchema
-	| ArraySchema
-	| ObjectSchema
-	| EnumSchema
-	| SchemaRef;
-
 export type SchemaType =
 	| "null"
 	| "boolean"
@@ -24,57 +13,31 @@ export interface BaseSchema {
 	$anchor?: string;
 	$defs?: Record<string, JSONSchema>;
 	$ref?: string;
+
 	type?: SchemaType | SchemaType[];
 	title?: string;
 	description?: string;
+}
+
+export interface JSONSchema extends BaseSchema {
 	not?: JSONSchema;
 	allOf?: JSONSchema[];
 	anyOf?: JSONSchema[];
 	oneOf?: JSONSchema[];
-}
 
-export interface SchemaRef extends BaseSchema {
-	$ref: string;
-}
-
-export interface ConstSchema extends BaseSchema {
 	const?: any;
-}
+	enum?: any[];
 
-export interface EnumSchema extends BaseSchema {
-	enum: any[];
-}
-
-export interface AltSchema extends BaseSchema {
-	type: SchemaType[];
-}
-
-export interface NullSchema extends BaseSchema {
-	type: "null";
-}
-
-export interface BooleanSchema extends BaseSchema {
-	type: "boolean";
-}
-
-export interface NumberSchema extends BaseSchema {
-	type: "number" | "integer";
 	multipleOf?: number;
 	minimum?: number;
 	maximum?: number;
 	exclusiveMinimum?: number;
 	exclusiveMaximum?: number;
-}
 
-export interface StringSchema extends BaseSchema {
-	type: "string";
 	minLength?: number;
 	maxLength?: number;
 	pattern?: string;
-}
 
-export interface ArraySchema extends BaseSchema {
-	type: "array";
 	prefixItems?: JSONSchema[];
 	items?: JSONSchema;
 	minItems?: number;
@@ -83,15 +46,52 @@ export interface ArraySchema extends BaseSchema {
 	contains?: any;
 	minContains?: number;
 	maxContains?: number;
-}
 
-export interface ObjectSchema extends BaseSchema {
-	type: "object";
-	properties: Record<string, JSONSchema>;
-	additionalProperties?: Record<string, JSONSchema>;
+	properties?: Record<string, JSONSchema>;
+	additionalProperties?: JSONSchema | false;
 	patternProperties?: Record<string, JSONSchema>;
 	propertyNames?: JSONSchema;
 	required?: string[];
+}
+
+export type SchemaRef = JSONSchema & Required<Pick<JSONSchema, "$ref">>;
+
+export type ConstSchema = JSONSchema & Required<Pick<JSONSchema, "const">>;
+
+export type EnumSchema = JSONSchema & Required<Pick<JSONSchema, "enum">>;
+
+export type NotSchema = JSONSchema & Required<Pick<JSONSchema, "not">>;
+
+export type AnyOfSchema = JSONSchema & Required<Pick<JSONSchema, "anyOf">>;
+
+export type AllOfSchema = JSONSchema & Required<Pick<JSONSchema, "allOf">>;
+
+export interface AltSchema extends JSONSchema {
+	type: SchemaType[];
+}
+
+export interface NullSchema extends BaseSchema {
+	type: "null";
+}
+
+export interface BooleanSchema extends JSONSchema {
+	type: "boolean";
+}
+
+export interface NumberSchema extends JSONSchema {
+	type: "number" | "integer";
+}
+
+export interface StringSchema extends JSONSchema {
+	type: "string";
+}
+
+export interface ArraySchema extends JSONSchema {
+	type: "array";
+}
+
+export interface ObjectSchema extends JSONSchema {
+	type: "object";
 }
 
 export interface ValidateSchemaCtx {
@@ -99,9 +99,10 @@ export interface ValidateSchemaCtx {
 	registry: Record<string, JSONSchema>;
 	path: (number | string)[];
 	errors: ErrorReport[];
+
 	/**
 	 * Used for cycle breaking & infinite recursion avoidance in `anyOf`,
-	 * `allOf`, `$ref` constructs etc.
+	 * `allOf`, `$ref` schemas.
 	 */
 	visited?: string[];
 }
