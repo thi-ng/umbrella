@@ -96,6 +96,11 @@ export interface ValidateSchemaCtx {
 	registry: Record<string, JSONSchema>;
 	path: (number | string)[];
 	errors: ErrorReport[];
+	/**
+	 * Used for cycle breaking & infinite recursion avoidance in `anyOf`,
+	 * `allOf`, `$ref` constructs etc.
+	 */
+	visited?: string[];
 }
 
 export interface ErrorReport {

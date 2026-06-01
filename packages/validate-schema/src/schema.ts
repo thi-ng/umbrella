@@ -124,9 +124,17 @@ const __schemaRef = (
 	schema: SchemaRef,
 	ctx: ValidateSchemaCtx
 ): boolean => {
+	if (!ctx.visited) ctx = { ...ctx, visited: [] };
 	const ref = ctx.base
 		? new URL(schema.$ref, ctx.base).toString()
 		: schema.$ref;
+	if (ctx.visited!.includes(ref)) {
+		throw new SchemaError(
+			`cycle detected: ${ctx.visited!.join(" -> ")} -> ${ref}`
+		);
+	} else {
+		ctx.visited!.push(ref);
+	}
 	const refSchema = ctx.registry[ref];
 	if (!refSchema)
 		throw new SchemaError(
