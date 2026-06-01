@@ -9,11 +9,22 @@ export type JSONSchema =
 	| EnumSchema
 	| SchemaRef;
 
+export type SchemaType =
+	| "null"
+	| "boolean"
+	| "number"
+	| "integer"
+	| "string"
+	| "array"
+	| "object";
+
 export interface BaseSchema {
 	$schema?: string;
 	$id?: string;
 	$anchor?: string;
 	$defs?: Record<string, JSONSchema>;
+	$ref?: string;
+	type?: SchemaType | SchemaType[];
 	title?: string;
 	description?: string;
 	not?: JSONSchema;
@@ -35,15 +46,7 @@ export interface EnumSchema extends BaseSchema {
 }
 
 export interface AltSchema extends BaseSchema {
-	type: (
-		| "null"
-		| "boolean"
-		| "number"
-		| "integer"
-		| "string"
-		| "array"
-		| "object"
-	)[];
+	type: SchemaType[];
 }
 
 export interface NullSchema extends BaseSchema {

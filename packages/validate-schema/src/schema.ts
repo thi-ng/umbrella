@@ -62,7 +62,7 @@ const __validateSchema = (
 		ctx = __mergeDefs(ctx, schema.$defs!);
 	}
 	if ("$ref" in schema) {
-		return __schemaRef(x, schema, ctx);
+		return __schemaRef(x, <SchemaRef>schema, ctx);
 	}
 	if ("enum" in schema) {
 		return __enum(x, schema, ctx);
@@ -73,10 +73,18 @@ const __validateSchema = (
 	if ("not" in schema) {
 		return __not(x, schema, ctx);
 	}
-	if (Array.isArray(schema.type)) {
-		return __altTypes(x, <AltSchema>schema, ctx);
+	if ("anyOf" in schema) {
+		return __anyOf(x, schema, ctx);
 	}
-	return __type(x, schema, ctx);
+	if ("allOf" in schema) {
+		return __allOf(x, schema, ctx);
+	}
+	if ("type" in schema) {
+		return Array.isArray(schema.type)
+			? __altTypes(x, <AltSchema>schema, ctx)
+			: __type(x, schema, ctx);
+	}
+	return true;
 };
 
 /** @internal */
@@ -171,6 +179,23 @@ const __not = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
 	if (__validateSchema(x, schema.not!, { ...ctx, errors: [] })) {
 		__addError(ctx, "expected schema to fail");
 		return false;
+	}
+	return true;
+};
+
+/** @internal */
+const __anyOf = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
+	for (let alt of schema.anyOf!) {
+		if (__validateSchema(x, alt, { ...ctx, errors: [] })) return true;
+	}
+	__addError(ctx, `expected to match one of the schema options`);
+	return false;
+};
+
+/** @internal */
+const __allOf = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) => {
+	for (let alt of schema.allOf!) {
+		if (!__validateSchema(x, alt, ctx)) return false;
 	}
 	return true;
 };

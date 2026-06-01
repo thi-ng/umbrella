@@ -7,6 +7,7 @@ import {
 	type ArraySchema,
 	type NumberSchema,
 	type ObjectSchema,
+	type StringSchema,
 } from "../src/index.js";
 
 const __error = (...errors: string[]) => ({
@@ -21,6 +22,13 @@ const __errorPath = (path: any[], msg: string) => ({
 
 describe("validateSchema", () => {
 	//
+	test("empty", () => {
+		expect(validateSchema(1, <any>{})).toEqual(OK);
+		expect(validateSchema(1, <any>{ not: {} })).toEqual(
+			__error("expected schema to fail")
+		);
+	});
+
 	test("null", () => {
 		expect(validateSchema(null, { type: "null" })).toEqual(OK);
 		expect(validateSchema(1, { type: "null" })).toEqual(
@@ -83,6 +91,19 @@ describe("validateSchema", () => {
 		).toEqual(__error("expected min. length 10"));
 		expect(validateSchema("abc", { type: "string", maxLength: 2 })).toEqual(
 			__error("expected max. length 2")
+		);
+	});
+	test("string (pattern)", () => {
+		const schema: StringSchema = { type: "string", pattern: "^[A-Z]+$" };
+		expect(validateSchema("ABC", schema)).toEqual(OK);
+		expect(validateSchema("", schema)).toEqual(
+			__error("expected pattern: ^[A-Z]+$")
+		);
+		expect(validateSchema("ABc", schema)).toEqual(
+			__error("expected pattern: ^[A-Z]+$")
+		);
+		expect(validateSchema(null, schema)).toEqual(
+			__error("expected string value")
 		);
 	});
 
@@ -207,6 +228,23 @@ describe("validateSchema", () => {
 	});
 
 	test("schema ref cycle breaker", () => {
+		expect(
+			validateSchema(
+				{ a: "a", b: "b" },
+				{
+					type: "object",
+					properties: {
+						a: { $ref: "#foo" },
+						b: { $ref: "#foo" },
+					},
+					$defs: {
+						foo: { $ref: "#bar", $anchor: "foo" },
+						bar: { $ref: "#/$defs/str", $anchor: "bar" },
+						str: { type: "string" },
+					},
+				}
+			)
+		).toEqual(OK);
 		expect(() =>
 			validateSchema(1, {
 				$ref: "#foo",
@@ -242,5 +280,37 @@ describe("validateSchema", () => {
 			valid: false,
 			errors: [{ path: [], msg: "expected schema to fail" }],
 		});
+	});
+
+	test("anyOf", () => {
+		// FIXME type
+		const schema: any = {
+			anyOf: [
+				{ type: "number", minimum: 0, maximum: 10 },
+				{ type: "number", minimum: 100, maximum: 200 },
+				{ type: "string" },
+			],
+		};
+		expect(validateSchema(1, schema)).toEqual(OK);
+		expect(validateSchema(101, schema)).toEqual(OK);
+		expect(validateSchema("1", schema)).toEqual(OK);
+		expect(validateSchema(99, schema)).toEqual(
+			__error("expected to match one of the schema options")
+		);
+	});
+
+	test("allOf", () => {
+		// FIXME type
+		const schema: any = {
+			allOf: [{ $ref: "#/$defs/num" }, { $ref: "#/$defs/range" }],
+			$defs: {
+				num: { type: "number" },
+				range: { type: "number", minimum: 0, maximum: 10 },
+			},
+		};
+		expect(validateSchema(1, schema)).toEqual(OK);
+		expect(validateSchema(11, schema)).toEqual(
+			__error("expected value in closed interval [0,10]")
+		);
 	});
 });
