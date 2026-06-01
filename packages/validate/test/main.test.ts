@@ -55,6 +55,14 @@ test("isMinMaxLength (string)", () => {
 	const fn = validator(isString(), isMinMaxLength(3, 6));
 	expect(fn("abc")).toBeTrue();
 	expect(fn("abcdef")).toBeTrue();
+	expect(() => fn("ab")).toThrow("length in [3,6] range");
+	expect(() => validator(isMinMaxLength(2, 2))("abc")).toThrow("length of 2");
+	expect(() => validator(isMinMaxLength(2, Infinity))("a")).toThrow(
+		"min. length 2"
+	);
+	expect(() => validator(isMinMaxLength(0, 2))("abc")).toThrow(
+		"max. length 2"
+	);
 });
 
 test("isArrayOf", () => {

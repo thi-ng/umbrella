@@ -514,12 +514,16 @@ export const isMinMaxLength = (
 	max: number,
 	msg?: ValidatorMsg
 ): Validator =>
-	min > -Infinity
+	min > 0
 		? max < Infinity
-			? {
-					valid: (x) => x?.length >= min && x?.length <= max,
-					msg: msg ?? __expected(`length in [${min},${max}] range`),
-				}
+			? min !== max
+				? {
+						valid: (x) => x?.length >= min && x?.length <= max,
+						msg:
+							msg ??
+							__expected(`length in [${min},${max}] range`),
+					}
+				: isLength(min)
 			: isMinLength(min)
 		: max < Infinity
 			? isMaxLength(max)
