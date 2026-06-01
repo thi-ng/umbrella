@@ -183,7 +183,7 @@ const __const = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) =>
 /** @internal */
 const __not = (x: any, schema: NotSchema, ctx: ValidateSchemaCtx) => {
 	if (__validateSchema(x, schema.not!, { ...ctx, errors: [] })) {
-		__addError(ctx, "expected schema to fail");
+		__addError(ctx, `expected value not ${__passSchema(schema.not)}`);
 		return false;
 	}
 	return true;
@@ -252,6 +252,10 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 		items,
 		minItems = prefixItems?.length ?? 0,
 		maxItems = items !== false ? Infinity : (prefixItems?.length ?? 0),
+		contains,
+		minContains = 1,
+		maxContains = Infinity,
+		uniqueItems,
 	} = schema;
 	const checks = [isArray(), isMinMaxLength(minItems, maxItems)];
 	let passed = __validate(ctx, checks, x);
@@ -274,8 +278,35 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 				}) && passed;
 		}
 	}
-	// TODO contains
-	// TODO uniqueItems
+	if (contains) {
+		let found = 0;
+		const $ctx = { ...ctx, errors: [] };
+		for (let i = 0, n = x.length; i < n; i++) {
+			$ctx.path = [...ctx.path, i];
+			if (__validateSchema(x[i], contains, $ctx)) {
+				found++;
+				if (found > maxContains) {
+					__addError(
+						ctx,
+						`expected max. ${maxContains} values ${__passSchema(contains)}`
+					);
+					passed = false;
+					break;
+				}
+			}
+		}
+		if (found < minContains) {
+			__addError(
+				ctx,
+				`expected min. ${minContains} values ${__passSchema(contains)}`
+			);
+			passed = false;
+		}
+	}
+	if (uniqueItems && new Set(x).size !== x.length) {
+		__addError(ctx, "expected unique items");
+		passed = false;
+	}
 	return passed;
 };
 
@@ -349,4 +380,8 @@ const __mergeDefs = (
 
 /** @internal */
 const __withPath = (ctx: ValidateSchemaCtx, msg: string) =>
-	msg + (ctx.path.length ? ` (key: ${ctx.path.join(".")})` : "");
+	msg + (ctx.path.length ? ` (path: ${ctx.path.join("/")})` : "");
+
+/** @internal */
+const __passSchema = (schema: JSONSchema) =>
+	`to pass schema: ${JSON.stringify(schema)}`;

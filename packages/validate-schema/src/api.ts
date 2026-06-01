@@ -50,7 +50,7 @@ export interface JSONSchema extends BaseSchema {
 	minItems?: number;
 	maxItems?: number;
 	uniqueItems?: boolean;
-	contains?: any;
+	contains?: JSONSchema;
 	minContains?: number;
 	maxContains?: number;
 

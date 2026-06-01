@@ -17,7 +17,7 @@ describe("validateSchema", () => {
 	test("empty", () => {
 		expect(validateSchema(1, <any>{})).toEqual(OK);
 		expect(validateSchema(1, <any>{ not: {} })).toEqual(
-			__error("expected schema to fail")
+			__error("expected value not to pass schema: {}")
 		);
 	});
 
@@ -131,6 +131,25 @@ describe("validateSchema", () => {
 
 		expect(validateSchema([1, 2, 3], { ...schema, items: false })).toEqual(
 			__error("expected length of 2")
+		);
+	});
+
+	test("array (contains & unique)", () => {
+		const schema: JSONSchema = {
+			type: "array",
+			contains: { type: "string" },
+			maxContains: 2,
+			uniqueItems: true,
+		};
+		expect(validateSchema([1, 2, "a"], schema)).toEqual(OK);
+		expect(validateSchema([1, 2], schema)).toEqual(
+			__error(`expected min. 1 values to pass schema: {"type":"string"}`)
+		);
+		expect(validateSchema(["a", "b", "c"], schema)).toEqual(
+			__error(`expected max. 2 values to pass schema: {"type":"string"}`)
+		);
+		expect(validateSchema(["a", "a"], schema)).toEqual(
+			__error("expected unique items")
 		);
 	});
 
@@ -332,12 +351,17 @@ describe("validateSchema", () => {
 	test("not", () => {
 		const schema: JSONSchema = {
 			not: { type: "number", minimum: 0 },
-			type: "number",
 		};
 		expect(validateSchema(-1, schema)).toEqual(OK);
+		expect(validateSchema("a", schema)).toEqual(OK);
 		expect(validateSchema(1, schema)).toEqual({
 			valid: false,
-			errors: [{ path: [], msg: "expected schema to fail" }],
+			errors: [
+				{
+					path: [],
+					msg: `expected value not to pass schema: {"type":"number","minimum":0}`,
+				},
+			],
 		});
 	});
 
