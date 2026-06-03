@@ -202,7 +202,8 @@ export const isNullish = (msg?: ValidatorMsg): Validator => ({
  */
 export const isEqual = (expected: any, msg?: ValidatorMsg): Validator => ({
 	valid: (x) => equiv(x, expected),
-	msg: msg ?? __expected(expected ?? "null"),
+	msg:
+		msg ?? __expected(`value to be: ${JSON.stringify(expected) ?? "null"}`),
 });
 
 export const isArray = (msg?: ValidatorMsg): Validator => ({
