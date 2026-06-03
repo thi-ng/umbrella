@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 215 standalone projects. LLM-free, human-made and
+> This is one of 216 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -170,7 +170,7 @@ For Node.js REPL:
 const sdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.76 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.78 KB
 
 ## Dependencies
 

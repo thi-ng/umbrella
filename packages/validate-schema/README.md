@@ -61,7 +61,7 @@ For Node.js REPL:
 const vs = await import("@thi.ng/validate-schema");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.12 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.82 KB
 
 ## Dependencies
 

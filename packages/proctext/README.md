@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 215 standalone projects. LLM-free, human-made and
+> This is one of 216 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -378,7 +378,7 @@ For Node.js REPL:
 const pro = await import("@thi.ng/proctext");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.34 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.33 KB
 
 ## Dependencies
 
