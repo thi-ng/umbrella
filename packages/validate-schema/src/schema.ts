@@ -314,6 +314,8 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 	const {
 		additionalProperties: additional,
+		dependentRequired,
+		dependentSchemas,
 		patternProperties,
 		properties,
 		propertyNames,
@@ -348,31 +350,55 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 			$patterns.set(new RegExp(pk), patternProperties[pk]);
 		}
 	}
-	nextProp: for (let k in x) {
+	for (let k in x) {
 		$ctx.path = [...ctx.path, k];
 		if (propertyNames && !__validateSchema(k, propertyNames, $ctx)) {
 			passed = false;
 			continue;
 		}
+		let isNameOk = false;
 		if (properties && k in properties) {
+			isNameOk = true;
 			passed = __validateSchema(x[k], properties[k], $ctx) && passed;
 			continue;
-		}
-		if ($patterns) {
+		} else if ($patterns) {
 			for (const [p, pschema] of $patterns) {
 				if (p.test(k)) {
+					isNameOk = true;
 					passed = __validateSchema(x[k], pschema, $ctx) && passed;
-					continue nextProp;
+					break;
 				}
 			}
 		}
-		if (additional === false) {
-			__addError($ctx, "property not allowed");
-			passed = false;
-			continue;
+		const depProps = dependentRequired?.[k];
+		if (depProps) {
+			passed =
+				__validate(
+					$ctx,
+					[
+						hasRequiredKeys(
+							depProps,
+							false,
+							false,
+							`required dependent properties: ${depProps}`
+						),
+					],
+					x
+				) && passed;
 		}
-		if (additional) {
-			passed = __validateSchema(x[k], additional, $ctx) && passed;
+		const depSchema = dependentSchemas?.[k];
+		if (depSchema) {
+			passed =
+				__validateSchema(x, { type: "object", ...depSchema }, ctx) &&
+				passed;
+		}
+		if (!isNameOk) {
+			if (additional === false) {
+				__addError($ctx, "property not allowed");
+				passed = false;
+			} else if (additional) {
+				passed = __validateSchema(x[k], additional, $ctx) && passed;
+			}
 		}
 	}
 	return passed;

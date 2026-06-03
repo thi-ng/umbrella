@@ -284,6 +284,39 @@ describe("validateSchema", () => {
 		);
 	});
 
+	test("object (dependentRequired)", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			dependentRequired: {
+				a: ["a1", "a2"],
+				b: ["c"],
+			},
+		};
+		expect(validateSchema({}, schema)).toEqual(OK);
+		expect(validateSchema({ a: 1, a1: 2, a2: 3 }, schema)).toEqual(OK);
+		expect(validateSchema({ b: 1, c: 2 }, schema)).toEqual(OK);
+		expect(validateSchema({ a: 1 }, schema)).toEqual(
+			__errorPath(["a"], "required dependent properties: a1,a2")
+		);
+	});
+
+	test("object (dependentSchemas)", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			dependentSchemas: {
+				a: { properties: { a1: { type: "string" } }, required: ["a1"] },
+			},
+		};
+		expect(validateSchema({}, schema)).toEqual(OK);
+		expect(validateSchema({ a: 1, a1: "2" }, schema)).toEqual(OK);
+		expect(validateSchema({ a: 1, a1: 1 }, schema)).toEqual(
+			__errorPath(["a1"], "expected string value")
+		);
+		expect(validateSchema({ a: 1 }, schema)).toEqual(
+			__error("expected keys: a1")
+		);
+	});
+
 	test("schema ref", () => {
 		const schema: JSONSchema = {
 			type: "object",
