@@ -24,6 +24,7 @@ import type {
 	AltSchema,
 	AnyOfSchema,
 	ArraySchema,
+	ConditionalSchema,
 	ConstSchema,
 	EnumSchema,
 	JSONSchema,
@@ -87,6 +88,9 @@ const __validateSchema = (
 	}
 	if ("allOf" in schema) {
 		return __allOf(x, <AllOfSchema>schema, ctx);
+	}
+	if ("if" in schema && !__ifThenElse(x, <ConditionalSchema>schema, ctx)) {
+		return false;
 	}
 	if ("type" in schema) {
 		return Array.isArray(schema.type)
@@ -202,6 +206,20 @@ const __anyOf = (x: any, schema: AnyOfSchema, ctx: ValidateSchemaCtx) => {
 const __allOf = (x: any, schema: AllOfSchema, ctx: ValidateSchemaCtx) => {
 	for (let alt of schema.allOf!) {
 		if (!__validateSchema(x, alt, ctx)) return false;
+	}
+	return true;
+};
+
+/** @internal */
+const __ifThenElse = (
+	x: any,
+	schema: ConditionalSchema,
+	ctx: ValidateSchemaCtx
+) => {
+	if (__validateSchema(x, schema.if, { ...ctx, errors: [] })) {
+		if (schema.then) return __validateSchema(x, schema.then, ctx);
+	} else if (schema.else) {
+		return __validateSchema(x, schema.else, ctx);
 	}
 	return true;
 };

@@ -474,4 +474,27 @@ describe("validateSchema", () => {
 			__error("expected value in closed interval [0,10]")
 		);
 	});
+
+	test("if-then-else", () => {
+		const schema: JSONSchema = {
+			if: { type: "array" },
+			then: { type: "array", items: { type: "number" } },
+			else: {
+				type: "object",
+				properties: { a: { type: "number" } },
+				required: ["a"],
+			},
+		};
+		expect(validateSchema([1, 2, 3], schema)).toEqual(OK);
+		expect(validateSchema({ a: 1 }, schema)).toEqual(OK);
+		expect(validateSchema("a", schema)).toEqual(
+			__error("expected object value")
+		);
+		expect(validateSchema(["a"], schema)).toEqual(
+			__errorPath([0], "expected number value")
+		);
+		expect(validateSchema({ a: "1" }, schema)).toEqual(
+			__errorPath(["a"], "expected number value")
+		);
+	});
 });

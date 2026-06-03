@@ -32,6 +32,10 @@ export interface JSONSchema extends BaseSchema {
 	anyOf?: JSONSchema[];
 	oneOf?: JSONSchema[];
 
+	if?: JSONSchema;
+	then?: JSONSchema;
+	else?: JSONSchema;
+
 	const?: any;
 	enum?: any[];
 
@@ -76,6 +80,9 @@ export type NotSchema = JSONSchema & Required<Pick<JSONSchema, "not">>;
 export type AnyOfSchema = JSONSchema & Required<Pick<JSONSchema, "anyOf">>;
 
 export type AllOfSchema = JSONSchema & Required<Pick<JSONSchema, "allOf">>;
+
+export type ConditionalSchema = JSONSchema &
+	Required<Pick<JSONSchema, "if" | "then"> | Pick<JSONSchema, "if" | "else">>;
 
 export interface AltSchema extends JSONSchema {
 	type: SchemaType[];
