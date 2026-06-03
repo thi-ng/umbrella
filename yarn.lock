@@ -3606,10 +3606,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@petamoriken/float16@npm:^3.4.7":
-  version: 3.7.1
-  resolution: "@petamoriken/float16@npm:3.7.1"
-  checksum: 10/378ef3b1d6ab5ed08182afe938c55d13b0f30ec4d9a27e6c0701bd19aed71fa09601237f75e1db88bbab453da036cfaa59e80e8583e7e6187bd3bc30a67d30c9
+"@petamoriken/float16@npm:^3.9.3":
+  version: 3.9.3
+  resolution: "@petamoriken/float16@npm:3.9.3"
+  checksum: 10/8d8a3a2b79fce45bcf00e9612e46531d261fb55edc655205415ae4629c8dc2bb21a02811250e2af1f6000e6d7ebc868b3d15a16db4a7719e95b9de589ec05f48
   languageName: node
   linkType: hard
 
@@ -5861,7 +5861,7 @@ __metadata:
     "@thi.ng/math": "npm:^5.15.14"
     "@thi.ng/pixel": "npm:^7.5.34"
     esbuild: "npm:^0.28.0"
-    geotiff: "npm:2.1.4-beta.1"
+    geotiff: "npm:3.0.5"
     typedoc: "npm:^0.28.19"
     typescript: "npm:^6.0.3"
   languageName: unknown
@@ -7579,19 +7579,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"geotiff@npm:2.1.4-beta.1":
-  version: 2.1.4-beta.1
-  resolution: "geotiff@npm:2.1.4-beta.1"
+"geotiff@npm:3.0.5":
+  version: 3.0.5
+  resolution: "geotiff@npm:3.0.5"
   dependencies:
-    "@petamoriken/float16": "npm:^3.4.7"
+    "@petamoriken/float16": "npm:^3.9.3"
     lerc: "npm:^3.0.0"
     pako: "npm:^2.0.4"
     parse-headers: "npm:^2.0.2"
     quick-lru: "npm:^6.1.1"
     web-worker: "npm:^1.5.0"
     xml-utils: "npm:^1.10.2"
-    zstddec: "npm:^0.2.0-alpha.3"
-  checksum: 10/4f0e0f151c662f9f7ed837bae1a091c50a8c5caf05e8f7cb97519f6a914235a277b14b45e4b7279772e8b53950e9c0fddfbc659dda41f7fb4d7a5b41364fa248
+    zstddec: "npm:^0.2.0"
+  checksum: 10/3ad442b544732d8730b6e231603850899b0dbd6c000433b4cc8f734b244081e300429c71ac9e013876d5892182d8c2e228eb00468b7b05c85174ca3080e1aa08
   languageName: node
   linkType: hard
 
@@ -8728,9 +8728,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zstddec@npm:^0.2.0-alpha.3":
-  version: 0.2.0-alpha.3
-  resolution: "zstddec@npm:0.2.0-alpha.3"
-  checksum: 10/25ed703af9c4bda8fe665e402b289f0ba61d361cc4ab31e7427092ee596894eb826d6c75f10ddf04c9ff708d17d14d5856c5d692d810200b714a4bb70c8639ec
+"zstddec@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "zstddec@npm:0.2.0"
+  checksum: 10/d8839aa683f6d7d8874a520d1848ad7540394bb6bc9f3586c24bb7bc1cd90dc7789a576a23f70db7272adc286afcc35d3676f478ced734dfdc28828f8342d4c4
   languageName: node
   linkType: hard
