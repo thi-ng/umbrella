@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CustomError } from "@thi.ng/errors";
 import { defError } from "@thi.ng/errors/deferror";
 import type { Validator } from "@thi.ng/validate";
