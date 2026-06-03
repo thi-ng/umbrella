@@ -24,6 +24,39 @@ export const readJSONAsync = async <T = any>(
 ): Promise<T> => JSON.parse(await readTextAsync(path, logger));
 
 /**
+ * Similar to {@link readJSON}, reads JSON file with comments.
+ *
+ * @remarks
+ * **IMPORTANT:** Only `//` single line comments (with optional leading
+ * whitespace) are supported! This is NOT a full JSONC parser.
+ *
+ * @param path
+ * @param logger
+ */
+export const readJSONC = <T = any>(path: string, logger?: ILogger): T =>
+	__parseJSONC(readText(path, logger));
+
+/**
+ * Async version of {@link readJSONC}.
+ *
+ * @param path
+ * @param logger
+ */
+export const readJSONCAsync = async <T = any>(
+	path: string,
+	logger?: ILogger
+): Promise<T> => __parseJSONC(await readTextAsync(path, logger));
+
+/** @internal */
+const __parseJSONC = (src: string) =>
+	JSON.parse(
+		src
+			.split(/\r?\n/g)
+			.filter((x) => !/^\s*\/\//.test(x))
+			.join("\n")
+	);
+
+/**
  * Serializes `obj` to JSON and writes result to UTF-8 file `path`. See
  * {@link writeText} for more details.
  *
