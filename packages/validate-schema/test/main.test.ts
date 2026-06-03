@@ -85,6 +85,7 @@ describe("validateSchema", () => {
 			__error("expected max. length 2")
 		);
 	});
+
 	test("string (pattern)", () => {
 		const schema: JSONSchema = { type: "string", pattern: "^[A-Z]+$" };
 		expect(validateSchema("ABC", schema)).toEqual(OK);
@@ -108,6 +109,25 @@ describe("validateSchema", () => {
 		expect(validateSchema(null, schema)).toEqual(OK);
 		expect(validateSchema([], schema)).toEqual(
 			__error("value type must be one of: number,string,null")
+		);
+	});
+
+	test("enum", () => {
+		const schema: JSONSchema = { enum: ["a", "b"] };
+		expect(validateSchema("a", schema)).toEqual(OK);
+		expect(validateSchema("c", schema)).toEqual(
+			__error("expected value to be one of: a, b")
+		);
+		expect(validateSchema(1, schema)).toEqual(
+			__error("expected value to be one of: a, b")
+		);
+	});
+
+	test("const", () => {
+		const schema: JSONSchema = { const: "a" };
+		expect(validateSchema("a", schema)).toEqual(OK);
+		expect(validateSchema("b", schema)).toEqual(
+			__error(`expected value to be: "a"`)
 		);
 	});
 
@@ -235,6 +255,33 @@ describe("validateSchema", () => {
 		expect(
 			validateSchema({ b: 1 }, { ...schema, required: ["a"] })
 		).toEqual(__error("expected keys: a"));
+	});
+
+	test("object (min/maxProperties)", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			minProperties: 2,
+			maxProperties: 3,
+		};
+		expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(OK);
+		expect(validateSchema({ a: 1, b: 2, c: 3 }, schema)).toEqual(OK);
+		expect(validateSchema({ a: 1, b: 2, c: 3, d: 4 }, schema)).toEqual(
+			__error("expected 2-3 properties")
+		);
+		expect(
+			validateSchema({ a: 1 }, { ...schema, maxProperties: 2 })
+		).toEqual(__error("expected 2 properties"));
+	});
+
+	test("object (propertyNames)", () => {
+		const schema: JSONSchema = {
+			type: "object",
+			propertyNames: { type: "string", minLength: 3, maxLength: 4 },
+		};
+		expect(validateSchema({ abc: 1, defg: 2 }, schema)).toEqual(OK);
+		expect(validateSchema({ ab: 1 }, schema)).toEqual(
+			__errorPath(["ab"], "expected length in [3,4] range")
+		);
 	});
 
 	test("schema ref", () => {

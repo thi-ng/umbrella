@@ -54,9 +54,11 @@ export interface JSONSchema extends BaseSchema {
 	minContains?: number;
 	maxContains?: number;
 
-	properties?: Record<string, JSONSchema>;
 	additionalProperties?: JSONSchema | false;
+	minProperties?: number;
+	maxProperties?: number;
 	patternProperties?: Record<string, JSONSchema>;
+	properties?: Record<string, JSONSchema>;
 	propertyNames?: JSONSchema;
 	required?: string[];
 }

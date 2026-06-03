@@ -316,11 +316,26 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 		additionalProperties: additional,
 		patternProperties,
 		properties,
+		propertyNames,
 		required,
+		minProperties: min = 0,
+		maxProperties: max = Infinity,
 	} = schema;
 	const checks = [isObject()];
 	if (required && required.length) {
 		checks.push(hasRequiredKeys(required, false, false));
+	}
+	if (min > 0 || max < Infinity) {
+		checks.push({
+			valid: (x) => {
+				const n = Object.keys(x).length;
+				return n >= min && n <= max;
+			},
+			msg:
+				min !== max
+					? `expected ${min}-${max} properties`
+					: `expected ${min} properties`,
+		});
 	}
 	let passed = __validate(ctx, checks, x);
 	if (!passed) return false;
@@ -335,6 +350,10 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 	}
 	nextProp: for (let k in x) {
 		$ctx.path = [...ctx.path, k];
+		if (propertyNames && !__validateSchema(k, propertyNames, $ctx)) {
+			passed = false;
+			continue;
+		}
 		if (properties && k in properties) {
 			passed = __validateSchema(x[k], properties[k], $ctx) && passed;
 			continue;
