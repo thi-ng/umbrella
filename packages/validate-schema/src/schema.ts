@@ -49,10 +49,15 @@ export const validateSchema = (
 		registry: {},
 		path: [],
 		errors: [],
+		defaults: [],
 		...ctx,
 	};
 	$ctx.registry[$ctx.base + "#"] = schema;
-	return { valid: __validateSchema(x, schema, $ctx), errors: $ctx.errors };
+	return {
+		valid: __validateSchema(x, schema, $ctx),
+		errors: $ctx.errors,
+		defaults: $ctx.defaults,
+	};
 };
 
 /** @internal */
@@ -73,8 +78,11 @@ const __validateSchema = (
 
 	// reset cycle breaker (only disallow direct $ref chains, without any
 	// concrete intermediate schemas)
-	if (ctx.visited) ctx.visited = [];
+	if (ctx.visited) ctx.visited.length = 0;
 
+	if ("default" in schema) {
+		ctx.defaults.push({ path: ctx.path.slice(), value: schema.default });
+	}
 	if ("enum" in schema) {
 		return __enum(x, <EnumSchema>schema, ctx);
 	}
@@ -164,7 +172,7 @@ const __schemaRef = (
 
 /** @internal */
 const __altTypes = (x: any, schema: AltSchema, ctx: ValidateSchemaCtx) => {
-	for (let type of schema.type) {
+	for (const type of schema.type) {
 		if (
 			__validateSchema(x, <JSONSchema>{ ...schema, type }, {
 				...ctx,
@@ -196,7 +204,7 @@ const __not = (x: any, schema: NotSchema, ctx: ValidateSchemaCtx) => {
 
 /** @internal */
 const __anyOf = (x: any, schema: AnyOfSchema, ctx: ValidateSchemaCtx) => {
-	for (let alt of schema.anyOf!) {
+	for (const alt of schema.anyOf!) {
 		if (__validateSchema(x, alt, { ...ctx, errors: [] })) return true;
 	}
 	__addError(ctx, `expected to match one of the schema options`);
@@ -205,7 +213,7 @@ const __anyOf = (x: any, schema: AnyOfSchema, ctx: ValidateSchemaCtx) => {
 
 /** @internal */
 const __allOf = (x: any, schema: AllOfSchema, ctx: ValidateSchemaCtx) => {
-	for (let alt of schema.allOf!) {
+	for (const alt of schema.allOf!) {
 		if (!__validateSchema(x, alt, ctx)) return false;
 	}
 	return true;
@@ -276,9 +284,8 @@ const __array = (x: any, schema: ArraySchema, ctx: ValidateSchemaCtx) => {
 		maxContains = Infinity,
 		uniqueItems,
 	} = schema;
-	const checks = [isArray(), isMinMaxLength(minItems, maxItems)];
-	let passed = __validate(ctx, checks, x);
-	if (!passed) return false;
+	if (!__validate(ctx, [isArray()], x)) return false;
+	let passed = __validate(ctx, [isMinMaxLength(minItems, maxItems)], x);
 	if (prefixItems) {
 		for (let i = 0; i < prefixItems.length; i++) {
 			passed =
@@ -342,7 +349,8 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 		minProperties: min = 0,
 		maxProperties: max = Infinity,
 	} = schema;
-	const checks = [isObject()];
+	if (!__validate(ctx, [isObject()], x)) return false;
+	const checks: Validator[] = [];
 	if (required && required.length) {
 		checks.push(hasRequiredKeys(required, false, false));
 	}
@@ -358,9 +366,7 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 					: `expected ${min} properties`,
 		});
 	}
-	let passed = __validate(ctx, checks, x);
-	if (!passed) return false;
-
+	let passed = checks.length ? __validate(ctx, checks, x) : true;
 	const $ctx = { ...ctx };
 	let $patterns: Map<RegExp, JSONSchema> | undefined;
 	if (patternProperties) {
@@ -369,9 +375,12 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 			$patterns.set(new RegExp(pk), patternProperties[pk]);
 		}
 	}
-	for (let k in x) {
+	for (const k in x) {
 		$ctx.path = [...ctx.path, k];
-		if (propertyNames && !__validateSchema(k, propertyNames, $ctx)) {
+		if (
+			propertyNames &&
+			!__validateSchema(k, { ...propertyNames, type: "string" }, $ctx)
+		) {
 			passed = false;
 			continue;
 		}
@@ -419,6 +428,11 @@ const __object = (x: any, schema: ObjectSchema, ctx: ValidateSchemaCtx) => {
 				passed = __validateSchema(x[k], additional, $ctx) && passed;
 			}
 		}
+	}
+	for (const k in properties ?? {}) {
+		if (k in x) continue;
+		$ctx.path = [...ctx.path, k];
+		__validateSchema({}, properties![k], { ...$ctx, errors: [] });
 	}
 	return passed;
 };

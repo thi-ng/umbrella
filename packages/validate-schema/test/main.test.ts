@@ -5,11 +5,17 @@ import { OK, validateSchema, type JSONSchema } from "../src/index.js";
 const __error = (...errors: string[]) => ({
 	valid: false,
 	errors: errors.map((msg) => ({ path: [], msg })),
+	defaults: [],
 });
 
-const __errorPath = (path: any[], msg: string) => ({
+const __errorPaths = (...paths: [any[], string][]) => ({
 	valid: false,
-	errors: [{ path, msg }],
+	errors: paths.map(([path, msg]) => ({ path, msg })),
+	defaults: [],
+});
+
+const __defaults = (...paths: [any[], any][]) => ({
+	defaults: paths.map(([path, value]) => ({ path, value })),
 });
 
 describe("validateSchema", () => {
@@ -140,13 +146,16 @@ describe("validateSchema", () => {
 		expect(validateSchema([1, 2, "3"], schema)).toEqual(OK);
 		expect(validateSchema([1, 2], schema)).toEqual(OK);
 		expect(validateSchema([1, "2"], schema)).toEqual(
-			__errorPath([1], "expected number value")
+			__errorPaths([[1], "expected number value"])
 		);
 		expect(validateSchema([1], schema)).toEqual(
-			__error("expected min. length 2")
+			__errorPaths(
+				[[], "expected min. length 2"],
+				[[1], "expected number value"]
+			)
 		);
 		expect(validateSchema([1, 2, 3], schema)).toEqual(
-			__errorPath([2], "expected string value")
+			__errorPaths([[2], "expected string value"])
 		);
 
 		expect(validateSchema([1, 2, 3], { ...schema, items: false })).toEqual(
@@ -173,148 +182,163 @@ describe("validateSchema", () => {
 		);
 	});
 
-	test("object", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			properties: {
-				a: { type: "number" },
-				b: { type: "array", items: { type: "string" } },
-			},
-		};
-		expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1 }, schema)).toEqual(OK);
-		expect(validateSchema({ a: "a" }, schema)).toEqual(
-			__errorPath(["a"], "expected number value")
-		);
-		expect(validateSchema({ b: 2 }, schema)).toEqual(
-			__errorPath(["b"], "expected array value")
-		);
-		expect(validateSchema({ b: [1, 2] }, schema)).toEqual({
-			valid: false,
-			errors: [
-				{ path: ["b", 0], msg: "expected string value" },
-				{ path: ["b", 1], msg: "expected string value" },
-			],
+	describe("object", () => {
+		test("basic", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				properties: {
+					a: { type: "number" },
+					b: { type: "array", items: { type: "string" } },
+				},
+			};
+			expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(
+				OK
+			);
+			expect(validateSchema({ a: 1 }, schema)).toEqual(OK);
+			expect(validateSchema({ a: "a" }, schema)).toEqual(
+				__errorPaths([["a"], "expected number value"])
+			);
+			expect(validateSchema({ b: 2 }, schema)).toEqual(
+				__errorPaths([["b"], "expected array value"])
+			);
+			expect(validateSchema({ b: [1, 2] }, schema)).toEqual(
+				__errorPaths(
+					[["b", 0], "expected string value"],
+					[["b", 1], "expected string value"]
+				)
+			);
 		});
-	});
 
-	test("object required", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			properties: {
-				a: { type: "number" },
-				b: { type: "array", items: { type: "string" } },
-			},
-			required: ["a"],
-		};
-		expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(OK);
-		expect(validateSchema({ a: "a" }, schema)).toEqual(
-			__errorPath(["a"], "expected number value")
-		);
-		expect(validateSchema({ b: 1 }, schema)).toEqual(
-			__error("expected keys: a")
-		);
-		expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(
-			__errorPath(["b"], "expected array value")
-		);
-		expect(validateSchema({ a: 1, b: [1, 2] }, schema)).toEqual({
-			valid: false,
-			errors: [
-				{ path: ["b", 0], msg: "expected string value" },
-				{ path: ["b", 1], msg: "expected string value" },
-			],
+		test("required", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				properties: {
+					a: { type: "number" },
+					b: { type: "array", items: { type: "string" } },
+				},
+				required: ["a"],
+			};
+			expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(
+				OK
+			);
+			expect(validateSchema({ a: "a" }, schema)).toEqual(
+				__errorPaths([["a"], "expected number value"])
+			);
+			expect(validateSchema({ b: 1 }, schema)).toEqual(
+				__errorPaths(
+					[[], "expected keys: a"],
+					[["b"], "expected array value"]
+				)
+			);
+			expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(
+				__errorPaths([["b"], "expected array value"])
+			);
+			expect(validateSchema({ a: 1, b: [1, 2] }, schema)).toEqual(
+				__errorPaths(
+					[["b", 0], "expected string value"],
+					[["b", 1], "expected string value"]
+				)
+			);
 		});
-	});
 
-	test("object patternProperties", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			patternProperties: { "^id\\d+": { type: "number" } },
-			additionalProperties: false,
-		};
-		expect(validateSchema({ id1: 1 }, schema)).toEqual(OK);
-		expect(validateSchema({ id1: "1" }, schema)).toEqual(
-			__errorPath(["id1"], "expected number value")
-		);
-		expect(validateSchema({ a: 1 }, schema)).toEqual(
-			__errorPath(["a"], "property not allowed")
-		);
-	});
+		test("patternProperties", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				patternProperties: { "^id\\d+": { type: "number" } },
+				additionalProperties: false,
+			};
+			expect(validateSchema({ id1: 1 }, schema)).toEqual(OK);
+			expect(validateSchema({ id1: "1" }, schema)).toEqual(
+				__errorPaths([["id1"], "expected number value"])
+			);
+			expect(validateSchema({ a: 1 }, schema)).toEqual(
+				__errorPaths([["a"], "property not allowed"])
+			);
+		});
 
-	test("object additionalProperties", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			properties: { a: { type: "number" } },
-			additionalProperties: { type: "boolean" },
-		};
-		expect(validateSchema({ a: 1, b: false }, schema)).toEqual(OK);
-		expect(validateSchema({ b: false }, schema)).toEqual(OK);
-		expect(validateSchema({ b: 1 }, schema)).toEqual(
-			__errorPath(["b"], "expected boolean value")
-		);
-		expect(
-			validateSchema({ b: 1 }, { ...schema, required: ["a"] })
-		).toEqual(__error("expected keys: a"));
-	});
+		test("additionalProperties", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				properties: { a: { type: "number" } },
+				additionalProperties: { type: "boolean" },
+			};
+			expect(validateSchema({ a: 1, b: false }, schema)).toEqual(OK);
+			expect(validateSchema({ b: false }, schema)).toEqual(OK);
+			expect(validateSchema({ b: 1 }, schema)).toEqual(
+				__errorPaths([["b"], "expected boolean value"])
+			);
+			expect(
+				validateSchema({ b: 1 }, { ...schema, required: ["a"] })
+			).toEqual(
+				__errorPaths(
+					[[], "expected keys: a"],
+					[["b"], "expected boolean value"]
+				)
+			);
+		});
 
-	test("object (min/maxProperties)", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			minProperties: 2,
-			maxProperties: 3,
-		};
-		expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1, b: 2, c: 3 }, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1, b: 2, c: 3, d: 4 }, schema)).toEqual(
-			__error("expected 2-3 properties")
-		);
-		expect(
-			validateSchema({ a: 1 }, { ...schema, maxProperties: 2 })
-		).toEqual(__error("expected 2 properties"));
-	});
+		test("min/maxProperties", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				minProperties: 2,
+				maxProperties: 3,
+			};
+			expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(OK);
+			expect(validateSchema({ a: 1, b: 2, c: 3 }, schema)).toEqual(OK);
+			expect(validateSchema({ a: 1, b: 2, c: 3, d: 4 }, schema)).toEqual(
+				__error("expected 2-3 properties")
+			);
+			expect(
+				validateSchema({ a: 1 }, { ...schema, maxProperties: 2 })
+			).toEqual(__error("expected 2 properties"));
+		});
 
-	test("object (propertyNames)", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			propertyNames: { type: "string", minLength: 3, maxLength: 4 },
-		};
-		expect(validateSchema({ abc: 1, defg: 2 }, schema)).toEqual(OK);
-		expect(validateSchema({ ab: 1 }, schema)).toEqual(
-			__errorPath(["ab"], "expected length in [3,4] range")
-		);
-	});
+		test("propertyNames", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				propertyNames: { minLength: 3, maxLength: 4 },
+			};
+			expect(validateSchema({ abc: 1, defg: 2 }, schema)).toEqual(OK);
+			expect(validateSchema({ ab: 1 }, schema)).toEqual(
+				__errorPaths([["ab"], "expected length in [3,4] range"])
+			);
+		});
 
-	test("object (dependentRequired)", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			dependentRequired: {
-				a: ["a1", "a2"],
-				b: ["c"],
-			},
-		};
-		expect(validateSchema({}, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1, a1: 2, a2: 3 }, schema)).toEqual(OK);
-		expect(validateSchema({ b: 1, c: 2 }, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1 }, schema)).toEqual(
-			__errorPath(["a"], "required dependent properties: a1,a2")
-		);
-	});
+		test("dependentRequired", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				dependentRequired: {
+					a: ["a1", "a2"],
+					b: ["c"],
+				},
+			};
+			expect(validateSchema({}, schema)).toEqual(OK);
+			expect(validateSchema({ a: 1, a1: 2, a2: 3 }, schema)).toEqual(OK);
+			expect(validateSchema({ b: 1, c: 2 }, schema)).toEqual(OK);
+			expect(validateSchema({ a: 1 }, schema)).toEqual(
+				__errorPaths([["a"], "required dependent properties: a1,a2"])
+			);
+		});
 
-	test("object (dependentSchemas)", () => {
-		const schema: JSONSchema = {
-			type: "object",
-			dependentSchemas: {
-				a: { properties: { a1: { type: "string" } }, required: ["a1"] },
-			},
-		};
-		expect(validateSchema({}, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1, a1: "2" }, schema)).toEqual(OK);
-		expect(validateSchema({ a: 1, a1: 1 }, schema)).toEqual(
-			__errorPath(["a1"], "expected string value")
-		);
-		expect(validateSchema({ a: 1 }, schema)).toEqual(
-			__error("expected keys: a1")
-		);
+		test("dependentSchemas", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				dependentSchemas: {
+					a: {
+						properties: { a1: { type: "string" } },
+						required: ["a1"],
+					},
+				},
+			};
+			expect(validateSchema({}, schema)).toEqual(OK);
+			expect(validateSchema({ a: 1, a1: "2" }, schema)).toEqual(OK);
+			expect(validateSchema({ a: 1, a1: 1 }, schema)).toEqual(
+				__errorPaths([["a1"], "expected string value"])
+			);
+			expect(validateSchema({ a: 1 }, schema)).toEqual(
+				__error("expected keys: a1")
+			);
+		});
 	});
 
 	test("schema ref", () => {
@@ -344,21 +368,19 @@ describe("validateSchema", () => {
 				base: "https://schema.thi.ng/",
 			})
 		).toEqual(OK);
-		expect(validateSchema({ d: [1] }, schema)).toEqual({
-			valid: false,
-			errors: [{ path: ["d", 0], msg: "expected string value" }],
-		});
+		expect(validateSchema({ d: [1] }, schema)).toEqual(
+			__errorPaths([["d", 0], "expected string value"])
+		);
 		expect(
 			validateSchema({ a: "", b: 2, c: 3, d: ["d"], e: "e" }, schema)
-		).toEqual({
-			valid: false,
-			errors: [
-				{ path: ["a"], msg: "expected number value" },
-				{ path: ["b"], msg: "expected string value" },
-				{ path: ["c"], msg: "expected string value" },
-				{ path: ["e"], msg: "expected number value" },
-			],
-		});
+		).toEqual(
+			__errorPaths(
+				[["a"], "expected number value"],
+				[["b"], "expected string value"],
+				[["c"], "expected string value"],
+				[["e"], "expected number value"]
+			)
+		);
 	});
 
 	test("schema ref cycle breaker", () => {
@@ -434,15 +456,11 @@ describe("validateSchema", () => {
 		};
 		expect(validateSchema(-1, schema)).toEqual(OK);
 		expect(validateSchema("a", schema)).toEqual(OK);
-		expect(validateSchema(1, schema)).toEqual({
-			valid: false,
-			errors: [
-				{
-					path: [],
-					msg: `expected value not to pass schema: {"type":"number","minimum":0}`,
-				},
-			],
-		});
+		expect(validateSchema(1, schema)).toEqual(
+			__error(
+				`expected value not to pass schema: {"type":"number","minimum":0}`
+			)
+		);
 	});
 
 	test("anyOf", () => {
@@ -491,10 +509,60 @@ describe("validateSchema", () => {
 			__error("expected object value")
 		);
 		expect(validateSchema(["a"], schema)).toEqual(
-			__errorPath([0], "expected number value")
+			__errorPaths([[0], "expected number value"])
 		);
 		expect(validateSchema({ a: "1" }, schema)).toEqual(
-			__errorPath(["a"], "expected number value")
+			__errorPaths([["a"], "expected number value"])
 		);
+	});
+
+	describe("defaults", () => {
+		test("array", () => {
+			const schema: JSONSchema = {
+				type: "array",
+				prefixItems: [
+					{ type: "number", default: 1 },
+					{ type: "string", default: "b" },
+				],
+				items: { type: "string", default: "ok" },
+			};
+			expect(validateSchema([], schema)).toEqual({
+				...__errorPaths(
+					[[], "expected min. length 2"],
+					[[0], "expected number value"],
+					[[1], "expected string value"]
+				),
+				...__defaults([[0], 1], [[1], "b"]),
+			});
+		});
+
+		test("object", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				properties: {
+					a: { default: 1 },
+					b: { $ref: "#b" },
+					c: {
+						type: "object",
+						properties: {
+							c1: { default: 3 },
+							c2: { default: 4, $ref: "#b" },
+						},
+					},
+				},
+				$defs: {
+					b: { $anchor: "b", default: 2 },
+				},
+			};
+			expect(validateSchema({}, schema)).toEqual({
+				...OK,
+				...__defaults(
+					[["a"], 1],
+					[["b"], 2],
+					[["c", "c1"], 3],
+					[["c", "c2"], 2]
+				),
+			});
+		});
 	});
 });

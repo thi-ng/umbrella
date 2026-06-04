@@ -39,6 +39,7 @@ export interface JSONSchema extends BaseSchema {
 
 	const?: any;
 	enum?: any[];
+	default?: any;
 
 	multipleOf?: number;
 	minimum?: number;
@@ -118,6 +119,7 @@ export interface ValidateSchemaCtx {
 	registry: Record<string, JSONSchema>;
 	path: (number | string)[];
 	errors: ErrorReport[];
+	defaults: DefaultValue[];
 
 	/**
 	 * Used for cycle breaking & infinite recursion avoidance in `anyOf`,
@@ -131,4 +133,9 @@ export interface ErrorReport {
 	msg: string;
 }
 
-export const OK = Object.freeze({ valid: true, errors: [] });
+export interface DefaultValue {
+	path: (number | string)[];
+	value: any;
+}
+
+export const OK = Object.freeze({ valid: true, errors: [], defaults: [] });
