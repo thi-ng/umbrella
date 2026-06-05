@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-23T12:49:00Z
+- **Last updated**: 2026-06-05T18:32:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.4.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api@2.4.32/packages/wasm-api) (2026-06-05)
+
+#### 🧪 Tests
+
+- update zig allocator handling in tests ([993e735](https://codeberg.org/thi.ng/umbrella/commit/993e735))
 
 ### [2.4.16](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api@2.4.16/packages/wasm-api) (2026-02-07)
 

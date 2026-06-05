@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-23T12:49:00Z
+- **Last updated**: 2026-06-05T18:32:16Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/file-io@2.3.0/packages/file-io) (2026-06-05)
+
+#### 🚀 Features
+
+- add `readJSONC()`/`readJSONCAsync()` ([c7edf9a](https://codeberg.org/thi.ng/umbrella/commit/c7edf9a))
 
 ### [2.2.20](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/file-io@2.2.20/packages/file-io) (2025-12-03)
 

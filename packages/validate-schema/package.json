@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/validate-schema",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "JSON schema validation layer for @thi.ng/validate",
 	"type": "module",
 	"module": "./index.js",
@@ -40,8 +40,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.6.14",
-		"@thi.ng/validate": "^0.3.6"
+		"@thi.ng/errors": "^2.6.15",
+		"@thi.ng/validate": "^0.4.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.0",

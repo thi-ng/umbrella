@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-05-23T12:49:00Z
+- **Last updated**: 2026-06-05T18:32:16Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.10.0/packages/checks) (2026-06-05)
+
+#### 🚀 Features
+
+- add `isMultipleOf()` predicate ([fb048cf](https://codeberg.org/thi.ng/umbrella/commit/fb048cf))
 
 ## [3.9.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.9.0/packages/checks) (2026-04-26)
 
