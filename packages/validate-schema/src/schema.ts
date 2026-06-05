@@ -36,6 +36,7 @@ import type {
 	SchemaRef,
 	StringSchema,
 	ValidateSchemaCtx,
+	ValidationResult,
 } from "./api.js";
 
 export const SchemaError = defError(() => `schema error`);
@@ -44,7 +45,7 @@ export const validateSchema = (
 	x: any,
 	schema: JSONSchema,
 	ctx?: Partial<ValidateSchemaCtx>
-) => {
+): ValidationResult => {
 	const $ctx = {
 		base: "",
 		registry: {},

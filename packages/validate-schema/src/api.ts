@@ -123,27 +123,37 @@ export interface ObjectSchema extends JSONSchema {
 	type: "object";
 }
 
+export type Path = (number | string)[];
+
+export interface ValidationResult {
+	valid: boolean;
+	errors: ErrorReport[];
+	defaults: DefaultValue[];
+}
+
 export interface ValidateSchemaCtx {
 	base: string;
 	registry: Record<string, JSONSchema>;
-	path: (number | string)[];
+	path: Path;
 	errors: ErrorReport[];
 	defaults: DefaultValue[];
 
 	/**
 	 * Used for cycle breaking & infinite recursion avoidance in `anyOf`,
 	 * `allOf`, `$ref` schemas.
+	 *
+	 * @internal
 	 */
 	visited?: string[];
 }
 
 export interface ErrorReport {
-	path: (number | string)[];
+	path: Path;
 	msg: string;
 }
 
 export interface DefaultValue {
-	path: (number | string)[];
+	path: Path;
 	value: any;
 }
 
