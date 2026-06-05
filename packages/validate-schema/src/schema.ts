@@ -28,6 +28,7 @@ import type {
 	ConditionalSchema,
 	ConstSchema,
 	EnumSchema,
+	FormatPreset,
 	JSONSchema,
 	NotSchema,
 	NumberSchema,
@@ -260,14 +261,34 @@ const __number = (x: any, schema: NumberSchema, ctx: ValidateSchemaCtx) => {
 };
 
 /** @internal */
+const FORMATS: Record<FormatPreset, RegExp> = {
+	date: /\d{4}-(0\d|1[012])-([012]\d|30|31)/,
+	"date-time":
+		/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,3})?)?(Z|([+-]\d{2}:\d{2}))/,
+	email: /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)+$/i,
+	time: /\d{2}:\d{2}(:\d{2}(\.\d{1,3})?)?(Z|([+-]\d{2}:\d{2}))/,
+	uri: /^[a-z][a-z0-9+.-]*:(\/\/)?[^\s]+$/i,
+	uuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i,
+};
+
+/** @internal */
 const __string = (x: any, schema: StringSchema, ctx: ValidateSchemaCtx) => {
-	let { pattern, minLength: min, maxLength: max } = schema;
+	let { format, pattern, minLength: min, maxLength: max } = schema;
 	const checks = [isString()];
 	if (min != null || max != null) {
 		checks.push(isMinMaxLength(min ?? 0, max ?? Infinity));
 	}
 	if (pattern) {
 		checks.push(matchesRegexp(new RegExp(pattern)));
+	}
+	if (format) {
+		const re = FORMATS[format];
+		if (!re) {
+			throw new SchemaError(
+				__withPath(ctx, `unsupported format preset: ${format}`)
+			);
+		}
+		checks.push(matchesRegexp(re, `expected ${format} format`));
 	}
 	return __validate(ctx, checks, x);
 };

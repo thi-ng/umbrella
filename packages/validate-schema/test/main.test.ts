@@ -55,10 +55,10 @@ describe("validateSchema", () => {
 			})
 		).toEqual(__error("expected value in closed interval [100,200]"));
 		expect(validateSchema(42, { type: "number", minimum: 100 })).toEqual(
-			__error("expected value in closed interval [100,Infinity]")
+			__error("expected value >= 100")
 		);
 		expect(validateSchema(42, { type: "number", maximum: 10 })).toEqual(
-			__error("expected value in closed interval [-Infinity,10]")
+			__error("expected value <= 10")
 		);
 	});
 
@@ -72,38 +72,100 @@ describe("validateSchema", () => {
 		);
 	});
 
-	test("string", () => {
-		expect(validateSchema("a", { type: "string" })).toEqual(OK);
-		expect(validateSchema(42, { type: "string" })).toEqual(
-			__error("expected string value")
-		);
-		expect(
-			validateSchema("abc", {
-				type: "string",
-				minLength: 10,
-				maxLength: 20,
-			})
-		).toEqual(__error("expected length in [10,20] range"));
-		expect(
-			validateSchema("abc", { type: "string", minLength: 10 })
-		).toEqual(__error("expected min. length 10"));
-		expect(validateSchema("abc", { type: "string", maxLength: 2 })).toEqual(
-			__error("expected max. length 2")
-		);
-	});
+	describe("string", () => {
+		test("string basic", () => {
+			expect(validateSchema("a", { type: "string" })).toEqual(OK);
+			expect(validateSchema(42, { type: "string" })).toEqual(
+				__error("expected string value")
+			);
+			expect(
+				validateSchema("abc", {
+					type: "string",
+					minLength: 10,
+					maxLength: 20,
+				})
+			).toEqual(__error("expected length in [10,20] range"));
+			expect(
+				validateSchema("abc", { type: "string", minLength: 10 })
+			).toEqual(__error("expected min. length 10"));
+			expect(
+				validateSchema("abc", { type: "string", maxLength: 2 })
+			).toEqual(__error("expected max. length 2"));
+		});
 
-	test("string (pattern)", () => {
-		const schema: JSONSchema = { type: "string", pattern: "^[A-Z]+$" };
-		expect(validateSchema("ABC", schema)).toEqual(OK);
-		expect(validateSchema("", schema)).toEqual(
-			__error("expected pattern: ^[A-Z]+$")
-		);
-		expect(validateSchema("ABc", schema)).toEqual(
-			__error("expected pattern: ^[A-Z]+$")
-		);
-		expect(validateSchema(null, schema)).toEqual(
-			__error("expected string value")
-		);
+		test("pattern", () => {
+			const schema: JSONSchema = { type: "string", pattern: "^[A-Z]+$" };
+			expect(validateSchema("ABC", schema)).toEqual(OK);
+			expect(validateSchema("", schema)).toEqual(
+				__error("expected pattern: ^[A-Z]+$")
+			);
+			expect(validateSchema("ABc", schema)).toEqual(
+				__error("expected pattern: ^[A-Z]+$")
+			);
+			expect(validateSchema(null, schema)).toEqual(
+				__error("expected string value")
+			);
+		});
+
+		test("format: date", () => {
+			const schema: JSONSchema = { type: "string", format: "date" };
+			expect(validateSchema("2026-01-23", schema)).toEqual(OK);
+			expect(validateSchema("1999-12-31", schema)).toEqual(OK);
+			expect(validateSchema("2026-01", schema)).toEqual(
+				__error("expected date format")
+			);
+		});
+
+		test("format: date-time", () => {
+			const schema: JSONSchema = { type: "string", format: "date-time" };
+			expect(validateSchema("2026-01-02T03:04:05Z", schema)).toEqual(OK);
+			expect(validateSchema("2026-01-02T03:04:05-06:00", schema)).toEqual(
+				OK
+			);
+			expect(validateSchema("2026-01-02", schema)).toEqual(
+				__error("expected date-time format")
+			);
+		});
+
+		test("format: email", () => {
+			const schema: JSONSchema = { type: "string", format: "email" };
+			expect(validateSchema("a.BC+d_ef@Email.co.uk", schema)).toEqual(OK);
+			expect(validateSchema("a.bc@d_ef@email.", schema)).toEqual(
+				__error("expected email format")
+			);
+		});
+
+		test("format: time", () => {
+			const schema: JSONSchema = { type: "string", format: "time" };
+			expect(validateSchema("01:02:03Z", schema)).toEqual(OK);
+			expect(validateSchema("01:02:03.123-04:00", schema)).toEqual(OK);
+			expect(validateSchema("01:02+03:00", schema)).toEqual(OK);
+			expect(validateSchema("01:02", schema)).toEqual(
+				__error("expected time format")
+			);
+		});
+
+		test("format: uri", () => {
+			const schema: JSONSchema = { type: "string", format: "uri" };
+			expect(validateSchema("https://thi.ng", schema)).toEqual(OK);
+			expect(validateSchema("urn:isbn:123456789", schema)).toEqual(OK);
+			expect(validateSchema("://example.org", schema)).toEqual(
+				__error("expected uri format")
+			);
+		});
+
+		test("format: uuid", () => {
+			const schema: JSONSchema = { type: "string", format: "uuid" };
+			expect(
+				validateSchema("3A2A8FE2-C3C4-4625-BF08-8CF8EB09E78F", schema)
+			).toEqual(OK);
+			expect(
+				validateSchema("3a2a8fe2-c3c4-4625-bf08-8cf8eb09e78f", schema)
+			).toEqual(OK);
+			expect(
+				validateSchema("3A2A8FE2-Z3C4-4625-BF08-8CF8EB09E78F", schema)
+			).toEqual(__error("expected uuid format"));
+		});
 	});
 
 	test("multiple types", () => {

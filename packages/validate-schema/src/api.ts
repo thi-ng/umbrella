@@ -8,6 +8,14 @@ export type SchemaType =
 	| "array"
 	| "object";
 
+export type FormatPreset =
+	| "date"
+	| "date-time"
+	| "email"
+	| "time"
+	| "uri"
+	| "uuid";
+
 export interface BaseSchema {
 	$schema?: string;
 	$id?: string;
@@ -47,6 +55,7 @@ export interface JSONSchema extends BaseSchema {
 	exclusiveMinimum?: number;
 	exclusiveMaximum?: number;
 
+	format?: FormatPreset;
 	minLength?: number;
 	maxLength?: number;
 	pattern?: string;
