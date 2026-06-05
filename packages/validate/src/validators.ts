@@ -455,25 +455,41 @@ export const isEnum = <T>(opts: T[], msg?: ValidatorMsg): Validator => ({
  * @param max
  * @param msg
  */
-export const isInClosedInterval = <T extends number | string>(
-	min: T,
-	max: T,
+export const isInClosedInterval = (
+	min: number,
+	max: number,
 	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x) => x >= min && x <= max,
-	msg: msg ?? __expected(`value in closed interval [${min},${max}]`),
+	msg:
+		msg ??
+		(min > -Infinity
+			? max < Infinity
+				? __expected(`value in closed interval [${min},${max}]`)
+				: __expected(`value >= ${min}`)
+			: max < Infinity
+				? __expected(`value <= ${max}`)
+				: ""),
 });
 
 /** @deprecated renamed to {@link isInClosedInterval} */
 export const isInRange = isInClosedInterval;
 
-export const isInOpenInterval = <T extends number | string>(
-	min: T,
-	max: T,
+export const isInOpenInterval = (
+	min: number,
+	max: number,
 	msg?: ValidatorMsg
 ): Validator => ({
 	valid: (x) => x > min && x < max,
-	msg: msg ?? __expected(`value in open interval (${min},${max})`),
+	msg:
+		msg ??
+		(min > -Infinity
+			? max < Infinity
+				? __expected(`value in open interval (${min},${max})`)
+				: __expected(`value > ${min}`)
+			: max < Infinity
+				? __expected(`value < ${max}`)
+				: ""),
 });
 
 export const isPositive = (msg?: ValidatorMsg): Validator => ({
