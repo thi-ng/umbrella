@@ -3,6 +3,7 @@ import { expect, test } from "bun:test";
 import {
 	PRETTY,
 	animation,
+	at_fontface,
 	at_import,
 	at_keyframes,
 	at_media,
@@ -150,6 +151,43 @@ test("@media", () => {
 	expect(css(at_media({ "prefers-reduced-motion": false }, []))).toBe(
 		`@media (not (prefers-reduced-motion)){}`
 	);
+});
+
+test("@font-face", () => {
+	expect(
+		css(
+			at_fontface({
+				family: "Foo",
+				src: [{ url: "foo.woff2", format: "woff2" }],
+				style: "normal",
+				weight: "100 900",
+				unicode: ["U+0000-00ff", "U+0152-0153"],
+				ascent: "80%",
+				descent: "90%",
+				display: "swap",
+				feature: `"smcp" on`,
+				lineGap: "normal",
+				size: "50%",
+				stretch: "condensed",
+				variation: `"xhgt" 0.7`,
+			}),
+			{ format: PRETTY }
+		)
+	).toBe(`@font-face {
+    font-family: Foo;
+    font-style: normal;
+    font-weight: 100 900;
+    font-stretch: condensed;
+    font-display: swap;
+    src: url(foo.woff2) format(woff2);
+    unicode-range: U+0000-00ff, U+0152-0153;
+    ascent-override: 80%;
+    descent-override: 80%;
+    font-feature-settings: "smcp" on;
+    font-variation-settings: "xhgt" 0.7;
+    line-gap-override: normal;
+    size-adjust: 50%;
+}\n`);
 });
 
 test("animation", () => {

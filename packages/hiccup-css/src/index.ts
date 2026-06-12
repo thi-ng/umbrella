@@ -5,6 +5,7 @@ export * from "./attribs.js";
 export * from "./comment.js";
 export * from "./conditional.js";
 export * from "./css.js";
+export * from "./font-face.js";
 export * from "./import.js";
 export * from "./inject.js";
 export * from "./keyframes.js";
