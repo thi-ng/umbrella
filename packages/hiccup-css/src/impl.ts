@@ -117,6 +117,7 @@ export const formatDecls = (rules: any, opts: CSSOpts) => {
 	for (const r in rules) {
 		if (rules.hasOwnProperty(r)) {
 			let val = rules[r];
+			if (val == null) continue;
 			if (isFunction(val)) {
 				val = val(rules);
 			}
