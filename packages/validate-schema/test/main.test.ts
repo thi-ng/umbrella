@@ -1,6 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
 import { describe, expect, test } from "bun:test";
-import { OK, validateSchema, type JSONSchema } from "../src/index.js";
+import {
+	coerceJSON,
+	coerceSplit,
+	coerceUint,
+	OK,
+	validateSchema,
+	type JSONSchema,
+	type ValidateSchemaCtx,
+} from "../src/index.js";
 
 const __error = (...errors: string[]) => ({
 	valid: false,
@@ -18,153 +26,145 @@ const __defaults = (...paths: [any[], any][]) => ({
 	defaults: paths.map(([path, value]) => ({ path, value })),
 });
 
+const check = (
+	value: any,
+	schema: JSONSchema,
+	expected: any,
+	opts: Partial<Pick<ValidateSchemaCtx, "base" | "registry">> = {}
+) =>
+	expect(validateSchema(value, schema, opts)).toEqual(
+		expected.value != null ? expected : { ...expected, value }
+	);
+
 describe("validateSchema", () => {
 	//
 	test("empty", () => {
-		expect(validateSchema(1, <any>{})).toEqual(OK);
-		expect(validateSchema(1, <any>{ not: {} })).toEqual(
-			__error("expected value not to pass schema: {}")
-		);
+		check(1, {}, OK);
+		check(1, { not: {} }, __error("expected value not to pass schema: {}"));
 	});
 
 	test("null", () => {
-		expect(validateSchema(null, { type: "null" })).toEqual(OK);
-		expect(validateSchema(1, { type: "null" })).toEqual(
-			__error("expected nullish value")
-		);
+		check(null, { type: "null" }, OK);
+		check(1, { type: "null" }, __error("expected nullish value"));
 	});
 
 	test("boolean", () => {
-		expect(validateSchema(false, { type: "boolean" })).toEqual(OK);
-		expect(validateSchema(true, { type: "boolean" })).toEqual(OK);
-		expect(validateSchema(1, { type: "boolean" })).toEqual(
-			__error("expected boolean value")
-		);
+		check(false, { type: "boolean" }, OK);
+		check(true, { type: "boolean" }, OK);
+		check(1, { type: "boolean" }, __error("expected boolean value"));
 	});
 
 	test("number", () => {
-		expect(validateSchema(42, { type: "number" })).toEqual(OK);
-		expect(validateSchema("42", { type: "number" })).toEqual(
-			__error("expected number value")
-		);
-		expect(
-			validateSchema(42, {
+		check(42, { type: "number" }, OK);
+		check("42", { type: "number" }, __error("expected number value"));
+		check(
+			42,
+			{
 				type: "number",
 				minimum: 100,
 				maximum: 200,
-			})
-		).toEqual(__error("expected value in closed interval [100,200]"));
-		expect(validateSchema(42, { type: "number", minimum: 100 })).toEqual(
+			},
+			__error("expected value in closed interval [100,200]")
+		);
+		check(
+			42,
+			{ type: "number", minimum: 100 },
 			__error("expected value >= 100")
 		);
-		expect(validateSchema(42, { type: "number", maximum: 10 })).toEqual(
+		check(
+			42,
+			{ type: "number", maximum: 10 },
 			__error("expected value <= 10")
 		);
 	});
 
 	test("integer", () => {
-		expect(validateSchema(42, { type: "integer" })).toEqual(OK);
-		expect(validateSchema(42.2, { type: "integer" })).toEqual(
-			__error("expected integer value")
-		);
-		expect(validateSchema(-0.0000001, { type: "integer" })).toEqual(
+		check(42, { type: "integer" }, OK);
+		check(42.2, { type: "integer" }, __error("expected integer value"));
+		check(
+			-0.0000001,
+			{ type: "integer" },
 			__error("expected integer value")
 		);
 	});
 
 	describe("string", () => {
 		test("string basic", () => {
-			expect(validateSchema("a", { type: "string" })).toEqual(OK);
-			expect(validateSchema(42, { type: "string" })).toEqual(
-				__error("expected string value")
-			);
-			expect(
-				validateSchema("abc", {
+			check("a", { type: "string" }, OK);
+			check(42, { type: "string" }, __error("expected string value"));
+			check(
+				"abc",
+				{
 					type: "string",
 					minLength: 10,
 					maxLength: 20,
-				})
-			).toEqual(__error("expected length in [10,20] range"));
-			expect(
-				validateSchema("abc", { type: "string", minLength: 10 })
-			).toEqual(__error("expected min. length 10"));
-			expect(
-				validateSchema("abc", { type: "string", maxLength: 2 })
-			).toEqual(__error("expected max. length 2"));
+				},
+				__error("expected length in [10,20] range")
+			);
+			check(
+				"abc",
+				{ type: "string", minLength: 10 },
+				__error("expected min. length 10")
+			);
+			check(
+				"abc",
+				{ type: "string", maxLength: 2 },
+				__error("expected max. length 2")
+			);
 		});
 
 		test("pattern", () => {
 			const schema: JSONSchema = { type: "string", pattern: "^[A-Z]+$" };
-			expect(validateSchema("ABC", schema)).toEqual(OK);
-			expect(validateSchema("", schema)).toEqual(
-				__error("expected pattern: ^[A-Z]+$")
-			);
-			expect(validateSchema("ABc", schema)).toEqual(
-				__error("expected pattern: ^[A-Z]+$")
-			);
-			expect(validateSchema(null, schema)).toEqual(
-				__error("expected string value")
-			);
+			check("ABC", schema, OK);
+			check("", schema, __error("expected pattern: ^[A-Z]+$"));
+			check("ABc", schema, __error("expected pattern: ^[A-Z]+$"));
+			check(null, schema, __error("expected string value"));
 		});
 
 		test("format: date", () => {
 			const schema: JSONSchema = { type: "string", format: "date" };
-			expect(validateSchema("2026-01-23", schema)).toEqual(OK);
-			expect(validateSchema("1999-12-31", schema)).toEqual(OK);
-			expect(validateSchema("2026-01", schema)).toEqual(
-				__error("expected date format")
-			);
+			check("2026-01-23", schema, OK);
+			check("1999-12-31", schema, OK);
+			check("2026-01", schema, __error("expected date format"));
 		});
 
 		test("format: date-time", () => {
 			const schema: JSONSchema = { type: "string", format: "date-time" };
-			expect(validateSchema("2026-01-02T03:04:05Z", schema)).toEqual(OK);
-			expect(validateSchema("2026-01-02T03:04:05-06:00", schema)).toEqual(
-				OK
-			);
-			expect(validateSchema("2026-01-02", schema)).toEqual(
-				__error("expected date-time format")
-			);
+			check("2026-01-02T03:04:05Z", schema, OK);
+			check("2026-01-02T03:04:05-06:00", schema, OK);
+			check("2026-01-02", schema, __error("expected date-time format"));
 		});
 
 		test("format: email", () => {
 			const schema: JSONSchema = { type: "string", format: "email" };
-			expect(validateSchema("a.BC+d_ef@Email.co.uk", schema)).toEqual(OK);
-			expect(validateSchema("a.bc@d_ef@email.", schema)).toEqual(
-				__error("expected email format")
-			);
+			check("a.BC+d_ef@Email.co.uk", schema, OK);
+			check("a.bc@d_ef@email.", schema, __error("expected email format"));
 		});
 
 		test("format: time", () => {
 			const schema: JSONSchema = { type: "string", format: "time" };
-			expect(validateSchema("01:02:03Z", schema)).toEqual(OK);
-			expect(validateSchema("01:02:03.123-04:00", schema)).toEqual(OK);
-			expect(validateSchema("01:02+03:00", schema)).toEqual(OK);
-			expect(validateSchema("01:02", schema)).toEqual(
-				__error("expected time format")
-			);
+			check("01:02:03Z", schema, OK);
+			check("01:02:03.123-04:00", schema, OK);
+			check("01:02+03:00", schema, OK);
+			check("01:02", schema, __error("expected time format"));
 		});
 
 		test("format: uri", () => {
 			const schema: JSONSchema = { type: "string", format: "uri" };
-			expect(validateSchema("https://thi.ng", schema)).toEqual(OK);
-			expect(validateSchema("urn:isbn:123456789", schema)).toEqual(OK);
-			expect(validateSchema("://example.org", schema)).toEqual(
-				__error("expected uri format")
-			);
+			check("https://thi.ng", schema, OK);
+			check("urn:isbn:123456789", schema, OK);
+			check("://example.org", schema, __error("expected uri format"));
 		});
 
 		test("format: uuid", () => {
 			const schema: JSONSchema = { type: "string", format: "uuid" };
-			expect(
-				validateSchema("3A2A8FE2-C3C4-4625-BF08-8CF8EB09E78F", schema)
-			).toEqual(OK);
-			expect(
-				validateSchema("3a2a8fe2-c3c4-4625-bf08-8cf8eb09e78f", schema)
-			).toEqual(OK);
-			expect(
-				validateSchema("3A2A8FE2-Z3C4-4625-BF08-8CF8EB09E78F", schema)
-			).toEqual(__error("expected uuid format"));
+			check("3A2A8FE2-C3C4-4625-BF08-8CF8EB09E78F", schema, OK);
+			check("3a2a8fe2-c3c4-4625-bf08-8cf8eb09e78f", schema, OK);
+			check(
+				"3A2A8FE2-Z3C4-4625-BF08-8CF8EB09E78F",
+				schema,
+				__error("expected uuid format")
+			);
 		});
 	});
 
@@ -172,31 +172,27 @@ describe("validateSchema", () => {
 		const schema: JSONSchema = {
 			type: ["number", "string", "null"],
 		};
-		expect(validateSchema(42, schema)).toEqual(OK);
-		expect(validateSchema("42", schema)).toEqual(OK);
-		expect(validateSchema(null, schema)).toEqual(OK);
-		expect(validateSchema([], schema)).toEqual(
+		check(42, schema, OK);
+		check("42", schema, OK);
+		check(null, schema, OK);
+		check(
+			[],
+			schema,
 			__error("value type must be one of: number,string,null")
 		);
 	});
 
 	test("enum", () => {
 		const schema: JSONSchema = { enum: ["a", "b"] };
-		expect(validateSchema("a", schema)).toEqual(OK);
-		expect(validateSchema("c", schema)).toEqual(
-			__error("expected value to be one of: a, b")
-		);
-		expect(validateSchema(1, schema)).toEqual(
-			__error("expected value to be one of: a, b")
-		);
+		check("a", schema, OK);
+		check("c", schema, __error("expected value to be one of: a, b"));
+		check(1, schema, __error("expected value to be one of: a, b"));
 	});
 
 	test("const", () => {
 		const schema: JSONSchema = { const: "a" };
-		expect(validateSchema("a", schema)).toEqual(OK);
-		expect(validateSchema("b", schema)).toEqual(
-			__error(`expected value to be: "a"`)
-		);
+		check("a", schema, OK);
+		check("b", schema, __error(`expected value to be: "a"`));
 	});
 
 	test("array (prefixItems)", () => {
@@ -205,22 +201,22 @@ describe("validateSchema", () => {
 			prefixItems: [{ type: "number" }, { type: "number" }],
 			items: { type: "string" },
 		};
-		expect(validateSchema([1, 2, "3"], schema)).toEqual(OK);
-		expect(validateSchema([1, 2], schema)).toEqual(OK);
-		expect(validateSchema([1, "2"], schema)).toEqual(
-			__errorPaths([[1], "expected number value"])
-		);
-		expect(validateSchema([1], schema)).toEqual(
+		check([1, 2, "3"], schema, OK);
+		check([1, 2], schema, OK);
+		check([1, "2"], schema, __errorPaths([[1], "expected number value"]));
+		check(
+			[1],
+			schema,
 			__errorPaths(
 				[[], "expected min. length 2"],
 				[[1], "expected number value"]
 			)
 		);
-		expect(validateSchema([1, 2, 3], schema)).toEqual(
-			__errorPaths([[2], "expected string value"])
-		);
+		check([1, 2, 3], schema, __errorPaths([[2], "expected string value"]));
 
-		expect(validateSchema([1, 2, 3], { ...schema, items: false })).toEqual(
+		check(
+			[1, 2, 3],
+			{ ...schema, items: false },
 			__error("expected length of 2")
 		);
 	});
@@ -232,16 +228,18 @@ describe("validateSchema", () => {
 			maxContains: 2,
 			uniqueItems: true,
 		};
-		expect(validateSchema([1, 2, "a"], schema)).toEqual(OK);
-		expect(validateSchema([1, 2], schema)).toEqual(
+		check([1, 2, "a"], schema, OK);
+		check(
+			[1, 2],
+			schema,
 			__error(`expected min. 1 values to pass schema: {"type":"string"}`)
 		);
-		expect(validateSchema(["a", "b", "c"], schema)).toEqual(
+		check(
+			["a", "b", "c"],
+			schema,
 			__error(`expected max. 2 values to pass schema: {"type":"string"}`)
 		);
-		expect(validateSchema(["a", "a"], schema)).toEqual(
-			__error("expected unique items")
-		);
+		check(["a", "a"], schema, __error("expected unique items"));
 	});
 
 	describe("object", () => {
@@ -253,17 +251,21 @@ describe("validateSchema", () => {
 					b: { type: "array", items: { type: "string" } },
 				},
 			};
-			expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(
-				OK
-			);
-			expect(validateSchema({ a: 1 }, schema)).toEqual(OK);
-			expect(validateSchema({ a: "a" }, schema)).toEqual(
+			check({ a: 42, b: ["a", "b"] }, schema, OK);
+			check({ a: 1 }, schema, OK);
+			check(
+				{ a: "a" },
+				schema,
 				__errorPaths([["a"], "expected number value"])
 			);
-			expect(validateSchema({ b: 2 }, schema)).toEqual(
+			check(
+				{ b: 2 },
+				schema,
 				__errorPaths([["b"], "expected array value"])
 			);
-			expect(validateSchema({ b: [1, 2] }, schema)).toEqual(
+			check(
+				{ b: [1, 2] },
+				schema,
 				__errorPaths(
 					[["b", 0], "expected string value"],
 					[["b", 1], "expected string value"]
@@ -280,22 +282,28 @@ describe("validateSchema", () => {
 				},
 				required: ["a"],
 			};
-			expect(validateSchema({ a: 42, b: ["a", "b"] }, schema)).toEqual(
-				OK
-			);
-			expect(validateSchema({ a: "a" }, schema)).toEqual(
+			check({ a: 42, b: ["a", "b"] }, schema, OK);
+			check(
+				{ a: "a" },
+				schema,
 				__errorPaths([["a"], "expected number value"])
 			);
-			expect(validateSchema({ b: 1 }, schema)).toEqual(
+			check(
+				{ b: 1 },
+				schema,
 				__errorPaths(
 					[[], "expected keys: a"],
 					[["b"], "expected array value"]
 				)
 			);
-			expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(
+			check(
+				{ a: 1, b: 2 },
+				schema,
 				__errorPaths([["b"], "expected array value"])
 			);
-			expect(validateSchema({ a: 1, b: [1, 2] }, schema)).toEqual(
+			check(
+				{ a: 1, b: [1, 2] },
+				schema,
 				__errorPaths(
 					[["b", 0], "expected string value"],
 					[["b", 1], "expected string value"]
@@ -309,11 +317,15 @@ describe("validateSchema", () => {
 				patternProperties: { "^id\\d+": { type: "number" } },
 				additionalProperties: false,
 			};
-			expect(validateSchema({ id1: 1 }, schema)).toEqual(OK);
-			expect(validateSchema({ id1: "1" }, schema)).toEqual(
+			check({ id1: 1 }, schema, OK);
+			check(
+				{ id1: "1" },
+				schema,
 				__errorPaths([["id1"], "expected number value"])
 			);
-			expect(validateSchema({ a: 1 }, schema)).toEqual(
+			check(
+				{ a: 1 },
+				schema,
 				__errorPaths([["a"], "property not allowed"])
 			);
 		});
@@ -324,14 +336,16 @@ describe("validateSchema", () => {
 				properties: { a: { type: "number" } },
 				additionalProperties: { type: "boolean" },
 			};
-			expect(validateSchema({ a: 1, b: false }, schema)).toEqual(OK);
-			expect(validateSchema({ b: false }, schema)).toEqual(OK);
-			expect(validateSchema({ b: 1 }, schema)).toEqual(
+			check({ a: 1, b: false }, schema, OK);
+			check({ b: false }, schema, OK);
+			check(
+				{ b: 1 },
+				schema,
 				__errorPaths([["b"], "expected boolean value"])
 			);
-			expect(
-				validateSchema({ b: 1 }, { ...schema, required: ["a"] })
-			).toEqual(
+			check(
+				{ b: 1 },
+				{ ...schema, required: ["a"] },
 				__errorPaths(
 					[[], "expected keys: a"],
 					[["b"], "expected boolean value"]
@@ -345,14 +359,18 @@ describe("validateSchema", () => {
 				minProperties: 2,
 				maxProperties: 3,
 			};
-			expect(validateSchema({ a: 1, b: 2 }, schema)).toEqual(OK);
-			expect(validateSchema({ a: 1, b: 2, c: 3 }, schema)).toEqual(OK);
-			expect(validateSchema({ a: 1, b: 2, c: 3, d: 4 }, schema)).toEqual(
+			check({ a: 1, b: 2 }, schema, OK);
+			check({ a: 1, b: 2, c: 3 }, schema, OK);
+			check(
+				{ a: 1, b: 2, c: 3, d: 4 },
+				schema,
 				__error("expected 2-3 properties")
 			);
-			expect(
-				validateSchema({ a: 1 }, { ...schema, maxProperties: 2 })
-			).toEqual(__error("expected 2 properties"));
+			check(
+				{ a: 1 },
+				{ ...schema, maxProperties: 2 },
+				__error("expected 2 properties")
+			);
 		});
 
 		test("propertyNames", () => {
@@ -360,8 +378,10 @@ describe("validateSchema", () => {
 				type: "object",
 				propertyNames: { minLength: 3, maxLength: 4 },
 			};
-			expect(validateSchema({ abc: 1, defg: 2 }, schema)).toEqual(OK);
-			expect(validateSchema({ ab: 1 }, schema)).toEqual(
+			check({ abc: 1, defg: 2 }, schema, OK);
+			check(
+				{ ab: 1 },
+				schema,
 				__errorPaths([["ab"], "expected length in [3,4] range"])
 			);
 		});
@@ -374,10 +394,12 @@ describe("validateSchema", () => {
 					b: ["c"],
 				},
 			};
-			expect(validateSchema({}, schema)).toEqual(OK);
-			expect(validateSchema({ a: 1, a1: 2, a2: 3 }, schema)).toEqual(OK);
-			expect(validateSchema({ b: 1, c: 2 }, schema)).toEqual(OK);
-			expect(validateSchema({ a: 1 }, schema)).toEqual(
+			check({}, schema, OK);
+			check({ a: 1, a1: 2, a2: 3 }, schema, OK);
+			check({ b: 1, c: 2 }, schema, OK);
+			check(
+				{ a: 1 },
+				schema,
 				__errorPaths([["a"], "required dependent properties: a1,a2"])
 			);
 		});
@@ -392,14 +414,14 @@ describe("validateSchema", () => {
 					},
 				},
 			};
-			expect(validateSchema({}, schema)).toEqual(OK);
-			expect(validateSchema({ a: 1, a1: "2" }, schema)).toEqual(OK);
-			expect(validateSchema({ a: 1, a1: 1 }, schema)).toEqual(
+			check({}, schema, OK);
+			check({ a: 1, a1: "2" }, schema, OK);
+			check(
+				{ a: 1, a1: 1 },
+				schema,
 				__errorPaths([["a1"], "expected string value"])
 			);
-			expect(validateSchema({ a: 1 }, schema)).toEqual(
-				__error("expected keys: a1")
-			);
+			check({ a: 1 }, schema, __error("expected keys: a1"));
 		});
 	});
 
@@ -425,17 +447,17 @@ describe("validateSchema", () => {
 				id: { type: "number", $id: "https://example.org/" },
 			},
 		};
-		expect(
-			validateSchema({ a: 1, b: "b", c: "c", d: [], e: 2 }, schema, {
-				base: "https://schema.thi.ng/",
-			})
-		).toEqual(OK);
-		expect(validateSchema({ d: [1] }, schema)).toEqual(
+		check({ a: 1, b: "b", c: "c", d: [], e: 2 }, schema, OK, {
+			base: "https://schema.thi.ng/",
+		});
+		check(
+			{ d: [1] },
+			schema,
 			__errorPaths([["d", 0], "expected string value"])
 		);
-		expect(
-			validateSchema({ a: "", b: 2, c: 3, d: ["d"], e: "e" }, schema)
-		).toEqual(
+		check(
+			{ a: "", b: 2, c: 3, d: ["d"], e: "e" },
+			schema,
 			__errorPaths(
 				[["a"], "expected number value"],
 				[["b"], "expected string value"],
@@ -446,23 +468,22 @@ describe("validateSchema", () => {
 	});
 
 	test("schema ref cycle breaker", () => {
-		expect(
-			validateSchema(
-				{ a: "a", b: "b" },
-				{
-					type: "object",
-					properties: {
-						a: { $ref: "#foo" },
-						b: { $ref: "#foo" },
-					},
-					$defs: {
-						foo: { $ref: "#bar", $anchor: "foo" },
-						bar: { $ref: "#/$defs/str", $anchor: "bar" },
-						str: { type: "string" },
-					},
-				}
-			)
-		).toEqual(OK);
+		check(
+			{ a: "a", b: "b" },
+			{
+				type: "object",
+				properties: {
+					a: { $ref: "#foo" },
+					b: { $ref: "#foo" },
+				},
+				$defs: {
+					foo: { $ref: "#bar", $anchor: "foo" },
+					bar: { $ref: "#/$defs/str", $anchor: "bar" },
+					str: { type: "string" },
+				},
+			},
+			OK
+		);
 		expect(() =>
 			validateSchema(1, {
 				$ref: "#foo",
@@ -499,26 +520,27 @@ describe("validateSchema", () => {
 				},
 			},
 		};
-		expect(
-			validateSchema(
-				{
-					name: "a",
-					children: [
-						{ name: "b", children: [{ name: "c", children: [] }] },
-					],
-				},
-				schema
-			)
-		).toEqual(OK);
+		check(
+			{
+				name: "a",
+				children: [
+					{ name: "b", children: [{ name: "c", children: [] }] },
+				],
+			},
+			schema,
+			OK
+		);
 	});
 
 	test("not", () => {
 		const schema: JSONSchema = {
 			not: { type: "number", minimum: 0 },
 		};
-		expect(validateSchema(-1, schema)).toEqual(OK);
-		expect(validateSchema("a", schema)).toEqual(OK);
-		expect(validateSchema(1, schema)).toEqual(
+		check(-1, schema, OK);
+		check("a", schema, OK);
+		check(
+			1,
+			schema,
 			__error(
 				`expected value not to pass schema: {"type":"number","minimum":0}`
 			)
@@ -533,10 +555,12 @@ describe("validateSchema", () => {
 				{ type: "string" },
 			],
 		};
-		expect(validateSchema(1, schema)).toEqual(OK);
-		expect(validateSchema(101, schema)).toEqual(OK);
-		expect(validateSchema("1", schema)).toEqual(OK);
-		expect(validateSchema(99, schema)).toEqual(
+		check(1, schema, OK);
+		check(101, schema, OK);
+		check("1", schema, OK);
+		check(
+			99,
+			schema,
 			__error("expected to match one of the schema options")
 		);
 	});
@@ -549,10 +573,8 @@ describe("validateSchema", () => {
 				range: { type: "number", minimum: 0, maximum: 10 },
 			},
 		};
-		expect(validateSchema(1, schema)).toEqual(OK);
-		expect(validateSchema(11, schema)).toEqual(
-			__error("expected value in closed interval [0,10]")
-		);
+		check(1, schema, OK);
+		check(11, schema, __error("expected value in closed interval [0,10]"));
 	});
 
 	test("if-then-else", () => {
@@ -565,15 +587,13 @@ describe("validateSchema", () => {
 				required: ["a"],
 			},
 		};
-		expect(validateSchema([1, 2, 3], schema)).toEqual(OK);
-		expect(validateSchema({ a: 1 }, schema)).toEqual(OK);
-		expect(validateSchema("a", schema)).toEqual(
-			__error("expected object value")
-		);
-		expect(validateSchema(["a"], schema)).toEqual(
-			__errorPaths([[0], "expected number value"])
-		);
-		expect(validateSchema({ a: "1" }, schema)).toEqual(
+		check([1, 2, 3], schema, OK);
+		check({ a: 1 }, schema, OK);
+		check("a", schema, __error("expected object value"));
+		check(["a"], schema, __errorPaths([[0], "expected number value"]));
+		check(
+			{ a: "1" },
+			schema,
 			__errorPaths([["a"], "expected number value"])
 		);
 	});
@@ -588,13 +608,14 @@ describe("validateSchema", () => {
 				],
 				items: { type: "string", default: "ok" },
 			};
-			expect(validateSchema([], schema)).toEqual({
+			check([], schema, {
 				...__errorPaths(
 					[[], "expected min. length 2"],
 					[[0], "expected number value"],
 					[[1], "expected string value"]
 				),
 				...__defaults([[0], 1], [[1], "b"]),
+				// value: [1, "b"],
 			});
 		});
 
@@ -616,7 +637,7 @@ describe("validateSchema", () => {
 					b: { $anchor: "b", default: 2 },
 				},
 			};
-			expect(validateSchema({}, schema)).toEqual({
+			check({}, schema, {
 				...OK,
 				...__defaults(
 					[["a"], 1],
@@ -624,6 +645,81 @@ describe("validateSchema", () => {
 					[["c", "c1"], 3],
 					[["c", "c2"], 2]
 				),
+			});
+		});
+	});
+
+	describe("coerce", () => {
+		test("object", () => {
+			const schema: JSONSchema = {
+				type: "object",
+				properties: {
+					a: { type: "number", coerce: coerceUint() },
+					b: {
+						type: "array",
+						items: {
+							type: "string",
+							coerce: (x) => x.toUpperCase(),
+						},
+					},
+					c: { $ref: "#/$defs/c" },
+					d: { type: "array", coerce: coerceSplit(";"), default: [] },
+				},
+				$defs: {
+					c: {
+						type: "array",
+						items: { $ref: "#num" },
+						coerce: coerceJSON,
+					},
+					num: { $anchor: "num", type: "number" },
+				},
+			};
+			check({ a: "1", b: ["b"], c: "[1,2,3]", d: "ab;cde;f" }, schema, {
+				...OK,
+				value: {
+					a: 1,
+					b: ["B"],
+					c: [1, 2, 3],
+					d: ["ab", "cde", "f"],
+				},
+				defaults: [{ path: ["d"], value: [] }],
+			});
+			check({}, schema, {
+				...OK,
+				value: {},
+				defaults: [{ path: ["d"], value: [] }],
+			});
+		});
+
+		describe("registry", () => {
+			test("hex", () => {
+				const schema: JSONSchema = {
+					type: "number",
+					coerce: "hex",
+				};
+				check("decafbad", schema, { ...OK, value: 0xdecafbad });
+				check(0xdecafbad, schema, { ...OK, value: 0xdecafbad });
+				check(42.23, schema, { ...OK, value: 42 });
+				check("xyz", schema, __error("coercion failed"));
+				check([], schema, __error("coercion failed"));
+			});
+
+			test("higher order (split delim)", () => {
+				const schema: JSONSchema = {
+					type: "array",
+					items: { type: "string" },
+					coerce: ["split", "|"],
+				};
+				check("a|b|c", schema, { ...OK, value: ["a", "b", "c"] });
+			});
+
+			test("unknown coercion", () => {
+				expect(() => validateSchema("", { coerce: "XXX" })).toThrow(
+					"unknown coercion"
+				);
+				expect(() =>
+					validateSchema("", { coerce: ["XXX", 1] })
+				).toThrow("unknown coercion");
 			});
 		});
 	});

@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
+import { isFunction as $isFunction } from "@thi.ng/checks/is-function";
+import { isString as $isString } from "@thi.ng/checks/is-string";
 import type { CustomError } from "@thi.ng/errors";
 import { defError } from "@thi.ng/errors/deferror";
+import { defSetter } from "@thi.ng/paths/setter";
 import type { Validator } from "@thi.ng/validate";
 import {
 	hasRequiredKeys,
@@ -25,10 +28,12 @@ import type {
 	AltSchema,
 	AnyOfSchema,
 	ArraySchema,
+	CoercionFn,
 	ConditionalSchema,
 	ConstSchema,
 	EnumSchema,
 	FormatPreset,
+	CoercionHOF,
 	JSONSchema,
 	NotSchema,
 	NumberSchema,
@@ -38,27 +43,100 @@ import type {
 	ValidateSchemaCtx,
 	ValidationResult,
 } from "./api.js";
+import { DEFAULT_COERCIONS } from "./coerce.js";
 
 export const SchemaError = defError(() => `schema error`);
 
+/**
+ * Validates value `x` against given schema and options. Returns a
+ * {@link ValidationResult} object with validation result, error reports,
+ * collected default values and possibly augmented value (if the schema uses
+ * value coercions).
+ *
+ * @remarks
+ * Each schema can optionally define a function (or registered ID) which is used
+ * to attempt to coerce the original value into a type/format expected by the
+ * schema. By default the coercions defined in {@link DEFAULT_COERCIONS} are
+ * available, but custom ones can be provided via the `opts` arg given to
+ * {@link validateSchema}. Also see {@link JSONSchema.coerce} and
+ * {@link ValidateSchemaCtx.coerce}.
+ *
+ * @example
+ * ```ts tangle:../export/validate-schema1.ts
+ * import { validateSchema, type JSONSchema } from "@thi.ng/validate-schema";
+ *
+ * const schema: JSONSchema = {
+ *     type: "object",
+ *     properties: {
+ *         name: { type: "string" },
+ *         role: { $ref: "#/$defs/role" },
+ *         tags: {
+ *             type: "array",
+ *             items: { type: "string" },
+ *             // non-standard feature:
+ *             // coerce string as comma-separated values BEFORE validation
+ *             coerce: "csv",
+ *         },
+ *     },
+ *     required: ["name", "role"],
+ *     $defs: {
+ *         role: { enum: ["artist", "curator", "viewer"] },
+ *     },
+ * };
+ *
+ * // example data
+ * const alice = { name: "alice", role: "artist", tags: "a,c" };
+ *
+ * const bob = { name: "bob", tags: ["b"] };
+ *
+ * // validate against schema, note the updated result value (tags)
+ * console.log(validateSchema(alice, schema));
+ * // {
+ * //   valid: true,
+ * //   value: { name: "alice", role: "artist", tags: ["a", "c"] },
+ * //   errors: [],
+ * //   defaults: [],
+ * // }
+ *
+ * // here validation failed
+ * console.log(validateSchema(bob, schema));
+ * // {
+ * //   valid: false,
+ * //   value: { name: "bob", tags: ["b"] },
+ * //   errors: [
+ * //     { path: [], msg: "expected keys: name, role" }
+ * //   ],
+ * //   defaults: [],
+ * // }
+ * ```
+ *
+ * @param value
+ * @param schema
+ * @param opts
+ */
 export const validateSchema = (
-	x: any,
+	value: any,
 	schema: JSONSchema,
-	ctx?: Partial<ValidateSchemaCtx>
+	opts?: Partial<Pick<ValidateSchemaCtx, "base" | "coerce" | "registry">>
 ): ValidationResult => {
-	const $ctx = {
+	const ctx: ValidateSchemaCtx = {
 		base: "",
 		registry: {},
+		coerce: DEFAULT_COERCIONS,
 		path: [],
 		errors: [],
 		defaults: [],
-		...ctx,
+		root: <any>{},
+		value,
+		...opts,
 	};
-	$ctx.registry[$ctx.base + "#"] = schema;
+	ctx.root = ctx;
+	ctx.registry[ctx.base + "#"] = schema;
 	return {
-		valid: __validateSchema(x, schema, $ctx),
-		errors: $ctx.errors,
-		defaults: $ctx.defaults,
+		valid: __validateSchema(value, schema, ctx),
+		value: ctx.value,
+		errors: ctx.errors,
+		defaults: ctx.defaults,
 	};
 };
 
@@ -83,7 +161,13 @@ const __validateSchema = (
 	if (ctx.visited) ctx.visited.length = 0;
 
 	if ("default" in schema) {
-		ctx.defaults.push({ path: ctx.path.slice(), value: schema.default });
+		ctx.defaults.push({ path: [...ctx.path], value: schema.default });
+	}
+	if ("coerce" in schema) {
+		const $value = __coerce(x, schema, ctx);
+		if ($value == null) return __addError(ctx, "coercion failed");
+		ctx.root.value = defSetter(<any>ctx.path)(ctx.root.value, $value);
+		x = $value;
 	}
 	if ("enum" in schema) {
 		return __enum(x, <EnumSchema>schema, ctx);
@@ -111,19 +195,30 @@ const __validateSchema = (
 	return true;
 };
 
+const __coerce = (x: any, schema: JSONSchema, ctx: ValidateSchemaCtx) => {
+	const coerce = schema.coerce!;
+	let fn: CoercionFn | undefined;
+	if ($isFunction(coerce)) {
+		fn = coerce;
+	} else if ($isString(coerce)) {
+		fn = ctx.coerce[coerce];
+	} else {
+		const entry: CoercionHOF = ctx.coerce[coerce[0]];
+		if (entry != null) fn = entry(...coerce.slice(1));
+	}
+	if (!fn) {
+		__schemaError(ctx, `unknown coercion`);
+	}
+	return fn!(x, schema);
+};
+
 /** @internal */
 const __validate = (ctx: ValidateSchemaCtx, checks: Validator[], x: any) => {
 	try {
 		return validator(...checks)(x);
 	} catch (e) {
-		__addError(ctx, (<CustomError>e).origMessage);
-		return false;
+		return __addError(ctx, (<CustomError>e).origMessage);
 	}
-};
-
-/** @internal */
-const __addError = (ctx: ValidateSchemaCtx, msg: string) => {
-	ctx.errors.push({ path: ctx.path.slice(), msg });
 };
 
 /** @internal */
@@ -143,7 +238,10 @@ const __type = (x: any, schema: JSONSchema, ctx: ValidateSchemaCtx) => {
 		case "object":
 			return __object(x, <ObjectSchema>schema, ctx);
 		default:
-			throw new SchemaError("illegal schema type: " + (<any>schema).type);
+			return __schemaError(
+				ctx,
+				"illegal schema type: " + (<any>schema).type
+			);
 	}
 };
 
@@ -158,17 +256,15 @@ const __schemaRef = (
 		? new URL(schema.$ref, ctx.base).toString()
 		: schema.$ref;
 	if (ctx.visited!.includes(ref)) {
-		throw new SchemaError(
+		__schemaError(
+			ctx,
 			`cycle detected: ${ctx.visited!.join(" -> ")} -> ${ref}`
 		);
 	} else {
 		ctx.visited!.push(ref);
 	}
 	const refSchema = ctx.registry[ref];
-	if (!refSchema)
-		throw new SchemaError(
-			__withPath(ctx, "invalid schema ref: " + schema.$ref)
-		);
+	if (!refSchema) __schemaError(ctx, "invalid schema ref: " + schema.$ref);
 	return __validateSchema(x, refSchema, ctx);
 };
 
@@ -183,8 +279,10 @@ const __altTypes = (x: any, schema: AltSchema, ctx: ValidateSchemaCtx) => {
 		)
 			return true;
 	}
-	__addError(ctx, `value type must be one of: ${schema.type.join(",")}`);
-	return false;
+	return __addError(
+		ctx,
+		`value type must be one of: ${schema.type.join(",")}`
+	);
 };
 
 /** @internal */
@@ -198,8 +296,10 @@ const __const = (x: any, schema: ConstSchema, ctx: ValidateSchemaCtx) =>
 /** @internal */
 const __not = (x: any, schema: NotSchema, ctx: ValidateSchemaCtx) => {
 	if (__validateSchema(x, schema.not!, { ...ctx, errors: [] })) {
-		__addError(ctx, `expected value not ${__passSchema(schema.not)}`);
-		return false;
+		return __addError(
+			ctx,
+			`expected value not ${__passSchema(schema.not)}`
+		);
 	}
 	return true;
 };
@@ -209,8 +309,7 @@ const __anyOf = (x: any, schema: AnyOfSchema, ctx: ValidateSchemaCtx) => {
 	for (const alt of schema.anyOf!) {
 		if (__validateSchema(x, alt, { ...ctx, errors: [] })) return true;
 	}
-	__addError(ctx, `expected to match one of the schema options`);
-	return false;
+	return __addError(ctx, `expected to match one of the schema options`);
 };
 
 /** @internal */
@@ -284,11 +383,7 @@ const __string = (x: any, schema: StringSchema, ctx: ValidateSchemaCtx) => {
 	}
 	if (format) {
 		const re = FORMATS[format];
-		if (!re) {
-			throw new SchemaError(
-				__withPath(ctx, `unsupported format preset: ${format}`)
-			);
-		}
+		if (!re) __schemaError(ctx, `unsupported format preset: ${format}`);
 		checks.push(matchesRegexp(re, `expected ${format} format`));
 	}
 	return __validate(ctx, checks, x);
@@ -479,9 +574,20 @@ const __mergeDefs = (
 };
 
 /** @internal */
+const __addError = (ctx: ValidateSchemaCtx, msg: string) => {
+	ctx.errors.push({ path: [...ctx.path], msg });
+	return false;
+};
+
+/** @internal */
 const __withPath = (ctx: ValidateSchemaCtx, msg: string) =>
 	msg + (ctx.path.length ? ` (path: ${ctx.path.join("/")})` : "");
 
 /** @internal */
 const __passSchema = (schema: JSONSchema) =>
 	`to pass schema: ${JSON.stringify(schema)}`;
+
+/** @internal */
+const __schemaError = (ctx: ValidateSchemaCtx, msg: string) => {
+	throw new SchemaError(__withPath(ctx, msg));
+};
