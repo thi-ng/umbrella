@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-06-05T18:32:16Z
+- **Last updated**: 2026-06-15T14:57:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/validate-schema@0.2.0/packages/validate-schema) (2026-06-15)
+
+#### 🚀 Features
+
+- add value coercion support ([77e08c6](https://codeberg.org/thi.ng/umbrella/commit/77e08c6))
+  - add `JSONSchema.coerce`
+  - add coercion functions
+  - add `DEFAULT_COERCIONS` registry presets
+  - update `validateSchema()` and validators
+  - add docs
+  - add/update tests
 
 ## [0.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/validate-schema@0.1.0/packages/validate-schema) (2026-06-05)
 

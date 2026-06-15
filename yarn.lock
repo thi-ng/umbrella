@@ -5136,7 +5136,7 @@ __metadata:
     "@thi.ng/api": "npm:^8.12.26"
     "@thi.ng/diff": "npm:^5.1.127"
     "@thi.ng/hiccup": "npm:^5.4.11"
-    "@thi.ng/hiccup-css": "npm:^2.7.95"
+    "@thi.ng/hiccup-css": "npm:^2.8.0"
     "@thi.ng/strings": "npm:^3.12.8"
     "@types/node": "npm:^25.6.2"
     esbuild: "npm:^0.28.0"
@@ -5264,7 +5264,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-css@npm:^2.7.95, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
+"@thi.ng/hiccup-css@npm:^2.8.0, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-css@workspace:packages/hiccup-css"
   dependencies:
@@ -5656,7 +5656,7 @@ __metadata:
     "@thi.ng/compare": "npm:^2.5.14"
     "@thi.ng/errors": "npm:^2.6.15"
     "@thi.ng/file-io": "npm:^2.3.0"
-    "@thi.ng/hiccup-css": "npm:^2.7.95"
+    "@thi.ng/hiccup-css": "npm:^2.8.0"
     "@thi.ng/logger": "npm:^3.3.9"
     "@thi.ng/memoize": "npm:^4.0.50"
     "@thi.ng/rstream": "npm:^9.5.10"
@@ -6911,14 +6911,14 @@ __metadata:
     "@thi.ng/checks": "npm:^3.10.0"
     "@thi.ng/errors": "npm:^2.6.15"
     "@thi.ng/paths": "npm:^5.2.45"
-    "@thi.ng/validate": "npm:^0.4.0"
+    "@thi.ng/validate": "npm:^0.4.1"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.19"
     typescript: "npm:^6.0.3"
   languageName: unknown
   linkType: soft
 
-"@thi.ng/validate@npm:^0.4.0, @thi.ng/validate@workspace:packages/validate":
+"@thi.ng/validate@npm:^0.4.1, @thi.ng/validate@workspace:packages/validate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/validate@workspace:packages/validate"
   dependencies:

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-06-05T18:32:16Z
+- **Last updated**: 2026-06-15T14:57:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.8.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.8.0/packages/hiccup-css) (2026-06-15)
+
+#### 🚀 Features
+
+- add `@font-face` support ([7f96634](https://codeberg.org/thi.ng/umbrella/commit/7f96634))
+  - add `at_fontface()`
+  - update `QUOTED_FNS`
+  - add tests
+
+#### 🩹 Bug fixes
+
+- don't emit CSS properties with nullish values ([0675d2e](https://codeberg.org/thi.ng/umbrella/commit/0675d2e))
 
 ### [2.7.74](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/hiccup-css@2.7.74/packages/hiccup-css) (2025-12-03)
 
