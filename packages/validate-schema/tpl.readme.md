@@ -22,8 +22,13 @@ The result format is:
 
 ```ts
 {
+	// true if successful
 	valid: boolean;
+	// value given to validateSchema(), possibly augmented if coercions are used
+	value: any;
+	// list of error reports
 	errors: { path: (number | string)[]; msg: string}[],
+	// list of default values
 	defaults: { path: (number | string)[]; value: any}[],
 }
 ```
@@ -50,6 +55,41 @@ Only the following `format` presets are supported for validating string values:
 - no support for `unevaluatedItems` / `unevaluatedProperties`
 
 TBC
+
+## Extensions
+
+### Value coercions
+
+Each schema can optionally define a `coerce` function (or registered function
+ID) which is used to attempt to coerce the original value into a type/format
+expected by the schema prior to validation. If coercion succeeds, that result
+value will be used for validation instead and also be recorded in
+[`ValidationResult.value`](https://docs.thi.ng/umbrella/validate-schema/interfaces/ValidationResult.html#value).
+
+By default only the coercions defined in
+[`DEFAULT_COERCIONS`](https://docs.thi.ng/umbrella/validate-schema/variables/DEFAULT_COERCIONS.html)
+are available, but custom ones can be provided via an optional arg given to
+[`validateSchema()`](https://docs.thi.ng/umbrella/validate-schema/functions/validateSchema.html).
+Also see
+[`JSONSchema.coerce`](https://docs.thi.ng/umbrella/validate-schema/interfaces/JSONSchema.html#coerce)
+and
+[`ValidateSchemaCtx.coerce`](https://docs.thi.ng/umbrella/validate-schema/interfaces/ValidateSchemaCtx.html#coerce).
+
+Default coercions:
+
+- `bits`: Coerces base-2 (binary) string value to 32bit umsigned int
+- `csv`: Coerces comma-separated string to array of strings
+- `float`: Coerces string value to JS number.
+- `hex`: Coerces base-16 (hexadecimal) string value to 32bit umsigned int
+- `int`: Coerces string value to 32bit signed int
+- `json`: Parses string value as JSON
+- `octal`: Coerces base-8 (octal) string value to 32bit umsigned int
+- `split`: Higher-order coercion to split a string value with given delimiter into
+  a string array. Usage example: `["split", ";"]`
+- `splitRegExp`: Higher-order coercion to split a string value with given
+  delimiter regexp into a string array. The regexp will be assigned the global
+  flag. Usage example: `["split", "\\s+"]`.
+- `uint`: Coerces string value to 32bit unsigned int
 
 {{meta.status}}
 
@@ -102,14 +142,14 @@ const schema: JSONSchema = {
 				{
 					type: "object",
 					properties: {
-						email: { type: "string", format: "email" }
+						email: { type: "string", format: "email" },
 					},
 					required: ["email"],
 				},
 				{
 					type: "object",
 					properties: {
-						phone: { type: "string" }
+						phone: { type: "string" },
 					},
 					required: ["phone"],
 				},
@@ -139,9 +179,16 @@ console.log(
 );
 // {
 //   valid: true,
+//   value: {
+//     id: 1,
+//     name: "Alice",
+//     role: "admin",
+//     contact: { phone: "alice@example.com" },
+//     tags: [ "blueteam", "remote" ],
+//   },
 //   errors: [],
 //   defaults: [
-//     { path: ["role"], value: "viewer" }
+//     { path: [ "role" ], value: "viewer" }
 //   ],
 // }
 
@@ -151,20 +198,26 @@ console.log(
 			id: 0,
 			name: "Bob",
 			role: "user",
-			tags: ["far", "too", "many", "tags", "here"],
+			tags: ["far", "too", "many", "tags"],
 		},
 		schema
 	)
 );
 // {
 //   valid: false,
+//   value: {
+//     id: 0,
+//     name: "Bob",
+//     role: "user",
+//     tags: [ "far", "too", "many", "tags" ],
+//   },
 //   errors: [
-//     { path: ["id"], msg: "expected value >= 1" },
-//     { path: ["role"], msg: "expected value to be one of: admin, editor, viewer" },
-//     { path: ["tags"], msg: "expected max. length 3" }
+//     { path: [ "id" ], msg: "expected value >= 1" },
+//     { path: [ "role" ], msg: "expected value to be one of: admin, editor, viewer" },
+//     { path: [ "tags" ], msg: "expected max. length 3" }
 //   ],
 //   defaults: [
-//     { path: ["role"], value: "viewer" }
+//     { path: [ "role" ], value: "viewer" }
 //   ],
 // }
 ```
