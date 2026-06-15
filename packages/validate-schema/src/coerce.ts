@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
-import type { CoercionFn, CoercionHOF } from "./api";
+import type { CoercionFn, CoercionHOF } from "./api.js";
 
 /**
  * Higher order function. Returns function to parse a `base`-N string value as
