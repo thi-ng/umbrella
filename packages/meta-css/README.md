@@ -2762,7 +2762,7 @@ The toolchain itself is distributed as CLI bundle with **no runtime
 dependencies**. The following dependencies are only shown for informational
 purposes and are (partially) included in the bundle.
 
-Package sizes (brotli'd, pre-treeshake): ESM: 14.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 14.57 KB
 
 ## Dependencies
 
