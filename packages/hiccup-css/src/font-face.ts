@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import type { CSSOpts } from "./api.js";
 import { formatDecls, indent } from "./impl.js";
 
@@ -18,10 +19,10 @@ export interface FontFaceSpec {
 }
 
 export const at_fontface = (spec: FontFaceSpec) => {
-	return (acc: string[], $opts: CSSOpts) => {
-		const outer = indent($opts);
+	return (acc: string[], opts: CSSOpts) => {
+		const outer = indent(opts);
 		acc.push(
-			`${outer}@font-face${$opts.format.declStart}${formatDecls(
+			`${outer}@font-face${opts.format.declStart}${formatDecls(
 				{
 					"font-family": spec.family,
 					"font-style": spec.style,
@@ -39,8 +40,8 @@ export const at_fontface = (spec: FontFaceSpec) => {
 					"line-gap-override": spec.lineGap,
 					"size-adjust": spec.size,
 				},
-				$opts
-			)}${outer}${$opts.format.declEnd}`
+				opts
+			)}${outer}${opts.format.declEnd}`
 		);
 		return acc;
 	};
