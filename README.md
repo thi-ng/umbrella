@@ -314,13 +314,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-06-05
+As of: 2026-06-15
 
 | Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
 |:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)                   | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)                   | [changelog](./packages/checks/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/file-io`](./packages/file-io)                 | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                 | [changelog](./packages/file-io/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/validate`](./packages/validate)               | [![version](https://img.shields.io/npm/v/@thi.ng/validate.svg)](https://www.npmjs.com/package/@thi.ng/validate)               | [changelog](./packages/validate/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-css`](./packages/hiccup-css)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)           | [changelog](./packages/hiccup-css/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/validate-schema`](./packages/validate-schema) | [![version](https://img.shields.io/npm/v/@thi.ng/validate-schema.svg)](https://www.npmjs.com/package/@thi.ng/validate-schema) | [changelog](./packages/validate-schema/CHANGELOG.md) |
 
 ### Algorithms & data structures
