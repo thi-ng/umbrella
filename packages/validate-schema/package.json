@@ -40,7 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
+		"@thi.ng/checks": "^3.10.0",
 		"@thi.ng/errors": "^2.6.15",
+		"@thi.ng/paths": "^5.2.45",
 		"@thi.ng/validate": "^0.4.0"
 	},
 	"devDependencies": {
@@ -74,6 +76,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./coerce": {
+			"default": "./coerce.js"
 		},
 		"./schema": {
 			"default": "./schema.js"

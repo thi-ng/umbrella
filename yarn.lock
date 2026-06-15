@@ -6908,7 +6908,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@thi.ng/validate-schema@workspace:packages/validate-schema"
   dependencies:
+    "@thi.ng/checks": "npm:^3.10.0"
     "@thi.ng/errors": "npm:^2.6.15"
+    "@thi.ng/paths": "npm:^5.2.45"
     "@thi.ng/validate": "npm:^0.4.0"
     esbuild: "npm:^0.28.0"
     typedoc: "npm:^0.28.19"
