@@ -96,6 +96,9 @@
 		"./css": {
 			"default": "./css.js"
 		},
+		"./font-face": {
+			"default": "./font-face.js"
+		},
 		"./import": {
 			"default": "./import.js"
 		},
