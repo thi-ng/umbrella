@@ -7,10 +7,10 @@
 		"tools"
 	],
 	"devDependencies": {
-		"bun-types": "1.3.13",
-		"esbuild": "^0.28.0",
+		"bun-types": "1.3.14",
+		"esbuild": "^0.28.1",
 		"html-minifier-terser": "^7.2.0",
-		"prettier": "^3.8.3",
+		"prettier": "^3.9.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"

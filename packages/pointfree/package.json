@@ -47,7 +47,7 @@
 		"@thi.ng/errors": "^2.6.15"
 	},
 	"devDependencies": {
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"
 	},

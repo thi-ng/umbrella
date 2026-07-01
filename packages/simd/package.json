@@ -44,8 +44,8 @@
 		"@thi.ng/api": "^8.12.26"
 	},
 	"devDependencies": {
-		"assemblyscript": "0.28.17",
-		"esbuild": "^0.28.0",
+		"assemblyscript": "0.28.19",
+		"esbuild": "^0.28.1",
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"
 	},

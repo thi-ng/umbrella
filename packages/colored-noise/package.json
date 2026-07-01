@@ -50,7 +50,7 @@
 		"@thi.ng/text-canvas": "^3.0.125",
 		"@thi.ng/transducers": "^9.6.40",
 		"@thi.ng/vectors": "^8.6.36",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"
 	},

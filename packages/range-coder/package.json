@@ -44,7 +44,7 @@
 	},
 	"devDependencies": {
 		"@thi.ng/transducers": "^9.6.40",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"
 	},

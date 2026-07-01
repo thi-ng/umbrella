@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"typescript": "^6.0.3",
-		"vite": "^8.0.11"
+		"vite": "^8.1.0"
 	},
 	"dependencies": {
 		"@thi.ng/canvas": "workspace:^",

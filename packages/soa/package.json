@@ -48,7 +48,7 @@
 	},
 	"devDependencies": {
 		"@thi.ng/equiv": "^2.1.115",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"
 	},
