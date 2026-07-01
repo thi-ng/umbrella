@@ -15,6 +15,14 @@
 		"typedoc": "^0.28.19",
 		"typescript": "^6.0.3"
 	},
+	"dependenciesMeta": {
+		"@serialport/bindings-cpp": {
+			"built": false
+		},
+		"esbuild": {
+			"built": false
+		}
+	},
 	"resolutions": {
 		"brace-expansion": "^5.0.5",
 		"minimatch": "^10.2.1",
@@ -49,5 +57,5 @@
 		"tool:prepare": "yarn tool:cleanup && yarn tool:imports && yarn tool:exports && yarn tool:spdx && yarn doc:readme && yarn tool:searchindex && yarn tool:deps && yarn tool:browser",
 		"tool:tangle": "yarn @thi.ng run tool:tangle"
 	},
-	"packageManager": "yarn@4.13.0"
+	"packageManager": "yarn@4.17.0"
 }

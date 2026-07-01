@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 10
   cacheKey: 10
 
 "@emnapi/core@npm:1.11.1":
@@ -8299,6 +8299,11 @@ __metadata:
     tools: "workspace:^"
     typedoc: "npm:^0.28.19"
     typescript: "npm:^6.0.3"
+  dependenciesMeta:
+    "@serialport/bindings-cpp":
+      built: false
+    esbuild:
+      built: false
   languageName: unknown
   linkType: soft
 
