@@ -6,6 +6,7 @@ import { areaScale } from "./area-scale.js";
 import { dilutionConcentration } from "./dilution-concentration.js";
 import { dilutionVolume } from "./dilution-volume.js";
 import { solutionAddition } from "./solution-addition.js";
+import { solutionAmount } from "./solution-amount.js";
 import { twoPartSolutionRatio } from "./two-part-solution-ratio.js";
 
 // all calculators here are based on reactive form fields. we're using
@@ -27,6 +28,7 @@ $compile(
 				// list of calculators (each one becomes a <fieldset>)
 				areaScale(),
 				twoPartSolutionRatio(),
+				solutionAmount(),
 				dilutionVolume(),
 				dilutionConcentration(),
 				solutionAddition()
