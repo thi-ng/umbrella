@@ -335,6 +335,7 @@ The following preset formatters are available:
 - `FMT_HHmmss` - `"21:42:07"`
 - `FMT_HHmmss_ALT` - `"214207"`
 - `FMT_hms` - `"9:42:07 PM"`
+- `FMT_mmss` - `"42:07"`
 - `FMT_yyyy` - `"2020"` (4 digit year)
 - `FMT_MM` - `"12"` (2 digit month)
 - `FMT_ww` - `"52"` (2 digit week)
@@ -355,28 +356,50 @@ defFormat([FMT_yyyyMMdd, " @ ", FMT_HHmmss])();
 
 ### Timecodes
 
-For timebased media applications, the higher-order `defTimecode()` can be used
-to create a formatter for a given FPS (frames / second, in [1..1000] range),
-e.g. `HH:mm:ss:ff`. The returned function takes a single arg (time in
-milliseconds) and returns formatted string.
+For timebased media applications, the configurable higher-order `defTimecode()`
+can be used to create a formatter for a given FPS (frames per second, in
+[1..1000] range), e.g. `HH:mm:ss:ff`. The returned function takes a single arg
+(time in milliseconds) and returns a formatted string.
 
-The timecode considers days too, but only includes them in the result if the day
-part is non-zero. The 4 separators between each field can be customized via 2nd
-arg (default: all `:`).
+The timecode considers days too, but by default only includes them in the result
+if the day part is non-zero. The 4 separators between each field can be
+customized via the `sep`
+[option](https://docs.thi.ng/umbrella/date/interfaces/TimecodeOpts). The minute
+and second parts are the only ones which will always be present. The visibility
+of others can be configured. Depending on FPS, the frame part will be between
+2-4 digits (zero-padded).
 
 ```ts
 import { defTimecode, DAY, HOUR, MINUTE, SECOND } from "@thi.ng/date";
 
-const a = defTimecode(30);
-a(1*HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
-// "01:02:03:04"
+// use 30 fps w/ default options
+const fmt = defTimecode(30);
 
-a(DAY);
-// "01:00:00:00:00"
+// day part omitted by default if zero
+console.log(
+	fmt(HOUR + 2*MINUTE + 3*SECOND + 4*SECOND/30)
+);
+// 01:02:03:04
 
-const b = defTimecode(30, ["d ", "h ", "' ", '" ']);
-b(DAY + HOUR + 2*MINUTE + 3*SECOND + 999)
-// "01d 01h 02' 03" 29"
+// ...but shown if needed
+console.log(fmt(DAY));
+// 01:00:00:00:00
+
+// use custom seperators
+const fmt2 = defTimecode(30, { sep: ["d ", "h ", "' ", '" '] });
+
+console.log(
+	fmt2(DAY + 2*HOUR + 3*MINUTE + 4*SECOND + 999)
+);
+// 01d 02h 03' 04" 29
+
+// only use `min:sec`
+const fmt3 = defTimecode(30, { hour: false, frames: false });
+
+console.log(
+	fmt3(12 * MINUTE + 34 * SECOND)
+);
+// 12:34
 ```
 
 ### Locales
@@ -423,9 +446,10 @@ fmt(dateTime());
 // Saturday 19 September 2020
 ```
 
-Use [`withLocale()`](https://docs.thi.ng/umbrella/date/functions/withLocale.html)
-to only temporarily set a locale and execute a function with it, then
-automatically restoring the currently active locale.
+Use
+[`withLocale()`](https://docs.thi.ng/umbrella/date/functions/withLocale.html) to
+only temporarily set a locale and execute a function with it, then automatically
+restoring the currently active locale.
 
 ```ts
 import { dateTime, withLocale, FR_LONG } from "@thi.ng/date";
