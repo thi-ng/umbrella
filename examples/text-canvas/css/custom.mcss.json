@@ -5,12 +5,17 @@
 		[
 			"@font-face",
 			{
-				"font-family": "Iosevka Fixed SS04 Web",
-				"font-display": "swap",
-				"font-weight": 400,
-				"font-stretch": "normal",
-				"font-style": "normal",
-				"src": "url(\"/assets/iosevka-fixed-ss04-regular.woff2\") format(\"woff2\")"
+				"family": "Iosevka Fixed SS04 Web",
+				"display": "swap",
+				"weight": 400,
+				"stretch": "normal",
+				"style": "normal",
+				"src": [
+					{
+						"url": "/assets/iosevka-fixed-ss04-regular.woff2",
+						"format": "woff2"
+					}
+				]
 			}
 		]
 	],
