@@ -216,47 +216,65 @@ export const defFormat =
  * Format preset, e.g. `2020-09-19`
  */
 export const FMT_yyyyMMdd = defFormat(["yyyy", "-", "MM", "-", "dd"]);
+
 /**
  * Format preset, e.g. `20200919`
  */
 export const FMT_yyyyMMdd_ALT = defFormat(["yyyy", "MM", "dd"]);
+
 /**
  * Format preset, e.g. `9/19/2020`
  */
 export const FMT_Mdyyyy = defFormat(["M", "/", "d", "/", "yyyy"]);
+
 /**
  * Format preset, e.g. `Sep 19 2020`. Uses current `LOCALE`, see
  * {@link setLocale}.
  */
 export const FMT_MMMdyyyy = defFormat(["MMM", " ", "d", " ", "yyyy"]);
+
 /**
  * Format preset, e.g. `19.9.2020`
  */
 export const FMT_dMyyyy = defFormat(["d", "/DM", "M", "/MY", "yyyy"]);
+
 /**
  * Format preset, e.g. `19 Sep 2020`
  */
 export const FMT_dMMMyyyy = defFormat(["d", "/DM", "MMM", " ", "yyyy"]);
+
 /**
  * Format preset, e.g. `17:08`
  */
 export const FMT_HHmm = defFormat(["HH", "/HM", "mm"]);
+
 /**
  * Format preset, e.g. `5:08 PM`
  */
-export const FMT_hm = defFormat(["h", "/HM", "mm", " ", "A"]);
+export const FMT_hmm = defFormat(["h", "/HM", "mm", " ", "A"]);
+/** @deprecated renamed to {@link FMT_hmm} */
+export const FMT_hm = FMT_hmm;
+
 /**
  * Format preset, e.g. `17:08:01`
  */
 export const FMT_HHmmss = defFormat(["HH", "/HM", "mm", "/MS", "ss"]);
+
 /**
  * Format preset, e.g. `170801`
  */
 export const FMT_HHmmss_ALT = defFormat(["HH", "mm", "ss"]);
+
 /**
  * Format preset, e.g. `5:08:01 PM`
  */
 export const FMT_hms = defFormat(["h", "/HM", "mm", "/MS", "ss", " ", "A"]);
+
+/**
+ * Format preset, 2-digit minute and second only (mm:ss)
+ */
+export const FMT_mmss = defFormat(["mm", "/MS", "ss"]);
+
 /**
  * Format preset, e.g. `20200919-170801`
  */
@@ -264,6 +282,7 @@ export const FMT_hms = defFormat(["h", "/HM", "mm", "/MS", "ss", " ", "A"]);
 export const FMT_yyyyMMdd_HHmmss = defFormat(
     ["yyyy", "MM", "dd", "-", "HH", "mm", "ss"]
 );
+
 /**
  * ISO8601 format preset (without millisecond term), e.g.
  * `2020-09-19T17:08:01Z`
@@ -286,26 +305,32 @@ export const FMT_ISO = defFormat(
  * Format preset, 4-digit year only
  */
 export const FMT_yyyy = defFormat(["yyyy"]);
+
 /**
  * Format preset, 2-digit month only
  */
 export const FMT_MM = defFormat(["MM"]);
+
 /**
  * Format preset, 2-digit week in year only
  */
 export const FMT_ww = defFormat(["ww"]);
+
 /**
  * Format preset, 2-digit day in month only
  */
 export const FMT_dd = defFormat(["dd"]);
+
 /**
  * Format preset, 2-digit hour only
  */
 export const FMT_HH = defFormat(["HH"]);
+
 /**
  * Format preset, 2-digit minute only
  */
 export const FMT_mm = defFormat(["mm"]);
+
 /**
  * Format preset, 2-digit second only
  */
