@@ -45,17 +45,38 @@ test("formatters", () => {
 });
 
 test("timecode", () => {
+	const sep = ["d ", "h ", "' ", '" '];
+	expect(defTimecode(30)(0)).toBe("00:00:00:00");
 	expect(
 		defTimecode(30)(HOUR + 2 * MINUTE + 3 * SECOND + (4 * 1000) / 30)
 	).toBe("01:02:03:04");
 	expect(
 		defTimecode(30)(4 * DAY + HOUR + 2 * MINUTE + 3 * SECOND + 999)
 	).toBe("04:01:02:03:29");
+	expect(defTimecode(30)(DAY)).toBe("01:00:00:00:00");
+	expect(defTimecode(30, { hour: false })(DAY)).toBe("01:00:00:00:00");
 	expect(
-		defTimecode(30, ["d ", "h ", "' ", '" '])(
-			4 * DAY + HOUR + 2 * MINUTE + 3 * SECOND + 999
-		)
+		defTimecode(30, { sep })(4 * DAY + HOUR + 2 * MINUTE + 3 * SECOND + 999)
 	).toBe("04d 01h 02' 03\" 29");
+	expect(defTimecode(30, { hour: false })(3 * MINUTE + 2 * SECOND)).toBe(
+		"03:02:00"
+	);
+	expect(
+		defTimecode(30, { hour: false, sep })(
+			4 * HOUR + 3 * MINUTE + 2 * SECOND
+		)
+	).toBe(`04h 03' 02" 00`);
+	expect(
+		defTimecode(30, { hour: false, sep })(4 * DAY + 3 * MINUTE + 2 * SECOND)
+	).toBe(`04d 00h 03' 02" 00`);
+	expect(
+		defTimecode(30, { hour: false, frame: false, sep })(
+			3 * MINUTE + 2 * SECOND
+		)
+	).toBe(`03' 02`);
+	expect(defTimecode(30, { day: true, sep })(3 * MINUTE + 2 * SECOND)).toBe(
+		`00d 00h 03' 02" 00`
+	);
 });
 
 test("duration", () => {
