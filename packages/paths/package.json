@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/paths",
-	"version": "5.2.45",
+	"version": "5.2.46",
 	"description": "Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing",
 	"type": "module",
 	"module": "./index.js",
@@ -40,9 +40,9 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.26",
-		"@thi.ng/checks": "^3.10.0",
-		"@thi.ng/errors": "^2.6.15"
+		"@thi.ng/api": "^8.12.27",
+		"@thi.ng/checks": "^3.10.1",
+		"@thi.ng/errors": "^2.6.16"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.1",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fuzzy",
-	"version": "2.1.142",
+	"version": "2.1.143",
 	"description": "Fuzzy logic operators & configurable rule inferencing engine",
 	"type": "module",
 	"module": "./index.js",
@@ -40,8 +40,8 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.12.26",
-		"@thi.ng/math": "^5.15.15"
+		"@thi.ng/api": "^8.12.27",
+		"@thi.ng/math": "^5.15.16"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.1",

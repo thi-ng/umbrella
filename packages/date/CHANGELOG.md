@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-06-05T18:32:16Z
+- **Last updated**: 2026-07-02T14:22:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/date@3.0.0/packages/date) (2026-07-02)
+
+#### 🛑 Breaking changes
+
+- update `defTimecode()`, add options ([93980bb](https://codeberg.org/thi.ng/umbrella/commit/93980bb))
+- BREAKING CHANGE: update `defTimecode()` to use options object
+  - add config options to control day, hour, frame parts of timecode
+  - use `sep` option to define separators
+  - add tests
+
+#### 🚀 Features
+
+- add `FMT_mmss` format preset, rename `FMT_hm` => `FMT_hmm` ([4b89328](https://codeberg.org/thi.ng/umbrella/commit/4b89328))
 
 ### [2.8.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/date@2.8.1/packages/date) (2026-04-06)
 
