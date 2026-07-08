@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { pixelCanvas2d } from "@thi.ng/canvas";
-import { div, h3, inputFile } from "@thi.ng/hiccup-html";
+import { div, h3, inputFile, inputRange, label } from "@thi.ng/hiccup-html";
 import { MIME_IMAGE_COMMON } from "@thi.ng/mime/presets";
 import {
 	FLOAT_RGB,
@@ -10,13 +10,20 @@ import {
 	imageFromFile,
 	intBufferFromImage,
 } from "@thi.ng/pixel";
-import { $attribs, $compile, $replace, type ComponentLike } from "@thi.ng/rdom";
-import { stream } from "@thi.ng/rstream";
+import {
+	$attribs,
+	$compile,
+	$inputNum,
+	$replace,
+	type ComponentLike,
+} from "@thi.ng/rdom";
+import { reactive, stream, sync } from "@thi.ng/rstream";
 import { normFrequencies } from "@thi.ng/transducers";
 
 // reactive state values
 const file = stream<File>();
 const result = stream<ComponentLike>();
+const amp = reactive(2);
 
 // helper function to compute the histogram of a single color channel.
 // normFrequencies() returns a Map of encountered values and how
@@ -29,19 +36,40 @@ $compile(
 	div(
 		{},
 		h3({}, "Image RGB waveform"),
-		inputFile(".mb3", {
-			accept: MIME_IMAGE_COMMON,
-			multiple: false,
-			onchange: (e) => file.next((<HTMLInputElement>e.target).files![0]),
-		}),
+		div(
+			"#form",
+			{},
+			div(
+				{},
+				label({ for: "file" }, "Image:"),
+				inputFile({
+					accept: MIME_IMAGE_COMMON,
+					multiple: false,
+					onchange: (e) =>
+						file.next((<HTMLInputElement>e.target).files![0]),
+				})
+			),
+			div(
+				{},
+				label({ for: "amp" }, "Amplitude:"),
+				inputRange(".mr3", {
+					min: 1,
+					max: 4,
+					step: 1,
+					value: amp,
+					oninput: $inputNum(amp),
+				}),
+				amp
+			)
+		),
 		$replace(result)
 	)
 ).mount(document.getElementById("app")!);
 
 // main app logic as subscription to the file stream linked to the file chooser
 // in the UI. loads a the file as image, then constructs RGB waveform
-file.subscribe({
-	next: async (file) => {
+sync({ src: { file, amp } }).subscribe({
+	next: async ({ file, amp }) => {
 		// load image from local file
 		const img = await imageFromFile(file);
 		// create pixel buffer
@@ -66,9 +94,9 @@ file.subscribe({
 				// use .setAtUnsafe() to skip bounds test, the given pixel
 				// coordinate is always valid here...
 				wav.setAtUnsafe(x, 255 - i, [
-					freqR.get(i) || 0,
-					freqG.get(i) || 0,
-					freqB.get(i) || 0,
+					Math.min(1, (freqR.get(i) || 0) * amp),
+					Math.min(1, (freqG.get(i) || 0) * amp),
+					Math.min(1, (freqB.get(i) || 0) * amp),
 				]);
 			}
 		}
