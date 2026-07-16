@@ -42,6 +42,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.12.27",
 		"@thi.ng/matrices": "^3.0.52",
+		"@thi.ng/rstream-gestures": "^5.0.177",
 		"@thi.ng/vectors": "^8.6.37"
 	},
 	"devDependencies": {
