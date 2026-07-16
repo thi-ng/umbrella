@@ -79,6 +79,40 @@ export const parseOBJFromIterable = async (
 };
 
 /**
+ * Parses OBJ string as generator/coroutine which yields after processing each
+ * line and then returns final parsed result.
+ *
+ * @remarks
+ * This function can be used in combination with
+ * [thi.ng/fibers](https://thi.ng/fibers) operators, e.g. for time-sliced
+ * processing, with support for cancellation, error handling, custom scheduling
+ * logic etc.
+ *
+ * @example
+ * ```ts
+ * import { timeSlice }  from "@thi.ng/fibers";
+ * import { parseOBJGenerator }  from "@thi.ng/geom-io-obj";
+ *
+ * // load OBJ
+ * const response = await fetch("bunny.obj");
+ * const src = await response.text();
+ *
+ * // parse in 10 millisecond time slices
+ * const model = await timeSlice(parseOBJGenerator(src), 10).run().promise();
+ * ```
+ *
+ * @param src
+ * @param opts
+ */
+export function* parseOBJGenerator(src: string, opts?: Partial<ParseOpts>) {
+	const { result, parseLine } = __parser(opts);
+	for (let line of src.split(/[\n\r]+/g)) {
+		yield parseLine(line);
+	}
+	return result;
+}
+
+/**
  * Main parser as higher order function for better re-use. Returns object of
  * initial `result` and a `parseLine` function which should be called repeatedly
  * to proceed with parsing and will update result object.

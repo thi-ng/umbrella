@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
+import { timeSlice } from "@thi.ng/fibers";
 import { expect, test } from "bun:test";
-import { parseOBJFromStream, parseOBJFromString } from "../src/index.js";
+import {
+	parseOBJFromStream,
+	parseOBJFromString,
+	parseOBJGenerator,
+} from "../src/index.js";
 
 const src = `
 # test cube
@@ -134,4 +139,13 @@ test("bunny (stream)", async () => {
 	const model = await parseOBJFromStream(response.body!);
 	expect(model.vertices.length).toBe(14290);
 	expect(model.objects[0].groups[0].faces.length).toBe(28576);
+});
+
+test("bunny (fiber)", async () => {
+	const response = await fetch(
+		`file://${import.meta.dir}/fixtures/bunny.obj`
+	);
+	const src = await response.text();
+	const model = await timeSlice(parseOBJGenerator(src), 16).run().promise();
+	console.log(model);
 });
