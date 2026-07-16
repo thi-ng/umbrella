@@ -314,11 +314,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-07-02
+As of: 2026-07-16
 
-| Status                                        | Package                           | Version                                                                                                 | Changelog                                 |
-|:----------------------------------------------|:----------------------------------|:--------------------------------------------------------------------------------------------------------|:------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date) | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date) | [changelog](./packages/date/CHANGELOG.md) |
+| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
+|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arcball`](./packages/arcball)         | [![version](https://img.shields.io/npm/v/@thi.ng/arcball.svg)](https://www.npmjs.com/package/@thi.ng/arcball)         | [changelog](./packages/arcball/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/fibers`](./packages/fibers)           | [![version](https://img.shields.io/npm/v/@thi.ng/fibers.svg)](https://www.npmjs.com/package/@thi.ng/fibers)           | [changelog](./packages/fibers/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-io-obj`](./packages/geom-io-obj) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj) | [changelog](./packages/geom-io-obj/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
