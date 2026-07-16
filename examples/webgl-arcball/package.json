@@ -21,10 +21,8 @@
 		"vite": "^8.1.0"
 	},
 	"dependencies": {
-		"@thi.ng/api": "workspace:^",
 		"@thi.ng/arcball": "workspace:^",
 		"@thi.ng/matrices": "workspace:^",
-		"@thi.ng/rstream-gestures": "workspace:^",
 		"@thi.ng/soa": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/vectors": "workspace:^",
@@ -46,6 +44,7 @@
 	},
 	"keywords": [
 		"3d",
+		"arcball",
 		"browser",
 		"color",
 		"example",

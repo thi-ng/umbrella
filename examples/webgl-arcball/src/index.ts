@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
-import { defArcBall } from "@thi.ng/arcball";
+import { defArcBall, defArcballController } from "@thi.ng/arcball";
 import { perspective } from "@thi.ng/matrices";
-import { gestureStream } from "@thi.ng/rstream-gestures";
 import { SOA } from "@thi.ng/soa";
 import { permutations, repeat } from "@thi.ng/transducers";
 import { normalize3 } from "@thi.ng/vectors";
@@ -86,28 +85,8 @@ redraw();
 // attach gesture stream to canvas and delegate events to arcball this is an
 // abstraction over both mouse, touch and wheel events. in our case the scene
 // will only be redrawn when a gesture event required it...
-gestureStream(canvas, {
-	scale: true,
-	smooth: 0.5,
-	zoom: arcball.eyeDist,
+defArcballController(canvas, arcball, {
+	onUpdate: redraw,
 	minZoom: 2.5,
 	maxZoom: 8,
-}).subscribe({
-	next(e) {
-		switch (e.type) {
-			case "start":
-				arcball.down(e.pos);
-				break;
-			case "drag":
-				arcball.drag(e.pos);
-				break;
-			case "end":
-				arcball.up();
-				break;
-			case "zoom":
-				arcball.setEyeDistance(e.zoom);
-				break;
-		}
-		if (e.type !== "move") redraw();
-	},
 });
