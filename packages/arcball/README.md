@@ -70,25 +70,30 @@ For Node.js REPL:
 const arc = await import("@thi.ng/arcball");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 659 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 812 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 - [@thi.ng/matrices](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/matrices)
+- [@thi.ng/rstream-gestures](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/rstream-gestures)
 - [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
+The `thi.ng/rstream-gestures` dependency is only needed when using
+[`defArcballController()`](https://docs.thi.ng/umbrella/arcball/functions/defArcballController.html).
+
 ## Usage examples
 
-One project in this repo's
+Two projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
-directory is using this package:
+directory are using this package:
 
 | Screenshot                                                                                                        | Description                                                       | Live demo                                           | Source                                                                                   |
 |:------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------|
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-cube.png" width="240"/> | 3D arcball controller to rotate the camera view of a colored cube | [Demo](https://demo.thi.ng/umbrella/webgl-arcball/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-arcball) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-obj.avif" width="240"/> | Basic 3D OBJ model loading & interactive arcball camera control   | [Demo](https://demo.thi.ng/umbrella/webgl-obj/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-obj)     |
 
 ## API
 

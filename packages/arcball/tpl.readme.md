@@ -32,6 +32,9 @@ https://www.talisman.org/~erlkonig/misc/shoemake92-arcball.pdf
 
 {{pkg.deps}}
 
+The `thi.ng/rstream-gestures` dependency is only needed when using
+[`defArcballController()`](https://docs.thi.ng/umbrella/arcball/functions/defArcballController.html).
+
 {{repo.examples}}
 
 ## API
