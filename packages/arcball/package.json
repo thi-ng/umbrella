@@ -78,6 +78,12 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./arcball": {
+			"default": "./arcball.js"
+		},
+		"./controller": {
+			"default": "./controller.js"
 		}
 	},
 	"thi.ng": {
