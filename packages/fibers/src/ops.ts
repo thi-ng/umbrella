@@ -141,28 +141,36 @@ export const withTimeout = (
 /**
  * Higher-order fiber which repeatedly executes given `fiber` until its
  * completion, but does so in a time-sliced manner, such that the fiber never
- * consumes more than `maxTime` milliseconds per update cycle.
+ * consumes more than `maxTime` milliseconds per update cycle. The returned
+ * fiber produces the same result (if any) as the wrapped fiber. If the wrapped
+ * fiber goes into an error state, the returned time-sliced fiber will do so
+ * too (with the same error).
  *
  * @param fiber
  * @param maxTime
  * @param opts
  */
-export const timeSlice = (
-	body: MaybeFiber,
+export const timeSlice = <T = any>(
+	body: MaybeFiber<T>,
 	maxTime: number,
 	opts?: Partial<FiberOpts>
 ) =>
-	fiber(function* () {
-		const $fiber = fiber(body);
-		while (true) {
-			let t0 = now();
-			do {
-				if ($fiber.state > STATE_ACTIVE || $fiber.next() > STATE_ACTIVE)
-					return;
-			} while (timeDiff(t0) < maxTime);
-			yield;
-		}
-	}, opts);
+	fiber(
+		<MaybeFiber<T>>function* () {
+			const $fiber = fiber(body);
+			while (true) {
+				let t0 = now();
+				do {
+					if ($fiber.next() > STATE_ACTIVE) {
+						if ($fiber.state === STATE_ERROR) throw $fiber.error;
+						return $fiber.value;
+					}
+				} while (timeDiff(t0) < maxTime);
+				yield;
+			}
+		},
+		opts
+	);
 
 /**
  * Similar to {@link timeSlice}, but for consuming the given iterable in a
