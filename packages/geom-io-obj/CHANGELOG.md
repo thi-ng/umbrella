@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-16T20:38:41Z
+- **Last updated**: 2026-07-16T22:35:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-io-obj@1.0.1/packages/geom-io-obj) (2026-07-16)
+
+#### 🩹 Bug fixes
+
+- add Safari hack/workaround for `parseOBJFromStream()` ([4151fca](https://codeberg.org/thi.ng/umbrella/commit/4151fca))
+  - Safari still doesn't support `for await(...)` syntax over `ReadableStream`
+  - update function to use fallback to convert stream to async iterable manually
 
 # [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-io-obj@1.0.0/packages/geom-io-obj) (2026-07-16)
 
