@@ -336,7 +336,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-53 projects in this repo's
+54 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -395,6 +395,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/viz-ridge-lines.avif" width="240"/>     | Interactive ridge-line plot                                                                             | [Demo](https://demo.thi.ng/umbrella/viz-ridge-lines/)     | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-ridge-lines)     |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/viz-scatter-plot.avif" width="240"/>    | Interactive scatter & line plot of low-discrepancy samples                                              | [Demo](https://demo.thi.ng/umbrella/viz-scatter-plot/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/viz-scatter-plot)    |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-channel-mixer.jpg" width="240"/>  | rdom & WebGL-based image channel editor                                                                 | [Demo](https://demo.thi.ng/umbrella/webgl-channel-mixer/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-channel-mixer) |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-obj.avif" width="240"/>           | Basic 3D OBJ model loading & interactive arcball camera control                                         | [Demo](https://demo.thi.ng/umbrella/webgl-obj/)           | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-obj)           |
 
 ## API
 

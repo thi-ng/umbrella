@@ -23,6 +23,7 @@
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Benchmarks](#benchmarks)
 - [Authors](#authors)
@@ -82,7 +83,7 @@ For Node.js REPL:
 const gio = await import("@thi.ng/geom-io-obj");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1004 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.14 KB
 
 ## Dependencies
 
@@ -91,6 +92,16 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1004 bytes
 - [@thi.ng/vectors](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/vectors)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
+
+## Usage examples
+
+One project in this repo's
+[/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
+directory is using this package:
+
+| Screenshot                                                                                                        | Description                                                     | Live demo                                       | Source                                                                               |
+|:------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|:------------------------------------------------|:-------------------------------------------------------------------------------------|
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-obj.avif" width="240"/> | Basic 3D OBJ model loading & interactive arcball camera control | [Demo](https://demo.thi.ng/umbrella/webgl-obj/) | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-obj) |
 
 ## API
 

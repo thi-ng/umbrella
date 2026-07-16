@@ -76,7 +76,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 474 bytes
 - [@thi.ng/api](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/api)
 - [@thi.ng/math](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/math)
 - [@thi.ng/pixel](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/pixel)
-- [geotiff](https://github.com/geotiffjs/geotiff.js)
+- [geotiff](git+https://github.com/geotiffjs/geotiff.js.git)
 
 Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 

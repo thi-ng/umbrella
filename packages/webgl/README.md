@@ -129,7 +129,7 @@ Note: @thi.ng/api is in _most_ cases a type-only import (not used at runtime)
 
 ## Usage examples
 
-24 projects in this repo's
+25 projects in this repo's
 [/examples](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples)
 directory are using this package:
 
@@ -155,6 +155,7 @@ directory are using this package:
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-grid.jpg" width="240"/>             | WebGL instancing, animated grid                                               | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-grid)             |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-msdf.jpg" width="240"/>             | WebGL MSDF text rendering & particle system                                   | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-msdf)             |
 |                                                                                                                               | Minimal multi-pass / GPGPU example                                            | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-multipass)        |
+| <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-obj.avif" width="240"/>             | Basic 3D OBJ model loading & interactive arcball camera control               | [Demo](https://demo.thi.ng/umbrella/webgl-obj/)              | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-obj)              |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-shadertoy.jpg" width="240"/>        | Shadertoy-like WebGL setup                                                    | [Demo](https://demo.thi.ng/umbrella/webgl-shadertoy/)        | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-shadertoy)        |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-ssao.jpg" width="240"/>             | WebGL screenspace ambient occlusion                                           | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)             | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-ssao)             |
 | <img src="https://codeberg.org/thi.ng/umbrella/media/branch/develop/assets/examples/webgl-texture-paint.jpg" width="240"/>    | Interactively drawing to & reading from a WebGL offscreen render texture      | [Demo](https://demo.thi.ng/umbrella/webgl-texture-paint/)    | [Source](https://codeberg.org/thi.ng/umbrella/src/branch/develop/examples/webgl-texture-paint)    |
