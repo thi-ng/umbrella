@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 import { typedArrayOfVec } from "@thi.ng/api";
 import { defArcBall, defArcballController } from "@thi.ng/arcball";
 import { parseOBJFromStream } from "@thi.ng/geom-io-obj";
