@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { expect, test } from "bun:test";
-import { parseOBJ } from "../src/index.js";
+import { parseOBJFromStream, parseOBJFromString } from "../src/index.js";
 
 const src = `
 # test cube
@@ -49,8 +49,8 @@ const cubeFaces = [
 	{ v: [2, 7, 4, 1] },
 ];
 
-test("cube (default)", () => {
-	const model = parseOBJ(src);
+test("cube (default)", async () => {
+	const model = await parseOBJFromString(src);
 	expect(model.vertices).toEqual(cubeVerts);
 	expect(model.objects.length).toBe(2);
 	expect(model.objects[1].id).toBe("cube");
@@ -73,8 +73,11 @@ test("cube (default)", () => {
 	expect(model.mtlLibs).toEqual(["cube.mtl"]);
 });
 
-test("cube (no obj, no groups)", () => {
-	const model = parseOBJ(src, { objects: false, groups: false });
+test("cube (no obj, no groups)", async () => {
+	const model = await parseOBJFromString(src, {
+		objects: false,
+		groups: false,
+	});
 	expect(model.vertices).toEqual(cubeVerts);
 	expect(model.objects.length).toBe(1);
 	expect(model.objects[0].id).toBe("default");
@@ -89,8 +92,8 @@ test("cube (no obj, no groups)", () => {
 	]);
 });
 
-test("cube (tessel)", () => {
-	const model = parseOBJ(src, {
+test("cube (tessel)", async () => {
+	const model = await parseOBJFromString(src, {
 		objects: false,
 		groups: false,
 		tessellate: true,
@@ -119,7 +122,16 @@ test("cube (tessel)", () => {
 	]);
 });
 
-test("comments", () => {
-	const model = parseOBJ(src, { comments: true });
+test("comments", async () => {
+	const model = await parseOBJFromString(src, { comments: true });
 	expect(model.comments).toEqual(["test cube", "quad faces"]);
+});
+
+test("bunny (stream)", async () => {
+	const response = await fetch(
+		`file://${import.meta.dir}/fixtures/bunny.obj`
+	);
+	const model = await parseOBJFromStream(response.body!);
+	expect(model.vertices.length).toBe(14290);
+	expect(model.objects[0].groups[0].faces.length).toBe(28576);
 });
