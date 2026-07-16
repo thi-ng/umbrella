@@ -8,9 +8,7 @@ export type FiberFactory<T = any> = (
 ) => Generator<unknown, T, unknown>;
 
 export type MaybeFiber<T = any> =
-	| Fiber<T>
-	| FiberFactory<T>
-	| Generator<unknown, T>;
+	Fiber<T> | FiberFactory<T> | Generator<unknown, T>;
 
 export interface FiberOpts {
 	/**
@@ -18,11 +16,14 @@ export interface FiberOpts {
 	 */
 	id: string;
 	/**
-	 * ID generator instance for fiber ID (instead of {@link FiberOpts.id})
+	 * ID generator instance for fiber ID (instead of {@link FiberOpts.id}). If
+	 * not given, uses {@link DEFAULT_ID_GEN} (use {@link setDefaultIDGen} to
+	 * configure).
 	 */
 	idgen: IIDGen<string>;
 	/**
-	 * Logger instance.
+	 * Logger instance. If not given, uses {@link DEFAULT_LOGGER} (use
+	 * {@link setDefaultLogger} to configure).
 	 */
 	logger: ILogger;
 	/**

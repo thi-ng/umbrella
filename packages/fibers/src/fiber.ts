@@ -35,7 +35,11 @@ import {
 
 let DEFAULT_ID_GEN: IIDGen<string> = prefixed("fib-", monotonic());
 
+let DEFAULT_LOGGER: Maybe<ILogger>;
+
 export const setDefaultIDGen = (gen: IIDGen<string>) => (DEFAULT_ID_GEN = gen);
+
+export const setDefaultLogger = (logger: ILogger) => (DEFAULT_LOGGER = logger);
 
 const NO_RESULT: IteratorResult<any> = { done: false, value: undefined };
 
@@ -69,7 +73,7 @@ export class Fiber<T = any>
 	) {
 		if (opts) {
 			this.autoTerminate = !!opts.terminate;
-			this.logger = opts.logger;
+			this.logger = opts.logger ?? DEFAULT_LOGGER;
 			this.parent = opts.parent;
 			this.user = {
 				init: opts.init,
@@ -83,6 +87,7 @@ export class Fiber<T = any>
 			}
 		} else {
 			this.idgen = DEFAULT_ID_GEN;
+			this.logger = DEFAULT_LOGGER;
 		}
 		if (this.idgen) this.id = this.idgen.next();
 		this.gen = isFunction(gen) ? gen(this) : gen;
@@ -272,7 +277,7 @@ export class Fiber<T = any>
 				try {
 					const { children } = this;
 					if (children.length) {
-						for (let i = 0, n = children.length; i < n; ) {
+						for (let i = 0, n = children.length; i < n;) {
 							const child = children[i];
 							if (
 								child.state > STATE_ACTIVE ||
