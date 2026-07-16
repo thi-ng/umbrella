@@ -3102,6 +3102,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/webgl-obj@workspace:examples/webgl-obj":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-obj@workspace:examples/webgl-obj"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/arcball": "workspace:^"
+    "@thi.ng/geom-io-obj": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/meta-css": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: "npm:^6.0.3"
+    vite: "npm:^8.1.0"
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-shadertoy@workspace:examples/webgl-shadertoy":
   version: 0.0.0-use.local
   resolution: "@example/webgl-shadertoy@workspace:examples/webgl-shadertoy"
@@ -4875,7 +4894,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-io-obj@workspace:packages/geom-io-obj":
+"@thi.ng/geom-io-obj@workspace:^, @thi.ng/geom-io-obj@workspace:packages/geom-io-obj":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-io-obj@workspace:packages/geom-io-obj"
   dependencies:
