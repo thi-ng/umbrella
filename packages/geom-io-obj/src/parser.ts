@@ -34,7 +34,24 @@ const DEFAULT_OPTS: ParseOpts = {
 export const parseOBJFromStream = (
 	src: ReadableStream<Uint8Array<ArrayBuffer>>,
 	opts?: Partial<ParseOpts>
-) => parseOBJFromIterable(src.pipeThrough(new TextDecoderStream()), opts);
+) =>
+	parseOBJFromIterable(
+		// TODO remove current hack/wrapper once Safari finally supports
+		// for-await syntax over ReadableStream:
+		// src.pipeThrough(new TextDecoderStream())
+		//
+		// reference:
+		// https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream#browser_compatibility
+		(async function* () {
+			const reader = src.pipeThrough(new TextDecoderStream()).getReader();
+			while (true) {
+				const { value, done } = await reader.read();
+				if (done) return;
+				yield value;
+			}
+		})(),
+		opts
+	);
 
 /**
  * Parses OBJ from given `src` string and returns promise of parsed result.
