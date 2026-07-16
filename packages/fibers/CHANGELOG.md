@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-02T14:22:51Z
+- **Last updated**: 2026-07-16T20:38:41Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.1.0/packages/fibers) (2026-07-16)
+
+#### 🚀 Features
+
+- update timeSlice() to reproduce wrapped fiber's result or error ([3e6ff31](https://codeberg.org/thi.ng/umbrella/commit/3e6ff31))
+- add `DEFAULT_LOGGER` mechanism ([b5601c2](https://codeberg.org/thi.ng/umbrella/commit/b5601c2))
+  - use `DEFAULT_LOGGER` if no logger is given
+    - initially is unset, keeping existing behavior
+  - add `setDefaultLogger()` to configure
+  - update `Fiber` ctor
+  - update `FiberOpts` docs
 
 ### [1.0.67](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/fibers@1.0.67/packages/fibers) (2025-12-03)
 

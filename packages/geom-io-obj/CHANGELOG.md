@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-02T14:22:51Z
+- **Last updated**: 2026-07-16T20:38:41Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-io-obj@1.0.0/packages/geom-io-obj) (2026-07-16)
+
+#### 🛑 Breaking changes
+
+- add support for stream parsing ([887eba5](https://codeberg.org/thi.ng/umbrella/commit/887eba5))
+- BREAKING CHANGE: rename `parseOBJ()` => `parseOBJFromString()`. All parse functions async now
+  - add `parseOBJFromStream()`
+  - add `parseOBJFromIterable()`
+  - rename `parseOBJ()` => `parseOBJFromString()`
+  - extract main parser to separate internal HOF for better re-use
+  - add/update doc strings
+  - add stream test & bunny fixture
+
+#### 🚀 Features
+
+- [#405](https://codeberg.org/thi.ng/umbrella/issues/405) add `parseOBJGenerator()` for coroutine/fiber based processing ([2899c1c](https://codeberg.org/thi.ng/umbrella/commit/2899c1c))
 
 ### [0.3.128](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/geom-io-obj@0.3.128/packages/geom-io-obj) (2024-06-21)
 
