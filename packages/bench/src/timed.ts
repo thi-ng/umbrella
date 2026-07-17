@@ -17,6 +17,18 @@ export const timed = <T>(fn: () => T, prefix = "") => {
 };
 
 /**
+ * Async version of {@link timed}.
+ *
+ * @param fn
+ * @param prefix
+ */
+export const timedAsync = async <T>(fn: () => Promise<T>, prefix = "") => {
+	const [res, t] = await timedResultAsync(fn);
+	console.log(`${prefix} ${t.toFixed(2)}ms`);
+	return res;
+};
+
+/**
  * Similar to {@link timed}, but produces no output and instead returns
  * tuple of `fn`'s result and the time measurement (in milliseconds).
  *
@@ -25,6 +37,20 @@ export const timed = <T>(fn: () => T, prefix = "") => {
 export const timedResult = <T>(fn: () => T): TimingResult<T> => {
 	const t0 = now();
 	const res = fn();
+	const t1 = now();
+	return [res, timeDiff(t0, t1)];
+};
+
+/**
+ * Async version of {@link timedResult}.
+ *
+ * @param fn
+ */
+export const timedResultAsync = async <T>(
+	fn: () => Promise<T>
+): Promise<TimingResult<T>> => {
+	const t0 = now();
+	const res = await fn();
 	const t1 = now();
 	return [res, timeDiff(t0, t1)];
 };

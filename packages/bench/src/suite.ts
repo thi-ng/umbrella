@@ -1,6 +1,16 @@
 // SPDX-License-Identifier: Apache-2.0
-import type { Benchmark, BenchmarkResult, BenchmarkSuiteOpts } from "./api.js";
-import { benchmark, DEFAULT_OPTS, outputString } from "./benchmark.js";
+import type {
+	AsyncBenchmark,
+	Benchmark,
+	BenchmarkResult,
+	BenchmarkSuiteOpts,
+} from "./api.js";
+import {
+	benchmark,
+	benchmarkAsync,
+	DEFAULT_OPTS,
+	outputString,
+} from "./benchmark.js";
 
 export const suite = (
 	cases: Benchmark[],
@@ -14,6 +24,32 @@ export const suite = (
 	const results: BenchmarkResult[] = [];
 	for (const c of cases) {
 		results.push(benchmark(c.fn, { ..._opts, ...c.opts, title: c.title }));
+	}
+	_opts.output && outputString(_opts.format.total(results));
+	_opts.output && outputString(_opts.format.suffix());
+	return results;
+};
+
+/**
+ * Async version of {@link suite}.
+ *
+ * @param cases
+ * @param opts
+ */
+export const suiteAsync = async (
+	cases: AsyncBenchmark[],
+	opts?: Partial<BenchmarkSuiteOpts>
+) => {
+	const _opts = <BenchmarkSuiteOpts>{
+		...DEFAULT_OPTS,
+		...opts,
+	};
+	_opts.output && outputString(_opts.format.prefix());
+	const results: BenchmarkResult[] = [];
+	for (const c of cases) {
+		results.push(
+			await benchmarkAsync(c.fn, { ..._opts, ...c.opts, title: c.title })
+		);
 	}
 	_opts.output && outputString(_opts.format.total(results));
 	_opts.output && outputString(_opts.format.suffix());

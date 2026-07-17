@@ -261,6 +261,20 @@ export class Profiler
 	}
 
 	/**
+	 * Async version of {@link Profiler.profile}.
+	 *
+	 * @param id
+	 * @param fn
+	 * @param args
+	 */
+	async profileAsync<T>(id: string, fn: FnAny<Promise<T>>, ...args: any[]) {
+		this.start(id);
+		const res = await fn.apply(null, args);
+		this.end(id);
+		return res;
+	}
+
+	/**
 	 * Higher-order version of {@link Profiler.profile}. Takes a profile `id`
 	 * and vararg function `fn`. Returns new function which when called, calls
 	 * given `fn` and profiles it using provided `id`, then returns result of
@@ -307,6 +321,21 @@ export class Profiler
 	}
 
 	/**
+	 * Async version of {@link Profiler.wrap}.
+	 *
+	 * @param id
+	 * @param fn
+	 */
+	wrapAsync<T>(id: string, fn: FnAny<Promise<T>>) {
+		return async (...args: any[]) => {
+			this.start(id);
+			const res = await fn.apply(null, args);
+			this.end(id);
+			return res;
+		};
+	}
+
+	/**
 	 * Estimates the internal overhead of the {@link Profiler.start} and
 	 * {@link Profiler.end} methods by performing given number of `iter`ations
 	 * (distributed over 10 runs) and taking the mean duration of those runs.
@@ -322,10 +351,13 @@ export class Profiler
 		let total = 0;
 		for (let i = 0; i < 10; i++) {
 			const id = `prof-${i}`;
-			const [_, taken] = benchResult(() => {
-				this.start(id);
-				this.end(id);
-			}, ~~(iter / 10));
+			const [_, taken] = benchResult(
+				() => {
+					this.start(id);
+					this.end(id);
+				},
+				~~(iter / 10)
+			);
 			total += taken;
 		}
 		this._overhead = total / iter;

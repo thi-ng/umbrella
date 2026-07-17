@@ -39,14 +39,14 @@
 
 ```ts id:test-functions
 // functions to benchmark...
-const fib = (n: number) =>
+const fib = (n: number): number =>
 	n > 2
 		? fib(n - 1) + fib(n - 2)
 		: n > 0
 			? 1
 			: 0;
 
-const fib2 = (n: number) => {
+const fib2 = (n: number): number => {
     const res = [0, 1];
     for(let i = 2; i <= n; i++) {
         res[i] = res[i - 1] + res[i - 2];

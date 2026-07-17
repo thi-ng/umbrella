@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import type { BenchmarkOpts, BenchmarkResult } from "./api.js";
-import { benchResult } from "./bench.js";
+import { benchResult, benchResultAsync } from "./bench.js";
 import { FORMAT_DEFAULT } from "./format/default.js";
 
 export const DEFAULT_OPTS: BenchmarkOpts = {
@@ -13,19 +13,53 @@ export const DEFAULT_OPTS: BenchmarkOpts = {
 	format: FORMAT_DEFAULT,
 };
 
-export const benchmark = (
-	fn: () => void,
-	opts?: Partial<BenchmarkOpts>
-): BenchmarkResult => {
-	const _opts = <BenchmarkOpts>{ ...DEFAULT_OPTS, ...opts };
-	let { iter, size, extSize, warmup, output, format } = _opts;
-	output && outputString(format.start(_opts));
+export const benchmark = (fn: () => any, opts?: Partial<BenchmarkOpts>) => {
+	const $opts = <BenchmarkOpts>{ ...DEFAULT_OPTS, ...opts };
+	let { iter, size, warmup, output, format } = $opts;
+	output && outputString(format.start($opts));
 	const t = benchResult(fn, warmup * size)[1];
-	output && outputString(format.warmup(t, _opts));
+	output && outputString(format.warmup(t, $opts));
 	const samples: number[] = [];
-	for (let i = iter; i-- > 0; ) {
+	for (let i = iter; i-- > 0;) {
 		samples.push(benchResult(fn, size)[1]);
 	}
+	return benchmarkResult(samples, $opts);
+};
+
+/**
+ * Async version of {@link benchmark}.
+ *
+ * @param fn
+ * @param opts
+ */
+export const benchmarkAsync = async (
+	fn: () => Promise<any>,
+	opts?: Partial<BenchmarkOpts>
+) => {
+	const $opts = <BenchmarkOpts>{ ...DEFAULT_OPTS, ...opts };
+	let { iter, size, warmup, output, format } = $opts;
+	output && outputString(format.start($opts));
+	const t = (await benchResultAsync(fn, warmup * size))[1];
+	output && outputString(format.warmup(t, $opts));
+	const samples: number[] = [];
+	for (let i = iter; i-- > 0;) {
+		samples.push((await benchResultAsync(fn, size))[1]);
+	}
+	return benchmarkResult(samples, $opts);
+};
+
+/**
+ * Helper for {@link benchmark}, {@link benchmarkAsync}. Takes an array of
+ * benchmark samples and computes result statistics using provided options. If
+ * `opts.output` is true, also outputs formatted result.
+ *
+ * @param samples
+ * @param opts
+ */
+export const benchmarkResult = (
+	samples: number[],
+	{ iter, size, extSize, format, output, title }: BenchmarkOpts
+): BenchmarkResult => {
 	samples.sort((a, b) => a - b);
 	const total = samples.reduce((acc, x) => acc + x, 0);
 	const freq = (iter * size * extSize * 1000) / total;
@@ -42,7 +76,7 @@ export const benchmark = (
 			mean) *
 		100;
 	const res: BenchmarkResult = {
-		title: _opts.title,
+		title,
 		iter,
 		size,
 		total,

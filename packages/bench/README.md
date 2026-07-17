@@ -34,7 +34,7 @@
 
 ## About
 
-Benchmarking & profiling utilities w/ various statistics & formatters (CSV, JSON, Markdown etc.).
+Async/sync benchmarking & profiling utilities with various statistics & formatters (CSV, JSON, Markdown etc.).
 
 > [!IMPORTANT]
 > As of 2024-12-27, all timestamp-related functions have been extracted/migrated
@@ -78,7 +78,7 @@ For Node.js REPL:
 const bench = await import("@thi.ng/bench");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.06 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.22 KB
 
 ## Dependencies
 
@@ -114,14 +114,14 @@ directory are using this package:
 
 ```ts id:test-functions
 // functions to benchmark...
-const fib = (n: number) =>
+const fib = (n: number): number =>
     n > 2
         ? fib(n - 1) + fib(n - 2)
         : n > 0
             ? 1
             : 0;
 
-const fib2 = (n: number) => {
+const fib2 = (n: number): number => {
     const res = [0, 1];
     for(let i = 2; i <= n; i++) {
         res[i] = res[i - 1] + res[i - 2];

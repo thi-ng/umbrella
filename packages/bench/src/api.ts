@@ -154,12 +154,16 @@ export interface Benchmark {
 	 * Benchmark function. Will be called `size` times per `iter`ation (see
 	 * {@link BenchmarkOpts}).
 	 */
-	fn: Fn0<void>;
+	fn: Fn0<any>;
 	/**
 	 * Optional & partial benchmark specific option overrides (merged with opts
 	 * given to suite)
 	 */
 	opts?: Partial<OptsWithoutTitle>;
+}
+
+export interface AsyncBenchmark extends Omit<Benchmark, "fn"> {
+	fn: Fn0<Promise<any>>;
 }
 
 let PRECISION = 2;
