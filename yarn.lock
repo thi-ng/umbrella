@@ -4068,7 +4068,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/bench@npm:^3.6.54, @thi.ng/bench@workspace:^, @thi.ng/bench@workspace:packages/bench":
+"@thi.ng/bench@npm:^3.7.0, @thi.ng/bench@workspace:^, @thi.ng/bench@workspace:packages/bench":
   version: 0.0.0-use.local
   resolution: "@thi.ng/bench@workspace:packages/bench"
   dependencies:
@@ -5956,7 +5956,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "npm:^8.12.27"
     "@thi.ng/args": "npm:^3.2.25"
-    "@thi.ng/bench": "npm:^3.6.54"
+    "@thi.ng/bench": "npm:^3.7.0"
     "@thi.ng/errors": "npm:^2.6.16"
     "@thi.ng/file-io": "npm:^2.3.1"
     "@thi.ng/logger": "npm:^3.3.10"
