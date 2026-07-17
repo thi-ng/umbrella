@@ -51,15 +51,18 @@
 	},
 	"keywords": [
 		"3d",
+		"async",
 		"datastructure",
 		"fileformat",
 		"geometry",
+		"iterator",
 		"mesh",
 		"obj",
 		"parser",
 		"points",
 		"polygon",
 		"polyline",
+		"stream",
 		"typescript"
 	],
 	"publishConfig": {
@@ -85,7 +88,7 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/geom",
-		"status": "alpha",
+		"status": "beta",
 		"year": 2016
 	}
 }

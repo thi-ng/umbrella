@@ -44,7 +44,8 @@ Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/g
 - Per group `mtllib` and `usemtl` references
 - Per group smooth flags
 - Optionally retained comments (e.g. for additional metadata parsing)
-- Fast (~100 verts, normals & faces per millisecond, MBP2015, Node 13.10)
+- Async parsing with support for ReadableStream
+- Fast (see [benchmarks](#benchmarks) below)
 
 ### Planned features
 
@@ -53,7 +54,7 @@ Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/g
 
 ## Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://codeberg.org/thi.ng/umbrella/issues?q=%5Bgeom-io-obj%5D)
 
@@ -83,7 +84,7 @@ For Node.js REPL:
 const gio = await import("@thi.ng/geom-io-obj");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.14 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 
@@ -107,14 +108,18 @@ directory is using this package:
 
 [Generated API docs](https://docs.thi.ng/umbrella/geom-io-obj/)
 
-TODO
+The parsed OBJ model format produced by all parser functions:
+[OBJModel](https://docs.thi.ng/umbrella/geom-io-obj/interfaces/OBJModel.html)
 
-See
-[api.ts](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/geom-io-obj/src/api.ts)
-for details about resulting data structure. Also see tests for more.
+Available functions:
+
+- [parseOBJFromStream()](https://docs.thi.ng/umbrella/geom-io-obj/functions/parseOBJFromStream.html)
+- [parseOBJFromString()](https://docs.thi.ng/umbrella/geom-io-obj/functions/parseOBJFromString.html)
+- [parseOBJFromIterable()](https://docs.thi.ng/umbrella/geom-io-obj/functions/parseOBJFromIterable.html)
+- [parseOBJGenerator()](https://docs.thi.ng/umbrella/geom-io-obj/functions/parseOBJGenerator.html)
 
 ```ts
-import { parseObj } from "@thi.ng/geom-io-obj";
+import { parseObjFromString } from "@thi.ng/geom-io-obj";
 
 const src = `
 # test cube
@@ -138,7 +143,7 @@ f 3 8 5 2
 `;
 
 // parse with defaults
-const model = parseObj(src);
+const model = parseObjFromString(src);
 
 console.log(model.vertices);
 // [
@@ -166,25 +171,27 @@ console.log(model.objects[0].groups[0].faces);
 
 ## Benchmarks
 
-Benchmark uses a quad-mesh model with 143,423 vertices, same number of
-normals and 142,802 quad faces (filesize 43.7MB).
+Benchmark uses `parseOBJFromString()` with a model with 270,050 vertices, same
+number of normals and 271,624 faces (99% quads), filesize 41.2MB.
+
+Results on MacBook Air M1 (2020), 16GB RAM, Bun v1.3.12:
 
 ```text
 benchmarking: parse
-        warmup... 7299.40ms (5 runs)
-        executing...
-        total: 13795.25ms, runs: 10
-        mean: 1379.52ms, median: 1379.91ms, range: [1356.43..1431.49]
-        q1: 1362.21ms, q3: 1415.23ms
-        sd: 1.77%
+        warmup... 18331.85ms (50 runs)
+        total: 36671.33ms, runs: 100 (@ 1 calls/iter)
+        freq: 2.73 ops/sec
+        mean: 366.71ms, median: 365.48ms, range: [344.24..403.17]
+        q1: 359.71ms, q3: 372.67ms
+        sd: 2.65%
 
-benchmarking: parse w/ tessellation
-        warmup... 7752.45ms (5 runs)
-        executing...
-        total: 15170.43ms, runs: 10
-        mean: 1517.04ms, median: 1540.89ms, range: [1425.28..1616.09]
-        q1: 1487.29ms, q3: 1551.26ms
-        sd: 3.35%
+benchmarking: parse w/ tesselation
+        warmup... 19795.49ms (50 runs)
+        total: 39542.96ms, runs: 100 (@ 1 calls/iter)
+        freq: 2.53 ops/sec
+        mean: 395.43ms, median: 394.13ms, range: [363.78..423.67]
+        q1: 389.40ms, q3: 402.07ms
+        sd: 2.71%
 ```
 
 ## Authors
