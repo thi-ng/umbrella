@@ -9,6 +9,8 @@ extern "custom" fn setVec2(addr: *[2]f32) void;
 
 extern "custom" fn structWithOptPtr(addr: *const Test) void;
 
+extern "custom" fn callAsync(x: i32) i32;
+
 const Test = struct {
     ptr: ?[*:0]const u8 = null,
 };
@@ -32,4 +34,9 @@ export fn test_optStringPtrNull() void {
 export fn test_optStringPtr() void {
     const tmp = Test{ .ptr = "foo" };
     structWithOptPtr(&tmp);
+}
+
+export fn test_async(x: i32) i32 {
+    const y = callAsync(x);
+    return y * 17;
 }

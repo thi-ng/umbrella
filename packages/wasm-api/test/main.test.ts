@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import { MemoryLogger } from "@thi.ng/logger";
+import { delayed } from "@thi.ng/compose";
 import { expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -63,16 +64,17 @@ test("allocators", async (done) => {
 
 test("custom", async (done) => {
 	interface CustomWasm extends WasmExports {
-		test_setVec2: () => void;
-		test_epoch: () => void;
-		test_optStringPtr: () => void;
-		test_optStringPtrNull: () => void;
+		test_setVec2(): void;
+		test_epoch(): void;
+		test_optStringPtr(): void;
+		test_optStringPtrNull(): void;
+		test_async(x: number): Promise<number>;
 	}
-	class CustomAPI implements IWasmAPI {
-		parent!: WasmBridge;
+	class CustomAPI implements IWasmAPI<CustomWasm> {
+		parent!: WasmBridge<CustomWasm>;
 		optPtr!: WasmStringPtr;
 
-		async init(parent: WasmBridge) {
+		async init(parent: WasmBridge<CustomWasm>) {
 			this.parent = parent;
 			return true;
 		}
@@ -85,6 +87,11 @@ test("custom", async (done) => {
 				structWithOptPtr: (addr: number) => {
 					this.optPtr = new WasmStringPtr(this.parent, addr, true);
 				},
+				callAsync: async (x: number) => {
+					this.parent.logger.debug("async", x);
+					await delayed(null, 10);
+					return x * 11;
+				},
 			};
 		}
 	}
@@ -92,7 +99,13 @@ test("custom", async (done) => {
 	const logger = new MemoryLogger("wasm");
 	// const logger = new ConsoleLogger("wasm");
 	const bridge = new WasmBridge<CustomWasm>(
-		[{ id: "custom", factory: () => new CustomAPI() }],
+		[
+			{
+				id: "custom",
+				factory: () => new CustomAPI(),
+				opts: { asyncExports: ["test_async"] },
+			},
+		],
 		logger
 	);
 	expect(
@@ -127,5 +140,8 @@ test("custom", async (done) => {
 	expect(ptr.length).toBe(3);
 	expect(ptr.deref()).toBe("foo");
 
+	logger.clear();
+	expect(await bridge.exports.test_async(23)).toBe(23 * 11 * 17);
+	expect(logger.messages()[0]).toEqual("async 23");
 	done();
 });
