@@ -47,6 +47,7 @@ Collection of 70+ type, feature & value checks.
 - [`isArrayBufferLike`](https://docs.thi.ng/umbrella/checks/functions/isArrayBufferLike.html)
 - [`isArrayBufferView`](https://docs.thi.ng/umbrella/checks/functions/isArrayBufferView.html)
 - [`isArrayLike`](https://docs.thi.ng/umbrella/checks/functions/isArrayLike.html)
+- [`isAsyncFunction`](https://docs.thi.ng/umbrella/checks/functions/isAsyncFunction.html)
 - [`isAsyncIterable`](https://docs.thi.ng/umbrella/checks/functions/isAsyncIterable.html)
 - [`isBigInt`](https://docs.thi.ng/umbrella/checks/functions/isBigInt.html)
 - [`isBlob`](https://docs.thi.ng/umbrella/checks/functions/isBlob.html)
@@ -138,7 +139,7 @@ For Node.js REPL:
 const ch = await import("@thi.ng/checks");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.03 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.06 KB
 
 ## Dependencies
 

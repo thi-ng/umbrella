@@ -50,9 +50,12 @@
 		"typescript": "^6.0.3"
 	},
 	"keywords": [
+		"async",
 		"detect",
 		"feature",
+		"functional",
 		"reflect",
+		"predicate",
 		"typescript",
 		"validate"
 	],

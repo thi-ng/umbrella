@@ -24,6 +24,7 @@
 - [`isArrayBufferLike`](https://docs.thi.ng/umbrella/checks/functions/isArrayBufferLike.html)
 - [`isArrayBufferView`](https://docs.thi.ng/umbrella/checks/functions/isArrayBufferView.html)
 - [`isArrayLike`](https://docs.thi.ng/umbrella/checks/functions/isArrayLike.html)
+- [`isAsyncFunction`](https://docs.thi.ng/umbrella/checks/functions/isAsyncFunction.html)
 - [`isAsyncIterable`](https://docs.thi.ng/umbrella/checks/functions/isAsyncIterable.html)
 - [`isBigInt`](https://docs.thi.ng/umbrella/checks/functions/isBigInt.html)
 - [`isBlob`](https://docs.thi.ng/umbrella/checks/functions/isBlob.html)
