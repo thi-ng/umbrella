@@ -70,8 +70,8 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	imports!: WebAssembly.Imports;
 	exports!: T;
 	api: CoreAPI;
-	moduleSpecs!: IObjectOf<WasmModuleSpec<T>>;
-	modules!: IObjectOf<IWasmAPI<T>>;
+	moduleSpecs!: IObjectOf<WasmModuleSpec>;
+	modules!: IObjectOf<IWasmAPI>;
 	order!: string[];
 
 	constructor(
@@ -184,7 +184,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 				acc[id] = graph[id];
 				return acc;
 			},
-			<IObjectOf<WasmModuleSpec<T>>>{}
+			<IObjectOf<WasmModuleSpec<any>>>{}
 		);
 		this.modules = this.order.reduce(
 			(acc, id) => {
@@ -272,7 +272,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	}
 
 	protected _prepareExports(exports: T): T {
-		for (let modID in this.modules) {
+		for (let modID in this.moduleSpecs) {
 			const opts = this.moduleSpecs[modID].opts;
 			if (!opts?.asyncExports) continue;
 			for (let id of opts.asyncExports) {

@@ -123,7 +123,7 @@ export interface WasmModuleSpec<T extends WasmExports = WasmExports> {
 	/**
 	 * Module options to configure advanced WASM features
 	 */
-	opts?: WasmModuleOpts;
+	opts?: Partial<WasmModuleOpts>;
 }
 
 export interface WasmModuleOpts {
@@ -140,7 +140,7 @@ export interface WasmModuleOpts {
 	 * - https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/promising_static
 	 * - https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Suspending
 	 */
-	asyncExports?: string[];
+	asyncExports: string[];
 }
 
 /**
