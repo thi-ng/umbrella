@@ -84,6 +84,13 @@ export const CustomModule: WasmModuleSpec = {
 	// only happens at a later point via WasmBridge.instantiate() or
 	// WasmBridge.init() and each module's own init() method...
 	factory: () => new CustomAPI(),
+	opts: {
+		// List of exported symbols which should be auto-wrapped using
+		// `WebAssembly.promising`. The counterpart, async function WASM imports,
+		// are also auto-wrapped using `WebAssembly.Suspend`.
+		// Also see section "Async handling" in readme
+		asyncExports: [/* ... */]
+	}
 };
 
 // Optional declarations for JS-side functions which can be used from the WASM side.
@@ -133,6 +140,9 @@ export class CustomAPI implements IWasmAPI<CustomWasmExports> {
 	 *
 	 * Each module's imports will be grouped by its declared module ID, which
 	 * also needs to be used to declare extern functions on the WASM side.
+	 *
+	 * Async functions given as WASM imports are will be auto-wrapped using
+	 * `WebAssembly.Suspend`.
 	 */
 	getImports(): CustomImports {
 		return {
@@ -190,6 +200,25 @@ export fn test_randomVec4() void {
 	wasm.printF32Array(foo[0..]);
 }
 ```
+
+## Async handling
+
+If the targeted WASM runtime supports
+[`WebAssembly.promising`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/promising_static)
+and
+[`WebAssembly.Suspending`](https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Suspending),
+then async functions will be automatically wrapped as follows:
+
+- Async functions declared in a module's WASM imports will be auto-wrapped using
+  `WebAssembly.Suspending`
+- WASM exports declared via
+  [`WasmModuleOpts.asyncExports`](https://docs.thi.ng/umbrella/wasm-api/interfaces/WasmModuleOpts.html#asyncexports)
+  will be auto-wrapped using `WebAssembly.promising`
+
+(Also see above code examples...)
+
+If either of these are present, but the WASM runtime doesn't support these
+features, an error will be thrown during instantiation/init.
 
 ## String handling
 

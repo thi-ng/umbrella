@@ -59,6 +59,7 @@
 	"keywords": [
 		"allocator",
 		"api",
+		"async",
 		"bigint",
 		"bindings",
 		"browser",
