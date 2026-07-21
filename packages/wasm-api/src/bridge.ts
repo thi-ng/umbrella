@@ -10,8 +10,10 @@ import type {
 } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { topoSort } from "@thi.ng/arrays/topo-sort";
+import { isAsyncFunction } from "@thi.ng/checks/is-async-function";
 import { assert } from "@thi.ng/errors/assert";
 import { defError } from "@thi.ng/errors/deferror";
+import { unsupportedFeature } from "@thi.ng/errors/unsupported";
 import { U16, U32, U64BIG, U8, hexdumpLines } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
@@ -68,6 +70,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	imports!: WebAssembly.Imports;
 	exports!: T;
 	api: CoreAPI;
+	moduleSpecs!: IObjectOf<WasmModuleSpec<T>>;
 	modules!: IObjectOf<IWasmAPI<T>>;
 	order!: string[];
 
@@ -176,6 +179,13 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			<IObjectOf<WasmModuleSpec<T>>>{}
 		);
 		this.order = topoSort(graph, (mod) => mod.deps?.map((x) => x.id));
+		this.moduleSpecs = this.order.reduce(
+			(acc, id) => {
+				acc[id] = graph[id];
+				return acc;
+			},
+			<IObjectOf<WasmModuleSpec<T>>>{}
+		);
 		this.modules = this.order.reduce(
 			(acc, id) => {
 				acc[id] = graph[id].factory(this);
@@ -195,6 +205,12 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * will be instantiated via `WebAssembly.instantiateStreaming()`, otherwise
 	 * the non-streaming version will be used.
 	 *
+	 * Any async functions defined in given `imports` will be automatically
+	 * wrapped using `WebAssembly.Suspend`. An error will be thrown if async
+	 * function imports are provided, but if the suspend feature is not
+	 * supported by the WASM runtime. See
+	 * {@link WasmModuleSpec.opts} for more details and counterparts.
+	 *
 	 * @param src
 	 * @param imports
 	 */
@@ -203,11 +219,32 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		imports?: WebAssembly.Imports
 	) {
 		const $src = await src;
-		const $imports = { ...this.getImports(), ...imports };
+		const $imports = this._prepareImports({
+			...this.getImports(),
+			...imports,
+		});
 		const wasm = await ($src instanceof Response
 			? WebAssembly.instantiateStreaming($src, $imports)
 			: WebAssembly.instantiate($src, $imports));
 		return this.init(<any>wasm.instance.exports);
+	}
+
+	protected _prepareImports(imports: WebAssembly.Imports) {
+		for (let modID in imports) {
+			const moduleImports = imports[modID];
+			for (let id in moduleImports) {
+				if (isAsyncFunction(moduleImports[id])) {
+					if (!("Suspending" in WebAssembly))
+						unsupportedFeature(
+							"async function in WASM module imports"
+						);
+					moduleImports[id] = new (<any>WebAssembly)["Suspending"](
+						moduleImports[id]
+					);
+				}
+			}
+		}
+		return imports;
 	}
 
 	/**
@@ -223,7 +260,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * @param exports
 	 */
 	async init(exports: T) {
-		this.exports = exports;
+		this.exports = this._prepareExports(exports);
 		this.ensureMemory(false);
 		for (const id of this.order) {
 			this.logger.debug(`initializing API module: ${id}`);
@@ -232,6 +269,31 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		}
 		this.notify({ id: EVENT_MEMORY_CHANGED, value: this.exports.memory });
 		return true;
+	}
+
+	protected _prepareExports(exports: T): T {
+		for (let modID in this.modules) {
+			const opts = this.moduleSpecs[modID].opts;
+			if (!opts?.asyncExports) continue;
+			for (let id of opts.asyncExports) {
+				const item = exports[<keyof T>id];
+				if (item != null) {
+					if (!("promising" in WebAssembly))
+						unsupportedFeature(
+							"async function in WASM module exports"
+						);
+					exports = {
+						...exports,
+						[id]: (<any>WebAssembly).promising(item),
+					};
+				} else {
+					this.logger.warn(
+						`WASM export ${id} declared as async, but missing...`
+					);
+				}
+			}
+		}
+		return exports;
 	}
 
 	/**

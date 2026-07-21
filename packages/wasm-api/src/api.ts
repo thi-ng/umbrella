@@ -15,9 +15,7 @@ export const EVENT_MEMORY_CHANGED = "memory-changed";
 export const EVENT_PANIC = "panic";
 
 export type BridgeEventType =
-	| typeof EVENT_MEMORY_CHANGED
-	| typeof EVENT_PANIC
-	| typeof EVENT_ALL;
+	typeof EVENT_MEMORY_CHANGED | typeof EVENT_PANIC | typeof EVENT_ALL;
 
 export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
 
@@ -122,6 +120,27 @@ export interface WasmModuleSpec<T extends WasmExports = WasmExports> {
 	 * modules own {@link IWasmAPI.init} method.
 	 */
 	factory: Fn<WasmBridge<T>, IWasmAPI<T>>;
+	/**
+	 * Module options to configure advanced WASM features
+	 */
+	opts?: WasmModuleOpts;
+}
+
+export interface WasmModuleOpts {
+	/**
+	 * List of export symbol names which should be automatically wrapped
+	 * using `WebAssembly.promising()`.
+	 *
+	 * @remarks
+	 * Note: Async functions provided as module imports are automatically
+	 * wrapped via `WebAssembly.Suspending()`, however for exports no
+	 * auto-detection is possible and hence needs to be provided here.
+	 *
+	 * Reference:
+	 * - https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/promising_static
+	 * - https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Suspending
+	 */
+	asyncExports?: string[];
 }
 
 /**
@@ -181,16 +200,7 @@ export interface WasmExports {
 export type MemorySlice = [addr: number, len: number];
 
 export type MemoryViewType =
-	| "i8"
-	| "u8"
-	| "i16"
-	| "u16"
-	| "i32"
-	| "u32"
-	| "i64"
-	| "u64"
-	| "f32"
-	| "f64";
+	"i8" | "u8" | "i16" | "u16" | "i32" | "u32" | "i64" | "u64" | "f32" | "f64";
 
 export interface MemoryViewTypeMap extends Record<
 	MemoryViewType,
