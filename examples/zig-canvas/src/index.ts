@@ -37,7 +37,7 @@ class CanvasHandlers implements IWasmAPI<WasmApp> {
 
 	async init(parent: WasmBridge<WasmApp>) {
 		this.parent = parent;
-		this.dom = <WasmDom>this.parent.modules.dom;
+		this.dom = <WasmDom>this.parent.modules[WasmDomModule.id];
 		return true;
 	}
 
