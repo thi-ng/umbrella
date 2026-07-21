@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-clip-poly",
-	"version": "2.1.225",
+	"version": "2.1.226",
 	"description": "2D polygon clipping / offsetting (Sutherland-Hodgeman, Grainer-Hormann)",
 	"type": "module",
 	"module": "./index.js",
@@ -40,10 +40,10 @@
 		"tool:tangle": "../../node_modules/.bin/tangle src/**/*.ts"
 	},
 	"dependencies": {
-		"@thi.ng/geom-isec": "^4.0.93",
-		"@thi.ng/geom-poly-utils": "^3.1.30",
+		"@thi.ng/geom-isec": "^4.0.94",
+		"@thi.ng/geom-poly-utils": "^3.1.31",
 		"@thi.ng/math": "^5.15.16",
-		"@thi.ng/vectors": "^8.6.37"
+		"@thi.ng/vectors": "^8.6.38"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.1",

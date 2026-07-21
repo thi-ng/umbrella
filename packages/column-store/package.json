@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/column-store",
-	"version": "0.14.5",
+	"version": "0.14.6",
 	"description": "In-memory column store database with customizable column types, extensible query engine with support for nested queries, bitfield indexing for query acceleration, JSON serialization with optional RLE compression",
 	"type": "module",
 	"module": "./index.js",
@@ -41,8 +41,8 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.27",
-		"@thi.ng/bidir-index": "^1.5.13",
-		"@thi.ng/checks": "^3.10.1",
+		"@thi.ng/bidir-index": "^1.5.14",
+		"@thi.ng/checks": "^3.11.0",
 		"@thi.ng/compare": "^2.5.15",
 		"@thi.ng/errors": "^2.6.16",
 		"@thi.ng/rle-pack": "^3.2.14"

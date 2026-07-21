@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/validate",
-	"version": "0.4.2",
+	"version": "0.4.3",
 	"description": "Functional, composable, fully extensible, predicate-based value validation with customizable error messages",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.27",
-		"@thi.ng/checks": "^3.10.1",
+		"@thi.ng/checks": "^3.11.0",
 		"@thi.ng/equiv": "^2.1.116",
 		"@thi.ng/errors": "^2.6.16"
 	},

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/args",
-	"version": "3.2.25",
+	"version": "3.2.26",
 	"description": "Declarative, functional CLI argument/options parser, app framework, arg value coercions, multi/sub-commands, usage generation, error handling etc.",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.27",
-		"@thi.ng/checks": "^3.10.1",
+		"@thi.ng/checks": "^3.11.0",
 		"@thi.ng/errors": "^2.6.16",
 		"@thi.ng/logger": "^3.3.10",
 		"@thi.ng/strings": "^3.12.9",

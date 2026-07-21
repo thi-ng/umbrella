@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-02T14:22:52Z
+- **Last updated**: 2026-07-21T14:53:15Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api@2.5.0/packages/wasm-api) (2026-07-21)
+
+#### 🚀 Features
+
+- add support for `WebAssembly.Suspend` and `WebAssembly.promising` ([7362f48](https://codeberg.org/thi.ng/umbrella/commit/7362f48))
+  - add `WasmModuleOpts` to declare async export symbols
+  - add `WasmModuleSpec.opts` to provide options
+  - update `WasmBridge.init()` to auto-wrap declared async exports via `WebAssembly.promising`
+  - update `WasmBridge.instantiate()` to auto-wrap provided async imports via `WebAssembly.Suspend`
+
+#### 🧪 Tests
+
+- add async test case ([b69909a](https://codeberg.org/thi.ng/umbrella/commit/b69909a))
 
 ### [2.4.32](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api@2.4.32/packages/wasm-api) (2026-06-05)
 

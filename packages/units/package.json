@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/units",
-	"version": "1.4.6",
+	"version": "1.4.7",
 	"description": "Extensible SI unit creation, conversions, quantities & calculations, CLI calculator (incl. Lisp-like DSL and ~170 predefined units & constants)",
 	"type": "module",
 	"module": "./index.js",
@@ -42,12 +42,12 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.27",
-		"@thi.ng/args": "^3.2.25",
-		"@thi.ng/checks": "^3.10.1",
+		"@thi.ng/args": "^3.2.26",
+		"@thi.ng/checks": "^3.11.0",
 		"@thi.ng/compare": "^2.5.15",
 		"@thi.ng/equiv": "^2.1.116",
 		"@thi.ng/errors": "^2.6.16",
-		"@thi.ng/sexpr": "^1.1.37",
+		"@thi.ng/sexpr": "^1.1.38",
 		"@thi.ng/strings": "^3.12.9"
 	},
 	"devDependencies": {

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-io-tiff",
-	"version": "0.1.16",
+	"version": "0.1.17",
 	"description": "Basic TIFF image format support for @thi.ng/pixel",
 	"type": "module",
 	"module": "./index.js",
@@ -43,7 +43,7 @@
 		"@thi.ng/api": "^8.12.27",
 		"@thi.ng/binary": "^3.6.16",
 		"@thi.ng/errors": "^2.6.16",
-		"@thi.ng/pixel": "^7.5.36"
+		"@thi.ng/pixel": "^7.5.37"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.1",

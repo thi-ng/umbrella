@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-02T14:22:51Z
+- **Last updated**: 2026-07-21T14:53:15Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.11.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.11.0/packages/checks) (2026-07-21)
+
+#### 🚀 Features
+
+- add isAsyncFunction() check ([1d074a4](https://codeberg.org/thi.ng/umbrella/commit/1d074a4))
 
 ## [3.10.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/checks@3.10.0/packages/checks) (2026-06-05)
 

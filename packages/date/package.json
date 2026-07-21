@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/date",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "Datetime types, relative dates, math, iterators, composable formatters, locales",
 	"type": "module",
 	"module": "./index.js",
@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.12.27",
-		"@thi.ng/checks": "^3.10.1",
+		"@thi.ng/checks": "^3.11.0",
 		"@thi.ng/strings": "^3.12.9"
 	},
 	"devDependencies": {

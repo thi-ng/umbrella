@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/soa",
-	"version": "1.0.78",
+	"version": "1.0.79",
 	"description": "SOA & AOS memory mapped structured views with optional & extensible serialization",
 	"type": "module",
 	"module": "./index.js",
@@ -43,8 +43,8 @@
 		"@thi.ng/api": "^8.12.27",
 		"@thi.ng/binary": "^3.6.16",
 		"@thi.ng/errors": "^2.6.16",
-		"@thi.ng/transducers-binary": "^2.1.215",
-		"@thi.ng/vectors": "^8.6.37"
+		"@thi.ng/transducers-binary": "^2.1.216",
+		"@thi.ng/vectors": "^8.6.38"
 	},
 	"devDependencies": {
 		"@thi.ng/equiv": "^2.1.116",

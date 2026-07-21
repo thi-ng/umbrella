@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-binary",
-	"version": "2.1.215",
+	"version": "2.1.216",
 	"description": "Binary data related transducers & reducers",
 	"type": "module",
 	"module": "./index.js",
@@ -46,7 +46,7 @@
 		"@thi.ng/hex": "^2.4.19",
 		"@thi.ng/random": "^4.1.53",
 		"@thi.ng/strings": "^3.12.9",
-		"@thi.ng/transducers": "^9.6.41"
+		"@thi.ng/transducers": "^9.6.42"
 	},
 	"devDependencies": {
 		"esbuild": "^0.28.1",
