@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-21T14:53:15Z
+- **Last updated**: 2026-07-21T23:55:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.5.1](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api@2.5.1/packages/wasm-api) (2026-07-21)
+
+#### 🩹 Bug fixes
+
+- fix/update internal type handling ([2640275](https://codeberg.org/thi.ng/umbrella/commit/2640275))
 
 ## [2.5.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api@2.5.0/packages/wasm-api) (2026-07-21)
 
