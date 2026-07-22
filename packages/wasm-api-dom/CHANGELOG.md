@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-07-02T14:22:52Z
+- **Last updated**: 2026-07-22T00:13:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.0.38](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.38/packages/wasm-api-dom) (2026-07-22)
+
+#### 🩹 Bug fixes
+
+- update internal async handling in fullscreen handlers ([e3d6550](https://codeberg.org/thi.ng/umbrella/commit/e3d6550))
+  - update `_requestFullscreen()` / `_exitFullscreen()`
 
 ### [2.0.13](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/wasm-api-dom@2.0.13/packages/wasm-api-dom) (2025-12-03)
 
