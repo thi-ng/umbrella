@@ -215,7 +215,9 @@ export interface WasmDomImports extends WebAssembly.ModuleImports {
 
 	_requestAnimationFrame(rafID: number): void;
 
-	_requestFullscreen(elementID: number): Promise<void>;
+	_requestFullscreen(elementID: number): void;
+
+	_exitFullscreen(): void;
 }
 
 /**

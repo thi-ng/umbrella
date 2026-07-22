@@ -394,13 +394,11 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 				);
 			},
 
-			_requestFullscreen: async (elementID: number) => {
-				if (
-					!(
-						document.fullscreenElement ||
-						(<any>document).webkitFullscreenElement
-					)
-				) {
+			_requestFullscreen: (elementID: number) => {
+				if (!(
+					document.fullscreenElement ||
+					(<any>document).webkitFullscreenElement
+				)) {
 					const el =
 						elementID <= 1
 							? document.documentElement
@@ -408,12 +406,14 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 					const method =
 						el.requestFullscreen ||
 						(<any>el).webkitRequestFullscreen;
-					await method.bind(el)();
-					this.parent.exports._dom_fullscreenChanged();
+					(async () => {
+						await method.bind(el)();
+						this.parent.exports._dom_fullscreenChanged();
+					})();
 				}
 			},
 
-			_exitFullscreen: async () => {
+			_exitFullscreen: () => {
 				if (
 					document.fullscreenElement ||
 					(<any>document).webkitFullscreenElement
@@ -421,8 +421,10 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 					const method =
 						document.exitFullscreen ||
 						(<any>document).webkitExitFullscreen;
-					await method.bind(document)();
-					this.parent.exports._dom_fullscreenChanged();
+					(async () => {
+						await method.bind(document)();
+						this.parent.exports._dom_fullscreenChanged();
+					})();
 				}
 			},
 		};
