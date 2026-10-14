@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-sanitize",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Helper package to remove user defined attributes and elements from a @thi.ng/hiccup tree",
 	"type": "module",
 	"module": "./index.js",
