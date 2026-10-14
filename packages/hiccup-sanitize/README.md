@@ -30,14 +30,19 @@
 Helper package to remove user defined attributes and elements from a [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) tree.
 
 ```ts tangle:exports/readme-1.ts
+import { sanitize } from "@thi.ng/hiccup-sanitize";
 
+// hiccup source document
+const doc = [
+    "div",
+    { id: "foo", class: "a", onerror: "alert(1)" },
+    ["span", {}, "b"],
+    ["p", {}, "c", ["br", {}], "d"],
+];
+
+// sanitze document
 const cleaned = sanitize(
-    [
-        "div",
-        { id: "foo", class: "a", onerror: "alert(1)" },
-        ["span", {}, "b"],
-        ["p", {}, "c", ["br", {}], "d"],
-    ],
+    doc,
     {
         // remove ID and event attributes
         removeAttribs: ["id", /^on\w+/],
@@ -46,6 +51,8 @@ const cleaned = sanitize(
     }
 );
 
+console.log(cleaned);
+// ["div", { class: "a" }, ["p", {}, "c", "d"]]
 ```
 
 ## Status
