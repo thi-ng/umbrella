@@ -314,22 +314,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-09-05
+As of: 2026-10-14
 
-| Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
-|:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/atom`](./packages/atom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                           | [changelog](./packages/atom/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/compose`](./packages/compose)                     | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)                     | [changelog](./packages/compose/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom`](./packages/geom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                           | [changelog](./packages/geom/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-accel`](./packages/geom-accel)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)               | [changelog](./packages/geom-accel/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-mesh`](./packages/geom-mesh)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-mesh.svg)](https://www.npmjs.com/package/@thi.ng/geom-mesh)                 | [changelog](./packages/geom-mesh/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/mime)                           | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                           | [changelog](./packages/mime/CHANGELOG.md)              |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/tensors`](./packages/tensors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/tensors.svg)](https://www.npmjs.com/package/@thi.ng/tensors)                     | [changelog](./packages/tensors/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)                         | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)                         | [changelog](./packages/units/CHANGELOG.md)             |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             |
+| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
+|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-sanitize`](./packages/hiccup-sanitize) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-sanitize.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-sanitize) | [changelog](./packages/hiccup-sanitize/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
