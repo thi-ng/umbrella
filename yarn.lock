@@ -5324,6 +5324,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/hiccup-sanitize@workspace:packages/hiccup-sanitize":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/hiccup-sanitize@workspace:packages/hiccup-sanitize"
+  dependencies:
+    "@thi.ng/api": "npm:^8.12.28"
+    "@thi.ng/checks": "npm:^3.11.1"
+    "@thi.ng/zipper": "npm:^2.1.181"
+    esbuild: "npm:^0.28.2"
+    typedoc: "npm:^0.28.20"
+    typescript: "npm:^6.0.3"
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/hiccup-svg@npm:^5.6.23, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
