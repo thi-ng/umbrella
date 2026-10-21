@@ -23,14 +23,12 @@
 			"built": false
 		}
 	},
-	"resolutions__": {
-		"brace-expansion": "^5.0.9",
-		"markdown-it": "^14.2.0",
-		"minimatch": "^10.2.1",
-		"node-gyp": "^12.2.0",
-		"picomatch": "^4.0.4",
-		"rollup": "^4.59.0",
-		"tar": "^7.5.21"
+	"resolutions": {
+		"brace-expansion": "^5.0.12",
+		"markdown-it": "^14.3.2",
+		"minimatch": "^10.2.6",
+		"node-gyp": "^13.1.0",
+		"undici": "^8.12.1"
 	},
 	"scripts": {
 		"@thi.ng": "yarn workspaces foreach -pv --all --include '@thi.ng/*'",
