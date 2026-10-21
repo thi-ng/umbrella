@@ -56,7 +56,7 @@
 		"@thi.ng/uuid": "^1.1.61"
 	},
 	"devDependencies": {
-		"@types/node": "^26.2.0",
+		"@types/node": "^26.6.5",
 		"esbuild": "^0.28.2",
 		"typedoc": "^0.28.20",
 		"typescript": "^6.0.3"

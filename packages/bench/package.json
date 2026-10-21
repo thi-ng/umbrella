@@ -45,7 +45,7 @@
 		"@thi.ng/timestamp": "^1.1.47"
 	},
 	"devDependencies": {
-		"@types/node": "^26.2.0",
+		"@types/node": "^26.6.5",
 		"esbuild": "^0.28.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.28.20",

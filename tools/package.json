@@ -5,6 +5,6 @@
 	"description": "This module provides some build-related tools for @thi.ng/umbrella",
 	"type": "module",
 	"devDependencies": {
-		"@types/node": "^26.2.0"
+		"@types/node": "^26.6.5"
 	}
 }
