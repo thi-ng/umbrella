@@ -50,7 +50,7 @@
 		"@thi.ng/equiv": "^2.1.117",
 		"esbuild": "^0.28.2",
 		"typedoc": "^0.28.20",
-		"typescript": "^6.0.3"
+		"typescript": "^7.0.2"
 	},
 	"keywords": [
 		"acceleration",

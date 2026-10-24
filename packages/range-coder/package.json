@@ -46,7 +46,7 @@
 		"@thi.ng/transducers": "^9.6.43",
 		"esbuild": "^0.28.2",
 		"typedoc": "^0.28.20",
-		"typescript": "^6.0.3"
+		"typescript": "^7.0.2"
 	},
 	"keywords": [
 		"array",
