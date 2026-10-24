@@ -27,7 +27,7 @@
 		"screenshot": "shader-ast/shader-ast-01.jpg"
 	},
 	"devDependencies": {
-		"typescript": "^6.0.3",
+		"typescript": "^7.0.2",
 		"vite": "^8.3.4"
 	},
 	"keywords": [

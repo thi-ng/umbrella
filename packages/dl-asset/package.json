@@ -46,7 +46,7 @@
 	"devDependencies": {
 		"esbuild": "^0.28.2",
 		"typedoc": "^0.28.20",
-		"typescript": "^6.0.3"
+		"typescript": "^7.0.2"
 	},
 	"keywords": [
 		"browser",
