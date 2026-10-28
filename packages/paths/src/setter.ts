@@ -17,7 +17,7 @@ import type {
 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
-import { toPath } from "./path.js";
+import { disallowProtoPath } from "./path.js";
 
 /**
  * Composes a setter function for given nested update path. Optimized
@@ -153,7 +153,7 @@ export function defSetter<T, A, B, C, D, E, F, G, H>(
 	path: DeepPath<T, A, B, C, D, E, F, G, H>
 ): Fn2<T, any, any>;
 export function defSetter(path: Path): Fn2<any, any, any> {
-	const ks = toPath(path);
+	const ks = disallowProtoPath(path);
 	const [a, b, c, d] = ks;
 	switch (ks.length) {
 		case 0:
@@ -189,7 +189,7 @@ export function defSetter(path: Path): Fn2<any, any, any> {
 			};
 		default:
 			let f: any;
-			for (let i = ks.length; i-- > 0; ) {
+			for (let i = ks.length; i-- > 0;) {
 				f = __compSetter(ks[i], f);
 			}
 			return f;

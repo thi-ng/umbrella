@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
-import { expect, test } from "bun:test";
+import { type FnO, type Path } from "@thi.ng/api";
+import { describe, expect, test } from "bun:test";
 import {
+	defMutatorUnsafe,
+	defSetterUnsafe,
+	defUpdaterUnsafe,
 	deleteIn,
 	exists,
 	getIn,
 	getInUnsafe,
-	mutIn,
 	setIn,
 	setInUnsafe,
 	toPath,
@@ -185,16 +188,37 @@ test("exists", () => {
 	expect(exists(b, "x.z.y.2.u")).toBeFalse();
 });
 
-test("mutIn", () => {
-	const a: any = {};
-	expect(() => mutIn(a, ["__proto__", "polluted"], true)).toThrow();
-	expect(() => mutIn(a, <any>[["__proto__"], "polluted"], true)).toThrow();
-	expect(() => mutIn(a, <any>[[["__proto__"]], "polluted"], true)).toThrow();
-});
+const illegalPaths: any[] = [
+	["__proto__", "polluted"],
+	[["__proto__"], "polluted"],
+	[[["__proto__"]], "polluted"],
+	["prototype", "polluted"],
+	["constructor", "polluted"],
+	"__proto__.polluted",
+	"prototype.polluted",
+	"constructor.polluted",
+	"nested.__proto__.polluted",
+	"nested.prototype.polluted",
+	"nested.constructor.polluted",
+	"\x5f\x5f\x70\x72\x6f\x74\x6f\x5f\x5f.polluted",
+];
 
-test("deleteIn", () => {
-	const a: any = {};
-	expect(() => deleteIn(a, ["__proto__", "polluted"])).toThrow();
-	expect(() => deleteIn(a, <any>[["__proto__"], "polluted"])).toThrow();
-	expect(() => deleteIn(a, <any>[[["__proto__"]], "polluted"])).toThrow();
+const checkPollutions = (fn: FnO<Path, any>) => {
+	for (let path of illegalPaths) {
+		expect(() => fn(path), JSON.stringify(path)).toThrow();
+	}
+};
+
+describe("illegals", () => {
+	test("mutator", () => checkPollutions(defMutatorUnsafe));
+
+	test("setter", () => checkPollutions(defSetterUnsafe));
+
+	test("updater", () => checkPollutions(defUpdaterUnsafe));
+
+	test("deleteIn", () => {
+		for (let path of illegalPaths) {
+			expect(() => deleteIn({}, path), JSON.stringify(path)).toThrow();
+		}
+	});
 });
