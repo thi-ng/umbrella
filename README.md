@@ -314,11 +314,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2026-10-14
+As of: 2026-10-29
 
-| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
-|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-sanitize`](./packages/hiccup-sanitize) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-sanitize.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-sanitize) | [changelog](./packages/hiccup-sanitize/CHANGELOG.md) |
+| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
+|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/paths`](./packages/paths) | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths) | [changelog](./packages/paths/CHANGELOG.md) |
 
 ### Algorithms & data structures
 
