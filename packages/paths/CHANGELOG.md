@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2026-08-25T17:11:45Z
+- **Last updated**: 2026-10-29T10:31:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -10,6 +10,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [5.2.49](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/paths@5.2.49/packages/paths) (2026-10-29)
+
+#### 🩹 Bug fixes
+
+- update `defSetter()` to disallow prototype pollution ([1db36cd](https://codeberg.org/thi.ng/umbrella/commit/1db36cd))
+  - internally replace use of `toPath()` with `disallowProtoPath()`
+    (same logic as in `defMutator()`)
+  - add/update pollution tests
 
 ## [5.2.0](https://codeberg.org/thi.ng/umbrella/src/tag/@thi.ng/paths@5.2.0/packages/paths) (2025-01-29)
 
