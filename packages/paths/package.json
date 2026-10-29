@@ -27,6 +27,9 @@
 		}
 	],
 	"author": "Karsten Schmidt (https://thi.ng)",
+	"contributors": [
+		"Fan Runqi (https://github.com/waveStroke)"
+	],
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn build:esbuild && yarn build:decl",
