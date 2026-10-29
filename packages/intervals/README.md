@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 217 standalone projects. LLM-free, human-made and
+> This is one of 218 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -196,6 +196,9 @@ i.clamp(i.interval("[0..1)"), 2, 1e-3)
 ## Authors
 
 - [Karsten Schmidt](https://thi.ng) (Main author)
+
+### Contributors <!-- notoc -->
+
 - [@oljeger](https://github.com/oljeger)
 
 If this project contributes to an academic publication, please cite it as:

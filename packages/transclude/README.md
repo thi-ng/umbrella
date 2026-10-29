@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 217 standalone projects. LLM-free, human-made and
+> This is one of 218 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -69,7 +69,7 @@ For Node.js REPL:
 const tra = await import("@thi.ng/transclude");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.96 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.02 KB
 
 ## Dependencies
 

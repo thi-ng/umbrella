@@ -1,6 +1,4 @@
-## Authors
-
-{{pkg.allAuthorLinks}}
+{{pkg.allAuthorLinks ## Authors, ### Contributors <!-- notoc -->}}
 
 {{pkg.cite}}
 

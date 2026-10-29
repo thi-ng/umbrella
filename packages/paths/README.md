@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 217 standalone projects. LLM-free, human-made and
+> This is one of 218 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -407,14 +407,18 @@ exists({ a: { b: { c: [null] } } }, ["a", "b", "c", 1]);
 
 ## Authors
 
-- [Karsten Schmidt](https://thi.ng)
+- [Karsten Schmidt](https://thi.ng) (Main author)
+
+### Contributors <!-- notoc -->
+
+- [Fan Runqi](https://github.com/waveStroke)
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-paths,
   title = "@thi.ng/paths",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/paths",
   year = 2016
 }

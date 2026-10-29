@@ -8,7 +8,7 @@
 
 > [!NOTE]
 
-> This is one of 217 standalone projects. LLM-free, human-made and
+> This is one of 218 standalone projects. LLM-free, human-made and
 > cared for software, maintained as part of the
 > [@thi.ng/umbrella](https://codeberg.org/thi.ng/umbrella/) ecosystem and
 > anti-framework.
@@ -154,6 +154,9 @@ TODO
 ## Authors
 
 - [Karsten Schmidt](https://thi.ng) (Main author)
+
+### Contributors <!-- notoc -->
+
 - [Gavin Cannizzaro](https://github.com/gavinpc-mindgrub)
 - [Jay Zawrotny](https://github.com/eccentric-j)
 

@@ -6,7 +6,7 @@
 
 {{pkg.description}}
 
-```ts tangle:exports/readme-1.ts
+```ts tangle:export/readme-1.ts
 import { sanitize } from "@thi.ng/hiccup-sanitize";
 
 // hiccup source document

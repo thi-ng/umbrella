@@ -29,7 +29,7 @@
 
 Helper package to remove user defined attributes and elements from a [@thi.ng/hiccup](https://codeberg.org/thi.ng/umbrella/src/branch/develop/packages/hiccup) tree.
 
-```ts tangle:exports/readme-1.ts
+```ts tangle:export/readme-1.ts
 import { sanitize } from "@thi.ng/hiccup-sanitize";
 
 // hiccup source document
