@@ -251,19 +251,20 @@ export const packageTemplates = <T = any>(
 /** @internal */
 const __allAuthors =
 	(pkg: Fn<any, Package>, itemFn: Fn<string | User, string>): TemplateFn =>
-	({ user, eol }) => {
+	({ user, eol }, args) => {
 		const $pkg = pkg(user);
-		const $author = itemFn($pkg.author);
-		const res = [];
+		const author = itemFn($pkg.author);
+		const [hdAuthors, hdContribs] = args[2].length
+			? args[2].split(",").map((x) => x.trim())
+			: [];
+		const res: string[] = [];
+		if (hdAuthors) res.push(hdAuthors, "");
 		if ($pkg.contributors) {
-			res.push(
-				$author + " (Main author)",
-				...$pkg.contributors.map(itemFn)
-			);
-		} else {
-			res.push($author);
-		}
-		return list(res, eol);
+			res.push(list([`${author} (Main author)`], eol));
+			if (hdContribs) res.push("", hdContribs, "");
+			res.push(list($pkg.contributors.map(itemFn), eol));
+		} else res.push(list([author], eol));
+		return res.join(eol);
 	};
 
 /** @internal */
