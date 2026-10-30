@@ -7298,13 +7298,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bun-types@npm:1.4.3":
-  version: 1.4.3
-  resolution: "bun-types@npm:1.4.3"
+"bun-types@npm:1.4.4":
+  version: 1.4.4
+  resolution: "bun-types@npm:1.4.4"
   dependencies:
     "@types/node": "npm:*"
     undici-types: "npm:*"
-  checksum: 10/ea619f0cb0f81f85470a8026ecf1afa4e628e579ac4eb99ee530455f08e2e707a8bdf876552a7064ee394f71c45aeca1c99631081688552a259536cb211ab606
+  checksum: 10/2ac1e8451589db9c0928faa383ff6092a19f493fd42c50be7a54f7ee4679ca01a5a27aa4585d6fc8064407afc7282098d15302eb750b3d3b73a8e9524500f726
   languageName: node
   linkType: hard
 
@@ -8051,7 +8051,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    bun-types: "npm:1.4.3"
+    bun-types: "npm:1.4.4"
     esbuild: "npm:^0.28.2"
     html-minifier-terser: "npm:^7.2.0"
     prettier: "npm:^3.9.10"
