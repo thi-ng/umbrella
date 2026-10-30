@@ -7,7 +7,7 @@
 		"tools"
 	],
 	"devDependencies": {
-		"bun-types": "1.4.3",
+		"bun-types": "1.4.4",
 		"esbuild": "^0.28.2",
 		"html-minifier-terser": "^7.2.0",
 		"prettier": "^3.9.10",
